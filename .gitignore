@@ -5,7 +5,9 @@
 ### Bookdown ###
 # R package: bookdown caching files
 /*_files/
-./_main.*
+_main.*
+!_book/_main.*
+libs/
 
 ### macOS ###
 # General
