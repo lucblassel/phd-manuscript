@@ -1,7 +1,13 @@
-p.caption {
+.caption {
   color: #777;
   margin-top: 10px;
+  text-align: left;
 }
+
+caption p{
+ text-align: left;
+}
+
 p code {
   white-space: inherit;
 }
