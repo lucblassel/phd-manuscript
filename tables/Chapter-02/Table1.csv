@@ -1,0 +1,14 @@
+﻿,,UK,,Africa,
+size,,55539,,3990,
+RTI naïve,with known RAMs,11429,(21%),318,(8%)
+,without known RAMs,30492,(55%),1998,(50%)
+RTI experienced,with known RAMs,6633,(12%),1388,(35%)
+,without known RAMs,6985,(13%),286,(7%)
+sequences with ≥ 2 known RAMs,,8034,(14%),1308,(33%)
+max known RAM number,,13,,17,
+Median known RAM number,,1,,3,
+number of subtypes / CRFs,,2,,24,
+subtypes / CRFs,A,0,(0%),472,(12%)
+,B,37806,(68%),64,(2%)
+,C,17733,(32%),702,(18%)
+,CRF02 AG,0,(0%),1477,(37%)

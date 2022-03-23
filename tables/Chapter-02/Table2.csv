@@ -1,0 +1,12 @@
+Signal removal level,Trained on,,,Tested on,,
+None,UK, subtype B,(37806),UK, subtype C,(17733)
+,UK, subtype C,(17733),UK, subtype B,(37806)
+,UK, subtypes B & C,(55539),Africa, all subtypes,(3990)
+,,,,
+Known RAM features removed,UK, subtype B,(37806),UK, subtype C,(17733)
+,UK, subtype C,(17733),UK, subtype B,(37806)
+,UK, subtypes B & C,(55539),Africa, all subtypes,(3990)
+,,,,
+Known RAM features sequences with ≥1 known RAM removed,UK, subtype B,(24422),UK, subtype C,(13055)
+,UK, subtype C,(13055),UK, subtype B,(24422)
+,UK, subtypes B & C,(37477),Africa, all subtypes,(2284)
