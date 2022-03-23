@@ -1,0 +1,17 @@
+# HIV and DRMs
+
+## HIV
+
+## DRMs
+
+This text should be visible in both the versions   
+
+:::{.latexonly style="display: none;"}
+This should only show up in latex. 
+:::
+
+:::{.htmlonly data-latex=""}
+This should only show up in the HTML version
+:::
+
+Back to both here!. 
