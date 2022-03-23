@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 csl: plos-computational-biology
-bibliography: [references/book.bib, references/packages.bib, references/Chap02.bib]
+bibliography: [references/Chap02.bib]
 biblatexoptions: [backref=true]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
