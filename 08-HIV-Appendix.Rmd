@@ -3,7 +3,7 @@
 
 ## S1 Appendix (Technical appendix). {#S1-Appendix }
 
-### Data {#data }
+### Data {#data-appendix }
 #### Data Availability {#data-availability }
 
 The policy of the UK HIV Drug Resistance Database is to make DNA
@@ -52,21 +52,15 @@ the random forest classifier, `MultinomialNB` for Naïve Bayes and
 `RandomForestClassifier` was used with default parameters except:
 
 -   `"n_jobs"=4`
-
 -   `"n_estimators"=5000`
 
 `LogisticRegressionCV` was used with the following parameters:
 
 -   `"n_jobs"=4`
-
 -   `"cv"=10`
-
 -   `"Cs"=100`
-
 -   `"penalty"=’l1’`
-
 -   `"multi_class"=’multinomial’`
-
 -   `"solver"=’saga’`
 -   `"scoring"=’balanced_accuracy’`
 
@@ -134,16 +128,14 @@ We used the following implementations from the scikit-learn python
 library [@pedregosaScikitlearnMachineLearning2011] with default options:
 
 -   `balanced_accuracy_score`
-
 -   `mutual_info_score`
-
 -   `adjusted_mutual_info_score`
-
 -   `brier_score_loss`
 
 We used the relative risk to observe the relationship between one of our
 new mutations and a binary character $X$ such as treatment status or
-presence/absence of a known RAM. $$
+presence/absence of a known RAM. 
+$$
 \begin{aligned}
   RR(new, X) &= \frac{prevalence\left(new~mutation\mid X=1\right)}{prevalence\left(new~mutation\mid X=0\right)} \nonumber\\
   \nonumber\\
@@ -179,7 +171,8 @@ knitr::include_graphics("./figures/Chapter-02/S1_Fig.png")
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/Chapter-02/S1_Fig.png}
 }
-\caption{\textbf{Relative risks of the new mutations with regards to known RAMs on the African dataset} (i.e. the prevalence of the new mutation in sequences with a given RAM divided by the prevalence of the new mutation in sequences without the RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 30 sequences, which is why RRs were not computed for H208Y and D218E. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of the African sequences. Only RRs with a lower CI boundary greater than 2 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. For the RR of L228H with regards to M184V, the upper CI bound is infinite. The new RAMs have high RR values for known RAMs similar to those obtained on the UK dataset. We also arrive at similar conclusions, I135L being associated with NNRTIs, E203K and L228H to NRTI and L228R to both. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
+\extcaption{Relative risks of the new mutations with regards to known RAMs on the African dataset}{
+(i.e. the prevalence of the new mutation in sequences with a given RAM divided by the prevalence of the new mutation in sequences without the RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 30 sequences, which is why RRs were not computed for H208Y and D218E. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of the African sequences. Only RRs with a lower CI boundary greater than 2 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. For the RR of L228H with regards to M184V, the upper CI bound is infinite. The new RAMs have high RR values for known RAMs similar to those obtained on the UK dataset. We also arrive at similar conclusions, I135L being associated with NNRTIs, E203K and L228H to NRTI and L228R to both. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
 \label{fig:s1}
 \end{figure}
 
@@ -202,7 +195,8 @@ knitr::include_graphics("./figures/Chapter-02/S2_Fig.png")
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/Chapter-02/S2_Fig.png}
 }
-\caption{\textbf{Closeup structural view of the entrance of the NNIBP of HIV-1 RT} The p66 subunit is  colored in dark gray, the p51 subunit in light gray. The NNIBP is highlighted in yellow. The active site is colored in blue. We can see the physical proximity of I135 (red) to the entrance of the NNIBP. We can also see how L228 (red) is between 2 AAs of the NNIBP.}
+\extcaption{Closeup structural view of the entrance of the NNIBP of HIV-1 RT}{
+The p66 subunit is  colored in dark gray, the p51 subunit in light gray. The NNIBP is highlighted in yellow. The active site is colored in blue. We can see the physical proximity of I135 (red) to the entrance of the NNIBP. We can also see how L228 (red) is between 2 AAs of the NNIBP.}
 \label{fig:s2}
 \end{figure}
 
@@ -224,7 +218,8 @@ knitr::include_graphics("./figures/Chapter-02/S3_Fig.png")
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/Chapter-02/S3_Fig.png}
 }
-\caption{\textbf{Closeup structural view of the active site of HIV-1 RT.} The p66 subunit is colored in dark gray, the p51 subunit in light gray. The active site is highlighted in blue. The NNIBP is colored in yellow. L228, E203 and D218 (red) are also very close on either side of the active site.}
+\extcaption{Closeup structural view of the active site of HIV-1 RT.}{
+The p66 subunit is colored in dark gray, the p51 subunit in light gray. The active site is highlighted in blue. The NNIBP is colored in yellow. L228, E203 and D218 (red) are also very close on either side of the active site.}
 \label{fig:s3}
 \end{figure}
 

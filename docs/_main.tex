@@ -101,6 +101,13 @@
 \usepackage{float}
 
 \excludecomment{htmlonly}
+
+\newcommand{\extcaption}[2]{
+    \caption[#1]{
+        \textbf{#1}\newline
+        #2
+    }
+}
 \usepackage{upquote}
 \usepackage{microtype}
 \usepackage{pdfpages}
@@ -122,13 +129,11 @@
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[backref=true]{biblatex}
-\addbibresource{references/book.bib}
-\addbibresource{references/packages.bib}
 \addbibresource{references/Chap02.bib}
 
 \title{Sequence analysis, combinatorics and machine learning}
 \author{Luc Blassel}
-\date{2022-03-23}
+\date{2022-03-25}
 
 \begin{document}
 \maketitle
@@ -159,13 +164,8 @@
 \chapter*{Aknowledgments}\label{aknowledgments}}
 \addcontentsline{toc}{chapter}{Aknowledgments}
 
-\hypertarget{list-of-figures}{%
-\chapter*{List of Figures}\label{list-of-figures}}
-\addcontentsline{toc}{chapter}{List of Figures}
-
-\hypertarget{list-of-tables}{%
-\chapter*{List of Tables}\label{list-of-tables}}
-\addcontentsline{toc}{chapter}{List of Tables}
+\listoffigures
+\listoftables
 
 \hypertarget{glosssary}{%
 \chapter*{Glosssary}\label{glosssary}}
@@ -741,7 +741,7 @@ resistance status should be an asset for many applications.
 \centering
 \includegraphics[width=\linewidth]{./figures/Chapter-02/Fig1.png}
 }
-\caption{\textbf{Classifier Performance on UK and African datasets.}
+\extcaption{Classifier Performance on UK and African datasets.}{
 \textbf{NB}: naive Bayes, \textbf{LR}: Logistic Regression with Lasso regularization, \textbf{RF}: Random Forest, \textbf{FC}: Fisher Classifier, \textbf{RD}: Agnostic random probabilistic classifier (this classifier predicts, as the probability of a sample belonging to a class, the frequency of that class in the training data). \textbf{A)} Adjusted mutual information (higher is better) between ground truth and predictions by classifiers trained on dataset with all features (blue), without features corresponding to known RAMs (orange) and without RAM features and without sequences that have at least 1 known RAM (green). Hatching indicates the training set on which a classifier was trained and the testing set on which the performance was measured. The expected value for a null classifier is 0, and 1 for a perfect classifier and a * denotes that the p-value derived from mutual information is $\leq 0.05$. For example when trained with all features all the classifiers have a significative MI. Conversly when removing RAM features and RAM sequences none of the classifiers have a significative MI and only LR trained on the entirety of the UK dataset has an AMI $>10^{-3}$ \textbf{B)} Balanced Accuracy score, i.e. average of accuracies per-class (higher is better) for the same classifiers as in a). The red line at $y=0.5$ is the expected balanced accuracy for a null classifier that only predicts the majority class as well as a random uniform (i.e. 50/50) classifier. \textbf{C)} Brier score, which is the mean squared difference between the sample's experience to RTI and the predicted probability of being RTI experienced (lower is better), for the same classifiers as in \textbf{A)} and \textbf{B)}.}
 \label{fig:figClassificationPerf}
 \end{figure}
@@ -824,7 +824,7 @@ Fig~\ref{fig:figClassificationPerf}.
 \centering
 \includegraphics[width=\linewidth]{./figures/Chapter-02/Fig2.png}
 }
-\caption{\textbf{Discrimination between sequences having at least one RAM, and those having none on sequences with training features corresponding to known RAMs removed.}
+\extcaption{Discrimination between sequences having at least one RAM, and those having none on sequences with training features corresponding to known RAMs removed.}{
 \textbf{NB}: naive Bayes, \textbf{LR}: Logistic Regression with Lasso regularization, \textbf{RF}: Random Forest, \textbf{FC}: Fisher Classifier. \textbf{A)} Adjusted mutual information (higher is better) for classifiers trained without features corresponding to known RAMs. The classifiers are either trained to discriminate RTI-naive from RTI-experienced sequences (blue), or sequences with at least one known RAM from sequences that have none (orange). Hatching and braced annotations indicate the training and testing sets resulting in a given performance measure. \textbf{B)} Balanced accuracy, i.e. average of accuracies per-class for the same classifiers as in \textbf{A)} (higher is better). The red line at $y=0.5$ is the expected value for a classifier only predicting the majority class as well as a random uniform (50/50) classifier.}
 \label{fig:figMultiTasks}
 \end{figure}
@@ -951,7 +951,7 @@ smaller number of occurrences of both new mutations and known RAMs.\\
 \centering
 \includegraphics[width=\linewidth]{./figures/Chapter-02/Fig3.png}
 }
-\caption{\textbf{Relative risk of the new mutations with regards to known RAMs on the UK dataset}
+\caption{Relative risk of the new mutations with regards to known RAMs on the UK dataset}{
 (i.e. the prevalence of the new mutation in sequences with a given known RAM divided by the prevalence of the new mutation in sequences without this RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 0.1\% (=55) sequences. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of UK sequences. Only RRs with a lower CI boundary greater than 4 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
 \label{fig:figUkRatios}
 \end{figure}
@@ -1004,7 +1004,7 @@ and is detailed below.
 \centering
 \includegraphics[width=\linewidth]{./figures/Chapter-02/Fig4.png}
 }
-\caption{\textbf{Structure of HIV-1 RT with highlighted important sites.}
+\caption{Structure of HIV-1 RT with highlighted important sites.}{
 The p66 subunit is colored dark gray and the p51 subunit white. The active site is highlighted in blue, and the NNIBP is highlighted in yellow. The sites of new mutations are colored in red.}
 \label{fig:figStructure}
 \end{figure}
@@ -1288,8 +1288,8 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 \hypertarget{S1-Appendix}{%
 \section{S1 Appendix (Technical appendix).}\label{S1-Appendix}}
 
-\hypertarget{data}{%
-\subsection{Data}\label{data}}
+\hypertarget{data-appendix}{%
+\subsection{Data}\label{data-appendix}}
 
 \hypertarget{data-availability}{%
 \subsubsection{Data Availability}\label{data-availability}}
@@ -1342,6 +1342,7 @@ the random forest classifier, \texttt{MultinomialNB} for Naïve Bayes and
 \texttt{RandomForestClassifier} was used with default parameters except:
 
 \begin{itemize}
+\tightlist
 \item
   \texttt{"n\_jobs"=4}
 \item
@@ -1351,6 +1352,7 @@ the random forest classifier, \texttt{MultinomialNB} for Naïve Bayes and
 \texttt{LogisticRegressionCV} was used with the following parameters:
 
 \begin{itemize}
+\tightlist
 \item
   \texttt{"n\_jobs"=4}
 \item
@@ -1432,6 +1434,7 @@ We used the following implementations from the scikit-learn python
 library \autocite{pedregosaScikitlearnMachineLearning2011} with default options:
 
 \begin{itemize}
+\tightlist
 \item
   \texttt{balanced\_accuracy\_score}
 \item
@@ -1444,7 +1447,8 @@ library \autocite{pedregosaScikitlearnMachineLearning2011} with default options:
 
 We used the relative risk to observe the relationship between one of our
 new mutations and a binary character \(X\) such as treatment status or
-presence/absence of a known RAM. \[
+presence/absence of a known RAM.
+\[
 \begin{aligned}
   RR(new, X) &= \frac{prevalence\left(new~mutation\mid X=1\right)}{prevalence\left(new~mutation\mid X=0\right)} \nonumber\\
   \nonumber\\
@@ -1460,7 +1464,8 @@ presence/absence of a known RAM. \[
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/Chapter-02/S1_Fig.png}
 }
-\caption{\textbf{Relative risks of the new mutations with regards to known RAMs on the African dataset} (i.e. the prevalence of the new mutation in sequences with a given RAM divided by the prevalence of the new mutation in sequences without the RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 30 sequences, which is why RRs were not computed for H208Y and D218E. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of the African sequences. Only RRs with a lower CI boundary greater than 2 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. For the RR of L228H with regards to M184V, the upper CI bound is infinite. The new RAMs have high RR values for known RAMs similar to those obtained on the UK dataset. We also arrive at similar conclusions, I135L being associated with NNRTIs, E203K and L228H to NRTI and L228R to both. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
+\extcaption{Relative risks of the new mutations with regards to known RAMs on the African dataset}{
+(i.e. the prevalence of the new mutation in sequences with a given RAM divided by the prevalence of the new mutation in sequences without the RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 30 sequences, which is why RRs were not computed for H208Y and D218E. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of the African sequences. Only RRs with a lower CI boundary greater than 2 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. For the RR of L228H with regards to M184V, the upper CI bound is infinite. The new RAMs have high RR values for known RAMs similar to those obtained on the UK dataset. We also arrive at similar conclusions, I135L being associated with NNRTIs, E203K and L228H to NRTI and L228R to both. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
 \label{fig:s1}
 \end{figure}
 
@@ -1472,7 +1477,8 @@ presence/absence of a known RAM. \[
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/Chapter-02/S2_Fig.png}
 }
-\caption{\textbf{Closeup structural view of the entrance of the NNIBP of HIV-1 RT} The p66 subunit is  colored in dark gray, the p51 subunit in light gray. The NNIBP is highlighted in yellow. The active site is colored in blue. We can see the physical proximity of I135 (red) to the entrance of the NNIBP. We can also see how L228 (red) is between 2 AAs of the NNIBP.}
+\extcaption{Closeup structural view of the entrance of the NNIBP of HIV-1 RT}{
+The p66 subunit is  colored in dark gray, the p51 subunit in light gray. The NNIBP is highlighted in yellow. The active site is colored in blue. We can see the physical proximity of I135 (red) to the entrance of the NNIBP. We can also see how L228 (red) is between 2 AAs of the NNIBP.}
 \label{fig:s2}
 \end{figure}
 
@@ -1484,7 +1490,8 @@ presence/absence of a known RAM. \[
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/Chapter-02/S3_Fig.png}
 }
-\caption{\textbf{Closeup structural view of the active site of HIV-1 RT.} The p66 subunit is colored in dark gray, the p51 subunit in light gray. The active site is highlighted in blue. The NNIBP is colored in yellow. L228, E203 and D218 (red) are also very close on either side of the active site.}
+\extcaption{Closeup structural view of the active site of HIV-1 RT.}{
+The p66 subunit is colored in dark gray, the p51 subunit in light gray. The active site is highlighted in blue. The NNIBP is colored in yellow. L228, E203 and D218 (red) are also very close on either side of the active site.}
 \label{fig:s3}
 \end{figure}
 

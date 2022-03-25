@@ -39,8 +39,7 @@ xfun::pkg_load2(c("htmltools", "mime"))
 
 # Aknowledgments {-}
 
-# List of Figures {-}
-
-# List of Tables {-}
+\listoffigures
+\listoftables
 
 # Glosssary {-}

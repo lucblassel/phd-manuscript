@@ -8,3 +8,10 @@
 \usepackage{float}
 
 \excludecomment{htmlonly}
+
+\newcommand{\extcaption}[2]{
+    \caption[#1]{
+        \textbf{#1}\newline
+        #2
+    }
+}
