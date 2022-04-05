@@ -3,10 +3,14 @@ title: "Sequence analysis, combinatorics and machine learning"
 author: "Luc Blassel"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-documentclass: book
+documentclass: scrbook
+fontsize: 11
+classoptions:
+  - DIV: 12
 csl: plos-computational-biology
-bibliography: [references/Chap02.bib]
-biblatexoptions: [backref=true]
+biblio-style: authoryear
+bibliography: [references/HPC-MSRs.bib, references/HIV-DRMs.bib]
+biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=none]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
@@ -15,6 +19,10 @@ description: |
   set in the _output.yml file.
 link-citations: yes
 github-repo: lucblassel/phd-manuscript
+biblio-title: Global References
+lof: yes
+lot: yes
+titlepage: tex/titlepage.tex
 ---
 
 ```{r, setup, include=FALSE}
@@ -33,13 +41,31 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, out.width="90%",
 xfun::pkg_load2(c("htmltools", "mime"))
 ```
 
+\pagestyle{empty}
+
+```{r, include=knitr::is_latex_output()}
+knitr::asis_output('\n\n\\begin{comment}')
+```
+
+
 # Abstract {-}
+This is the Abstract
 
 # Resume {-}
+Ceci est le résumé
 
 # Aknowledgments {-}
-
-\listoffigures
-\listoftables
+Thanks everybody
 
 # Glosssary {-}
+What are these terms ? 
+
+```{r, include=knitr::is_latex_output()}
+knitr::asis_output('\n\n\\end{comment}')
+```
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{CHAPTER \thechapter} 
+\fancyhead[RO]{\rightmark}
+\fancyfoot[CO,CE]{\thepage}
