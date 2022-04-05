@@ -8,7 +8,23 @@ $else$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $endif$
 
-\documentclass{$documentclass$}
+\documentclass[
+$if(fontsize)$
+  $fontsize$,
+$endif$
+$if(lang)$
+  $babel-lang$,
+$endif$
+$if(papersize)$
+  $papersize$paper,
+$else$
+  paper=a4,
+$endif$,
+$for(classoption)$
+  $classoption$$sep$,
+$endfor$
+  ,captions=tableheading
+]{$if(documentclass)$$documentclass$$else$srcbook$endif$}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -139,14 +155,15 @@ $endif$
 %%%%    USER INCLUDES     %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 $for(header-includes)$
-%$header-includes$
+% Looped include
+$header-includes$
 $endfor$
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%% USER DEFINED SETTING %%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[backref=true]{biblatex}
+\usepackage[backref=true,refsection=chapter,defernumbers=true,sorting=none]{biblatex}
 $for(bibliography)$
 \addbibresource{$it$}
 $endfor$
@@ -154,26 +171,58 @@ $endfor$
 $if(title)$
 \title{$title$}
 $else$
-\title{A book!}
+\title{Set title}
 $endif$
 
 $if(author)$
 \author{$author$}
 $else$
-\author{An author}
+\author{Set author}
 $endif$
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
 
-    \maketitle
+$if(titlepage)$
+\input{$titlepage$}
+$else$
+\maketitle
+$endif$
 
-    {\Huge This is the template!}
+\newpage
 
-    \newpage
+$if(include-before)$
+$include-before$
+$endif$
 
-    $body$
+\frontmatter
+$if(toc)$
+\tableofcontents
+$endif$
+
+$if(lof)$
+\listoffigures
+$endif$
+
+$if(lot)$
+\listoftables
+$endif$
+
+\mainmatter
+$body$
+
+$if(bibliography)$
+\printbibliography[
+  title=References,
+  heading=bibintoc
+]
+$endif$
+
+$if(include-after)$
+$include-after$
+$endif$
 
 \end{document}

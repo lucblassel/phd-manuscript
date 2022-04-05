@@ -9,7 +9,9 @@ bookdown::gitbook:
     edit: https://github.com/USERNAME/REPO/edit/BRANCH/%s
     download: ["pdf", "epub"]
 bookdown::pdf_book:
-  #template: templates/template.tex
+  # template: templates/template.tex
+  # toc_bib: true
+  twoside: true
   includes:
     in_header: tex/preamble.tex
     before_body: tex/preface.tex
