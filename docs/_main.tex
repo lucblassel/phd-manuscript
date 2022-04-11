@@ -124,7 +124,7 @@
 
 \title{Sequence analysis, combinatorics and machine learning}
 \author{Luc Blassel}
-\date{2022-04-05}
+\date{2022-04-11}
 
 \begin{document}
 \maketitle
@@ -183,25 +183,178 @@ What are these terms ?
 \fancyhead[RO]{\rightmark}
 \fancyfoot[CO,CE]{\thepage}
 
+\hypertarget{general-introduction}{%
+\chapter{General Introduction}\label{general-introduction}}
+
+\hypertarget{biology-basics}{%
+\section{Biology basics}\label{biology-basics}}
+
+To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead.
+
+\hypertarget{what-is-dna}{%
+\subsection{What is DNA}\label{what-is-dna}}
+
+\textbf{D}esoxyribo\textbf{N}ucleic \textbf{A}cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
+
+DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, creating the phosphate-sugar backbone of single strand of DNA. The ordered sequence of these four types of nucleotides in a single strand encodes all the genetic information necessary to life. Nucleotides can form strong complementary bonds with each other, A with T and C with G. These bonds allows two strands of DNA to link up with each other, forming the double-helix structure of DNA as in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{./figures/Basic-Intro/DNA.pdf}
+\extcaption{Double-helix structure of DNA}{}
+\label{fig:figDNA}
+\end{figure}
+
+\begin{itemize}
+\tightlist
+\item
+  What is DNA
+\item
+  What is RNA
+\item
+  What are proteins
+\item
+  computational representations
+\end{itemize}
+
+\hypertarget{thesis-organization}{%
+\section{Thesis organization}\label{thesis-organization}}
+
+\begin{itemize}
+\tightlist
+\item
+  an introduction to viruses and HIV
+\item
+  ``HIV paper''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    chapter intro
+  \item
+    paper
+  \item
+    perspectives
+  \end{itemize}
+\item
+  some context on sequencing and mapping
+\item
+  ``alternative to HPC''
+
+  \begin{itemize}
+  \tightlist
+  \item
+    chapter intro
+  \item
+    paper
+  \item
+    perspectives (DRM review ?)
+  \end{itemize}
+\item
+  Other contributions
+
+  \begin{itemize}
+  \tightlist
+  \item
+    covid-align
+  \item
+    Origins of sars-cov2
+  \item
+    (Large Trees ?)
+  \end{itemize}
+\end{itemize}
+
 \hypertarget{hiv-and-drms}{%
 \chapter{HIV and DRMs}\label{hiv-and-drms}}
+
+\hypertarget{what-are-viruses}{%
+\section{What are viruses}\label{what-are-viruses}}
+
+\hypertarget{small-presentationdefinition-of-viruses}{%
+\subsection{small presentation/definition of viruses}\label{small-presentationdefinition-of-viruses}}
+
+\hypertarget{dnarna-viruses}{%
+\subsection{DNA/RNA viruses}\label{dnarna-viruses}}
 
 \hypertarget{hiv}{%
 \section{HIV}\label{hiv}}
 
+\hypertarget{presentation-of-hiv}{%
+\subsection{Presentation of HIV}\label{presentation-of-hiv}}
+
+\begin{itemize}
+\tightlist
+\item
+  pandemic
+\item
+  history
+\end{itemize}
+
+\hypertarget{replication-cycle-of-hiv}{%
+\subsection{Replication cycle of HIV}\label{replication-cycle-of-hiv}}
+
+\begin{itemize}
+\tightlist
+\item
+  proteins ( + computational representation as a string of letters)
+\item
+  full cycle
+\end{itemize}
+
 \hypertarget{drms}{%
 \section{DRMs}\label{drms}}
 
-This text should be visible in both the versions
+\hypertarget{how-does-art-work}{%
+\subsection{How does ART work}\label{how-does-art-work}}
 
-This should only show up in latex.
+\hypertarget{different-types-of-resistance}{%
+\subsection{different types of resistance}\label{different-types-of-resistance}}
 
-\begin{htmlonly}
-This should only show up in the HTML version
+\begin{itemize}
+\tightlist
+\item
+  NRTI
+\item
+  NNRTI
+\item
+  Entry inhibitors
+\item
+  PI
+\item
+  INSTI
+  \#\#\# Consequences on global health
+\end{itemize}
 
-\end{htmlonly}
+\hypertarget{finding-drms}{%
+\subsection{Finding DRMS}\label{finding-drms}}
 
-Back to both here!.
+\begin{itemize}
+\tightlist
+\item
+  Consortiums / HIVDB, UK-CHIC, \ldots{}
+\item
+  stat tests
+
+  \begin{itemize}
+  \tightlist
+  \item
+    multiple testing
+  \item
+    phylogenetic correlation
+  \end{itemize}
+\item
+  assays
+\item
+  novel approaches
+
+  \begin{itemize}
+  \tightlist
+  \item
+    deep learning
+  \item
+    \ldots{}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{HIV-paper}{%
 \chapter{Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV}\label{HIV-paper}}
@@ -500,7 +653,6 @@ counterparts.\\
 
 \begin{table}[!htt]
 \centering
-\caption{\textbf{Summary of the UK and African datasets.}}
 \begin{tabular}{@{}lll@{}ll@{}l@{}}
 \hline
 & & UK~~~~~ & & Africa & \\ \hline
@@ -521,9 +673,9 @@ counterparts.\\
   & C & 17733 & (32\%) & 702 & (18\%)  \\
   & CRF02 AG & 0 & (0\%) & 1477 & (37\%) \\ \hline
 \end{tabular}
-\begin{flushleft}
+\extcaption{Summary of the UK and African datasets.}{
 Percentages are computed with regards to the size of the considered dataset (e.g. 21\% of the sequences of the UK dataset are RTI-naive and have at least one known RAM). The median number of RAMs was computed only on sequences that had at least one known RAM.
-\end{flushleft}
+}
 \label{tab:tableData}
 \end{table}
 
@@ -673,7 +825,6 @@ Table~\ref{tab:tableTrainTest}).
 \begin{table}[!htt]
 % \begin{adjustwidth}{-2.25in}{0in}
 \centering
-\caption{\textbf{All training and testing datasets used during this study.}}
 \begin{tabular}{@{}p{.25\linewidth}llll@{}}
 \hline
 Signal removal level & Trained on & & Tested on & \\ \hline
@@ -689,9 +840,9 @@ Signal removal level & Trained on & & Tested on & \\ \hline
  & UK, subtype C & (13055) & UK, subtype B & (24422) \\
  & UK, subtypes B \& C & (37477) & Africa, all subtypes & (2284) \\ \hline
 \end{tabular}
-\begin{flushleft}
+\extcaption{All training and testing datasets used during this study.}{
   The number of sequences in each dataset is shown in parentheses
-\end{flushleft}
+}
 \label{tab:tableTrainTest}
 % \end{adjustwidth}
 \end{table}
@@ -929,7 +1080,6 @@ smaller number of occurrences of both new mutations and known RAMs.\\
 \begin{table}[!htt]
 % \begin{adjustwidth}{-2.25in}{0in}
 \centering
-\caption{\textbf{Analysis of new potential RAMs.}}
 \begin{tabular}{@{}lllllllll@{}}
 \hline
 \multirow{3}{*}{} & \multicolumn{2}{l}{\multirow{2}{*}{codon distance}} & & \multicolumn{3}{l}{UK} & \\ \cmidrule(lr){5-7}
@@ -950,13 +1100,13 @@ smaller number of occurrences of both new mutations and known RAMs.\\
 \textbf{RAMs} & 1 & 1.35 & 0 & 58~~(0.1\%) & 8.3 & 26.4 & $3.1\cdot10^{-2}$\\
   & \footnotesize{[1;2]} & \footnotesize{[1;2.44]} & \footnotesize{[-2;3]} & \footnotesize{[2;1842]} & \footnotesize{[0.6;$\infty$]}& \footnotesize{[1.4;$\infty$]}& \footnotesize{[$2.3\cdot10^{-58}$;1]}\\ \hline
 \end{tabular}
-\begin{flushleft}
-\textbf{Codon distance:} For each new mutation we computed the minimum number of nucleotide mutations to go from the wild amino acid codons to those of the mutated amino acid, as well as the average codon distance between both amino acids, weighted by the prevalence of each wild and mutated codon at the given position in the UK  dataset.
-\textbf{B62:} BLOSUM62 similarity values (e.g. D218E = 2, reflecting that E and D are both negatively charged and highly similar).
-\textbf{Count:} We looked at the number of occurrences of each new potential RAM in the UK dataset and the corresponding prevalence in parentheses.
-\textbf{Relative risks:} We computed $RR(new, treatment)$ (e.g. L228R is 18.1 times more prevalent in RTI-experienced sequences compared to RTI-naive sequences in the UK dataset). We also computed $RR(new, any~RAM)$ (e.g. L228R is 115.7 times more prevalent in sequences that have at least one known RAM than in sequences that have none in the UK dataset). The 95\% confidence intervals shown under each RR were computed with 1000 bootstrap samples of size $n=55,000$ drawn with replacement from the whole UK dataset.
-\textbf{p-values:} Fisher exact tests were done on the African dataset (to avoid confounding effects due to phylogenetic correlation) to see if each of these new mutations were more prevalent in RTI-experienced sequences. The same metrics were computed for all known RAMs, the median values are shown in the last two lines of this table, as well as the 5\textsuperscript{th} and 95\textsuperscript{th} percentiles which are shown underneath. $RR(RAM,any~RAM)$ values were computed for any RAM except itself to avoid always having infinite ratios.
-\end{flushleft}
+\extcaption{Analysis of new potential RAMs.}{
+  \textbf{Codon distance:} For each new mutation we computed the minimum number of nucleotide mutations to go from the wild amino acid codons to those of the mutated amino acid, as well as the average codon distance between both amino acids, weighted by the prevalence of each wild and mutated codon at the given position in the UK  dataset.
+  \textbf{B62:} BLOSUM62 similarity values (e.g. D218E = 2, reflecting that E and D are both negatively charged and highly similar).
+  \textbf{Count:} We looked at the number of occurrences of each new potential RAM in the UK dataset and the corresponding prevalence in parentheses.
+  \textbf{Relative risks:} We computed $RR(new, treatment)$ (e.g. L228R is 18.1 times more prevalent in RTI-experienced sequences compared to RTI-naive sequences in the UK dataset). We also computed $RR(new, any~RAM)$ (e.g. L228R is 115.7 times more prevalent in sequences that have at least one known RAM than in sequences that have none in the UK dataset). The 95\% confidence intervals shown under each RR were computed with 1000 bootstrap samples of size $n=55,000$ drawn with replacement from the whole UK dataset.
+  \textbf{p-values:} Fisher exact tests were done on the African dataset (to avoid confounding effects due to phylogenetic correlation) to see if each of these new mutations were more prevalent in RTI-experienced sequences. The same metrics were computed for all known RAMs, the median values are shown in the last two lines of this table, as well as the 5\textsuperscript{th} and 95\textsuperscript{th} percentiles which are shown underneath. $RR(RAM,any~RAM)$ values were computed for any RAM except itself to avoid always having infinite ratios.
+}
 \label{tab:tabMutations}
 % \end{adjustwidth}
 \end{table}
@@ -1270,11 +1420,82 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 \hypertarget{sequencing}{%
 \section{Sequencing}\label{sequencing}}
 
+\hypertarget{sequencing-error-types}{%
+\subsection{Sequencing error types}\label{sequencing-error-types}}
+
+\begin{itemize}
+\tightlist
+\item
+  indels
+\item
+  mismatches
+\item
+  homopolymer expansion/contraction
+\end{itemize}
+
+\hypertarget{short-history-of-sequencing}{%
+\subsection{Short history of sequencing}\label{short-history-of-sequencing}}
+
+\hypertarget{long-read-and-ng-technologies}{%
+\subsection{Long read and NG technologies}\label{long-read-and-ng-technologies}}
+
+\begin{itemize}
+\tightlist
+\item
+  ONT
+\item
+  pacbio
+\end{itemize}
+
+\hypertarget{error-mitigating-strategies}{%
+\subsection{Error mitigating strategies}\label{error-mitigating-strategies}}
+
+\begin{itemize}
+\tightlist
+\item
+  polishing
+\item
+  HPC
+\end{itemize}
+
 \hypertarget{downstream-analysis}{%
 \section{downstream analysis}\label{downstream-analysis}}
 
-\hypertarget{hpc}{%
-\section{HPC}\label{hpc}}
+\hypertarget{types-of-tasks}{%
+\subsection{types of tasks}\label{types-of-tasks}}
+
+\begin{itemize}
+\tightlist
+\item
+  assembly
+\item
+  alignment
+\item
+  mapping
+\end{itemize}
+
+\hypertarget{mapping}{%
+\subsection{mapping}\label{mapping}}
+
+\begin{itemize}
+\tightlist
+\item
+  alignment
+\item
+  reads on reference
+\item
+  seeding and other heuristics
+\item
+  challenges of mapping
+
+  \begin{itemize}
+  \tightlist
+  \item
+    centromeres
+  \item
+    errors
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}{%
 \chapter{Mapping-friendly sequence reductions: going beyond homopolymer compression}\label{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}}
@@ -2016,10 +2237,10 @@ MSR$_{\text{E}}$     & 50         & 0.936          & {\:\footnotesize$+$0\%} & \
 MSR$_{\text{P}}$     & 50         & \textbf{0.938} & \textbf{\:\small$+$0\%} & 4.15e-04          & {\:\footnotesize$-$78\%} & 0.845          & {\:\footnotesize$-$6\%} & 1.14e-04          & {\:\footnotesize$-$92\%} & 0.957          & {\:\footnotesize$+$0\%} & 8.11e-04      & {\:\footnotesize$-$ 64\%} \\ \bottomrule
 \end{tabular}%
 }
-\caption{\label{tab:table-subset}
-\textbf{Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.} \\
-For each reference sequence and mapper pair, we report the fraction of reads mapped (``fraction'' columns), the \texttt{paftools mapeval} mapping error rate (``error'' columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\geq 50$. 
+\extcaption{Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.}{
+  For each reference sequence and mapper pair, we report the fraction of reads mapped (``fraction'' columns), the \texttt{paftools mapeval} mapping error rate (``error'' columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\geq 50$. 
 }
+\label{tab:table-subset}
 \end{table}
 
 \hypertarget{mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome}{%
