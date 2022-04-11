@@ -1,17 +1,38 @@
 # HIV and DRMs
 
+## What are viruses
+
+### small presentation/definition of viruses
+### DNA/RNA viruses
+
 ## HIV
 
+### Presentation of HIV
+ - pandemic
+ - history
+ 
+### Replication cycle of HIV
+  - proteins ( + computational representation as a string of letters)
+  - full cycle
+  
 ## DRMs
+### How does ART work
+### different types of resistance
+ - NRTI
+ - NNRTI
+ - Entry inhibitors
+ - PI
+ - INSTI
+### Consequences on global health
 
-This text should be visible in both the versions   
-
-:::{.latexonly style="display: none;"}
-This should only show up in latex. 
-:::
-
-:::{.htmlonly data-latex=""}
-This should only show up in the HTML version
-:::
-
-Back to both here!. 
+### Finding DRMS
+ - Consortiums / HIVDB, UK-CHIC, ...
+ - stat tests
+   - multiple testing 
+   - phylogenetic correlation
+ - assays
+ - novel approaches
+   - deep learning
+   - ...
+ 
+ 

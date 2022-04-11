@@ -1,8 +1,31 @@
 # HPC, some context
 
 ## Sequencing
+### Sequencing error types
+ - indels
+ - mismatches
+ - homopolymer expansion/contraction
+
+### Short history of sequencing
+### Long read and NG technologies
+  - ONT
+  - pacbio
+
+### Error mitigating strategies
+ - polishing
+ - HPC
 
 ## downstream analysis
+### types of tasks
+ - assembly 
+ - alignment
+ - mapping
 
-## HPC
+### mapping 
+ - alignment
+ - reads on reference
+ - seeding and other heuristics
+ - challenges of mapping
+   - centromeres
+   - errors
 

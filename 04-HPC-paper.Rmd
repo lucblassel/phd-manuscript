@@ -758,10 +758,10 @@ raw         & 60         & 0.921          & {\:\footnotesize$-$1\%} & 1.86e-03  
 \msr{P}     & 50         & \textbf{0.938} & \textbf{\:\small$+$0\%} & 4.15e-04          & {\:\footnotesize$-$78\%} & 0.845          & {\:\footnotesize$-$6\%} & 1.14e-04          & {\:\footnotesize$-$92\%} & 0.957          & {\:\footnotesize$+$0\%} & 8.11e-04      & {\:\footnotesize$-$ 64\%} \\ \bottomrule
 \end{tabular}%
 }
-\caption{\label{tab:table-subset}
-\textbf{Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.} \\
-For each reference sequence and mapper pair, we report the fraction of reads mapped (``fraction'' columns), the \texttt{paftools mapeval} mapping error rate (``error'' columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\geq 50$. 
+\extcaption{Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.}{
+  For each reference sequence and mapper pair, we report the fraction of reads mapped (``fraction'' columns), the \texttt{paftools mapeval} mapping error rate (``error'' columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\geq 50$. 
 }
+\label{tab:table-subset}
 \end{table}
 
 ### Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome
