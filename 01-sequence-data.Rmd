@@ -1,0 +1,37 @@
+# What is Sequence data ?
+
+## Biological sequences, a primer
+To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead. 
+
+### What is DNA
+**D**esoxyribo**N**ucleic **A**cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.  
+
+DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, creating the phosphate-sugar backbone of single strand of DNA. The ordered sequence of these four types of nucleotides in a single strand encodes all the genetic information necessary to life. Nucleotides can form strong complementary bonds with each other, A with T and C with G. These bonds allows two strands of DNA to link up with each other, forming the double-helix structure of DNA as in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other.  
+
+```{r}
+figDNACaption <- "**Double-helix** structure of DNA"
+```
+```{r, figDNA, fig.cap=figDNACaption, label="figDNA", eval=knitr::is_html_output()}
+knitr::include_graphics("./figures/Basic-Intro/DNA.png")
+```
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{./figures/Basic-Intro/DNA.pdf}
+\extcaption{Double-helix structure of DNA}{}
+\label{fig:figDNA}
+\end{figure}
+
+### RNA and transcription
+### What are proteins ? 
+
+## Obtaining sequence data
+### Sanger sequenceing, a breakthrough
+### Next-generation sequencing
+### Long read sequencing, the next step in genomics
+### Protein sequencing
+
+## Sequencing errors, how to account for them ? 
+### NGS errors
+### Long read errors
+### HPC

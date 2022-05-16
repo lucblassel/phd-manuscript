@@ -1,0 +1,17 @@
+# Aligning sequence data
+
+## What is an alignment ? 
+### local vs global
+### dynamic programming and NW, SW
+### Substitution models
+
+## Pairwise sequence alignment and mapping
+### naive pairwise
+### Indexed ... BLAST,...
+### Seeded, minimap2, ...
+
+## MSA
+### MSA is a difficult problem
+### Methods
+#### Progressive
+#### HMMs

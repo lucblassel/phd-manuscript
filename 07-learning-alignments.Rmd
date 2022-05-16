@@ -1,0 +1,9 @@
+# Learning alignments, an interesting perspective
+## Learning pairwise alignment
+### Transformers and deep embedding
+### DEDAL
+### predictind an alignment
+
+## What else could we learn ? 
+### Learn to predict seeds or starting positions
+### Learn pre-processing functions

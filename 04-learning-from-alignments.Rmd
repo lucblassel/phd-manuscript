@@ -1,0 +1,37 @@
+# Learning from alignments
+## Alignments are a rich source of information
+### Pairwise alns
+### MSA
+#### Clustering
+ - Phylogenetic trees
+ - Evolutionary inference
+
+#### ML
+ - ...
+
+## Preprocessing the alignment
+
+### Embedding the alignment
+#### Physico-chemical embeddings
+#### Generalistic categorical embeddings
+#### Interpretability
+
+### Choosing a learning target
+#### Regression
+#### Classification
+#### Task-based...
+
+## How to learn from ALNs
+### Tests and statistical learning
+  - correlation
+  - Fisher
+  - Multiple testing ? 
+  
+### Taking interactions into account  
+  - Regressions w/ regularization
+  - RF
+  - ...
+
+### Deep Learning
+  - Steiner et al...
+  - others
