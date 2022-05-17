@@ -9,8 +9,8 @@ classoptions:
   - DIV: 12
 csl: "./plos-computational-biology.csl"
 biblio-style: authoryear
-bibliography: [references/HPC-MSRs.bib, references/HIV-DRMs.bib]
-biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=none]
+bibliography: [references/HPC-MSRs.bib, references/HIV-DRMs.bib, references/Sequence-Data.bib]
+biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=nyt]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
@@ -51,7 +51,7 @@ knitr::asis_output('\n\n\\begin{comment}')
 # Abstract {-}
 This is the Abstract
 
-# Resume {-}
+# Résumé {-}
 Ceci est le résumé
 
 # Aknowledgments {-}
@@ -70,7 +70,7 @@ knitr::asis_output('\n\n\\end{comment}')
 \fancyhead[RO]{\rightmark}
 \fancyfoot[CO,CE]{\thepage}
 
-# General Introduction
-## Goal of this Thesis 
-## Thesis organization
+# General Introduction {-}
+## Goal of this Thesis {-}
+## Thesis organization {-}
 ***TO COME***

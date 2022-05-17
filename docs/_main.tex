@@ -37,7 +37,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Sequence analysis, combinatorics and machine learning},
+  pdftitle={From sequences to knowledge, improving and learning from sequence alignments.},
   pdfauthor={Luc Blassel},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -82,6 +82,7 @@
 \usepackage{xspace}
 \usepackage{numprint}
 \usepackage{lipsum}
+\usepackage{uni-titlepage}
 
 \excludecomment{htmlonly}
 
@@ -98,6 +99,105 @@
 \setcapindent{0pt}
 
 % \usepackage{layout}
+\hypersetup {
+  colorlinks = true,
+}
+
+\newenvironment{tpage}[3]{%
+\KOMAoptions{twoside = false}
+  \begin{fullsizetitle}
+    
+    \vskip 2em
+    \hskip 2em \includegraphics[height=20mm]{figures/logos/SU.pdf}
+    \begin{center}
+    {%
+      
+        \usekomafont{title}{%
+            \Large THÈSE DE DOCTORAT \\
+            DE SORBONNE UNIVERSITÉ
+        }%
+      
+        \vskip 2em
+      
+        {%
+            \sffamily
+            \mdseries
+            \Large Spécialité: Bioinformatique
+        }%
+        
+        \vskip 0.1em
+        
+        {%
+            \sffamily
+            \mdseries
+            \large École doctorale n. 515: Complexité du vivant \\
+        }%
+        \vskip 2em
+        \usekomafont{subtitle}{
+        \mdseries
+        \Large
+        réalisée sous la direction de Rayan Chikhi
+        }
+        \vskip 0.5em
+        \usekomafont{subtitle}{%
+            \Large Sequence Bioinformatics\\
+            Institut Pasteur/CNRS – USR3756 
+        }%
+        
+        \vskip 2em
+        
+        {%
+            \sffamily
+            \mdseries
+            \large présentée par
+        }%
+        \vskip 0.5em
+        \usekomafont{author}{%
+            \huge
+            #2
+        }%
+
+        \vskip 3em
+      
+        \usekomafont{title}{%
+            \Huge #1
+        }%
+        
+        \vskip 3em
+        
+        \usekomafont{subtitle}{%
+            \mdseries
+            \huge Soutenue le #3
+        }%
+        
+        \vskip 0.5em
+        
+        \usekomafont{subtitle}{%
+            \mdseries
+            \Large
+            devant le jury composé de: \\
+            \vskip1em
+            \begin{tabular}{lllr}
+                TOPOLINO Alfredo & Professeur & Univ. Genève & Rapporteur \\
+                SE-YENG Fang     & Professeur & Univ. Shanghai & Rapporteur \\
+                CASTAFIORE Bianca & Cantatrice & Scala di Milano & Examinatrice \\
+                LAMPION Serafon & Assureur & & Invité \\
+                CHIKHI Rayan & PhD & Institue Pasteur & Directeur de Thèse
+            \end{tabular}
+        }%
+    
+    }%
+    
+    
+    \vskip 10em
+    
+    {%
+        \includegraphics[height=10mm]{figures/logos/CC-BY-NC-ND.pdf}
+    }%
+    \end{center}
+  \end{fullsizetitle}
+\KOMAoptions{twoside}
+}{}
 \usepackage{upquote}
 \usepackage{microtype}
 \usepackage{pdfpages}
@@ -118,18 +218,21 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage[style=authoryear,backref=true,refsegment=chapter,defernumbers=true,sorting=none]{biblatex}
+\usepackage[style=authoryear,backref=true,refsegment=chapter,defernumbers=true,sorting=nyt]{biblatex}
 \addbibresource{references/HPC-MSRs.bib}
 \addbibresource{references/HIV-DRMs.bib}
+\addbibresource{references/Sequence-Data.bib}
 
-\title{Sequence analysis, combinatorics and machine learning}
+\title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-04-11}
+\date{2022-05-17}
 
 \begin{document}
 \maketitle
 
 \DeclarePrintbibliographyDefaults{heading=bibintoc}
+
+\input{./tex/titlepage.tex}
 
 \pagestyle{empty}
 \frontmatter
@@ -165,7 +268,7 @@ This is the glossary
 # Abstract {-}
 This is the Abstract
 
-# Resume {-}
+# Résumé {-}
 Ceci est le résumé
 
 # Aknowledgments {-}
@@ -184,10 +287,24 @@ What are these terms ?
 \fancyfoot[CO,CE]{\thepage}
 
 \hypertarget{general-introduction}{%
-\chapter{General Introduction}\label{general-introduction}}
+\chapter*{General Introduction}\label{general-introduction}}
+\addcontentsline{toc}{chapter}{General Introduction}
 
-\hypertarget{biology-basics}{%
-\section{Biology basics}\label{biology-basics}}
+\hypertarget{goal-of-this-thesis}{%
+\section*{Goal of this Thesis}\label{goal-of-this-thesis}}
+\addcontentsline{toc}{section}{Goal of this Thesis}
+
+\hypertarget{thesis-organization}{%
+\section*{Thesis organization}\label{thesis-organization}}
+\addcontentsline{toc}{section}{Thesis organization}
+
+\textbf{\emph{TO COME}}
+
+\hypertarget{what-is-sequence-data}{%
+\chapter{What is Sequence data ?}\label{what-is-sequence-data}}
+
+\hypertarget{biological-sequences-a-primer}{%
+\section{Biological sequences, a primer}\label{biological-sequences-a-primer}}
 
 To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead.
 
@@ -205,79 +322,1184 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
 \label{fig:figDNA}
 \end{figure}
 
+\hypertarget{what-are-proteins}{%
+\subsection{What are proteins ?}\label{what-are-proteins}}
+
 \begin{itemize}
-\tightlist
 \item
-  What is DNA
+  Proteins are the action molecules of living organisms
 \item
-  What is RNA
+  They are obtained from DNA by translation where DNA -\textgreater{} RNA -\textgreater{} Protein
 \item
-  What are proteins
-\item
-  computational representations
+  Mutations in the DNA sequence can induce mutations in proteins:
+
+  \begin{itemize}
+  \item
+    illnesses
+  \item
+    acquired traits
+  \end{itemize}
 \end{itemize}
 
-\hypertarget{thesis-organization}{%
-\section{Thesis organization}\label{thesis-organization}}
+\hypertarget{obtaining-sequence-data}{%
+\section{Obtaining sequence data}\label{obtaining-sequence-data}}
+
+In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.
+
+\hypertarget{sanger-sequencing-a-breakthrough}{%
+\subsection{Sanger sequencing, a breakthrough}\label{sanger-sequencing-a-breakthrough}}
+
+The first true sequencing method was developed in 1977 \autocite{sangerDNASequencingChainterminating1977}. Sanger \emph{et al.} devised a simple method to read the sequence of nucleotides that make up a DNA sequence.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Clone sequence / amplify
+\item
+  Prepare 4 different sequencing environments with a majority of dNTP (ie regular nucleotides) and in each a single type of ddNTP (a terminator). ddNTP are marked
+\item
+  In each test tube add DNA polymerase, primers and denatures DNA fragments you want to sequence
+\item
+  Sequence is replicated until incorporation of ddNTP stopping reaction
+\item
+  Separate replicated fragments by electrophoresis (i.e shorter fragments go further), 1 ddNTP type in each lane
+\item
+  With marked you can see which nucleotide is present at a given position
+\end{enumerate}
+
+This allowed Sanger \emph{et al.} to sequence the first whole \(\varphi X174\) bacteriophage genome \autocite{sangerNucleotideSequenceBacteriophage1977}. This method, although revolutionnary was costly and time consuming.
+
+The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis \autocite{smithSynthesisOligonucleotidesContaining1985,smithFluorescenceDetectionAutomated1986}. The fluorescence also allowed for automated reading \textbf{\emph{(base-calling ?)}} with optical systems.
+
+\textbf{\emph{I need to speak of performance / throughput of these methods here.}}
+
+\hypertarget{next-generation-sequencing}{%
+\subsection{Next-generation sequencing}\label{next-generation-sequencing}}
+
+Developed to lower cost and more throughput
+
+\begin{itemize}
+\item
+  Massively parallel
+\item
+  Long reads sequencing
+\end{itemize}
+
+Quick summary on PacBio and ONT
+
+As a conclusion, mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
+
+\hypertarget{sequencing-errors-how-to-account-for-them}{%
+\section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
+
+\hypertarget{what-kind-of-errors-happen}{%
+\subsection{What kind of errors happen ?}\label{what-kind-of-errors-happen}}
+
+\begin{itemize}
+\item
+  Substitutions
+\item
+  Insertions
+\item
+  deletions
+\end{itemize}
+
+\hypertarget{long-read-errors}{%
+\subsection{Long read errors}\label{long-read-errors}}
+
+Mainly indels, in certain regions of the genomes, particularily homopolymers.
+
+\hypertarget{hpc}{%
+\subsection{HPC}\label{hpc}}
+
+\begin{itemize}
+\item
+  HPC takes repeated runs of a single nucleotide and compresses them to a single occurence
+\item
+  Empirically is has been shown to improve mapping and other applications
+\end{itemize}
+
+\hypertarget{aligning-sequence-data}{%
+\chapter{Aligning sequence data}\label{aligning-sequence-data}}
+
+\hypertarget{what-is-an-alignment}{%
+\section{What is an alignment ?}\label{what-is-an-alignment}}
+
+We want to compare individuals, species, whatever. To do this we need to compare what is comparable. Alignment to the rescue.
+
+\hypertarget{how-to-align}{%
+\subsection{How to align ?}\label{how-to-align}}
+
+Either decide to align globally or locally. Usually done with dynamic programming by assigning a score to mismatches, indels, \ldots{} and then choosing the alignment with minimal score.
+
+short example of local alignment
+
+gap open, gap extend, etc\ldots{}
+
+\hypertarget{substitution-models}{%
+\subsection{Substitution models}\label{substitution-models}}
+
+mismatch depends on models, BLOSUM, PAML, \ldots{}
+
+\hypertarget{why-align}{%
+\subsection{Why align ?}\label{why-align}}
+
+\begin{itemize}
+\item
+  pairwise alignment to compare two similar sequences
+\item
+  mapping to get an idea of where a short sequence comes from on a larger reference. (sequencing reads)
+\end{itemize}
+
+\hypertarget{how-do-we-speed-up-local-alignment}{%
+\section{How do we speed up local alignment ?}\label{how-do-we-speed-up-local-alignment}}
+
+\hypertarget{indexed-blast}{%
+\subsection{Indexed \ldots{} BLAST,\ldots{}}\label{indexed-blast}}
+
+short explanation of BLAST or suffix-arrays, \ldots{}
+
+\hypertarget{seeded-minimap2}{%
+\subsection{Seeded, minimap2, \ldots{}}\label{seeded-minimap2}}
+
+How minimap works, rough idea
+
+\hypertarget{msa}{%
+\section{MSA}\label{msa}}
+
+When we need to compare a lot of individuals together we can do MSA.
+
+NP-hard problem so we need heuristics or tricks
+
+Even if we align all sequences pairwise we need to then combine all gaps and stuff -\textgreater{} complicated.
+
+\hypertarget{progressive}{%
+\subsubsection{Progressive}\label{progressive}}
+
+guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder
+
+\hypertarget{hmms-index-alignment-pairwise}{%
+\subsubsection{HMMs / index alignment / pairwise}\label{hmms-index-alignment-pairwise}}
+
+Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. \emph{(point to appendinx with covid align ?)}
+
+\hypertarget{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}{%
+\chapter{Mapping-friendly sequence reductions: going beyond homopolymer compression}\label{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}}
+
+Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Paul Medvedev\textsuperscript{\textbf{3},\textbf{4},\textbf{5}}, Rayan
+Chikhi\textsuperscript{\textbf{1}}
+
+\textbf{1} Sequence Bioinformatics, Department of Computational Biology, Institut
+Pasteur, Paris, France\\
+\textbf{2} Sorbonne Université, Collège doctoral, Paris, France\\
+\textbf{3} Department of Computer Science and Engineering, Pennsylvania State
+University, University Park, Pennsylvania, United States of America\\
+\textbf{4} Department of Biochemistry and Molecular Biology, Pennsylvania State
+University, University Park, Pennsylvania, United States of America\\
+\textbf{5} Center for Computational Biology and Bioinformatics, Pennsylvania State
+University, University Park, Pennsylvania, United States of America\\
+
+\emph{originally published in iScience in XXX}\\
+\href{https://doi.org/10.1371/journal.pcbi.1008873}{\emph{doi:10.1371/journal.pcbi.1008873}}
+
+\newcommand{\stirling}[2]{\bigg\{%
+\begin{matrix}
+    #1 \\
+    #2
+\end{matrix}
+\bigg\} }
+\newcommand{\comb}[2]{\bigg(
+\begin{matrix}
+    #1 \\
+    #2
+\end{matrix}
+\bigg) }
+
+\newcommand{\lmer}{$\ell$-mer\xspace}
+\newcommand{\lmers}{$\ell$-mers\xspace}
+\newcommand{\iscomp}{\textsc{IsComp}\xspace}
+\newcommand{\rccore}{RC-core-insensitive\xspace}
+\newcommand{\minimap}{\texttt{minimap2}\xspace}
+\newcommand{\winnowmap}{\texttt{winnowmap2}\xspace}
+\newcommand{\msr}[1]{MSR$_{\text{#1}}$}
+
+\hypertarget{hpc-abstract}{%
+\section*{Abstract}\label{hpc-abstract}}
+\addcontentsline{toc}{section}{Abstract}
+
+Sequencing errors continue to pose algorithmic challenges to methods working
+with sequencing data. One of the simplest and most prevalent techniques for
+ameliorating the detrimental effects of homopolymer expansion/contraction errors
+present in long read data is homopolymer compression. It collapses runs of
+repeated nucleotides, with the intuitive goal of removing some of the sequencing
+errors and often improving mapping sensitivity. Though our intuitive
+understanding justifies why homopolymer compression works, it in no way implies
+that it is the best transformation that can be done. In this paper, we explore
+if there are transformations that can be applied in the same pre-processing
+manner as homopolymer compression that would achieve better alignment
+sensitivity. We introduce a more general framework than homopolymer compression,
+called mapping-friendly sequence reductions. We transform the reference and the
+reads using these reductions and then apply an alignment algorithm. We
+demonstrate that some mapping-friendly sequence reductions lead to improved
+mapping accuracy, outperforming homopolymer compression.
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Sequencing errors continue to pose algorithmic challenges to methods working
+with read data. In short-read technologies, these tend to be substitution
+errors, but in long reads, these tend to be short insertions and deletions; most
+common are expansions or contractions of homopolymers (i.e.~reporting 3 As
+instead of 4)~\autocite{dohmBenchmarkingLongreadCorrection2020}. Many algorithmic
+problems, such as alignment, become trivial if not for sequencing
+errors~\autocite{gusfieldbook}. Error correction can often decrease the error rate but
+does not eliminate all errors. Most tools therefore incorporate the uncertainty
+caused by errors into their underlying algorithms. The higher the error rate,
+the more detrimental its effect on algorithm speed, memory, and accuracy. While
+the sequencing error rate of any given technology tends to decrease over time,
+new technologies entering the market typically have high error rates (e.g.
+Oxford Nanopore Technologies). Finding better ways to cope with sequencing error
+therefore remains a top priority in bioinformatics.
+
+One of the simplest and most prevalent techniques for ameliorating the
+detrimental effects of homopolymer expansion/contraction errors is \emph{homopolymer
+compression} (abbreviated HPC). HPC simply transforms runs of the same
+nucleotide within a sequence into a single occurrence of that nucleotide. For
+example, HPC applied to the sequence AAAGGTTA yields the sequence AGTA. To use
+HPC in an alignment algorithm, one first compresses the reads and the reference,
+then aligns each compressed read to the compressed reference, and finally
+reports all alignment locations, converted into the coordinate system of the
+uncompressed reference. HPC effectively removes homopolymer
+expansion/contraction errors from the downstream algorithm. Though there is a
+trade-off with specificity of the alignment (e.g.~some of the compressed
+alignments may not correspond to true alignments) the improvement in mapping
+sensitivity usually outweighs it~\autocite{liMinimap2PairwiseAlignment2018}.
+
+The first use of HPC that we are aware of was in 2008 as a pre-processing step
+for 454 pyrosequencing data in the Celera
+assembler~\textcite{millerAggressiveAssemblyPyrosequencing2008}. It is used by a wide
+range of error-correction algorithms, e.g.~for 454
+data~\autocite{braggFastAccurateErrorcorrection2012}, PacBio
+data~\autocite{auImprovingPacBioLong2012}, and Oxford Nanopore
+data~\autocite{sahlinErrorCorrectionEnables2021}. HPC is used in alignment, e.g.~by the
+widely used minimap2 aligner~\autocite{liMinimap2PairwiseAlignment2018}. HPC is also
+used in long-read assembly, e.g.~HiCanu~\autocite{nurkHiCanuAccurateAssembly2020},
+SMARTdenovo~\autocite{liuSMARTdenovoNovoAssembler2021}, or
+mdBG~\autocite{ekimMinimizerspaceBruijnGraphs2021}. HPC is also used for clustering
+transcriptome reads according to gene family of
+origin~\autocite{sahlinNovoClusteringLongRead2020}. Overall, HPC has been widely used,
+with demonstrated benefits.
+
+Though our intuitive understanding justifies why HPC works, it in no way implies
+that it is the best transformation that can be done. Are there transformations
+that can be applied in the same pre-processing way as HPC that would achieve
+better alignment sensitivity? In this work, we define a more general notion
+which we call \emph{mapping-friendly sequence reductions}. In order to efficiently
+explore the performance of all reductions, we identify two heuristics to reduce
+the search space of reductions. We then identify a number of mapping-friendly
+sequence reductions which are likely to yield better mapping performance than
+HPC. We evaluate them using two mappers (\texttt{minimap2} and \texttt{winnowmap2}) on three
+simulated datasets (whole human genome, human centromere, and whole \emph{Drosophila}
+genome). We show that some of these functions provide vastly superior
+performance in terms of correctly placing high mapping quality reads, compared
+to either HPC or using raw reads. For example, one function increased the
+mapping accuracy of \texttt{minimap2} by an order of magnitude over the entire human
+genome, keeping an identical fraction of reads mapped.
+
+We also evaluate whether HPC sensitivity gains continue to outweigh the
+specificity cost with the advent of telomere-to-telomere
+assemblies~\autocite{nurkCompleteSequenceHuman2021}. These contain many more
+low-complexity and/or repeated regions such as centromeres and telomeres. HPC
+may increase mapping ambiguity in these regions by removing small,
+distinguishing, differences between repeat instances. Indeed, we find that
+neither HPC nor our mapping-friendly sequence reductions perform better than
+mapping raw reads on centromeres, hinting at the importance of preserving all
+sequence information in repeated regions.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+\hypertarget{sec:msr-def}{%
+\subsection{Streaming sequence reductions}\label{sec:msr-def}}
+
+We wish to extend the notion of homopolymer compression to a more general
+function while maintaining its simplicity. What makes HPC simple is that it can
+be done in a streaming fashion over the sequence while maintaining only a local
+context. The algorithm can be viewed simply as scanning a string from left to
+right and, at each new character, outputting that character if and only if it is
+different from the previous character. In order to prepare for generalizing this
+algorithm, let us define a function
+\(g^\text{HPC} : \Sigma^2\rightarrow\Sigma\cup\{\varepsilon\}\) where \(\Sigma\) is
+the DNA alphabet, \(\varepsilon\) is the empty character, and
+
+\begin{align*}
+    & g^\text{HPC}(x_1\cdot x_2) =
+    \begin{cases}
+        x_2 & \text{if } x_1 \neq x_2 \\
+        \varepsilon & \text{if } x_1 = x_2
+    \end{cases}
+\end{align*}
+
+Now, we can view HPC as sliding a window of size 2 over the sequence and at each
+new window, applying \(g^\text{HPC}\) to the window and concatenating the output
+to the growing compressed string. Formally, let \(x\) be a string, which we index
+starting from 1. Then, the HPC transformation is defined as
+
+\begin{equation}
+  f(x) = x[1,\ell-1]\cdot g(x[1,\ell]) \cdot g(x[2, \ell+1])\cdots g(x[|x|-\ell+1,|x|]) 
+  \label{eq:MSR}
+\end{equation}
+
+where \(\ell = 2\) and \(g=g^\text{HPC}\). In other words, \(f\) is the concatenation
+of the first \(\ell-1\) characters of \(x\) and the sequence of outputs of \(g\)
+applied to a sliding window of length \(\ell\) over \(x\). The core of the
+transformation is given by \(g\) and the size of the context \(\ell\), and \(f\) is
+simply the wrapper for \(g\) so that the transformation can be applied to
+arbitrary length strings.
+
+With this view in mind, we can generalize HPC while keeping its simplicity by 1)
+considering different functions \(g\) that can be plugged into~Equation
+\eqref{eq:MSR} increasing the context that \(g\) uses (i.e.~setting \(\ell>2\)).
+Formally, for a given alphabet \(\Sigma\) and a context size \(\ell\), a function
+\(T\) mapping strings to strings is said to be an \emph{order-}\(\ell\) Streaming
+sequence reduction (abbreviated \emph{SSR}) if there exists some
+\(g : \Sigma^\ell\rightarrow\Sigma\cup\{\varepsilon\}\) such that \(T=f\).
+
+Figure \ref{fig:countingMSRs}A shows how an SSR can be visualized as a directed
+graph. Observe that an order-\(\ell\) SSR is defined by a mapping between
+\(|\Sigma|^\ell\) inputs and \(|\Sigma| + 1\) outputs. For example, for \(\ell=2\),
+there are \(n=16\) inputs and \(k=5\) outputs. Figure \ref{fig:countingMSRs}B
+visualizes HPC in this way.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=\textwidth]{./figures/HPC-MSRs/panels_inline.pdf}
+    \extcaption{Representing and counting Streaming sequence reductions.}{
+        \textbf{A}: General representation of an order-2 Streaming sequence reduction as a mapping of 16 input dinucleotides, to the 4 nucleotide outputs and the empty character $\varepsilon$.
+        \textbf{B}: Homopolymer compression is an order-2 SSR. All dinucleotides except those that contain the same nucleotide twice map to the second nucleotide of the pair. The 4 dinucleotides that are the two same nucleotides map to the empty character $\varepsilon$.
+        \textbf{C}: Our RC-core-insensitive order-2 SSRs are mappings of the 6 representative dinucleotide inputs to the 4 nucleotide outputs and the empty character $\varepsilon$. The 4 dinucleotides that are their own reverse complement are always mapped to $\varepsilon$. The remaining 6 dinucleotides are mapped to the complement of the mapped output of the reverse complement dinucleotide input. For example, if AA is mapped to C, then TT (the reverse complement of AA) will be mapped to G (the complement of C).
+        \textbf{D}: Number of possible SSR mappings under the different restrictions presented in the main text. All mappings from 16 dinucleotide inputs to 5 outputs (as in panel A) are represented by the outermost circle. All RC-core-insensitive mappings (as in panel C) are represented by the medium circle. All RC-core-insensitive mappings with only one representative of each equivalence class are represented by the innermost circle.
+    }
+    \label{fig:countingMSRs}
+\end{figure}
+
+Since we aim to use SSRs in the context of sequencing data, we need to place
+additional restrictions on how they handle reverse complements. For example,
+given two strings \(x\) (e.g.~a read) and \(y\) (e.g.~a substring of the reference),
+a mapper might check if \(x = RC(y)\). When strings are pre-processed using an SSR
+\(f\), it will end up checking if \(f(x) = RC(f(y))\). However, \(x = RC(y)\) only
+implies that \(f(x) = f(RC(y))\). In order to have it also imply that
+\(f(x) = RC(f(y))\), we need \(f\) to be commutative with RC, i.e.~applying SSR then
+RC needs to be equivalent to applying RC then SSR. We say that \(f\) is
+\emph{RC-insensitive} if for all \(x\), \(f(RC(x))= RC(f(x))\). Observe that HPC is
+RC-insensitive.
+
+\hypertarget{sec:enum}{%
+\subsection{Restricting the space of Streaming sequence reductions}\label{sec:enum}}
+
+To discover SSRs that improve mapping performance, our strategy is to put them
+all to the test by evaluating the results of an actual mapping software over a
+simulated test dataset reduced by each SSR. However, even with only \(16\) inputs
+and \(5\) outputs, the number of possible \(g\) mappings for order-2 SSRs is
+\(5^{16}\approx 1.5\cdot10^{11}\), which is prohibitive to enumerate. In this
+section, we describe two ideas for reducing the space of SSRs that we will test.
+In subsection~\ref{sec:rc-insensitive}, we show how the restriction to
+RC-insensitive mappings can be used to reduce the search space. In
+subsection~\ref{sec:equiv}, we exploit the natural symmetry that arises due to
+Watson-Crick complements to further restrict the search space.
+
+These restrictions reduce the number of order-2 SSRs to only , making it
+feasible to test all of them. Figure \ref{fig:countingMSRs}D shows an overview
+of our restriction process.
+
+\hypertarget{sec:rc-insensitive}{%
+\subsubsection{Reverse complement-core-insensitive Streaming sequence reductions}\label{sec:rc-insensitive}}
+
+Consider an SSR defined by a function \(g\), as in Equation \eqref{eq:MSR}.
+Throughout this paper we will consider SSRs that have a related but weaker
+property than RC-insensitive. We say that an SSR is \emph{RC-core-insensitive} if the
+function \(g\) that defines it has the property that for every \(\ell\)-mer\(x\) and
+its reverse complement \(y\), we have that either \(g(x)\) is the reverse complement
+of \(g(y)\) or \(g(x) = g(y) = \varepsilon\). We will restrict our SSR search space
+to RC-core-insensitive reductions in order to reduce the number of SSRs we will
+need to test.
+
+Let us consider what this means for the case of \(\ell=2\), which will be the
+focal point of our experimental analysis. There are 16 \(\ell\)-mers(i.e.
+dinucleotides) in total. Four of them are their own reverse complement: AT, TA,
+GC, CG. The RC-core-insensitive restriction forces \(g\) to map each of these to
+\(\varepsilon\), since a single nucleotide output cannot be its own reverse
+complement. This leaves 12 \(\ell\)-mers, which can be broken down into 6 pairs of
+reverse complements. For each pair, we can order them in lexicographical order
+and write them as \((AA,TT), (AC,GT), (AG,CT), (CA,TG), (CC,GG),\) and \((GA,TC)\).
+Defining \(g\) can then be done by assigning an output nucleotide to the first
+\(\ell\)-mer in each of these pairs (Figure \ref{fig:countingMSRs}C). For
+example, we can define an SSR by assigning \(g(AA) = C\), \(g(AC) = C\),
+\(g(AG) = A\), \(g(CA) = A\), \(g(CC) = T\), and \(g(GA) = G\). As an example, let us
+apply the corresponding SSR to an example read \(r\):
+
+\begin{align*}
+    r & = \text{TAAGTTGA}    & f(RC(r)) &=\color{red}{\text{T}}\color{green}{\text{CACCTG}} \\
+    f(r) & =\text{TCAGGTG}   & RC(f(r)) &=\;\;\;\color{green}{\text{CACCTG}}\color{red}{\text{A}} \\
+    RC(r) & =\text{TCAACTTA} & &
+\end{align*}
+
+Observe that the first \(\ell-1\) nucleotides of \(r\) (shown in red) are copied
+as-is, since we do not apply \(g\) on them (as per Equation \eqref{eq:MSR}). As we
+see in this example, this implies that \(f(RC(r))\) is not necessarily equal to
+\(RC(f(r))\); thus an RC-core-insensitive SSR is not necessarily an RC-insensitive
+SSR. However, an RC-core-insensitive SSR has the property that for all strings
+\(r\), we have \(f(RC(r))[\ell, |r|]) = RC(f(r))[1, |r| - \ell + 1]\). In other
+words, if we drop the \(\ell - 1\) prefix of \(f(RC(r))\) and the \(\ell - 1\) suffix
+of \(RC(f(r))\), then the two strings are equal. Though we no longer have the
+strict RC-insensitive property, this new property suffices for the purpose of
+mapping long reads. Since the length of the read sequences will be much greater
+than \(\ell\) (in our results we will only use \(\ell=2\)), having a mismatch in the
+first or last nucleotide will be practically inconsequential.
+
+It is important to note though that there may be other RC-insensitive functions
+not generated by this construction. For instance, HPC cannot be derived using
+this method (as it does not map the di-nucleotides AT,TA,GC and CG to
+\(\varepsilon\)), and yet it is RC-insensitive.
+
+We can count the number of RC-core-insensitive SSRs. Let us define \(i(\ell)\) the
+number of input assignments necessary to fully determine the RC-core-insensitive
+SSR; one can think of this as the degrees-of-freedom in choosing \(g\). As we
+showed, for \(\ell=2\), we have \(i(\ell)=6\). The number of RC-core-insensitive
+SSRs is then \(5^{i(\ell)}\). Therefore, for \(\ell=2\), instead of \(5^{16}\)
+possible mappings we have at most \(5^{6}\approx1.5\cdot10^{4}\)
+RC-core-insensitive mappings (Figure \ref{fig:countingMSRs}D). For an odd
+\(\ell>2\), there are no \(\ell\)-mers that are their own reverse complements, hence
+\(i(\ell)=4^\ell/2\). If \(\ell\) is even then there are \(4^{\ell/2}\) inputs that
+are their own reverse complements (i.e.~we take all possible sequences of length
+\(\ell/2\) and reconstruct the other half with reverse complements). Thus,
+\(i(\ell)=(4^\ell- 4^{\ell/2})/2\).
+
+\hypertarget{sec:equiv}{%
+\subsubsection{Equivalence classes of SSRs}\label{sec:equiv}}
+
+When performing preliminary tests, we noticed that swapping \(A\leftrightarrow T\)
+and/or \(C\leftrightarrow G\), as well as swapping the whole \(A/T\) pair with the
+\(C/G\) pair in the SSR outputs did not affect the performance. In other words, we
+could exchange the letters of the output in a way that preserves the
+Watson-Crick complementary relation. Intuitively, this can be due to the
+symmetry induced by reverse complements in nucleic acid strands, though we do
+not have a more rigorous explanation for this effect. In this section, we will
+formalize this observation by defining the notion of SSR equivalence. This will
+reduce the space of SSRs that we will need to consider by allowing us to
+evaluate only one SSR from each equivalence class.
+
+Consider an RC-core-insensitive SSR defined by a function \(g\), as in Equation
+\eqref{eq:MSR}. An \(\ell\)-mer is canonical if it is the not lexicographically
+larger than its reverse complement. Let \(I\) be the set of all \(\ell\)-mers that
+are canonical and are not reverse complements of each other. Such an SSR's
+\emph{dimension} \(k\) is the number of distinct nucleotides that can be output by \(g\)
+on inputs from \(I\) (not counting \(\varepsilon\)). The dimension can range from
+\(1\) to \(4\). Next, observe that \(g\) maps all elements of \(I\) to one of \(k+ 1\)
+values (i.e.~\(\Sigma \cup \varepsilon\)). The output of \(g\) on \(\ell\)-mers not in
+\(I\) is determined by its output on \(\ell\)-mers in \(I\), since we assume the SSR
+is RC-core-insensitive. We can therefore view it as a partition of \(I\) into
+\(k+1\) sets \(S_0\), \ldots, \(S_k\), and then having a function \(t\) that is an
+injection from \(\{1, \ldots, k\}\) to \(\Sigma\) that assigns an output letter to
+each partition. Further, we permanently assign the output letter for \(S_0\) to be
+\(\varepsilon\). Note that while \(S_0\) could be empty, \(S_1, \ldots, S_k\) cannot
+be empty by definition of dimension. For example, the SSR used in Section
+\ref{sec:rc-insensitive} has dimension four and corresponds to the partition
+\(S_0 = \{\},S_1=\{AG,CA\}\), \(S_2=\{CC\}\), \(S_3=\{AA,AC\}\), \(S_4=\{GA\}\), and to
+the injection \(t(1) = A\), \(t(2) =T\), \(t(3) = C\), and \(t(4) = G\).
+
+Let \(\textsc{IsComp}(x,y)\) be a function that returns true if two nucleotides
+\(x, y \in \Sigma \cup \{\varepsilon\}\) are Watson-Crick complements, and false
+otherwise. Consider two SSRs of dimension \(k\) defined by \(S_0, \ldots, S_k, t\)
+and \(S'_0, , S'_k, t'\), respectively. We say that they are equivalent iff all
+the following conditions are met:
+
+\begin{itemize}
+\item
+  \(S_0 = S'_0\),
+\item
+  there exists a permutation \(\pi\) of \(\{1,\ldots, k\}\) such that for all
+  \(1 \leq i \leq k\), we have \(S_i = S'_{\pi(i)}\),
+\item
+  for all \(1 \leq i < j \leq k\), we have
+  \(\textsc{IsComp}(t(i), t(j)) = \textsc{IsComp}(t'(\pi(i)), t'(\pi(j)))\).
+\end{itemize}
+
+One can verify that this definition is indeed an equivalence relation, i.e.~it
+is reflexive, symmetric, and transitive. Therefore, we can partition the set of
+all SSRs into equivalence classes based on this equivalence relation. One caveat
+is that a single SSR defined by a function \(g\) may correspond to multiple SSRs
+of the form \(S_0,\ldots,S_k,t\). However, these multiple SSRs are equivalent,
+hence the resulting equivalence classes are not affected. Furthermore, we can
+assume that there is some rule to pick one representative SSR for its
+equivalence class; the rule itself does not matter in our case.
+
+Figure \ref{fig:countingMSRs} shows the equivalence classes for \(\ell=2\), for a
+fixed partition. An equivalence class can be defined by which pair of classes
+\(S_i\) and \(S_j\) have complementary outputs under \(t\) and \(t'\). Let us define
+\(o(k)\) as the number of equivalence classes for a given partition and a given
+\(k\). Then Figure \ref{fig:countingMSRs} shows that \(o(1)=1\), \(o(2)=2\) and
+\(o(3) = o(4) = 3\). There are thus only 9 equivalence classes for a given
+partition.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{./figures/HPC-MSRs/equivalence_classes_simpler.pdf}
+    \extcaption{SSR equivalence classes for a fixed partition of the inputs.}{
+    $S_0$ is always assigned $\varepsilon$, so it is represented by a gray node. 
+    A blue link between $S_i$ and an $S_j$ denotes that $\textsc{IsComp}(t(i), t(j))=\text{true}$.
+    The equivalence classes are determined by the Watson-Crick complementary relationships between the rest of the parts, i.e. by all the possible ways to draw the blue links.
+    }
+    \label{fig:MSR-configs}
+\end{figure}
+
+\hypertarget{counting-the-number-of-restricted-ssrs}{%
+\subsubsection{Counting the number of restricted SSRs}\label{counting-the-number-of-restricted-ssrs}}
+
+In this section, we derive a formula for the number of restricted MSRs,
+i.e.~MSRs that are RC-core-insensitive and that are representative for
+their equivalence class. Consider the class of RC-core-insensitive MSRs
+with dimension \(k\). In
+subsection~\ref{sec:rc-insensitive}, we derived that the degrees-of-freedom
+in assigning \(\ell\)-mers to an output is \(i(\ell) = 4^\ell/2\) if \(\ell\)
+is odd and \(i(\ell) = (4^\ell - 4^{\ell / 2})/2\) if \(\ell\) is even. Let
+\(C(\ell,k)\) be the number of ways that \(i(\ell)\) \(\ell\)-mers can be
+partitioned into \(k+1\) sets \(S_0, \ldots, S_k\), with \(S_1, \ldots, S_k\)
+required to be non-empty. Then, in
+subsection~\ref{sec:equiv}, we have derived \(o(k)\), the number of MSR
+equivalence classes for each such partition. The number of restricted
+MSRs can then be written as
+
+\begin{equation}
+N(\ell) = \sum_{k=1}^{4} C(\ell, k) \cdot o(k)
+\label{eq:N}
+\end{equation}
+
+To derive the formula for \(C(\ell, k)\), we first recall that the number
+of ways to partition \(n\) elements into \(k\) non-empty sets is known as
+the Stirling number of the second kind and is denoted by
+\(\tiny\bigg\{%
+\begin{matrix}
+    n \\
+    k
+\end{matrix}
+\bigg\} \) \autocite[ p.265]{grahamConcreteMathematicsFoundation1994}. It can
+be computed using the formula
+
+\begin{equation*}
+    \bigg\{%
+\begin{matrix}
+    n \\
+    k
+\end{matrix}
+\bigg\}  = \frac{1}{k!}\sum_{i=0}^k(-1)^i\bigg(
+\begin{matrix}
+    k \\
+    i
+\end{matrix}
+\bigg) (k-i)^n
+\end{equation*}
+
+Let \(j\) be the number of the \(i(\ell)\) \(\ell\)-mers that are assigned to
+\(S_0\). Note this does not include the \(\ell\)-mers that are
+self-complementary that are forced to be in \(S_0\). Let \(C(\ell,k,j)\) be
+the number of ways that \(i(\ell)\) \(\ell\)-mers can be partitioned into
+\(k+1\) sets \(S_0, \ldots, S_k\), such that \(j\) of the \(\ell\)-mers go into
+\(|S_0|\) and \(S_1, \ldots, S_k\) to are non-empty. We need to consider
+several cases depending on the value of \(j\):
+
+\begin{itemize}
+\item
+  In the case that \(j = 0\), we are partitioning the \(i(\ell)\) inputs
+  among non-empty sets \(S_1, \ldots, S_k\). Then
+  \(C(\ell, k,j) = \tiny{\bigg\{%
+  \begin{matrix}
+      i(\ell) \\
+      k
+  \end{matrix}
+  \bigg\} }\).
+\item
+  In the case that \(1 \leq j \leq i(\ell) - k\), there are
+  \(\tiny{\bigg(
+  \begin{matrix}
+      i(\ell) \\
+      j
+  \end{matrix}
+  \bigg) }\) ways to choose which \(j\) \(\ell\)-mers are in \(S_0\), and
+  \(\tiny{\bigg\{%
+  \begin{matrix}
+      i(\ell) - j \\
+      k
+  \end{matrix}
+  \bigg\} }\) ways to partition the remaining \(\ell\)-mers into
+  \(S_1, \ldots, S_k\). Hence,
+  \(C(\ell, k,j) = \tiny{\bigg(
+  \begin{matrix}
+      i(\ell) \\
+      j
+  \end{matrix}
+  \bigg) }\tiny{\bigg\{%
+  \begin{matrix}
+      i(\ell) - j \\
+      k
+  \end{matrix}
+  \bigg\} }\).
+\item
+  In the case that \(j > i(\ell) - k\), it is impossible to partition
+  the remaining \(k\) (or fewer) \(\ell\)-mers into \(S_1, \ldots, S_k\)
+  such that the sets are non-empty. Recall that as we assume the
+  dimension is \(k\), each set must contain at least one element. Hence,
+  \(C(\ell, k,j) = 0\).
+\end{itemize}
+
+Putting this together into Equation~\eqref{eq:N}, we get
+
+\begin{equation*}
+    N(\ell) = \sum_{k=1}^4 o(k) \bigg( \bigg\{%
+\begin{matrix}
+    i(\ell) \\
+    k
+\end{matrix}
+\bigg\}  + \sum_{j=1}^{i(\ell) - k}\bigg(
+\begin{matrix}
+    i(\ell) \\
+    j
+\end{matrix}
+\bigg) \bigg\{%
+\begin{matrix}
+    i(\ell)-j \\
+    k
+\end{matrix}
+\bigg\}   \bigg)
+\end{equation*}
+
+For \(\ell=2\), we have \(N(2)=2,135\) restricted MSRs, which is
+several orders of magnitude smaller than the initial \(5^{16}\) possible
+MSRs and allows us to test the performance of all of them. for order-3
+MSRs we get \(N(3)=2.9\cdot10^{21}\) which much smaller than the full
+search space of \(5^{4^3}\approx5.4\cdot10^{44}\), for order-4 MSRs we get
+a similar reduction in search space with \(N(4)=9.4\cdot10^{84}\) as
+opposed to the full search space of \(5^{4^4}\approx8.6\cdot10^{178}\).
+For these higher order MSRs, although the restricted search space is
+much smaller than the full naive one, it is still too large to
+exhaustively search.
+
+\hypertarget{datasets-and-pipelines}{%
+\section{Datasets and Pipelines}\label{datasets-and-pipelines}}
+
+\hypertarget{datasets}{%
+\subsection{Datasets}\label{datasets}}
+
+The following three reference sequences were used for evaluation:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Whole human genome:} This reference sequence is a whole genome assembly
+  of the CHM13hTERT human cell line by the Telomere-to-Telomere consortium
+  \autocite{nurkCompleteSequenceHuman2021}. We used the 1.1 assembly release (Genbank
+  Assembly ID
+  \href{https://www.ncbi.nlm.nih.gov/assembly/GCA_009914755.3/}{GCA\_009914755.3}).
+\item
+  \textbf{Whole \emph{Drosophila} genome:} This reference sequence is a whole genome
+  assembly of a \emph{Drosophila melanogaster}, release 6.35 (Genbank Assembly ID
+  \href{https://www.ncbi.nlm.nih.gov/assembly/GCF_000001215.4/}{GCA\_000001215.4})
+  \autocite{adamsGenomeSequenceDrosophila2000}.
+\item
+  \textbf{Synthetic centromeric sequence:} This sequence was obtained from the
+  \texttt{TandemTools} mapper test data \autocite{mikheenkoTandemToolsMappingLong2020}. It is
+  a simulated centromeric sequence that is inherently difficult to map reads
+  to. Appendix \ref{appendix:tandemtools} describes how it was constructed.
+\end{enumerate}
+
+\hypertarget{simulation-pipeline}{%
+\subsection{Simulation pipeline}\label{simulation-pipeline}}
+
+Given a reference sequence, simulated reads were obtained using \texttt{nanosim}
+\autocite{yangNanoSimNanoporeSequence2017} with the
+\texttt{human\_NA12878\_DNA\_FAB49712\_guppy\_flipflop} pre-trained model, mimicking
+sequencing with an Oxford Nanopore instrument. The number of simulated reads was
+chosen to obtain a theoretical coverage of whole genomes around 1.5x, this
+resulted in simulating \(\approx 6.6\cdot10^5\) reads for the whole human genome
+and \(\approx 2.6\cdot10^4\) reads for the whole Drosophila genome. Since the
+centromeric sequence is very short, we aimed for a theoretical coverage of 100x
+which resulted in \(\approx 1.3\cdot10^4\) simulated reads.
+
+For each evaluated SSR, the reads as well as the reference sequence were reduced
+by applying the SSR to them. The reduced reads were then mapped to the reduced
+reference using \texttt{minimap2}\autocite{liMinimap2PairwiseAlignment2018} with the \texttt{map-ont}
+preset and the \texttt{-c} flag to generate precise alignments. Although HPC is an
+option in \texttt{minimap2} we do not use it and we evaluate HPC as any of the other
+SSRs by transforming the reference and reads prior to mapping. The starting
+coordinates of the reduced reads on the reduced reference were updated to
+reflect deletions incurred by the reduction process. The mapping results with
+translated coordinates were filtered to keep only the primary alignments. This
+process was done for each of our 2135 SSRs as well as with HPC and the original
+untransformed reads (denoted as \emph{raw}).
+
+\hypertarget{sec:evalpipeline}{%
+\subsection{Evaluation pipeline}\label{sec:evalpipeline}}
+
+We use two metrics to evaluate the quality of a mapping of a simulated read set.
+The first is the \emph{fraction of reads mapped}, i.e.~that have at least one
+alignment. The second is the \emph{error rate}, which is the fraction of mapped reads
+that have an incorrect location as determined by \texttt{paftools\ mapeval}
+\autocite{liMinimap2PairwiseAlignment2018}. This tool considers a read as correctly
+mapped if the intersection between its true interval of origin, and the interval
+where it has been mapped to, is at least 10\% of the union of both intervals.
+
+Furthermore, we measure the error rate as a function of a given \emph{mapping quality
+threshold}. Mapping quality (abbreviated mapq) is a metric reported by the
+aligner that indicates its confidence in read placement; the highest value (60)
+indicates that the mapping location is likely correct and unique with high
+probability, and a low value (e.g.~0) indicates that the read has multiple
+equally likely candidate mappings and that the reported location cannot be
+trusted. The error rate at a mapq threshold \(t\) is then defined as the error
+rate of reads whose mapping quality is \(t\) or above. For example, the error rate
+at \(t=0\) is the error rate of the whole read set, while the error rate at \(t=60\)
+is the error rate of only the most confident read mappings. Observe that the
+error rate decreases as \(t\) increases.
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+\hypertarget{selection-of-mapping-friendly-sequence-reductions}{%
+\subsection{Selection of mapping-friendly sequence reductions}\label{selection-of-mapping-friendly-sequence-reductions}}
+
+We selected a set of ``promising'' SSRs starting from all of the SSRs enumerated
+in Section~\ref{sec:enum}, that we call \emph{mapping-friendly sequence reductions}
+(abbreviated \emph{MSR}). The selection was performed by considering an independent
+read set of lower (0.5x) coverage, simulated from the whole human genome
+reference. This dataset is separate from the ones used for evaluation. Note that
+overfitting MSRs to a particular genome is acceptable in applications where a
+custom MSR can be used for each genome. Yet in this work, the same set of
+selected MSRs will be used across all genomes.
+
+\begin{figure}[t]
+    \centering
+    % \includegraphics[width=0.4\textwidth]{figures/main_text/hpc.png}
+    \includegraphics[width=0.4\textwidth]{figures/HPC-MSRs/threshold_selection-v2.pdf}
+    \extcaption{Illustration of how a respective mapq threshold is chosen for each of our evaluated MSRs.}{ 
+        The orange dot shows the error rate and fraction of reads mapped for HPC at mapq threshold 60. 
+        Anything below and to the right of this point is strictly better than HPC 60, i.e.
+        it has both a lower error rate and higher fraction of reads mapped. 
+        If an evaluated MSR does not pass through this region, then it is discarded from further consideration. 
+        In the figure, the blue MSR does pass through this region, indicating that it is better than HPC 60. 
+        We identify the leftmost point (marked as a blue dot) and use the mapq threshold at that point as the respective threshold.
+        }
+    \label{fig:threshold-choice}
+\end{figure}
+
+For each evaluated SSR, we selected, if it exists, the highest mapq threshold
+for which the mapped read fraction is higher and the error rate is lower than
+HPC at mapq 60 (\(0.93\) and \(2.1\cdot 10^{-3}\) respectively). Figure
+\ref{fig:threshold-choice} illustrates the idea. Then we identified the 20 SSRs
+that have the highest fraction of reads mapped at their respective thresholds.
+Similarly we identified the 20 SSRs with the lowest error rate. Finally we
+select the 20 SSRs that have the higest percentage of thresholds ``better'' than
+HPC at mapq 60; i.e.~the number of mapq thresholds for which the SSR has both a
+higher fraction of reads mapped and lower error rate than HPC at a mapq
+threshold of 60, divided by the total number of thresholds (=60).
+
+The union of these 3 sets of 20 SSRs resulted in a set of 58 ``promising'' MSRs.
+Furthermore, we will highlight three MSRs that are ``best in their category'',
+i.e.
+
+\begin{itemize}
+\item
+  \textbf{MSR}\(_{\text{F}}\): The MSR with the highest fraction of mapped reads at a
+  mapq threshold of 0.
+\item
+  \textbf{MSR}\(_{\text{E}}\): The MSR with the lowest error rate at its respective
+  mapq threshold.
+\item
+  \textbf{MSR}\(_{\text{P}}\): The MSR with the highest percentage of mapq thresholds
+  for which it is ``better'' than HPC at mapq 60.
+\end{itemize}
+
+Figure \ref{fig:topMSRs} shows the actual functions MSR\(_{\text{F}}\),
+MSR\(_{\text{E}}\), MSR\(_{\text{P}}\). An intriguing property is that they output
+predominantly As and Ts, with MSR\(_{\text{P}}\) assigning 2 input pairs to the
+G/C output whereas MSR\(_{\text{E}}\) and MSR\(_{\text{F}}\) assign only one.
+Additionally, MSR\(_{\text{E}}\) and MSR\(_{\text{P}}\) both assign the \{CC,GG\}
+input pair to the deletion output \(\varepsilon\) removing any information
+corresponding to repetitions of either G or C from the reduced sequence. Overall
+this means the reduced sequences are much more AT-rich than their raw
+counterparts, but somehow information pertinent to mapping is retained.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/HPC-MSRs/Top_MSRs.pdf}
+    \extcaption{Graph representations of our highlighted MSRs: MSR$_{\text{E}}$,  MSR$_{\text{F}}$,  and MSR$_{\text{P}}$.}{
+        MSR$_{\text{E}}$ has the lowest error rate of among MSRs at the highest mapq threshold for which it performs better than HPC at mapq 60, MSR$_{\text{F}}$ has the highest fraction of reads mapped at mapq 60 and MSR$_{\text{P}}$ has the highest percentage of mapq thresholds for which it outperforms HPC at mapq 60.
+        The grayed out nodes represent the reverse complement of input dinucleotides and outputs, as in \autoref{fig:countingMSRs}C. For example for MSR$_{\text{E}}$, AA is mapped to T, so TT is mapped to A.}
+    \label{fig:topMSRs}
+\end{figure}
+
+\hypertarget{mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes}{%
+\subsection{Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes}\label{mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes}}
+
+Across the entire human genome, at high mapping quality thresholds (above 50),
+our selected 58 MSRs generally have lower mapping error rate than HPC and raw
+Figure \ref{fig:mapeval}A and Table \ref{tab:table-subset}. This is not
+surprising, as we selected those MSRs partly on the criteria of outperforming
+HPC at mapq 60; however, it does demonstrate that we did not overfit to the
+simulated reads used to select the MSRs.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/HPC-MSRs/MSR_mapeval_new_selection.reordered.pdf}
+    \extcaption{Performance of our 58 selected mapping-friendly sequence reductions across genomes on reads simulated by \texttt{nanosim}}{
+        Panel \textbf{A)} shows the whole human genome assembly, \textbf{B)} the subset of mapped reads from panel B that originate from repetitive regions, and \textbf{C)} the ``TandemTools'' synthetic centromeric reference sequence.
+        We highlighted the best-performing mapping-friendly sequence reductions as MSR E, F and P, respectively in terms of cumulative \texttt{mapeval} error rate, fraction of reads mapped, and percentage of better thresholds than HPC.
+        Each point on a line represents, from left to right, the mapping quality thresholds 60, 50, 40, 30, 20, 10 and 0. For the first point of each line, only reads of mapping quality 60 are considered, and the y value represents the rate of these reads that are not correctly mapped, the x value represents the fraction of simulated reads that are mapped at this threshold. The next point is computed for all reads of mapping quality $\geq50$, etc. The rightmost point on any curve represents the mapping error rate and the fraction of mapped reads for all primary alignments. The x-axes are clipped for lower mapped read fractions to better differentiate HPC, raw and MSRs E, F and P.
+    }
+    \label{fig:mapeval}
+\end{figure}
+
+Mapping quality is only an indication from the aligner to estimate whether a
+read mapping is correct, and according to Figure \ref{fig:mapeval}A the mapping
+error rate of most MSRs is low even for mapping qualities lower than 60.
+Therefore, we choose to compare MSR-mapped reads with lower mapping qualities
+against raw or HPC-mapped reads with the highest (60) mapping quality (which is
+the mapping quality thresholds most practitioners would use by default).
+
+Table \ref{tab:table-subset} shows that the three selected MSRs outperform both
+HPC and raw in terms of mapping error rate, with similar fractions of mapped
+reads overall. For example on the human genome, at mapq\(\geq50\),
+MSR\(_{\text{F}}\), MSR\(_{\text{P}}\) and MSR\(_{\text{E}}\) all map more reads than
+either HPC or raw at mapq=60, and MSR\(_{\text{P}}\) and MSR\(_{\text{E}}\) also
+have error rates an order of magnitude lower than either HPC or raw.
+
+To evaluate the robustness of MSRs E, F and P we investigated the impact of
+mapping to a different organism or using another mapper. To this effect we
+repeated the evaluation pipeline in these different settings:
+
+\begin{itemize}
+\item
+  Using the \emph{Drosophila melanogaster} whole genome assembly as reference and
+  mapping with \texttt{minimap2}
+\item
+  Using the whole human genome assembly as reference but mapping with
+  \texttt{winnowmap2}(version 2.02) \autocite{jainWeightedMinimizerSampling2020}. The same
+  options as \texttt{minimap2} were used, and k-mers were counted using \texttt{meryl}
+  \autocite{rhieMerquryReferencefreeQuality2020}, considering the top \(0.02\%\) as
+  repetitive (as suggested by the \texttt{winnowmap2} usage guide).
+\end{itemize}
+
+MSRs E, F and P behave very similarly in both of these contexts compared to
+HPC/raw: by selecting mapped reads with mapq\(\geq\) 50 for the three MSRs we
+obtain a similar fraction of mapped reads with much lower error rates (Table
+\ref{tab:table-subset}). A noticeable exception is the \texttt{winnowmap2} experiment,
+where a larger fraction of raw reads are mapped than any other MSR and even HPC.
+A more detailed results table can be found in Table \ref{tab:mapperComparison},
+and a graph of MSR performance on the whole Drosophila genome in Figure
+\ref{fig:drosophila-results}. As Figure \ref{fig:drosophila-results} shows, we
+also evaluated these MSRs on a whole \emph{Escherichia coli} (Genbank ID
+\href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genome, where we
+observed similar results, albeit the best MSRs do not seem to be one of our
+three candidates. This might mean that specific MSRs are more suited to
+particular types of genomes.
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}rlr@{}lr@{}lr@{}lr@{}lr@{}lr@{}l@{}}
+\toprule
+\multicolumn{2}{l}{}     & \multicolumn{4}{c}{Whole human genome}                                                  & \multicolumn{4}{c}{Whole human genome}                                                  & \multicolumn{4}{c}{Whole Drosophila genome}                                          \\
+\multicolumn{2}{l}{}     & \multicolumn{4}{c}{\texttt{minimap2}}                                                            & \multicolumn{4}{c}{\texttt{winnowmap2}}                                                          & \multicolumn{4}{c}{\texttt{minimap2}}                                                         \\
+\multicolumn{2}{r}{mapq} & \multicolumn{2}{l}{fraction}             & \multicolumn{2}{l}{error}                    & \multicolumn{2}{l}{fraction}             & \multicolumn{2}{l}{error}                    & \multicolumn{2}{l}{fraction}             & \multicolumn{2}{l}{error}                 \\ \cmidrule(lr){3-6} \cmidrule(lr){7-10} \cmidrule(l){11-14}
+HPC         & 60         & 0.935          & {\:\footnotesize$+$0\%} & 1.85e-03          & {\:\footnotesize$+$ 0\%} & 0.894          & {\:\footnotesize$+$0\%} & 1.43e-03          & {\:\footnotesize$+$ 0\%} & 0.957          & {\:\footnotesize$+$0\%} & 2.27e-03      & {\:\footnotesize$+$  0\%} \\
+raw         & 60         & 0.921          & {\:\footnotesize$-$1\%} & 1.86e-03          & {\:\footnotesize$+$ 0\%} & \textbf{0.932} & \textbf{\:\small$+$4\%} & 1.75e-03          & {\:\footnotesize$+$23\%} & 0.958          & {\:\footnotesize$+$0\%} & 2.27e-03      & {\:\footnotesize$-$  0\%} \\
+MSR$_{\text{F}}$     & 50         & \textbf{0.938} & \textbf{\:\small$+$0\%} & 1.29e-03          & {\:\footnotesize$-$30\%} & 0.886          & {\:\footnotesize$-$1\%} & 3.82e-04          & {\:\footnotesize$-$73\%} & \textbf{0.960} & \textbf{\:\small$+$0\%} & 1.37e-03      & {\:\footnotesize$-$ 39\%} \\
+MSR$_{\text{E}}$     & 50         & 0.936          & {\:\footnotesize$+$0\%} & \textbf{1.17e-04} & \textbf{\:\small$-$94\%} & 0.820          & {\:\footnotesize$-$8\%} & \textbf{8.93e-05} & \textbf{\:\small$-$94\%} & 0.954          & {\:\footnotesize$-$0\%} & \textbf{0.00} & \textbf{\:\small$-$100\%} \\ 
+MSR$_{\text{P}}$     & 50         & \textbf{0.938} & \textbf{\:\small$+$0\%} & 4.15e-04          & {\:\footnotesize$-$78\%} & 0.845          & {\:\footnotesize$-$6\%} & 1.14e-04          & {\:\footnotesize$-$92\%} & 0.957          & {\:\footnotesize$+$0\%} & 8.11e-04      & {\:\footnotesize$-$ 64\%} \\ \bottomrule
+\end{tabular}%
+}
+\extcaption{Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.}{
+  For each reference sequence and mapper pair, we report the fraction of reads mapped (``fraction'' columns), the \texttt{paftools mapeval} mapping error rate (``error'' columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\geq 50$. 
+}
+\label{tab:table-subset}
+\end{table}
+
+\hypertarget{mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome}{%
+\subsection{Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome}\label{mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome}}
+
+To evaluate the performance of our MSRs specifically on repeats, we extracted
+the simulated reads for which an overlap with repeated region of the whole human
+genome was greater than \(50\%\) of the read length. We then evaluated the MSRs on
+these reads only. Repeated regions were obtained from
+\url{https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/rmsk/rmsk.bigBed}.
+
+We obtained similar results as on the whole human genome, with MSRs E, F and P
+performing better than HPC at mapq 50 (Figure \ref{fig:mapeval}B). At a mapq
+threshold of 50, the error rate is \(53\%\), \(31\%\), and \(39\%\) lower than HPC at
+mapq 60 for MSRs E, F and P respectively, while the fraction of mapped reads
+remains slightly higher. At mapq=60, raw has a error rate \(40\%\) lower than HPC
+but it the mapped fraction is also \(17\%\) lower.
+
+\hypertarget{raw-mapping-improves-upon-hpc-on-centromeric-regions}{%
+\subsection{Raw mapping improves upon HPC on centromeric regions}\label{raw-mapping-improves-upon-hpc-on-centromeric-regions}}
+
+On the ``TandemTools'' centromeric reference, HPC consistently maps a smaller
+fraction of reads than raw, across all mapping quality thresholds (Figure
+\ref{fig:mapeval}C). Additionally, the error rate for raw is often inferior to
+that of HPC. The same is true for our selected MSRs: most of them have
+comparable performance to HPC, but none of them outperform raw mapping (Figure
+\ref{fig:mapeval}C).
+
+We conjecture this is due to the highly repetitive nature of centromeres. HPC
+likely removes small unique repetitions in the reads and the reference that
+might allow mappers to better match reads to a particular occurrence a
+centromeric pattern. Mapping raw reads on the other hand preserves all bases in
+the read and better differentiates repeats. Therefore it seems inadvisable to
+use HPC when mapping reads to highly repetitive regions of a genome, such as a
+centromere.
+
+\hypertarget{positions-of-incorrectly-mapped-reads-across-the-entire-human-genome}{%
+\subsection{Positions of incorrectly mapped reads across the entire human genome}\label{positions-of-incorrectly-mapped-reads-across-the-entire-human-genome}}
+
+To study how MSRs E, F, and P improve over HPC and raw mapping in terms of error
+rate on the human genome, we selected all the primary alignments that
+\texttt{paftools\ mapeval} reported as incorrectly mapped. For HPC and raw, only
+alignments of mapping quality equal to 60 were considered. To report a
+comparable fraction of aligned reads, we selected alignments of mapping quality
+\(\geq 50\) for MSRs. We then reported the origin of those incorrectly mapped
+reads on whole human genome reference, shown per-chromosome in Appendix
+\ref{fig:error-hists}.
+
+We observe that erroneously mapped reads are not only those from centromeres,
+and instead originate from many other genomic regions. MSRs E and P have a
+markedly lower number of these incorrect mappings than either HPC or raw, with
+1118 incorrect mappings for raw mappings and 1130 for HPC as opposed to 549, 970
+and 361 for MSRs E, F and P respectively. This stays true even for difficult
+regions of the genome such as chromosome X, where raw and HPC have 70 incorrect
+mappings as opposed MSRs E and P that have 39, and 27 errors respectively.
+
+We also investigated where all simulated reads were mapped on the whole human
+genome assembly, for raw, HPC and MSRs E,F and P in Figures \ref{fig:hist-raw}
+to \ref{fig:hist-msr-f}. The correctly mapped reads are, as expected, evenly
+distributed along each chromosome. The incorrectly mapped reads are however
+unevenly distributed. For most chromosomes there is a sharp peak in the
+distribution of incorrectly mapped reads, located at the position of the
+centromere. For the acrocentric chromosomes, there is a second peak
+corresponding to the ``stalk'' satellite region, with an enrichment of incorrectly
+mapped reads. This is expected since both centromeres and ``stalks'' are
+repetitive regions which are a challenge for mapping. For chromosomes 1, 9 and
+16 however the majority of incorrectly mapped reads originate in repeated
+regions just after the centromere.
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+We have introduced the concept of mapping-friendly sequence reduction and shown
+that it improves the accuracy of the popular mapping tool \texttt{minimap2} on
+simulated Oxford Nanopore long reads.
+
+We focused on reads with high mapping quality (50-60), as it is a common
+practice to disregard reads with low mapping
+quality~\autocite{prodanovSensitiveAlignmentUsing2020,liNewStrategiesImprove2021,liSyntheticdiploidBenchmarkAccurate2018}. However across all mapped reads (mapq
+\(\geq 0\)), HPC and our MSRs have lower mapping accuracies than raw reads,
+consistent with the recommendation made in \texttt{minimap2} to not apply HPC to ONT
+data. Despite this, we newly show the benefit of using HPC (and our MSRs) with
+\texttt{minimap2} on ONT data when focusing on high mapping quality reads. Furthermore
+MSRs provide a higher fraction of high-mapq reads compared to both raw and HPC,
+as shown on the human and Drosophila genomes.
+
+A natural future direction is to also test whether our MSRs perform well on
+mapping Pacific Biosciences long reads. Furthermore, it is important to
+highlight that our sampling of MSRs is incomplete. This is of course due to only
+looking at functions having \(\ell=2\), but also to the operational definition of
+RC-core-insensitive functions, and finally to taking representatives of
+equivalence classes. An interesting future direction would consist in exploring
+other families of MSRs, especially those that would include HPC and/or close
+variations of it.
+
+Additionally, our analyses suggests to not perform HPC on centromeres and other
+repeated regions, hinting at applying sequence transformations to only some
+parts of the genomes. We leave this direction for future work.
+
+\hypertarget{limitations-of-this-study}{%
+\section{Limitations of this study}\label{limitations-of-this-study}}
+
+Our proposed MSRs improve upon HPC at mapq 60, both in terms of fraction of
+reads mapped and error rate, on whole human and \emph{Drosophila melanogaster}
+genomes. We chose these sequences because they were from organisms that we
+deemed different enough, however it would be interesting to verify if our
+proposed MSRs are still advantageous on very different organisms, e.g.~more
+bacterial or viral genomes. This would allow us to assess the generalizability
+of our proposed MSRs.
+
+We made the choice of using simulated data to be able to compute a mapping error
+rate. Some metrics, such as fraction of reads mapped might still be informative
+with regards to the mapping performance benefits of MSRs, even on real data.
+Evaluating the MSRs on real data might be more challenging but would offer
+insight into real-world usage of such pre-processing transformations.
+
+Finally, the restrictions we imposed to define RC-core-insensitive MSRs though
+intuitively understandable are somewhat arbitrary, so exploring a larger search
+space might be beneficial. Alternatively for higher order MSRs, even with our
+restrictions, the search spaces remain much too large to be explored
+exhaustively. To mitigate this problem, either further restrictions need to be
+found, or an alternative, optimization-based exploration method should be
+implemented.
+
+\hypertarget{code-availability}{%
+\section{Code availability}\label{code-availability}}
+
+The scripts and pipelines used to obtain the results, as well as do the analysis
+and figures are available in an online repository at
+\href{https://github.com/lucblassel/MSR_discovery}{github.com/lucblassel/MSR\_discovery}
+
+\hypertarget{supplementary-information}{%
+\section*{Supplementary information}\label{supplementary-information}}
+\addcontentsline{toc}{section}{Supplementary information}
+
+Supporting Information can be found in Appendix \ref{HPC-appendix}
+
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+
+\hypertarget{learning-from-alignments}{%
+\chapter{Learning from alignments}\label{learning-from-alignments}}
+
+\hypertarget{alignments-are-a-rich-source-of-information}{%
+\section{Alignments are a rich source of information}\label{alignments-are-a-rich-source-of-information}}
+
+\hypertarget{pairwise-alns}{%
+\subsection{Pairwise alns}\label{pairwise-alns}}
+
+we can compare sequences and say if an organism, or in the case of mapping get an idea of where on the genome we are sequencing
+
+\hypertarget{msa-1}{%
+\subsection{MSA}\label{msa-1}}
+
+Here we have richer
+
+\hypertarget{clustering}{%
+\subsubsection{Clustering}\label{clustering}}
+
+\begin{itemize}
+\item
+  Phylogenetic trees
+\item
+  Evolutionary inference
+\item
+  Protein structure prediction
+\end{itemize}
+
+\hypertarget{ml}{%
+\subsubsection{ML}\label{ml}}
 
 \begin{itemize}
 \tightlist
 \item
-  an introduction to viruses and HIV
+  Alphafold
 \item
-  ``HIV paper''
+  Predict location / function
+\item
+  predict characteristics i.e.~resistance, \ldots{}
+\end{itemize}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    chapter intro
-  \item
-    paper
-  \item
-    perspectives
-  \end{itemize}
-\item
-  some context on sequencing and mapping
-\item
-  ``alternative to HPC''
+\hypertarget{preprocessing-the-alignment-for-machine-learning}{%
+\section{Preprocessing the alignment for machine learning}\label{preprocessing-the-alignment-for-machine-learning}}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    chapter intro
-  \item
-    paper
-  \item
-    perspectives (DRM review ?)
-  \end{itemize}
-\item
-  Other contributions
+In order to do some learning we need to have the data in digestible form
 
-  \begin{itemize}
-  \tightlist
-  \item
-    covid-align
-  \item
-    Origins of sars-cov2
-  \item
-    (Large Trees ?)
-  \end{itemize}
+\hypertarget{embedding-the-alignment}{%
+\subsection{Embedding the alignment}\label{embedding-the-alignment}}
+
+We need a way to represent, the position and the character in a sequence
+
+\hypertarget{physico-chemical-embeddings}{%
+\subsubsection{Physico-chemical embeddings}\label{physico-chemical-embeddings}}
+
+AAIndex, or other embeddings, we add extra info, but we also make a string choice when deciding what features to add
+
+\hypertarget{generalistic-categorical-embeddings}{%
+\subsubsection{Generalistic categorical embeddings}\label{generalistic-categorical-embeddings}}
+
+One-Hot, etc\ldots, easily interpretable\ldots{}
+
+\hypertarget{learned-embeddings}{%
+\subsubsection{Learned embeddings}\label{learned-embeddings}}
+
+language models, transformers, etc\ldots{}
+
+Powerful but hard to interpret what the model actually learns. i.e.~``black box''
+
+\hypertarget{choosing-a-learning-target}{%
+\subsection{Choosing a learning target}\label{choosing-a-learning-target}}
+
+Of course one we have the data in digestible form we need an objective, a goal and once again a multitude
+
+\hypertarget{regression}{%
+\subsubsection{Regression}\label{regression}}
+
+Either resistance level, IC50, \ldots{}
+
+\hypertarget{classification}{%
+\subsubsection{Classification}\label{classification}}
+
+Resistant or not, compartiments in the cell, \ldots{}
+
+\hypertarget{task-based}{%
+\subsubsection{Task-based\ldots{}}\label{task-based}}
+
+end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+
+\hypertarget{how-to-learn-from-alns}{%
+\section{How to learn from ALNs}\label{how-to-learn-from-alns}}
+
+\hypertarget{tests-and-statistical-learning}{%
+\subsection{Tests and statistical learning}\label{tests-and-statistical-learning}}
+
+\begin{itemize}
+\tightlist
+\item
+  correlation
+\item
+  Fisher
+\item
+  Multiple testing ?
+\end{itemize}
+
+\hypertarget{taking-interactions-into-account}{%
+\subsection{Taking interactions into account}\label{taking-interactions-into-account}}
+
+\begin{itemize}
+\tightlist
+\item
+  Regressions w/ regularization
+\item
+  RF
+\item
+  \ldots{}
+\end{itemize}
+
+\hypertarget{deep-learning}{%
+\subsection{Deep Learning}\label{deep-learning}}
+
+\begin{itemize}
+\tightlist
+\item
+  Steiner et al\ldots{}
+\item
+  others
 \end{itemize}
 
 \hypertarget{hiv-and-drms}{%
 \chapter{HIV and DRMs}\label{hiv-and-drms}}
 
 \hypertarget{what-are-viruses}{%
-\section{What are viruses}\label{what-are-viruses}}
+\section{What are viruses ?}\label{what-are-viruses}}
 
-\hypertarget{small-presentationdefinition-of-viruses}{%
-\subsection{small presentation/definition of viruses}\label{small-presentationdefinition-of-viruses}}
+small presentation / definition of viruses
 
-\hypertarget{dnarna-viruses}{%
-\subsection{DNA/RNA viruses}\label{dnarna-viruses}}
+DNA / RNA viruses
 
-\hypertarget{hiv}{%
-\section{HIV}\label{hiv}}
+\hypertarget{what-is-hiv}{%
+\section{What is HIV ?}\label{what-is-hiv}}
 
 \hypertarget{presentation-of-hiv}{%
 \subsection{Presentation of HIV}\label{presentation-of-hiv}}
@@ -301,11 +1523,15 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
   full cycle
 \end{itemize}
 
-\hypertarget{drms}{%
-\section{DRMs}\label{drms}}
+\hypertarget{drug-resistance-in-hiv}{%
+\section{Drug resistance in HIV}\label{drug-resistance-in-hiv}}
+
+When on ART, virus evolves under selectuve pressure and develops resitance -\textgreater{} treatment failure.
 
 \hypertarget{how-does-art-work}{%
 \subsection{How does ART work}\label{how-does-art-work}}
+
+target the proteins, RT, PR, IN (small history of ART)
 
 \hypertarget{different-types-of-resistance}{%
 \subsection{different types of resistance}\label{different-types-of-resistance}}
@@ -322,8 +1548,12 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
   PI
 \item
   INSTI
-  \#\#\# Consequences on global health
 \end{itemize}
+
+\hypertarget{consequences-on-global-health}{%
+\subsection{Consequences on global health}\label{consequences-on-global-health}}
+
+Transmitted DRMS can be very serious , \ldots{} however fitness cost, \ldots{}
 
 \hypertarget{finding-drms}{%
 \subsection{Finding DRMS}\label{finding-drms}}
@@ -1116,7 +2346,7 @@ smaller number of occurrences of both new mutations and known RAMs.\\
 \centering
 \includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig3.png}
 }
-\caption{Relative risk of the new mutations with regards to known RAMs on the UK dataset}{
+\extcaption{Relative risk of the new mutations with regards to known RAMs on the UK dataset}{
 (i.e. the prevalence of the new mutation in sequences with a given known RAM divided by the prevalence of the new mutation in sequences without this RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 0.1\% (=55) sequences. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of UK sequences. Only RRs with a lower CI boundary greater than 4 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
 \label{fig:figUkRatios}
 \end{figure}
@@ -1414,992 +2644,184 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
-\hypertarget{hpc-some-context}{%
-\chapter{HPC, some context}\label{hpc-some-context}}
+\hypertarget{learning-alignments-an-interesting-perspective}{%
+\chapter{Learning alignments, an interesting perspective}\label{learning-alignments-an-interesting-perspective}}
 
-\hypertarget{sequencing}{%
-\section{Sequencing}\label{sequencing}}
+\hypertarget{learning-pairwise-alignment}{%
+\section{Learning pairwise alignment}\label{learning-pairwise-alignment}}
 
-\hypertarget{sequencing-error-types}{%
-\subsection{Sequencing error types}\label{sequencing-error-types}}
+\hypertarget{transformers-and-deep-embedding}{%
+\subsection{Transformers and deep embedding}\label{transformers-and-deep-embedding}}
 
-\begin{itemize}
-\tightlist
-\item
-  indels
-\item
-  mismatches
-\item
-  homopolymer expansion/contraction
-\end{itemize}
+\hypertarget{dedal}{%
+\subsection{DEDAL}\label{dedal}}
 
-\hypertarget{short-history-of-sequencing}{%
-\subsection{Short history of sequencing}\label{short-history-of-sequencing}}
+\hypertarget{predictind-an-alignment}{%
+\subsection{predictind an alignment}\label{predictind-an-alignment}}
 
-\hypertarget{long-read-and-ng-technologies}{%
-\subsection{Long read and NG technologies}\label{long-read-and-ng-technologies}}
+\hypertarget{what-else-could-we-learn}{%
+\section{What else could we learn ?}\label{what-else-could-we-learn}}
 
-\begin{itemize}
-\tightlist
-\item
-  ONT
-\item
-  pacbio
-\end{itemize}
+\hypertarget{learn-to-predict-seeds-or-starting-positions}{%
+\subsection{Learn to predict seeds or starting positions}\label{learn-to-predict-seeds-or-starting-positions}}
 
-\hypertarget{error-mitigating-strategies}{%
-\subsection{Error mitigating strategies}\label{error-mitigating-strategies}}
-
-\begin{itemize}
-\tightlist
-\item
-  polishing
-\item
-  HPC
-\end{itemize}
-
-\hypertarget{downstream-analysis}{%
-\section{downstream analysis}\label{downstream-analysis}}
-
-\hypertarget{types-of-tasks}{%
-\subsection{types of tasks}\label{types-of-tasks}}
-
-\begin{itemize}
-\tightlist
-\item
-  assembly
-\item
-  alignment
-\item
-  mapping
-\end{itemize}
-
-\hypertarget{mapping}{%
-\subsection{mapping}\label{mapping}}
-
-\begin{itemize}
-\tightlist
-\item
-  alignment
-\item
-  reads on reference
-\item
-  seeding and other heuristics
-\item
-  challenges of mapping
-
-  \begin{itemize}
-  \tightlist
-  \item
-    centromeres
-  \item
-    errors
-  \end{itemize}
-\end{itemize}
-
-\hypertarget{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}{%
-\chapter{Mapping-friendly sequence reductions: going beyond homopolymer compression}\label{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}}
-
-Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Paul Medvedev\textsuperscript{\textbf{3},\textbf{4},\textbf{5}}, Rayan Chikhi\textsuperscript{\textbf{1}}
-
-\textbf{1} Sequence Bioinformatics, Department of Computational Biology, Institut Pasteur, Paris,
-France\\
-\textbf{2} Sorbonne Université, Collège doctoral, Paris, France\\
-\textbf{3} Department of Computer Science and Engineering, Pennsylvania State University, University Park, Pennsylvania, United States of America\\
-\textbf{4} Department of Biochemistry and Molecular Biology, Pennsylvania State University, University Park, Pennsylvania, United States of America\\
-\textbf{5} Center for Computational Biology and Bioinformatics, Pennsylvania State University, University Park, Pennsylvania, United States of America\\
-
-\emph{originally published in iScience in XXX}\\
-\emph{\href{https://doi.org/10.1371/journal.pcbi.1008873}{doi:10.1371/journal.pcbi.1008873}}
-
-\newcommand{\stirling}[2]{\bigg\{%
-\begin{matrix}
-    #1 \\
-    #2
-\end{matrix}
-\bigg\} }
-\newcommand{\comb}[2]{\bigg(
-\begin{matrix}
-    #1 \\
-    #2
-\end{matrix}
-\bigg) }
-
-\newcommand{\lmer}{$\ell$-mer\xspace}
-\newcommand{\lmers}{$\ell$-mers\xspace}
-\newcommand{\iscomp}{\textsc{IsComp}\xspace}
-\newcommand{\rccore}{RC-core-insensitive\xspace}
-\newcommand{\minimap}{\texttt{minimap2}\xspace}
-\newcommand{\winnowmap}{\texttt{winnowmap2}\xspace}
-\newcommand{\msr}[1]{MSR$_{\text{#1}}$}
-
-\hypertarget{hpc-abstract}{%
-\section*{Abstract}\label{hpc-abstract}}
-\addcontentsline{toc}{section}{Abstract}
-
-Sequencing errors continue to pose algorithmic challenges to methods
-working with sequencing data. One of the simplest and most prevalent
-techniques for ameliorating the detrimental effects of homopolymer
-expansion/contraction errors present in long read data is homopolymer
-compression. It collapses runs of repeated nucleotides, with the
-intuitive goal of removing some of the sequencing errors and often
-improving mapping sensitivity. Though our intuitive understanding
-justifies why homopolymer compression works, it in no way implies that
-it is the best transformation that can be done. In this paper, we
-explore if there are transformations that can be applied in the same
-pre-processing manner as homopolymer compression that would achieve
-better alignment sensitivity. We introduce a more general framework than
-homopolymer compression, called mapping-friendly sequence reductions. We
-transform the reference and the reads using these reductions and then
-apply an alignment algorithm. We demonstrate that some mapping-friendly
-sequence reductions lead to improved mapping accuracy, outperforming
-homopolymer compression.
-
-\hypertarget{introduction-1}{%
-\section{Introduction}\label{introduction-1}}
-
-Sequencing errors continue to pose algorithmic challenges to methods
-working with read data. In short-read technologies, these tend to be
-substitution errors, but in long reads, these tend to be short
-insertions and deletions; most common are expansions or contractions of
-homopolymers (i.e.~reporting 3 As instead of
-4)~\autocite{dohmBenchmarkingLongreadCorrection2020}. Many algorithmic problems,
-such as alignment, become trivial if not for sequencing
-errors~\autocite{gusfieldbook}. Error correction can often decrease the error
-rate but does not eliminate all errors. Most tools therefore incorporate
-the uncertainty caused by errors into their underlying algorithms. The
-higher the error rate, the more detrimental its effect on algorithm
-speed, memory, and accuracy. While the sequencing error rate of any
-given technology tends to decrease over time, new technologies entering
-the market typically have high error rates (e.g.~Oxford Nanopore
-Technologies). Finding better ways to cope with sequencing error
-therefore remains a top priority in bioinformatics.
-
-One of the simplest and most prevalent techniques for ameliorating the
-detrimental effects of homopolymer expansion/contraction errors is
-\emph{homopolymer compression} (abbreviated HPC). HPC simply transforms runs
-of the same nucleotide within a sequence into a single occurrence of
-that nucleotide. For example, HPC applied to the sequence AAAGGTTA
-yields the sequence AGTA. To use HPC in an alignment algorithm, one
-first compresses the reads and the reference, then aligns each
-compressed read to the compressed reference, and finally reports all
-alignment locations, converted into the coordinate system of the
-uncompressed reference. HPC effectively removes homopolymer
-expansion/contraction errors from the downstream algorithm. Though there
-is a trade-off with specificity of the alignment (e.g.~some of the
-compressed alignments may not correspond to true alignments) the
-improvement in mapping sensitivity usually outweighs
-it~\autocite{liMinimap2PairwiseAlignment2018}.
-
-The first use of HPC that we are aware of was in 2008 as a
-pre-processing step for 454 pyrosequencing data in the Celera
-assembler~\textcite{millerAggressiveAssemblyPyrosequencing2008}. It is used by a
-wide range of error-correction algorithms, e.g.~for 454
-data~\autocite{braggFastAccurateErrorcorrection2012}, PacBio
-data~\autocite{auImprovingPacBioLong2012}, and Oxford Nanopore
-data~\autocite{sahlinErrorCorrectionEnables2021}. HPC is used in alignment, e.g.
-by the widely used minimap2 aligner~\autocite{liMinimap2PairwiseAlignment2018}.
-HPC is also used in long-read assembly, e.g.
-HiCanu~\autocite{nurkHiCanuAccurateAssembly2020},
-SMARTdenovo~\autocite{liuSMARTdenovoNovoAssembler2021}, or
-mdBG~\autocite{ekimMinimizerspaceBruijnGraphs2021}. HPC is also used for
-clustering transcriptome reads according to gene family of
-origin~\autocite{sahlinNovoClusteringLongRead2020}. Overall, HPC has been widely
-used, with demonstrated benefits.
-
-Though our intuitive understanding justifies why HPC works, it in no way
-implies that it is the best transformation that can be done. Are there
-transformations that can be applied in the same pre-processing way as
-HPC that would achieve better alignment sensitivity? In this work, we
-define a more general notion which we call \emph{mapping-friendly sequence
-reductions}. In order to efficiently explore the performance of all
-reductions, we identify two heuristics to reduce the search space of
-reductions. We then identify a number of mapping-friendly sequence
-reductions which are likely to yield better mapping performance than
-HPC. We evaluate them using two mappers (\texttt{minimap2} and \texttt{winnowmap2}) on
-three simulated datasets (whole human genome, human centromere, and
-whole \emph{Drosophila} genome). We show that some of these functions provide
-vastly superior performance in terms of correctly placing high mapping
-quality reads, compared to either HPC or using raw reads. For example,
-one function increased the mapping accuracy of \texttt{minimap2} by an order of
-magnitude over the entire human genome, keeping an identical fraction of
-reads mapped.
-
-We also evaluate whether HPC sensitivity gains continue to outweigh the
-specificity cost with the advent of telomere-to-telomere
-assemblies~\autocite{nurkCompleteSequenceHuman2021}. These contain many more
-low-complexity and/or repeated regions such as centromeres and
-telomeres. HPC may increase mapping ambiguity in these regions by
-removing small, distinguishing, differences between repeat instances.
-Indeed, we find that neither HPC nor our mapping-friendly sequence
-reductions perform better than mapping raw reads on centromeres, hinting
-at the importance of preserving all sequence information in repeated
-regions.
-
-\hypertarget{methods}{%
-\section{Methods}\label{methods}}
-
-\hypertarget{sec:msr-def}{%
-\subsection{Mapping-friendly sequence reductions}\label{sec:msr-def}}
-
-We wish to extend the notion of homopolymer compression to a more
-general function while maintaining its simplicity. What makes HPC simple
-is that it can be done in a streaming fashion over the sequence while
-maintaining only a local context. The algorithm can be viewed simply as
-scanning a string from left to right and, at each new character,
-outputting that character if and only if it is different from the
-previous character. In order to prepare for generalizing this algorithm,
-let us define a function
-\(g^\text{HPC} : \Sigma^2\rightarrow\Sigma\cup\{\varepsilon\}\) where
-\(\Sigma\) is the DNA alphabet, \(\varepsilon\) is the empty character, and
-
-\begin{align*}
-    & g^\text{HPC}(x_1\cdot x_2) =
-    \begin{cases}
-        x_2 & \text{if } x_1 \neq x_2 \\
-        \varepsilon & \text{if } x_1 = x_2
-    \end{cases}
-\end{align*}
-
-Now, we can view HPC as sliding a window
-of size 2 over the sequence and at each new window, applying
-\(g^\text{HPC}\) to the window and concatenating the output to the growing
-compressed string. Formally, let \(x\) be a string, which we index
-starting from 1. Then, the HPC transformation is defined as
-
-\begin{equation}
-  f(x) = x[1,\ell-1]\cdot g(x[1,\ell]) \cdot g(x[2, \ell+1])\cdots g(x[|x|-\ell+1,|x|]) 
-  \label{eq:MSR}
-\end{equation}
-
-where \(\ell = 2\) and \(g=g^\text{HPC}\). In other
-words, \(f\) is the concatenation of the first \(\ell-1\) characters of \(x\)
-and the sequence of outputs of \(g\) applied to a sliding window of length
-\(\ell\) over \(x\). The core of the transformation is given by \(g\) and the
-size of the context \(\ell\), and \(f\) is simply the wrapper for \(g\) so
-that the transformation can be applied to arbitrary length strings.
-
-With this view in mind, we can generalize HPC while keeping its
-simplicity by 1) considering different functions \(g\) that can be plugged
-into~Equation \eqref{eq:MSR} increasing the context that \(g\) uses (i.e.~setting \(\ell>2\)).
-Formally, for a given alphabet \(\Sigma\) and a context size \(\ell\), a
-function \(T\) mapping strings to strings is said to be an \emph{order-\(\ell\)
-mapping-friendly sequence reduction} (abbreviated \emph{MSR}) if there exists
-some \(g : \Sigma^\ell\rightarrow\Sigma\cup\{\varepsilon\}\) such that
-\(T=f\).
-
-Figure \ref{fig:countingMSRs}A shows how an MSR can be visualized as a
-directed graph. Observe that an order-\(\ell\) MSR is defined by a mapping
-between \(|\Sigma|^\ell\) inputs and \(|\Sigma| + 1\) outputs. For example,
-for \(\ell=2\), there are \(n=16\) inputs and \(k=5\) outputs.
-Figure \ref{fig:countingMSRs}B visualizes HPC in this way.
-
-\begin{figure}[t]
-    \centering
-    \includegraphics[width=\textwidth]{./figures/HPC-MSRs/panels_inline.pdf}
-    \extcaption{Representing and counting mapping-friendly sequence reductions.}{
-        \textbf{A}: General representation of an order-2 mapping-friendly sequence reduction as a mapping of 16 input dinucleotides, to the 4 nucleotide outputs and the empty character $\varepsilon$.
-        \textbf{B}: Homopolymer compression is an order-2 MSR. All dinucleotides except those that contain the same nucleotide twice map to the second nucleotide of the pair. The 4 dinucleotides that are the two same nucleotides map to the empty character $\varepsilon$.
-        \textbf{C}: Our RC-core-insensitive order-2 MSRs are mappings of the 6 representative dinucleotide inputs to the 4 nucleotide outputs and the empty character $\varepsilon$. The 4 dinucleotides that are their own reverse complement are always mapped to $\varepsilon$. The remaining 6 dinucleotides are mapped to the complement of the mapped output of the reverse complement dinucleotide input. For example, if AA is mapped to C, then TT (the reverse complement of AA) will be mapped to G (the complement of C).
-        \textbf{D}: Number of possible MSR mappings under the different restrictions presented in the main text. All mappings from 16 dinucleotide inputs to 5 outputs (as in panel A) are represented by the outermost circle. All RC-core-insensitive mappings (as in panel C) are represented by the medium circle. All RC-core-insensitive mappings with only one representative of each equivalence class are represented by the innermost circle.
-    }
-    \label{fig:countingMSRs}
-\end{figure}
-
-Since we aim to use MSRs in the context of sequencing data, we need to
-place additional restrictions on how they handle reverse complements.
-For example, given two strings \(x\) (e.g.~a read) and \(y\) (e.g.~a
-substring of the reference), a mapper might check if \(x = RC(y)\). When
-strings are pre-processed using an MSR \(f\), it will end up checking if
-\(f(x) = RC(f(y))\). However, \(x = RC(y)\) only implies that
-\(f(x) = f(RC(y))\). In order to have it also imply that
-\(f(x) = RC(f(y))\), we need \(f\) to be commutative with RC, i.e.~applying
-MSR then RC needs to be equivalent to applying RC then MSR. We say that
-\(f\) is \emph{RC-insensitive} if for all \(x\), \(f(RC(x))= RC(f(x))\). Observe
-that HPC is RC-insensitive.
-
-\hypertarget{sec:enum}{%
-\subsection{Restricting the space of mapping-friendly sequence reductions}\label{sec:enum}}
-
-To discover MSRs that improve mapping performance, our strategy is to
-put them all to the test by evaluating the results of an actual mapping
-software over a simulated test dataset reduced by each MSR. However,
-even with only \(16\) inputs and \(5\) outputs, the number of possible \(g\)
-mappings for order-2 MSRs is \(5^{16}\approx 1.5\cdot10^{11}\), which is
-prohibitive to enumerate. In this section, we describe two ideas for
-reducing the space of MSRs that we will test. In
-subsection~\ref{sec:rc-insensitive}, we show how the restriction to
-RC-insensitive mappings can be used to reduce the search space. In
-subsection~\ref{sec:equiv}, we exploit the natural symmetry that arises due
-to Watson-Crick complements to further restrict the search space.
-
-These restrictions reduce the number of order-2 MSRs to only , making it
-feasible to test all of them.
-Figure \ref{fig:countingMSRs}D shows an overview of our restriction
-process.
-
-\hypertarget{sec:rc-insensitive}{%
-\subsubsection{Reverse complement-core-insensitive mapping-friendly sequence reductions}\label{sec:rc-insensitive}}
-
-Consider an MSR defined by a function \(g\), as in Equation \eqref{eq:MSR}.
-Throughout this paper we will consider MSRs that have a related but
-weaker property than RC-insensitive. We say that an MSR is
-\emph{RC-core-insensitive} if the function \(g\) that defines it has the
-property that for every \(\ell\)-mer\(x\) and its reverse complement \(y\), we
-have that either \(g(x)\) is the reverse complement of \(g(y)\) or
-\(g(x) = g(y) = \varepsilon\). We will restrict our MSR search space to
-RC-core-insensitive reductions in order to reduce the number of MSRs we
-will need to test.
-
-Let us consider what this means for the case of \(\ell=2\), which will be
-the focal point of our experimental analysis. There are 16
-\(\ell\)-mers(i.e.~dinucleotides) in total. Four of them are their own
-reverse complement: AT, TA, GC, CG. The RC-core-insensitive restriction
-forces \(g\) to map each of these to \(\varepsilon\), since a single
-nucleotide output cannot be its own reverse complement. This leaves 12
-\(\ell\)-mers, which can be broken down into 6 pairs of reverse
-complements. For each pair, we can order them in lexicographical order
-and write them as \((AA,TT), (AC,GT), (AG,CT), (CA,TG), (CC,GG),\) and
-\((GA,TC)\). Defining \(g\) can then be done by assigning an output
-nucleotide to the first \(\ell\)-mer in each of these pairs
-(Figure \ref{fig:countingMSRs}C). For example, we can define an MSR by
-assigning \(g(AA) = C\), \(g(AC) = C\), \(g(AG) = A\), \(g(CA) = A\),
-\(g(CC) = T\), and \(g(GA) = G\). As an example, let us apply the
-corresponding MSR to an example read \(r\):
-
-\begin{align*}
-    r & = \text{TAAGTTGA}    & f(RC(r)) &=\color{red}{\text{T}}\color{green}{\text{CACCTG}} \\
-    f(r) & =\text{TCAGGTG}   & RC(f(r)) &=\;\;\;\color{green}{\text{CACCTG}}\color{red}{\text{A}} \\
-    RC(r) & =\text{TCAACTTA} & &
-\end{align*}
-
-Observe that the first \(\ell-1\) nucleotides of \(r\) (shown in red) are
-copied as-is, since we do not apply \(g\) on them (as per
-Equation \eqref{eq:MSR}). As
-we see in this example, this implies that \(f(RC(r))\) is not necessarily
-equal to \(RC(f(r))\); thus an RC-core-insensitive MSR is not necessarily
-an RC-insensitive MSR. However, an RC-core-insensitive MSR has the
-property that for all strings \(r\), we have
-\(f(RC(r))[\ell, |r|]) = RC(f(r))[1, |r| - \ell + 1]\). In other words, if
-we drop the \(\ell - 1\) prefix of \(f(RC(r))\) and the \(\ell - 1\) suffix of
-\(RC(f(r))\), then the two strings are equal. Though we no longer have the
-strict RC-insensitive property, this new property suffices for the
-purpose of mapping long reads. Since the length of the read sequences
-will be much greater than \(\ell\) (in our results we will only use
-\(\ell=2\)), having a mismatch in the first or last nucleotide will be
-practically inconsequential.
-
-It is important to note though that there may be other RC-insensitive
-functions not generated by this construction. For instance, HPC cannot
-be derived using this method (as it does not map the di-nucleotides
-AT,TA,GC and CG to \(\varepsilon\)), and yet it is RC-insensitive.
-
-We can count the number of RC-core-insensitive MSRs. Let us define
-\(i(\ell)\) the number of input assignments necessary to fully determine
-the RC-core-insensitive MSR; one can think of this as the
-degrees-of-freedom in choosing \(g\). As we showed, for \(\ell=2\), we have
-\(i(\ell)=6\). The number of RC-core-insensitive MSRs is then
-\(5^{i(\ell)}\). Therefore, for \(\ell=2\), instead of \(5^{16}\) possible
-mappings we have at most \(5^{6}\approx1.5\cdot10^{4}\)
-RC-core-insensitive mappings
-(Figure \ref{fig:countingMSRs}D). For an odd \(\ell>2\), there are no
-\(\ell\)-mers that are their own reverse complements, hence
-\(i(\ell)=4^\ell/2\). If \(\ell\) is even then there are \(4^{\ell/2}\) inputs
-that are their own reverse complements (i.e.~we take all possible
-sequences of length \(\ell/2\) and reconstruct the other half with reverse
-complements). Thus, \(i(\ell)=(4^\ell- 4^{\ell/2})/2\).
-
-\hypertarget{sec:equiv}{%
-\subsubsection{Equivalence classes of MSRs}\label{sec:equiv}}
-
-When performing preliminary tests, we noticed that swapping
-\(A\leftrightarrow T\) and/or \(C\leftrightarrow G\), as well as swapping
-the whole \(A/T\) pair with the \(C/G\) pair in the MSR outputs did not
-affect the performance. In other words, we could exchange the letters of
-the output in a way that preserves the Watson-Crick complementary
-relation. Intuitively, this can be due to the symmetry induced by
-reverse complements in nucleic acid strands, though we do not have a
-more rigorous explanation for this effect. In this section, we will
-formalize this observation by defining the notion of MSR equivalence.
-This will reduce the space of MSRs that we will need to consider by
-allowing us to evaluate only one MSR from each equivalence class.
-
-Consider an RC-core-insensitive MSR defined by a function \(g\), as in
-Equation \eqref{eq:MSR}. An \(\ell\)-mer is canonical if it is the not lexicographically larger than
-its reverse complement. Let \(I\) be the set of all \(\ell\)-mers that are
-canonical and are not reverse complements of each other. Such an MSR's
-\emph{dimension} \(k\) is the number of distinct nucleotides that can be output
-by \(g\) on inputs from \(I\) (not counting \(\varepsilon\)). The dimension
-can range from \(1\) to \(4\). Next, observe that \(g\) maps all elements of
-\(I\) to one of \(k+ 1\) values (i.e.~\(\Sigma \cup \varepsilon\)). The output
-of \(g\) on \(\ell\)-mers not in \(I\) is determined by its output on
-\(\ell\)-mers in \(I\), since we assume the MSR is RC-core-insensitive. We
-can therefore view it as a partition of \(I\) into \(k+1\) sets \(S_0\), \ldots,
-\(S_k\), and then having a function \(t\) that is an injection from
-\(\{1, \ldots, k\}\) to \(\Sigma\) that assigns an output letter to each
-partition. Further, we permanently assign the output letter for \(S_0\) to
-be \(\varepsilon\). Note that while \(S_0\) could be empty,
-\(S_1, \ldots, S_k\) cannot be empty by definition of dimension. For
-example, the MSR used in Section
-\ref{sec:rc-insensitive} has dimension four and corresponds to
-the partition \(S_0 = \{\},S_1=\{AG,CA\}\), \(S_2=\{CC\}\), \(S_3=\{AA,AC\}\), \(S_4=\{GA\}\), and to the
-injection \(t(1) = A\), \(t(2) =T\), \(t(3) = C\), and \(t(4) = G\).
-
-Let \(\textsc{IsComp}(x,y)\) be a function that returns true if two
-nucleotides \(x, y \in \Sigma \cup \{\varepsilon\}\) are Watson-Crick
-complements, and false otherwise. Consider two MSRs of dimension \(k\)
-defined by \(S_0, \ldots, S_k, t\) and \(S'_0, , S'_k, t'\), respectively.
-We say that they are equivalent iff all the following conditions are
-met:
-
-\begin{itemize}
-\item
-  \(S_0 = S'_0\),
-\item
-  there exists a permutation \(\pi\) of \(\{1,\ldots, k\}\) such that for
-  all \(1 \leq i \leq k\), we have \(S_i = S'_{\pi(i)}\),
-\item
-  for all \(1 \leq i < j \leq k\), we have
-  \(\textsc{IsComp}(t(i), t(j)) = \textsc{IsComp}(t'(\pi(i)), t'(\pi(j)))\).
-\end{itemize}
-
-One can verify that this definition is indeed an equivalence relation,
-i.e.~it is reflexive, symmetric, and transitive. Therefore, we can
-partition the set of all MSRs into equivalence classes based on this
-equivalence relation. One caveat is that a single MSR defined by a
-function \(g\) may correspond to multiple MSRs of the form
-\(S_0,\ldots,S_k,t\). However, these multiple MSRs are equivalent, hence
-the resulting equivalence classes are not affected. Furthermore, we can
-assume that there is some rule to pick one representative MSR for its
-equivalence class; the rule itself does not matter in our case.
-
-Figure \ref{fig:countingMSRs} shows the equivalence classes for \(\ell=2\),
-for a fixed partition. An equivalence class can be defined by which pair
-of classes \(S_i\) and \(S_j\) have complementary outputs under \(t\) and
-\(t'\). Let us define \(o(k)\) as the number of equivalence classes for a
-given partition and a given \(k\). Then
-Figure \ref{fig:countingMSRs} shows that \(o(1)=1\), \(o(2)=2\) and
-\(o(3) = o(4) = 3\). There are thus only 9 equivalence classes for a given
-partition.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth]{./figures/HPC-MSRs/equivalence_classes_simpler.pdf}
-    \extcaption{MSR equivalence classes for a fixed partition of the inputs.}{
-    $S_0$ is always assigned $\varepsilon$, so it is represented by a gray node. 
-    A blue link between $S_i$ and an $S_j$ denotes that $\textsc{IsComp}(t(i), t(j))=\text{true}$.
-    The equivalence classes are determined by the Watson-Crick complementary relationships between the rest of the parts, i.e. by all the possible ways to draw the blue links.
-    }
-    \label{fig:MSR-configs}
-\end{figure}
-
-\hypertarget{counting-the-number-of-restricted-msrs}{%
-\subsubsection{Counting the number of restricted MSRs}\label{counting-the-number-of-restricted-msrs}}
-
-In this section, we derive a formula for the number of restricted MSRs,
-i.e.~MSRs that are RC-core-insensitive and that are representative for
-their equivalence class. Consider the class of RC-core-insensitive MSRs
-with dimension \(k\). In
-subsection~\ref{sec:rc-insensitive}, we derived that the degrees-of-freedom
-in assigning \(\ell\)-mers to an output is \(i(\ell) = 4^\ell/2\) if \(\ell\)
-is odd and \(i(\ell) = (4^\ell - 4^{\ell / 2})/2\) if \(\ell\) is even. Let
-\(C(\ell,k)\) be the number of ways that \(i(\ell)\) \(\ell\)-mers can be
-partitioned into \(k+1\) sets \(S_0, \ldots, S_k\), with \(S_1, \ldots, S_k\)
-required to be non-empty. Then, in
-subsection~\ref{sec:equiv}, we have derived \(o(k)\), the number of MSR
-equivalence classes for each such partition. The number of restricted
-MSRs can then be written as
-
-\begin{equation}
-N(\ell) = \sum_{k=1}^{4} C(\ell, k) \cdot o(k)
-\label{eq:N}
-\end{equation}
-
-To derive the formula for \(C(\ell, k)\), we first recall that the number
-of ways to partition \(n\) elements into \(k\) non-empty sets is known as
-the Stirling number of the second kind and is denoted by
-\(\tiny\bigg\{%
-\begin{matrix}
-    n \\
-    k
-\end{matrix}
-\bigg\} \) \autocite[ p.265]{grahamConcreteMathematicsFoundation1994}. It can
-be computed using the formula
-
-\begin{equation*}
-    \bigg\{%
-\begin{matrix}
-    n \\
-    k
-\end{matrix}
-\bigg\}  = \frac{1}{k!}\sum_{i=0}^k(-1)^i\bigg(
-\begin{matrix}
-    k \\
-    i
-\end{matrix}
-\bigg) (k-i)^n
-\end{equation*}
-
-Let \(j\) be the number of the \(i(\ell)\) \(\ell\)-mers that are assigned to
-\(S_0\). Note this does not include the \(\ell\)-mers that are
-self-complementary that are forced to be in \(S_0\). Let \(C(\ell,k,j)\) be
-the number of ways that \(i(\ell)\) \(\ell\)-mers can be partitioned into
-\(k+1\) sets \(S_0, \ldots, S_k\), such that \(j\) of the \(\ell\)-mers go into
-\(|S_0|\) and \(S_1, \ldots, S_k\) to are non-empty. We need to consider
-several cases depending on the value of \(j\):
-
-\begin{itemize}
-\item
-  In the case that \(j = 0\), we are partitioning the \(i(\ell)\) inputs
-  among non-empty sets \(S_1, \ldots, S_k\). Then
-  \(C(\ell, k,j) = \tiny{\bigg\{%
-  \begin{matrix}
-      i(\ell) \\
-      k
-  \end{matrix}
-  \bigg\} }\).
-\item
-  In the case that \(1 \leq j \leq i(\ell) - k\), there are
-  \(\tiny{\bigg(
-  \begin{matrix}
-      i(\ell) \\
-      j
-  \end{matrix}
-  \bigg) }\) ways to choose which \(j\) \(\ell\)-mers are in \(S_0\), and
-  \(\tiny{\bigg\{%
-  \begin{matrix}
-      i(\ell) - j \\
-      k
-  \end{matrix}
-  \bigg\} }\) ways to partition the remaining \(\ell\)-mers into
-  \(S_1, \ldots, S_k\). Hence,
-  \(C(\ell, k,j) = \tiny{\bigg(
-  \begin{matrix}
-      i(\ell) \\
-      j
-  \end{matrix}
-  \bigg) }\tiny{\bigg\{%
-  \begin{matrix}
-      i(\ell) - j \\
-      k
-  \end{matrix}
-  \bigg\} }\).
-\item
-  In the case that \(j > i(\ell) - k\), it is impossible to partition
-  the remaining \(k\) (or fewer) \(\ell\)-mers into \(S_1, \ldots, S_k\)
-  such that the sets are non-empty. Recall that as we assume the
-  dimension is \(k\), each set must contain at least one element. Hence,
-  \(C(\ell, k,j) = 0\).
-\end{itemize}
-
-Putting this together into Equation~\eqref{eq:N}, we get
-
-\begin{equation*}
-    N(\ell) = \sum_{k=1}^4 o(k) \bigg( \bigg\{%
-\begin{matrix}
-    i(\ell) \\
-    k
-\end{matrix}
-\bigg\}  + \sum_{j=1}^{i(\ell) - k}\bigg(
-\begin{matrix}
-    i(\ell) \\
-    j
-\end{matrix}
-\bigg) \bigg\{%
-\begin{matrix}
-    i(\ell)-j \\
-    k
-\end{matrix}
-\bigg\}   \bigg)
-\end{equation*}
-
-For \(\ell=2\), we have \(N(2)=2,135\) restricted MSRs, which is
-several orders of magnitude smaller than the initial \(5^{16}\) possible
-MSRs and allows us to test the performance of all of them. for order-3
-MSRs we get \(N(3)=2.9\cdot10^{21}\) which much smaller than the full
-search space of \(5^{4^3}\approx5.4\cdot10^{44}\), for order-4 MSRs we get
-a similar reduction in search space with \(N(4)=9.4\cdot10^{84}\) as
-opposed to the full search space of \(5^{4^4}\approx8.6\cdot10^{178}\).
-For these higher order MSRs, although the restricted search space is
-much smaller than the full naive one, it is still too large to
-exhaustively search.
-
-\hypertarget{datasets-and-pipelines}{%
-\section{Datasets and Pipelines}\label{datasets-and-pipelines}}
-
-\hypertarget{datasets}{%
-\subsection{Datasets}\label{datasets}}
-
-The following three reference sequences were used for evaluation:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \textbf{Whole human genome:} This reference sequence is a whole genome
-  assembly of the CHM13hTERT human cell line by the
-  Telomere-to-Telomere consortium \autocite{nurkCompleteSequenceHuman2021}. We
-  used the 1.1 assembly release (Genbank Assembly ID
-  \href{https://www.ncbi.nlm.nih.gov/assembly/GCA_009914755.3/}{GCA\_009914755.3}).
-\item
-  \textbf{Whole \emph{Drosophila} genome:} This reference sequence is a whole
-  genome assembly of a \emph{Drosophila melanogaster}, release 6.35
-  (Genbank Assembly ID
-  \href{https://www.ncbi.nlm.nih.gov/assembly/GCF_000001215.4/}{GCA\_000001215.4})
-  \autocite{adamsGenomeSequenceDrosophila2000}.
-\item
-  \textbf{Synthetic centromeric sequence:} This sequence was obtained from
-  the \texttt{TandemTools} mapper test data
-  \autocite{mikheenkoTandemToolsMappingLong2020}. It is a simulated
-  centromeric sequence that is inherently difficult to map reads to.
-  Appendix \ref{appendix:tandemtools} describes how it was constructed.
-\end{enumerate}
-
-\hypertarget{simulation-pipeline}{%
-\subsection{Simulation pipeline}\label{simulation-pipeline}}
-
-Given a reference sequence, simulated reads were obtained using
-\texttt{nanosim} \autocite{yangNanoSimNanoporeSequence2017} with the
-\texttt{human\_NA12878\_DNA\_FAB49712\_guppy\_flipflop} pre-trained model, mimicking
-sequencing with an Oxford Nanopore instrument. The number of simulated
-reads was chosen to obtain a theoretical coverage of whole genomes
-around 1.5x, this resulted in simulating \(\approx 6.6\cdot10^5\) reads
-for the whole human genome and \(\approx 2.6\cdot10^4\) reads for the
-whole Drosophila genome. Since the centromeric sequence is very short,
-we aimed for a theoretical coverage of 100x which resulted in
-\(\approx 1.3\cdot10^4\) simulated reads.
-
-For each evaluated MSR, the reads as well as the reference sequence were
-reduced by applying the MSR to them. The reduced reads were then mapped
-to the reduced reference using
-\texttt{minimap2}\autocite{liMinimap2PairwiseAlignment2018} with the \texttt{map-ont} preset
-and the \texttt{-c} flag to generate precise alignments. Although HPC is an
-option in \texttt{minimap2} we do not use it, we evaluate HPC as any of the
-other MSRs by transforming the reference and reads prior to mapping. The
-starting coordinates of the reduced reads on the reduced reference were
-updated to reflect deletions incurred by the reduction process. The
-mapping results with translated coordinates were filtered to keep only
-the primary alignments. This process was done for each of our MSRs as
-well as with HPC and the original untransformed reads (denoted as
-\emph{raw}).
-
-\hypertarget{sec:evalpipeline}{%
-\subsection{Evaluation pipeline}\label{sec:evalpipeline}}
-
-To evaluate the quality of a mapping of simulated reads, we used the
-\texttt{paftools\ mapeval} command \autocite{liMinimap2PairwiseAlignment2018}. This tool
-estimates that a read is correctly mapped if the intersection between
-the true interval of origin of the simulated read on the reference, and
-the interval where the read has been mapped to, is greater or equal to
-10\% of the union of both intervals. The rate of correctly mapped reads
-is calculated for a given mapping quality threshold. Mapping quality
-(abbreviated mapq) is a metric reported by the aligner that indicates
-its confidence in read placement; the highest value (60) indicates that
-the mapping location is likely correct and unique with high probability,
-and a low value (e.g.~0) indicates that the read has multiple equally
-likely candidate mappings and that the reported location cannot be
-trusted. In this context, a mapq threshold of 50 denotes all the
-mappings with mapq \(\geq 50\).
-
-\hypertarget{results-1}{%
-\section{Results}\label{results-1}}
-
-\hypertarget{selection-of-mapping-friendly-sequence-reductions}{%
-\subsection{Selection of mapping-friendly sequence reductions}\label{selection-of-mapping-friendly-sequence-reductions}}
-
-We selected a set of ``promising'' MSRs starting from all of the MSRs
-enumerated in Section~\ref{sec:enum}. The selection was performed by considering an
-independent read set of lower (0.5x) coverage, simulated from the whole
-human genome reference. This dataset is separate from the ones used for
-evaluation. Note that overfitting MSRs to a particular genome is
-acceptable in applications where a custom MSR can be used for each
-genome. Yet in this work, the same set of selected MSRs will be used
-across all genomes.
-
-For each evaluated MSR, we selected the highest mapq threshold for which
-the mapped read fraction is higher and the error rate is lower than HPC
-at mapq 60. Then we identified the 20 MSRs that have the highest
-fraction of reads mapped at their respective thresholds. Similarly we
-identified the 20 MSRs with the lowest error rate. Finally we select the
-20 MSRs that have the higest percentage of thresholds ``better'' than HPC
-60; i.e.~the number of mapq thresholds for which the MSR has both a
-higher fraction of reads mapped and lower error rate than HPC at a
-mapping quality threshold of 60, divided by the total number of
-thresholds (=60).
-
-The union of these 3 sets of 20 MSRs resulted in
-a set of 58 ``promising'' MSRs. Furthermore, we will highlight three MSRs
-that are ``best in their category'', i.e.
-
-\begin{itemize}
-\item
-  \textbf{MSR\(_{\text{F}}\):} The MSR with the highest fraction of mapped
-  reads at a mapq threshold of 0.
-\item
-  \textbf{MSR\(_{\text{E}}\):} The MSR with the lowest error rate at the
-  first mapq threshold for which it is ``better'' than HPC at mapq 60.
-\item
-  \textbf{MSR\(_{\text{P}}\):} The MSR with the highest percentage of mapq
-  thresholds for which it is ``better'' than HPC at mapq 60.
-\end{itemize}
-
-Figure \ref{fig:topMSRs} shows the actual functions MSR\(_{\text{F}}\),
-MSR\(_{\text{E}}\), MSR\(_{\text{P}}\). An intriguing property is that they
-output predominantly As and Ts, with MSR\(_{\text{P}}\) assigning 2 input
-pairs to the G/C output whereas MSR\(_{\text{E}}\) and MSR\(_{\text{F}}\)
-assign only one. Additionally, MSR\(_{\text{E}}\) and MSR\(_{\text{P}}\)
-both assign the \{CC,GG\} input pair to the deletion output \(\varepsilon\)
-removing any information corresponding to repetitions of either G or C
-from the reduced sequence. Overall this means the reduced sequences are
-much more AT-rich than their raw counterparts, but somehow information
-pertinent to mapping is retained.
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/HPC-MSRs/Top_MSRs.pdf}
-    \extcaption{Graph representations of our highlighted MSRs: MSR$_{\text{E}}$,  MSR$_{\text{F}}$,  and MSR$_{\text{P}}$.}{
-        MSR$_{\text{E}}$ has the lowest error rate of among MSRs at the highest mapq threshold for which it performs better than HPC at mapq 60, MSR$_{\text{F}}$ has the highest fraction of reads mapped at mapq 60 and MSR$_{\text{P}}$ has the highest percentage of mapq thresholds for which it outperforms HPC at mapq 60.
-        The grayed out nodes represent the reverse complement of input dinucleotides and outputs, as in \autoref{fig:countingMSRs}C. For example for MSR$_{\text{E}}$, AA is mapped to T, so TT is mapped to A.}
-    \label{fig:topMSRs}
-\end{figure}
-
-\hypertarget{mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes}{%
-\subsection{Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes}\label{mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes}}
-
-Across the entire human genome, at high mapping quality thresholds
-(above 50), our selected 58 MSRs generally have lower mapping error rate
-than HPC and raw Figure \ref{fig:mapeval}A and
-Table \ref{tab:table-subset}). This is expected as we selected those
-MSRs partly on the criteria of overperforming HPC at mapq 60.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth]{figures/HPC-MSRs/MSR_mapeval_new_selection.reordered.pdf}
-    \extcaption{Performance of our 58 selected mapping-friendly sequence reductions across genomes on reads simulated by \texttt{nanosim}}{
-        Panel \textbf{A)} shows the whole human genome assembly, \textbf{B)} the subset of mapped reads from panel B that originate from repetitive regions, and \textbf{C)} the ``TandemTools'' synthetic centromeric reference sequence.
-        We highlighted the best-performing mapping-friendly sequence reductions as MSR E, F and P, respectively in terms of cumulative \texttt{mapeval} error rate, fraction of reads mapped, and percentage of better thresholds than HPC.
-        Each point on a line represents, from left to right, the mapping quality thresholds 60, 50, 40, 30, 20, 10 and 0. For the first point of each line, only reads of mapping quality 60 are considered, and the y value represents the rate of these reads that are not correctly mapped, the x value represents the fraction of simulated reads that are mapped at this threshold. The next point is computed for all reads of mapping quality $\geq50$, etc. The rightmost point on any curve represents the mapping error rate and the fraction of mapped reads for all primary alignments. The x-axes are clipped for lower mapped read fractions to better differentiate HPC, raw and MSRs E, F and P.
-    }
-    \label{fig:mapeval}
-\end{figure}
-
-Given that mapping quality is only an indication from the aligner to
-estimate whether a read mapping is correct, and that we now know that
-the true mapping accuracy of MSRs is high even for reported mapping
-qualities that are low, we choose to compare MSR-mapped reads with lower
-mapping qualities against raw or HPC-mapped reads with the highest (60)
-mapping quality. By setting a different mapping quality threshold for
-our MSRs (\(\geq 50\)) than for the HPC/raw mappings (60),
-the three selected MSRs outperform both HPC and raw in terms of mapping
-error rate, with similar fractions of mapped reads overall. For example
-on the human genome, at mapq \(\geq 50\), MSR\(_{\text{F}}\),
-MSR\(_{\text{P}}\) and MSR\(_{\text{E}}\) all map more reads than either HPC
-or raw at mapq=60, and MSR\(_{\text{P}}\) and MSR\(_{\text{E}}\) also have
-error rates an order of magnitude lower than either HPC or raw
-(Table \ref{tab:table-subset} and Figure \ref{fig:mapeval}A).
-
-To evaluate the robustness of MSRs E, F and P we investigated the impact
-of mapping to a different organism or using another mapper. To this
-effect we repeated the evaluation pipeline in these different settings:
-
-\begin{itemize}
-\item
-  Using the \emph{Drosophila melanogaster} whole genome assembly as
-  reference and mapping with \texttt{minimap2}
-\item
-  Using the whole human genome assembly as reference but mapping with
-  \texttt{winnowmap2}(version 2.02) \autocite{jainWeightedMinimizerSampling2020}. The
-  same options as \texttt{minimap2} were used, and k-mers were counted using
-  \texttt{meryl} \autocite{rhieMerquryReferencefreeQuality2020}, considering the top
-  \(0.02\%\) as repetitive (as suggested by the \texttt{winnowmap2} usage
-  guide).
-\end{itemize}
-
-MSRs E, F and P behave very similarly in both of these contexts compared
-to HPC/raw: by selecting mapped reads with mapq \(\geq 50\) for the three
-MSRs we obtain a similar fraction of mapped reads with much lower
-\texttt{mapeval} error rates (Table \ref{tab:table-subset}). A noticeable exception is the
-\texttt{winnowmap2} experiment, where a larger fraction of raw reads are mapped
-than any other MSR and even HPC. A more detailed results table can be
-found in Table \ref{tab:mapperComparison}.
-
-\begin{table}[h!]
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}rlr@{}lr@{}lr@{}lr@{}lr@{}lr@{}l@{}}
-\toprule
-\multicolumn{2}{l}{}     & \multicolumn{4}{c}{Whole human genome}                                                  & \multicolumn{4}{c}{Whole human genome}                                                  & \multicolumn{4}{c}{Whole Drosophila genome}                                          \\
-\multicolumn{2}{l}{}     & \multicolumn{4}{c}{\texttt{minimap2}}                                                            & \multicolumn{4}{c}{\texttt{winnowmap2}}                                                          & \multicolumn{4}{c}{\texttt{minimap2}}                                                         \\
-\multicolumn{2}{r}{mapq} & \multicolumn{2}{l}{fraction}             & \multicolumn{2}{l}{error}                    & \multicolumn{2}{l}{fraction}             & \multicolumn{2}{l}{error}                    & \multicolumn{2}{l}{fraction}             & \multicolumn{2}{l}{error}                 \\ \cmidrule(lr){3-6} \cmidrule(lr){7-10} \cmidrule(l){11-14}
-HPC         & 60         & 0.935          & {\:\footnotesize$+$0\%} & 1.85e-03          & {\:\footnotesize$+$ 0\%} & 0.894          & {\:\footnotesize$+$0\%} & 1.43e-03          & {\:\footnotesize$+$ 0\%} & 0.957          & {\:\footnotesize$+$0\%} & 2.27e-03      & {\:\footnotesize$+$  0\%} \\
-raw         & 60         & 0.921          & {\:\footnotesize$-$1\%} & 1.86e-03          & {\:\footnotesize$+$ 0\%} & \textbf{0.932} & \textbf{\:\small$+$4\%} & 1.75e-03          & {\:\footnotesize$+$23\%} & 0.958          & {\:\footnotesize$+$0\%} & 2.27e-03      & {\:\footnotesize$-$  0\%} \\
-MSR$_{\text{F}}$     & 50         & \textbf{0.938} & \textbf{\:\small$+$0\%} & 1.29e-03          & {\:\footnotesize$-$30\%} & 0.886          & {\:\footnotesize$-$1\%} & 3.82e-04          & {\:\footnotesize$-$73\%} & \textbf{0.960} & \textbf{\:\small$+$0\%} & 1.37e-03      & {\:\footnotesize$-$ 39\%} \\
-MSR$_{\text{E}}$     & 50         & 0.936          & {\:\footnotesize$+$0\%} & \textbf{1.17e-04} & \textbf{\:\small$-$94\%} & 0.820          & {\:\footnotesize$-$8\%} & \textbf{8.93e-05} & \textbf{\:\small$-$94\%} & 0.954          & {\:\footnotesize$-$0\%} & \textbf{0.00} & \textbf{\:\small$-$100\%} \\ 
-MSR$_{\text{P}}$     & 50         & \textbf{0.938} & \textbf{\:\small$+$0\%} & 4.15e-04          & {\:\footnotesize$-$78\%} & 0.845          & {\:\footnotesize$-$6\%} & 1.14e-04          & {\:\footnotesize$-$92\%} & 0.957          & {\:\footnotesize$+$0\%} & 8.11e-04      & {\:\footnotesize$-$ 64\%} \\ \bottomrule
-\end{tabular}%
-}
-\extcaption{Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.}{
-  For each reference sequence and mapper pair, we report the fraction of reads mapped (``fraction'' columns), the \texttt{paftools mapeval} mapping error rate (``error'' columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\geq 50$. 
-}
-\label{tab:table-subset}
-\end{table}
-
-\hypertarget{mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome}{%
-\subsection{Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome}\label{mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome}}
-
-To evaluate the performance of our MSRs specifically on repeats, we
-extracted the simulated reads for which an overlap with repeated region
-of the whole human genome was greater than \(50\%\) of the read length. We
-then evaluated the MSRs on these reads only. Repeated regions were
-obtained from
-\url{https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/rmsk/rmsk.bigBed}.
-
-We obtained similar results as on the whole human genome, with MSRs E, F
-and P performing better than HPC at mapq 50
-(Figure \ref{fig:mapeval}B). At a mapq threshold of 50, the error rate is
-\(53\%\), \(31\%\), and \(39\%\) lower than HPC at mapq 60 for MSRs E, F and P
-respectively, while the fraction of mapped reads remains slightly
-higher. At mapq=60, raw has a error rate \(40\%\) lower than HPC but it
-the mapped fraction is also \(17\%\) lower.
-
-\hypertarget{raw-mapping-improves-upon-hpc-on-centromeric-regions}{%
-\subsection{Raw mapping improves upon HPC on centromeric regions}\label{raw-mapping-improves-upon-hpc-on-centromeric-regions}}
-
-On the ``TandemTools'' centromeric reference, HPC consistently maps a
-smaller fraction of reads than raw, across all mapping quality
-thresholds (Figure \ref{fig:mapeval}C). Additionally, the error rate for raw is
-often inferior to that of HPC. The same is true for our selected MSRs:
-most of them have comparable performance to HPC, but none of them
-outperform raw mapping (Figure \ref{fig:mapeval}C).
-
-We conjecture this is due to the highly repetitive nature of
-centromeres. HPC likely removes small unique repetitions in the reads
-and the reference that might allow mappers to better match reads to a
-particular occurrence a centromeric pattern. Mapping raw reads on the
-other hand preserves all bases in the read and better differentiates
-repeats. Therefore it seems inadvisable to use HPC when mapping reads to
-highly repetitive regions of a genome, such as a centromere.
-
-\hypertarget{positions-of-incorrectly-mapped-reads-across-the-entire-human-genome}{%
-\subsection{Positions of incorrectly mapped reads across the entire human genome}\label{positions-of-incorrectly-mapped-reads-across-the-entire-human-genome}}
-
-To study how MSRs E, F, and P improve over HPC and raw mapping in terms
-of error rate on the human genome, we selected all the primary
-alignments that \texttt{paftools\ mapeval} reported as incorrectly mapped. For
-HPC and raw, only alignments of mapping quality equal to 60 were
-considered. To report a comparable fraction of aligned reads, we
-selected alignments of mapping quality \(\geq 50\) for MSRs. We then
-reported the origin of those incorrectly mapped reads on whole human
-genome reference, shown per-chromosome in Appendix \ref{fig:error-hists}.
-
-We observe that erroneously mapped reads are not only those from
-centromeres, and instead originate from many other genomic regions. MSRs
-E and P have a markedly lower number of these incorrect mappings than
-either HPC or raw, with 1118 incorrect mappings for raw mappings and
-1130 for HPC as opposed to 549, 970 and 361 for MSRs E, F and P
-respectively. This stays true even for difficult regions of the genome
-such as chromosome X, where raw and HPC have 70 incorrect mappings as
-opposed MSRs E and P that have 39, and 27 errors respectively.
-
-We also investigated where all simulated reads were mapped on the whole
-human genome assembly, for raw, HPC and MSRs E,F and P in
-Appendix \ref{appendix:all-reads-hist}. The correctly mapped reads are, as
-expected, evenly distributed along each chromosome. The incorrectly
-mapped reads are however unevenly distributed. For most chromosomes
-there is a sharp peak in the distribution of incorrectly mapped reads,
-located at the position of the centromere. For the acrocentric
-chromosomes, there is a second peak corresponding to the ``stalk''
-satellite region, with an enrichment of incorrectly mapped reads. This
-is expected since both centromeres and ``stalks'' are repetitive regions
-which are a challenge for mapping. For chromosomes 1, 9 and 16 however
-the majority of incorrectly mapped reads originate in repeated regions
-just after the centromere.
-
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
-
-We have introduced the concept of mapping-friendly sequence reduction
-and shown that it improves the accuracy of the popular mapping tool
-\texttt{minimap2} on simulated Oxford Nanopore long reads.
-
-We focused on reads with high mapping quality (50-60), as it is a common
-practice to disregard reads with low mapping
-quality~\autocite{prodanovSensitiveAlignmentUsing2020,liNewStrategiesImprove2021,liSyntheticdiploidBenchmarkAccurate2018}.
-However across all mapped reads (mapq \(\geq 0\)), HPC and our MSRs have
-lower mapping accuracies than raw reads, consistent with the
-recommendation made in \texttt{minimap2} to not apply HPC to ONT data. Despite
-this, we newly show the benefit of using HPC (and our MSRs) with
-\texttt{minimap2} on ONT data when focusing on high mapping quality reads.
-Furthermore MSRs provide a higher fraction of high-mapq reads compared
-to both raw and HPC, as shown on the human and Drosophila genomes.
-
-A natural future direction is to also test whether our MSRs perform well
-on mapping Pacific Biosciences long reads. Furthermore, it is important
-to highlight that our sampling of MSRs is incomplete. This is of course
-due to only looking at functions having \(\ell=2\), but also to the
-operational definition of RC-core-insensitive functions, and finally to
-taking representatives of equivalence classes. An interesting future
-direction would consist in exploring other families of MSRs, especially
-those that would include HPC and/or close variations of it.
-
-Additionally, our analyses suggests to not perform HPC on centromeres
-and other repeated regions, hinting at applying sequence transformations
-to only some parts of the genomes. We leave this direction for future
-work.
-
-\hypertarget{limitations-of-this-study}{%
-\section{Limitations of this study}\label{limitations-of-this-study}}
-
-Our proposed MSRs improve upon HPC at mapq 60, both in terms of fraction
-of reads mapped and error rate, on whole human and \emph{Drosophila
-melanogaster} genomes. We chose these sequences because they were from
-organisms that we deemed different enough, however it would be
-interesting to verify if our proposed MSRs are still advantageous on
-very different organism, e.g.~bacterial or viral genomes. This would
-allow us to assess the generalizability of our proposed MSRs.
-
-We made the choice of using simulated data to be able to compute a
-mapping error rate. Some metrics, such as fraction of reads mapped might
-still be informative with regards to the mapping performance benefits of
-MSRs, even on real data. Evaluating the MSRs on real data might be more
-challenging but would offer insight into real-world usage of such
-pre-processing transformations.
-
-Finally, the restrictions we imposed to define RC-core-insensitive MSRs
-though intuitively understandable are somewhat arbitrary, so exploring a
-larger search space might be beneficial. Alternatively for higher order
-MSRs, even with our restrictions, the search spaces remain much too
-large to be explored exhaustively. To mitigate this problem, either
-further restrictions need to be found, or an alternative,
-optimization-based exploration method should be implemented.
-
-\hypertarget{code-availability}{%
-\section{Code availability}\label{code-availability}}
-
-The scripts and pipelines used to obtain the results, as well as do the
-analysis and figures are available in an online repository at
-\href{https://github.com/lucblassel/MSR_discovery}{github.com/lucblassel/MSR\_discovery}
-
-\hypertarget{supplementary-information}{%
-\section*{Supplementary information}\label{supplementary-information}}
-\addcontentsline{toc}{section}{Supplementary information}
-
-Supporting Information can be found in Appendix \ref{HPC-appendix}
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
-
-\hypertarget{conclusion}{%
-\chapter{Conclusion}\label{conclusion}}
-
-\hypertarget{hiv-drm-conclusion}{%
-\section{HIV DRM conclusion}\label{hiv-drm-conclusion}}
-
-\hypertarget{hpc-conclusion}{%
-\section{HPC conclusion}\label{hpc-conclusion}}
-
-\hypertarget{general-conclusion}{%
-\section{general conclusion}\label{general-conclusion}}
+\hypertarget{learn-pre-processing-functions}{%
+\subsection{Learn pre-processing functions}\label{learn-pre-processing-functions}}
 
 \appendix
+
+\hypertarget{HPC-appendix}{%
+\chapter{Supporting Information for ``Mapping-friendly sequence reductions: going beyond homopolymer compression''}\label{HPC-appendix}}
+
+\hypertarget{appendix:tandemtools}{%
+\section{``TandemTools'' dataset generation}\label{appendix:tandemtools}}
+
+This dataset was obtained by taking a human X chromosome HOR sequence,
+concatenating it 500 times with added mutations in order to obtain an
+approximately 1 Mbp long sequence. Then 1200 reads were simulated from
+the sequence using \texttt{nanosim} \autocite{yangNanoSimNanoporeSequence2017} and
+assembled using a centromere-tailored pipeline
+\autocite{bzikadzeAutomatedAssemblyCentromeres2020}. A 10kbp deletion was then
+added to this assembly. The resulting sequence is the one we refer to as
+the ``Centromeric sequence''.
+
+\hypertarget{tab:mapperComparison}{%
+\section{MSR performance comparison}\label{tab:mapperComparison}}
+
+Comparing performance of MSRs on the whole human genome, whole
+\emph{Drosophila melanogaster} genome, repeated regions of the whole human
+genome and synthetic centromeric sequence. Results using
+\texttt{minimap2}\autocite{liMinimap2PairwiseAlignment2018} and
+\texttt{winnowmap2}\autocite{jainWeightedMinimizerSampling2020}. The number of
+simulated reads for each reference sequence is given in parentheses and
+called \(n\). Results are reported for mapq thresholds of 60, 50 and 0.
+The best performance for each category is highlighted in bold. The
+percentage difference are computed w.r.t HPC at each given threshold.
+
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lr@{}lr@{}lr@{}lr@{}lr@{}lr@{}l@{}}
+\toprule
+                                    & \multicolumn{4}{l}{mapq=60}                                                                                 & \multicolumn{4}{l}{mapq$\geq50$}                                                                            & \multicolumn{4}{l}{any mapq}                                                                              \\ \cmidrule(l){2-5}\cmidrule(l){6-9}\cmidrule(l){6-9}\cmidrule(l){10-13}
+mapping friendly sequence reduction & \multicolumn{2}{l}{fraction}                       & \multicolumn{2}{l}{error}                              & \multicolumn{2}{l}{fraction}                       & \multicolumn{2}{l}{error}                              & \multicolumn{2}{l}{fraction}                      & \multicolumn{2}{l}{error}                             \\ \midrule
+                                                                                                                                                                                                                                                                                                                                                                            \\
+\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \texttt{minimap2}(n = \numprint{25764})}}                                                                                                                                                                                                                                                                                  \\
+HPC                                 & 0.957          & \footnotesize{\;$+$0\%}           & 2.27e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.963} & \textbf{\footnotesize{\;$+$0\%}}  & 2.34e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.48e-02          & \footnotesize{\;$+$ 0\%}          \\
+raw                                 & \textbf{0.958} & \textbf{\footnotesize{\;$+$0\%}}  & 2.27e-03          & \footnotesize{\;$-$  0\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 2.34e-03          & \footnotesize{\;$+$  0\%}          & 0.997          & \footnotesize{\;$-$0\%}          & \textbf{1.17e-02} & \textbf{\footnotesize{\;$-$21\%}} \\
+MSR$_{\text{F}}$                             & 0.952          & \footnotesize{\;$-$1\%}           & 1.18e-03          & \footnotesize{\;$-$ 48\%}          & 0.960          & \footnotesize{\;$-$0\%}           & 1.37e-03          & \footnotesize{\;$-$ 41\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.36e-02          & \footnotesize{\;$-$ 8\%}          \\
+MSR$_{\text{E}}$                             & 0.946          & \footnotesize{\;$-$1\%}           & \textbf{0.00}     & \textbf{\footnotesize{\;$-$100\%}} & 0.954          & \footnotesize{\;$-$1\%}           & \textbf{0.00}     & \textbf{\footnotesize{\;$-$100\%}} & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.53e-02          & \footnotesize{\;$+$ 3\%}          \\
+MSR$_{\text{P}}$                             & 0.950          & \footnotesize{\;$-$1\%}           & 4.90e-04          & \footnotesize{\;$-$ 78\%}          & 0.957          & \footnotesize{\;$-$1\%}           & 8.11e-04          & \footnotesize{\;$-$ 65\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$-$0\%}} & 1.39e-02          & \footnotesize{\;$-$ 6\%}          \\
+                                                                                                                                                                                                                                                                                                                                                                            \\
+\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \texttt{winnowmap2}(n = \numprint{25764})}}                                                                                                                                                                                                                                                                                \\
+HPC                                 & 0.923          & \footnotesize{\;$+$0\%}           & 1.51e-03          & \footnotesize{\;$+$ 0\%}           & 0.930          & \footnotesize{\;$+$0\%}           & 1.59e-03          & \footnotesize{\;$+$ 0\%}           & 0.989          & \footnotesize{\;$+$0\%}          & 1.50e-02          & \footnotesize{\;$+$ 0\%}          \\
+raw                                 & \textbf{0.949} & \textbf{\footnotesize{\;$+$3\%}}  & 1.92e-03          & \footnotesize{\;$+$27\%}           & \textbf{0.954} & \textbf{\footnotesize{\;$+$3\%}}  & 1.99e-03          & \footnotesize{\;$+$26\%}           & \textbf{0.995} & \textbf{\footnotesize{\;$+$1\%}} & \textbf{1.33e-02} & \textbf{\footnotesize{\;$-$12\%}} \\
+MSR$_{\text{F}}$                             & 0.918          & \footnotesize{\;$-$1\%}           & \textbf{1.27e-03} & \textbf{\footnotesize{\;$-$16\%}}  & 0.925          & \footnotesize{\;$-$0\%}           & \textbf{1.30e-03} & \textbf{\footnotesize{\;$-$18\%}}  & 0.987          & \footnotesize{\;$-$0\%}          & 1.37e-02          & \footnotesize{\;$-$ 9\%}          \\
+MSR$_{\text{P}}$                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.33e-03          & \footnotesize{\;$-$12\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.53e-03          & \footnotesize{\;$-$3\%}            & 0.983          & \footnotesize{\;$-$1\%}          & 1.40e-02          & \footnotesize{\;$-$ 7\%}          \\
+MSR$_{\text{E}}$                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.42e-03          & \footnotesize{\;$-$ 6\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.49e-03          & \footnotesize{\;$-$ 6\%}           & 0.983          & \footnotesize{\;$-$1\%}          & 1.44e-02          & \footnotesize{\;$-$ 4\%}          \\
+                                                                                                                                                                                                                                                                                                                                                                            \\
+\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \texttt{minimap2}(n = \numprint{12673})}}                                                                                                                                                                                                                                                                                        \\
+HPC                                 & 0.870          & \footnotesize{\;$+$0\%}           & \textbf{1.36e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & 0.964          & \footnotesize{\;$+$0\%}           & \textbf{1.56e-03} & \textbf{\footnotesize{\;$+$  0\%}} & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 9.00e-03          & \footnotesize{\;$+$ 0\%}          \\
+raw                                 & \textbf{0.936} & \textbf{\footnotesize{\;$+$8\%}}  & 1.86e-03          & \footnotesize{\;$+$ 36\%}          & \textbf{0.984} & \textbf{\footnotesize{\;$+$2\%}}  & 2.09e-03          & \footnotesize{\;$+$ 34\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & \textbf{4.50e-03} & \textbf{\footnotesize{\;$-$50\%}} \\
+MSR$_{\text{E}}$                             & 0.885          & \footnotesize{\;$+$2\%}           & 3.39e-03          & \footnotesize{\;$+$149\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 3.53e-03          & \footnotesize{\;$+$127\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 1.20e-02          & \footnotesize{\;$+$33\%}          \\
+MSR$_{\text{F}}$                             & 0.850          & \footnotesize{\;$-$2\%}           & 2.04e-03          & \footnotesize{\;$+$ 50\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 2.12e-03          & \footnotesize{\;$+$ 36\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 6.63e-03          & \footnotesize{\;$-$26\%}          \\
+MSR$_{\text{P}}$                             & 0.898          & \footnotesize{\;$+$3\%}           & 1.58e-03          & \footnotesize{\;$+$ 16\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 1.79e-03          & \footnotesize{\;$+$ 15\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 9.78e-03          & \footnotesize{\;$+$ 9\%}          \\
+                                                                                                                                                                                                                                                                                                                                                                            \\
+\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \texttt{winnowmap2}(n = \numprint{12673})}}                                                                                                                                                                                                                                                                                      \\
+HPC                                 & 0.775          & \footnotesize{\;$+$ 0\%}          & \textbf{1.32e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & \textbf{0.822} & \textbf{\footnotesize{\;$+$0\%}}  & \textbf{1.82e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & 0.997          & \footnotesize{\;$+$0\%}          & 8.37e-02          & \footnotesize{\;$+$ 0\%}          \\
+raw                                 & \textbf{0.850} & \textbf{\footnotesize{\;$+$10\%}} & 2.04e-03          & \footnotesize{\;$+$54\%}           & 0.890          & \footnotesize{\;$+$8\%}           & 1.95e-03          & \footnotesize{\;$+$ 7\%}           & \textbf{0.999} & \textbf{\footnotesize{\;$+$0\%}} & \textbf{4.60e-02} & \textbf{\footnotesize{\;$-$45\%}} \\
+MSR$_{\text{E}}$                             & 0.795          & \footnotesize{\;$+$ 2\%}          & 2.28e-03          & \footnotesize{\;$+$73\%}           & 0.846          & \footnotesize{\;$+$3\%}           & 2.52e-03          & \footnotesize{\;$+$38\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 6.96e-02          & \footnotesize{\;$-$17\%}          \\
+MSR$_{\text{F}}$                             & 0.820          & \footnotesize{\;$+$ 6\%}          & 1.83e-03          & \footnotesize{\;$+$38\%}           & 0.867          & \footnotesize{\;$+$6\%}           & 2.27e-03          & \footnotesize{\;$+$25\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 5.97e-02          & \footnotesize{\;$-$29\%}          \\
+MSR$_{\text{P}}$                             & 0.780          & \footnotesize{\;$+$ 1\%}          & 1.62e-03          & \footnotesize{\;$+$22\%}           & 0.829          & \footnotesize{\;$+$1\%}           & 2.09e-03          & \footnotesize{\;$+$15\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 8.65e-02          & \footnotesize{\;$+$ 3\%}          \\
+                                                                                                                                                                                                                                                                                                                                                                            \\
+\multicolumn{13}{l}{\textbf{Whole human genome - \texttt{minimap2}(n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                   \\
+HPC                                 & \textbf{0.935} & \textbf{\footnotesize{\;$+$0\%}}  & 1.85e-03          & \footnotesize{\;$+$ 0\%}           & \textbf{0.942} & \textbf{\footnotesize{\;$+$0\%}}  & 1.85e-03          & \footnotesize{\;$+$ 0\%}           & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 1.46e-02          & \footnotesize{\;$+$ 0\%}          \\
+raw                                 & 0.921          & \footnotesize{\;$-$1\%}           & 1.86e-03          & \footnotesize{\;$+$ 0\%}           & 0.927          & \footnotesize{\;$-$2\%}           & 1.86e-03          & \footnotesize{\;$+$ 1\%}           & 0.998          & \footnotesize{\;$-$0\%}          & \textbf{1.29e-02} & \textbf{\footnotesize{\;$-$11\%}} \\
+MSR$_{\text{E}}$                             & 0.926          & \footnotesize{\;$-$1\%}           & \textbf{6.92e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.936          & \footnotesize{\;$-$1\%}           & \textbf{1.17e-04} & \textbf{\footnotesize{\;$-$94\%}}  & 0.999          & \footnotesize{\;$-$0\%}          & 1.76e-02          & \footnotesize{\;$+$20\%}          \\
+MSR$_{\text{P}}$                             & 0.929          & \footnotesize{\;$-$1\%}           & 2.20e-04          & \footnotesize{\;$-$88\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 4.15e-04          & \footnotesize{\;$-$78\%}           & 0.999          & \footnotesize{\;$-$0\%}          & 1.55e-02          & \footnotesize{\;$+$ 6\%}          \\
+MSR$_{\text{F}}$                             & 0.930          & \footnotesize{\;$-$1\%}           & 1.09e-03          & \footnotesize{\;$-$41\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 1.29e-03          & \footnotesize{\;$-$30\%}           & \textbf{1.000} & \textbf{\footnotesize{\;$-$0\%}} & 1.51e-02          & \footnotesize{\;$+$ 4\%}          \\
+                                                                                                                                                                                                                                                                                                                                                                            \\
+\multicolumn{13}{l}{\textbf{Whole human genome - \texttt{winnowmap2}(n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                 \\
+HPC                                 & 0.894          & \footnotesize{\;$+$ 0\%}          & 1.43e-03          & \footnotesize{\;$+$ 0\%}           & 0.902          & \footnotesize{\;$+$0\%}           & 1.49e-03          & \footnotesize{\;$+$ 0\%}           & 0.988          & \footnotesize{\;$+$0\%}          & 1.92e-02          & \footnotesize{\;$+$ 0\%}          \\
+raw                                 & \textbf{0.932} & \textbf{\footnotesize{\;$+$ 4\%}} & 1.75e-03          & \footnotesize{\;$+$23\%}           & \textbf{0.937} & \textbf{\footnotesize{\;$+$4\%}}  & 1.79e-03          & \footnotesize{\;$+$20\%}           & \textbf{0.994} & \textbf{\footnotesize{\;$+$1\%}} & \textbf{1.43e-02} & \textbf{\footnotesize{\;$-$26\%}} \\
+MSR$_{\text{F}}$                             & 0.874          & \footnotesize{\;$-$ 2\%}          & 2.81e-04          & \footnotesize{\;$-$80\%}           & 0.886          & \footnotesize{\;$-$2\%}           & 3.82e-04          & \footnotesize{\;$-$74\%}           & 0.984          & \footnotesize{\;$-$0\%}          & 1.94e-02          & \footnotesize{\;$+$ 1\%}          \\
+MSR$_{\text{E}}$                             & 0.795          & \footnotesize{\;$-$11\%}          & \textbf{6.33e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.820          & \footnotesize{\;$-$9\%}           & \textbf{8.93e-05} & \textbf{\footnotesize{\;$-$94\%}}  & 0.971          & \footnotesize{\;$-$2\%}          & 2.08e-02          & \footnotesize{\;$+$ 9\%}          \\
+MSR$_{\text{P}}$                             & 0.826          & \footnotesize{\;$-$ 8\%}          & 8.68e-05          & \footnotesize{\;$-$94\%}           & 0.845          & \footnotesize{\;$-$6\%}           & 1.14e-04          & \footnotesize{\;$-$92\%}           & 0.975          & \footnotesize{\;$-$1\%}          & 2.11e-02          & \footnotesize{\;$+$10\%}          \\
+\\
+\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \texttt{minimap2}(n = \numprint{68811})}}                                                                                                                                                                                                                                                                                 \\
+HPC                                 & \textbf{0.619} & \textbf{\footnotesize{\;+ 0\%}}   & 3.29e-04          & \footnotesize{\;+ 0\%}             & 0.656          & \footnotesize{\;+ 0\%}            & 3.10e-04          & \footnotesize{\;+ 0\%}             & \textbf{0.998} & \textbf{\footnotesize{\;+0\%}}   & 7.79e-02          & \footnotesize{\;+ 0\%}            \\
+raw                                 & 0.514          & \footnotesize{\;-17\%}            & 1.98e-04          & \footnotesize{\;-40\%}             & 0.539          & \footnotesize{\;-18\%}            & 2.16e-04          & \footnotesize{\;-30\%}             & 0.981          & \footnotesize{\;-2\%}            & \textbf{6.69e-02} & \textbf{\footnotesize{\;-14\%}}   \\
+MSR$_{\text{F}}$                             & 0.601          & \footnotesize{\;- 3\%}            & 2.18e-04          & \footnotesize{\;-34\%}             & 0.640          & \footnotesize{\;- 2\%}            & 2.27e-04          & \footnotesize{\;-27\%}             & \textbf{0.998} & \textbf{\footnotesize{\;-0\%}}   & 8.15e-02          & \footnotesize{\;+ 5\%}            \\
+MSR$_{\text{E}}$                             & 0.618          & \footnotesize{\;- 0\%}            & 1.41e-04          & \footnotesize{\;-57\%}             & \textbf{0.658} & \textbf{\footnotesize{\;+ 0\%}}   & \textbf{1.55e-04} & \textbf{\footnotesize{\;-50\%}}    & 0.997          & \footnotesize{\;-0\%}            & 8.23e-02          & \footnotesize{\;+ 6\%}            \\
+MSR$_{\text{P}}$                             & 0.616          & \footnotesize{\;- 1\%}            & \textbf{1.18e-04} & \textbf{\footnotesize{\;-64\%}}    & 0.656          & \footnotesize{\;+ 0\%}            & 1.99e-04          & \footnotesize{\;-36\%}             & 0.997          & \footnotesize{\;-0\%}            & 8.31e-02          & \footnotesize{\;+ 7\%}            \\
+                                                                                                                                                                                                                                                                                                                                                                            \\
+\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \texttt{winnowmap2}(n = \numprint{68811})}}                                                                                                                                                                                                                                                                               \\
+HPC                                 & 0.525          & \footnotesize{\;+ 0\%}            & 1.24e-03          & \footnotesize{\;+ 0\%}             & 0.557          & \footnotesize{\;+ 0\%}            & 1.49e-03          & \footnotesize{\;+ 0\%}             & 0.950          & \footnotesize{\;+0\%}            & 1.19e-01          & \footnotesize{\;+ 0\%}            \\
+raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+23\%}}   & 1.26e-03          & \footnotesize{\;+ 1\%}             & \textbf{0.672} & \textbf{\footnotesize{\;+21\%}}   & 1.49e-03          & \footnotesize{\;+ 0\%}             & \textbf{0.968} & \textbf{\footnotesize{\;+2\%}}   & \textbf{8.09e-02} & \textbf{\footnotesize{\;-32\%}}   \\ 
+MSR$_{\text{F}}$                             & 0.482          & \footnotesize{\;- 8\%}            & \textbf{1.63e-03} & \textbf{\footnotesize{\;+31\%}}    & 0.516          & \footnotesize{\;- 7\%}            & 1.83e-03          & \footnotesize{\;+23\%}             & 0.940          & \footnotesize{\;-1\%}            & 1.21e-01          & \footnotesize{\;+ 2\%}            \\
+MSR$_{\text{E}}$                             & 0.366          & \footnotesize{\;-30\%}            & 6.35e-04          & \footnotesize{\;-49\%}             & 0.405          & \footnotesize{\;-27\%}            & \textbf{9.32e-04} & \textbf{\footnotesize{\;-37\%}}    & 0.911          & \footnotesize{\;-4\%}            & 1.38e-01          & \footnotesize{\;+17\%}            \\
+MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;-21\%}            & 9.45e-04          & \footnotesize{\;-24\%}             & 0.451          & \footnotesize{\;-19\%}            & 1.16e-03          & \footnotesize{\;-22\%}             & 0.920          & \footnotesize{\;-3\%}            & 1.39e-01          & \footnotesize{\;+17\%}            \\ \bottomrule
+\end{tabular}%
+}
+
+\hypertarget{origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome.}{%
+\section{Origin of incorrectly mapped reads of high mapping quality on whole human genome.}\label{origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome.}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/HPC-MSRs/ridgelines.new_selection.pdf}\\
+    \extcaption{Histogram of the original simulated positions for the incorrectly mapped reads using \texttt{minimap2} at high mapping qualities across the whole human genome, for several transformation methods.}{For a given chromosome, each row represents the number of simulated reads starting at that particular region. The dark gray rectangle represents the position of the centromere for that chromosome, obtained from annotations provided by the T2T consortium (\href{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}). Similarly for chromosomes 13, 14, 15, 21 and 22, a lighter gray rectangle represents the position of the ``stalk'' satellites also containing repetitive regions. For HPC and raw reads only alignments of mapping quality 60 were considered. To provide a fair comparison, alignments with mapping qualities $\geq 50$ were considered for MSRs E, F and P.}
+    \label{fig:error-hists}
+\end{figure}
+
+\hypertarget{analyzing-read-origin-on-whole-human-genome}{%
+\section{Analyzing read origin on whole human genome}\label{analyzing-read-origin-on-whole-human-genome}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/raw_distrib.centro.rstart.pdf}\\
+    \extcaption{Origin of correctly and incorrectly mapped raw reads}{
+    Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \label{fig:hist-raw}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/hpc_distrib.centro.pdf}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with HPC}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \label{fig:hist-hpc}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_e_distrib.centro.pdf}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with MSR$_{\text{E}}$}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \label{fig:hist-msr-e}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_p_distrib.centro.pdf}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with MSR$_{\text{P}}$}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \label{fig:hist-msr-p}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_f2_distrib.centro.pdf}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with MSR$_{\text{F}}$}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \label{fig:hist-msr-f}
+\end{figure}
+
+\hypertarget{performance-of-msrs-on-the-drosophila-genome}{%
+\section{Performance of MSRs on the Drosophila genome}\label{performance-of-msrs-on-the-drosophila-genome}}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/HPC-MSRs/droso_ecoli.pdf}
+    \caption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes. MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \texttt{minimap2}}
+    \label{fig:drosophila-results}
+\end{figure}
+
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]
 
 \fancyhead[LE]{APPENDIX \thechapter}
 
@@ -2685,177 +3107,6 @@ and
 (\href{https://hivdb.stanford.edu/dr-summary/comments/NNRTI/}{hivdb.stanford.edu/dr-summary/comments/NNRTI/}).
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for Appendix \thechapter}]
-
-\hypertarget{HPC-appendix}{%
-\chapter{Supporting Information for ``Mapping-friendly sequence reductions: going beyond homopolymer compression''}\label{HPC-appendix}}
-
-\hypertarget{appendix:tandemtools}{%
-\section{``TandemTools'' dataset generation}\label{appendix:tandemtools}}
-
-This dataset was obtained by taking a human X chromosome HOR sequence,
-concatenating it 500 times with added mutations in order to obtain an
-approximately 1 Mbp long sequence. Then 1200 reads were simulated from
-the sequence using \texttt{nanosim} \autocite{yangNanoSimNanoporeSequence2017} and
-assembled using a centromere-tailored pipeline
-\autocite{bzikadzeAutomatedAssemblyCentromeres2020}. A 10kbp deletion was then
-added to this assembly. The resulting sequence is the one we refer to as
-the ``Centromeric sequence''.
-
-\hypertarget{tab:mapperComparison}{%
-\section{MSR performance comparison}\label{tab:mapperComparison}}
-
-Comparing performance of MSRs on the whole human genome, whole
-\emph{Drosophila melanogaster} genome, repeated regions of the whole human
-genome and synthetic centromeric sequence. Results using
-\texttt{minimap2}\autocite{liMinimap2PairwiseAlignment2018} and
-\texttt{winnowmap2}\autocite{jainWeightedMinimizerSampling2020}. The number of
-simulated reads for each reference sequence is given in parentheses and
-called \(n\). Results are reported for mapq thresholds of 60, 50 and 0.
-The best performance for each category is highlighted in bold. The
-percentage difference are computed w.r.t HPC at each given threshold.
-
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lr@{}lr@{}lr@{}lr@{}lr@{}lr@{}l@{}}
-\toprule
-                                    & \multicolumn{4}{l}{mapq=60}                                                                                 & \multicolumn{4}{l}{mapq$\geq50$}                                                                            & \multicolumn{4}{l}{any mapq}                                                                              \\ \cmidrule(l){2-5}\cmidrule(l){6-9}\cmidrule(l){6-9}\cmidrule(l){10-13}
-mapping friendly sequence reduction & \multicolumn{2}{l}{fraction}                       & \multicolumn{2}{l}{error}                              & \multicolumn{2}{l}{fraction}                       & \multicolumn{2}{l}{error}                              & \multicolumn{2}{l}{fraction}                      & \multicolumn{2}{l}{error}                             \\ \midrule
-                                                                                                                                                                                                                                                                                                                                                                            \\
-\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \texttt{minimap2}(n = \numprint{25764})}}                                                                                                                                                                                                                                                                                  \\
-HPC                                 & 0.957          & \footnotesize{\;$+$0\%}           & 2.27e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.963} & \textbf{\footnotesize{\;$+$0\%}}  & 2.34e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.48e-02          & \footnotesize{\;$+$ 0\%}          \\
-raw                                 & \textbf{0.958} & \textbf{\footnotesize{\;$+$0\%}}  & 2.27e-03          & \footnotesize{\;$-$  0\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 2.34e-03          & \footnotesize{\;$+$  0\%}          & 0.997          & \footnotesize{\;$-$0\%}          & \textbf{1.17e-02} & \textbf{\footnotesize{\;$-$21\%}} \\
-MSR$_{\text{F}}$                             & 0.952          & \footnotesize{\;$-$1\%}           & 1.18e-03          & \footnotesize{\;$-$ 48\%}          & 0.960          & \footnotesize{\;$-$0\%}           & 1.37e-03          & \footnotesize{\;$-$ 41\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.36e-02          & \footnotesize{\;$-$ 8\%}          \\
-MSR$_{\text{E}}$                             & 0.946          & \footnotesize{\;$-$1\%}           & \textbf{0.00}     & \textbf{\footnotesize{\;$-$100\%}} & 0.954          & \footnotesize{\;$-$1\%}           & \textbf{0.00}     & \textbf{\footnotesize{\;$-$100\%}} & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.53e-02          & \footnotesize{\;$+$ 3\%}          \\
-MSR$_{\text{P}}$                             & 0.950          & \footnotesize{\;$-$1\%}           & 4.90e-04          & \footnotesize{\;$-$ 78\%}          & 0.957          & \footnotesize{\;$-$1\%}           & 8.11e-04          & \footnotesize{\;$-$ 65\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$-$0\%}} & 1.39e-02          & \footnotesize{\;$-$ 6\%}          \\
-                                                                                                                                                                                                                                                                                                                                                                            \\
-\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \texttt{winnowmap2}(n = \numprint{25764})}}                                                                                                                                                                                                                                                                                \\
-HPC                                 & 0.923          & \footnotesize{\;$+$0\%}           & 1.51e-03          & \footnotesize{\;$+$ 0\%}           & 0.930          & \footnotesize{\;$+$0\%}           & 1.59e-03          & \footnotesize{\;$+$ 0\%}           & 0.989          & \footnotesize{\;$+$0\%}          & 1.50e-02          & \footnotesize{\;$+$ 0\%}          \\
-raw                                 & \textbf{0.949} & \textbf{\footnotesize{\;$+$3\%}}  & 1.92e-03          & \footnotesize{\;$+$27\%}           & \textbf{0.954} & \textbf{\footnotesize{\;$+$3\%}}  & 1.99e-03          & \footnotesize{\;$+$26\%}           & \textbf{0.995} & \textbf{\footnotesize{\;$+$1\%}} & \textbf{1.33e-02} & \textbf{\footnotesize{\;$-$12\%}} \\
-MSR$_{\text{F}}$                             & 0.918          & \footnotesize{\;$-$1\%}           & \textbf{1.27e-03} & \textbf{\footnotesize{\;$-$16\%}}  & 0.925          & \footnotesize{\;$-$0\%}           & \textbf{1.30e-03} & \textbf{\footnotesize{\;$-$18\%}}  & 0.987          & \footnotesize{\;$-$0\%}          & 1.37e-02          & \footnotesize{\;$-$ 9\%}          \\
-MSR$_{\text{P}}$                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.33e-03          & \footnotesize{\;$-$12\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.53e-03          & \footnotesize{\;$-$3\%}            & 0.983          & \footnotesize{\;$-$1\%}          & 1.40e-02          & \footnotesize{\;$-$ 7\%}          \\
-MSR$_{\text{E}}$                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.42e-03          & \footnotesize{\;$-$ 6\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.49e-03          & \footnotesize{\;$-$ 6\%}           & 0.983          & \footnotesize{\;$-$1\%}          & 1.44e-02          & \footnotesize{\;$-$ 4\%}          \\
-                                                                                                                                                                                                                                                                                                                                                                            \\
-\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \texttt{minimap2}(n = \numprint{12673})}}                                                                                                                                                                                                                                                                                        \\
-HPC                                 & 0.870          & \footnotesize{\;$+$0\%}           & \textbf{1.36e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & 0.964          & \footnotesize{\;$+$0\%}           & \textbf{1.56e-03} & \textbf{\footnotesize{\;$+$  0\%}} & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 9.00e-03          & \footnotesize{\;$+$ 0\%}          \\
-raw                                 & \textbf{0.936} & \textbf{\footnotesize{\;$+$8\%}}  & 1.86e-03          & \footnotesize{\;$+$ 36\%}          & \textbf{0.984} & \textbf{\footnotesize{\;$+$2\%}}  & 2.09e-03          & \footnotesize{\;$+$ 34\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & \textbf{4.50e-03} & \textbf{\footnotesize{\;$-$50\%}} \\
-MSR$_{\text{E}}$                             & 0.885          & \footnotesize{\;$+$2\%}           & 3.39e-03          & \footnotesize{\;$+$149\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 3.53e-03          & \footnotesize{\;$+$127\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 1.20e-02          & \footnotesize{\;$+$33\%}          \\
-MSR$_{\text{F}}$                             & 0.850          & \footnotesize{\;$-$2\%}           & 2.04e-03          & \footnotesize{\;$+$ 50\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 2.12e-03          & \footnotesize{\;$+$ 36\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 6.63e-03          & \footnotesize{\;$-$26\%}          \\
-MSR$_{\text{P}}$                             & 0.898          & \footnotesize{\;$+$3\%}           & 1.58e-03          & \footnotesize{\;$+$ 16\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 1.79e-03          & \footnotesize{\;$+$ 15\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 9.78e-03          & \footnotesize{\;$+$ 9\%}          \\
-                                                                                                                                                                                                                                                                                                                                                                            \\
-\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \texttt{winnowmap2}(n = \numprint{12673})}}                                                                                                                                                                                                                                                                                      \\
-HPC                                 & 0.775          & \footnotesize{\;$+$ 0\%}          & \textbf{1.32e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & \textbf{0.822} & \textbf{\footnotesize{\;$+$0\%}}  & \textbf{1.82e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & 0.997          & \footnotesize{\;$+$0\%}          & 8.37e-02          & \footnotesize{\;$+$ 0\%}          \\
-raw                                 & \textbf{0.850} & \textbf{\footnotesize{\;$+$10\%}} & 2.04e-03          & \footnotesize{\;$+$54\%}           & 0.890          & \footnotesize{\;$+$8\%}           & 1.95e-03          & \footnotesize{\;$+$ 7\%}           & \textbf{0.999} & \textbf{\footnotesize{\;$+$0\%}} & \textbf{4.60e-02} & \textbf{\footnotesize{\;$-$45\%}} \\
-MSR$_{\text{E}}$                             & 0.795          & \footnotesize{\;$+$ 2\%}          & 2.28e-03          & \footnotesize{\;$+$73\%}           & 0.846          & \footnotesize{\;$+$3\%}           & 2.52e-03          & \footnotesize{\;$+$38\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 6.96e-02          & \footnotesize{\;$-$17\%}          \\
-MSR$_{\text{F}}$                             & 0.820          & \footnotesize{\;$+$ 6\%}          & 1.83e-03          & \footnotesize{\;$+$38\%}           & 0.867          & \footnotesize{\;$+$6\%}           & 2.27e-03          & \footnotesize{\;$+$25\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 5.97e-02          & \footnotesize{\;$-$29\%}          \\
-MSR$_{\text{P}}$                             & 0.780          & \footnotesize{\;$+$ 1\%}          & 1.62e-03          & \footnotesize{\;$+$22\%}           & 0.829          & \footnotesize{\;$+$1\%}           & 2.09e-03          & \footnotesize{\;$+$15\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 8.65e-02          & \footnotesize{\;$+$ 3\%}          \\
-                                                                                                                                                                                                                                                                                                                                                                            \\
-\multicolumn{13}{l}{\textbf{Whole human genome - \texttt{minimap2}(n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                   \\
-HPC                                 & \textbf{0.935} & \textbf{\footnotesize{\;$+$0\%}}  & 1.85e-03          & \footnotesize{\;$+$ 0\%}           & \textbf{0.942} & \textbf{\footnotesize{\;$+$0\%}}  & 1.85e-03          & \footnotesize{\;$+$ 0\%}           & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 1.46e-02          & \footnotesize{\;$+$ 0\%}          \\
-raw                                 & 0.921          & \footnotesize{\;$-$1\%}           & 1.86e-03          & \footnotesize{\;$+$ 0\%}           & 0.927          & \footnotesize{\;$-$2\%}           & 1.86e-03          & \footnotesize{\;$+$ 1\%}           & 0.998          & \footnotesize{\;$-$0\%}          & \textbf{1.29e-02} & \textbf{\footnotesize{\;$-$11\%}} \\
-MSR$_{\text{E}}$                             & 0.926          & \footnotesize{\;$-$1\%}           & \textbf{6.92e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.936          & \footnotesize{\;$-$1\%}           & \textbf{1.17e-04} & \textbf{\footnotesize{\;$-$94\%}}  & 0.999          & \footnotesize{\;$-$0\%}          & 1.76e-02          & \footnotesize{\;$+$20\%}          \\
-MSR$_{\text{P}}$                             & 0.929          & \footnotesize{\;$-$1\%}           & 2.20e-04          & \footnotesize{\;$-$88\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 4.15e-04          & \footnotesize{\;$-$78\%}           & 0.999          & \footnotesize{\;$-$0\%}          & 1.55e-02          & \footnotesize{\;$+$ 6\%}          \\
-MSR$_{\text{F}}$                             & 0.930          & \footnotesize{\;$-$1\%}           & 1.09e-03          & \footnotesize{\;$-$41\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 1.29e-03          & \footnotesize{\;$-$30\%}           & \textbf{1.000} & \textbf{\footnotesize{\;$-$0\%}} & 1.51e-02          & \footnotesize{\;$+$ 4\%}          \\
-                                                                                                                                                                                                                                                                                                                                                                            \\
-\multicolumn{13}{l}{\textbf{Whole human genome - \texttt{winnowmap2}(n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                 \\
-HPC                                 & 0.894          & \footnotesize{\;$+$ 0\%}          & 1.43e-03          & \footnotesize{\;$+$ 0\%}           & 0.902          & \footnotesize{\;$+$0\%}           & 1.49e-03          & \footnotesize{\;$+$ 0\%}           & 0.988          & \footnotesize{\;$+$0\%}          & 1.92e-02          & \footnotesize{\;$+$ 0\%}          \\
-raw                                 & \textbf{0.932} & \textbf{\footnotesize{\;$+$ 4\%}} & 1.75e-03          & \footnotesize{\;$+$23\%}           & \textbf{0.937} & \textbf{\footnotesize{\;$+$4\%}}  & 1.79e-03          & \footnotesize{\;$+$20\%}           & \textbf{0.994} & \textbf{\footnotesize{\;$+$1\%}} & \textbf{1.43e-02} & \textbf{\footnotesize{\;$-$26\%}} \\
-MSR$_{\text{F}}$                             & 0.874          & \footnotesize{\;$-$ 2\%}          & 2.81e-04          & \footnotesize{\;$-$80\%}           & 0.886          & \footnotesize{\;$-$2\%}           & 3.82e-04          & \footnotesize{\;$-$74\%}           & 0.984          & \footnotesize{\;$-$0\%}          & 1.94e-02          & \footnotesize{\;$+$ 1\%}          \\
-MSR$_{\text{E}}$                             & 0.795          & \footnotesize{\;$-$11\%}          & \textbf{6.33e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.820          & \footnotesize{\;$-$9\%}           & \textbf{8.93e-05} & \textbf{\footnotesize{\;$-$94\%}}  & 0.971          & \footnotesize{\;$-$2\%}          & 2.08e-02          & \footnotesize{\;$+$ 9\%}          \\
-MSR$_{\text{P}}$                             & 0.826          & \footnotesize{\;$-$ 8\%}          & 8.68e-05          & \footnotesize{\;$-$94\%}           & 0.845          & \footnotesize{\;$-$6\%}           & 1.14e-04          & \footnotesize{\;$-$92\%}           & 0.975          & \footnotesize{\;$-$1\%}          & 2.11e-02          & \footnotesize{\;$+$10\%}          \\
-\\
-\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \texttt{minimap2}(n = \numprint{68811})}}                                                                                                                                                                                                                                                                                 \\
-HPC                                 & \textbf{0.619} & \textbf{\footnotesize{\;+ 0\%}}   & 3.29e-04          & \footnotesize{\;+ 0\%}             & 0.656          & \footnotesize{\;+ 0\%}            & 3.10e-04          & \footnotesize{\;+ 0\%}             & \textbf{0.998} & \textbf{\footnotesize{\;+0\%}}   & 7.79e-02          & \footnotesize{\;+ 0\%}            \\
-raw                                 & 0.514          & \footnotesize{\;-17\%}            & 1.98e-04          & \footnotesize{\;-40\%}             & 0.539          & \footnotesize{\;-18\%}            & 2.16e-04          & \footnotesize{\;-30\%}             & 0.981          & \footnotesize{\;-2\%}            & \textbf{6.69e-02} & \textbf{\footnotesize{\;-14\%}}   \\
-MSR$_{\text{F}}$                             & 0.601          & \footnotesize{\;- 3\%}            & 2.18e-04          & \footnotesize{\;-34\%}             & 0.640          & \footnotesize{\;- 2\%}            & 2.27e-04          & \footnotesize{\;-27\%}             & \textbf{0.998} & \textbf{\footnotesize{\;-0\%}}   & 8.15e-02          & \footnotesize{\;+ 5\%}            \\
-MSR$_{\text{E}}$                             & 0.618          & \footnotesize{\;- 0\%}            & 1.41e-04          & \footnotesize{\;-57\%}             & \textbf{0.658} & \textbf{\footnotesize{\;+ 0\%}}   & \textbf{1.55e-04} & \textbf{\footnotesize{\;-50\%}}    & 0.997          & \footnotesize{\;-0\%}            & 8.23e-02          & \footnotesize{\;+ 6\%}            \\
-MSR$_{\text{P}}$                             & 0.616          & \footnotesize{\;- 1\%}            & \textbf{1.18e-04} & \textbf{\footnotesize{\;-64\%}}    & 0.656          & \footnotesize{\;+ 0\%}            & 1.99e-04          & \footnotesize{\;-36\%}             & 0.997          & \footnotesize{\;-0\%}            & 8.31e-02          & \footnotesize{\;+ 7\%}            \\
-                                                                                                                                                                                                                                                                                                                                                                            \\
-\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \texttt{winnowmap2}(n = \numprint{68811})}}                                                                                                                                                                                                                                                                               \\
-HPC                                 & 0.525          & \footnotesize{\;+ 0\%}            & 1.24e-03          & \footnotesize{\;+ 0\%}             & 0.557          & \footnotesize{\;+ 0\%}            & 1.49e-03          & \footnotesize{\;+ 0\%}             & 0.950          & \footnotesize{\;+0\%}            & 1.19e-01          & \footnotesize{\;+ 0\%}            \\
-raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+23\%}}   & 1.26e-03          & \footnotesize{\;+ 1\%}             & \textbf{0.672} & \textbf{\footnotesize{\;+21\%}}   & 1.49e-03          & \footnotesize{\;+ 0\%}             & \textbf{0.968} & \textbf{\footnotesize{\;+2\%}}   & \textbf{8.09e-02} & \textbf{\footnotesize{\;-32\%}}   \\ 
-MSR$_{\text{F}}$                             & 0.482          & \footnotesize{\;- 8\%}            & \textbf{1.63e-03} & \textbf{\footnotesize{\;+31\%}}    & 0.516          & \footnotesize{\;- 7\%}            & 1.83e-03          & \footnotesize{\;+23\%}             & 0.940          & \footnotesize{\;-1\%}            & 1.21e-01          & \footnotesize{\;+ 2\%}            \\
-MSR$_{\text{E}}$                             & 0.366          & \footnotesize{\;-30\%}            & 6.35e-04          & \footnotesize{\;-49\%}             & 0.405          & \footnotesize{\;-27\%}            & \textbf{9.32e-04} & \textbf{\footnotesize{\;-37\%}}    & 0.911          & \footnotesize{\;-4\%}            & 1.38e-01          & \footnotesize{\;+17\%}            \\
-MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;-21\%}            & 9.45e-04          & \footnotesize{\;-24\%}             & 0.451          & \footnotesize{\;-19\%}            & 1.16e-03          & \footnotesize{\;-22\%}             & 0.920          & \footnotesize{\;-3\%}            & 1.39e-01          & \footnotesize{\;+17\%}            \\ \bottomrule
-\end{tabular}%
-}
-
-\hypertarget{fig:error-hists}{%
-\section{Origin of incorrectly mapped reads of high mapping quality on whole human genome.}\label{fig:error-hists}}
-
-\begin{center}\includegraphics[width=0.9\linewidth]{./figures/HPC-MSRs/ridgelines.new_selection} \end{center}
-
-\textbf{Histogram of the original simulated positions for the incorrectly
-mapped reads using \texttt{minimap2} at high mapping qualities across the whole
-human genome, for several transformation methods.}\\
-For a given chromosome, each row represents the number of simulated
-reads starting at that particular region. The dark gray rectangle
-represents the position of the centromere for that chromosome, obtained
-from annotations provided by the T2T consortium
-(\url{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}). Similarly for
-chromosomes 13, 14, 15, 21 and 22, a lighter gray rectangle represents
-the position of the ``stalk'' satellites also containing repetitive
-regions. For HPC and raw reads only alignments of mapping quality 60
-were considered. To provide a fair comparison, alignments with mapping
-qualities \(\geq 50\) were considered for MSRs E, F and P.
-
-\hypertarget{appendix:all-reads-hist}{%
-\section{Analyzing read origin on whole human genome}\label{appendix:all-reads-hist}}
-
-The following figures show the distribution of the origin of correctly
-and incorrectly mapped simulated reads (in teal and red respectively) on
-the different chromosomes of the whole human genome. The dark grey
-rectangle for each chromosome represents the centromere of that
-chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and
-22 correspond to satellites denoted as ``stalk'', another repetitive
-region. Results are reported for raw read mappings, as well as mapping
-of reads transformed with HPC, MSR\(_{\text{E}}\), MSR\(_{\text{P}}\) and
-MSR\(_{\text{F}}\)
-
-\begin{center}
-\includegraphics[width=0.6\textwidth]{./figures/HPC-MSRs/raw_distrib.centro.rstart.pdf}  
-\end{center}
-
-\textbf{Origin of correctly (teal) and incorrectly (red) mapped raw reads}
-
-\begin{center}
-\includegraphics[width=0.6\textwidth]{./figures/HPC-MSRs/hpc_distrib.centro.pdf}  
-\end{center}
-
-\textbf{Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with HPC}
-
-\begin{center}
-\includegraphics[width=0.6\textwidth]{./figures/HPC-MSRs/msr_e_distrib.centro.pdf}  
-\end{center}
-
-\textbf{Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR\(_{\text{E}}\)}
-
-\begin{center}
-\includegraphics[width=0.6\textwidth]{./figures/HPC-MSRs/msr_p_distrib.centro.pdf}  
-\end{center}
-
-\textbf{Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR\(_{\text{P}}\)}
-
-\begin{center}
-\includegraphics[width=0.6\textwidth]{./figures/HPC-MSRs/msr_f2_distrib.centro.pdf}  
-\end{center}
-
-\textbf{Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR\(_{\text{F}}\)}
-
-\hypertarget{performance-of-msrs-on-the-drosophila-genome}{%
-\section{Performance of MSRs on the Drosophila genome}\label{performance-of-msrs-on-the-drosophila-genome}}
-
-\begin{center}
-\includegraphics[width=\textwidth]{./figures/HPC-MSRs/drosophila.tweaked.pdf}  
-\end{center}
-
-Results of the \texttt{paftools\ mapeval} evaluation on reads simulated and
-mapped to a whole \emph{Drosophila melanogaster} genome. MSRs E, F and P are
-shown in different shades of blue to differentiate them from other MSRs.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]
 
 \backmatter
 \fancyhead[RO,LE]{REFERENCES}
