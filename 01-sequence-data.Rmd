@@ -1,37 +1,92 @@
 # What is Sequence data ?
 
 ## Biological sequences, a primer
-To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead. 
+
+To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead.
 
 ### What is DNA
-**D**esoxyribo**N**ucleic **A**cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.  
 
-DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, creating the phosphate-sugar backbone of single strand of DNA. The ordered sequence of these four types of nucleotides in a single strand encodes all the genetic information necessary to life. Nucleotides can form strong complementary bonds with each other, A with T and C with G. These bonds allows two strands of DNA to link up with each other, forming the double-helix structure of DNA as in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other.  
+**D**esoxyribo**N**ucleic **A**cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
+
+DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, creating the phosphate-sugar backbone of single strand of DNA. The ordered sequence of these four types of nucleotides in a single strand encodes all the genetic information necessary to life. Nucleotides can form strong complementary bonds with each other, A with T and C with G. These bonds allows two strands of DNA to link up with each other, forming the double-helix structure of DNA as in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other.
 
 ```{r}
-figDNACaption <- "**Double-helix** structure of DNA"
+figDNACaption <- "**Double-helix** structure of DNA. Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G)."
 ```
+
 ```{r, figDNA, fig.cap=figDNACaption, label="figDNA", eval=knitr::is_html_output()}
 knitr::include_graphics("./figures/Basic-Intro/DNA.png")
 ```
 
+```{=tex}
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Basic-Intro/DNA.pdf}
 \extcaption{Double-helix structure of DNA}{}
 \label{fig:figDNA}
 \end{figure}
+```
+### What are proteins ?
 
-### RNA and transcription
-### What are proteins ? 
+-   Proteins are the action molecules of living organisms
+
+-   They are obtained from DNA by translation where DNA -\> RNA -\> Protein
+
+-   Mutations in the DNA sequence can induce mutations in proteins:
+
+    -   illnesses
+
+    -   acquired traits
 
 ## Obtaining sequence data
-### Sanger sequenceing, a breakthrough
-### Next-generation sequencing
-### Long read sequencing, the next step in genomics
-### Protein sequencing
 
-## Sequencing errors, how to account for them ? 
-### NGS errors
+In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.
+
+### Sanger sequencing, a breakthrough
+
+The first true sequencing method was developed in 1977 [@sangerDNASequencingChainterminating1977]. Sanger *et al.* devised a simple method to read the sequence of nucleotides that make up a DNA sequence.
+
+1.  Clone sequence / amplify
+2.  Prepare 4 different sequencing environments with a majority of dNTP (ie regular nucleotides) and in each a single type of ddNTP (a terminator). ddNTP are marked
+3.  In each test tube add DNA polymerase, primers and denatures DNA fragments you want to sequence
+4.  Sequence is replicated until incorporation of ddNTP stopping reaction
+5.  Separate replicated fragments by electrophoresis (i.e shorter fragments go further), 1 ddNTP type in each lane
+6.  With marked you can see which nucleotide is present at a given position
+
+This allowed Sanger *et al.* to sequence the first whole $\varphi X174$ bacteriophage genome [@sangerNucleotideSequenceBacteriophage1977]. This method, although revolutionnary was costly and time consuming.
+
+The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis [@smithSynthesisOligonucleotidesContaining1985; @smithFluorescenceDetectionAutomated1986]. The fluorescence also allowed for automated reading ***(base-calling ?)*** with optical systems.
+
+***I need to speak of performance / throughput of these methods here.***
+
+### Next-generation sequencing
+
+Developed to lower cost and more throughput
+
+-   Massively parallel
+
+-   Long reads sequencing
+
+Quick summary on PacBio and ONT
+
+As a conclusion, mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
+
+## Sequencing errors, how to account for them ?
+
+### What kind of errors happen ?
+
+-   Substitutions
+
+-   Insertions
+
+-   deletions
+
 ### Long read errors
+
+Mainly indels, in certain regions of the genomes, particularily homopolymers.
+
 ### HPC
+
+-   HPC takes repeated runs of a single nucleotide and compresses them to a single occurence
+
+-   Empirically is has been shown to improve mapping and other applications

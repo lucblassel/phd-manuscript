@@ -1,37 +1,82 @@
 # Learning from alignments
+
 ## Alignments are a rich source of information
+
 ### Pairwise alns
-### MSA
+
+we can compare sequences and say if an organism, or in the case of mapping get an idea of where on the genome we are sequencing
+
+### MSA 
+
+Here we have richer
+
 #### Clustering
- - Phylogenetic trees
- - Evolutionary inference
+
+-   Phylogenetic trees
+
+-   Evolutionary inference
+
+-   Protein structure prediction
 
 #### ML
- - ...
 
-## Preprocessing the alignment
+-   Alphafold
+-   Predict location / function
+-   predict characteristics i.e. resistance, ...
+
+## Preprocessing the alignment for machine learning
+
+In order to do some learning we need to have the data in digestible form
 
 ### Embedding the alignment
+
+We need a way to represent, the position and the character in a sequence
+
 #### Physico-chemical embeddings
+
+AAIndex, or other embeddings, we add extra info, but we also make a string choice when deciding what features to add
+
 #### Generalistic categorical embeddings
-#### Interpretability
+
+One-Hot, etc..., easily interpretable...
+
+#### Learned embeddings
+
+language models, transformers, etc...
+
+Powerful but hard to interpret what the model actually learns. i.e. "black box"
 
 ### Choosing a learning target
+
+Of course one we have the data in digestible form we need an objective, a goal and once again a multitude
+
 #### Regression
+
+Either resistance level, IC50, ...
+
 #### Classification
+
+Resistant or not, compartiments in the cell, ...
+
 #### Task-based...
 
+end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+
 ## How to learn from ALNs
+
 ### Tests and statistical learning
-  - correlation
-  - Fisher
-  - Multiple testing ? 
-  
-### Taking interactions into account  
-  - Regressions w/ regularization
-  - RF
-  - ...
+
+-   correlation
+-   Fisher
+-   Multiple testing ?
+
+### Taking interactions into account
+
+-   Regressions w/ regularization
+-   RF
+-   ...
 
 ### Deep Learning
-  - Steiner et al...
-  - others
+
+-   Steiner et al...
+-   others

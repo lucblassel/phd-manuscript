@@ -1,39 +1,50 @@
 # HIV and DRMs
 
-## What are viruses
+## What are viruses ?
 
-### small presentation/definition of viruses
-### DNA/RNA viruses
+small presentation / definition of viruses
 
-## HIV
+DNA / RNA viruses
+
+## What is HIV ?
 
 ### Presentation of HIV
- - pandemic
- - history
- 
+
+-   pandemic
+-   history
+
 ### Replication cycle of HIV
-  - proteins ( + computational representation as a string of letters)
-  - full cycle
-  
-## DRMs
+
+-   proteins ( + computational representation as a string of letters)
+-   full cycle
+
+## Drug resistance in HIV
+
+When on ART, virus evolves under selectuve pressure and develops resitance -\> treatment failure.
+
 ### How does ART work
+
+target the proteins, RT, PR, IN (small history of ART)
+
 ### different types of resistance
- - NRTI
- - NNRTI
- - Entry inhibitors
- - PI
- - INSTI
- 
+
+-   NRTI
+-   NNRTI
+-   Entry inhibitors
+-   PI
+-   INSTI
+
 ### Consequences on global health
 
+Transmitted DRMS can be very serious , ... however fitness cost, ...
+
 ### Finding DRMS
- - Consortiums / HIVDB, UK-CHIC, ...
- - stat tests
-   - multiple testing 
-   - phylogenetic correlation
- - assays
- - novel approaches
-   - deep learning
-   - ...
- 
- 
+
+-   Consortiums / HIVDB, UK-CHIC, ...
+-   stat tests
+    -   multiple testing
+    -   phylogenetic correlation
+-   assays
+-   novel approaches
+    -   deep learning
+    -   ...
