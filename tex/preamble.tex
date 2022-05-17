@@ -11,6 +11,7 @@
 \usepackage{xspace}
 \usepackage{numprint}
 \usepackage{lipsum}
+\usepackage{uni-titlepage}
 
 \excludecomment{htmlonly}
 
@@ -27,3 +28,102 @@
 \setcapindent{0pt}
 
 % \usepackage{layout}
+\hypersetup {
+  colorlinks = true,
+}
+
+\newenvironment{tpage}[3]{%
+\KOMAoptions{twoside = false}
+  \begin{fullsizetitle}
+    
+    \vskip 2em
+    \hskip 2em \includegraphics[height=20mm]{figures/logos/SU.pdf}
+    \begin{center}
+    {%
+      
+        \usekomafont{title}{%
+            \Large THÈSE DE DOCTORAT \\
+            DE SORBONNE UNIVERSITÉ
+        }%
+      
+        \vskip 2em
+      
+        {%
+            \sffamily
+            \mdseries
+            \Large Spécialité: Bioinformatique
+        }%
+        
+        \vskip 0.1em
+        
+        {%
+            \sffamily
+            \mdseries
+            \large École doctorale n. 515: Complexité du vivant \\
+        }%
+        \vskip 2em
+        \usekomafont{subtitle}{
+        \mdseries
+        \Large
+        réalisée sous la direction de Rayan Chikhi
+        }
+        \vskip 0.5em
+        \usekomafont{subtitle}{%
+            \Large Sequence Bioinformatics\\
+            Institut Pasteur/CNRS – USR3756 
+        }%
+        
+        \vskip 2em
+        
+        {%
+            \sffamily
+            \mdseries
+            \large présentée par
+        }%
+        \vskip 0.5em
+        \usekomafont{author}{%
+            \huge
+            #2
+        }%
+
+        \vskip 3em
+      
+        \usekomafont{title}{%
+            \Huge #1
+        }%
+        
+        \vskip 3em
+        
+        \usekomafont{subtitle}{%
+            \mdseries
+            \huge Soutenue le #3
+        }%
+        
+        \vskip 0.5em
+        
+        \usekomafont{subtitle}{%
+            \mdseries
+            \Large
+            devant le jury composé de: \\
+            \vskip1em
+            \begin{tabular}{lllr}
+                TOPOLINO Alfredo & Professeur & Univ. Genève & Rapporteur \\
+                SE-YENG Fang     & Professeur & Univ. Shanghai & Rapporteur \\
+                CASTAFIORE Bianca & Cantatrice & Scala di Milano & Examinatrice \\
+                LAMPION Serafon & Assureur & & Invité \\
+                CHIKHI Rayan & PhD & Institue Pasteur & Directeur de Thèse
+            \end{tabular}
+        }%
+    
+    }%
+    
+    
+    \vskip 10em
+    
+    {%
+        \includegraphics[height=10mm]{figures/logos/CC-BY-NC-ND.pdf}
+    }%
+    \end{center}
+  \end{fullsizetitle}
+\KOMAoptions{twoside}
+}{}
