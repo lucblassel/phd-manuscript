@@ -5,8 +5,9 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: scrbook
 fontsize: 11
-classoptions:
-  - DIV: 12
+classoption:
+  # - DIV: 12
+  - twoside
 csl: "./plos-computational-biology.csl"
 biblio-style: authoryear
 bibliography: [references/HPC-MSRs.bib, references/HIV-DRMs.bib, references/Sequence-Data.bib]

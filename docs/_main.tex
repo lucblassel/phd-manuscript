@@ -4,7 +4,7 @@
 %
 \documentclass[
   11,
-]{scrbook}
+  twoside]{scrbook}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -77,7 +77,7 @@
 \usepackage{booktabs}
 \usepackage{comment}
 \usepackage{float}
-\usepackage[twoside]{geometry}
+%\usepackage[twoside]{geometry}
 \usepackage{fancyhdr}
 \usepackage{xspace}
 \usepackage{numprint}
@@ -225,7 +225,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-05-17}
+\date{2022-05-18}
 
 \begin{document}
 \maketitle
@@ -1881,7 +1881,7 @@ Thus, we can say that African sequences are highly resistant, with
 possibly different mutations and epistatic effects, compared to their UK
 counterparts.\\
 
-\begin{table}[!htt]
+\begin{table}
 \centering
 \begin{tabular}{@{}lll@{}ll@{}l@{}}
 \hline
@@ -2052,7 +2052,7 @@ tested 9 times, on radically different sets to ensure the
 interpretability and robustness of the results (see
 Table~\ref{tab:tableTrainTest}).
 
-\begin{table}[!htt]
+\begin{table}
 % \begin{adjustwidth}{-2.25in}{0in}
 \centering
 \begin{tabular}{@{}p{.25\linewidth}llll@{}}
@@ -2134,7 +2134,7 @@ resistance status should be an asset for many applications.
 \begin{figure}
 {
 \centering
-\includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig1.png}
+\includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig1.eps}
 }
 \extcaption{Classifier Performance on UK and African datasets.}{
 \textbf{NB}: naive Bayes, \textbf{LR}: Logistic Regression with Lasso regularization, \textbf{RF}: Random Forest, \textbf{FC}: Fisher Classifier, \textbf{RD}: Agnostic random probabilistic classifier (this classifier predicts, as the probability of a sample belonging to a class, the frequency of that class in the training data). \textbf{A)} Adjusted mutual information (higher is better) between ground truth and predictions by classifiers trained on dataset with all features (blue), without features corresponding to known RAMs (orange) and without RAM features and without sequences that have at least 1 known RAM (green). Hatching indicates the training set on which a classifier was trained and the testing set on which the performance was measured. The expected value for a null classifier is 0, and 1 for a perfect classifier and a * denotes that the p-value derived from mutual information is $\leq 0.05$. For example when trained with all features all the classifiers have a significative MI. Conversly when removing RAM features and RAM sequences none of the classifiers have a significative MI and only LR trained on the entirety of the UK dataset has an AMI $>10^{-3}$ \textbf{B)} Balanced Accuracy score, i.e. average of accuracies per-class (higher is better) for the same classifiers as in a). The red line at $y=0.5$ is the expected balanced accuracy for a null classifier that only predicts the majority class as well as a random uniform (i.e. 50/50) classifier. \textbf{C)} Brier score, which is the mean squared difference between the sample's experience to RTI and the predicted probability of being RTI experienced (lower is better), for the same classifiers as in \textbf{A)} and \textbf{B)}.}
@@ -2217,7 +2217,7 @@ Fig~\ref{fig:figClassificationPerf}.
 \begin{figure}
 {
 \centering
-\includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig2.png}
+\includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig2.eps}
 }
 \extcaption{Discrimination between sequences having at least one RAM, and those having none on sequences with training features corresponding to known RAMs removed.}{
 \textbf{NB}: naive Bayes, \textbf{LR}: Logistic Regression with Lasso regularization, \textbf{RF}: Random Forest, \textbf{FC}: Fisher Classifier. \textbf{A)} Adjusted mutual information (higher is better) for classifiers trained without features corresponding to known RAMs. The classifiers are either trained to discriminate RTI-naive from RTI-experienced sequences (blue), or sequences with at least one known RAM from sequences that have none (orange). Hatching and braced annotations indicate the training and testing sets resulting in a given performance measure. \textbf{B)} Balanced accuracy, i.e. average of accuracies per-class for the same classifiers as in \textbf{A)} (higher is better). The red line at $y=0.5$ is the expected value for a classifier only predicting the majority class as well as a random uniform (50/50) classifier.}
@@ -2307,7 +2307,7 @@ RRs with lower CI bounds greater than 4. The RRs computed on the African
 dataset (\ref{fig:s1}) tell a similar story albeit with smaller RR values due to a
 smaller number of occurrences of both new mutations and known RAMs.\\
 
-\begin{table}[!htt]
+\begin{table}
 % \begin{adjustwidth}{-2.25in}{0in}
 \centering
 \begin{tabular}{@{}lllllllll@{}}
@@ -2344,7 +2344,7 @@ smaller number of occurrences of both new mutations and known RAMs.\\
 \begin{figure}
 {
 \centering
-\includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig3.png}
+\includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig3.eps}
 }
 \extcaption{Relative risk of the new mutations with regards to known RAMs on the UK dataset}{
 (i.e. the prevalence of the new mutation in sequences with a given known RAM divided by the prevalence of the new mutation in sequences without this RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 0.1\% (=55) sequences. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of UK sequences. Only RRs with a lower CI boundary greater than 4 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
@@ -2414,7 +2414,7 @@ known RAMs shown in Table~\ref{tab:tabMutations}
 . When looking at the detailed RRs shown in
 Fig~\ref{fig:figUkRatios}, we
 observe that L228R presents high RR values with mainly NRTI RAMs, but
-also with NNRTI RAMs such as Y181C and L100I, and this is even more so
+also with NNRTI RAMs such as Y181C and L100I, and this is even more so h
 for RRs computed on the African dataset (\ref{fig:s1}). L228H is very similar in all
 regards to L228R, however its highest RRs are exclusively with NRTI
 RAMs.\\
