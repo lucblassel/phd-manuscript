@@ -749,19 +749,25 @@ tabtableSubsetCaption <- "**Performance of MSRs, HPC, and raw mappings across di
 For each reference sequence and mapper pair, we report the fraction of reads mapped (\"fraction\" columns), the `paftools mapeval` mapping error rate (\"error\" columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\\geq 50$."
 ```
 
-```{r, tabtableSubset, label="table-subset", eval=knitr::is_html_output(), tab.topcaption=FALSE}
-dt <- read_csv("tables/HIV-DRMs/Table1.csv", )  
+```{r, tabtableSubset, label="table-subset", eval=knitr::is_html_output(), tab.topcaption=FALSE, cache=FALSE}
+dt <- read_csv("tables/HPC-MSRs/Table1.csv")  
 
-ft <- flextable(dt) %>%
-  merge_at(i=1, j=1:2) %>%
-  merge_at(i=6, j=1:2) %>%
-  merge_at(i=7, j=1:2) %>%
-  merge_at(i=8, j=1:2) %>%
-  merge_at(i=9, j=1:2) %>%
-  set_table_properties(width=0.9, layout="autofit")
+labels <- data.frame(
+  col_keys = c("label","mapq","WGMf","WGMe","WWMf","WWMe","WDMf","WDMe"),
+  what = c("label", "mapq", "Whole human genome (minimap2)", "Whole human genome (minimap2)", "Whole human genome (winnowmap2)", "Whole human genome (winnowmap2)", "Whole Drosophila genome (minimap2)", "Whole Drosophila genome (minimap2)"),
+  measure = c("label", "mapq", "fraction", "error", "fraction", "error", "fraction", "error"),
+  stringsAsFactors = FALSE
+)
 
-ft <- set_caption(ft, caption=tabtableSubsetCaption, style="caption")
-set_header_labels(ft, `...1`="", `...2`="", `...4`="", `...6`="")
+flextable(dt) %>%
+  set_header_df(mapping=labels, key="col_keys") %>%
+  merge_h(part="header") %>%
+  merge_v(j="label", part="header") %>%
+  merge_v(j="mapq", part="header") %>%
+  ftExtra::colformat_md() %>%
+  set_table_properties(width=1, layout="autofit") %>%
+  theme_booktabs() %>%
+  set_caption(caption=tabtableSubsetCaption, style="caption")
 ```
 
 
