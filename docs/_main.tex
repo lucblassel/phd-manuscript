@@ -308,7 +308,7 @@ What are these terms ?
 \hypertarget{biological-sequences-a-primer}{%
 \section{Biological sequences, a primer}\label{biological-sequences-a-primer}}
 
-To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead.
+To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead to section \ref{obtaining-sequence-data}.
 
 \hypertarget{what-is-dna}{%
 \subsection{What is DNA ?}\label{what-is-dna}}
@@ -324,10 +324,13 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
 \label{fig:figDNA}
 \end{figure}
 
-The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the \(\varphi X174\) phage \autocite{sangerNucleotideSequenceBacteriophage1977}, 4.9MBp for \emph{Escherichia coli} \autocite{archer2011}, 3.1GBp for \emph{Homo sapiens} \autocite{nurk2022} all the way up to almost 150GBp for \emph{Paris japonica} a japanese mountain flowering plant \autocite{pellicer2010}. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity \autocite{macgregor2001}
+The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the \(\varphi X174\) phage \autocite{sangerNucleotideSequenceBacteriophage1977}, 4.9MBp for \emph{Escherichia coli} \autocite{archer2011}, 3.1GBp for \emph{Homo sapiens} \autocite{nurk2022} all the way up to almost 150GBp for \emph{Paris japonica,} a Japanese mountain flowering plant \autocite{pellicer2010}. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity \autocite{macgregor2001}
 
-\hypertarget{how-does-genetic-information-impact-the-organism-wip}{%
-\subsection{How does genetic information impact the organism ? (WIP)}\label{how-does-genetic-information-impact-the-organism-wip}}
+\hypertarget{from-information-to-action}{%
+\subsection{From Information to action}\label{from-information-to-action}}
+
+\hypertarget{proteins-their-structure-and-their-role}{%
+\subsubsection{Proteins, their structure and their role}\label{proteins-their-structure-and-their-role}}
 
 The double stranded DNA molecules present in the cells of a living organism contains only information; in order for the organism to live, this information must be read and transformed into actions. Most of the actions necessary for ``life'' are taken by large molecules called proteins, they have a very wide range of functions from catalyzing reactions in the cell to giving it it's structure \autocite{alberts2002}.
 
@@ -343,7 +346,7 @@ This sequence is directly dependent on the information contained in the DNA. Fir
 \item
   These codons are read sequentially along the RNA molecule
 \item
-  Each codon corresponds to an amino acid.
+  Each codon corresponds to an amino acid, according to the genetic code.
 \item
   The sequence of codons in RNA \emph{(and by extension DNA)} determines the sequence of amino acids.
 \item
@@ -352,16 +355,49 @@ This sequence is directly dependent on the information contained in the DNA. Fir
 
 With 4 types of nucleotides and codons grouping 3 nucleotides there are \(4^3=64\) possible codons. However, as stated above, proteins are only made up of 20 different amino acids, meaning that several different codons correspond to the same amino acid. This gives the translation process a certain robustness to errors that can occur when the DNA is copied to create a new cell, or when it is transformed into RNA prior to protein translation.
 
+\hypertarget{making-mistakes}{%
+\subsubsection{Making mistakes}\label{making-mistakes}}
+
+Going from DNA sequence to protein is quite a complicated process involving several steps, it is therefore possible for a mistake to happen. There are several mechanisms to avoid mistakes and alteration of the genetic information: the complementary nature of the 2 strands of DNA, the redundant nature of the genetic code as well as error correction mechanisms in the molecules that read and write DNA and RNA \emph{(polymerases)}. However, despite all that, some errors still make it through.
+
+\hypertarget{where-can-mistakes-happen}{%
+\paragraph{Where can mistakes happen ?}\label{where-can-mistakes-happen}}
+
+There are several sources of error that can alter the genetic information:
+
 \begin{itemize}
 \item
-  Mutations in the DNA sequence can induce mutations in proteins:
+  \textbf{DNA replication:} When a cell divides, or when an organism reproduces, the DNA molecule must be copied in order to transmit genetic information. This process has a very low rate of errors, with as low as 1 error for every billion to every hundred billions of base pairs replicated \autocite{fijalkowska2012}. This is due to the fact that the DNA polymerase (the protein that is responsible for copying DNA molecules), has a relatively error rate to start with, but mostly due to the error correcting mechanisms that are present in certain cells and bacteria \autocite{pray2008dna}.
+\item
+  \textbf{RNA transcription:} when DNA is transcribed into RNA
+\item
+  \textbf{Other mutagenic events:} UV rays, other stuff\ldots{}
+\end{itemize}
 
-  \begin{itemize}
-  \item
-    illnesses
-  \item
-    acquired traits
-  \end{itemize}
+\hypertarget{what-kind-of-errors-are-possible}{%
+\paragraph{What kind of errors are possible?}\label{what-kind-of-errors-are-possible}}
+
+\begin{itemize}
+\tightlist
+\item
+  substitution
+\end{itemize}
+
+\begin{itemize}
+\item
+  insertion
+\item
+  deletion
+\end{itemize}
+
+\hypertarget{what-effect-can-mutations-have}{%
+\paragraph{What effect can mutations have ?}\label{what-effect-can-mutations-have}}
+
+\begin{itemize}
+\item
+  illnesses
+\item
+  acquired traits
 \end{itemize}
 
 \hypertarget{obtaining-sequence-data}{%
@@ -416,17 +452,7 @@ As a conclusion, mention the work done on protein sequencing, but we usually get
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
 
-\hypertarget{what-kind-of-errors-happen}{%
-\subsection{What kind of errors happen ?}\label{what-kind-of-errors-happen}}
-
-\begin{itemize}
-\item
-  Substitutions
-\item
-  Insertions
-\item
-  deletions
-\end{itemize}
+general context of sequencing errors
 
 \hypertarget{long-read-errors}{%
 \subsection{Long read errors}\label{long-read-errors}}
@@ -443,8 +469,10 @@ Mainly indels, in certain regions of the genomes, particularily homopolymers.
   Empirically is has been shown to improve mapping and other applications
 \end{itemize}
 
-\hypertarget{biological-sequences-a-computational-view}{%
-\section{Biological sequences, a computational view}\label{biological-sequences-a-computational-view}}
+\hypertarget{biological-sequences-a-computational-view-here}{%
+\section{Biological sequences, a computational view (here ?)}\label{biological-sequences-a-computational-view-here}}
+
+Essentially a text file. Just a long succession of letters, so we can apply text algorithmics to it.
 
 \hypertarget{aligning-sequence-data}{%
 \chapter{Aligning sequence data}\label{aligning-sequence-data}}
