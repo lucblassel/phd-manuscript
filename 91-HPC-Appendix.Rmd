@@ -12,19 +12,38 @@ assembled using a centromere-tailored pipeline
 added to this assembly. The resulting sequence is the one we refer to as
 the "Centromeric sequence".
 
-## MSR performance comparison {#tab:mapperComparison}
+## MSR performance comparison
 
-Comparing performance of MSRs on the whole human genome, whole
-*Drosophila melanogaster* genome, repeated regions of the whole human
-genome and synthetic centromeric sequence. Results using
-`minimap2`[@liMinimap2PairwiseAlignment2018] and
-`winnowmap2`[@jainWeightedMinimizerSampling2020]. The number of
-simulated reads for each reference sequence is given in parentheses and
-called $n$. Results are reported for mapq thresholds of 60, 50 and 0.
-The best performance for each category is highlighted in bold. The
-percentage difference are computed w.r.t HPC at each given threshold.
+```{r, mapperComparisonCaption}
+mapperComparisonCaption <- "Comparing performance of MSRs on the whole human genome, whole *Drosophila melanogaster* genome, repeated regions of the whole human genome and synthetic centromeric sequence. Results using  `minimap2` [@liMinimap2PairwiseAlignment2018] and winnowmap2  [@jainWeightedMinimizerSampling2020]. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold."
+```
 
-\resizebox{\textwidth}{!}{%
+```{r, mapperComparison, label="mapperComparison", eval=knitr::is_html_output(), tab.topcaption=FALSE, cache=FALSE}
+dt <- read_csv("tables/HPC-MSRs/Table1.csv")  
+
+labels <- data.frame(
+  col_keys = c("label","mapq","WGMf","WGMe","WWMf","WWMe","WDMf","WDMe"),
+  what = c("label", "mapq", "Whole human genome (minimap2)", "Whole human genome (minimap2)", "Whole human genome (winnowmap2)", "Whole human genome (winnowmap2)", "Whole Drosophila genome (minimap2)", "Whole Drosophila genome (minimap2)"),
+  measure = c("label", "mapq", "fraction", "error", "fraction", "error", "fraction", "error"),
+  stringsAsFactors = FALSE
+)
+
+flextable(dt) %>%
+  set_header_df(mapping=labels, key="col_keys") %>%
+  merge_h(part="header") %>%
+  merge_v(j="label", part="header") %>%
+  merge_v(j="mapq", part="header") %>%
+  ftExtra::colformat_md() %>%
+  set_table_properties(width=1, layout="autofit") %>%
+  theme_booktabs() %>%
+  set_caption(caption=mapperComparisonCaption, style="caption")
+```
+
+\begin{table}[H]
+\caption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence. Results using  \minimap \autocite{liMinimap2PairwiseAlignment2018} and \winnowmap  \autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
+\label{tab:mapperComparison}
+{\centering
+\resizebox{0.93\textwidth}{!}{%
 \begin{tabular}{@{}lr@{}lr@{}lr@{}lr@{}lr@{}lr@{}l@{}}
 \toprule
                                     & \multicolumn{4}{l}{mapq=60}                                                                                 & \multicolumn{4}{l}{mapq$\geq50$}                                                                            & \multicolumn{4}{l}{any mapq}                                                                              \\ \cmidrule(l){2-5}\cmidrule(l){6-9}\cmidrule(l){6-9}\cmidrule(l){10-13}
@@ -34,7 +53,7 @@ mapping friendly sequence reduction & \multicolumn{2}{l}{fraction}              
 HPC                                 & 0.957          & \footnotesize{\;$+$0\%}           & 2.27e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.963} & \textbf{\footnotesize{\;$+$0\%}}  & 2.34e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.48e-02          & \footnotesize{\;$+$ 0\%}          \\
 raw                                 & \textbf{0.958} & \textbf{\footnotesize{\;$+$0\%}}  & 2.27e-03          & \footnotesize{\;$-$  0\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 2.34e-03          & \footnotesize{\;$+$  0\%}          & 0.997          & \footnotesize{\;$-$0\%}          & \textbf{1.17e-02} & \textbf{\footnotesize{\;$-$21\%}} \\
 \msr{F}                             & 0.952          & \footnotesize{\;$-$1\%}           & 1.18e-03          & \footnotesize{\;$-$ 48\%}          & 0.960          & \footnotesize{\;$-$0\%}           & 1.37e-03          & \footnotesize{\;$-$ 41\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.36e-02          & \footnotesize{\;$-$ 8\%}          \\
-\msr{E}                             & 0.946          & \footnotesize{\;$-$1\%}           & \textbf{0.00}     & \textbf{\footnotesize{\;$-$100\%}} & 0.954          & \footnotesize{\;$-$1\%}           & \textbf{0.00}     & \textbf{\footnotesize{\;$-$100\%}} & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.53e-02          & \footnotesize{\;$+$ 3\%}          \\
+\msr{E}                             & 0.946          & \footnotesize{\;$-$1\%}           & \textbf{0}     & \textbf{\footnotesize{\;$-$100\%}} & 0.954          & \footnotesize{\;$-$1\%}           & \textbf{0}     & \textbf{\footnotesize{\;$-$100\%}} & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.53e-02          & \footnotesize{\;$+$ 3\%}          \\
 \msr{P}                             & 0.950          & \footnotesize{\;$-$1\%}           & 4.90e-04          & \footnotesize{\;$-$ 78\%}          & 0.957          & \footnotesize{\;$-$1\%}           & 8.11e-04          & \footnotesize{\;$-$ 65\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$-$0\%}} & 1.39e-02          & \footnotesize{\;$-$ 6\%}          \\
                                                                                                                                                                                                                                                                                                                                                                             \\
 \multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \winnowmap (n = \numprint{25764})}}                                                                                                                                                                                                                                                                                \\
@@ -87,6 +106,8 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \msr{P}                             & 0.415          & \footnotesize{\;-21\%}            & 9.45e-04          & \footnotesize{\;-24\%}             & 0.451          & \footnotesize{\;-19\%}            & 1.16e-03          & \footnotesize{\;-22\%}             & 0.920          & \footnotesize{\;-3\%}            & 1.39e-01          & \footnotesize{\;+17\%}            \\ \bottomrule
 \end{tabular}%
 }
+}
+\end{table}
 
 ## Origin of incorrectly mapped reads of high mapping quality on whole human genome. 
 
