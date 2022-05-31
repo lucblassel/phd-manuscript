@@ -93,7 +93,7 @@ the classical scheme where primary DRMs confer resistance and associated
 mutations modulate the strength of the resistance and/or compensate for
 the fitness cost induced by DRMs.
 
-## Introduction {#introduction}
+## Introduction {#hiv-introduction}
 
 Drug resistance mutations (DRMs) arise in Human Immunodeficiency Virus-1
 (HIV-1) due to antiretroviral treatment pressure, leading to viral
@@ -545,7 +545,7 @@ be penalized if they are often wrong. The Brier approach thus assigns
 better scores to methods that recognize their ignorance than to methods
 producing random predictions.
 
-## Results {#results}
+## Results {#hiv-results}
 
 ### Classifier performance & interpretation {#classifier-performance-interpretation}
 

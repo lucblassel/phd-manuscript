@@ -47,3 +47,5 @@ guide tree, clustering of sequences then refine alignment. Good heuristic but wi
 #### HMMs / index alignment / pairwise
 
 Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. *(point to appendinx with covid align ?)*
+
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

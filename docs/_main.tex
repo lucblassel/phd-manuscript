@@ -381,9 +381,6 @@ There are several sources of error that can alter the genetic information:
 \tightlist
 \item
   substitution
-\end{itemize}
-
-\begin{itemize}
 \item
   insertion
 \item
@@ -474,6 +471,8 @@ Mainly indels, in certain regions of the genomes, particularily homopolymers.
 
 Essentially a text file. Just a long succession of letters, so we can apply text algorithmics to it.
 
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+
 \hypertarget{aligning-sequence-data}{%
 \chapter{Aligning sequence data}\label{aligning-sequence-data}}
 
@@ -538,6 +537,8 @@ guide tree, clustering of sequences then refine alignment. Good heuristic but wi
 
 Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. \emph{(point to appendinx with covid align ?)}
 
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+
 \hypertarget{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}{%
 \chapter{Mapping-friendly sequence reductions: going beyond homopolymer compression}\label{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}}
 
@@ -598,8 +599,8 @@ reads using these reductions and then apply an alignment algorithm. We
 demonstrate that some mapping-friendly sequence reductions lead to improved
 mapping accuracy, outperforming homopolymer compression.
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\hypertarget{hpc-introduction}{%
+\section{Introduction}\label{hpc-introduction}}
 
 Sequencing errors continue to pose algorithmic challenges to methods working
 with read data. In short-read technologies, these tend to be substitution
@@ -671,8 +672,8 @@ neither HPC nor our mapping-friendly sequence reductions perform better than
 mapping raw reads on centromeres, hinting at the importance of preserving all
 sequence information in repeated regions.
 
-\hypertarget{methods}{%
-\section{Methods}\label{methods}}
+\hypertarget{hpc-methods}{%
+\section{Methods}\label{hpc-methods}}
 
 \hypertarget{sec:msr-def}{%
 \subsection{Streaming sequence reductions}\label{sec:msr-def}}
@@ -1115,8 +1116,8 @@ at \(t=0\) is the error rate of the whole read set, while the error rate at \(t=
 is the error rate of only the most confident read mappings. Observe that the
 error rate decreases as \(t\) increases.
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\hypertarget{hpc-results}{%
+\section{Results}\label{hpc-results}}
 
 \hypertarget{selection-of-mapping-friendly-sequence-reductions}{%
 \subsection{Selection of mapping-friendly sequence reductions}\label{selection-of-mapping-friendly-sequence-reductions}}
@@ -1344,8 +1345,8 @@ repetitive regions which are a challenge for mapping. For chromosomes 1, 9 and
 16 however the majority of incorrectly mapped reads originate in repeated
 regions just after the centromere.
 
-\hypertarget{discussion}{%
-\section{Discussion}\label{discussion}}
+\hypertarget{hpc-discussion}{%
+\section{Discussion}\label{hpc-discussion}}
 
 We have introduced the concept of mapping-friendly sequence reduction and shown
 that it improves the accuracy of the popular mapping tool \texttt{minimap2} on
@@ -1542,6 +1543,8 @@ end-to-end training like aligning sequences, this is harder because it requires 
   others
 \end{itemize}
 
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+
 \hypertarget{hiv-and-drms}{%
 \chapter{HIV and DRMs}\label{hiv-and-drms}}
 
@@ -1640,6 +1643,8 @@ Transmitted DRMS can be very serious , \ldots{} however fitness cost, \ldots{}
   \end{itemize}
 \end{itemize}
 
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+
 \hypertarget{HIV-paper}{%
 \chapter{Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV}\label{HIV-paper}}
 
@@ -1737,8 +1742,8 @@ the classical scheme where primary DRMs confer resistance and associated
 mutations modulate the strength of the resistance and/or compensate for
 the fitness cost induced by DRMs.
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\hypertarget{hiv-introduction}{%
+\section{Introduction}\label{hiv-introduction}}
 
 Drug resistance mutations (DRMs) arise in Human Immunodeficiency Virus-1
 (HIV-1) due to antiretroviral treatment pressure, leading to viral
@@ -2160,8 +2165,8 @@ be penalized if they are often wrong. The Brier approach thus assigns
 better scores to methods that recognize their ignorance than to methods
 producing random predictions.
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\hypertarget{hiv-results}{%
+\section{Results}\label{hiv-results}}
 
 \hypertarget{classifier-performance-interpretation}{%
 \subsection{Classifier performance \& interpretation}\label{classifier-performance-interpretation}}
@@ -2710,8 +2715,8 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 \hypertarget{dedal}{%
 \subsection{DEDAL}\label{dedal}}
 
-\hypertarget{predictind-an-alignment}{%
-\subsection{predictind an alignment}\label{predictind-an-alignment}}
+\hypertarget{predicting-an-alignment}{%
+\subsection{predicting an alignment}\label{predicting-an-alignment}}
 
 \hypertarget{what-else-could-we-learn}{%
 \section{What else could we learn ?}\label{what-else-could-we-learn}}
@@ -2721,6 +2726,10 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 
 \hypertarget{learn-pre-processing-functions}{%
 \subsection{Learn pre-processing functions}\label{learn-pre-processing-functions}}
+
+i.e.~either connections in MSR graph or sequence 2 sequence models
+
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \appendix
 

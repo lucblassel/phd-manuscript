@@ -6,10 +6,14 @@
 
 ### DEDAL
 
-### predictind an alignment
+### predicting an alignment
 
 ## What else could we learn ?
 
 ### Learn to predict seeds or starting positions
 
 ### Learn pre-processing functions
+
+i.e. either connections in MSR graph or sequence 2 sequence models
+
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

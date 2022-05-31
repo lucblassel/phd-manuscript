@@ -50,7 +50,7 @@ With 4 types of nucleotides and codons grouping 3 nucleotides there are $4^3=64$
 
 Going from DNA sequence to protein is quite a complicated process involving several steps, it is therefore possible for a mistake to happen. There are several mechanisms to avoid mistakes and alteration of the genetic information: the complementary nature of the 2 strands of DNA, the redundant nature of the genetic code as well as error correction mechanisms in the molecules that read and write DNA and RNA *(polymerases)*. However, despite all that, some errors still make it through.
 
-##### Where can mistakes happen ? 
+##### Where can mistakes happen ?
 
 There are several sources of error that can alter the genetic information:
 
@@ -60,18 +60,13 @@ There are several sources of error that can alter the genetic information:
 
 -   **Other mutagenic events:** UV rays, other stuff...
 
-##### What kind of errors are possible? 
+##### What kind of errors are possible?
 
 -   substitution
-
-```{=html}
-<!-- -->
-```
 -   insertion
-
 -   deletion
 
-##### What effect can mutations have ? 
+##### What effect can mutations have ?
 
 -   illnesses
 
@@ -127,3 +122,5 @@ Mainly indels, in certain regions of the genomes, particularily homopolymers.
 ## Biological sequences, a computational view (here ?)
 
 Essentially a text file. Just a long succession of letters, so we can apply text algorithmics to it.
+
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

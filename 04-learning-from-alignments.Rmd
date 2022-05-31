@@ -6,7 +6,7 @@
 
 we can compare sequences and say if an organism, or in the case of mapping get an idea of where on the genome we are sequencing
 
-### MSA 
+### MSA
 
 Here we have richer
 
@@ -80,3 +80,5 @@ end-to-end training like aligning sequences, this is harder because it requires 
 
 -   Steiner et al...
 -   others
+
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

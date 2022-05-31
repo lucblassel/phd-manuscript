@@ -65,7 +65,7 @@ reads using these reductions and then apply an alignment algorithm. We
 demonstrate that some mapping-friendly sequence reductions lead to improved
 mapping accuracy, outperforming homopolymer compression.
 
-## Introduction
+## Introduction {#hpc-introduction}
 
 Sequencing errors continue to pose algorithmic challenges to methods working
 with read data. In short-read technologies, these tend to be substitution
@@ -137,7 +137,7 @@ neither HPC nor our mapping-friendly sequence reductions perform better than
 mapping raw reads on centromeres, hinting at the importance of preserving all
 sequence information in repeated regions.
 
-## Methods
+## Methods {#hpc-methods}
 
 ### Streaming sequence reductions {#sec:msr-def}
 
@@ -549,7 +549,7 @@ at $t=0$ is the error rate of the whole read set, while the error rate at $t=60$
 is the error rate of only the most confident read mappings. Observe that the
 error rate decreases as $t$ increases.
 
-## Results
+## Results {#hpc-results}
 
 ### Selection of mapping-friendly sequence reductions
 
@@ -856,7 +856,7 @@ repetitive regions which are a challenge for mapping. For chromosomes 1, 9 and
 16 however the majority of incorrectly mapped reads originate in repeated
 regions just after the centromere.
 
-## Discussion
+## Discussion {#hpc-discussion}
 
 We have introduced the concept of mapping-friendly sequence reduction and shown
 that it improves the accuracy of the popular mapping tool `minimap2` on
