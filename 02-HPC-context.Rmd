@@ -16,7 +16,7 @@ gap open, gap extend, etc...
 
 mismatch depends on models, BLOSUM, PAML, ...
 
-### Why align ? 
+### Why align ?
 
 -   pairwise alignment to compare two similar sequences
 

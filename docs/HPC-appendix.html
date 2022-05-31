@@ -30,7 +30,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-05-18" />
+<meta name="date" content="2022-05-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -115,8 +115,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-primer"><i class="fa fa-check"></i><b>1.1</b> Biological sequences, a primer<span></span></a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#what-is-dna"><i class="fa fa-check"></i><b>1.1.1</b> What is DNA<span></span></a></li>
-<li class="chapter" data-level="1.1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#what-are-proteins"><i class="fa fa-check"></i><b>1.1.2</b> What are proteins ?<span></span></a></li>
+<li class="chapter" data-level="1.1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#what-is-dna"><i class="fa fa-check"></i><b>1.1.1</b> What is DNA ?<span></span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#from-information-to-action"><i class="fa fa-check"></i><b>1.1.2</b> From Information to action<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#obtaining-sequence-data"><i class="fa fa-check"></i><b>1.2</b> Obtaining sequence data<span></span></a>
 <ul>
@@ -129,6 +129,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.3.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#long-read-errors"><i class="fa fa-check"></i><b>1.3.2</b> Long read errors<span></span></a></li>
 <li class="chapter" data-level="1.3.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#hpc"><i class="fa fa-check"></i><b>1.3.3</b> HPC<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="1.4" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-computational-view-here"><i class="fa fa-check"></i><b>1.4</b> Biological sequences, a computational view (here ?)<span></span></a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html"><i class="fa fa-check"></i><b>2</b> Aligning sequence data<span></span></a>
 <ul>
@@ -249,7 +250,7 @@ div.csl-indent {
 <li class="chapter" data-level="A" data-path="HPC-appendix.html"><a href="HPC-appendix.html"><i class="fa fa-check"></i><b>A</b> Supporting Information for “Mapping-friendly sequence reductions: going beyond homopolymer compression”<span></span></a>
 <ul>
 <li class="chapter" data-level="A.1" data-path="HPC-appendix.html"><a href="HPC-appendix.html#appendix:tandemtools"><i class="fa fa-check"></i><b>A.1</b> “TandemTools” dataset generation<span></span></a></li>
-<li class="chapter" data-level="A.2" data-path="HPC-appendix.html"><a href="HPC-appendix.html#tab:mapperComparison"><i class="fa fa-check"></i><b>A.2</b> MSR performance comparison<span></span></a></li>
+<li class="chapter" data-level="A.2" data-path="HPC-appendix.html"><a href="HPC-appendix.html#msr-performance-comparison"><i class="fa fa-check"></i><b>A.2</b> MSR performance comparison<span></span></a></li>
 <li class="chapter" data-level="A.3" data-path="HPC-appendix.html"><a href="HPC-appendix.html#origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome."><i class="fa fa-check"></i><b>A.3</b> Origin of incorrectly mapped reads of high mapping quality on whole human genome.<span></span></a></li>
 <li class="chapter" data-level="A.4" data-path="HPC-appendix.html"><a href="HPC-appendix.html#analyzing-read-origin-on-whole-human-genome"><i class="fa fa-check"></i><b>A.4</b> Analyzing read origin on whole human genome<span></span></a></li>
 <li class="chapter" data-level="A.5" data-path="HPC-appendix.html"><a href="HPC-appendix.html#performance-of-msrs-on-the-drosophila-genome"><i class="fa fa-check"></i><b>A.5</b> Performance of MSRs on the Drosophila genome<span></span></a></li>
@@ -298,23 +299,69 @@ div.csl-indent {
 <p>This dataset was obtained by taking a human X chromosome HOR sequence,
 concatenating it 500 times with added mutations in order to obtain an
 approximately 1 Mbp long sequence. Then 1200 reads were simulated from
-the sequence using <code>nanosim</code> <span class="citation">[<a href="#ref-yangNanoSimNanoporeSequence2017" role="doc-biblioref">20</a>]</span> and
+the sequence using <code>nanosim</code> <span class="citation">[<a href="#ref-yangNanoSimNanoporeSequence2017" role="doc-biblioref">29</a>]</span> and
 assembled using a centromere-tailored pipeline
-<span class="citation">[<a href="#ref-bzikadzeAutomatedAssemblyCentromeres2020" role="doc-biblioref">72</a>]</span>. A 10kbp deletion was then
+<span class="citation">[<a href="#ref-bzikadzeAutomatedAssemblyCentromeres2020" role="doc-biblioref">81</a>]</span>. A 10kbp deletion was then
 added to this assembly. The resulting sequence is the one we refer to as
 the “Centromeric sequence”.</p>
 </div>
-<div id="tab:mapperComparison" class="section level2 hasAnchor" number="8.2">
-<h2><span class="header-section-number">A.2</span> MSR performance comparison<a href="HPC-appendix.html#tab:mapperComparison" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Comparing performance of MSRs on the whole human genome, whole
-<em>Drosophila melanogaster</em> genome, repeated regions of the whole human
-genome and synthetic centromeric sequence. Results using
-<code>minimap2</code><span class="citation">[<a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">7</a>]</span> and
-<code>winnowmap2</code><span class="citation">[<a href="#ref-jainWeightedMinimizerSampling2020" role="doc-biblioref">21</a>]</span>. The number of
-simulated reads for each reference sequence is given in parentheses and
-called <span class="math inline">\(n\)</span>. Results are reported for mapq thresholds of 60, 50 and 0.
-The best performance for each category is highlighted in bold. The
-percentage difference are computed w.r.t HPC at each given threshold.</p>
+<div id="msr-performance-comparison" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">A.2</span> MSR performance comparison<a href="HPC-appendix.html#msr-performance-comparison" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<template id="0df4f61b-2855-4ae2-98df-c9d37c4df837"><style>
+.tabwid table{
+  border-spacing:0px !important;
+  border-collapse:collapse;
+  line-height:1;
+  margin-left:auto;
+  margin-right:auto;
+  border-width: 0;
+  display: table;
+  margin-top: 1.275em;
+  margin-bottom: 1.275em;
+  border-color: transparent;
+}
+.tabwid_left table{
+  margin-left:0;
+}
+.tabwid_right table{
+  margin-right:0;
+}
+.tabwid td {
+    padding: 0;
+}
+.tabwid a {
+  text-decoration: none;
+}
+.tabwid thead {
+    background-color: transparent;
+}
+.tabwid tfoot {
+    background-color: transparent;
+}
+.tabwid table tr {
+background-color: transparent;
+}
+</style><div class="tabwid"><style>.cl-9faa01a2{table-layout:auto;width:100%;}.cl-9fa34c22{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-9fa34c2c{font-family:'Helvetica';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-9fa34c36{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-9fa35a0a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-9fa35a14{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-9fa3a334{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a348{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a349{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a352{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a353{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a35c{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a35d{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a35e{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-9fa3a366{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-9faa01a2'><thead><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-9fa3a353"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">label</span></p></td><td  rowspan="2"class="cl-9fa3a35d"><p class="cl-9fa35a14"><span class="cl-9fa34c22">mapq</span></p></td><td  colspan="2"class="cl-9fa3a35c"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">Whole human genome (minimap2)</span></p></td><td  colspan="2"class="cl-9fa3a35c"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">Whole human genome (winnowmap2)</span></p></td><td  colspan="2"class="cl-9fa3a35c"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">Whole Drosophila genome (minimap2)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9fa3a35e"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">fraction</span></p></td><td class="cl-9fa3a35e"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">error</span></p></td><td class="cl-9fa3a35e"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">fraction</span></p></td><td class="cl-9fa3a35e"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">error</span></p></td><td class="cl-9fa3a35e"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">fraction</span></p></td><td class="cl-9fa3a35e"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">error</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">HPC</span></p></td><td class="cl-9fa3a348"><p class="cl-9fa35a14"><span class="cl-9fa34c22">60</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.935</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">1.85e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.894</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">1.43e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.957</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">2.27e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">raw</span></p></td><td class="cl-9fa3a348"><p class="cl-9fa35a14"><span class="cl-9fa34c22">60</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.921</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-1%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">1.86e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c36">0.932</span><span class="cl-9fa34c36"> </span><span class="cl-9fa34c36">+4%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">1.75e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+23%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.958</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">2.27e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-0%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">MSR</span><span class="cl-9fa34c2c">F</span></p></td><td class="cl-9fa3a348"><p class="cl-9fa35a14"><span class="cl-9fa34c22">50</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c36">0.938</span><span class="cl-9fa34c36"> </span><span class="cl-9fa34c36">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">1.29e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-30%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.886</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-1%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">3.82e-04</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-73%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c36">0.960</span><span class="cl-9fa34c36"> </span><span class="cl-9fa34c36">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">1.37e-03</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-39%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">MSR</span><span class="cl-9fa34c2c">E</span></p></td><td class="cl-9fa3a348"><p class="cl-9fa35a14"><span class="cl-9fa34c22">50</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.936</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c36">1.17e-04</span><span class="cl-9fa34c36"> </span><span class="cl-9fa34c36">-94%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.820</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-8%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c36">8.93e-05</span><span class="cl-9fa34c36"> </span><span class="cl-9fa34c36">-94%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.954</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-0%</span></p></td><td class="cl-9fa3a334"><p class="cl-9fa35a0a"><span class="cl-9fa34c36">0</span><span class="cl-9fa34c36"> </span><span class="cl-9fa34c36">-100%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-9fa3a349"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">MSR</span><span class="cl-9fa34c2c">P</span></p></td><td class="cl-9fa3a352"><p class="cl-9fa35a14"><span class="cl-9fa34c22">50</span></p></td><td class="cl-9fa3a349"><p class="cl-9fa35a0a"><span class="cl-9fa34c36">0.938</span><span class="cl-9fa34c36"> </span><span class="cl-9fa34c36">0%</span></p></td><td class="cl-9fa3a349"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">4.15e-04</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-78%</span></p></td><td class="cl-9fa3a349"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.845</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-6%</span></p></td><td class="cl-9fa3a349"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">1.14e-04</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-92%</span></p></td><td class="cl-9fa3a349"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">0.957</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">+0%</span></p></td><td class="cl-9fa3a349"><p class="cl-9fa35a0a"><span class="cl-9fa34c22">8.11e-04</span><span class="cl-9fa34c22"> </span><span class="cl-9fa34c22">-64%</span></p></td></tr></tbody>
+<caption class="caption">
+<p><span id="tab:mapperComparison">Table A.1: </span>Comparing performance of MSRs on the whole human genome, whole <em>Drosophila melanogaster</em> genome, repeated regions of the whole human genome and synthetic centromeric sequence. Results using <code>minimap2</code> <span class="citation">[<a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">16</a>]</span> and winnowmap2 <span class="citation">[<a href="#ref-jainWeightedMinimizerSampling2020" role="doc-biblioref">30</a>]</span>. The number of simulated reads for each reference sequence is given in parentheses and called <span class="math inline">\(n\)</span>. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.</p>
+</caption>
+</table></div></template>
+<div class="flextable-shadow-host" id="ae929e3c-b7ff-4dc4-a281-d3989be7c159"></div>
+<script>
+var dest = document.getElementById("ae929e3c-b7ff-4dc4-a281-d3989be7c159");
+var template = document.getElementById("0df4f61b-2855-4ae2-98df-c9d37c4df837");
+var caption = template.content.querySelector("caption");
+if(caption) {
+  caption.style.cssText = "display:block;text-align:center;";
+  var newcapt = document.createElement("p");
+  newcapt.appendChild(caption)
+  dest.parentNode.insertBefore(newcapt, dest.nextSibling);
+}
+var fantome = dest.attachShadow({mode: 'open'});
+var templateContent = template.content;
+fantome.appendChild(templateContent);
+</script>
+
 </div>
 <div id="origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome." class="section level2 hasAnchor" number="8.3">
 <h2><span class="header-section-number">A.3</span> Origin of incorrectly mapped reads of high mapping quality on whole human genome.<a href="HPC-appendix.html#origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome." class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -472,16 +519,16 @@ and mapped with <code>minimap2</code>. The <em>E. coli</em> genome was obtained 
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-liMinimap2PairwiseAlignment2018" class="csl-entry">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Li H. Minimap2: Pairwise alignment for nucleotide sequences. Bioinformatics. 2018;34: 3094–3100. doi:<a href="https://doi.org/10.1093/bioinformatics/bty191">10.1093/bioinformatics/bty191</a></div>
+<div class="csl-left-margin">16. </div><div class="csl-right-inline">Li H. Minimap2: Pairwise alignment for nucleotide sequences. Bioinformatics. 2018;34: 3094–3100. doi:<a href="https://doi.org/10.1093/bioinformatics/bty191">10.1093/bioinformatics/bty191</a></div>
 </div>
 <div id="ref-yangNanoSimNanoporeSequence2017" class="csl-entry">
-<div class="csl-left-margin">20. </div><div class="csl-right-inline">Yang C, Chu J, Warren RL, Birol I. <span>NanoSim</span>: Nanopore sequence read simulator based on statistical characterization. GigaScience. 2017;6. doi:<a href="https://doi.org/10.1093/gigascience/gix010">10.1093/gigascience/gix010</a></div>
+<div class="csl-left-margin">29. </div><div class="csl-right-inline">Yang C, Chu J, Warren RL, Birol I. <span>NanoSim</span>: Nanopore sequence read simulator based on statistical characterization. GigaScience. 2017;6. doi:<a href="https://doi.org/10.1093/gigascience/gix010">10.1093/gigascience/gix010</a></div>
 </div>
 <div id="ref-jainWeightedMinimizerSampling2020" class="csl-entry">
-<div class="csl-left-margin">21. </div><div class="csl-right-inline">Jain C, Rhie A, Zhang H, Chu C, Walenz BP, Koren S, et al. Weighted minimizer sampling improves long read mapping. Bioinformatics. 2020;36: i111–i118. doi:<a href="https://doi.org/10.1093/bioinformatics/btaa435">10.1093/bioinformatics/btaa435</a></div>
+<div class="csl-left-margin">30. </div><div class="csl-right-inline">Jain C, Rhie A, Zhang H, Chu C, Walenz BP, Koren S, et al. Weighted minimizer sampling improves long read mapping. Bioinformatics. 2020;36: i111–i118. doi:<a href="https://doi.org/10.1093/bioinformatics/btaa435">10.1093/bioinformatics/btaa435</a></div>
 </div>
 <div id="ref-bzikadzeAutomatedAssemblyCentromeres2020" class="csl-entry">
-<div class="csl-left-margin">72. </div><div class="csl-right-inline">Bzikadze AV, Pevzner PA. Automated assembly of centromeres from ultra-long error-prone reads. Nat Biotechnol. 2020;38: 1309–1316. doi:<a href="https://doi.org/10.1038/s41587-020-0582-4">10.1038/s41587-020-0582-4</a></div>
+<div class="csl-left-margin">81. </div><div class="csl-right-inline">Bzikadze AV, Pevzner PA. Automated assembly of centromeres from ultra-long error-prone reads. Nat Biotechnol. 2020;38: 1309–1316. doi:<a href="https://doi.org/10.1038/s41587-020-0582-4">10.1038/s41587-020-0582-4</a></div>
 </div>
 </div>
             </section>

@@ -14,6 +14,7 @@ fig:figMultiTasks
 tab:tabMutations
 fig:figUkRatios
 fig:figStructure
+tab:mapperComparison
 fig:error-hists
 fig:hist-raw
 fig:hist-hpc
@@ -27,7 +28,12 @@ fig:s3
 what-is-sequence-data
 biological-sequences-a-primer
 what-is-dna
-what-are-proteins
+from-information-to-action
+proteins-their-structure-and-their-role
+making-mistakes
+where-can-mistakes-happen
+what-type-of-mistakes-can-be-done
+what-effect-can-mutations-have
 obtaining-sequence-data
 sanger-sequencing-a-breakthrough
 next-generation-sequencing
@@ -35,6 +41,7 @@ sequencing-errors-how-to-account-for-them
 what-kind-of-errors-happen
 long-read-errors
 hpc
+biological-sequences-a-computational-view-here
 aligning-sequence-data
 what-is-an-alignment
 how-to-align
@@ -120,7 +127,7 @@ learn-to-predict-seeds-or-starting-positions
 learn-pre-processing-functions
 HPC-appendix
 appendix:tandemtools
-tab:mapperComparison
+msr-performance-comparison
 origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome.
 analyzing-read-origin-on-whole-human-genome
 performance-of-msrs-on-the-drosophila-genome
