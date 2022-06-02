@@ -129,7 +129,7 @@ genome, keeping an identical fraction of reads mapped.
 
 We also evaluate whether HPC sensitivity gains continue to outweigh the
 specificity cost with the advent of telomere-to-telomere
-assemblies [@nurkCompleteSequenceHuman2021]. These contain many more
+assemblies [@nurk2022]. These contain many more
 low-complexity and/or repeated regions such as centromeres and telomeres. HPC
 may increase mapping ambiguity in these regions by removing small,
 distinguishing, differences between repeat instances. Indeed, we find that
@@ -489,7 +489,7 @@ The following three reference sequences were used for evaluation:
 
 1.  **Whole human genome:** This reference sequence is a whole genome assembly
     of the CHM13hTERT human cell line by the Telomere-to-Telomere consortium
-    [@nurkCompleteSequenceHuman2021]. We used the 1.1 assembly release (Genbank
+    [@@nurk2022]. We used the 1.1 assembly release (Genbank
     Assembly ID
     [GCA_009914755.3](https://www.ncbi.nlm.nih.gov/assembly/GCA_009914755.3/)).
 

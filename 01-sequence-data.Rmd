@@ -52,13 +52,13 @@ Going from DNA sequence to protein is quite a complicated process involving seve
 
 ##### Where can mistakes happen ?
 
-There are several sources of error that can alter the genetic information:
+There are several sources of error that can alter the genetic information [@chatterjee2017]:
 
 -   **DNA replication:** When a cell divides, or when an organism reproduces, the DNA molecule must be copied in order to transmit genetic information. This process has a very low rate of errors, with as low as 1 error for every billion to every hundred billions of base pairs replicated [@fijalkowska2012]. This is due to the fact that the DNA polymerase (the protein that is responsible for copying DNA molecules), has a relatively error rate to start with, but mostly due to the error correcting mechanisms that are present in certain cells and bacteria [@pray2008dna].
 
--   **RNA transcription:** when DNA is transcribed into RNA
+-   **RNA transcription:** error rate between 4 errors for each million [@gout2013] to 2 errors for each hundred thousand [@gout2017] base pairs transcribed.
 
--   **Other mutagenic events:** UV rays, other stuff...
+-   **Other mutagenic events:** Ionizing radiation [@desouky2015], UV rays [@kiefer2007], Toxins [@bennett2003], heat Stress [@kantidze2016], cold stress [@gregory1994], oxidative stress [@gafter-gvili2013].
 
 ##### What kind of errors are possible?
 
