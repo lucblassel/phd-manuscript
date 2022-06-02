@@ -35,7 +35,7 @@ where-can-mistakes-happen
 what-kind-of-errors-are-possible
 what-effect-can-mutations-have
 obtaining-sequence-data
-sanger-sequencing-a-breakthrough
+sanger-sequencing-a-breakthrough-wip
 next-generation-sequencing
 sequencing-errors-how-to-account-for-them
 long-read-errors
@@ -47,11 +47,10 @@ how-to-align
 substitution-models
 why-align
 how-do-we-speed-up-local-alignment
-indexed-blast
-seeded-minimap2
-msa
+msa-short
 progressive
-hmms-index-alignment-pairwise
+hmms-profile-alignments-pairwise
+other-optimization-methods-short
 mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression
 hpc-introduction
 hpc-methods
@@ -76,7 +75,7 @@ code-availability
 learning-from-alignments
 alignments-are-a-rich-source-of-information
 pairwise-alns
-msa-1
+msa
 clustering
 ml
 preprocessing-the-alignment-for-machine-learning
@@ -95,7 +94,7 @@ deep-learning
 hiv-and-drms
 what-are-viruses
 what-is-hiv
-presentation-of-hiv
+quick-presentation-of-hiv
 replication-cycle-of-hiv
 drug-resistance-in-hiv
 how-does-art-work
@@ -120,7 +119,6 @@ d218e
 discussion-and-perspectives
 learning-alignments-an-interesting-perspective
 learning-pairwise-alignment
-transformers-and-deep-embedding
 dedal
 predicting-an-alignment
 what-else-could-we-learn

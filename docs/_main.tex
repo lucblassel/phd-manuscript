@@ -3,7 +3,7 @@
 \PassOptionsToPackage{hyphens}{url}
 %
 \documentclass[
-  11,
+  11pt,
   twoside]{scrbook}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -271,18 +271,21 @@ This is the glossary
 
 \begin{comment}
 
+# Abstract {.unnumbered}
 
-# Abstract {-}
 This is the Abstract
 
-# Résumé {-}
+# Résumé {.unnumbered}
+
 Ceci est le résumé
 
-# Aknowledgments {-}
+# Acknowledgments {.unnumbered}
+
 Thanks everybody
 
-# Glosssary {-}
-What are these terms ? 
+# Glossary {.unnumbered}
+
+What are these terms ?
 
 
 \end{comment}
@@ -297,15 +300,13 @@ What are these terms ?
 \chapter*{General Introduction}\label{general-introduction}}
 \addcontentsline{toc}{chapter}{General Introduction}
 
-\hypertarget{goal-of-this-thesis}{%
-\section*{Goal of this Thesis}\label{goal-of-this-thesis}}
-\addcontentsline{toc}{section}{Goal of this Thesis}
-
-\hypertarget{thesis-organization}{%
-\section*{Thesis organization}\label{thesis-organization}}
-\addcontentsline{toc}{section}{Thesis organization}
-
-\textbf{\emph{TO COME}}
+\begin{itemize}
+\tightlist
+\item
+  Explain shortly that 2 quite different subjects linked by alignment and sequence data.
+\item
+  Organisation of the manuscript
+\end{itemize}
 
 \hypertarget{what-is-sequence-data}{%
 \chapter{What is Sequence data ?}\label{what-is-sequence-data}}
@@ -397,9 +398,9 @@ There are several sources of error that can alter the genetic information \autoc
 
 \begin{itemize}
 \item
-  illnesses
+  illnesses (SNPs, groups of mutations,\ldots)
 \item
-  acquired traits
+  acquired traits (drug resistance, \ldots)
 \end{itemize}
 
 \hypertarget{obtaining-sequence-data}{%
@@ -407,8 +408,8 @@ There are several sources of error that can alter the genetic information \autoc
 
 In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.
 
-\hypertarget{sanger-sequencing-a-breakthrough}{%
-\subsection{Sanger sequencing, a breakthrough}\label{sanger-sequencing-a-breakthrough}}
+\hypertarget{sanger-sequencing-a-breakthrough-wip}{%
+\subsection{Sanger sequencing, a breakthrough (WIP)}\label{sanger-sequencing-a-breakthrough-wip}}
 
 The first true sequencing method was developed in 1977 \autocite{sangerDNASequencingChainterminating1977}. Sanger \emph{et al.} devised a simple method to read the sequence of nucleotides that make up a DNA sequence.
 
@@ -442,14 +443,14 @@ Developed to lower cost and more throughput
 
 \begin{itemize}
 \item
-  Massively parallel
+  Massively parallel, Illumina
 \item
   Long reads sequencing
 \end{itemize}
 
-Quick summary on PacBio and ONT
+\textbf{\emph{Quick summary on PacBio and ONT}}
 
-As a conclusion, mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
+As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
 
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
@@ -459,7 +460,7 @@ general context of sequencing errors
 \hypertarget{long-read-errors}{%
 \subsection{Long read errors}\label{long-read-errors}}
 
-Mainly indels, in certain regions of the genomes, particularily homopolymers.
+Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}, for PacBIO circular consensus \autocite{wenger2019}.
 
 \hypertarget{hpc}{%
 \subsection{HPC}\label{hpc}}
@@ -513,18 +514,19 @@ mismatch depends on models, BLOSUM, PAML, \ldots{}
 \hypertarget{how-do-we-speed-up-local-alignment}{%
 \section{How do we speed up local alignment ?}\label{how-do-we-speed-up-local-alignment}}
 
-\hypertarget{indexed-blast}{%
-\subsection{Indexed \ldots{} BLAST,\ldots{}}\label{indexed-blast}}
+heuristic methods, based on kmers
 
-short explanation of BLAST or suffix-arrays, \ldots{}
+\begin{itemize}
+\item
+  BLAST
+\item
+  FM-index (bowtie2, bwa-mem?)
+\item
+  minimizers (minimap2)
+\end{itemize}
 
-\hypertarget{seeded-minimap2}{%
-\subsection{Seeded, minimap2, \ldots{}}\label{seeded-minimap2}}
-
-How minimap works, rough idea
-
-\hypertarget{msa}{%
-\section{MSA}\label{msa}}
+\hypertarget{msa-short}{%
+\section{MSA (short)}\label{msa-short}}
 
 When we need to compare a lot of individuals together we can do MSA.
 
@@ -535,17 +537,29 @@ Even if we align all sequences pairwise we need to then combine all gaps and stu
 \hypertarget{progressive}{%
 \subsubsection{Progressive}\label{progressive}}
 
-guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder
+guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder.
 
-\hypertarget{hmms-index-alignment-pairwise}{%
-\subsubsection{HMMs / index alignment / pairwise}\label{hmms-index-alignment-pairwise}}
+\hypertarget{hmms-profile-alignments-pairwise}{%
+\subsubsection{HMMs / profile alignments / pairwise}\label{hmms-profile-alignments-pairwise}}
 
-Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. \emph{(point to appendinx with covid align ?)}
+Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. \emph{(point to appendix with covid align ?)}
+
+\hypertarget{other-optimization-methods-short}{%
+\subsubsection{Other optimization methods (short)}\label{other-optimization-methods-short}}
+
+\begin{itemize}
+\item
+  Simulated annealing
+\item
+  Genetic algorithm
+\end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}{%
 \chapter{Mapping-friendly sequence reductions: going beyond homopolymer compression}\label{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}}
+
+\textbf{\emph{Intro to this chapter within the context of the thesis to go here!}}
 
 Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Paul Medvedev\textsuperscript{\textbf{3},\textbf{4},\textbf{5}}, Rayan
 Chikhi\textsuperscript{\textbf{1}}
@@ -1431,8 +1445,8 @@ Supporting Information can be found in Appendix \ref{HPC-appendix}
 
 we can compare sequences and say if an organism, or in the case of mapping get an idea of where on the genome we are sequencing
 
-\hypertarget{msa-1}{%
-\subsection{MSA}\label{msa-1}}
+\hypertarget{msa}{%
+\subsection{MSA}\label{msa}}
 
 Here we have richer
 
@@ -1501,7 +1515,7 @@ Either resistance level, IC50, \ldots{}
 \hypertarget{classification}{%
 \subsubsection{Classification}\label{classification}}
 
-Resistant or not, compartiments in the cell, \ldots{}
+Resistant or not, compartments in the cell, \ldots{}
 
 \hypertarget{task-based}{%
 \subsubsection{Task-based\ldots{}}\label{task-based}}
@@ -1545,7 +1559,7 @@ end-to-end training like aligning sequences, this is harder because it requires 
 \item
   Steiner et al\ldots{}
 \item
-  others
+  plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
@@ -1563,8 +1577,8 @@ DNA / RNA viruses
 \hypertarget{what-is-hiv}{%
 \section{What is HIV ?}\label{what-is-hiv}}
 
-\hypertarget{presentation-of-hiv}{%
-\subsection{Presentation of HIV}\label{presentation-of-hiv}}
+\hypertarget{quick-presentation-of-hiv}{%
+\subsection{Quick Presentation of HIV}\label{quick-presentation-of-hiv}}
 
 \begin{itemize}
 \tightlist
@@ -1582,7 +1596,7 @@ DNA / RNA viruses
 \item
   proteins ( + computational representation as a string of letters)
 \item
-  full cycle
+  schematic cycle
 \end{itemize}
 
 \hypertarget{drug-resistance-in-hiv}{%
@@ -1652,6 +1666,8 @@ Transmitted DRMS can be very serious , \ldots{} however fitness cost, \ldots{}
 
 \hypertarget{HIV-paper}{%
 \chapter{Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV}\label{HIV-paper}}
+
+\textbf{\emph{Intro to this chapter within the context of the thesis to go here!}}
 
 Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Anna Tostevin\textsuperscript{\textbf{3}}, Christian Julian
 Villabona-Arenas\textsuperscript{\textbf{4},\textbf{5}}, Martine Peeters\textsuperscript{\textbf{6}}, Stéphane Hué\textsuperscript{\textbf{4},\textbf{5}}, Olivier
@@ -2639,8 +2655,8 @@ related to specific drugs and thus furthering our knowledge of HIV drug
 resistance, giving clinicians more tools to manage and help infected
 patients.
 
-\hypertarget{acknowledgments}{%
-\section*{Acknowledgments}\label{acknowledgments}}
+\hypertarget{hiv-acknowledgments}{%
+\section*{Acknowledgments}\label{hiv-acknowledgments}}
 \addcontentsline{toc}{section}{Acknowledgments}
 
 We thank Anna Zhukova, Frédéric Lemoine and Marie Morel for their help
@@ -2714,20 +2730,51 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 \hypertarget{learning-pairwise-alignment}{%
 \section{Learning pairwise alignment}\label{learning-pairwise-alignment}}
 
-\hypertarget{transformers-and-deep-embedding}{%
-\subsection{Transformers and deep embedding}\label{transformers-and-deep-embedding}}
-
 \hypertarget{dedal}{%
 \subsection{DEDAL}\label{dedal}}
 
+\begin{itemize}
+\item
+  reference to transformer embedding
+\item
+  Predict substitution matrix
+\item
+  Reference other similar works
+\item
+  drawback: only on proteins
+\end{itemize}
+
 \hypertarget{predicting-an-alignment}{%
 \subsection{predicting an alignment}\label{predicting-an-alignment}}
+
+\begin{itemize}
+\item
+  Transformer models can also predict tokens -\textgreater{} predict ``CIGAR string'' or a an aligned sequence.
+\item
+  Challenges:
+
+  \begin{itemize}
+  \item
+    Longer sequences in DNA
+  \item
+    Size difference in the case of mapping
+  \item
+    Less information in a single nucleotide token than in proteins\ldots.
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{what-else-could-we-learn}{%
 \section{What else could we learn ?}\label{what-else-could-we-learn}}
 
 \hypertarget{learn-to-predict-seeds-or-starting-positions}{%
 \subsection{Learn to predict seeds or starting positions}\label{learn-to-predict-seeds-or-starting-positions}}
+
+\begin{itemize}
+\item
+  DeepMinimizer
+\item
+  predict start position given a pair of sequences
+\end{itemize}
 
 \hypertarget{learn-pre-processing-functions}{%
 \subsection{Learn pre-processing functions}\label{learn-pre-processing-functions}}
