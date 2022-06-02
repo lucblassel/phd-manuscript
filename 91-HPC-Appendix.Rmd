@@ -15,16 +15,17 @@ the "Centromeric sequence".
 ## MSR performance comparison
 
 ```{r, mapperComparisonCaption}
-mapperComparisonCaption <- "Comparing performance of MSRs on the whole human genome, whole *Drosophila melanogaster* genome, repeated regions of the whole human genome and synthetic centromeric sequence. Results using  `minimap2` [@liMinimap2PairwiseAlignment2018] and winnowmap2  [@jainWeightedMinimizerSampling2020]. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold."
+mapperComparisonCaption <- "**Comparing performance of MSRs on the whole human genome, whole *Drosophila melanogaster* genome, repeated regions of the whole human genome and synthetic centromeric sequence.**\
+Results using  `minimap2` [@liMinimap2PairwiseAlignment2018] and winnowmap2  [@jainWeightedMinimizerSampling2020]. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold."
 ```
 
 ```{r, mapperComparison, label="mapperComparison", eval=knitr::is_html_output(), tab.topcaption=FALSE, cache=FALSE}
-dt <- read_csv("tables/HPC-MSRs/Table1.csv")  
+dt <- read_csv("tables/HPC-MSRs/Table2.csv")  
 
 labels <- data.frame(
-  col_keys = c("label","mapq","WGMf","WGMe","WWMf","WWMe","WDMf","WDMe"),
-  what = c("label", "mapq", "Whole human genome (minimap2)", "Whole human genome (minimap2)", "Whole human genome (winnowmap2)", "Whole human genome (winnowmap2)", "Whole Drosophila genome (minimap2)", "Whole Drosophila genome (minimap2)"),
-  measure = c("label", "mapq", "fraction", "error", "fraction", "error", "fraction", "error"),
+  col_keys = c("label","mq60frac","mq60err","mq50frac","mq50err","mq00frac","mq00err"),
+  what = c("label", "mapq = 60", "mapq = 60", "mapq ≥ 50", "mapq ≥ 50", "any mapq", "any mapq"),
+  measure = c("label", "fraction", "error", "fraction", "error", "fraction", "error"),
   stringsAsFactors = FALSE
 )
 
@@ -32,7 +33,14 @@ flextable(dt) %>%
   set_header_df(mapping=labels, key="col_keys") %>%
   merge_h(part="header") %>%
   merge_v(j="label", part="header") %>%
-  merge_v(j="mapq", part="header") %>%
+  merge_h_range(i=1, j1=1, j2=7) %>%
+  merge_h_range(i=7, j1=1, j2=7) %>%
+  merge_h_range(i=13, j1=1, j2=7) %>%
+  merge_h_range(i=19, j1=1, j2=7) %>%
+  merge_h_range(i=25, j1=1, j2=7) %>%
+  merge_h_range(i=31, j1=1, j2=7) %>%
+  merge_h_range(i=37, j1=1, j2=7) %>%
+  merge_h_range(i=43, j1=1, j2=7) %>%
   ftExtra::colformat_md() %>%
   set_table_properties(width=1, layout="autofit") %>%
   theme_booktabs() %>%
@@ -40,7 +48,7 @@ flextable(dt) %>%
 ```
 
 \begin{table}[H]
-\caption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence. Results using  \minimap \autocite{liMinimap2PairwiseAlignment2018} and \winnowmap  \autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
+\extcaption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence.}{Results using  \minimap \autocite{liMinimap2PairwiseAlignment2018} and \winnowmap  \autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
 \label{tab:mapperComparison}
 {\centering
 \resizebox{0.93\textwidth}{!}{%
@@ -141,7 +149,7 @@ knitr::include_graphics("./figures/HPC-MSRs/ridgelines.new_selection.png")
 ## Analyzing read origin on whole human genome
 
 ```{r, raw_distrib_caption}
-raw_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped raw reads**\
+raw_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped raw reads.**\
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -165,7 +173,7 @@ knitr::include_graphics("./figures/HPC-MSRs/raw_distrib.centro.rstart.png")
 
 ```{r, hpc_distrib_caption}
 hpc_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with HPC**\
+transformed with HPC.**\
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -188,7 +196,7 @@ knitr::include_graphics("./figures/HPC-MSRs/hpc_distrib.centro.png")
 
 ```{r, msr_e_distrib_caption, cache=FALSE}
 msr_e_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR~E~**\
+transformed with MSR~E~.**\
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -210,7 +218,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_e_distrib.centro.png")
 
 ```{r, msr_p_distrib_caption, cache=FALSE}
 msr_p_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR~P~**\
+transformed with MSR~P~.**\
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -232,7 +240,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_p_distrib.centro.png")
 
 ```{r, msr_f_distrib_caption, cache=FALSE}
 msr_f_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR~F~**\
+transformed with MSR~F~.**\
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -254,8 +262,8 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_f2_distrib.centro.png")
 
 ## Performance of MSRs on the Drosophila genome
 ```{r, figDrosoResults_caption}
-figDrosoResults_caption = "**Results of the `paftools mapeval` evaluation on reads simulated and
-mapped to whole *Drosophila melanogaster* and *Escherichia coli* genomes**\
+figDrosoResults_caption <- "**Results of the `paftools mapeval` evaluation on reads simulated and
+mapped to whole *Drosophila melanogaster* and *Escherichia coli* genomes.**\
 MSRs E, F and P are shown in different shades of blue to
 differentiate them from other MSRs. Reads were simulated with `nanosim`,
 and mapped with `minimap2`. The *E. coli* genome was obtained from Genbank ID [U00096.2](https://www.ncbi.nlm.nih.gov/nuccore/U00096.2)"
@@ -267,7 +275,7 @@ knitr::include_graphics("./figures/HPC-MSRs/droso_ecoli.png")
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/droso_ecoli.pdf}
-    \caption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes. MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}\xspace, and mapped with \minimap}
+    \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}\xspace, and mapped with \minimap.}
     \label{fig:drosophila-results}
 \end{figure}
 
