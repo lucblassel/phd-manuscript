@@ -1,5 +1,7 @@
 # Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV {#HIV-paper}
 
+***Intro to this chapter within the context of the thesis to go here!***
+
 Luc Blassel^**1**,**2**\*^, Anna Tostevin^**3**^, Christian Julian
 Villabona-Arenas^**4**,**5**^, Martine Peeters^**6**^, Stéphane Hué^**4**,**5**^, Olivier
 Gascuel^**1**,**7**\#^ On behalf of the UK HIV Drug Resistance
@@ -1126,7 +1128,7 @@ related to specific drugs and thus furthering our knowledge of HIV drug
 resistance, giving clinicians more tools to manage and help infected
 patients.
 
-## Acknowledgments {#acknowledgments .unnumbered}
+## Acknowledgments {#hiv-acknowledgments .unnumbered}
 
 We thank Anna Zhukova, Frédéric Lemoine and Marie Morel for their help
 and suggestions.\

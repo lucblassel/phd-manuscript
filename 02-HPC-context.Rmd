@@ -24,15 +24,15 @@ mismatch depends on models, BLOSUM, PAML, ...
 
 ## How do we speed up local alignment ?
 
-### Indexed ... BLAST,...
+heuristic methods, based on kmers
 
-short explanation of BLAST or suffix-arrays, ...
+-   BLAST
 
-### Seeded, minimap2, ...
+-   FM-index (bowtie2, bwa-mem?)
 
-How minimap works, rough idea
+-   minimizers (minimap2)
 
-## MSA
+## MSA (short)
 
 When we need to compare a lot of individuals together we can do MSA.
 
@@ -42,10 +42,16 @@ Even if we align all sequences pairwise we need to then combine all gaps and stu
 
 #### Progressive
 
-guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder
+guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder.
 
-#### HMMs / index alignment / pairwise
+#### HMMs / profile alignments / pairwise
 
-Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. *(point to appendinx with covid align ?)*
+Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. *(point to appendix with covid align ?)*
+
+#### Other optimization methods (short)
+
+-   Simulated annealing
+
+-   Genetic algorithm
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

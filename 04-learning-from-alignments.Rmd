@@ -56,7 +56,7 @@ Either resistance level, IC50, ...
 
 #### Classification
 
-Resistant or not, compartiments in the cell, ...
+Resistant or not, compartments in the cell, ...
 
 #### Task-based...
 
@@ -79,6 +79,6 @@ end-to-end training like aligning sequences, this is harder because it requires 
 ### Deep Learning
 
 -   Steiner et al...
--   others
+-   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

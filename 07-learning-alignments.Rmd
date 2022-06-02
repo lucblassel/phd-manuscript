@@ -2,15 +2,35 @@
 
 ## Learning pairwise alignment
 
-### Transformers and deep embedding
-
 ### DEDAL
 
+-   reference to transformer embedding
+
+-   Predict substitution matrix
+
+-   Reference other similar works
+
+-   drawback: only on proteins
+
 ### predicting an alignment
+
+-   Transformer models can also predict tokens -\> predict "CIGAR string" or a an aligned sequence.
+
+-   Challenges:
+
+    -   Longer sequences in DNA
+
+    -   Size difference in the case of mapping
+
+    -   Less information in a single nucleotide token than in proteins....
 
 ## What else could we learn ?
 
 ### Learn to predict seeds or starting positions
+
+-   DeepMinimizer
+
+-   predict start position given a pair of sequences
 
 ### Learn pre-processing functions
 

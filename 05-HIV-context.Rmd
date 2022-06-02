@@ -8,7 +8,7 @@ DNA / RNA viruses
 
 ## What is HIV ?
 
-### Presentation of HIV
+### Quick Presentation of HIV
 
 -   pandemic
 -   history
@@ -16,7 +16,7 @@ DNA / RNA viruses
 ### Replication cycle of HIV
 
 -   proteins ( + computational representation as a string of letters)
--   full cycle
+-   schematic cycle
 
 ## Drug resistance in HIV
 

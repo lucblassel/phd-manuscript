@@ -6,6 +6,8 @@ editor_options:
 
 # Mapping-friendly sequence reductions: going beyond homopolymer compression
 
+***Intro to this chapter within the context of the thesis to go here!***
+
 Luc Blassel^**1**,**2**\*^, Paul Medvedev^**3**,**4**,**5**^, Rayan
 Chikhi^**1**^
 

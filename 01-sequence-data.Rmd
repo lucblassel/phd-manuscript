@@ -68,15 +68,15 @@ There are several sources of error that can alter the genetic information [@chat
 
 ##### What effect can mutations have ?
 
--   illnesses
+-   illnesses (SNPs, groups of mutations,...)
 
--   acquired traits
+-   acquired traits (drug resistance, ...)
 
 ## Obtaining sequence data
 
 In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.
 
-### Sanger sequencing, a breakthrough
+### Sanger sequencing, a breakthrough (WIP)
 
 The first true sequencing method was developed in 1977 [@sangerDNASequencingChainterminating1977]. Sanger *et al.* devised a simple method to read the sequence of nucleotides that make up a DNA sequence.
 
@@ -97,13 +97,13 @@ The marking of primers and ddNTP with fluorescence allowed to do the polymerizat
 
 Developed to lower cost and more throughput
 
--   Massively parallel
+-   Massively parallel, Illumina
 
 -   Long reads sequencing
 
-Quick summary on PacBio and ONT
+***Quick summary on PacBio and ONT***
 
-As a conclusion, mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
+As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
 
 ## Sequencing errors, how to account for them ?
 
@@ -111,7 +111,7 @@ general context of sequencing errors
 
 ### Long read errors
 
-Mainly indels, in certain regions of the genomes, particularily homopolymers.
+Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017], for PacBIO circular consensus [@wenger2019]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020].
 
 ### HPC
 

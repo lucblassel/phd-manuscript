@@ -1,10 +1,10 @@
---- 
+---
 title: "From sequences to knowledge, improving and learning from sequence alignments."
 author: "Luc Blassel"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: scrbook
-fontsize: 11
+fontsize: 11pt
 classoption:
   # - DIV: 12
   - twoside
@@ -48,18 +48,21 @@ xfun::pkg_load2(c("htmltools", "mime"))
 knitr::asis_output('\n\n\\begin{comment}')
 ```
 
+# Abstract {.unnumbered}
 
-# Abstract {-}
 This is the Abstract
 
-# Résumé {-}
+# Résumé {.unnumbered}
+
 Ceci est le résumé
 
-# Aknowledgments {-}
+# Acknowledgments {.unnumbered}
+
 Thanks everybody
 
-# Glosssary {-}
-What are these terms ? 
+# Glossary {.unnumbered}
+
+What are these terms ?
 
 ```{r, include=knitr::is_latex_output()}
 knitr::asis_output('\n\n\\end{comment}')
@@ -71,7 +74,7 @@ knitr::asis_output('\n\n\\end{comment}')
 \fancyhead[RO]{\rightmark}
 \fancyfoot[CO,CE]{\thepage}
 
-# General Introduction {-}
-## Goal of this Thesis {-}
-## Thesis organization {-}
-***TO COME***
+# General Introduction {.unnumbered}
+
+-   Explain shortly that 2 quite different subjects linked by alignment and sequence data.
+-   Organisation of the manuscript
