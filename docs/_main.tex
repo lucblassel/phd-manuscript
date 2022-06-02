@@ -460,7 +460,7 @@ general context of sequencing errors
 \hypertarget{long-read-errors}{%
 \subsection{Long read errors}\label{long-read-errors}}
 
-Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}, for PacBIO circular consensus \autocite{wenger2019}.
+Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}, for PacBIO circular consensus \autocite{wenger2019}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}.
 
 \hypertarget{hpc}{%
 \subsection{HPC}\label{hpc}}
@@ -2804,7 +2804,7 @@ the ``Centromeric sequence''.
 \section{MSR performance comparison}\label{msr-performance-comparison}}
 
 \begin{table}[H]
-\caption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence. Results using  \texttt{minimap2}\autocite{liMinimap2PairwiseAlignment2018} and \texttt{winnowmap2}\autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
+\extcaption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence.}{Results using  \texttt{minimap2}\autocite{liMinimap2PairwiseAlignment2018} and \texttt{winnowmap2}\autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
 \label{tab:mapperComparison}
 {\centering
 \resizebox{0.93\textwidth}{!}{%
@@ -2928,7 +2928,7 @@ MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/droso_ecoli.pdf}
-    \caption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes. MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \texttt{minimap2}}
+    \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \texttt{minimap2}.}
     \label{fig:drosophila-results}
 \end{figure}
 
