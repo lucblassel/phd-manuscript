@@ -2,4 +2,5 @@
 
 \backmatter
 \fancyhead[RO,LE]{REFERENCES}
+\SetMaxBibnames{999}
 <!-- \nocite{*} -->

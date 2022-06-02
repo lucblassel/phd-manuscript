@@ -22,6 +22,11 @@
     }
 }
 
+% Changing max bib names for full author list in global references
+\makeatletter
+\newrobustcmd*{\SetMaxBibnames}[1]{\numdef\blx@maxbibnames{#1}}
+\makeatother
+
 % KOMA-Script caption options
 % \setcaphanging
 \setcapmargin{0cm}

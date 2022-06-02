@@ -11,7 +11,7 @@ classoption:
 csl: "./plos-computational-biology.csl"
 biblio-style: authoryear
 bibliography: [references/HPC-MSRs.bib, references/HIV-DRMs.bib, references/Sequence-Data.bib]
-biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=nyt]
+biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=nyt,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
 description: |
