@@ -4,9 +4,11 @@
 
 We want to compare individuals, species, whatever. To do this we need to compare what is comparable. Alignment to the rescue.
 
+Local vs. global alignment
+
 ### How to align ?
 
-Either decide to align globally or locally. Usually done with dynamic programming by assigning a score to mismatches, indels, ... and then choosing the alignment with minimal score.
+Usually done with dynamic programming by assigning a score to mismatches, indels, ... and then choosing the alignment with minimal score.
 
 short example of local alignment
 
@@ -53,5 +55,22 @@ Example of COVID where homology is high so we can get away with using HMMS / pai
 -   Simulated annealing
 
 -   Genetic algorithm
+
+## Mapping 
+
+-   short intro
+
+```{=html}
+<!-- -->
+```
+-   context of short read on large reference sequence
+
+-   Problems:
+
+    -   Repetitive regions (centromeres, telomeres)
+
+    -   low homology / sequencing errors...
+
+-   specific heuristics like minimizers / FM-index help
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

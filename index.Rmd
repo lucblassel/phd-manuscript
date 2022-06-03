@@ -6,18 +6,14 @@ site: bookdown::bookdown_site
 documentclass: scrbook
 fontsize: 11pt
 classoption:
-  # - DIV: 12
   - twoside
 csl: "./plos-computational-biology.csl"
 biblio-style: authoryear
-bibliography: [references/HPC-MSRs.bib, references/HIV-DRMs.bib, references/Sequence-Data.bib]
+bibliography: 
+  - ./references/HPC-MSRs.bib
+  - ./references/HIV-DRMs.bib
+  - ./references/Sequence-Data.bib
 biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=nyt,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false]
-# url: your book url like https://bookdown.org/yihui/bookdown
-# cover-image: path to the social sharing image like images/cover.jpg
-description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The HTML output format for this example is bookdown::gitbook,
-  set in the _output.yml file.
 link-citations: yes
 github-repo: lucblassel/phd-manuscript
 biblio-title: Global References
@@ -36,7 +32,7 @@ library(grid)
 library(tiff)
 
 options(tinytex.verbose=TRUE)
-knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, out.width="90%", fig.align="center")#, cache=TRUE)
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, out.width="90%", fig.align="center", cache=TRUE)
 
 # embed files in html output
 xfun::pkg_load2(c("htmltools", "mime"))
@@ -68,12 +64,13 @@ What are these terms ?
 knitr::asis_output('\n\n\\end{comment}')
 ```
 
+```{=tex}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyhead[LE]{CHAPTER \thechapter} 
 \fancyhead[RO]{\rightmark}
 \fancyfoot[CO,CE]{\thepage}
-
+```
 # General Introduction {.unnumbered}
 
 -   Explain shortly that 2 quite different subjects linked by alignment and sequence data.

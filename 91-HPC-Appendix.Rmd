@@ -1,16 +1,10 @@
+\fancyhead[LE]{APPENDIX \thechapter}
 
 # Supporting Information for "Mapping-friendly sequence reductions: going beyond homopolymer compression" {#HPC-appendix}
 
 ## "TandemTools" dataset generation {#appendix:tandemtools}
 
-This dataset was obtained by taking a human X chromosome HOR sequence,
-concatenating it 500 times with added mutations in order to obtain an
-approximately 1 Mbp long sequence. Then 1200 reads were simulated from
-the sequence using `nanosim` [@yangNanoSimNanoporeSequence2017] and
-assembled using a centromere-tailored pipeline
-[@bzikadzeAutomatedAssemblyCentromeres2020]. A 10kbp deletion was then
-added to this assembly. The resulting sequence is the one we refer to as
-the "Centromeric sequence".
+This dataset was obtained by taking a human X chromosome HOR sequence, concatenating it 500 times with added mutations in order to obtain an approximately 1 Mbp long sequence. Then 1200 reads were simulated from the sequence using `nanosim` [@yangNanoSimNanoporeSequence2017] and assembled using a centromere-tailored pipeline [@bzikadzeAutomatedAssemblyCentromeres2020]. A 10kbp deletion was then added to this assembly. The resulting sequence is the one we refer to as the "Centromeric sequence".
 
 ## MSR performance comparison
 
@@ -47,6 +41,7 @@ flextable(dt) %>%
   set_caption(caption=mapperComparisonCaption, style="caption")
 ```
 
+```{=tex}
 \begin{table}[H]
 \extcaption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence.}{Results using  \minimap \autocite{liMinimap2PairwiseAlignment2018} and \winnowmap  \autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
 \label{tab:mapperComparison}
@@ -116,8 +111,8 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 }
 }
 \end{table}
-
-## Origin of incorrectly mapped reads of high mapping quality on whole human genome. 
+```
+## Origin of incorrectly mapped reads of high mapping quality on whole human genome.
 
 ```{r, ridgelines_caption}
 ridgeline_caption <- "**Histogram of the original simulated positions for the incorrectly
@@ -139,13 +134,14 @@ qualities $\\geq 50$ were considered for MSRs E, F and P."
 knitr::include_graphics("./figures/HPC-MSRs/ridgelines.new_selection.png")
 ```
 
+```{=tex}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/HPC-MSRs/ridgelines.new_selection.pdf}\\
     \extcaption{Histogram of the original simulated positions for the incorrectly mapped reads using \minimap at high mapping qualities across the whole human genome, for several transformation methods.}{For a given chromosome, each row represents the number of simulated reads starting at that particular region. The dark gray rectangle represents the position of the centromere for that chromosome, obtained from annotations provided by the T2T consortium (\href{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}). Similarly for chromosomes 13, 14, 15, 21 and 22, a lighter gray rectangle represents the position of the ``stalk'' satellites also containing repetitive regions. For HPC and raw reads only alignments of mapping quality 60 were considered. To provide a fair comparison, alignments with mapping qualities $\geq 50$ were considered for MSRs E, F and P.}
     \label{fig:error-hists}
 \end{figure}
-
+```
 ## Analyzing read origin on whole human genome
 
 ```{r, raw_distrib_caption}
@@ -162,6 +158,7 @@ on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as
 knitr::include_graphics("./figures/HPC-MSRs/raw_distrib.centro.rstart.png")
 ```
 
+```{=tex}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/raw_distrib.centro.rstart.pdf}\\
@@ -169,8 +166,7 @@ knitr::include_graphics("./figures/HPC-MSRs/raw_distrib.centro.rstart.png")
     Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-raw}
 \end{figure}
-
-
+```
 ```{r, hpc_distrib_caption}
 hpc_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
 transformed with HPC.**\
@@ -186,14 +182,14 @@ on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as
 knitr::include_graphics("./figures/HPC-MSRs/hpc_distrib.centro.png")
 ```
 
+```{=tex}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/hpc_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with HPC}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-hpc}
 \end{figure}
-
-
+```
 ```{r, msr_e_distrib_caption, cache=FALSE}
 msr_e_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
 transformed with MSR~E~.**\
@@ -204,18 +200,19 @@ represents the centromere of that chromosome. The lighter gray rectangle
 on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as
 \"stalk\", another repetitive region."
 ```
+
 ```{r, figMSREDistrib, fig.cap=msr_e_distrib_caption, label="hist-msr-e", eval=knitr::is_html_output(), cache=FALSE}
 knitr::include_graphics("./figures/HPC-MSRs/msr_e_distrib.centro.png")
 ```
 
+```{=tex}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_e_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{E}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-e}
 \end{figure}
-
-
+```
 ```{r, msr_p_distrib_caption, cache=FALSE}
 msr_p_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
 transformed with MSR~P~.**\
@@ -226,18 +223,19 @@ represents the centromere of that chromosome. The lighter gray rectangle
 on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as
 \"stalk\", another repetitive region."
 ```
+
 ```{r, figMSRPDistrib, fig.cap=msr_p_distrib_caption, label="hist-msr-p", eval=knitr::is_html_output(), cache=FALSE}
 knitr::include_graphics("./figures/HPC-MSRs/msr_p_distrib.centro.png")
 ```
 
+```{=tex}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_p_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{P}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-p}
 \end{figure}
-
-
+```
 ```{r, msr_f_distrib_caption, cache=FALSE}
 msr_f_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
 transformed with MSR~F~.**\
@@ -248,19 +246,21 @@ represents the centromere of that chromosome. The lighter gray rectangle
 on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as
 \"stalk\", another repetitive region."
 ```
+
 ```{r, figMSRFDistrib, fig.cap=msr_f_distrib_caption, label="hist-msr-f", eval=knitr::is_html_output(), cache=FALSE}
 knitr::include_graphics("./figures/HPC-MSRs/msr_f2_distrib.centro.png")
 ```
 
+```{=tex}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_f2_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{F}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-f}
 \end{figure}
-
-
+```
 ## Performance of MSRs on the Drosophila genome
+
 ```{r, figDrosoResults_caption}
 figDrosoResults_caption <- "**Results of the `paftools mapeval` evaluation on reads simulated and
 mapped to whole *Drosophila melanogaster* and *Escherichia coli* genomes.**\
@@ -268,16 +268,17 @@ MSRs E, F and P are shown in different shades of blue to
 differentiate them from other MSRs. Reads were simulated with `nanosim`,
 and mapped with `minimap2`. The *E. coli* genome was obtained from Genbank ID [U00096.2](https://www.ncbi.nlm.nih.gov/nuccore/U00096.2)"
 ```
+
 ```{r, figDrosoResults, fig.cap=figDrosoResults_caption, eval=knitr::is_html_output(), label="drosophila-results"}
 knitr::include_graphics("./figures/HPC-MSRs/droso_ecoli.png")
 ```
 
+```{=tex}
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/droso_ecoli.pdf}
-    \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}\xspace, and mapped with \minimap.}
+    \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \minimap.}
     \label{fig:drosophila-results}
 \end{figure}
-
-
+```
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]
