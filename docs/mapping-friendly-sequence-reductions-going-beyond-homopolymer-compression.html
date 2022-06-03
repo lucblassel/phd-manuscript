@@ -5,32 +5,25 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Mapping-friendly sequence reductions: going beyond homopolymer compression | From sequences to knowledge, improving and learning from sequence alignments.</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.24.11 and GitBook 2.6.7" />
+  <meta name="description" content="Chapter 3 Mapping-friendly sequence reductions: going beyond homopolymer compression | From sequences to knowledge, improving and learning from sequence alignments." />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Mapping-friendly sequence reductions: going beyond homopolymer compression | From sequences to knowledge, improving and learning from sequence alignments." />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
   <meta name="github-repo" content="lucblassel/phd-manuscript" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Mapping-friendly sequence reductions: going beyond homopolymer compression | From sequences to knowledge, improving and learning from sequence alignments." />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The HTML output format for this example is bookdown::gitbook,
-set in the _output.yml file.</p>" />
+  
   
 
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-06-02" />
+<meta name="date" content="2022-06-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -60,6 +53,7 @@ set in the _output.yml file.</p>" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<link href="libs/tabwid-1.0.0/scrool.css" rel="stylesheet" />
 
 
 
@@ -102,164 +96,165 @@ div.csl-indent {
 <li><a href="./">My PhD thesis.</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#abstract">Abstract<span></span></a></li>
-<li><a href="résumé.html#résumé">Résumé<span></span></a></li>
-<li><a href="acknowledgments.html#acknowledgments">Acknowledgments<span></span></a></li>
-<li><a href="glossary.html#glossary">Glossary<span></span></a></li>
-<li><a href="general-introduction.html#general-introduction">General Introduction<span></span></a></li>
-<li class="chapter" data-level="1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html"><i class="fa fa-check"></i><b>1</b> What is Sequence data ?<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="résumé.html"><a href="résumé.html"><i class="fa fa-check"></i>Résumé</a></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i>Glossary</a></li>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html"><i class="fa fa-check"></i>General Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html"><i class="fa fa-check"></i><b>1</b> What is Sequence data ?</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-primer"><i class="fa fa-check"></i><b>1.1</b> Biological sequences, a primer<span></span></a>
+<li class="chapter" data-level="1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-primer"><i class="fa fa-check"></i><b>1.1</b> Biological sequences, a primer</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#what-is-dna"><i class="fa fa-check"></i><b>1.1.1</b> What is DNA ?<span></span></a></li>
-<li class="chapter" data-level="1.1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#from-information-to-action"><i class="fa fa-check"></i><b>1.1.2</b> From Information to action<span></span></a></li>
+<li class="chapter" data-level="1.1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#what-is-dna"><i class="fa fa-check"></i><b>1.1.1</b> What is DNA ?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#from-information-to-action"><i class="fa fa-check"></i><b>1.1.2</b> From Information to action</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#obtaining-sequence-data"><i class="fa fa-check"></i><b>1.2</b> Obtaining sequence data<span></span></a>
+<li class="chapter" data-level="1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#obtaining-sequence-data"><i class="fa fa-check"></i><b>1.2</b> Obtaining sequence data</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#sanger-sequencing-a-breakthrough-wip"><i class="fa fa-check"></i><b>1.2.1</b> Sanger sequencing, a breakthrough (WIP)<span></span></a></li>
-<li class="chapter" data-level="1.2.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#next-generation-sequencing"><i class="fa fa-check"></i><b>1.2.2</b> Next-generation sequencing<span></span></a></li>
+<li class="chapter" data-level="1.2.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#sanger-sequencing-a-breakthrough-wip"><i class="fa fa-check"></i><b>1.2.1</b> Sanger sequencing, a breakthrough (WIP)</a></li>
+<li class="chapter" data-level="1.2.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#next-generation-sequencing"><i class="fa fa-check"></i><b>1.2.2</b> Next-generation sequencing</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#sequencing-errors-how-to-account-for-them"><i class="fa fa-check"></i><b>1.3</b> Sequencing errors, how to account for them ?<span></span></a>
+<li class="chapter" data-level="1.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#sequencing-errors-how-to-account-for-them"><i class="fa fa-check"></i><b>1.3</b> Sequencing errors, how to account for them ?</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#long-read-errors"><i class="fa fa-check"></i><b>1.3.1</b> Long read errors<span></span></a></li>
-<li class="chapter" data-level="1.3.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#hpc"><i class="fa fa-check"></i><b>1.3.2</b> HPC<span></span></a></li>
+<li class="chapter" data-level="1.3.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#long-read-errors"><i class="fa fa-check"></i><b>1.3.1</b> Long read errors</a></li>
+<li class="chapter" data-level="1.3.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#hpc"><i class="fa fa-check"></i><b>1.3.2</b> HPC</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-computational-view-here"><i class="fa fa-check"></i><b>1.4</b> Biological sequences, a computational view (here ?)<span></span></a></li>
+<li class="chapter" data-level="1.4" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-computational-view-here"><i class="fa fa-check"></i><b>1.4</b> Biological sequences, a computational view (here ?)</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html"><i class="fa fa-check"></i><b>2</b> Aligning sequence data<span></span></a>
+<li class="chapter" data-level="2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html"><i class="fa fa-check"></i><b>2</b> Aligning sequence data</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#what-is-an-alignment"><i class="fa fa-check"></i><b>2.1</b> What is an alignment ?<span></span></a>
+<li class="chapter" data-level="2.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#what-is-an-alignment"><i class="fa fa-check"></i><b>2.1</b> What is an alignment ?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-to-align"><i class="fa fa-check"></i><b>2.1.1</b> How to align ?<span></span></a></li>
-<li class="chapter" data-level="2.1.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#substitution-models"><i class="fa fa-check"></i><b>2.1.2</b> Substitution models<span></span></a></li>
-<li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#why-align"><i class="fa fa-check"></i><b>2.1.3</b> Why align ?<span></span></a></li>
+<li class="chapter" data-level="2.1.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-to-align"><i class="fa fa-check"></i><b>2.1.1</b> How to align ?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#substitution-models"><i class="fa fa-check"></i><b>2.1.2</b> Substitution models</a></li>
+<li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#why-align"><i class="fa fa-check"></i><b>2.1.3</b> Why align ?</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-local-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up local alignment ?<span></span></a></li>
-<li class="chapter" data-level="2.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#msa-short"><i class="fa fa-check"></i><b>2.3</b> MSA (short)<span></span></a></li>
+<li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-local-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up local alignment ?</a></li>
+<li class="chapter" data-level="2.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#msa-short"><i class="fa fa-check"></i><b>2.3</b> MSA (short)</a></li>
+<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#mapping"><i class="fa fa-check"></i><b>2.4</b> Mapping</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><i class="fa fa-check"></i><b>3</b> Mapping-friendly sequence reductions: going beyond homopolymer compression<span></span></a>
+<li class="chapter" data-level="3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><i class="fa fa-check"></i><b>3</b> Mapping-friendly sequence reductions: going beyond homopolymer compression</a>
 <ul>
-<li><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-abstract">Abstract<span></span></a></li>
-<li class="chapter" data-level="3.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction<span></span></a></li>
-<li class="chapter" data-level="3.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-methods"><i class="fa fa-check"></i><b>3.2</b> Methods<span></span></a>
+<li class="chapter" data-level="" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="3.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-methods"><i class="fa fa-check"></i><b>3.2</b> Methods</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#sec:msr-def"><i class="fa fa-check"></i><b>3.2.1</b> Streaming sequence reductions<span></span></a></li>
-<li class="chapter" data-level="3.2.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#sec:enum"><i class="fa fa-check"></i><b>3.2.2</b> Restricting the space of Streaming sequence reductions<span></span></a></li>
+<li class="chapter" data-level="3.2.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#sec:msr-def"><i class="fa fa-check"></i><b>3.2.1</b> Streaming sequence reductions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#sec:enum"><i class="fa fa-check"></i><b>3.2.2</b> Restricting the space of Streaming sequence reductions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#datasets-and-pipelines"><i class="fa fa-check"></i><b>3.3</b> Datasets and Pipelines<span></span></a>
+<li class="chapter" data-level="3.3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#datasets-and-pipelines"><i class="fa fa-check"></i><b>3.3</b> Datasets and Pipelines</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#datasets"><i class="fa fa-check"></i><b>3.3.1</b> Datasets<span></span></a></li>
-<li class="chapter" data-level="3.3.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#simulation-pipeline"><i class="fa fa-check"></i><b>3.3.2</b> Simulation pipeline<span></span></a></li>
-<li class="chapter" data-level="3.3.3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#sec:evalpipeline"><i class="fa fa-check"></i><b>3.3.3</b> Evaluation pipeline<span></span></a></li>
+<li class="chapter" data-level="3.3.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#datasets"><i class="fa fa-check"></i><b>3.3.1</b> Datasets</a></li>
+<li class="chapter" data-level="3.3.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#simulation-pipeline"><i class="fa fa-check"></i><b>3.3.2</b> Simulation pipeline</a></li>
+<li class="chapter" data-level="3.3.3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#sec:evalpipeline"><i class="fa fa-check"></i><b>3.3.3</b> Evaluation pipeline</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-results"><i class="fa fa-check"></i><b>3.4</b> Results<span></span></a>
+<li class="chapter" data-level="3.4" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-results"><i class="fa fa-check"></i><b>3.4</b> Results</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#selection-of-mapping-friendly-sequence-reductions"><i class="fa fa-check"></i><b>3.4.1</b> Selection of mapping-friendly sequence reductions<span></span></a></li>
-<li class="chapter" data-level="3.4.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes"><i class="fa fa-check"></i><b>3.4.2</b> Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes<span></span></a></li>
-<li class="chapter" data-level="3.4.3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome"><i class="fa fa-check"></i><b>3.4.3</b> Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome<span></span></a></li>
-<li class="chapter" data-level="3.4.4" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#raw-mapping-improves-upon-hpc-on-centromeric-regions"><i class="fa fa-check"></i><b>3.4.4</b> Raw mapping improves upon HPC on centromeric regions<span></span></a></li>
-<li class="chapter" data-level="3.4.5" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#positions-of-incorrectly-mapped-reads-across-the-entire-human-genome"><i class="fa fa-check"></i><b>3.4.5</b> Positions of incorrectly mapped reads across the entire human genome<span></span></a></li>
+<li class="chapter" data-level="3.4.1" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#selection-of-mapping-friendly-sequence-reductions"><i class="fa fa-check"></i><b>3.4.1</b> Selection of mapping-friendly sequence reductions</a></li>
+<li class="chapter" data-level="3.4.2" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes"><i class="fa fa-check"></i><b>3.4.2</b> Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes</a></li>
+<li class="chapter" data-level="3.4.3" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome"><i class="fa fa-check"></i><b>3.4.3</b> Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome</a></li>
+<li class="chapter" data-level="3.4.4" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#raw-mapping-improves-upon-hpc-on-centromeric-regions"><i class="fa fa-check"></i><b>3.4.4</b> Raw mapping improves upon HPC on centromeric regions</a></li>
+<li class="chapter" data-level="3.4.5" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#positions-of-incorrectly-mapped-reads-across-the-entire-human-genome"><i class="fa fa-check"></i><b>3.4.5</b> Positions of incorrectly mapped reads across the entire human genome</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-discussion"><i class="fa fa-check"></i><b>3.5</b> Discussion<span></span></a></li>
-<li class="chapter" data-level="3.6" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#limitations-of-this-study"><i class="fa fa-check"></i><b>3.6</b> Limitations of this study<span></span></a></li>
-<li class="chapter" data-level="3.7" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#code-availability"><i class="fa fa-check"></i><b>3.7</b> Code availability<span></span></a></li>
-<li><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#supplementary-information">Supplementary information<span></span></a></li>
+<li class="chapter" data-level="3.5" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#hpc-discussion"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#limitations-of-this-study"><i class="fa fa-check"></i><b>3.6</b> Limitations of this study</a></li>
+<li class="chapter" data-level="3.7" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#code-availability"><i class="fa fa-check"></i><b>3.7</b> Code availability</a></li>
+<li class="chapter" data-level="" data-path="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html"><a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#supplementary-information"><i class="fa fa-check"></i>Supplementary information</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html"><i class="fa fa-check"></i><b>4</b> Learning from alignments<span></span></a>
+<li class="chapter" data-level="4" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html"><i class="fa fa-check"></i><b>4</b> Learning from alignments</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#alignments-are-a-rich-source-of-information"><i class="fa fa-check"></i><b>4.1</b> Alignments are a rich source of information<span></span></a>
+<li class="chapter" data-level="4.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#alignments-are-a-rich-source-of-information"><i class="fa fa-check"></i><b>4.1</b> Alignments are a rich source of information</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#pairwise-alns"><i class="fa fa-check"></i><b>4.1.1</b> Pairwise alns<span></span></a></li>
-<li class="chapter" data-level="4.1.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#msa"><i class="fa fa-check"></i><b>4.1.2</b> MSA<span></span></a></li>
+<li class="chapter" data-level="4.1.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#pairwise-alns"><i class="fa fa-check"></i><b>4.1.1</b> Pairwise alns</a></li>
+<li class="chapter" data-level="4.1.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#msa"><i class="fa fa-check"></i><b>4.1.2</b> MSA</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.2</b> Preprocessing the alignment for machine learning<span></span></a>
+<li class="chapter" data-level="4.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.2</b> Preprocessing the alignment for machine learning</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#embedding-the-alignment"><i class="fa fa-check"></i><b>4.2.1</b> Embedding the alignment<span></span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#choosing-a-learning-target"><i class="fa fa-check"></i><b>4.2.2</b> Choosing a learning target<span></span></a></li>
+<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#embedding-the-alignment"><i class="fa fa-check"></i><b>4.2.1</b> Embedding the alignment</a></li>
+<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#choosing-a-learning-target"><i class="fa fa-check"></i><b>4.2.2</b> Choosing a learning target</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#how-to-learn-from-alns"><i class="fa fa-check"></i><b>4.3</b> How to learn from ALNs<span></span></a>
+<li class="chapter" data-level="4.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#how-to-learn-from-alns"><i class="fa fa-check"></i><b>4.3</b> How to learn from ALNs</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#tests-and-statistical-learning"><i class="fa fa-check"></i><b>4.3.1</b> Tests and statistical learning<span></span></a></li>
-<li class="chapter" data-level="4.3.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#taking-interactions-into-account"><i class="fa fa-check"></i><b>4.3.2</b> Taking interactions into account<span></span></a></li>
-<li class="chapter" data-level="4.3.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#deep-learning"><i class="fa fa-check"></i><b>4.3.3</b> Deep Learning<span></span></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html"><i class="fa fa-check"></i><b>5</b> HIV and DRMs<span></span></a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#what-are-viruses"><i class="fa fa-check"></i><b>5.1</b> What are viruses ?<span></span></a></li>
-<li class="chapter" data-level="5.2" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#what-is-hiv"><i class="fa fa-check"></i><b>5.2</b> What is HIV ?<span></span></a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#quick-presentation-of-hiv"><i class="fa fa-check"></i><b>5.2.1</b> Quick Presentation of HIV<span></span></a></li>
-<li class="chapter" data-level="5.2.2" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#replication-cycle-of-hiv"><i class="fa fa-check"></i><b>5.2.2</b> Replication cycle of HIV<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#drug-resistance-in-hiv"><i class="fa fa-check"></i><b>5.3</b> Drug resistance in HIV<span></span></a>
-<ul>
-<li class="chapter" data-level="5.3.1" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#how-does-art-work"><i class="fa fa-check"></i><b>5.3.1</b> How does ART work<span></span></a></li>
-<li class="chapter" data-level="5.3.2" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#different-types-of-resistance"><i class="fa fa-check"></i><b>5.3.2</b> different types of resistance<span></span></a></li>
-<li class="chapter" data-level="5.3.3" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#consequences-on-global-health"><i class="fa fa-check"></i><b>5.3.3</b> Consequences on global health<span></span></a></li>
-<li class="chapter" data-level="5.3.4" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#finding-drms"><i class="fa fa-check"></i><b>5.3.4</b> Finding DRMS<span></span></a></li>
+<li class="chapter" data-level="4.3.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#tests-and-statistical-learning"><i class="fa fa-check"></i><b>4.3.1</b> Tests and statistical learning</a></li>
+<li class="chapter" data-level="4.3.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#taking-interactions-into-account"><i class="fa fa-check"></i><b>4.3.2</b> Taking interactions into account</a></li>
+<li class="chapter" data-level="4.3.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#deep-learning"><i class="fa fa-check"></i><b>4.3.3</b> Deep Learning</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="HIV-paper.html"><a href="HIV-paper.html"><i class="fa fa-check"></i><b>6</b> Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV<span></span></a>
+<li class="chapter" data-level="5" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html"><i class="fa fa-check"></i><b>5</b> HIV and DRMs</a>
 <ul>
-<li><a href="HIV-paper.html#abstract-paper">Abstract<span></span></a></li>
-<li><a href="HIV-paper.html#author-summary">Author summary<span></span></a></li>
-<li class="chapter" data-level="6.1" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction<span></span></a></li>
-<li class="chapter" data-level="6.2" data-path="HIV-paper.html"><a href="HIV-paper.html#materials-and-methods"><i class="fa fa-check"></i><b>6.2</b> Materials and methods<span></span></a>
+<li class="chapter" data-level="5.1" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#what-are-viruses"><i class="fa fa-check"></i><b>5.1</b> What are viruses ?</a></li>
+<li class="chapter" data-level="5.2" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#what-is-hiv"><i class="fa fa-check"></i><b>5.2</b> What is HIV ?</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="HIV-paper.html"><a href="HIV-paper.html#data"><i class="fa fa-check"></i><b>6.2.1</b> Data<span></span></a></li>
-<li class="chapter" data-level="6.2.2" data-path="HIV-paper.html"><a href="HIV-paper.html#classifier-training"><i class="fa fa-check"></i><b>6.2.2</b> Classifier training<span></span></a></li>
-<li class="chapter" data-level="6.2.3" data-path="HIV-paper.html"><a href="HIV-paper.html#measuring-classifier-performance"><i class="fa fa-check"></i><b>6.2.3</b> Measuring classifier performance<span></span></a></li>
+<li class="chapter" data-level="5.2.1" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#quick-presentation-of-hiv"><i class="fa fa-check"></i><b>5.2.1</b> Quick Presentation of HIV</a></li>
+<li class="chapter" data-level="5.2.2" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#replication-cycle-of-hiv"><i class="fa fa-check"></i><b>5.2.2</b> Replication cycle of HIV</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-results"><i class="fa fa-check"></i><b>6.3</b> Results<span></span></a>
+<li class="chapter" data-level="5.3" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#drug-resistance-in-hiv"><i class="fa fa-check"></i><b>5.3</b> Drug resistance in HIV</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="HIV-paper.html"><a href="HIV-paper.html#classifier-performance-interpretation"><i class="fa fa-check"></i><b>6.3.1</b> Classifier performance &amp; interpretation<span></span></a></li>
-<li class="chapter" data-level="6.3.2" data-path="HIV-paper.html"><a href="HIV-paper.html#additional-classification-results"><i class="fa fa-check"></i><b>6.3.2</b> Additional classification results<span></span></a></li>
-<li class="chapter" data-level="6.3.3" data-path="HIV-paper.html"><a href="HIV-paper.html#identifying-new-mutations-from-classifiers"><i class="fa fa-check"></i><b>6.3.3</b> Identifying new mutations from classifiers<span></span></a></li>
-<li class="chapter" data-level="6.3.4" data-path="HIV-paper.html"><a href="HIV-paper.html#detailed-analysis-of-potentially-resistance-associated-mutations"><i class="fa fa-check"></i><b>6.3.4</b> Detailed analysis of potentially resistance-associated mutations<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="6.4" data-path="HIV-paper.html"><a href="HIV-paper.html#discussion-and-perspectives"><i class="fa fa-check"></i><b>6.4</b> Discussion and perspectives<span></span></a></li>
-<li><a href="HIV-paper.html#hiv-acknowledgments">Acknowledgments<span></span></a></li>
-<li><a href="HIV-paper.html#supporting-information">Supporting Information<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html"><i class="fa fa-check"></i><b>7</b> Learning alignments, an interesting perspective<span></span></a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learning-pairwise-alignment"><i class="fa fa-check"></i><b>7.1</b> Learning pairwise alignment<span></span></a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#dedal"><i class="fa fa-check"></i><b>7.1.1</b> DEDAL<span></span></a></li>
-<li class="chapter" data-level="7.1.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#predicting-an-alignment"><i class="fa fa-check"></i><b>7.1.2</b> predicting an alignment<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#what-else-could-we-learn"><i class="fa fa-check"></i><b>7.2</b> What else could we learn ?<span></span></a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learn-to-predict-seeds-or-starting-positions"><i class="fa fa-check"></i><b>7.2.1</b> Learn to predict seeds or starting positions<span></span></a></li>
-<li class="chapter" data-level="7.2.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learn-pre-processing-functions"><i class="fa fa-check"></i><b>7.2.2</b> Learn pre-processing functions<span></span></a></li>
+<li class="chapter" data-level="5.3.1" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#how-does-art-work"><i class="fa fa-check"></i><b>5.3.1</b> How does ART work</a></li>
+<li class="chapter" data-level="5.3.2" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#different-types-of-resistance"><i class="fa fa-check"></i><b>5.3.2</b> different types of resistance</a></li>
+<li class="chapter" data-level="5.3.3" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#consequences-on-global-health"><i class="fa fa-check"></i><b>5.3.3</b> Consequences on global health</a></li>
+<li class="chapter" data-level="5.3.4" data-path="hiv-and-drms.html"><a href="hiv-and-drms.html#finding-drms"><i class="fa fa-check"></i><b>5.3.4</b> Finding DRMS</a></li>
 </ul></li>
 </ul></li>
-<li><a href="global-references.html#global-references">Global References<span></span></a></li>
-<li class="appendix"><span><b>Appendix<span></span></b></span></li>
-<li class="chapter" data-level="A" data-path="HPC-appendix.html"><a href="HPC-appendix.html"><i class="fa fa-check"></i><b>A</b> Supporting Information for “Mapping-friendly sequence reductions: going beyond homopolymer compression”<span></span></a>
+<li class="chapter" data-level="6" data-path="HIV-paper.html"><a href="HIV-paper.html"><i class="fa fa-check"></i><b>6</b> Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="HPC-appendix.html"><a href="HPC-appendix.html#appendix:tandemtools"><i class="fa fa-check"></i><b>A.1</b> “TandemTools” dataset generation<span></span></a></li>
-<li class="chapter" data-level="A.2" data-path="HPC-appendix.html"><a href="HPC-appendix.html#msr-performance-comparison"><i class="fa fa-check"></i><b>A.2</b> MSR performance comparison<span></span></a></li>
-<li class="chapter" data-level="A.3" data-path="HPC-appendix.html"><a href="HPC-appendix.html#origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome."><i class="fa fa-check"></i><b>A.3</b> Origin of incorrectly mapped reads of high mapping quality on whole human genome.<span></span></a></li>
-<li class="chapter" data-level="A.4" data-path="HPC-appendix.html"><a href="HPC-appendix.html#analyzing-read-origin-on-whole-human-genome"><i class="fa fa-check"></i><b>A.4</b> Analyzing read origin on whole human genome<span></span></a></li>
-<li class="chapter" data-level="A.5" data-path="HPC-appendix.html"><a href="HPC-appendix.html#performance-of-msrs-on-the-drosophila-genome"><i class="fa fa-check"></i><b>A.5</b> Performance of MSRs on the Drosophila genome<span></span></a></li>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#abstract-paper"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#author-summary"><i class="fa fa-check"></i>Author summary</a></li>
+<li class="chapter" data-level="6.1" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="HIV-paper.html"><a href="HIV-paper.html#materials-and-methods"><i class="fa fa-check"></i><b>6.2</b> Materials and methods</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="HIV-paper.html"><a href="HIV-paper.html#data"><i class="fa fa-check"></i><b>6.2.1</b> Data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="HIV-paper.html"><a href="HIV-paper.html#classifier-training"><i class="fa fa-check"></i><b>6.2.2</b> Classifier training</a></li>
+<li class="chapter" data-level="6.2.3" data-path="HIV-paper.html"><a href="HIV-paper.html#measuring-classifier-performance"><i class="fa fa-check"></i><b>6.2.3</b> Measuring classifier performance</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="HIV-appendix.html"><a href="HIV-appendix.html"><i class="fa fa-check"></i><b>B</b> Supporting Information for “Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV”<span></span></a>
+<li class="chapter" data-level="6.3" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-results"><i class="fa fa-check"></i><b>6.3</b> Results</a>
 <ul>
-<li class="chapter" data-level="B.1" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S1-Appendix"><i class="fa fa-check"></i><b>B.1</b> S1 Appendix (Technical appendix).<span></span></a>
-<ul>
-<li class="chapter" data-level="B.1.1" data-path="HIV-appendix.html"><a href="HIV-appendix.html#data-appendix"><i class="fa fa-check"></i><b>B.1.1</b> Data<span></span></a></li>
-<li class="chapter" data-level="B.1.2" data-path="HIV-appendix.html"><a href="HIV-appendix.html#classifiers"><i class="fa fa-check"></i><b>B.1.2</b> Classifiers<span></span></a></li>
-<li class="chapter" data-level="B.1.3" data-path="HIV-appendix.html"><a href="HIV-appendix.html#scoring"><i class="fa fa-check"></i><b>B.1.3</b> Scoring<span></span></a></li>
+<li class="chapter" data-level="6.3.1" data-path="HIV-paper.html"><a href="HIV-paper.html#classifier-performance-interpretation"><i class="fa fa-check"></i><b>6.3.1</b> Classifier performance &amp; interpretation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="HIV-paper.html"><a href="HIV-paper.html#additional-classification-results"><i class="fa fa-check"></i><b>6.3.2</b> Additional classification results</a></li>
+<li class="chapter" data-level="6.3.3" data-path="HIV-paper.html"><a href="HIV-paper.html#identifying-new-mutations-from-classifiers"><i class="fa fa-check"></i><b>6.3.3</b> Identifying new mutations from classifiers</a></li>
+<li class="chapter" data-level="6.3.4" data-path="HIV-paper.html"><a href="HIV-paper.html#detailed-analysis-of-potentially-resistance-associated-mutations"><i class="fa fa-check"></i><b>6.3.4</b> Detailed analysis of potentially resistance-associated mutations</a></li>
 </ul></li>
-<li class="chapter" data-level="B.2" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s1-fig."><i class="fa fa-check"></i><b>B.2</b> S1 Fig.<span></span></a></li>
-<li class="chapter" data-level="B.3" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s2-fig."><i class="fa fa-check"></i><b>B.3</b> S2 Fig.<span></span></a></li>
-<li class="chapter" data-level="B.4" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s3-fig."><i class="fa fa-check"></i><b>B.4</b> S3 Fig.<span></span></a></li>
-<li class="chapter" data-level="B.5" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S1-Table"><i class="fa fa-check"></i><b>B.5</b> S1 Table.<span></span></a></li>
-<li class="chapter" data-level="B.6" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S2-Appendix"><i class="fa fa-check"></i><b>B.6</b> S2 Appendix. (Fisher exact tests)<span></span></a></li>
-<li class="chapter" data-level="B.7" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s1-data."><i class="fa fa-check"></i><b>B.7</b> S1 Data.<span></span></a></li>
-<li class="chapter" data-level="B.8" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s2-data."><i class="fa fa-check"></i><b>B.8</b> S2 Data.<span></span></a></li>
+<li class="chapter" data-level="6.4" data-path="HIV-paper.html"><a href="HIV-paper.html#discussion-and-perspectives"><i class="fa fa-check"></i><b>6.4</b> Discussion and perspectives</a></li>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#supporting-information"><i class="fa fa-check"></i>Supporting Information</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html"><i class="fa fa-check"></i><b>7</b> Learning alignments, an interesting perspective</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learning-pairwise-alignment"><i class="fa fa-check"></i><b>7.1</b> Learning pairwise alignment</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#dedal"><i class="fa fa-check"></i><b>7.1.1</b> DEDAL</a></li>
+<li class="chapter" data-level="7.1.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#predicting-an-alignment"><i class="fa fa-check"></i><b>7.1.2</b> predicting an alignment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#what-else-could-we-learn"><i class="fa fa-check"></i><b>7.2</b> What else could we learn ?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learn-to-predict-seeds-or-starting-positions"><i class="fa fa-check"></i><b>7.2.1</b> Learn to predict seeds or starting positions</a></li>
+<li class="chapter" data-level="7.2.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learn-pre-processing-functions"><i class="fa fa-check"></i><b>7.2.2</b> Learn pre-processing functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="global-references.html"><a href="global-references.html"><i class="fa fa-check"></i>Global References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="HPC-appendix.html"><a href="HPC-appendix.html"><i class="fa fa-check"></i><b>A</b> Supporting Information for “Mapping-friendly sequence reductions: going beyond homopolymer compression”</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="HPC-appendix.html"><a href="HPC-appendix.html#appendix:tandemtools"><i class="fa fa-check"></i><b>A.1</b> “TandemTools” dataset generation</a></li>
+<li class="chapter" data-level="A.2" data-path="HPC-appendix.html"><a href="HPC-appendix.html#msr-performance-comparison"><i class="fa fa-check"></i><b>A.2</b> MSR performance comparison</a></li>
+<li class="chapter" data-level="A.3" data-path="HPC-appendix.html"><a href="HPC-appendix.html#origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome."><i class="fa fa-check"></i><b>A.3</b> Origin of incorrectly mapped reads of high mapping quality on whole human genome.</a></li>
+<li class="chapter" data-level="A.4" data-path="HPC-appendix.html"><a href="HPC-appendix.html#analyzing-read-origin-on-whole-human-genome"><i class="fa fa-check"></i><b>A.4</b> Analyzing read origin on whole human genome</a></li>
+<li class="chapter" data-level="A.5" data-path="HPC-appendix.html"><a href="HPC-appendix.html#performance-of-msrs-on-the-drosophila-genome"><i class="fa fa-check"></i><b>A.5</b> Performance of MSRs on the Drosophila genome</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="HIV-appendix.html"><a href="HIV-appendix.html"><i class="fa fa-check"></i><b>B</b> Supporting Information for “Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV”</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S1-Appendix"><i class="fa fa-check"></i><b>B.1</b> S1 Appendix (Technical appendix).</a>
+<ul>
+<li class="chapter" data-level="B.1.1" data-path="HIV-appendix.html"><a href="HIV-appendix.html#data-appendix"><i class="fa fa-check"></i><b>B.1.1</b> Data</a></li>
+<li class="chapter" data-level="B.1.2" data-path="HIV-appendix.html"><a href="HIV-appendix.html#classifiers"><i class="fa fa-check"></i><b>B.1.2</b> Classifiers</a></li>
+<li class="chapter" data-level="B.1.3" data-path="HIV-appendix.html"><a href="HIV-appendix.html#scoring"><i class="fa fa-check"></i><b>B.1.3</b> Scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="B.2" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s1-fig."><i class="fa fa-check"></i><b>B.2</b> S1 Fig.</a></li>
+<li class="chapter" data-level="B.3" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s2-fig."><i class="fa fa-check"></i><b>B.3</b> S2 Fig.</a></li>
+<li class="chapter" data-level="B.4" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s3-fig."><i class="fa fa-check"></i><b>B.4</b> S3 Fig.</a></li>
+<li class="chapter" data-level="B.5" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S1-Table"><i class="fa fa-check"></i><b>B.5</b> S1 Table.</a></li>
+<li class="chapter" data-level="B.6" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S2-Appendix"><i class="fa fa-check"></i><b>B.6</b> S2 Appendix. (Fisher exact tests)</a></li>
+<li class="chapter" data-level="B.7" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s1-data."><i class="fa fa-check"></i><b>B.7</b> S1 Data.</a></li>
+<li class="chapter" data-level="B.8" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s2-data."><i class="fa fa-check"></i><b>B.8</b> S2 Data.</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://lucblassel.com" target="blank">Back to main website</a></li>
@@ -432,22 +427,22 @@ graph. Observe that an order-<span class="math inline">\(\ell\)</span> SSR is de
 there are <span class="math inline">\(n=16\)</span> inputs and <span class="math inline">\(k=5\)</span> outputs. Figure <a href="mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression.html#fig:countingMSRs">3.1</a>B
 visualizes HPC in this way.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:countingMSRs"></span>
-<img src="figures/HPC-MSRs/panels_inline.png" alt="**Representing and counting Streaming sequence reductions.**
-**A**: General representation of an order-2 Streaming sequence
+<img src="figures/HPC-MSRs/panels_inline.png" alt="**Representing and counting mapping-friendly sequence reductions.**
+**A**: General representation of an order-2 mapping-friendly sequence
 reduction as a mapping of 16 input dinucleotides, to the 4 nucleotide
 outputs and the empty character $\varepsilon$. **B**: Homopolymer
-compression is an order-2 SSR. All dinucleotides except those that
+compression is an order-2 MSR. All dinucleotides except those that
 contain the same nucleotide twice map to the second nucleotide of the
 pair. The 4 dinucleotides that are the two same nucleotides map to the
 empty character $\varepsilon$. **C**: Our RC-core-insensitive order-2
-SSRs are mappings of the 6 representative dinucleotide inputs to the 4
+MSRs are mappings of the 6 representative dinucleotide inputs to the 4
 nucleotide outputs and the empty character $\varepsilon$. The 4
 dinucleotides that are their own reverse complement are always mapped to
 $\varepsilon$. The remaining 6 dinucleotides are mapped to the
 complement of the mapped output of the reverse complement dinucleotide
 input. For example, if AA is mapped to C, then TT (the reverse
 complement of AA) will be mapped to G (the complement of C). **D**:
-Number of possible SSR mappings under the different restrictions
+Number of possible MSR mappings under the different restrictions
 presented in the main text. All mappings from 16 dinucleotide inputs to
 5 outputs (as in panel A) are represented by the outermost circle. All
 RC-core-insensitive mappings (as in panel C) are represented by the
@@ -455,22 +450,22 @@ medium circle. All RC-core-insensitive mappings with only one
 representative of each equivalence class are represented by the
 innermost circle." width="90%" />
 <p class="caption">
-Figure 3.1: <strong>Representing and counting Streaming sequence reductions.</strong>
-<strong>A</strong>: General representation of an order-2 Streaming sequence
+Figure 3.1: <strong>Representing and counting mapping-friendly sequence reductions.</strong>
+<strong>A</strong>: General representation of an order-2 mapping-friendly sequence
 reduction as a mapping of 16 input dinucleotides, to the 4 nucleotide
 outputs and the empty character <span class="math inline">\(\varepsilon\)</span>. <strong>B</strong>: Homopolymer
-compression is an order-2 SSR. All dinucleotides except those that
+compression is an order-2 MSR. All dinucleotides except those that
 contain the same nucleotide twice map to the second nucleotide of the
 pair. The 4 dinucleotides that are the two same nucleotides map to the
 empty character <span class="math inline">\(\varepsilon\)</span>. <strong>C</strong>: Our RC-core-insensitive order-2
-SSRs are mappings of the 6 representative dinucleotide inputs to the 4
+MSRs are mappings of the 6 representative dinucleotide inputs to the 4
 nucleotide outputs and the empty character <span class="math inline">\(\varepsilon\)</span>. The 4
 dinucleotides that are their own reverse complement are always mapped to
 <span class="math inline">\(\varepsilon\)</span>. The remaining 6 dinucleotides are mapped to the
 complement of the mapped output of the reverse complement dinucleotide
 input. For example, if AA is mapped to C, then TT (the reverse
 complement of AA) will be mapped to G (the complement of C). <strong>D</strong>:
-Number of possible SSR mappings under the different restrictions
+Number of possible MSR mappings under the different restrictions
 presented in the main text. All mappings from 16 dinucleotide inputs to
 5 outputs (as in panel A) are represented by the outermost circle. All
 RC-core-insensitive mappings (as in panel C) are represented by the
@@ -620,14 +615,14 @@ fixed partition. An equivalence class can be defined by which pair of classes
 <span class="math inline">\(o(3) = o(4) = 3\)</span>. There are thus only 9 equivalence classes for a given
 partition.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:MSR-configs"></span>
-<img src="figures/HPC-MSRs/equivalence_classes_simpler.png" alt="**SSR equivalence classes for a fixed partition of the inputs.**
+<img src="figures/HPC-MSRs/equivalence_classes_simpler.png" alt="**MSR equivalence classes for a fixed partition of the inputs.**
 $S_0$ is always assigned $\varepsilon$, so it is represented by a gray
 node. A blue link between $S_i$ and an $S_j$ denotes that
 $\textsc{IsComp}(t(i), t(j))=\text{true}$. The equivalence classes are
 determined by the Watson-Crick complementary relationships between the
 rest of the parts, i.e. by all the possible ways to draw the blue links." width="90%" />
 <p class="caption">
-Figure 3.2: <strong>SSR equivalence classes for a fixed partition of the inputs.</strong>
+Figure 3.2: <strong>MSR equivalence classes for a fixed partition of the inputs.</strong>
 <span class="math inline">\(S_0\)</span> is always assigned <span class="math inline">\(\varepsilon\)</span>, so it is represented by a gray
 node. A blue link between <span class="math inline">\(S_i\)</span> and an <span class="math inline">\(S_j\)</span> denotes that
 <span class="math inline">\(IsComp(t(i), t(j))=\text{true}\)</span>. The equivalence classes are
@@ -1003,7 +998,7 @@ also evaluated these MSRs on a whole <em>Escherichia coli</em> (Genbank ID
 observed similar results, albeit the best MSRs do not seem to be one of our
 three candidates. This might mean that specific MSRs are more suited to
 particular types of genomes.</p>
-<template id="0207d04b-0669-4eaa-b951-b23ff1a08e14"><style>
+<template id="d0124902-e24f-43ed-b881-9ef52279e5ba"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -1037,16 +1032,16 @@ particular types of genomes.</p>
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-a9c6d32e{table-layout:auto;width:100%;}.cl-a9bec698{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a9bec6ca{font-family:'Helvetica';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-a9bec6d4{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-a9bedbec{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a9bedbf6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-a9bf1d32{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d3c{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d46{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d47{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d50{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d51{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d5a{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d5b{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-a9bf1d64{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-a9c6d32e'><thead><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-a9bf1d50"><p class="cl-a9bedbec"><span class="cl-a9bec698">label</span></p></td><td  rowspan="2"class="cl-a9bf1d5a"><p class="cl-a9bedbf6"><span class="cl-a9bec698">mapq</span></p></td><td  colspan="2"class="cl-a9bf1d51"><p class="cl-a9bedbec"><span class="cl-a9bec698">Whole human genome (minimap2)</span></p></td><td  colspan="2"class="cl-a9bf1d51"><p class="cl-a9bedbec"><span class="cl-a9bec698">Whole human genome (winnowmap2)</span></p></td><td  colspan="2"class="cl-a9bf1d51"><p class="cl-a9bedbec"><span class="cl-a9bec698">Whole Drosophila genome (minimap2)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a9bf1d5b"><p class="cl-a9bedbec"><span class="cl-a9bec698">fraction</span></p></td><td class="cl-a9bf1d5b"><p class="cl-a9bedbec"><span class="cl-a9bec698">error</span></p></td><td class="cl-a9bf1d5b"><p class="cl-a9bedbec"><span class="cl-a9bec698">fraction</span></p></td><td class="cl-a9bf1d5b"><p class="cl-a9bedbec"><span class="cl-a9bec698">error</span></p></td><td class="cl-a9bf1d5b"><p class="cl-a9bedbec"><span class="cl-a9bec698">fraction</span></p></td><td class="cl-a9bf1d5b"><p class="cl-a9bedbec"><span class="cl-a9bec698">error</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">HPC</span></p></td><td class="cl-a9bf1d3c"><p class="cl-a9bedbf6"><span class="cl-a9bec698">60</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.935</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">1.85e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.894</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">1.43e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.957</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">2.27e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">raw</span></p></td><td class="cl-a9bf1d3c"><p class="cl-a9bedbf6"><span class="cl-a9bec698">60</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.921</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-1%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">1.86e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec6d4">0.932</span><span class="cl-a9bec6d4"> </span><span class="cl-a9bec6d4">+4%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">1.75e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+23%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.958</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">2.27e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-0%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">MSR</span><span class="cl-a9bec6ca">F</span></p></td><td class="cl-a9bf1d3c"><p class="cl-a9bedbf6"><span class="cl-a9bec698">50</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec6d4">0.938</span><span class="cl-a9bec6d4"> </span><span class="cl-a9bec6d4">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">1.29e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-30%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.886</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-1%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">3.82e-04</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-73%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec6d4">0.960</span><span class="cl-a9bec6d4"> </span><span class="cl-a9bec6d4">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">1.37e-03</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-39%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">MSR</span><span class="cl-a9bec6ca">E</span></p></td><td class="cl-a9bf1d3c"><p class="cl-a9bedbf6"><span class="cl-a9bec698">50</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.936</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec6d4">1.17e-04</span><span class="cl-a9bec6d4"> </span><span class="cl-a9bec6d4">-94%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.820</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-8%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec6d4">8.93e-05</span><span class="cl-a9bec6d4"> </span><span class="cl-a9bec6d4">-94%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.954</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-0%</span></p></td><td class="cl-a9bf1d32"><p class="cl-a9bedbec"><span class="cl-a9bec6d4">0</span><span class="cl-a9bec6d4"> </span><span class="cl-a9bec6d4">-100%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-a9bf1d46"><p class="cl-a9bedbec"><span class="cl-a9bec698">MSR</span><span class="cl-a9bec6ca">P</span></p></td><td class="cl-a9bf1d47"><p class="cl-a9bedbf6"><span class="cl-a9bec698">50</span></p></td><td class="cl-a9bf1d46"><p class="cl-a9bedbec"><span class="cl-a9bec6d4">0.938</span><span class="cl-a9bec6d4"> </span><span class="cl-a9bec6d4">0%</span></p></td><td class="cl-a9bf1d46"><p class="cl-a9bedbec"><span class="cl-a9bec698">4.15e-04</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-78%</span></p></td><td class="cl-a9bf1d46"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.845</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-6%</span></p></td><td class="cl-a9bf1d46"><p class="cl-a9bedbec"><span class="cl-a9bec698">1.14e-04</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-92%</span></p></td><td class="cl-a9bf1d46"><p class="cl-a9bedbec"><span class="cl-a9bec698">0.957</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">+0%</span></p></td><td class="cl-a9bf1d46"><p class="cl-a9bedbec"><span class="cl-a9bec698">8.11e-04</span><span class="cl-a9bec698"> </span><span class="cl-a9bec698">-64%</span></p></td></tr></tbody>
+</style><div class="tabwid"><style>.cl-3c9abdbe{table-layout:auto;width:100%;}.cl-3c952912{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3c952944{font-family:'Helvetica';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;top:3.3pt;}.cl-3c952945{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-3c953dbc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3c953dc6{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-3c957ab6{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957aca{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957acb{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957ad4{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957ade{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957adf{background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957ae8{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957ae9{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-3c957aea{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 1pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-3c9abdbe'><thead><tr style="overflow-wrap:break-word;"><td  rowspan="2"class="cl-3c957ade"><p class="cl-3c953dbc"><span class="cl-3c952912">label</span></p></td><td  rowspan="2"class="cl-3c957ae8"><p class="cl-3c953dc6"><span class="cl-3c952912">mapq</span></p></td><td  colspan="2"class="cl-3c957adf"><p class="cl-3c953dbc"><span class="cl-3c952912">Whole human genome (minimap2)</span></p></td><td  colspan="2"class="cl-3c957adf"><p class="cl-3c953dbc"><span class="cl-3c952912">Whole human genome (winnowmap2)</span></p></td><td  colspan="2"class="cl-3c957adf"><p class="cl-3c953dbc"><span class="cl-3c952912">Whole Drosophila genome (minimap2)</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3c957ae9"><p class="cl-3c953dbc"><span class="cl-3c952912">fraction</span></p></td><td class="cl-3c957ae9"><p class="cl-3c953dbc"><span class="cl-3c952912">error</span></p></td><td class="cl-3c957ae9"><p class="cl-3c953dbc"><span class="cl-3c952912">fraction</span></p></td><td class="cl-3c957ae9"><p class="cl-3c953dbc"><span class="cl-3c952912">error</span></p></td><td class="cl-3c957ae9"><p class="cl-3c953dbc"><span class="cl-3c952912">fraction</span></p></td><td class="cl-3c957ae9"><p class="cl-3c953dbc"><span class="cl-3c952912">error</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">HPC</span></p></td><td class="cl-3c957aca"><p class="cl-3c953dc6"><span class="cl-3c952912">60</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.935</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">1.85e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.894</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">1.43e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.957</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">2.27e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">raw</span></p></td><td class="cl-3c957aca"><p class="cl-3c953dc6"><span class="cl-3c952912">60</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.921</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-1%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">1.86e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952945">0.932</span><span class="cl-3c952945"> </span><span class="cl-3c952945">+4%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">1.75e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+23%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.958</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">2.27e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-0%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">MSR</span><span class="cl-3c952944">F</span></p></td><td class="cl-3c957aca"><p class="cl-3c953dc6"><span class="cl-3c952912">50</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952945">0.938</span><span class="cl-3c952945"> </span><span class="cl-3c952945">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">1.29e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-30%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.886</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-1%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">3.82e-04</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-73%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952945">0.960</span><span class="cl-3c952945"> </span><span class="cl-3c952945">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">1.37e-03</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-39%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">MSR</span><span class="cl-3c952944">E</span></p></td><td class="cl-3c957aca"><p class="cl-3c953dc6"><span class="cl-3c952912">50</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.936</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952945">1.17e-04</span><span class="cl-3c952945"> </span><span class="cl-3c952945">-94%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.820</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-8%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952945">8.93e-05</span><span class="cl-3c952945"> </span><span class="cl-3c952945">-94%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952912">0.954</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-0%</span></p></td><td class="cl-3c957ab6"><p class="cl-3c953dbc"><span class="cl-3c952945">0</span><span class="cl-3c952945"> </span><span class="cl-3c952945">-100%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-3c957acb"><p class="cl-3c953dbc"><span class="cl-3c952912">MSR</span><span class="cl-3c952944">P</span></p></td><td class="cl-3c957ad4"><p class="cl-3c953dc6"><span class="cl-3c952912">50</span></p></td><td class="cl-3c957acb"><p class="cl-3c953dbc"><span class="cl-3c952945">0.938</span><span class="cl-3c952945"> </span><span class="cl-3c952945">0%</span></p></td><td class="cl-3c957acb"><p class="cl-3c953dbc"><span class="cl-3c952912">4.15e-04</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-78%</span></p></td><td class="cl-3c957acb"><p class="cl-3c953dbc"><span class="cl-3c952912">0.845</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-6%</span></p></td><td class="cl-3c957acb"><p class="cl-3c953dbc"><span class="cl-3c952912">1.14e-04</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-92%</span></p></td><td class="cl-3c957acb"><p class="cl-3c953dbc"><span class="cl-3c952912">0.957</span><span class="cl-3c952912"> </span><span class="cl-3c952912">+0%</span></p></td><td class="cl-3c957acb"><p class="cl-3c953dbc"><span class="cl-3c952912">8.11e-04</span><span class="cl-3c952912"> </span><span class="cl-3c952912">-64%</span></p></td></tr></tbody>
 <caption class="caption">
 <p><span id="tab:table-subset">Table 3.1: </span><strong>Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.</strong>
 For each reference sequence and mapper pair, we report the fraction of reads mapped (“fraction” columns), the <code>paftools mapeval</code> mapping error rate (“error” columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality <span class="math inline">\(\geq 50\)</span>.</p>
 </caption>
 </table></div></template>
-<div class="flextable-shadow-host" id="3ca9d8b4-c1bc-4cc4-8e2c-54bc726e417b"></div>
+<div class="flextable-shadow-host" id="6c60ddce-015b-4cc6-99c8-917eec7dccec"></div>
 <script>
-var dest = document.getElementById("3ca9d8b4-c1bc-4cc4-8e2c-54bc726e417b");
-var template = document.getElementById("0207d04b-0669-4eaa-b951-b23ff1a08e14");
+var dest = document.getElementById("6c60ddce-015b-4cc6-99c8-917eec7dccec");
+var template = document.getElementById("d0124902-e24f-43ed-b881-9ef52279e5ba");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";

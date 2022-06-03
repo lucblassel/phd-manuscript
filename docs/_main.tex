@@ -226,13 +226,13 @@
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 \usepackage[style=authoryear,backref=true,refsegment=chapter,defernumbers=true,sorting=nyt,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false]{biblatex}
-\addbibresource{references/HPC-MSRs.bib}
-\addbibresource{references/HIV-DRMs.bib}
-\addbibresource{references/Sequence-Data.bib}
+\addbibresource{./references/HPC-MSRs.bib}
+\addbibresource{./references/HIV-DRMs.bib}
+\addbibresource{./references/Sequence-Data.bib}
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-02}
+\date{2022-06-03}
 
 \begin{document}
 \maketitle
@@ -487,10 +487,12 @@ Essentially a text file. Just a long succession of letters, so we can apply text
 
 We want to compare individuals, species, whatever. To do this we need to compare what is comparable. Alignment to the rescue.
 
+Local vs.~global alignment
+
 \hypertarget{how-to-align}{%
 \subsection{How to align ?}\label{how-to-align}}
 
-Either decide to align globally or locally. Usually done with dynamic programming by assigning a score to mismatches, indels, \ldots{} and then choosing the alignment with minimal score.
+Usually done with dynamic programming by assigning a score to mismatches, indels, \ldots{} and then choosing the alignment with minimal score.
 
 short example of local alignment
 
@@ -552,6 +554,31 @@ Example of COVID where homology is high so we can get away with using HMMS / pai
   Simulated annealing
 \item
   Genetic algorithm
+\end{itemize}
+
+\hypertarget{mapping}{%
+\section{Mapping}\label{mapping}}
+
+\begin{itemize}
+\tightlist
+\item
+  short intro
+\end{itemize}
+
+\begin{itemize}
+\item
+  context of short read on large reference sequence
+\item
+  Problems:
+
+  \begin{itemize}
+  \item
+    Repetitive regions (centromeres, telomeres)
+  \item
+    low homology / sequencing errors\ldots{}
+  \end{itemize}
+\item
+  specific heuristics like minimizers / FM-index help
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
@@ -2785,26 +2812,21 @@ i.e.~either connections in MSR graph or sequence 2 sequence models
 
 \appendix
 
+\fancyhead[LE]{APPENDIX \thechapter}
+
 \hypertarget{HPC-appendix}{%
 \chapter{Supporting Information for ``Mapping-friendly sequence reductions: going beyond homopolymer compression''}\label{HPC-appendix}}
 
 \hypertarget{appendix:tandemtools}{%
 \section{``TandemTools'' dataset generation}\label{appendix:tandemtools}}
 
-This dataset was obtained by taking a human X chromosome HOR sequence,
-concatenating it 500 times with added mutations in order to obtain an
-approximately 1 Mbp long sequence. Then 1200 reads were simulated from
-the sequence using \texttt{nanosim} \autocite{yangNanoSimNanoporeSequence2017} and
-assembled using a centromere-tailored pipeline
-\autocite{bzikadzeAutomatedAssemblyCentromeres2020}. A 10kbp deletion was then
-added to this assembly. The resulting sequence is the one we refer to as
-the ``Centromeric sequence''.
+This dataset was obtained by taking a human X chromosome HOR sequence, concatenating it 500 times with added mutations in order to obtain an approximately 1 Mbp long sequence. Then 1200 reads were simulated from the sequence using \texttt{nanosim} \autocite{yangNanoSimNanoporeSequence2017} and assembled using a centromere-tailored pipeline \autocite{bzikadzeAutomatedAssemblyCentromeres2020}. A 10kbp deletion was then added to this assembly. The resulting sequence is the one we refer to as the ``Centromeric sequence''.
 
 \hypertarget{msr-performance-comparison}{%
 \section{MSR performance comparison}\label{msr-performance-comparison}}
 
 \begin{table}[H]
-\extcaption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence.}{Results using  \texttt{minimap2}\autocite{liMinimap2PairwiseAlignment2018} and \texttt{winnowmap2}\autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
+\extcaption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence.}{Results using  \minimap \autocite{liMinimap2PairwiseAlignment2018} and \winnowmap  \autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
 \label{tab:mapperComparison}
 {\centering
 \resizebox{0.93\textwidth}{!}{%
@@ -2813,61 +2835,61 @@ the ``Centromeric sequence''.
                                     & \multicolumn{4}{l}{mapq=60}                                                                                 & \multicolumn{4}{l}{mapq$\geq50$}                                                                            & \multicolumn{4}{l}{any mapq}                                                                              \\ \cmidrule(l){2-5}\cmidrule(l){6-9}\cmidrule(l){6-9}\cmidrule(l){10-13}
 mapping friendly sequence reduction & \multicolumn{2}{l}{fraction}                       & \multicolumn{2}{l}{error}                              & \multicolumn{2}{l}{fraction}                       & \multicolumn{2}{l}{error}                              & \multicolumn{2}{l}{fraction}                      & \multicolumn{2}{l}{error}                             \\ \midrule
                                                                                                                                                                                                                                                                                                                                                                             \\
-\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \texttt{minimap2}(n = \numprint{25764})}}                                                                                                                                                                                                                                                                                  \\
+\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \minimap (n = \numprint{25764})}}                                                                                                                                                                                                                                                                                  \\
 HPC                                 & 0.957          & \footnotesize{\;$+$0\%}           & 2.27e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.963} & \textbf{\footnotesize{\;$+$0\%}}  & 2.34e-03          & \footnotesize{\;$+$  0\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.48e-02          & \footnotesize{\;$+$ 0\%}          \\
 raw                                 & \textbf{0.958} & \textbf{\footnotesize{\;$+$0\%}}  & 2.27e-03          & \footnotesize{\;$-$  0\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 2.34e-03          & \footnotesize{\;$+$  0\%}          & 0.997          & \footnotesize{\;$-$0\%}          & \textbf{1.17e-02} & \textbf{\footnotesize{\;$-$21\%}} \\
-MSR$_{\text{F}}$                             & 0.952          & \footnotesize{\;$-$1\%}           & 1.18e-03          & \footnotesize{\;$-$ 48\%}          & 0.960          & \footnotesize{\;$-$0\%}           & 1.37e-03          & \footnotesize{\;$-$ 41\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.36e-02          & \footnotesize{\;$-$ 8\%}          \\
-MSR$_{\text{E}}$                             & 0.946          & \footnotesize{\;$-$1\%}           & \textbf{0}     & \textbf{\footnotesize{\;$-$100\%}} & 0.954          & \footnotesize{\;$-$1\%}           & \textbf{0}     & \textbf{\footnotesize{\;$-$100\%}} & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.53e-02          & \footnotesize{\;$+$ 3\%}          \\
-MSR$_{\text{P}}$                             & 0.950          & \footnotesize{\;$-$1\%}           & 4.90e-04          & \footnotesize{\;$-$ 78\%}          & 0.957          & \footnotesize{\;$-$1\%}           & 8.11e-04          & \footnotesize{\;$-$ 65\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$-$0\%}} & 1.39e-02          & \footnotesize{\;$-$ 6\%}          \\
+\msr{F}                             & 0.952          & \footnotesize{\;$-$1\%}           & 1.18e-03          & \footnotesize{\;$-$ 48\%}          & 0.960          & \footnotesize{\;$-$0\%}           & 1.37e-03          & \footnotesize{\;$-$ 41\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.36e-02          & \footnotesize{\;$-$ 8\%}          \\
+\msr{E}                             & 0.946          & \footnotesize{\;$-$1\%}           & \textbf{0}     & \textbf{\footnotesize{\;$-$100\%}} & 0.954          & \footnotesize{\;$-$1\%}           & \textbf{0}     & \textbf{\footnotesize{\;$-$100\%}} & \textbf{0.998} & \textbf{\footnotesize{\;$+$0\%}} & 1.53e-02          & \footnotesize{\;$+$ 3\%}          \\
+\msr{P}                             & 0.950          & \footnotesize{\;$-$1\%}           & 4.90e-04          & \footnotesize{\;$-$ 78\%}          & 0.957          & \footnotesize{\;$-$1\%}           & 8.11e-04          & \footnotesize{\;$-$ 65\%}          & \textbf{0.998} & \textbf{\footnotesize{\;$-$0\%}} & 1.39e-02          & \footnotesize{\;$-$ 6\%}          \\
                                                                                                                                                                                                                                                                                                                                                                             \\
-\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \texttt{winnowmap2}(n = \numprint{25764})}}                                                                                                                                                                                                                                                                                \\
+\multicolumn{13}{l}{\textbf{Whole Drosophila melanogaster genome - \winnowmap (n = \numprint{25764})}}                                                                                                                                                                                                                                                                                \\
 HPC                                 & 0.923          & \footnotesize{\;$+$0\%}           & 1.51e-03          & \footnotesize{\;$+$ 0\%}           & 0.930          & \footnotesize{\;$+$0\%}           & 1.59e-03          & \footnotesize{\;$+$ 0\%}           & 0.989          & \footnotesize{\;$+$0\%}          & 1.50e-02          & \footnotesize{\;$+$ 0\%}          \\
 raw                                 & \textbf{0.949} & \textbf{\footnotesize{\;$+$3\%}}  & 1.92e-03          & \footnotesize{\;$+$27\%}           & \textbf{0.954} & \textbf{\footnotesize{\;$+$3\%}}  & 1.99e-03          & \footnotesize{\;$+$26\%}           & \textbf{0.995} & \textbf{\footnotesize{\;$+$1\%}} & \textbf{1.33e-02} & \textbf{\footnotesize{\;$-$12\%}} \\
-MSR$_{\text{F}}$                             & 0.918          & \footnotesize{\;$-$1\%}           & \textbf{1.27e-03} & \textbf{\footnotesize{\;$-$16\%}}  & 0.925          & \footnotesize{\;$-$0\%}           & \textbf{1.30e-03} & \textbf{\footnotesize{\;$-$18\%}}  & 0.987          & \footnotesize{\;$-$0\%}          & 1.37e-02          & \footnotesize{\;$-$ 9\%}          \\
-MSR$_{\text{P}}$                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.33e-03          & \footnotesize{\;$-$12\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.53e-03          & \footnotesize{\;$-$3\%}            & 0.983          & \footnotesize{\;$-$1\%}          & 1.40e-02          & \footnotesize{\;$-$ 7\%}          \\
-MSR$_{\text{E}}$                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.42e-03          & \footnotesize{\;$-$ 6\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.49e-03          & \footnotesize{\;$-$ 6\%}           & 0.983          & \footnotesize{\;$-$1\%}          & 1.44e-02          & \footnotesize{\;$-$ 4\%}          \\
+\msr{F}                             & 0.918          & \footnotesize{\;$-$1\%}           & \textbf{1.27e-03} & \textbf{\footnotesize{\;$-$16\%}}  & 0.925          & \footnotesize{\;$-$0\%}           & \textbf{1.30e-03} & \textbf{\footnotesize{\;$-$18\%}}  & 0.987          & \footnotesize{\;$-$0\%}          & 1.37e-02          & \footnotesize{\;$-$ 9\%}          \\
+\msr{P}                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.33e-03          & \footnotesize{\;$-$12\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.53e-03          & \footnotesize{\;$-$3\%}            & 0.983          & \footnotesize{\;$-$1\%}          & 1.40e-02          & \footnotesize{\;$-$ 7\%}          \\
+\msr{E}                             & 0.905          & \footnotesize{\;$-$2\%}           & 1.42e-03          & \footnotesize{\;$-$ 6\%}           & 0.912          & \footnotesize{\;$-$2\%}           & 1.49e-03          & \footnotesize{\;$-$ 6\%}           & 0.983          & \footnotesize{\;$-$1\%}          & 1.44e-02          & \footnotesize{\;$-$ 4\%}          \\
                                                                                                                                                                                                                                                                                                                                                                             \\
-\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \texttt{minimap2}(n = \numprint{12673})}}                                                                                                                                                                                                                                                                                        \\
+\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \minimap (n = \numprint{12673})}}                                                                                                                                                                                                                                                                                        \\
 HPC                                 & 0.870          & \footnotesize{\;$+$0\%}           & \textbf{1.36e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & 0.964          & \footnotesize{\;$+$0\%}           & \textbf{1.56e-03} & \textbf{\footnotesize{\;$+$  0\%}} & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 9.00e-03          & \footnotesize{\;$+$ 0\%}          \\
 raw                                 & \textbf{0.936} & \textbf{\footnotesize{\;$+$8\%}}  & 1.86e-03          & \footnotesize{\;$+$ 36\%}          & \textbf{0.984} & \textbf{\footnotesize{\;$+$2\%}}  & 2.09e-03          & \footnotesize{\;$+$ 34\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & \textbf{4.50e-03} & \textbf{\footnotesize{\;$-$50\%}} \\
-MSR$_{\text{E}}$                             & 0.885          & \footnotesize{\;$+$2\%}           & 3.39e-03          & \footnotesize{\;$+$149\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 3.53e-03          & \footnotesize{\;$+$127\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 1.20e-02          & \footnotesize{\;$+$33\%}          \\
-MSR$_{\text{F}}$                             & 0.850          & \footnotesize{\;$-$2\%}           & 2.04e-03          & \footnotesize{\;$+$ 50\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 2.12e-03          & \footnotesize{\;$+$ 36\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 6.63e-03          & \footnotesize{\;$-$26\%}          \\
-MSR$_{\text{P}}$                             & 0.898          & \footnotesize{\;$+$3\%}           & 1.58e-03          & \footnotesize{\;$+$ 16\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 1.79e-03          & \footnotesize{\;$+$ 15\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 9.78e-03          & \footnotesize{\;$+$ 9\%}          \\
+\msr{E}                             & 0.885          & \footnotesize{\;$+$2\%}           & 3.39e-03          & \footnotesize{\;$+$149\%}          & 0.962          & \footnotesize{\;$-$0\%}           & 3.53e-03          & \footnotesize{\;$+$127\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 1.20e-02          & \footnotesize{\;$+$33\%}          \\
+\msr{F}                             & 0.850          & \footnotesize{\;$-$2\%}           & 2.04e-03          & \footnotesize{\;$+$ 50\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 2.12e-03          & \footnotesize{\;$+$ 36\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 6.63e-03          & \footnotesize{\;$-$26\%}          \\
+\msr{P}                             & 0.898          & \footnotesize{\;$+$3\%}           & 1.58e-03          & \footnotesize{\;$+$ 16\%}          & 0.968          & \footnotesize{\;$+$0\%}           & 1.79e-03          & \footnotesize{\;$+$ 15\%}          & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 9.78e-03          & \footnotesize{\;$+$ 9\%}          \\
                                                                                                                                                                                                                                                                                                                                                                             \\
-\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \texttt{winnowmap2}(n = \numprint{12673})}}                                                                                                                                                                                                                                                                                      \\
+\multicolumn{13}{l}{\textbf{Synthetic centromeric sequence - \winnowmap (n = \numprint{12673})}}                                                                                                                                                                                                                                                                                      \\
 HPC                                 & 0.775          & \footnotesize{\;$+$ 0\%}          & \textbf{1.32e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & \textbf{0.822} & \textbf{\footnotesize{\;$+$0\%}}  & \textbf{1.82e-03} & \textbf{\footnotesize{\;$+$ 0\%}}  & 0.997          & \footnotesize{\;$+$0\%}          & 8.37e-02          & \footnotesize{\;$+$ 0\%}          \\
 raw                                 & \textbf{0.850} & \textbf{\footnotesize{\;$+$10\%}} & 2.04e-03          & \footnotesize{\;$+$54\%}           & 0.890          & \footnotesize{\;$+$8\%}           & 1.95e-03          & \footnotesize{\;$+$ 7\%}           & \textbf{0.999} & \textbf{\footnotesize{\;$+$0\%}} & \textbf{4.60e-02} & \textbf{\footnotesize{\;$-$45\%}} \\
-MSR$_{\text{E}}$                             & 0.795          & \footnotesize{\;$+$ 2\%}          & 2.28e-03          & \footnotesize{\;$+$73\%}           & 0.846          & \footnotesize{\;$+$3\%}           & 2.52e-03          & \footnotesize{\;$+$38\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 6.96e-02          & \footnotesize{\;$-$17\%}          \\
-MSR$_{\text{F}}$                             & 0.820          & \footnotesize{\;$+$ 6\%}          & 1.83e-03          & \footnotesize{\;$+$38\%}           & 0.867          & \footnotesize{\;$+$6\%}           & 2.27e-03          & \footnotesize{\;$+$25\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 5.97e-02          & \footnotesize{\;$-$29\%}          \\
-MSR$_{\text{P}}$                             & 0.780          & \footnotesize{\;$+$ 1\%}          & 1.62e-03          & \footnotesize{\;$+$22\%}           & 0.829          & \footnotesize{\;$+$1\%}           & 2.09e-03          & \footnotesize{\;$+$15\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 8.65e-02          & \footnotesize{\;$+$ 3\%}          \\
+\msr{E}                             & 0.795          & \footnotesize{\;$+$ 2\%}          & 2.28e-03          & \footnotesize{\;$+$73\%}           & 0.846          & \footnotesize{\;$+$3\%}           & 2.52e-03          & \footnotesize{\;$+$38\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 6.96e-02          & \footnotesize{\;$-$17\%}          \\
+\msr{F}                             & 0.820          & \footnotesize{\;$+$ 6\%}          & 1.83e-03          & \footnotesize{\;$+$38\%}           & 0.867          & \footnotesize{\;$+$6\%}           & 2.27e-03          & \footnotesize{\;$+$25\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 5.97e-02          & \footnotesize{\;$-$29\%}          \\
+\msr{P}                             & 0.780          & \footnotesize{\;$+$ 1\%}          & 1.62e-03          & \footnotesize{\;$+$22\%}           & 0.829          & \footnotesize{\;$+$1\%}           & 2.09e-03          & \footnotesize{\;$+$15\%}           & 0.997          & \footnotesize{\;$-$0\%}          & 8.65e-02          & \footnotesize{\;$+$ 3\%}          \\
                                                                                                                                                                                                                                                                                                                                                                             \\
-\multicolumn{13}{l}{\textbf{Whole human genome - \texttt{minimap2}(n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                   \\
+\multicolumn{13}{l}{\textbf{Whole human genome - \minimap (n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                   \\
 HPC                                 & \textbf{0.935} & \textbf{\footnotesize{\;$+$0\%}}  & 1.85e-03          & \footnotesize{\;$+$ 0\%}           & \textbf{0.942} & \textbf{\footnotesize{\;$+$0\%}}  & 1.85e-03          & \footnotesize{\;$+$ 0\%}           & \textbf{1.000} & \textbf{\footnotesize{\;$+$0\%}} & 1.46e-02          & \footnotesize{\;$+$ 0\%}          \\
 raw                                 & 0.921          & \footnotesize{\;$-$1\%}           & 1.86e-03          & \footnotesize{\;$+$ 0\%}           & 0.927          & \footnotesize{\;$-$2\%}           & 1.86e-03          & \footnotesize{\;$+$ 1\%}           & 0.998          & \footnotesize{\;$-$0\%}          & \textbf{1.29e-02} & \textbf{\footnotesize{\;$-$11\%}} \\
-MSR$_{\text{E}}$                             & 0.926          & \footnotesize{\;$-$1\%}           & \textbf{6.92e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.936          & \footnotesize{\;$-$1\%}           & \textbf{1.17e-04} & \textbf{\footnotesize{\;$-$94\%}}  & 0.999          & \footnotesize{\;$-$0\%}          & 1.76e-02          & \footnotesize{\;$+$20\%}          \\
-MSR$_{\text{P}}$                             & 0.929          & \footnotesize{\;$-$1\%}           & 2.20e-04          & \footnotesize{\;$-$88\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 4.15e-04          & \footnotesize{\;$-$78\%}           & 0.999          & \footnotesize{\;$-$0\%}          & 1.55e-02          & \footnotesize{\;$+$ 6\%}          \\
-MSR$_{\text{F}}$                             & 0.930          & \footnotesize{\;$-$1\%}           & 1.09e-03          & \footnotesize{\;$-$41\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 1.29e-03          & \footnotesize{\;$-$30\%}           & \textbf{1.000} & \textbf{\footnotesize{\;$-$0\%}} & 1.51e-02          & \footnotesize{\;$+$ 4\%}          \\
+\msr{E}                             & 0.926          & \footnotesize{\;$-$1\%}           & \textbf{6.92e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.936          & \footnotesize{\;$-$1\%}           & \textbf{1.17e-04} & \textbf{\footnotesize{\;$-$94\%}}  & 0.999          & \footnotesize{\;$-$0\%}          & 1.76e-02          & \footnotesize{\;$+$20\%}          \\
+\msr{P}                             & 0.929          & \footnotesize{\;$-$1\%}           & 2.20e-04          & \footnotesize{\;$-$88\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 4.15e-04          & \footnotesize{\;$-$78\%}           & 0.999          & \footnotesize{\;$-$0\%}          & 1.55e-02          & \footnotesize{\;$+$ 6\%}          \\
+\msr{F}                             & 0.930          & \footnotesize{\;$-$1\%}           & 1.09e-03          & \footnotesize{\;$-$41\%}           & 0.938          & \footnotesize{\;$-$0\%}           & 1.29e-03          & \footnotesize{\;$-$30\%}           & \textbf{1.000} & \textbf{\footnotesize{\;$-$0\%}} & 1.51e-02          & \footnotesize{\;$+$ 4\%}          \\
                                                                                                                                                                                                                                                                                                                                                                             \\
-\multicolumn{13}{l}{\textbf{Whole human genome - \texttt{winnowmap2}(n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                 \\
+\multicolumn{13}{l}{\textbf{Whole human genome - \winnowmap (n = \numprint{655594})}}                                                                                                                                                                                                                                                                                                 \\
 HPC                                 & 0.894          & \footnotesize{\;$+$ 0\%}          & 1.43e-03          & \footnotesize{\;$+$ 0\%}           & 0.902          & \footnotesize{\;$+$0\%}           & 1.49e-03          & \footnotesize{\;$+$ 0\%}           & 0.988          & \footnotesize{\;$+$0\%}          & 1.92e-02          & \footnotesize{\;$+$ 0\%}          \\
 raw                                 & \textbf{0.932} & \textbf{\footnotesize{\;$+$ 4\%}} & 1.75e-03          & \footnotesize{\;$+$23\%}           & \textbf{0.937} & \textbf{\footnotesize{\;$+$4\%}}  & 1.79e-03          & \footnotesize{\;$+$20\%}           & \textbf{0.994} & \textbf{\footnotesize{\;$+$1\%}} & \textbf{1.43e-02} & \textbf{\footnotesize{\;$-$26\%}} \\
-MSR$_{\text{F}}$                             & 0.874          & \footnotesize{\;$-$ 2\%}          & 2.81e-04          & \footnotesize{\;$-$80\%}           & 0.886          & \footnotesize{\;$-$2\%}           & 3.82e-04          & \footnotesize{\;$-$74\%}           & 0.984          & \footnotesize{\;$-$0\%}          & 1.94e-02          & \footnotesize{\;$+$ 1\%}          \\
-MSR$_{\text{E}}$                             & 0.795          & \footnotesize{\;$-$11\%}          & \textbf{6.33e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.820          & \footnotesize{\;$-$9\%}           & \textbf{8.93e-05} & \textbf{\footnotesize{\;$-$94\%}}  & 0.971          & \footnotesize{\;$-$2\%}          & 2.08e-02          & \footnotesize{\;$+$ 9\%}          \\
-MSR$_{\text{P}}$                             & 0.826          & \footnotesize{\;$-$ 8\%}          & 8.68e-05          & \footnotesize{\;$-$94\%}           & 0.845          & \footnotesize{\;$-$6\%}           & 1.14e-04          & \footnotesize{\;$-$92\%}           & 0.975          & \footnotesize{\;$-$1\%}          & 2.11e-02          & \footnotesize{\;$+$10\%}          \\
+\msr{F}                             & 0.874          & \footnotesize{\;$-$ 2\%}          & 2.81e-04          & \footnotesize{\;$-$80\%}           & 0.886          & \footnotesize{\;$-$2\%}           & 3.82e-04          & \footnotesize{\;$-$74\%}           & 0.984          & \footnotesize{\;$-$0\%}          & 1.94e-02          & \footnotesize{\;$+$ 1\%}          \\
+\msr{E}                             & 0.795          & \footnotesize{\;$-$11\%}          & \textbf{6.33e-05} & \textbf{\footnotesize{\;$-$96\%}}  & 0.820          & \footnotesize{\;$-$9\%}           & \textbf{8.93e-05} & \textbf{\footnotesize{\;$-$94\%}}  & 0.971          & \footnotesize{\;$-$2\%}          & 2.08e-02          & \footnotesize{\;$+$ 9\%}          \\
+\msr{P}                             & 0.826          & \footnotesize{\;$-$ 8\%}          & 8.68e-05          & \footnotesize{\;$-$94\%}           & 0.845          & \footnotesize{\;$-$6\%}           & 1.14e-04          & \footnotesize{\;$-$92\%}           & 0.975          & \footnotesize{\;$-$1\%}          & 2.11e-02          & \footnotesize{\;$+$10\%}          \\
 \\
-\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \texttt{minimap2}(n = \numprint{68811})}}                                                                                                                                                                                                                                                                                 \\
+\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \minimap (n = \numprint{68811})}}                                                                                                                                                                                                                                                                                 \\
 HPC                                 & \textbf{0.619} & \textbf{\footnotesize{\;+ 0\%}}   & 3.29e-04          & \footnotesize{\;+ 0\%}             & 0.656          & \footnotesize{\;+ 0\%}            & 3.10e-04          & \footnotesize{\;+ 0\%}             & \textbf{0.998} & \textbf{\footnotesize{\;+0\%}}   & 7.79e-02          & \footnotesize{\;+ 0\%}            \\
 raw                                 & 0.514          & \footnotesize{\;-17\%}            & 1.98e-04          & \footnotesize{\;-40\%}             & 0.539          & \footnotesize{\;-18\%}            & 2.16e-04          & \footnotesize{\;-30\%}             & 0.981          & \footnotesize{\;-2\%}            & \textbf{6.69e-02} & \textbf{\footnotesize{\;-14\%}}   \\
-MSR$_{\text{F}}$                             & 0.601          & \footnotesize{\;- 3\%}            & 2.18e-04          & \footnotesize{\;-34\%}             & 0.640          & \footnotesize{\;- 2\%}            & 2.27e-04          & \footnotesize{\;-27\%}             & \textbf{0.998} & \textbf{\footnotesize{\;-0\%}}   & 8.15e-02          & \footnotesize{\;+ 5\%}            \\
-MSR$_{\text{E}}$                             & 0.618          & \footnotesize{\;- 0\%}            & 1.41e-04          & \footnotesize{\;-57\%}             & \textbf{0.658} & \textbf{\footnotesize{\;+ 0\%}}   & \textbf{1.55e-04} & \textbf{\footnotesize{\;-50\%}}    & 0.997          & \footnotesize{\;-0\%}            & 8.23e-02          & \footnotesize{\;+ 6\%}            \\
-MSR$_{\text{P}}$                             & 0.616          & \footnotesize{\;- 1\%}            & \textbf{1.18e-04} & \textbf{\footnotesize{\;-64\%}}    & 0.656          & \footnotesize{\;+ 0\%}            & 1.99e-04          & \footnotesize{\;-36\%}             & 0.997          & \footnotesize{\;-0\%}            & 8.31e-02          & \footnotesize{\;+ 7\%}            \\
+\msr{F}                             & 0.601          & \footnotesize{\;- 3\%}            & 2.18e-04          & \footnotesize{\;-34\%}             & 0.640          & \footnotesize{\;- 2\%}            & 2.27e-04          & \footnotesize{\;-27\%}             & \textbf{0.998} & \textbf{\footnotesize{\;-0\%}}   & 8.15e-02          & \footnotesize{\;+ 5\%}            \\
+\msr{E}                             & 0.618          & \footnotesize{\;- 0\%}            & 1.41e-04          & \footnotesize{\;-57\%}             & \textbf{0.658} & \textbf{\footnotesize{\;+ 0\%}}   & \textbf{1.55e-04} & \textbf{\footnotesize{\;-50\%}}    & 0.997          & \footnotesize{\;-0\%}            & 8.23e-02          & \footnotesize{\;+ 6\%}            \\
+\msr{P}                             & 0.616          & \footnotesize{\;- 1\%}            & \textbf{1.18e-04} & \textbf{\footnotesize{\;-64\%}}    & 0.656          & \footnotesize{\;+ 0\%}            & 1.99e-04          & \footnotesize{\;-36\%}             & 0.997          & \footnotesize{\;-0\%}            & 8.31e-02          & \footnotesize{\;+ 7\%}            \\
                                                                                                                                                                                                                                                                                                                                                                             \\
-\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \texttt{winnowmap2}(n = \numprint{68811})}}                                                                                                                                                                                                                                                                               \\
+\multicolumn{13}{l}{\textbf{Whole Human genome (repeated regions) - \winnowmap (n = \numprint{68811})}}                                                                                                                                                                                                                                                                               \\
 HPC                                 & 0.525          & \footnotesize{\;+ 0\%}            & 1.24e-03          & \footnotesize{\;+ 0\%}             & 0.557          & \footnotesize{\;+ 0\%}            & 1.49e-03          & \footnotesize{\;+ 0\%}             & 0.950          & \footnotesize{\;+0\%}            & 1.19e-01          & \footnotesize{\;+ 0\%}            \\
 raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+23\%}}   & 1.26e-03          & \footnotesize{\;+ 1\%}             & \textbf{0.672} & \textbf{\footnotesize{\;+21\%}}   & 1.49e-03          & \footnotesize{\;+ 0\%}             & \textbf{0.968} & \textbf{\footnotesize{\;+2\%}}   & \textbf{8.09e-02} & \textbf{\footnotesize{\;-32\%}}   \\ 
-MSR$_{\text{F}}$                             & 0.482          & \footnotesize{\;- 8\%}            & \textbf{1.63e-03} & \textbf{\footnotesize{\;+31\%}}    & 0.516          & \footnotesize{\;- 7\%}            & 1.83e-03          & \footnotesize{\;+23\%}             & 0.940          & \footnotesize{\;-1\%}            & 1.21e-01          & \footnotesize{\;+ 2\%}            \\
-MSR$_{\text{E}}$                             & 0.366          & \footnotesize{\;-30\%}            & 6.35e-04          & \footnotesize{\;-49\%}             & 0.405          & \footnotesize{\;-27\%}            & \textbf{9.32e-04} & \textbf{\footnotesize{\;-37\%}}    & 0.911          & \footnotesize{\;-4\%}            & 1.38e-01          & \footnotesize{\;+17\%}            \\
-MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;-21\%}            & 9.45e-04          & \footnotesize{\;-24\%}             & 0.451          & \footnotesize{\;-19\%}            & 1.16e-03          & \footnotesize{\;-22\%}             & 0.920          & \footnotesize{\;-3\%}            & 1.39e-01          & \footnotesize{\;+17\%}            \\ \bottomrule
+\msr{F}                             & 0.482          & \footnotesize{\;- 8\%}            & \textbf{1.63e-03} & \textbf{\footnotesize{\;+31\%}}    & 0.516          & \footnotesize{\;- 7\%}            & 1.83e-03          & \footnotesize{\;+23\%}             & 0.940          & \footnotesize{\;-1\%}            & 1.21e-01          & \footnotesize{\;+ 2\%}            \\
+\msr{E}                             & 0.366          & \footnotesize{\;-30\%}            & 6.35e-04          & \footnotesize{\;-49\%}             & 0.405          & \footnotesize{\;-27\%}            & \textbf{9.32e-04} & \textbf{\footnotesize{\;-37\%}}    & 0.911          & \footnotesize{\;-4\%}            & 1.38e-01          & \footnotesize{\;+17\%}            \\
+\msr{P}                             & 0.415          & \footnotesize{\;-21\%}            & 9.45e-04          & \footnotesize{\;-24\%}             & 0.451          & \footnotesize{\;-19\%}            & 1.16e-03          & \footnotesize{\;-22\%}             & 0.920          & \footnotesize{\;-3\%}            & 1.39e-01          & \footnotesize{\;+17\%}            \\ \bottomrule
 \end{tabular}%
 }
 }
@@ -2879,7 +2901,7 @@ MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/HPC-MSRs/ridgelines.new_selection.pdf}\\
-    \extcaption{Histogram of the original simulated positions for the incorrectly mapped reads using \texttt{minimap2} at high mapping qualities across the whole human genome, for several transformation methods.}{For a given chromosome, each row represents the number of simulated reads starting at that particular region. The dark gray rectangle represents the position of the centromere for that chromosome, obtained from annotations provided by the T2T consortium (\href{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}). Similarly for chromosomes 13, 14, 15, 21 and 22, a lighter gray rectangle represents the position of the ``stalk'' satellites also containing repetitive regions. For HPC and raw reads only alignments of mapping quality 60 were considered. To provide a fair comparison, alignments with mapping qualities $\geq 50$ were considered for MSRs E, F and P.}
+    \extcaption{Histogram of the original simulated positions for the incorrectly mapped reads using \minimap at high mapping qualities across the whole human genome, for several transformation methods.}{For a given chromosome, each row represents the number of simulated reads starting at that particular region. The dark gray rectangle represents the position of the centromere for that chromosome, obtained from annotations provided by the T2T consortium (\href{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}). Similarly for chromosomes 13, 14, 15, 21 and 22, a lighter gray rectangle represents the position of the ``stalk'' satellites also containing repetitive regions. For HPC and raw reads only alignments of mapping quality 60 were considered. To provide a fair comparison, alignments with mapping qualities $\geq 50$ were considered for MSRs E, F and P.}
     \label{fig:error-hists}
 \end{figure}
 
@@ -2904,21 +2926,21 @@ MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_e_distrib.centro.pdf}
-    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with MSR$_{\text{E}}$}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{E}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-e}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_p_distrib.centro.pdf}
-    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with MSR$_{\text{P}}$}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{P}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-p}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_f2_distrib.centro.pdf}
-    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with MSR$_{\text{F}}$}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{F}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-f}
 \end{figure}
 
@@ -2928,13 +2950,11 @@ MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/droso_ecoli.pdf}
-    \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \texttt{minimap2}.}
+    \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \minimap.}
     \label{fig:drosophila-results}
 \end{figure}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]
-
-\fancyhead[LE]{APPENDIX \thechapter}
 
 \hypertarget{HIV-appendix}{%
 \chapter{Supporting Information for ``Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV''}\label{HIV-appendix}}
@@ -2948,51 +2968,21 @@ MSR$_{\text{P}}$                             & 0.415          & \footnotesize{\;
 \hypertarget{data-availability}{%
 \subsubsection{Data Availability}\label{data-availability}}
 
-The policy of the UK HIV Drug Resistance Database is to make DNA
-sequences available to any bona fide researcher who submits a
-scientifically robust proposal, provided data exchange complies with
-Information Governance and Data Security Policies in all the relevant
-countries. This includes replication of findings from published studies,
-although the researcher would be encouraged to work with the main author
-of the published paper to understand the nuances of the data. Enquiries
-should be addressed to \href{mailto:iph.hivrdb@ucl.ac.uk}{\nolinkurl{iph.hivrdb@ucl.ac.uk}} in the first instance.
-More information on the UK dataset is also available on the UK CHIC
-homepage: \href{http://www.ukchic.org.uk/}{www.ukchic.org.uk}. Amino acid
-sequences are made available along with a metadata file.\\
-The West and central African dataset is available as supplementary
-information along with a metadata file containing HIV subtype, treatment
-information and known RAM presence/absence for each sequence.\\
-Predictions made for each sequence of both datasets, by all of the
-trained classifiers are made available as part of the supplementary data
-as well as synthetic results from which the figures of the paper were
-drawn. The importance values for each mutation and each trained
-classifier are also made available.\\
-All the data and metadata files made available are hosted in the online
-repository linked to this project at the following URL:\\
+The policy of the UK HIV Drug Resistance Database is to make DNA sequences available to any bona fide researcher who submits a scientifically robust proposal, provided data exchange complies with Information Governance and Data Security Policies in all the relevant countries. This includes replication of findings from published studies, although the researcher would be encouraged to work with the main author of the published paper to understand the nuances of the data. Enquiries should be addressed to \href{mailto:iph.hivrdb@ucl.ac.uk}{\nolinkurl{iph.hivrdb@ucl.ac.uk}} in the first instance. More information on the UK dataset is also available on the UK CHIC homepage: \href{http://www.ukchic.org.uk/}{www.ukchic.org.uk}. Amino acid sequences are made available along with a metadata file.\\
+The West and central African dataset is available as supplementary information along with a metadata file containing HIV subtype, treatment information and known RAM presence/absence for each sequence.\\
+Predictions made for each sequence of both datasets, by all of the trained classifiers are made available as part of the supplementary data as well as synthetic results from which the figures of the paper were drawn. The importance values for each mutation and each trained classifier are also made available.\\
+All the data and metadata files made available are hosted in the online repository linked to this project at the following URL:\\
 \href{https://github.com/lucblassel/HIV-DRM-machine-learning/tree/main/data}{github.com/lucblassel/HIV-DRM-machine-learning/tree/main/data}
 
 \hypertarget{data-preprocessing}{%
 \subsubsection{Data Preprocessing}\label{data-preprocessing}}
 
-For both the African and UK datasets, the sequences were truncated to
-keep sites 41 to 235 of the RT protein sequence before encoding. This
-truncation was needed to avoid the perturbation to classifier training
-due to long gappy regions at the beginning and end of the UK RT
-alignment caused by shorter sequences. These positions were determined
-with the Gblocks software \autocite{castresanaSelectionConservedBlocks2000} with
-default parameters, except for the Maximum number of sequences for a
-flanking position, set to 50,000, and the Allowed gap positions, which
-was set to "All". The encoding was done with the \texttt{OneHotEncoder} from
-the category-encoders python module
-\autocite{mcginnisScikitLearnContribCategoricalEncodingRelease2018}.
+For both the African and UK datasets, the sequences were truncated to keep sites 41 to 235 of the RT protein sequence before encoding. This truncation was needed to avoid the perturbation to classifier training due to long gappy regions at the beginning and end of the UK RT alignment caused by shorter sequences. These positions were determined with the Gblocks software \autocite{castresanaSelectionConservedBlocks2000} with default parameters, except for the Maximum number of sequences for a flanking position, set to 50,000, and the Allowed gap positions, which was set to ``All''. The encoding was done with the \texttt{OneHotEncoder} from the category-encoders python module \autocite{mcginnisScikitLearnContribCategoricalEncodingRelease2018}.
 
 \hypertarget{classifiers}{%
 \subsection{Classifiers}\label{classifiers}}
 
-We used classifier implementations from the scikit-learn python library
-\autocite{pedregosaScikitlearnMachineLearning2011}, \texttt{RandomForestClassifier} for
-the random forest classifier, \texttt{MultinomialNB} for Naïve Bayes and
-\texttt{LogisticRegressionCV} for logistic regression.\\
+We used classifier implementations from the scikit-learn python library \autocite{pedregosaScikitlearnMachineLearning2011}, \texttt{RandomForestClassifier} for the random forest classifier, \texttt{MultinomialNB} for Naïve Bayes and \texttt{LogisticRegressionCV} for logistic regression.\\
 \texttt{RandomForestClassifier} was used with default parameters except:
 
 \begin{itemize}
@@ -3025,39 +3015,19 @@ the random forest classifier, \texttt{MultinomialNB} for Naïve Bayes and
 
 \texttt{MultinomialNB} was used with default parameters.
 
-For the Fisher exact tests, we used the implementation from the scipy
-python library \autocite{virtanenSciPyFundamentalAlgorithms2020}, and corrected
-p-values for multiple testing with the statsmodels python library
-\autocite{seaboldStatsmodelsEconometricStatistical2010} using the \texttt{"Bonferroni"}
-method.
+For the Fisher exact tests, we used the implementation from the scipy python library \autocite{virtanenSciPyFundamentalAlgorithms2020}, and corrected p-values for multiple testing with the statsmodels python library \autocite{seaboldStatsmodelsEconometricStatistical2010} using the \texttt{"Bonferroni"} method.
 
 \hypertarget{scoring}{%
 \subsection{Scoring}\label{scoring}}
 
-To evaluate classifier performance several measures were used. We
-computed balanced accuracy instead of classical accuracy, because it can
-be overly optimistic, especially when assessing a highly biased
-classifier on an unbalanced test set
-\autocite{brodersenBalancedAccuracyIts2010}.The balanced accuracy is computed
-using the following formula, where \(TP\) and \(TN\) are the number of true
-positives and true negatives respectively, and \(FP\) and \(FN\) are the
-number of false positives and false negatives respectively:\\
+To evaluate classifier performance several measures were used. We computed balanced accuracy instead of classical accuracy, because it can be overly optimistic, especially when assessing a highly biased classifier on an unbalanced test set \autocite{brodersenBalancedAccuracyIts2010}.The balanced accuracy is computed using the following formula, where \(TP\) and \(TN\) are the number of true positives and true negatives respectively, and \(FP\) and \(FN\) are the number of false positives and false negatives respectively:\\
 \[
 balanced~accuracy = \frac{1}{2}\left(
       \frac{TP}{TP + FP} + \frac{TN}{TN + FN}
   \right)
 \]
 
-We also computed adjusted mutual information (AMI). We chose it over
-mutual information (MI) because it has an upper bound of 1 for a perfect
-classifier and is not dependent on the size of the test set, allowing us
-to compare the performance for differently sized test sets
-\autocite{vinhInformationTheoreticMeasures2010}. The adjusted mutual information
-of variables \(U\) and \(V\) is defined by the following formula, where
-\(MI(U,V)\) is the mutual information between variables \(U\) and \(V\),
-\(H(X)\) is the entropy of the variable \(X\) (= \(U\) or \(V\)) and
-\(E\{MI(U,V)\}\) is the expected MI, as explained in
-\autocite{vinhNovelApproachAutomatic2009}.\\
+We also computed adjusted mutual information (AMI). We chose it over mutual information (MI) because it has an upper bound of 1 for a perfect classifier and is not dependent on the size of the test set, allowing us to compare the performance for differently sized test sets \autocite{vinhInformationTheoreticMeasures2010}. The adjusted mutual information of variables \(U\) and \(V\) is defined by the following formula, where \(MI(U,V)\) is the mutual information between variables \(U\) and \(V\), \(H(X)\) is the entropy of the variable \(X\) (= \(U\) or \(V\)) and \(E\{MI(U,V)\}\) is the expected MI, as explained in \autocite{vinhNovelApproachAutomatic2009}.\\
 \[
 AMI(U,V) = \frac{
       MI(U,V) - E\{MI(U,V)\} 
@@ -3066,26 +3036,13 @@ AMI(U,V) = \frac{
   }
 \]
 
-MI was used to compute the \(G\) statistic, which follows the chi-square
-distribution under the null hypothesis
-\autocite{harremoesMutualInformationContingency2014}. This was used to compute
-p-values for each of our classifiers and assess the significance of
-their performance. \(G\) is defined by equation below, where \(N\) is the
-number of samples.\\
+MI was used to compute the \(G\) statistic, which follows the chi-square distribution under the null hypothesis \autocite{harremoesMutualInformationContingency2014}. This was used to compute p-values for each of our classifiers and assess the significance of their performance. \(G\) is defined by equation below, where \(N\) is the number of samples.\\
 \[G = 2\cdot N \cdot MI(U,V)\]
 
-Finally, to check the probabilistic predictive power of the classifiers
-we also computed the Brier score which is the mean squared difference
-between the ground truth and the predicted probability of being of the
-positive class for every sequence in the test set (therefore lower is
-better for this metric). The Brier score is defined in equation below,
-where \(p_t\) is the predicted probability of being of the positive class
-for sample \(t\) and \(o_t\) is the actual class (0 or 1, 1=positive class)
-of sample \(t\):\\
+Finally, to check the probabilistic predictive power of the classifiers we also computed the Brier score which is the mean squared difference between the ground truth and the predicted probability of being of the positive class for every sequence in the test set (therefore lower is better for this metric). The Brier score is defined in equation below, where \(p_t\) is the predicted probability of being of the positive class for sample \(t\) and \(o_t\) is the actual class (0 or 1, 1=positive class) of sample \(t\):\\
 \[Brier~score=\frac{1}{N}\sum_{t=1}^N(p_t-o_t)^2\]
 
-We used the following implementations from the scikit-learn python
-library \autocite{pedregosaScikitlearnMachineLearning2011} with default options:
+We used the following implementations from the scikit-learn python library \autocite{pedregosaScikitlearnMachineLearning2011} with default options:
 
 \begin{itemize}
 \tightlist
@@ -3099,17 +3056,13 @@ library \autocite{pedregosaScikitlearnMachineLearning2011} with default options:
   \texttt{brier\_score\_loss}
 \end{itemize}
 
-We used the relative risk to observe the relationship between one of our
-new mutations and a binary character \(X\) such as treatment status or
-presence/absence of a known RAM.
-\[
+We used the relative risk to observe the relationship between one of our new mutations and a binary character \(X\) such as treatment status or presence/absence of a known RAM. \[
 \begin{aligned}
   RR(new, X) &= \frac{prevalence\left(new~mutation\mid X=1\right)}{prevalence\left(new~mutation\mid X=0\right)} \nonumber\\
   \nonumber\\
   &= \frac{|(new=1)\cap(X=1)|}{|(X=1)|}\div\frac{|(new=1)\cap(X=0)|}{|(X=0)|} \\
   \end{aligned}
-\]
-\newpage
+\] \newpage
 
 \hypertarget{s1-fig.}{%
 \section{S1 Fig.}\label{s1-fig.}}
@@ -3156,66 +3109,57 @@ The p66 subunit is colored in dark gray, the p51 subunit in light gray. The acti
 \hypertarget{S1-Table}{%
 \section{S1 Table.}\label{S1-Table}}
 
-\textbf{Detailed table of ``new mutation'' characteristics.}
+\begin{table}[!h]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tabular}{@{}lllllll@{}ll@{}ll@{}ll@{}ll@{}ll@{}llllllll@{}} 
+\toprule
+\multirow{3}{*}{} & \multicolumn{2}{l}{\multirow{2}{*}{rank}} & \multicolumn{3}{l}{\multirow{2}{*}{codon distance}} & \multicolumn{6}{l}{UK} & \multicolumn{7}{l}{Africa} & \multirow{3}{*}{B62} & \multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}Dayhoff \\ category \\ shift \end{tabular}} & \multicolumn{4}{l}{Change in} \\
+ & \multicolumn{2}{l}{} & \multicolumn{3}{l}{} & \multicolumn{2}{l}{\multirow{2}{*}{count}} & \multicolumn{4}{l}{ratio} & \multicolumn{2}{l}{\multirow{2}{*}{count}} & \multicolumn{4}{l}{ratio} & \multirow{2}{*}{p-value} &  &  & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}net \\ charge \end{tabular}} & \multirow{2}{*}{polarity} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}hydrophobicity \\ index \end{tabular}} & \multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}molecular \\ weight \end{tabular}} \\
+ & T/N & W/W & min & UK & Africa & \multicolumn{2}{l}{} & \multicolumn{2}{l}{$\rho(new, treatment)$ } & \multicolumn{2}{l}{$\rho(new, with~RAM)$ ~} & \multicolumn{2}{l}{} & \multicolumn{2}{l}{$\rho(new, treatment)$~~ } & \multicolumn{2}{l}{$\rho(new, with~RAM)$~~ } &  &  &  &  &  &  &  \\ 
+\midrule
+ \textbf{L228R}  & 0 & 0 & 1 & 1.16 & 1.21 & 227~ & (0.4\%) & 18.1~ & {[}12.9;27.3] & 115.7~ & {[}55.1;507.3] & 98~ & (2.5\%) & 32.5 & {[}15.4;147.1] & 42.4~ & {[}17.8;$\infty$] & 2.0E-30 & -2 & e $\rightarrow$ d  & 1 & 5.6 & -0.93 & 43.03 \\
+\textbf{E203K}  & 1 & 1 & 1 & 1.31 & 1.33 & 256~ & (0.5\%) & 11.0~ & {[}8.2;15.1] & 20.1~ & {[}13.7;32.1] & 56~ & (1.4\%) & 14.1 & {[}6.7;71.9] & 17.4 & {[}8.2;83.7] & 6.4E-14 & 1 & c $\rightarrow$ d  & 2 & -1 & 0.68 & -0.94 \\
+\textbf{D218E}  & 2 & 3 & 1 & 1 & 1 & 168~ & (0.3\%) & 13.1~ & {[}9.0;19.6] & 27.0~ & {[}16.3;57.0] & 25~ & (0.6\%) & $\infty$~ & {[}$\infty$;$\infty$] & $\infty$ & {[}$\infty$;$\infty$]~ & 2.0E-09 & 2 & c $\rightarrow$ c  & 0 & -0.7 & 0.01 & 14.03 \\
+\textbf{L228H}  & 3 & 4 & 1 & 1.12 & 1.17 & 287 & (0.5\%) & 6.4~ & {[}5.1;8.4] & 9.2~ & {[}6.9;12.6] & 53~ & (1.3\%) & 23.1 & {[}9.4;$\infty$] & 34.1 & {[}12.0;$\infty$] & 2.7E-15 & -3 & e $\rightarrow$ d  & 0 & 5.5 & -0.92 & 23.99 \\
+\textbf{I135L}  & 4 & 6 & 1 & 1.16 & 1.13 & 540 & (1.0\%) & 1.8~ & {[}1.5;2.1] & 2.4 & {[}2.0;2.8] & 134 & (3.4\%) & 2.6~ & {[}1.8;3.8] & 2.4 & {[}1.7;3.4] & 2.6E-07 & 2 & e $\rightarrow$ e  & 0 & -0.3 & -0.69 & 0 \\
+\textbf{H208Y}  & 8 & 9 & 1 & 1.10 & 1.12 & 205~ & (0.4\%) & 8.8~ & {[}6.5;12.5] & 14.9 & {[}9.9;23.6] & 13~ & (0.3\%) & $\infty$~~ & {[}$\infty$;$\infty$] & $\infty$ & {[}$\infty$;$\infty$]~ & 7.3E-05 & 2 & d $\rightarrow$ f  & 0 & -4.2 & 1.27 & 26.03 \\
+\bottomrule
+\end{tabular}
+}
+ 
+  \extcaption{Detailed view of the characteristics of new potential RAMs}{\textbf{Rank:} For each new mutation we computed the aggregate feature importance ranks for the RTI-naive / RTI-experienced and known RAM present / known RAM absent classification tasks.
+  \textbf{Codon distance:} We computed the minimum number of nucleotide mutations to go from the wild amino acid codons to those of the mutated amino acid, as well as the average codon distance between both amino acids, weighted by the prevalence of each wild and mutated codon in the UK and the African datasets. 
+  \textbf{Count (both UK and Africa):} We looked at the number of apparitions of each new potential RAM in the UK and African datasets and the corresponding prevalence in parentheses. 
+  \textbf{Ratio (both UK and Africa):} We computed the prevalence ratio $\rho(new, treatment)$ (e.g. L228R is 18.1 times more prevalent in RTI-experienced sequences compared to RTI-naive sequences in the UK dataset). We also computed the prevalence ratio $\rho(new,any RAM)$ (e.g. L228R is 115.7 times more prevalent in sequences that have at least one known RAM than in sequences that have none in the UK dataset). The 95\% confidence intervals shown under each ratio were computed with 1000 bootstrap samples of size $n=55,000$ drawn with replacement from the whole UK dataset (The same procedure was done on the African dataset with size $n=3990$). 
+  \textbf{p-values:} Fisher exact tests were done on the African dataset to see if each of these new mutations were more prevalent in RTI-experienced sequences; p-value were corrected with the Bonferroni method for the six simultaneous tests.
+  \textbf{B62:} BLOSUM62 similarity values (e.g. D218E = 2, reflecting that E and D are both negatively charged and highly similar). 
+  \textbf{Dayhoff category shift:} The change in Dayhoff amino acid category is written thusly: “starting category $\rightarrow$ ending category”. These categories are as follows: \textit{a:} Sulfur polymerization. \textit{b:} Small, \textit{c:} Acid and amide, \textit{d:} Basic, \textit{e:} Hydrophobic and \textit{f:} aromatic.
+  \textbf{Physico-chemical change:} Change in physicochemical properties was obtained by subtracting the property value of the wil-type amino acid from the mutated amino acid. All values were obtained from the AAindex database  \autocite{kawashima2008}}
+\end{table}
 
 \hypertarget{S2-Appendix}{%
 \section{S2 Appendix. (Fisher exact tests)}\label{S2-Appendix}}
 
-\textbf{Fisher exact tests on pairs of mutations.} A detailed explanation of
-the procedure followed to test pairs of mutations for association with
-treatment. Detailed numerical results are also given.
+\textbf{Fisher exact tests on pairs of mutations.} A detailed explanation of the procedure followed to test pairs of mutations for association with treatment. Detailed numerical results are also given.
 
-In order to study epistasis further we conducted conducted Fisher exact
-tests between every pair of mutations in the UK dataset (\(n=867,903\))
-and the treatment status, corrected the p-values with the Bonferroni
-method with an overall risk level \(\alpha=0.05\).\\
-Out of these tests, \(1,309\) pairs were significantly associated with
-treatment status. \(424\) out of \(1,309\) these pairs were two known RAMs,
-\(806\) of these pairs contained one known RAM and only \(79\) tests had
-pairs involving no known RAM at all. Furthermore out of these \(1,309\)
-significantly associated pairs, \(829\) contained two mutations that were
-significantly associated to treatment when testing mutations one by one.
-In \(478\) pairs, one of the two mutations is associated to treatment on
-its own, and the remaining 2 pairs, none of the mutations were
-significantly associated with treatment on their own.\\
-These 2 pairs were K103R + V179D and T165I + K173Q. The first pair, is a
-pair of known RAMs and this interaction is characterized in the HIVDb
-database (\url{https://hivdb.stanford.edu/dr-summary/comments/NNRTI/}). The
-second pair is made up of new mutations, and the corrected p-value is
-\(0.02\). In the Standford HIVDB, T165I has been associated to a reduction
-in EFV susceptibility.\\
-Out of the \(1,309\) pairs significantly associated to treatment, \(151\)
-contained at least one of our 6 new potential RAMs, in \(6\) cases the
-pair was made up of 2 of them.\\
-In the UK dataset, phylogenetic correlation is likely very impactful
-with regards to these tests. Indeed, the sequences are far from being
-independent. In order to alleviate this effect we decided to test the
-sigficative pairs again on the African dataset, and once more correct
-with the Bonferroni procedure.\\
-Out of the \(1,309\) tests \(294\) have significative p-values after
-correction. Out of these \(221\) pairs were composed of 2 mutations
-individually significatively associated with treatment. The remaining
-\(73\) pairs had one mutation significantly associated with treatment.\\
-Out of the \(221\) significative tests, 156 pairs were composed of 2 known
-RAMS while \(135\) had one known RAM in the pair. The remaining 3 pairs
-that do not contain a known RAM all contained either L228R or L228H
-which are both part of our 6 potential RAMS.
+In order to study epistasis further we conducted conducted Fisher exact tests between every pair of mutations in the UK dataset (\(n=867,903\)) and the treatment status, corrected the p-values with the Bonferroni method with an overall risk level \(\alpha=0.05\).\\
+Out of these tests, \(1,309\) pairs were significantly associated with treatment status. \(424\) out of \(1,309\) these pairs were two known RAMs, \(806\) of these pairs contained one known RAM and only \(79\) tests had pairs involving no known RAM at all. Furthermore out of these \(1,309\) significantly associated pairs, \(829\) contained two mutations that were significantly associated to treatment when testing mutations one by one. In \(478\) pairs, one of the two mutations is associated to treatment on its own, and the remaining 2 pairs, none of the mutations were significantly associated with treatment on their own.\\
+These 2 pairs were K103R + V179D and T165I + K173Q. The first pair, is a pair of known RAMs and this interaction is characterized in the HIVDb database (\url{https://hivdb.stanford.edu/dr-summary/comments/NNRTI/}). The second pair is made up of new mutations, and the corrected p-value is \(0.02\). In the Standford HIVDB, T165I has been associated to a reduction in EFV susceptibility.\\
+Out of the \(1,309\) pairs significantly associated to treatment, \(151\) contained at least one of our 6 new potential RAMs, in \(6\) cases the pair was made up of 2 of them.\\
+In the UK dataset, phylogenetic correlation is likely very impactful with regards to these tests. Indeed, the sequences are far from being independent. In order to alleviate this effect we decided to test the sigficative pairs again on the African dataset, and once more correct with the Bonferroni procedure.\\
+Out of the \(1,309\) tests \(294\) have significative p-values after correction. Out of these \(221\) pairs were composed of 2 mutations individually significatively associated with treatment. The remaining \(73\) pairs had one mutation significantly associated with treatment.\\
+Out of the \(221\) significative tests, 156 pairs were composed of 2 known RAMS while \(135\) had one known RAM in the pair. The remaining 3 pairs that do not contain a known RAM all contained either L228R or L228H which are both part of our 6 potential RAMS.
 
 \hypertarget{s1-data.}{%
 \section{S1 Data.}\label{s1-data.}}
 
-\textbf{Archive of figure generating data.} A zip archive containing the
-processed data used to generate each panel of the main figures.
+\textbf{Archive of figure generating data.} A zip archive containing the processed data used to generate each panel of the main figures.
 
 \hypertarget{s2-data.}{%
 \section{S2 Data.}\label{s2-data.}}
 
-\textbf{List of known DRMs.} A .csv file containing all the known RAMs used
-in this project as well as the corresponding feature name in the encoded
-datasets. Obtained from
-(\href{https://hivdb.stanford.edu/dr-summary/comments/NRTI/}{hivdb.stanford.edu/dr-summary/comments/NRTI/})
-and
-(\href{https://hivdb.stanford.edu/dr-summary/comments/NNRTI/}{hivdb.stanford.edu/dr-summary/comments/NNRTI/}).
+\textbf{List of known DRMs.} A .csv file containing all the known RAMs used in this project as well as the corresponding feature name in the encoded datasets. Obtained from (\href{https://hivdb.stanford.edu/dr-summary/comments/NRTI/}{hivdb.stanford.edu/dr-summary/comments/NRTI/}) and (\href{https://hivdb.stanford.edu/dr-summary/comments/NNRTI/}{hivdb.stanford.edu/dr-summary/comments/NNRTI/}).
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for Appendix \thechapter}]
 
