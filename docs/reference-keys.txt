@@ -54,7 +54,7 @@ progressive
 hmms-profile-alignments-pairwise
 other-optimization-methods-short
 mapping
-mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression
+contribution-1-mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression
 hpc-introduction
 hpc-methods
 sec:msr-def
