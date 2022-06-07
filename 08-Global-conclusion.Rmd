@@ -1,0 +1,45 @@
+# Global conclusion {.unnumbered}
+
+## HPC part {.unnumbered}
+
+-   We have developed a method to improve mapping by pre-processing biological sequences
+
+    -   In terms of error rate and fraction of mapped reads
+
+    -   Although transformations selected on whole human genome generalises to D. melanogaster and E coli genomes.
+
+-   Where to go next ?
+
+    -   explore a larger space of transformations:
+
+        -   develop more efficient ways to explore search space
+
+        -   new search space reduction mehods
+
+    -   Explore different applications: assembly, clustering, ...
+
+    -   Explore different types of transformations, i.e. less constraints given by us, ML/Seq2Seq,...
+
+## HIV part {.unnumbered}
+
+-   We have used machine learning in order to find new drug resistance mutations in HIV
+
+    -   We have showed a link to drug resistance for 6 mutations of the RT-pol protein, currently not classified as DRMS, but they have been identified as potentially linked to resistance previously
+
+    -   These mutations seem to be accessory mutations and do not
+
+    -   There seems to be no complex epistasis phenomena
+
+-   Where to go next:
+
+    -   Confirm experimentally / in vivo the role these mutations have in resistance
+
+    -   Explore more sensitive methods, lots of work on interpretable DL -\> restricted by dataset size...
+
+    -   Explore metadata rich data, e.g. per treatment,
+
+    -   Explore other organisms for which we have data -\> HCV ?
+
+## Final words  {.unnumbered}
+
+Alignments are fundamental, improvements in the creation and analysis steps are crucial and likely to help other people gain insight in biological processes. ***etc...***
