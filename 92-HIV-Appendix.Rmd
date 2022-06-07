@@ -209,6 +209,7 @@ flextable(dt) %>%
 ```
 
 ```{=tex}
+\begin{landscape}
 \begin{table}[!h]
 \centering
 \resizebox{\linewidth}{!}{%
@@ -237,6 +238,7 @@ flextable(dt) %>%
   \textbf{Dayhoff category shift:} The change in Dayhoff amino acid category is written thusly: “starting category $\rightarrow$ ending category”. These categories are as follows: \textit{a:} Sulfur polymerization. \textit{b:} Small, \textit{c:} Acid and amide, \textit{d:} Basic, \textit{e:} Hydrophobic and \textit{f:} aromatic.
   \textbf{Physico-chemical change:} Change in physicochemical properties was obtained by subtracting the property value of the wil-type amino acid from the mutated amino acid. All values were obtained from the AAindex database  \autocite{kawashima2008}}
 \end{table}
+\end{landscape}
 ```
 ## S2 Appendix. (Fisher exact tests) {#S2-Appendix}
 
@@ -254,16 +256,20 @@ Out of the $221$ significative tests, 156 pairs were composed of 2 known RAMS wh
 
 **Archive of figure generating data.** A zip archive containing the processed data used to generate each panel of the main figures.
 
-```{r, s1_data}
+```{r, s1_data, eval=knitr::is_html_output()}
 xfun::embed_file("./figures/HIV-DRMs/S1_Data.zip", text="Download data")
 ```
+
+`r if(knitr::is_latex_output()){"<https://doi.org/10.1371/journal.pcbi.1008873.s007> (ZIP)"}`
 
 ## S2 Data.
 
 **List of known DRMs.** A .csv file containing all the known RAMs used in this project as well as the corresponding feature name in the encoded datasets. Obtained from ([hivdb.stanford.edu/dr-summary/comments/NRTI/](https://hivdb.stanford.edu/dr-summary/comments/NRTI/)) and ([hivdb.stanford.edu/dr-summary/comments/NNRTI/](https://hivdb.stanford.edu/dr-summary/comments/NNRTI/)).
 
-```{r, s2_data}
+```{r, s2_data, eval=knitr::is_html_output()}
 xfun::embed_file("./figures/HIV-DRMs/S2_Data.csv", text="Download data")
 ```
+
+`r if(knitr::is_latex_output()){"<https://doi.org/10.1371/journal.pcbi.1008873.s008> (CSV)"}`
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for Appendix \thechapter}]

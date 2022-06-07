@@ -83,6 +83,7 @@
 \usepackage{numprint}
 \usepackage{lipsum}
 \usepackage{uni-titlepage}
+\usepackage{lscape}
 
 \excludecomment{htmlonly}
 
@@ -3231,6 +3232,7 @@ The p66 subunit is colored in dark gray, the p51 subunit in light gray. The acti
 \hypertarget{S1-Table}{%
 \section{S1 Table.}\label{S1-Table}}
 
+\begin{landscape}
 \begin{table}[!h]
 \centering
 \resizebox{\linewidth}{!}{%
@@ -3259,6 +3261,7 @@ The p66 subunit is colored in dark gray, the p51 subunit in light gray. The acti
   \textbf{Dayhoff category shift:} The change in Dayhoff amino acid category is written thusly: “starting category $\rightarrow$ ending category”. These categories are as follows: \textit{a:} Sulfur polymerization. \textit{b:} Small, \textit{c:} Acid and amide, \textit{d:} Basic, \textit{e:} Hydrophobic and \textit{f:} aromatic.
   \textbf{Physico-chemical change:} Change in physicochemical properties was obtained by subtracting the property value of the wil-type amino acid from the mutated amino acid. All values were obtained from the AAindex database  \autocite{kawashima2008}}
 \end{table}
+\end{landscape}
 
 \hypertarget{S2-Appendix}{%
 \section{S2 Appendix. (Fisher exact tests)}\label{S2-Appendix}}
@@ -3278,10 +3281,14 @@ Out of the \(221\) significative tests, 156 pairs were composed of 2 known RAMS 
 
 \textbf{Archive of figure generating data.} A zip archive containing the processed data used to generate each panel of the main figures.
 
+\url{https://doi.org/10.1371/journal.pcbi.1008873.s007} (ZIP)
+
 \hypertarget{s2-data.}{%
 \section{S2 Data.}\label{s2-data.}}
 
 \textbf{List of known DRMs.} A .csv file containing all the known RAMs used in this project as well as the corresponding feature name in the encoded datasets. Obtained from (\href{https://hivdb.stanford.edu/dr-summary/comments/NRTI/}{hivdb.stanford.edu/dr-summary/comments/NRTI/}) and (\href{https://hivdb.stanford.edu/dr-summary/comments/NNRTI/}{hivdb.stanford.edu/dr-summary/comments/NNRTI/}).
+
+\url{https://doi.org/10.1371/journal.pcbi.1008873.s008} (CSV)
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for Appendix \thechapter}]
 

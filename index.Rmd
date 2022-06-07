@@ -7,7 +7,7 @@ documentclass: scrbook
 fontsize: 11pt
 classoption:
   - twoside
-csl: "./styles/plos.csl"
+csl: "./styles/nature.csl"
 biblio-style: authoryear
 bibliography: 
   - ./references/HPC-MSRs.bib
