@@ -4,7 +4,7 @@ editor_options:
     wrap: 80
 ---
 
-# Mapping-friendly sequence reductions: going beyond homopolymer compression
+# Contribution 1: Mapping-friendly sequence reductions: going beyond homopolymer compression
 
 ***Intro to this chapter within the context of the thesis to go here!***
 
