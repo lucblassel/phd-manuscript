@@ -232,7 +232,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-03}
+\date{2022-06-07}
 
 \begin{document}
 \maketitle
@@ -330,7 +330,7 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
 \label{fig:figDNA}
 \end{figure}
 
-The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the \(\varphi X174\) phage \autocite{sangerNucleotideSequenceBacteriophage1977}, 4.9MBp for \emph{Escherichia coli} \autocite{archer2011}, 3.1GBp for \emph{Homo sapiens} \autocite{nurk2022} all the way up to almost 150GBp for \emph{Paris japonica,} a Japanese mountain flowering plant \autocite{pellicer2010}. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity \autocite{macgregor2001}
+The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the \(\varphi X174\) phage \autocite{sangerNucleotideSequenceBacteriophage1977}, 4.9MBp for \emph{Escherichia coli} \autocite{archer2011}, 3.1GBp for \emph{Homo sapiens} \autocite{nurk2022} all the way up to almost 150GBp for \emph{Paris japonica,} a Japanese mountain flowering plant \autocite{pellicer2010}. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity \autocite{macgregor2001}.
 
 \hypertarget{from-information-to-action}{%
 \subsection{From Information to action}\label{from-information-to-action}}
@@ -360,6 +360,8 @@ This sequence is directly dependent on the information contained in the DNA. Fir
 \end{enumerate}
 
 With 4 types of nucleotides and codons grouping 3 nucleotides there are \(4^3=64\) possible codons. However, as stated above, proteins are only made up of 20 different amino acids, meaning that several different codons correspond to the same amino acid. This gives the translation process a certain robustness to errors that can occur when the DNA is copied to create a new cell, or when it is transformed into RNA prior to protein translation.
+
+The portion of DNA that is read to create the protein is said to be ``coding'', and is called a gene. There are several thousands of genes in the human genome \autocite{internationalhumangenomesequencingconsortiumFinishingEuchromaticSequence2004} resulting in proteins executing thousands of different functions in a cell. In human beings, coding DNA represents only 1\% to 2\% of the total genome \autocite{elkonCharacterizationNoncodingRegulatory2017,omennReflectionsHUPOHuman2021}. The large majority of the DNA in a human being is not translated into proteins, a portion of it has a regulatory role, controlling transcription and translation, but the role remains unknown for a portion of the human genome \autocite{shabalinaMammalianTranscriptomeFunction2004,IntegratedEncyclopediaDNA2012}.
 
 \hypertarget{making-mistakes}{%
 \subsubsection{Making mistakes}\label{making-mistakes}}
@@ -398,9 +400,19 @@ There are several sources of error that can alter the genetic information \autoc
 
 \begin{itemize}
 \item
-  illnesses (SNPs, groups of mutations,\ldots)
-\item
-  acquired traits (drug resistance, \ldots)
+  SNPs, many individual mutations have been linked to certain traits (however, a trait is not usually caused only by a single mutation, plus hard to prove causality)
+
+  \begin{itemize}
+  \item
+    Diseases:
+
+    \begin{itemize}
+    \item
+      Pathologic coagulation linked to a single mutation in DNA coding for a coagulation protein \autocite{kujovichFactorLeidenThrombophilia2011}.
+    \item
+      Cystic Fibrosis, a deletion of a single amino acid in the protein leads to fatal disease \autocite{cuttingCysticFibrosisGenetics2015}
+    \end{itemize}
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{obtaining-sequence-data}{%
@@ -443,9 +455,15 @@ Developed to lower cost and more throughput
 
 \begin{itemize}
 \item
-  Massively parallel, Illumina
+  Massively parallel, Illumina, \emph{(no need to detail technology, just numbers i.e.~throughput and cost)}
 \item
   Long reads sequencing
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Introduce need for longer reads
+  \end{itemize}
 \end{itemize}
 
 \textbf{\emph{Quick summary on PacBio and ONT}}
@@ -455,7 +473,7 @@ As a conclusion, quickly mention the work done on protein sequencing, but we usu
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
 
-general context of sequencing errors
+general context of sequencing errors, i.e.~short reads have high accuracy, long reads high error rate
 
 \hypertarget{long-read-errors}{%
 \subsection{Long read errors}\label{long-read-errors}}
@@ -467,15 +485,30 @@ Mainly indels, in certain regions of the genomes, particularily homopolymers. Fo
 
 \begin{itemize}
 \item
-  HPC takes repeated runs of a single nucleotide and compresses them to a single occurence
+  HPC takes repeated runs of a single nucleotide and compresses them to a single occurence\\
+  \emph{Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)}
 \item
-  Empirically is has been shown to improve mapping and other applications
+  Empirically is has been shown to improve downstream analyses
+\end{itemize}
+
+\hypertarget{other-error-correction-methods}{%
+\subsection{Other Error correction methods}\label{other-error-correction-methods}}
+
+\begin{itemize}
+\item
+  CCS / HiFi stuff
+\item
+  Combining short and long reads, T2T / polishing
+\item
+  \emph{(Polishing specific to certain sequencing technologies) ?}
 \end{itemize}
 
 \hypertarget{biological-sequences-a-computational-view-here}{%
 \section{Biological sequences, a computational view (here ?)}\label{biological-sequences-a-computational-view-here}}
 
-Essentially a text file. Just a long succession of letters, so we can apply text algorithmics to it.
+Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
+
+\emph{Maybe I don't need this to be a separate section but just a conclusion and transition to the next chapter on alignment.}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
@@ -563,9 +596,6 @@ Example of COVID where homology is high so we can get away with using HMMS / pai
 \tightlist
 \item
   short intro
-\end{itemize}
-
-\begin{itemize}
 \item
   context of short read on large reference sequence
 \item
@@ -578,7 +608,7 @@ Example of COVID where homology is high so we can get away with using HMMS / pai
     low homology / sequencing errors\ldots{}
   \end{itemize}
 \item
-  specific heuristics like minimizers / FM-index help
+  specific heuristics like minimizers / FM-index help \emph{(Needed here since I introduce it earlier ? )}
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

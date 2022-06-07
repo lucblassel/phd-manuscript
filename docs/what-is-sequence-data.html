@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-06-03" />
+<meta name="date" content="2022-06-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -117,6 +117,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="1.3.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#long-read-errors"><i class="fa fa-check"></i><b>1.3.1</b> Long read errors</a></li>
 <li class="chapter" data-level="1.3.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#hpc"><i class="fa fa-check"></i><b>1.3.2</b> HPC</a></li>
+<li class="chapter" data-level="1.3.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#other-error-correction-methods"><i class="fa fa-check"></i><b>1.3.3</b> Other Error correction methods</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-computational-view-here"><i class="fa fa-check"></i><b>1.4</b> Biological sequences, a computational view (here ?)</a></li>
 </ul></li>
@@ -292,7 +293,7 @@ div.csl-indent {
 Figure 1.1: <strong>Double-helix</strong> structure of DNA
 </p>
 </div>
-<p>The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the <span class="math inline">\(\varphi X174\)</span> phage <span class="citation">[<a href="#ref-sangerNucleotideSequenceBacteriophage1977" role="doc-biblioref">2</a>]</span>, 4.9MBp for <em>Escherichia coli</em> <span class="citation">[<a href="#ref-archer2011" role="doc-biblioref">3</a>]</span>, 3.1GBp for <em>Homo sapiens</em> <span class="citation">[<a href="#ref-nurk2022" role="doc-biblioref">4</a>]</span> all the way up to almost 150GBp for <em>Paris japonica,</em> a Japanese mountain flowering plant <span class="citation">[<a href="#ref-pellicer2010" role="doc-biblioref">5</a>]</span>. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity <span class="citation">[<a href="#ref-macgregor2001" role="doc-biblioref">6</a>]</span></p>
+<p>The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the <span class="math inline">\(\varphi X174\)</span> phage <span class="citation">[<a href="#ref-sangerNucleotideSequenceBacteriophage1977" role="doc-biblioref">2</a>]</span>, 4.9MBp for <em>Escherichia coli</em> <span class="citation">[<a href="#ref-archer2011" role="doc-biblioref">3</a>]</span>, 3.1GBp for <em>Homo sapiens</em> <span class="citation">[<a href="#ref-nurk2022" role="doc-biblioref">4</a>]</span> all the way up to almost 150GBp for <em>Paris japonica,</em> a Japanese mountain flowering plant <span class="citation">[<a href="#ref-pellicer2010" role="doc-biblioref">5</a>]</span>. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity <span class="citation">[<a href="#ref-macgregor2001" role="doc-biblioref">6</a>]</span>.</p>
 </div>
 <div id="from-information-to-action" class="section level3 hasAnchor" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> From Information to action<a href="what-is-sequence-data.html#from-information-to-action" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -309,17 +310,18 @@ Figure 1.1: <strong>Double-helix</strong> structure of DNA
 <li>The translation process is stopped when a specific type of codon is read.</li>
 </ol>
 <p>With 4 types of nucleotides and codons grouping 3 nucleotides there are <span class="math inline">\(4^3=64\)</span> possible codons. However, as stated above, proteins are only made up of 20 different amino acids, meaning that several different codons correspond to the same amino acid. This gives the translation process a certain robustness to errors that can occur when the DNA is copied to create a new cell, or when it is transformed into RNA prior to protein translation.</p>
+<p>The portion of DNA that is read to create the protein is said to be “coding”, and is called a gene. There are several thousands of genes in the human genome <span class="citation">[<a href="#ref-internationalhumangenomesequencingconsortiumFinishingEuchromaticSequence2004" role="doc-biblioref">9</a>]</span> resulting in proteins executing thousands of different functions in a cell. In human beings, coding DNA represents only 1% to 2% of the total genome <span class="citation">[<a href="#ref-elkonCharacterizationNoncodingRegulatory2017" role="doc-biblioref">10</a>,<a href="#ref-omennReflectionsHUPOHuman2021" role="doc-biblioref">11</a>]</span>. The large majority of the DNA in a human being is not translated into proteins, a portion of it has a regulatory role, controlling transcription and translation, but the role remains unknown for a portion of the human genome <span class="citation">[<a href="#ref-shabalinaMammalianTranscriptomeFunction2004" role="doc-biblioref">12</a>,<a href="#ref-IntegratedEncyclopediaDNA2012" role="doc-biblioref">13</a>]</span>.</p>
 </div>
 <div id="making-mistakes" class="section level4 hasAnchor" number="1.1.2.2">
 <h4><span class="header-section-number">1.1.2.2</span> Making mistakes<a href="what-is-sequence-data.html#making-mistakes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Going from DNA sequence to protein is quite a complicated process involving several steps, it is therefore possible for a mistake to happen. There are several mechanisms to avoid mistakes and alteration of the genetic information: the complementary nature of the 2 strands of DNA, the redundant nature of the genetic code as well as error correction mechanisms in the molecules that read and write DNA and RNA <em>(polymerases)</em>. However, despite all that, some errors still make it through.</p>
 <div id="where-can-mistakes-happen" class="section level5 hasAnchor" number="1.1.2.2.1">
 <h5><span class="header-section-number">1.1.2.2.1</span> Where can mistakes happen ?<a href="what-is-sequence-data.html#where-can-mistakes-happen" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<p>There are several sources of error that can alter the genetic information <span class="citation">[<a href="#ref-chatterjee2017" role="doc-biblioref">9</a>]</span>:</p>
+<p>There are several sources of error that can alter the genetic information <span class="citation">[<a href="#ref-chatterjee2017" role="doc-biblioref">14</a>]</span>:</p>
 <ul>
-<li><p><strong>DNA replication:</strong> When a cell divides, or when an organism reproduces, the DNA molecule must be copied in order to transmit genetic information. This process has a very low rate of errors, with as low as 1 error for every billion to every hundred billions of base pairs replicated <span class="citation">[<a href="#ref-fijalkowska2012" role="doc-biblioref">10</a>]</span>. This is due to the fact that the DNA polymerase (the protein that is responsible for copying DNA molecules), has a relatively error rate to start with, but mostly due to the error correcting mechanisms that are present in certain cells and bacteria <span class="citation">[<a href="#ref-pray2008dna" role="doc-biblioref">11</a>]</span>.</p></li>
-<li><p><strong>RNA transcription:</strong> error rate between 4 errors for each million <span class="citation">[<a href="#ref-gout2013" role="doc-biblioref">12</a>]</span> to 2 errors for each hundred thousand <span class="citation">[<a href="#ref-gout2017" role="doc-biblioref">13</a>]</span> base pairs transcribed.</p></li>
-<li><p><strong>Other mutagenic events:</strong> Ionizing radiation <span class="citation">[<a href="#ref-desouky2015" role="doc-biblioref">14</a>]</span>, UV rays <span class="citation">[<a href="#ref-kiefer2007" role="doc-biblioref">15</a>]</span>, Toxins <span class="citation">[<a href="#ref-bennett2003" role="doc-biblioref">16</a>]</span>, heat Stress <span class="citation">[<a href="#ref-kantidze2016" role="doc-biblioref">17</a>]</span>, cold stress <span class="citation">[<a href="#ref-gregory1994" role="doc-biblioref">18</a>]</span>, oxidative stress <span class="citation">[<a href="#ref-gafter-gvili2013" role="doc-biblioref">19</a>]</span>.</p></li>
+<li><p><strong>DNA replication:</strong> When a cell divides, or when an organism reproduces, the DNA molecule must be copied in order to transmit genetic information. This process has a very low rate of errors, with as low as 1 error for every billion to every hundred billions of base pairs replicated <span class="citation">[<a href="#ref-fijalkowska2012" role="doc-biblioref">15</a>]</span>. This is due to the fact that the DNA polymerase (the protein that is responsible for copying DNA molecules), has a relatively error rate to start with, but mostly due to the error correcting mechanisms that are present in certain cells and bacteria <span class="citation">[<a href="#ref-pray2008dna" role="doc-biblioref">16</a>]</span>.</p></li>
+<li><p><strong>RNA transcription:</strong> error rate between 4 errors for each million <span class="citation">[<a href="#ref-gout2013" role="doc-biblioref">17</a>]</span> to 2 errors for each hundred thousand <span class="citation">[<a href="#ref-gout2017" role="doc-biblioref">18</a>]</span> base pairs transcribed.</p></li>
+<li><p><strong>Other mutagenic events:</strong> Ionizing radiation <span class="citation">[<a href="#ref-desouky2015" role="doc-biblioref">19</a>]</span>, UV rays <span class="citation">[<a href="#ref-kiefer2007" role="doc-biblioref">20</a>]</span>, Toxins <span class="citation">[<a href="#ref-bennett2003" role="doc-biblioref">21</a>]</span>, heat Stress <span class="citation">[<a href="#ref-kantidze2016" role="doc-biblioref">22</a>]</span>, cold stress <span class="citation">[<a href="#ref-gregory1994" role="doc-biblioref">23</a>]</span>, oxidative stress <span class="citation">[<a href="#ref-gafter-gvili2013" role="doc-biblioref">24</a>]</span>.</p></li>
 </ul>
 </div>
 <div id="what-kind-of-errors-are-possible" class="section level5 hasAnchor" number="1.1.2.2.2">
@@ -332,9 +334,19 @@ Figure 1.1: <strong>Double-helix</strong> structure of DNA
 </div>
 <div id="what-effect-can-mutations-have" class="section level5 hasAnchor" number="1.1.2.2.3">
 <h5><span class="header-section-number">1.1.2.2.3</span> What effect can mutations have ?<a href="what-is-sequence-data.html#what-effect-can-mutations-have" class="anchor-section" aria-label="Anchor link to header"></a></h5>
+<p>SNPs, many individual mutations have been linked to certain traits (however, a trait is not usually caused only by a single mutation, plus hard to prove causality)</p>
 <ul>
-<li><p>illnesses (SNPs, groups of mutations,…)</p></li>
-<li><p>acquired traits (drug resistance, …)</p></li>
+<li><p>Diseases:</p>
+<ul>
+<li><p>Pathologic coagulation linked to a single mutation in DNA coding for a coagulation protein <span class="citation">[<a href="#ref-kujovichFactorLeidenThrombophilia2011" role="doc-biblioref">25</a>]</span>.</p></li>
+<li><p>Cystic Fibrosis, a deletion of a single amino acid in the protein leads to fatal disease <span class="citation">[<a href="#ref-cuttingCysticFibrosisGenetics2015" role="doc-biblioref">26</a>]</span></p></li>
+<li><p>Plenty of mutation in specific genes have been linked with type 2 diabetes <span class="citation">[<a href="#ref-fuchsbergerGeneticArchitectureType2016" role="doc-biblioref">27</a>,<a href="#ref-morrisLargescaleAssociationAnalysis2012" role="doc-biblioref">28</a>]</span></p></li>
+</ul></li>
+<li><p>Added traits, like drug resistance:</p>
+<ul>
+<li><p>Dozens of mutations proven to confer HIV resistance to commonly used drugs <span class="citation">[<a href="#ref-rheeHumanImmunodeficiencyVirus2003" role="doc-biblioref">29</a>]</span></p></li>
+<li><p>A large amount of mutations have been shown to confer antibacterial resistance in a range of bacteria <span class="citation">[<a href="#ref-woodfordEmergenceAntibioticResistance2007" role="doc-biblioref">30</a>]</span></p></li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -345,7 +357,7 @@ Figure 1.1: <strong>Double-helix</strong> structure of DNA
 <p>In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.</p>
 <div id="sanger-sequencing-a-breakthrough-wip" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Sanger sequencing, a breakthrough (WIP)<a href="what-is-sequence-data.html#sanger-sequencing-a-breakthrough-wip" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first true sequencing method was developed in 1977 <span class="citation">[<a href="#ref-sangerDNASequencingChainterminating1977" role="doc-biblioref">20</a>]</span>. Sanger <em>et al.</em> devised a simple method to read the sequence of nucleotides that make up a DNA sequence.</p>
+<p>The first true sequencing method was developed in 1977 <span class="citation">[<a href="#ref-sangerDNASequencingChainterminating1977" role="doc-biblioref">31</a>]</span>. Sanger <em>et al.</em> devised a simple method to read the sequence of nucleotides that make up a DNA sequence.</p>
 <ol style="list-style-type: decimal">
 <li>Clone sequence / amplify</li>
 <li>Prepare 4 different sequencing environments with a majority of dNTP (ie regular nucleotides) and in each a single type of ddNTP (a terminator). ddNTP are marked</li>
@@ -355,15 +367,18 @@ Figure 1.1: <strong>Double-helix</strong> structure of DNA
 <li>With marked you can see which nucleotide is present at a given position</li>
 </ol>
 <p>This allowed Sanger <em>et al.</em> to sequence the first whole <span class="math inline">\(\varphi X174\)</span> bacteriophage genome <span class="citation">[<a href="#ref-sangerNucleotideSequenceBacteriophage1977" role="doc-biblioref">2</a>]</span>. This method, although revolutionnary was costly and time consuming.</p>
-<p>The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis <span class="citation">[<a href="#ref-smithSynthesisOligonucleotidesContaining1985" role="doc-biblioref">21</a>,<a href="#ref-smithFluorescenceDetectionAutomated1986" role="doc-biblioref">22</a>]</span>. The fluorescence also allowed for automated reading <strong><em>(base-calling ?)</em></strong> with optical systems.</p>
+<p>The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis <span class="citation">[<a href="#ref-smithSynthesisOligonucleotidesContaining1985" role="doc-biblioref">32</a>,<a href="#ref-smithFluorescenceDetectionAutomated1986" role="doc-biblioref">33</a>]</span>. The fluorescence also allowed for automated reading <strong><em>(base-calling ?)</em></strong> with optical systems.</p>
 <p><strong><em>I need to speak of performance / throughput of these methods here.</em></strong></p>
 </div>
 <div id="next-generation-sequencing" class="section level3 hasAnchor" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Next-generation sequencing<a href="what-is-sequence-data.html#next-generation-sequencing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Developed to lower cost and more throughput</p>
 <ul>
-<li><p>Massively parallel, Illumina</p></li>
-<li><p>Long reads sequencing</p></li>
+<li><p>Massively parallel, Illumina, <em>(no need to detail technology, just numbers i.e. throughput and cost)</em></p></li>
+<li><p>Long reads sequencing</p>
+<ul>
+<li>Introduce need for longer reads</li>
+</ul></li>
 </ul>
 <p><strong><em>Quick summary on PacBio and ONT</em></strong></p>
 <p>As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.</p>
@@ -371,22 +386,32 @@ Figure 1.1: <strong>Double-helix</strong> structure of DNA
 </div>
 <div id="sequencing-errors-how-to-account-for-them" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Sequencing errors, how to account for them ?<a href="what-is-sequence-data.html#sequencing-errors-how-to-account-for-them" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>general context of sequencing errors</p>
+<p>general context of sequencing errors, i.e. short reads have high accuracy, long reads high error rate</p>
 <div id="long-read-errors" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Long read errors<a href="what-is-sequence-data.html#long-read-errors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT <span class="citation">[<a href="#ref-delahaye2021" role="doc-biblioref">23</a>,<a href="#ref-goodwin2015" role="doc-biblioref">24</a>]</span>, for PacBIO and ONT <span class="citation">[<a href="#ref-dohmBenchmarkingLongreadCorrection2020" role="doc-biblioref">25</a>,<a href="#ref-weirather2017" role="doc-biblioref">26</a>]</span>, for PacBIO circular consensus <span class="citation">[<a href="#ref-wenger2019" role="doc-biblioref">27</a>]</span>. ONT has more homopolymer errors than PacBIO <span class="citation">[<a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">28</a>]</span>.</p>
+<p>Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT <span class="citation">[<a href="#ref-delahaye2021" role="doc-biblioref">34</a>,<a href="#ref-goodwin2015" role="doc-biblioref">35</a>]</span>, for PacBIO and ONT <span class="citation">[<a href="#ref-dohmBenchmarkingLongreadCorrection2020" role="doc-biblioref">36</a>,<a href="#ref-weirather2017" role="doc-biblioref">37</a>]</span>, for PacBIO circular consensus <span class="citation">[<a href="#ref-wenger2019" role="doc-biblioref">38</a>]</span>. ONT has more homopolymer errors than PacBIO <span class="citation">[<a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">39</a>]</span>.</p>
 </div>
 <div id="hpc" class="section level3 hasAnchor" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> HPC<a href="what-is-sequence-data.html#hpc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p>HPC takes repeated runs of a single nucleotide and compresses them to a single occurence</p></li>
-<li><p>Empirically is has been shown to improve mapping and other applications</p></li>
+<li><p>HPC takes repeated runs of a single nucleotide and compresses them to a single occurence<br />
+<em>Short schematic example of HPC with example where it removes an error ? (don’t talk about mapping yet)</em></p></li>
+<li><p>Empirically is has been shown to improve downstream analyses</p></li>
+</ul>
+</div>
+<div id="other-error-correction-methods" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Other Error correction methods<a href="what-is-sequence-data.html#other-error-correction-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>CCS / HiFi stuff</p></li>
+<li><p>Combining short and long reads, T2T / polishing</p></li>
+<li><p><em>(Polishing specific to certain sequencing technologies) ?</em></p></li>
 </ul>
 </div>
 </div>
 <div id="biological-sequences-a-computational-view-here" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> Biological sequences, a computational view (here ?)<a href="what-is-sequence-data.html#biological-sequences-a-computational-view-here" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Essentially a text file. Just a long succession of letters, so we can apply text algorithmics to it.</p>
+<p>Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.</p>
+<p><em>Maybe I don’t need this to be a separate section but just a conclusion and transition to the next chapter on alignment.</em></p>
 
 </div>
 </div>
@@ -416,65 +441,98 @@ Figure 1.1: <strong>Double-helix</strong> structure of DNA
 <div id="ref-crick1961" class="csl-entry">
 <div class="csl-left-margin">8. </div><div class="csl-right-inline">Crick FHC, Barnett L, Brenner S, Watts-Tobin RJ. General Nature of the Genetic Code for Proteins. Nature. 1961;192: 1227–1232. doi:<a href="https://doi.org/10.1038/1921227a0">10.1038/1921227a0</a></div>
 </div>
+<div id="ref-internationalhumangenomesequencingconsortiumFinishingEuchromaticSequence2004" class="csl-entry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">International Human Genome Sequencing Consortium. Finishing the euchromatic sequence of the human genome. Nature. 2004;431: 931–945. doi:<a href="https://doi.org/10.1038/nature03001">10.1038/nature03001</a></div>
+</div>
+<div id="ref-elkonCharacterizationNoncodingRegulatory2017" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Elkon R, Agami R. Characterization of noncoding regulatory DNA in the human genome. Nature Biotechnology. 2017;35: 732–746. doi:<a href="https://doi.org/10.1038/nbt.3863">10.1038/nbt.3863</a></div>
+</div>
+<div id="ref-omennReflectionsHUPOHuman2021" class="csl-entry">
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Omenn GS. Reflections on the HUPO human proteome project, the flagship project of the human proteome organization, at 10 years. Molecular &amp; Cellular Proteomics : MCP. 2021;20: 100062. doi:<a href="https://doi.org/10.1016/j.mcpro.2021.100062">10.1016/j.mcpro.2021.100062</a></div>
+</div>
+<div id="ref-shabalinaMammalianTranscriptomeFunction2004" class="csl-entry">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">Shabalina SA, Spiridonov NA. The mammalian transcriptome and the function of non-coding DNA sequences. Genome Biology. 2004;5: 105. doi:<a href="https://doi.org/10.1186/gb-2004-5-4-105">10.1186/gb-2004-5-4-105</a></div>
+</div>
+<div id="ref-IntegratedEncyclopediaDNA2012" class="csl-entry">
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">ENCODE Project Consortium. An integrated encyclopedia of DNA elements in the human genome. Nature. 2012;489: 57–74. doi:<a href="https://doi.org/10.1038/nature11247">10.1038/nature11247</a></div>
+</div>
 <div id="ref-chatterjee2017" class="csl-entry">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline">Chatterjee N, Walker GC. Mechanisms of DNA damage, repair, and mutagenesis: DNA Damage and Repair. Environmental and Molecular Mutagenesis. 2017;58: 235–263. doi:<a href="https://doi.org/10.1002/em.22087">10.1002/em.22087</a></div>
+<div class="csl-left-margin">14. </div><div class="csl-right-inline">Chatterjee N, Walker GC. Mechanisms of DNA damage, repair, and mutagenesis: DNA Damage and Repair. Environmental and Molecular Mutagenesis. 2017;58: 235–263. doi:<a href="https://doi.org/10.1002/em.22087">10.1002/em.22087</a></div>
 </div>
 <div id="ref-fijalkowska2012" class="csl-entry">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">Fijalkowska IJ, Schaaper RM, Jonczyk P. DNA replication fidelity in escherichia coli: A multi-DNA polymerase affair. FEMS microbiology reviews. 2012;36: 1105–1121. doi:<a href="https://doi.org/10.1111/j.1574-6976.2012.00338.x">10.1111/j.1574-6976.2012.00338.x</a></div>
+<div class="csl-left-margin">15. </div><div class="csl-right-inline">Fijalkowska IJ, Schaaper RM, Jonczyk P. DNA replication fidelity in escherichia coli: A multi-DNA polymerase affair. FEMS microbiology reviews. 2012;36: 1105–1121. doi:<a href="https://doi.org/10.1111/j.1574-6976.2012.00338.x">10.1111/j.1574-6976.2012.00338.x</a></div>
 </div>
 <div id="ref-pray2008dna" class="csl-entry">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline">Pray L. DNA replication and causes of mutation. Nature education. 2008;1: 214. </div>
+<div class="csl-left-margin">16. </div><div class="csl-right-inline">Pray L. DNA replication and causes of mutation. Nature education. 2008;1: 214. </div>
 </div>
 <div id="ref-gout2013" class="csl-entry">
-<div class="csl-left-margin">12. </div><div class="csl-right-inline">Gout J-F, Thomas WK, Smith Z, Okamoto K, Lynch M. Large-scale detection of in vivo transcription errors. Proceedings of the National Academy of Sciences. 2013;110: 18584–18589. doi:<a href="https://doi.org/10.1073/pnas.1309843110">10.1073/pnas.1309843110</a></div>
+<div class="csl-left-margin">17. </div><div class="csl-right-inline">Gout J-F, Thomas WK, Smith Z, Okamoto K, Lynch M. Large-scale detection of in vivo transcription errors. Proceedings of the National Academy of Sciences. 2013;110: 18584–18589. doi:<a href="https://doi.org/10.1073/pnas.1309843110">10.1073/pnas.1309843110</a></div>
 </div>
 <div id="ref-gout2017" class="csl-entry">
-<div class="csl-left-margin">13. </div><div class="csl-right-inline">Gout J-F, Li W, Fritsch C, Li A, Haroon S, Singh L, et al. The landscape of transcription errors in eukaryotic cells. Science Advances. 2017;3: e1701484. doi:<a href="https://doi.org/10.1126/sciadv.1701484">10.1126/sciadv.1701484</a></div>
+<div class="csl-left-margin">18. </div><div class="csl-right-inline">Gout J-F, Li W, Fritsch C, Li A, Haroon S, Singh L, et al. The landscape of transcription errors in eukaryotic cells. Science Advances. 2017;3: e1701484. doi:<a href="https://doi.org/10.1126/sciadv.1701484">10.1126/sciadv.1701484</a></div>
 </div>
 <div id="ref-desouky2015" class="csl-entry">
-<div class="csl-left-margin">14. </div><div class="csl-right-inline">Desouky O, Ding N, Zhou G. Targeted and non-targeted effects of ionizing radiation. Journal of Radiation Research and Applied Sciences. 2015;8: 247–254. doi:<a href="https://doi.org/10.1016/j.jrras.2015.03.003">10.1016/j.jrras.2015.03.003</a></div>
+<div class="csl-left-margin">19. </div><div class="csl-right-inline">Desouky O, Ding N, Zhou G. Targeted and non-targeted effects of ionizing radiation. Journal of Radiation Research and Applied Sciences. 2015;8: 247–254. doi:<a href="https://doi.org/10.1016/j.jrras.2015.03.003">10.1016/j.jrras.2015.03.003</a></div>
 </div>
 <div id="ref-kiefer2007" class="csl-entry">
-<div class="csl-left-margin">15. </div><div class="csl-right-inline">Kiefer J. Effects of Ultraviolet Radiation on DNA. In: Obe G, Vijayalaxmi, editors. Berlin, Heidelberg: Springer; 2007. pp. 39–53. doi:<a href="https://doi.org/10.1007/978-3-540-71414-9_3">10.1007/978-3-540-71414-9_3</a></div>
+<div class="csl-left-margin">20. </div><div class="csl-right-inline">Kiefer J. Effects of Ultraviolet Radiation on DNA. In: Obe G, Vijayalaxmi, editors. Berlin, Heidelberg: Springer; 2007. pp. 39–53. doi:<a href="https://doi.org/10.1007/978-3-540-71414-9_3">10.1007/978-3-540-71414-9_3</a></div>
 </div>
 <div id="ref-bennett2003" class="csl-entry">
-<div class="csl-left-margin">16. </div><div class="csl-right-inline">Bennett JW, Klich M. Mycotoxins. Clinical Microbiology Reviews. 2003;16: 497–516. doi:<a href="https://doi.org/10.1128/CMR.16.3.497-516.2003">10.1128/CMR.16.3.497-516.2003</a></div>
+<div class="csl-left-margin">21. </div><div class="csl-right-inline">Bennett JW, Klich M. Mycotoxins. Clinical Microbiology Reviews. 2003;16: 497–516. doi:<a href="https://doi.org/10.1128/CMR.16.3.497-516.2003">10.1128/CMR.16.3.497-516.2003</a></div>
 </div>
 <div id="ref-kantidze2016" class="csl-entry">
-<div class="csl-left-margin">17. </div><div class="csl-right-inline">Kantidze OL, Velichko AK, Luzhin AV, Razin SV. Heat stress-induced DNA damage. Acta Naturae. 2016;8: 75–78. Available: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4947990/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4947990/</a></div>
+<div class="csl-left-margin">22. </div><div class="csl-right-inline">Kantidze OL, Velichko AK, Luzhin AV, Razin SV. Heat stress-induced DNA damage. Acta Naturae. 2016;8: 75–78. Available: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4947990/">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4947990/</a></div>
 </div>
 <div id="ref-gregory1994" class="csl-entry">
-<div class="csl-left-margin">18. </div><div class="csl-right-inline">Gregory CD, Milner AE. Regulation of cell survival in Burkitt lymphoma: implications from studies of apoptosis following cold-shock treatment. International Journal of Cancer. 1994;57: 419–426. doi:<a href="https://doi.org/10.1002/ijc.2910570321">10.1002/ijc.2910570321</a></div>
+<div class="csl-left-margin">23. </div><div class="csl-right-inline">Gregory CD, Milner AE. Regulation of cell survival in Burkitt lymphoma: implications from studies of apoptosis following cold-shock treatment. International Journal of Cancer. 1994;57: 419–426. doi:<a href="https://doi.org/10.1002/ijc.2910570321">10.1002/ijc.2910570321</a></div>
 </div>
 <div id="ref-gafter-gvili2013" class="csl-entry">
-<div class="csl-left-margin">19. </div><div class="csl-right-inline">Gafter-Gvili A, Zingerman B, Rozen-Zvi B, Ori Y, Green H, Lubin I, et al. Oxidative stress-induced DNA damage and repair in human peripheral blood mononuclear cells: Protective role of hemoglobin. PLoS ONE. 2013;8: e68341. doi:<a href="https://doi.org/10.1371/journal.pone.0068341">10.1371/journal.pone.0068341</a></div>
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">Gafter-Gvili A, Zingerman B, Rozen-Zvi B, Ori Y, Green H, Lubin I, et al. Oxidative stress-induced DNA damage and repair in human peripheral blood mononuclear cells: Protective role of hemoglobin. PLoS ONE. 2013;8: e68341. doi:<a href="https://doi.org/10.1371/journal.pone.0068341">10.1371/journal.pone.0068341</a></div>
+</div>
+<div id="ref-kujovichFactorLeidenThrombophilia2011" class="csl-entry">
+<div class="csl-left-margin">25. </div><div class="csl-right-inline">Kujovich JL. Factor V Leiden thrombophilia. Genetics in Medicine. 2011;13: 1–16. doi:<a href="https://doi.org/10.1097/GIM.0b013e3181faa0f2">10.1097/GIM.0b013e3181faa0f2</a></div>
+</div>
+<div id="ref-cuttingCysticFibrosisGenetics2015" class="csl-entry">
+<div class="csl-left-margin">26. </div><div class="csl-right-inline">Cutting GR. Cystic fibrosis genetics: from molecular understanding to clinical application. Nature Reviews Genetics. 2015;16: 45–56. doi:<a href="https://doi.org/10.1038/nrg3849">10.1038/nrg3849</a></div>
+</div>
+<div id="ref-fuchsbergerGeneticArchitectureType2016" class="csl-entry">
+<div class="csl-left-margin">27. </div><div class="csl-right-inline">Fuchsberger C, Flannick J, Teslovich TM, Mahajan A, Agarwala V, Gaulton KJ, et al. The genetic architecture of type 2 diabetes. Nature. 2016;536: 41–47. doi:<a href="https://doi.org/10.1038/nature18642">10.1038/nature18642</a></div>
+</div>
+<div id="ref-morrisLargescaleAssociationAnalysis2012" class="csl-entry">
+<div class="csl-left-margin">28. </div><div class="csl-right-inline">Morris AP, Voight BF, Teslovich TM, Ferreira T, Segrè AV, Steinthorsdottir V, et al. Large-scale association analysis provides insights into the genetic architecture and pathophysiology of type 2 diabetes. Nature genetics. 2012;44: 981–990. doi:<a href="https://doi.org/10.1038/ng.2383">10.1038/ng.2383</a></div>
+</div>
+<div id="ref-rheeHumanImmunodeficiencyVirus2003" class="csl-entry">
+<div class="csl-left-margin">29. </div><div class="csl-right-inline">Rhee S-Y, Gonzales MJ, Kantor R, Betts BJ, Ravela J, Shafer RW. Human immunodeficiency virus reverse transcriptase and protease sequence database. Nucleic Acids Research. 2003;31: 298–303. doi:<a href="https://doi.org/10.1093/nar/gkg100">10.1093/nar/gkg100</a></div>
+</div>
+<div id="ref-woodfordEmergenceAntibioticResistance2007" class="csl-entry">
+<div class="csl-left-margin">30. </div><div class="csl-right-inline">Woodford N, Ellington MJ. The emergence of antibiotic resistance by mutation. Clinical Microbiology and Infection. 2007;13: 5–18. doi:<a href="https://doi.org/10.1111/j.1469-0691.2006.01492.x">10.1111/j.1469-0691.2006.01492.x</a></div>
 </div>
 <div id="ref-sangerDNASequencingChainterminating1977" class="csl-entry">
-<div class="csl-left-margin">20. </div><div class="csl-right-inline">Sanger F, Nicklen S, Coulson AR. <span>DNA</span> sequencing with chain-terminating inhibitors. Proceedings of the National Academy of Sciences. 1977;74: 5463–5467. doi:<a href="https://doi.org/10.1073/pnas.74.12.5463">10.1073/pnas.74.12.5463</a></div>
+<div class="csl-left-margin">31. </div><div class="csl-right-inline">Sanger F, Nicklen S, Coulson AR. <span>DNA</span> sequencing with chain-terminating inhibitors. Proceedings of the National Academy of Sciences. 1977;74: 5463–5467. doi:<a href="https://doi.org/10.1073/pnas.74.12.5463">10.1073/pnas.74.12.5463</a></div>
 </div>
 <div id="ref-smithSynthesisOligonucleotidesContaining1985" class="csl-entry">
-<div class="csl-left-margin">21. </div><div class="csl-right-inline">Smith LM, Fung S, Hunkapiller MW, Hunkapiller TJ, Hood LE. The synthesis of oligonucleotides containing an aliphatic amino group at the 5′ terminus: Synthesis of fluorescent <span>DNA</span> primers for use in <span>DNA</span> sequence analysis. Nucleic Acids Research. 1985;13: 2399–2412. doi:<a href="https://doi.org/10.1093/nar/13.7.2399">10.1093/nar/13.7.2399</a></div>
+<div class="csl-left-margin">32. </div><div class="csl-right-inline">Smith LM, Fung S, Hunkapiller MW, Hunkapiller TJ, Hood LE. The synthesis of oligonucleotides containing an aliphatic amino group at the 5′ terminus: Synthesis of fluorescent <span>DNA</span> primers for use in <span>DNA</span> sequence analysis. Nucleic Acids Research. 1985;13: 2399–2412. doi:<a href="https://doi.org/10.1093/nar/13.7.2399">10.1093/nar/13.7.2399</a></div>
 </div>
 <div id="ref-smithFluorescenceDetectionAutomated1986" class="csl-entry">
-<div class="csl-left-margin">22. </div><div class="csl-right-inline">Smith LM, Sanders JZ, Kaiser RJ, Hughes P, Dodd C, Connell CR, et al. Fluorescence detection in automated <span>DNA</span> sequence analysis. Nature. 1986;321: 674–679. doi:<a href="https://doi.org/10.1038/321674a0">10.1038/321674a0</a></div>
+<div class="csl-left-margin">33. </div><div class="csl-right-inline">Smith LM, Sanders JZ, Kaiser RJ, Hughes P, Dodd C, Connell CR, et al. Fluorescence detection in automated <span>DNA</span> sequence analysis. Nature. 1986;321: 674–679. doi:<a href="https://doi.org/10.1038/321674a0">10.1038/321674a0</a></div>
 </div>
 <div id="ref-delahaye2021" class="csl-entry">
-<div class="csl-left-margin">23. </div><div class="csl-right-inline">Delahaye C, Nicolas J. Sequencing DNA with nanopores: Troubles and biases. PLOS ONE. 2021;16: e0257521. doi:<a href="https://doi.org/10.1371/journal.pone.0257521">10.1371/journal.pone.0257521</a></div>
+<div class="csl-left-margin">34. </div><div class="csl-right-inline">Delahaye C, Nicolas J. Sequencing DNA with nanopores: Troubles and biases. PLOS ONE. 2021;16: e0257521. doi:<a href="https://doi.org/10.1371/journal.pone.0257521">10.1371/journal.pone.0257521</a></div>
 </div>
 <div id="ref-goodwin2015" class="csl-entry">
-<div class="csl-left-margin">24. </div><div class="csl-right-inline">Goodwin S, Gurtowski J, Ethe-Sayers S, Deshpande P, Schatz MC, McCombie WR. Oxford Nanopore sequencing, hybrid error correction, and de novo assembly of a eukaryotic genome. Genome Research. 2015;25: 1750–1756. doi:<a href="https://doi.org/10.1101/gr.191395.115">10.1101/gr.191395.115</a></div>
+<div class="csl-left-margin">35. </div><div class="csl-right-inline">Goodwin S, Gurtowski J, Ethe-Sayers S, Deshpande P, Schatz MC, McCombie WR. Oxford Nanopore sequencing, hybrid error correction, and de novo assembly of a eukaryotic genome. Genome Research. 2015;25: 1750–1756. doi:<a href="https://doi.org/10.1101/gr.191395.115">10.1101/gr.191395.115</a></div>
 </div>
 <div id="ref-dohmBenchmarkingLongreadCorrection2020" class="csl-entry">
-<div class="csl-left-margin">25. </div><div class="csl-right-inline">Dohm JC, Peters P, Stralis-Pavese N, Himmelbauer H. Benchmarking of long-read correction methods. NAR Genomics and Bioinformatics. 2020;2. doi:<a href="https://doi.org/10.1093/nargab/lqaa037">10.1093/nargab/lqaa037</a></div>
+<div class="csl-left-margin">36. </div><div class="csl-right-inline">Dohm JC, Peters P, Stralis-Pavese N, Himmelbauer H. Benchmarking of long-read correction methods. NAR Genomics and Bioinformatics. 2020;2. doi:<a href="https://doi.org/10.1093/nargab/lqaa037">10.1093/nargab/lqaa037</a></div>
 </div>
 <div id="ref-weirather2017" class="csl-entry">
-<div class="csl-left-margin">26. </div><div class="csl-right-inline">Weirather JL, Cesare M de, Wang Y, Piazza P, Sebastiano V, Wang X-J, et al. Comprehensive comparison of pacific biosciences and oxford nanopore technologies and their applications to transcriptome analysis. F1000Research. 2017;6: 100. doi:<a href="https://doi.org/10.12688/f1000research.10571.2">10.12688/f1000research.10571.2</a></div>
+<div class="csl-left-margin">37. </div><div class="csl-right-inline">Weirather JL, Cesare M de, Wang Y, Piazza P, Sebastiano V, Wang X-J, et al. Comprehensive comparison of pacific biosciences and oxford nanopore technologies and their applications to transcriptome analysis. F1000Research. 2017;6: 100. doi:<a href="https://doi.org/10.12688/f1000research.10571.2">10.12688/f1000research.10571.2</a></div>
 </div>
 <div id="ref-wenger2019" class="csl-entry">
-<div class="csl-left-margin">27. </div><div class="csl-right-inline">Wenger AM, Peluso P, Rowell WJ, Chang P-C, Hall RJ, Concepcion GT, et al. Accurate circular consensus long-read sequencing improves variant detection and assembly of a human genome. Nature Biotechnology. 2019;37: 1155–1162. doi:<a href="https://doi.org/10.1038/s41587-019-0217-9">10.1038/s41587-019-0217-9</a></div>
+<div class="csl-left-margin">38. </div><div class="csl-right-inline">Wenger AM, Peluso P, Rowell WJ, Chang P-C, Hall RJ, Concepcion GT, et al. Accurate circular consensus long-read sequencing improves variant detection and assembly of a human genome. Nature Biotechnology. 2019;37: 1155–1162. doi:<a href="https://doi.org/10.1038/s41587-019-0217-9">10.1038/s41587-019-0217-9</a></div>
 </div>
 <div id="ref-logsdonLongreadHumanGenome2020" class="csl-entry">
-<div class="csl-left-margin">28. </div><div class="csl-right-inline">Logsdon GA, Vollger MR, Eichler EE. Long-read human genome sequencing and its applications. Nat Rev Genet. 2020;21: 597–614. doi:<a href="https://doi.org/10.1038/s41576-020-0236-x">10.1038/s41576-020-0236-x</a></div>
+<div class="csl-left-margin">39. </div><div class="csl-right-inline">Logsdon GA, Vollger MR, Eichler EE. Long-read human genome sequencing and its applications. Nat Rev Genet. 2020;21: 597–614. doi:<a href="https://doi.org/10.1038/s41576-020-0236-x">10.1038/s41576-020-0236-x</a></div>
 </div>
 </div>
             </section>
