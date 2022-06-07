@@ -26,7 +26,7 @@ knitr::include_graphics("./figures/Basic-Intro/DNA.png")
 \label{fig:figDNA}
 \end{figure}
 ```
-The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the $\varphi X174$ phage [@sangerNucleotideSequenceBacteriophage1977], 4.9MBp for *Escherichia coli* [@archer2011], 3.1GBp for *Homo sapiens* [@nurk2022] all the way up to almost 150GBp for *Paris japonica,* a Japanese mountain flowering plant [@pellicer2010]. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity [@macgregor2001]
+The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the $\varphi X174$ phage [@sangerNucleotideSequenceBacteriophage1977], 4.9MBp for *Escherichia coli* [@archer2011], 3.1GBp for *Homo sapiens* [@nurk2022] all the way up to almost 150GBp for *Paris japonica,* a Japanese mountain flowering plant [@pellicer2010]. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity [@macgregor2001].
 
 ### From Information to action
 
@@ -45,6 +45,8 @@ This sequence is directly dependent on the information contained in the DNA. Fir
 5.  The translation process is stopped when a specific type of codon is read.
 
 With 4 types of nucleotides and codons grouping 3 nucleotides there are $4^3=64$ possible codons. However, as stated above, proteins are only made up of 20 different amino acids, meaning that several different codons correspond to the same amino acid. This gives the translation process a certain robustness to errors that can occur when the DNA is copied to create a new cell, or when it is transformed into RNA prior to protein translation.
+
+The portion of DNA that is read to create the protein is said to be "coding", and is called a gene. There are several thousands of genes in the human genome [@internationalhumangenomesequencingconsortiumFinishingEuchromaticSequence2004] resulting in proteins executing thousands of different functions in a cell. In human beings, coding DNA represents only 1% to 2% of the total genome [@elkonCharacterizationNoncodingRegulatory2017; @omennReflectionsHUPOHuman2021]. The large majority of the DNA in a human being is not translated into proteins, a portion of it has a regulatory role, controlling transcription and translation, but the role remains unknown for a portion of the human genome [@shabalinaMammalianTranscriptomeFunction2004; @IntegratedEncyclopediaDNA2012].
 
 #### Making mistakes
 
@@ -68,9 +70,21 @@ There are several sources of error that can alter the genetic information [@chat
 
 ##### What effect can mutations have ?
 
--   illnesses (SNPs, groups of mutations,...)
+SNPs, many individual mutations have been linked to certain traits (however, a trait is not usually caused only by a single mutation, plus hard to prove causality)
 
--   acquired traits (drug resistance, ...)
+-   Diseases:
+
+    -   Pathologic coagulation linked to a single mutation in DNA coding for a coagulation protein [@kujovichFactorLeidenThrombophilia2011].
+
+    -   Cystic Fibrosis, a deletion of a single amino acid in the protein leads to fatal disease [@cuttingCysticFibrosisGenetics2015]
+
+    -   Plenty of mutation in specific genes have been linked with type 2 diabetes [@fuchsbergerGeneticArchitectureType2016; @morrisLargescaleAssociationAnalysis2012]
+
+-   Added traits, like drug resistance:
+
+    -   Dozens of mutations proven to confer HIV resistance to commonly used drugs [@rheeHumanImmunodeficiencyVirus2003]
+
+    -   A large amount of mutations have been shown to confer antibacterial resistance in a range of bacteria [@woodfordEmergenceAntibioticResistance2007]
 
 ## Obtaining sequence data
 
@@ -97,9 +111,11 @@ The marking of primers and ddNTP with fluorescence allowed to do the polymerizat
 
 Developed to lower cost and more throughput
 
--   Massively parallel, Illumina
+-   Massively parallel, Illumina, *(no need to detail technology, just numbers i.e. throughput and cost)*
 
 -   Long reads sequencing
+
+    -   Introduce need for longer reads
 
 ***Quick summary on PacBio and ONT***
 
@@ -107,7 +123,7 @@ As a conclusion, quickly mention the work done on protein sequencing, but we usu
 
 ## Sequencing errors, how to account for them ?
 
-general context of sequencing errors
+general context of sequencing errors, i.e. short reads have high accuracy, long reads high error rate
 
 ### Long read errors
 
@@ -115,12 +131,23 @@ Mainly indels, in certain regions of the genomes, particularily homopolymers. Fo
 
 ### HPC
 
--   HPC takes repeated runs of a single nucleotide and compresses them to a single occurence
+-   HPC takes repeated runs of a single nucleotide and compresses them to a single occurence\
+    *Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)*
 
--   Empirically is has been shown to improve mapping and other applications
+-   Empirically is has been shown to improve downstream analyses
+
+### Other Error correction methods
+
+-   CCS / HiFi stuff
+
+-   Combining short and long reads, T2T / polishing
+
+-   *(Polishing specific to certain sequencing technologies) ?*
 
 ## Biological sequences, a computational view (here ?)
 
-Essentially a text file. Just a long succession of letters, so we can apply text algorithmics to it.
+Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
+
+*Maybe I don't need this to be a separate section but just a conclusion and transition to the next chapter on alignment.*
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

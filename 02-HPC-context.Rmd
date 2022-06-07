@@ -56,21 +56,14 @@ Example of COVID where homology is high so we can get away with using HMMS / pai
 
 -   Genetic algorithm
 
-## Mapping 
+## Mapping
 
 -   short intro
-
-```{=html}
-<!-- -->
-```
 -   context of short read on large reference sequence
-
 -   Problems:
-
     -   Repetitive regions (centromeres, telomeres)
 
     -   low homology / sequencing errors...
-
--   specific heuristics like minimizers / FM-index help
+-   specific heuristics like minimizers / FM-index help *(Needed here since I introduce it earlier ? )*
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
