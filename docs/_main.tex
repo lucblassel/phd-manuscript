@@ -398,20 +398,28 @@ There are several sources of error that can alter the genetic information \autoc
 \hypertarget{what-effect-can-mutations-have}{%
 \paragraph{What effect can mutations have ?}\label{what-effect-can-mutations-have}}
 
+SNPs, many individual mutations have been linked to certain traits (however, a trait is not usually caused only by a single mutation, plus hard to prove causality)
+
 \begin{itemize}
 \item
-  SNPs, many individual mutations have been linked to certain traits (however, a trait is not usually caused only by a single mutation, plus hard to prove causality)
+  Diseases:
 
   \begin{itemize}
   \item
-    Diseases:
+    Pathologic coagulation linked to a single mutation in DNA coding for a coagulation protein \autocite{kujovichFactorLeidenThrombophilia2011}.
+  \item
+    Cystic Fibrosis, a deletion of a single amino acid in the protein leads to fatal disease \autocite{cuttingCysticFibrosisGenetics2015}
+  \item
+    Plenty of mutation in specific genes have been linked with type 2 diabetes \autocite{fuchsbergerGeneticArchitectureType2016,morrisLargescaleAssociationAnalysis2012}
+  \end{itemize}
+\item
+  Added traits, like drug resistance:
 
-    \begin{itemize}
-    \item
-      Pathologic coagulation linked to a single mutation in DNA coding for a coagulation protein \autocite{kujovichFactorLeidenThrombophilia2011}.
-    \item
-      Cystic Fibrosis, a deletion of a single amino acid in the protein leads to fatal disease \autocite{cuttingCysticFibrosisGenetics2015}
-    \end{itemize}
+  \begin{itemize}
+  \item
+    Dozens of mutations proven to confer HIV resistance to commonly used drugs \autocite{rheeHumanImmunodeficiencyVirus2003}
+  \item
+    A large amount of mutations have been shown to confer antibacterial resistance in a range of bacteria \autocite{woodfordEmergenceAntibioticResistance2007}
   \end{itemize}
 \end{itemize}
 
@@ -613,10 +621,17 @@ Example of COVID where homology is high so we can get away with using HMMS / pai
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
-\hypertarget{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}{%
-\chapter{Mapping-friendly sequence reductions: going beyond homopolymer compression}\label{mapping-friendly-sequence-reductions-going-beyond-homopolymer-compression}}
+\hypertarget{contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space}{%
+\chapter{Contribution 1: Improving local alignment by exploring a sequence transformation space}\label{contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space}}
 
 \textbf{\emph{Intro to this chapter within the context of the thesis to go here!}}
+
+This chapter was written as an article titled:\\
+\textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''}\\
+it was published in \textbf{\emph{DATE HERE}}, in the iScience proceedings of the RECOMB-SEQ 2022
+conference (\href{https://doi.org/10.1371/journal.pcbi.1008873}{\emph{doi:10.1371/journal.pcbi.1008873}}).\\
+The author list, complete with affiliations is given below:\\
+\strut \\
 
 Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Paul Medvedev\textsuperscript{\textbf{3},\textbf{4},\textbf{5}}, Rayan
 Chikhi\textsuperscript{\textbf{1}}
@@ -630,9 +645,7 @@ University, University Park, Pennsylvania, United States of America\\
 University, University Park, Pennsylvania, United States of America\\
 \textbf{5} Center for Computational Biology and Bioinformatics, Pennsylvania State
 University, University Park, Pennsylvania, United States of America\\
-
-\emph{originally published in iScience in XXX}\\
-\href{https://doi.org/10.1371/journal.pcbi.1008873}{\emph{doi:10.1371/journal.pcbi.1008873}}
+\strut \\
 
 \newcommand{\stirling}[2]{\bigg\{%
 \begin{matrix}
@@ -1722,9 +1735,16 @@ Transmitted DRMS can be very serious , \ldots{} however fitness cost, \ldots{}
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HIV-paper}{%
-\chapter{Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV}\label{HIV-paper}}
+\chapter{Contribution 2: Inferring mutation roles from sequence alignments using machine learning}\label{HIV-paper}}
 
 \textbf{\emph{Intro to this chapter within the context of the thesis to go here!}}
+
+This chapter was written as an article titled:\\
+\textbf{``Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV''}\\
+it was originally published in \emph{August 2021}, in \emph{PLoS Computational Biology}
+(\href{https://doi.org/10.1371/journal.pcbi.1008873}{\emph{doi:10.1371/journal.pcbi.1008873}}).\\
+The author list, complete with affiliations is given below:\\
+\strut \\
 
 Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Anna Tostevin\textsuperscript{\textbf{3}}, Christian Julian
 Villabona-Arenas\textsuperscript{\textbf{4},\textbf{5}}, Martine Peeters\textsuperscript{\textbf{6}}, Stéphane Hué\textsuperscript{\textbf{4},\textbf{5}}, Olivier
@@ -1753,9 +1773,6 @@ and UA, Paris, France\\
 * olivier.gascuel@mnhn.fr (OG)
 
 \textsuperscript{\(\wedge\)} Membership list can be found in the acknowledgments section
-
-\emph{originally published in PLoS Computational Biology in August 2021}\\
-\emph{\href{https://doi.org/10.1371/journal.pcbi.1008873}{doi:10.1371/journal.pcbi.1008873}}
 
 \hypertarget{abstract-paper}{%
 \section*{Abstract}\label{abstract-paper}}
@@ -2839,6 +2856,81 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 i.e.~either connections in MSR graph or sequence 2 sequence models
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+
+\hypertarget{global-conclusion}{%
+\chapter*{Global conclusion}\label{global-conclusion}}
+\addcontentsline{toc}{chapter}{Global conclusion}
+
+\hypertarget{hpc-part}{%
+\section*{HPC part}\label{hpc-part}}
+\addcontentsline{toc}{section}{HPC part}
+
+\begin{itemize}
+\item
+  We have developed a method to improve mapping by pre-processing biological sequences
+
+  \begin{itemize}
+  \item
+    In terms of error rate and fraction of mapped reads
+  \item
+    Although transformations selected on whole human genome generalises to D. melanogaster and E coli genomes.
+  \end{itemize}
+\item
+  Where to go next ?
+
+  \begin{itemize}
+  \item
+    explore a larger space of transformations:
+
+    \begin{itemize}
+    \item
+      develop more efficient ways to explore search space
+    \item
+      new search space reduction mehods
+    \end{itemize}
+  \item
+    Explore different applications: assembly, clustering, \ldots{}
+  \item
+    Explore different types of transformations, i.e.~less constraints given by us, ML/Seq2Seq,\ldots{}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{hiv-part}{%
+\section*{HIV part}\label{hiv-part}}
+\addcontentsline{toc}{section}{HIV part}
+
+\begin{itemize}
+\item
+  We have used machine learning in order to find new drug resistance mutations in HIV
+
+  \begin{itemize}
+  \item
+    We have showed a link to drug resistance for 6 mutations of the RT-pol protein, currently not classified as DRMS, but they have been identified as potentially linked to resistance previously
+  \item
+    These mutations seem to be accessory mutations and do not
+  \item
+    There seems to be no complex epistasis phenomena
+  \end{itemize}
+\item
+  Where to go next:
+
+  \begin{itemize}
+  \item
+    Confirm experimentally / in vivo the role these mutations have in resistance
+  \item
+    Explore more sensitive methods, lots of work on interpretable DL -\textgreater{} restricted by dataset size\ldots{}
+  \item
+    Explore metadata rich data, e.g.~per treatment,
+  \item
+    Explore other organisms for which we have data -\textgreater{} HCV ?
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{final-words}{%
+\section*{Final words}\label{final-words}}
+\addcontentsline{toc}{section}{Final words}
+
+Alignments are fundamental, improvements in the creation and analysis steps are crucial and likely to help other people gain insight in biological processes. \textbf{\emph{etc\ldots{}}}
 
 \appendix
 

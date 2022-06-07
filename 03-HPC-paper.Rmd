@@ -1,15 +1,18 @@
----
-editor_options: 
-  markdown: 
-    wrap: 80
----
 
-# Contribution 1: Mapping-friendly sequence reductions: going beyond homopolymer compression
+# Contribution 1: Improving local alignment by exploring a sequence transformation space
 
 ***Intro to this chapter within the context of the thesis to go here!***
 
+This chapter was written as an article titled:   
+**"Mapping-friendly sequence reductions: going beyond homopolymer compression"**  
+it was published in ***DATE HERE***, in the iScience proceedings of the RECOMB-SEQ 2022
+conference ([*doi:10.1371/journal.pcbi.1008873*](https://doi.org/10.1371/journal.pcbi.1008873)).  
+The author list, complete with affiliations is given below:  
+\
+
 Luc Blassel^**1**,**2**\*^, Paul Medvedev^**3**,**4**,**5**^, Rayan
 Chikhi^**1**^
+
 
 **1** Sequence Bioinformatics, Department of Computational Biology, Institut
 Pasteur, Paris, France\
@@ -20,9 +23,8 @@ University, University Park, Pennsylvania, United States of America\
 University, University Park, Pennsylvania, United States of America\
 **5** Center for Computational Biology and Bioinformatics, Pennsylvania State
 University, University Park, Pennsylvania, United States of America\
+\
 
-*originally published in iScience in XXX*\
-[*doi:10.1371/journal.pcbi.1008873*](https://doi.org/10.1371/journal.pcbi.1008873)
 
 \newcommand{\stirling}[2]{\bigg\{%
 \begin{matrix}

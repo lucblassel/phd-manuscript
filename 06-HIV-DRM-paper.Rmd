@@ -1,6 +1,13 @@
-# Contribution 2: Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV {#HIV-paper}
+# Contribution 2: Inferring mutation roles from sequence alignments using machine learning {#HIV-paper}
 
 ***Intro to this chapter within the context of the thesis to go here!***
+
+This chapter was written as an article titled:   
+**"Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV"**  
+it was originally published in *August 2021*, in *PLoS Computational Biology*
+([*doi:10.1371/journal.pcbi.1008873*](https://doi.org/10.1371/journal.pcbi.1008873)).  
+The author list, complete with affiliations is given below:  
+\
 
 Luc Blassel^**1**,**2**\*^, Anna Tostevin^**3**^, Christian Julian
 Villabona-Arenas^**4**,**5**^, Martine Peeters^**6**^, Stéphane Hué^**4**,**5**^, Olivier
@@ -30,11 +37,6 @@ and UA, Paris, France\
 \* olivier.gascuel\@mnhn.fr (OG)
 
 ^$\wedge$^ Membership list can be found in the acknowledgments section
-
-
-*originally published in PLoS Computational Biology in August 2021*\
-*[doi:10.1371/journal.pcbi.1008873](https://doi.org/10.1371/journal.pcbi.1008873)*
-
 
 ## Abstract {#abstract-paper .unnumbered}
 
