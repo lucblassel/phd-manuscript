@@ -11,10 +11,11 @@ To fully understand the work that was done during this thesis, as well as the ch
 DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA [@watson1953] shown in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
 ```{r}
-figDNACaption <- "**Double-helix** structure of DNA. Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G)."
+figDNACaption <- "**Double-helix structure of DNA**.\
+Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G)."
 ```
 
-```{r, figDNA, fig.cap=figDNACaption, label="figDNA", eval=knitr::is_html_output()}
+```{r, figDNA, fig.cap=figDNACaption, label="figDNA", eval=knitr::is_html_output(), cache=FALSE}
 knitr::include_graphics("./figures/Basic-Intro/DNA.png")
 ```
 
@@ -22,7 +23,7 @@ knitr::include_graphics("./figures/Basic-Intro/DNA.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Basic-Intro/DNA.pdf}
-\extcaption{Double-helix structure of DNA}{}
+\extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
 \label{fig:figDNA}
 \end{figure}
 ```
@@ -90,7 +91,7 @@ SNPs, many individual mutations have been linked to certain traits (however, a t
 
 In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.
 
-### Sanger sequencing, a breakthrough (WIP)
+### Sanger sequencing, a breakthrough
 
 The first true sequencing method was developed in 1977 [@sangerDNASequencingChainterminating1977]. Sanger *et al.* devised a simple method to read the sequence of nucleotides that make up a DNA sequence.
 
@@ -98,53 +99,89 @@ The first true sequencing method was developed in 1977 [@sangerDNASequencingChai
 2.  Prepare 4 different sequencing environments with a majority of dNTP (ie regular nucleotides) and in each a single type of ddNTP (a terminator). ddNTP are marked
 3.  In each test tube add DNA polymerase, primers and denatures DNA fragments you want to sequence
 4.  Sequence is replicated until incorporation of ddNTP stopping reaction
-5.  Separate replicated fragments by electrophoresis (i.e shorter fragments go further), 1 ddNTP type in each lane
+5.  Separate replicated fragments by gel electrophoresis (i.e shorter fragments go further), 1 ddNTP type in each lane
 6.  With marked you can see which nucleotide is present at a given position
 
 This allowed Sanger *et al.* to sequence the first whole $\varphi X174$ bacteriophage genome [@sangerNucleotideSequenceBacteriophage1977]. This method, although revolutionnary was costly and time consuming.
 
-The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis [@smithSynthesisOligonucleotidesContaining1985; @smithFluorescenceDetectionAutomated1986]. The fluorescence also allowed for automated reading ***(base-calling ?)*** with optical systems.
+The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis [@smithSynthesisOligonucleotidesContaining1985; @smithFluorescenceDetectionAutomated1986]. The fluorescence also allowed for automated reading with optical systems. Plus switching to capillary electrophoresis allowed for automation and speeding up. Shotgun sequencing also speed up stuff at the reconstruct the whole genome.
 
 ***I need to speak of performance / throughput of these methods here.***
+
+With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999% [@shendureNextgenerationDNASequencing2008]. Although very time consuming and expensive at it's dawn, through refinements and automation, the cost of Sanger sequencing were greatly reduced from \$1000 per Bp [@collinsHumanGenomeProject2003] to \$0.5 per kBp [@shendureNextgenerationDNASequencing2008], and the throughput increased from 1 kBp per day [@collinsHumanGenomeProject2003] to 120 kBp per hour [@liuComparisonNextGenerationSequencing2012] .
 
 ### Next-generation sequencing
 
 Developed to lower cost and more throughput
 
--   Massively parallel, Illumina, *(no need to detail technology, just numbers i.e. throughput and cost)*
+-   Massively parallel *(no need to detail technology, just numbers i.e. throughput and cost) (i.e. 2nd gen)* [@metzkerSequencingTechnologiesNext2010]
 
--   Long reads sequencing
+    -   Key points:
+
+        -   Break up DNA to sequence in smaller fragments
+
+        -   Amplify fragments (i.e. clone them)
+
+        -   Attach fragments to solid support so we can thousands to billions of sequencing reactions at once
+
+        -    detect the polymerization as it happens, speeding up the process.
+
+    -   Illumina:
+
+        -   150nt [@mardisDecadePerspectiveDNA2011]
+
+        -   98% accuracy, \$0.07 per MBp, 2.5 to 12.5 Gbp per hour [@liuComparisonNextGenerationSequencing2012]
+
+        -   Detect polymerization by adding marked terminating NTP, imaging and cleaving terminating group to allow further polymerization.
+
+    -   pyrosequencing:
+
+        -   400nt [@mardisDecadePerspectiveDNA2011]
+
+        -   99.9% accuracy, \$10 per MBp, 30Mbp per hour [@liuComparisonNextGenerationSequencing2012]
+
+        -   Detect polymerization with a reaction that emits light during the incorporation of a dNTP to the synthesized DNA, measure the light emission to determine the base that was added.
+
+-   Long reads sequencing (i.e. 3rd gen):
 
     -   Introduce need for longer reads
-
-***Quick summary on PacBio and ONT***
+    -   PacBIO SMRT [@eidRealTimeDNASequencing2009]
+    -   NanoPore [@clarkeContinuousBaseIdentification2009]
 
 As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
 
 ## Sequencing errors, how to account for them ?
 
-general context of sequencing errors, i.e. short reads have high accuracy, long reads high error rate
+general context of sequencing errors, i.e. short reads have high accuracy (After computational correction you can get 10^-4^ to 10^-5^ error rate [@maAnalysisErrorProfiles2019] ) , long reads high error rate
 
 ### Long read errors
 
-Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017], for PacBIO circular consensus [@wenger2019]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020].
+Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017], for PacBIO circular consensus [@wenger2019]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020].
 
-### HPC
+### How do we deal with errors ? 
 
--   HPC takes repeated runs of a single nucleotide and compresses them to a single occurence\
+#### HPC
+
+-   HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\
     *Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)*
 
 -   Empirically is has been shown to improve downstream analyses
 
-### Other Error correction methods
-
--   CCS / HiFi stuff
+#### Other error correction methods
 
 -   Combining short and long reads, T2T / polishing
 
 -   *(Polishing specific to certain sequencing technologies) ?*
 
-## Biological sequences, a computational view (here ?)
+#### More accurate sequencing methods
+
+-   CCS / HiFi stuff -\> 99.8% accuracy on very long reads (13.5kb) [@wenger2019]
+
+-   Built in error correction [@chenHighlyAccurateFluorogenic2017], results in shorter reads with 99.82% accuracy (200-250nt reads though). Error free up to 200bp.
+
+-   To come Illumina Infinity [@HighPerformanceLong], high throughput long reads.
+
+## Biological sequences, a computational view
 
 Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
 
