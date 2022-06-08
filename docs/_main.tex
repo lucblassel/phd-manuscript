@@ -233,7 +233,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-07}
+\date{2022-06-08}
 
 \begin{document}
 \maketitle
@@ -327,7 +327,7 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Basic-Intro/DNA.pdf}
-\extcaption{Double-helix structure of DNA}{}
+\extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
 \label{fig:figDNA}
 \end{figure}
 
@@ -429,8 +429,8 @@ SNPs, many individual mutations have been linked to certain traits (however, a t
 
 In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.
 
-\hypertarget{sanger-sequencing-a-breakthrough-wip}{%
-\subsection{Sanger sequencing, a breakthrough (WIP)}\label{sanger-sequencing-a-breakthrough-wip}}
+\hypertarget{sanger-sequencing-a-breakthrough}{%
+\subsection{Sanger sequencing, a breakthrough}\label{sanger-sequencing-a-breakthrough}}
 
 The first true sequencing method was developed in 1977 \autocite{sangerDNASequencingChainterminating1977}. Sanger \emph{et al.} devised a simple method to read the sequence of nucleotides that make up a DNA sequence.
 
@@ -446,16 +446,18 @@ The first true sequencing method was developed in 1977 \autocite{sangerDNASequen
 \item
   Sequence is replicated until incorporation of ddNTP stopping reaction
 \item
-  Separate replicated fragments by electrophoresis (i.e shorter fragments go further), 1 ddNTP type in each lane
+  Separate replicated fragments by gel electrophoresis (i.e shorter fragments go further), 1 ddNTP type in each lane
 \item
   With marked you can see which nucleotide is present at a given position
 \end{enumerate}
 
 This allowed Sanger \emph{et al.} to sequence the first whole \(\varphi X174\) bacteriophage genome \autocite{sangerNucleotideSequenceBacteriophage1977}. This method, although revolutionnary was costly and time consuming.
 
-The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis \autocite{smithSynthesisOligonucleotidesContaining1985,smithFluorescenceDetectionAutomated1986}. The fluorescence also allowed for automated reading \textbf{\emph{(base-calling ?)}} with optical systems.
+The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis \autocite{smithSynthesisOligonucleotidesContaining1985,smithFluorescenceDetectionAutomated1986}. The fluorescence also allowed for automated reading with optical systems. Plus switching to capillary electrophoresis allowed for automation and speeding up. Shotgun sequencing also speed up stuff at the reconstruct the whole genome.
 
 \textbf{\emph{I need to speak of performance / throughput of these methods here.}}
+
+With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999\% \autocite{shendureNextgenerationDNASequencing2008}. Although very time consuming and expensive at it's dawn, through refinements and automation, the cost of Sanger sequencing were greatly reduced from \$1000 per Bp \autocite{collinsHumanGenomeProject2003} to \$0.5 per kBp \autocite{shendureNextgenerationDNASequencing2008}, and the throughput increased from 1 kBp per day \autocite{collinsHumanGenomeProject2003} to 120 kBp per hour \autocite{liuComparisonNextGenerationSequencing2012} .
 
 \hypertarget{next-generation-sequencing}{%
 \subsection{Next-generation sequencing}\label{next-generation-sequencing}}
@@ -464,56 +466,109 @@ Developed to lower cost and more throughput
 
 \begin{itemize}
 \item
-  Massively parallel, Illumina, \emph{(no need to detail technology, just numbers i.e.~throughput and cost)}
+  Massively parallel \emph{(no need to detail technology, just numbers i.e.~throughput and cost) (i.e.~2nd gen)} \autocite{metzkerSequencingTechnologiesNext2010}
+
+  \begin{itemize}
+  \item
+    Key points:
+
+    \begin{itemize}
+    \item
+      Break up DNA to sequence in smaller fragments
+    \item
+      Amplify fragments (i.e.~clone them)
+    \item
+      Attach fragments to solid support so we can thousands to billions of sequencing reactions at once
+    \item
+      detect the polymerization as it happens, speeding up the process.
+    \end{itemize}
+  \item
+    Illumina:
+
+    \begin{itemize}
+    \item
+      150nt \autocite{mardisDecadePerspectiveDNA2011}
+    \item
+      98\% accuracy, \$0.07 per MBp, 2.5 to 12.5 Gbp per hour \autocite{liuComparisonNextGenerationSequencing2012}
+    \item
+      Detect polymerization by adding marked terminating NTP, imaging and cleaving terminating group to allow further polymerization.
+    \end{itemize}
+  \item
+    pyrosequencing:
+
+    \begin{itemize}
+    \item
+      400nt \autocite{mardisDecadePerspectiveDNA2011}
+    \item
+      99.9\% accuracy, \$10 per MBp, 30Mbp per hour \autocite{liuComparisonNextGenerationSequencing2012}
+    \item
+      Detect polymerization with a reaction that emits light during the incorporation of a dNTP to the synthesized DNA, measure the light emission to determine the base that was added.
+    \end{itemize}
+  \end{itemize}
 \item
-  Long reads sequencing
+  Long reads sequencing (i.e.~3rd gen):
 
   \begin{itemize}
   \tightlist
   \item
     Introduce need for longer reads
+  \item
+    PacBIO SMRT \autocite{eidRealTimeDNASequencing2009}
+  \item
+    NanoPore \autocite{clarkeContinuousBaseIdentification2009}
   \end{itemize}
 \end{itemize}
-
-\textbf{\emph{Quick summary on PacBio and ONT}}
 
 As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
 
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
 
-general context of sequencing errors, i.e.~short reads have high accuracy, long reads high error rate
+general context of sequencing errors, i.e.~short reads have high accuracy (After computational correction you can get 10\textsuperscript{-4} to 10\textsuperscript{-5} error rate \autocite{maAnalysisErrorProfiles2019} ) , long reads high error rate
 
 \hypertarget{long-read-errors}{%
 \subsection{Long read errors}\label{long-read-errors}}
 
-Mainly indels, in certain regions of the genomes, particularily homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}, for PacBIO circular consensus \autocite{wenger2019}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}.
+Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}, for PacBIO circular consensus \autocite{wenger2019}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}.
+
+\hypertarget{how-do-we-deal-with-errors}{%
+\subsection{How do we deal with errors ?}\label{how-do-we-deal-with-errors}}
 
 \hypertarget{hpc}{%
-\subsection{HPC}\label{hpc}}
+\subsubsection{HPC}\label{hpc}}
 
 \begin{itemize}
 \item
-  HPC takes repeated runs of a single nucleotide and compresses them to a single occurence\\
+  HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\\
   \emph{Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)}
 \item
   Empirically is has been shown to improve downstream analyses
 \end{itemize}
 
 \hypertarget{other-error-correction-methods}{%
-\subsection{Other Error correction methods}\label{other-error-correction-methods}}
+\subsubsection{Other error correction methods}\label{other-error-correction-methods}}
 
 \begin{itemize}
-\item
-  CCS / HiFi stuff
 \item
   Combining short and long reads, T2T / polishing
 \item
   \emph{(Polishing specific to certain sequencing technologies) ?}
 \end{itemize}
 
-\hypertarget{biological-sequences-a-computational-view-here}{%
-\section{Biological sequences, a computational view (here ?)}\label{biological-sequences-a-computational-view-here}}
+\hypertarget{more-accurate-sequencing-methods}{%
+\subsubsection{More accurate sequencing methods}\label{more-accurate-sequencing-methods}}
+
+\begin{itemize}
+\item
+  CCS / HiFi stuff -\textgreater{} 99.8\% accuracy on very long reads (13.5kb) \autocite{wenger2019}
+\item
+  Built in error correction \autocite{chenHighlyAccurateFluorogenic2017}, results in shorter reads with 99.82\% accuracy (200-250nt reads though). Error free up to 200bp.
+\item
+  To come Illumina Infinity \autocite{HighPerformanceLong}, high throughput long reads.
+\end{itemize}
+
+\hypertarget{biological-sequences-a-computational-view}{%
+\section{Biological sequences, a computational view}\label{biological-sequences-a-computational-view}}
 
 Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
 
