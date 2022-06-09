@@ -570,7 +570,16 @@ Developed to lower cost and more throughput
   \end{itemize}
 \end{itemize}
 
-As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
+As a conclusion, quickly mention the work done on protein sequencing:
+
+\begin{itemize}
+\item
+  has been going on for a long time \autocite{huntProteinSequencingTandem1986,smithProteinSequencingProtocols2002} with mass spectrometry
+\item
+  But still ongoing with new methods \autocite{restrepo-perezPavingWaySinglemolecule2018}
+\end{itemize}
+
+but we usually deduce the protein sequence from the DNA sequence that is translated from codons after detecting ORFs.
 
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
@@ -594,7 +603,7 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 \item
   In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread \autocite{hacklProovreadLargescaleHighaccuracy2014}, Jabba \autocite{miclotteJabbaHybridError2016} or LoRDEC \autocite{salmelaLoRDECAccurateEfficient2014}
 \item
-  In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow \autocite{heplerImprovedCircularConsensus2016} or Nanopolish \autocite{simpsonDetectingDNACytosine2017} respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}.
+  In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow \autocite{heplerImprovedCircularConsensus2016} or Nanopolish \autocite{simpsonDetectingDNACytosine2017} respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}. In some cases homopolymers are taken into special consideration during polishing \autocite{huangHomopolishMethodRemoval2021}.
 \item
   Error correction bibliography is rich and many people are working on this \autocite{limaComparativeAssessmentLongread2020,fuComparativeEvaluationHybrid2019,zhangComprehensiveEvaluationLong2020}
 \end{itemize}
@@ -627,7 +636,7 @@ homopolymers are still tricky regions even with long high accuracy reads -\textg
   HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\\
   \emph{Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)}
 \item
-  Used in many software tools for long reads \autocite{auImprovingPacBioLong2012,nurkHiCanuAccurateAssembly2020,liMinimap2PairwiseAlignment2018,ruanFastAccurateLongread2020,shafinNanoporeSequencingShasta2020,sahlin2020novo,ekimMinimizerspaceBruijnGraphs2021} and even pyrosequencing reads \autocite{miller2008aggressive}
+  Used in many software tools for long reads \autocite{auImprovingPacBioLong2012,nurkHiCanuAccurateAssembly2020,liMinimap2PairwiseAlignment2018,ruanFastAccurateLongread2020,shafinNanoporeSequencingShasta2020,sahlinNovoClusteringLongRead2020,ekimMinimizerspaceBruijnGraphs2021} and even pyrosequencing reads \autocite{millerAggressiveAssemblyPyrosequencing2008}
 \end{itemize}
 
 \hypertarget{biological-sequences-a-computational-view}{%
@@ -816,7 +825,7 @@ errors, but in long reads, these tend to be short insertions and deletions; most
 common are expansions or contractions of homopolymers (i.e.~reporting 3 As
 instead of 4)~\autocite{dohmBenchmarkingLongreadCorrection2020}. Many algorithmic
 problems, such as alignment, become trivial if not for sequencing
-errors~\autocite{gusfieldbook}. Error correction can often decrease the error rate but
+errors~\autocite{gusfieldAlgorithmsStringsTrees1997}. Error correction can often decrease the error rate but
 does not eliminate all errors. Most tools therefore incorporate the uncertainty
 caused by errors into their underlying algorithms. The higher the error rate,
 the more detrimental its effect on algorithm speed, memory, and accuracy. While
@@ -841,7 +850,7 @@ sensitivity usually outweighs it~\autocite{liMinimap2PairwiseAlignment2018}.
 
 The first use of HPC that we are aware of was in 2008 as a pre-processing step
 for 454 pyrosequencing data in the Celera
-assembler~\textcite{millerAggressiveAssemblyPyrosequencing2008}. It is used by a wide
+assembler~\autocite{millerAggressiveAssemblyPyrosequencing2008}. It is used by a wide
 range of error-correction algorithms, e.g.~for 454
 data~\autocite{braggFastAccurateErrorcorrection2012}, PacBio
 data~\autocite{auImprovingPacBioLong2012}, and Oxford Nanopore

@@ -189,7 +189,13 @@ Developed to lower cost and more throughput
 
         -   12.5Gbp to 260Gbp per hour !! [@logsdonLongreadHumanGenome2020]
 
-As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
+As a conclusion, quickly mention the work done on protein sequencing:
+
+-   has been going on for a long time [@huntProteinSequencingTandem1986; @smithProteinSequencingProtocols2002] with mass spectrometry
+
+-   But still ongoing with new methods [@restrepo-perezPavingWaySinglemolecule2018]
+
+but we usually deduce the protein sequence from the DNA sequence that is translated from codons after detecting ORFs.
 
 ## Sequencing errors, how to account for them ?
 
@@ -207,7 +213,7 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 
 -   In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread [@hacklProovreadLargescaleHighaccuracy2014], Jabba [@miclotteJabbaHybridError2016] or LoRDEC [@salmelaLoRDECAccurateEfficient2014]
 
--   In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow [@heplerImprovedCircularConsensus2016] or Nanopolish [@simpsonDetectingDNACytosine2017] respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon [@walkerPilonIntegratedTool2014] or Racon [@vaserFastAccurateNovo2017].
+-   In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow [@heplerImprovedCircularConsensus2016] or Nanopolish [@simpsonDetectingDNACytosine2017] respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon [@walkerPilonIntegratedTool2014] or Racon [@vaserFastAccurateNovo2017]. In some cases homopolymers are taken into special consideration during polishing [@huangHomopolishMethodRemoval2021].
 
 -   Error correction bibliography is rich and many people are working on this [@limaComparativeAssessmentLongread2020; @fuComparativeEvaluationHybrid2019; @zhangComprehensiveEvaluationLong2020]
 
@@ -232,7 +238,7 @@ homopolymers are still tricky regions even with long high accuracy reads -\> so 
 -   HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\
     *Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)*
 
--   Used in many software tools for long reads [@auImprovingPacBioLong2012; @nurkHiCanuAccurateAssembly2020; @liMinimap2PairwiseAlignment2018; @ruanFastAccurateLongread2020; @shafinNanoporeSequencingShasta2020; @sahlin2020novo; @ekimMinimizerspaceBruijnGraphs2021] and even pyrosequencing reads [@miller2008aggressive]
+-   Used in many software tools for long reads [@auImprovingPacBioLong2012; @nurkHiCanuAccurateAssembly2020; @liMinimap2PairwiseAlignment2018; @ruanFastAccurateLongread2020; @shafinNanoporeSequencingShasta2020; @sahlinNovoClusteringLongRead2020; @ekimMinimizerspaceBruijnGraphs2021] and even pyrosequencing reads [@millerAggressiveAssemblyPyrosequencing2008]
 
 ## Biological sequences, a computational view
 

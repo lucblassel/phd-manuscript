@@ -18,6 +18,40 @@
   volume       = {287}
 }
 
+@article{auImprovingPacBioLong2012,
+  abstract     = {The recent development of third generation sequencing (TGS) generates much longer reads than second generation sequencing (SGS) and thus provides a chance to solve problems that are difficult to study through SGS alone. However, higher raw read error rates are an intrinsic drawback in most TGS technologies. Here we present a computational method, LSC, to perform error correction of TGS long reads (LR) by SGS short reads (SR). Aiming to reduce the error rate in homopolymer runs in the main TGS platform, the PacBio® RS, LSC applies a homopolymer compression (HC) transformation strategy to increase the sensitivity of SR-LR alignment without scarifying alignment accuracy. We applied LSC to 100,000 PacBio long reads from human brain cerebellum RNA-seq data and 64 million single-end 75 bp reads from human brain RNA-seq data. The results show LSC can correct PacBio long reads to reduce the error rate by more than 3 folds. The improved accuracy greatly benefits many downstream analyses, such as directional gene isoform detection in RNA-seq study. Compared with another hybrid correction tool, LSC can achieve over double the sensitivity and similar specificity.},
+  author       = {Au, Kin Fai and Underwood, Jason G. and Lee, Lawrence and Wong, Wing Hung},
+  date         = {2012-10-04},
+  doi          = {10.1371/journal.pone.0046679},
+  issn         = {1932-6203},
+  journaltitle = {PLOS ONE},
+  keywords     = {Chromosomes,Genome sequencing,Genomics,Human genomics,Quality control,RNA sequencing,Sequence alignment,Transcriptome analysis},
+  langid       = {english},
+  number       = {10},
+  pages        = {e46679},
+  publisher    = {{Public Library of Science}},
+  shortjournal = {PLOS ONE},
+  title        = {Improving {{PacBio Long Read Accuracy}} by {{Short Read Alignment}}},
+  volume       = {7}
+}
+
+@article{braggFastAccurateErrorcorrection2012,
+  author       = {Bragg, Lauren and Stone, Glenn and Imelfort, Michael and Hugenholtz, Philip and Tyson, Gene W.},
+  date         = {2012-05},
+  doi          = {10.1038/nmeth.1990},
+  issn         = {1548-7105},
+  issue        = {5},
+  journaltitle = {Nature Methods},
+  keywords     = {Bioinformatics,Microbial communities,Sequencing},
+  langid       = {english},
+  number       = {5},
+  pages        = {425--426},
+  publisher    = {{Nature Publishing Group}},
+  shortjournal = {Nat Methods},
+  title        = {Fast, Accurate Error-Correction of Amplicon Pyrosequences Using {{Acacia}}},
+  volume       = {9}
+}
+
 @article{bzikadzeAutomatedAssemblyCentromeres2020,
   abstract     = {Centromeric variation has been linked to cancer and infertility, but centromere sequences contain multiple tandem repeats and can only be assembled manually from long error-prone reads. Here we describe the centroFlye algorithm for centromere assembly using long error-prone reads, and apply it to assemble human centromeres on chromosomes 6 and X. Our analyses reveal putative breakpoints in the manual reconstruction of the human X centromere, demonstrate that human X chromosome is partitioned into repeat subfamilies and provide initial insights into centromere evolution. We anticipate that centroFlye could be applied to automatically close remaining multimegabase gaps in the reference human genome.},
   annotation   = {Bandiera\_abtest: a Cg\_type: Nature Research Journals Primary\_atype: Research Subject\_term: Genetics;Genome assembly algorithms Subject\_term\_id: genetics;genome-assembly-algorithms},
@@ -79,6 +113,19 @@
   shorttitle = {Concrete Mathematics},
   title      = {Concrete Mathematics: A Foundation for Computer Science}
 }
+
+@book{gusfieldAlgorithmsStringsTrees1997,
+  address   = {Cambridge},
+  author    = {Gusfield, Dan},
+  date      = {1997},
+  doi       = {10.1017/CBO9780511574931},
+  note      = {DOI: 10.1017/CBO9780511574931},
+  publisher = {Cambridge University Press},
+  title     = {Algorithms on Strings, Trees, and Sequences: Computer Science and Computational Biology},
+  url       = {https://www.cambridge.org/core/books/algorithms-on-strings-trees-and-sequences/F0B095049C7E6EF5356F0A26686C20D3},
+  year      = {1997}
+}
+
 
 @article{jainWeightedMinimizerSampling2020,
   abstract     = {In this era of exponential data growth, minimizer sampling has become a standard algorithmic technique for rapid genome sequence comparison. This technique yields a sub-linear representation of sequences, enabling their comparison in reduced space and time. A key property of the minimizer technique is that if two sequences share a substring of a specified length, then they can be guaranteed to have a matching minimizer. However, because the k-mer distribution in eukaryotic genomes is highly uneven, minimizer-based tools (e.g. Minimap2, Mashmap) opt to discard the most frequently occurring minimizers from the genome to avoid excessive false positives. By doing so, the underlying guarantee is lost and accuracy is reduced in repetitive genomic regions.We introduce a novel weighted-minimizer sampling algorithm. A unique feature of the proposed algorithm is that it performs minimizer sampling while considering a weight for each k-mer; i.e. the higher the weight of a k-mer, the more likely it is to be selected. By down-weighting frequently occurring k-mers, we are able to meet both objectives: (i) avoid excessive false-positive matches and (ii) maintain the minimizer match guarantee. We tested our algorithm, Winnowmap, using both simulated and real long-read data and compared it to a state-of-the-art long read mapper, Minimap2. Our results demonstrate a reduction in the mapping error-rate from 0.14\% to 0.06\% in the recently finished human X chromosome (154.3 Mbp), and from 3.6\% to 0\% within the highly repetitive X centromere (3.1 Mbp). Winnowmap improves mapping accuracy within repeats and achieves these results with sparser sampling, leading to better index compression and competitive runtimes. Winnowmap is built on top of the Minimap2 codebase and is available at https://github.com/marbl/winnowmap.},
@@ -203,6 +250,21 @@
   volume       = {36}
 }
 
+@article{millerAggressiveAssemblyPyrosequencing2008,
+  abstract     = {Motivation: DNA sequence reads from Sanger and pyrosequencing platforms differ in cost, accuracy, typical coverage, average read length and the variety of available paired-end protocols. Both read types can complement one another in a ‘hybrid’ approach to whole-genome shotgun sequencing projects, but assembly software must be modified to accommodate their different characteristics. This is true even of pyrosequencing mated and unmated read combinations. Without special modifications, assemblers tuned for homogeneous sequence data may perform poorly on hybrid data.Results: Celera Assembler was modified for combinations of ABI 3730 and 454 FLX reads. The revised pipeline called CABOG (Celera Assembler with the Best Overlap Graph) is robust to homopolymer run length uncertainty, high read coverage and heterogeneous read lengths. In tests on four genomes, it generated the longest contigs among all assemblers tested. It exploited the mate constraints provided by paired-end reads from either platform to build larger contigs and scaffolds, which were validated by comparison to a finished reference sequence. A low rate of contig mis-assembly was detected in some CABOG assemblies, but this was reduced in the presence of sufficient mate pair data.Availability: The software is freely available as open-source from http://wgs-assembler.sf.net under the GNU Public License.Contact:jmiller@jcvi.orgSupplementary information:Supplementary data are available at Bioinformatics online.},
+  author       = {Miller, Jason R. and Delcher, Arthur L. and Koren, Sergey and Venter, Eli and Walenz, Brian P. and Brownley, Anushka and Johnson, Justin and Li, Kelvin and Mobarry, Clark and Sutton, Granger},
+  date         = {2008-12-15},
+  doi          = {10.1093/bioinformatics/btn548},
+  issn         = {1367-4803},
+  journaltitle = {Bioinformatics},
+  number       = {24},
+  pages        = {2818--2824},
+  shortjournal = {Bioinformatics},
+  title        = {Aggressive Assembly of Pyrosequencing Reads with Mates},
+  volume       = {24}
+}
+
+
 @article{nurkCompleteSequenceHuman2021,
   abstract     = {In 2001, Celera Genomics and the International Human Genome Sequencing Consortium published their initial drafts of the human genome, which revolutionized the field of genomics. While these drafts and the updates that followed effectively covered the euchromatic fraction of the genome, the heterochromatin and many other complex regions were left unfinished or erroneous. Addressing this remaining 8\% of the genome, the Telomere-to-Telomere (T2T) Consortium has finished the first truly complete 3.055 billion base pair (bp) sequence of a human genome, representing the largest improvement to the human reference genome since its initial release. The new T2T-CHM13 reference includes gapless assemblies for all 22 autosomes plus Chromosome X, corrects numerous errors, and introduces nearly 200 million bp of novel sequence containing 2,226 paralogous gene copies, 115 of which are predicted to be protein coding. The newly completed regions include all centromeric satellite arrays and the short arms of all five acrocentric chromosomes, unlocking these complex regions of the genome to variational and functional studies for the first time.Competing Interest StatementAF and CSC are employees of DNAnexus; IS, JK, MWH, PP, and AW are employees of Pacific Biosciences; FJS has received travel funds to speak at events hosted by Pacific Biosciences; SK and FJS have received travel funds to speak at events hosted by Oxford Nanopore Technologies. WT has licensed two patents to Oxford Nanopore Technologies (US 8748091 and 8394584).},
   author       = {Nurk, Sergey and Koren, Sergey and Rhie, Arang and Rautiainen, Mikko and Bzikadze, Andrey V. and Mikheenko, Alla and Vollger, Mitchell R. and Altemose, Nicolas and Uralsky, Lev and Gershman, Ariel and Aganezov, Sergey and Hoyt, Savannah J. and Diekhans, Mark and Logsdon, Glennis A. and Alonge, Michael and Antonarakis, Stylianos E. and Borchers, Matthew and Bouffard, Gerard G. and Brooks, Shelise Y. and Caldas, Gina V. and Cheng, Haoyu and Chin, Chen-Shan and Chow, William and de Lima, Leonardo G. and Dishuck, Philip C. and Durbin, Richard and Dvorkina, Tatiana and Fiddes, Ian T. and Formenti, Giulio and Fulton, Robert S. and Fungtammasan, Arkarachai and Garrison, Erik and Grady, Patrick G.S. and Graves-Lindsay, Tina A. and Hall, Ira M. and Hansen, Nancy F. and Hartley, Gabrielle A. and Haukness, Marina and Howe, Kerstin and Hunkapiller, Michael W. and Jain, Chirag and Jain, Miten and Jarvis, Erich D. and Kerpedjiev, Peter and Kirsche, Melanie and Kolmogorov, Mikhail and Korlach, Jonas and Kremitzki, Milinn and Li, Heng and Maduro, Valerie V. and Marschall, Tobias and McCartney, Ann M. and McDaniel, Jennifer and Miller, Danny E. and Mullikin, James C. and Myers, Eugene W. and Olson, Nathan D. and Paten, Benedict and Peluso, Paul and Pevzner, Pavel A. and Porubsky, David and Potapova, Tamara and Rogaev, Evgeny I. and Rosenfeld, Jeffrey A. and Salzberg, Steven L. and Schneider, Valerie A. and Sedlazeck, Fritz J. and Shafin, Kishwar and Shew, Colin J. and Shumate, Alaina and Sims, Yumi and Smit, Arian F. A. and Soto, Daniela C. and Sović, Ivan and Storer, Jessica M. and Streets, Aaron and Sullivan, Beth A. and Thibaud-Nissen, Françoise and Torrance, James and Wagner, Justin and Walenz, Brian P. and Wenger, Aaron and Wood, Jonathan M. D. and Xiao, Chunlin and Yan, Stephanie M. and Young, Alice C. and Zarate, Samantha and Surti, Urvashi and McCoy, Rajiv C. and Dennis, Megan Y. and Alexandrov, Ivan A. and Gerton, Jennifer L. and O’Neill, Rachel J. and Timp, Winston and Zook, Justin M. and Schatz, Michael C. and Eichler, Evan E. and Miga, Karen H. and Phillippy, Adam M.},
@@ -235,6 +297,21 @@
   volume       = {30}
 }
 
+@article{onoPBSIM2SimulatorLongread2021,
+  abstract     = {Recent advances in high-throughput long-read sequencers, such as PacBio and Oxford Nanopore sequencers, produce longer reads with more errors than short-read sequencers. In addition to the high error rates of reads, non-uniformity of errors leads to difficulties in various downstream analyses using long reads. Many useful simulators, which characterize long-read error patterns and simulate them, have been developed. However, there is still room for improvement in the simulation of the non-uniformity of errors.To capture characteristics of errors in reads for long-read sequencers, here, we introduce a generative model for quality scores, in which a hidden Markov Model with a latest model selection method, called factorized information criteria, is utilized. We evaluated our developed simulator from various points, indicating that our simulator successfully simulates reads that are consistent with real reads.The source codes of PBSIM2 are freely available from https://github.com/yukiteruono/pbsim2.Supplementary data are available at Bioinformatics online.},
+  author       = {Ono, Yukiteru and Asai, Kiyoshi and Hamada, Michiaki},
+  date         = {2021-03-01},
+  doi          = {10.1093/bioinformatics/btaa835},
+  issn         = {1367-4803},
+  journaltitle = {Bioinformatics},
+  number       = {5},
+  pages        = {589--595},
+  shortjournal = {Bioinformatics},
+  shorttitle   = {{{PBSIM2}}},
+  title        = {{{PBSIM2}}: A Simulator for Long-Read Sequencers with a Novel Generative Model of Quality Scores},
+  volume       = {37}
+}
+
 @article{prodanovSensitiveAlignmentUsing2020,
   abstract     = {The ability to characterize repetitive regions of the human genome is limited by the read lengths of short-read sequencing technologies. Although long-read sequencing technologies such as Pacific Biosciences (PacBio)~and Oxford Nanopore Technologies can potentially overcome this limitation, long segmental duplications with high sequence identity pose challenges for long-read mapping. We describe a probabilistic method, DuploMap, designed to improve the accuracy of long-read mapping in segmental duplications. It analyzes reads mapped to segmental duplications using existing long-read aligners and leverages paralogous sequence variants (PSVs)—sequence differences between paralogous sequences—to distinguish between multiple alignment locations. On simulated datasets, DuploMap increased the percentage of correctly mapped reads with high confidence for multiple long-read aligners including Minimap2 (74.3–90.6\%) and BLASR (82.9–90.7\%) while maintaining high precision. Across multiple whole-genome long-read datasets, DuploMap aligned an additional 8–21\% of the reads in segmental duplications with high confidence relative to Minimap2. Using DuploMap-aligned PacBio circular consensus sequencing reads, an additional 8.9 Mb of DNA sequence was mappable, variant calling achieved a higher F1~score and 14~713 additional variants supported by linked-read data were identified. Finally, we demonstrate that a significant fraction of PSVs in segmental duplications overlaps with variants and adversely impacts short-read variant calling.},
   author       = {Prodanov, Timofey and Bansal, Vikas},
@@ -263,129 +340,6 @@
   shorttitle   = {Merqury},
   title        = {Merqury: Reference-Free Quality, Completeness, and Phasing Assessment for Genome Assemblies},
   volume       = {21}
-}
-
-@article{yangNanoSimNanoporeSequence2017,
-  abstract     = {The MinION sequencing instrument from Oxford Nanopore Technologies (ONT) produces long read lengths from single-molecule sequencing – valuable features for detailed genome characterization. To realize the potential of this platform, a number of groups are developing bioinformatics tools tuned for the unique characteristics of its data. We note that these development efforts would benefit from a simulator software, the output of which could be used to benchmark analysis tools. ~Here, we introduce NanoSim, a fast and scalable read simulator that captures the technology-specific features of ONT data and allows for adjustments upon improvement of nanopore sequencing technology. The first step of NanoSim is read characterization, which provides a comprehensive alignment-based analysis and generates a set of read profiles serving as the input to the next step, the simulation stage. The simulation stage uses the model built in the previous step to produce in silico reads for a given reference genome. NanoSim is written in Python and R. The source files and manual are available at the Genome Sciences Centre website: http://www.bcgsc.ca/platform/bioinfo/software/nanosim. In this work, we model the base-calling errors of ONT reads to inform the simulation of sequences with similar characteristics. We showcase the performance of NanoSim on publicly available datasets generated using the R7 and R7.3 chemistries and different sequencing kits and compare the resulting synthetic reads to those of other long-sequence simulators and experimental ONT reads. We expect NanoSim to have an enabling role in the field and benefit the development of scalable next-generation sequencing technologies for the long nanopore reads, including genome assembly, mutation detection, and even metagenomic analysis software.},
-  author       = {Yang, Chen and Chu, Justin and Warren, René L and Birol, Inanç},
-  date         = {2017-04-01},
-  doi          = {10.1093/gigascience/gix010},
-  issn         = {2047-217X},
-  journaltitle = {GigaScience},
-  number       = {4},
-  shortjournal = {GigaScience},
-  shorttitle   = {{{NanoSim}}},
-  title        = {{{NanoSim}}: Nanopore Sequence Read Simulator Based on Statistical Characterization},
-  volume       = {6}
-}
-
-
-@software{smitRepeatMasker2013,
-  author  = {Smit, Adrian FA. and Hubley, Robert and Green, P.},
-  date    = {2013},
-  title   = {{RepeatMasker Open-4.0}},
-  url     = {http://www.repeatmasker.org},
-  version = {4.0.5}
-}
-
-@article{miller2008aggressive,
-  author    = {Miller, Jason R and Delcher, Arthur L and Koren, Sergey and Venter, Eli and Walenz, Brian P and Brownley, Anushka and Johnson, Justin and Li, Kelvin and Mobarry, Clark and Sutton, Granger},
-  journal   = {Bioinformatics},
-  number    = {24},
-  pages     = {2818--2824},
-  publisher = {Oxford University Press},
-  title     = {Aggressive assembly of pyrosequencing reads with mates},
-  volume    = {24},
-  year      = {2008}
-}
-
-@article{sahlin2021error,
-  author    = {Sahlin, Kristoffer and Medvedev, Paul},
-  journal   = {Nature communications},
-  number    = {1},
-  pages     = {1--13},
-  publisher = {Nature Publishing Group},
-  title     = {Error correction enables use of Oxford Nanopore technology for reference-free transcriptome analysis},
-  volume    = {12},
-  year      = {2021}
-}
-
-@article{bragg2012fast,
-  author    = {Bragg, Lauren and Stone, Glenn and Imelfort, Michael and Hugenholtz, Philip and Tyson, Gene W},
-  journal   = {Nature methods},
-  number    = {5},
-  pages     = {425--426},
-  publisher = {Nature Publishing Group},
-  title     = {Fast, accurate error-correction of amplicon pyrosequences using Acacia},
-  volume    = {9},
-  year      = {2012}
-}
-
-@article{au2012improving,
-  author    = {Au, Kin Fai and Underwood, Jason G and Lee, Lawrence and Wong, Wing Hung},
-  publisher = {Public Library of Science San Francisco, USA},
-  title     = {Improving PacBio long read accuracy by short read alignment},
-  year      = {2012}
-}
-
-@article{sahlin2020novo,
-  author    = {Sahlin, Kristoffer and Medvedev, Paul},
-  journal   = {Journal of Computational Biology},
-  number    = {4},
-  pages     = {472--484},
-  publisher = {Mary Ann Liebert, Inc., publishers 140 Huguenot Street, 3rd Floor New~…},
-  title     = {De novo clustering of long-read transcriptome data using a greedy, quality value-based algorithm},
-  volume    = {27},
-  year      = {2020}
-}
-
-
-@article{auImprovingPacBioLong2012,
-  abstract     = {The recent development of third generation sequencing (TGS) generates much longer reads than second generation sequencing (SGS) and thus provides a chance to solve problems that are difficult to study through SGS alone. However, higher raw read error rates are an intrinsic drawback in most TGS technologies. Here we present a computational method, LSC, to perform error correction of TGS long reads (LR) by SGS short reads (SR). Aiming to reduce the error rate in homopolymer runs in the main TGS platform, the PacBio® RS, LSC applies a homopolymer compression (HC) transformation strategy to increase the sensitivity of SR-LR alignment without scarifying alignment accuracy. We applied LSC to 100,000 PacBio long reads from human brain cerebellum RNA-seq data and 64 million single-end 75 bp reads from human brain RNA-seq data. The results show LSC can correct PacBio long reads to reduce the error rate by more than 3 folds. The improved accuracy greatly benefits many downstream analyses, such as directional gene isoform detection in RNA-seq study. Compared with another hybrid correction tool, LSC can achieve over double the sensitivity and similar specificity.},
-  author       = {Au, Kin Fai and Underwood, Jason G. and Lee, Lawrence and Wong, Wing Hung},
-  date         = {2012-10-04},
-  doi          = {10.1371/journal.pone.0046679},
-  issn         = {1932-6203},
-  journaltitle = {PLOS ONE},
-  keywords     = {Chromosomes,Genome sequencing,Genomics,Human genomics,Quality control,RNA sequencing,Sequence alignment,Transcriptome analysis},
-  langid       = {english},
-  number       = {10},
-  pages        = {e46679},
-  publisher    = {{Public Library of Science}},
-  shortjournal = {PLOS ONE},
-  title        = {Improving {{PacBio Long Read Accuracy}} by {{Short Read Alignment}}},
-  volume       = {7}
-}
-
-@article{braggFastAccurateErrorcorrection2012,
-  author       = {Bragg, Lauren and Stone, Glenn and Imelfort, Michael and Hugenholtz, Philip and Tyson, Gene W.},
-  date         = {2012-05},
-  doi          = {10.1038/nmeth.1990},
-  issn         = {1548-7105},
-  issue        = {5},
-  journaltitle = {Nature Methods},
-  keywords     = {Bioinformatics,Microbial communities,Sequencing},
-  langid       = {english},
-  number       = {5},
-  pages        = {425--426},
-  publisher    = {{Nature Publishing Group}},
-  shortjournal = {Nat Methods},
-  title        = {Fast, Accurate Error-Correction of Amplicon Pyrosequences Using {{Acacia}}},
-  volume       = {9}
-}
-
-@article{millerAggressiveAssemblyPyrosequencing2008,
-  abstract     = {Motivation: DNA sequence reads from Sanger and pyrosequencing platforms differ in cost, accuracy, typical coverage, average read length and the variety of available paired-end protocols. Both read types can complement one another in a ‘hybrid’ approach to whole-genome shotgun sequencing projects, but assembly software must be modified to accommodate their different characteristics. This is true even of pyrosequencing mated and unmated read combinations. Without special modifications, assemblers tuned for homogeneous sequence data may perform poorly on hybrid data.Results: Celera Assembler was modified for combinations of ABI 3730 and 454 FLX reads. The revised pipeline called CABOG (Celera Assembler with the Best Overlap Graph) is robust to homopolymer run length uncertainty, high read coverage and heterogeneous read lengths. In tests on four genomes, it generated the longest contigs among all assemblers tested. It exploited the mate constraints provided by paired-end reads from either platform to build larger contigs and scaffolds, which were validated by comparison to a finished reference sequence. A low rate of contig mis-assembly was detected in some CABOG assemblies, but this was reduced in the presence of sufficient mate pair data.Availability: The software is freely available as open-source from http://wgs-assembler.sf.net under the GNU Public License.Contact:jmiller@jcvi.orgSupplementary information:Supplementary data are available at Bioinformatics online.},
-  author       = {Miller, Jason R. and Delcher, Arthur L. and Koren, Sergey and Venter, Eli and Walenz, Brian P. and Brownley, Anushka and Johnson, Justin and Li, Kelvin and Mobarry, Clark and Sutton, Granger},
-  date         = {2008-12-15},
-  doi          = {10.1093/bioinformatics/btn548},
-  issn         = {1367-4803},
-  journaltitle = {Bioinformatics},
-  number       = {24},
-  pages        = {2818--2824},
-  shortjournal = {Bioinformatics},
-  title        = {Aggressive Assembly of Pyrosequencing Reads with Mates},
-  volume       = {24}
 }
 
 @article{sahlinErrorCorrectionEnables2021,
@@ -419,29 +373,16 @@
   title        = {De {{Novo Clustering}} of {{Long-Read Transcriptome Data Using}} a {{Greedy}}, {{Quality Value-Based Algorithm}}},
   volume       = {27}
 }
-
-@article{onoPBSIM2SimulatorLongread2021,
-  abstract     = {Recent advances in high-throughput long-read sequencers, such as PacBio and Oxford Nanopore sequencers, produce longer reads with more errors than short-read sequencers. In addition to the high error rates of reads, non-uniformity of errors leads to difficulties in various downstream analyses using long reads. Many useful simulators, which characterize long-read error patterns and simulate them, have been developed. However, there is still room for improvement in the simulation of the non-uniformity of errors.To capture characteristics of errors in reads for long-read sequencers, here, we introduce a generative model for quality scores, in which a hidden Markov Model with a latest model selection method, called factorized information criteria, is utilized. We evaluated our developed simulator from various points, indicating that our simulator successfully simulates reads that are consistent with real reads.The source codes of PBSIM2 are freely available from https://github.com/yukiteruono/pbsim2.Supplementary data are available at Bioinformatics online.},
-  author       = {Ono, Yukiteru and Asai, Kiyoshi and Hamada, Michiaki},
-  date         = {2021-03-01},
-  doi          = {10.1093/bioinformatics/btaa835},
-  issn         = {1367-4803},
-  journaltitle = {Bioinformatics},
-  number       = {5},
-  pages        = {589--595},
-  shortjournal = {Bioinformatics},
-  shorttitle   = {{{PBSIM2}}},
-  title        = {{{PBSIM2}}: A Simulator for Long-Read Sequencers with a Novel Generative Model of Quality Scores},
-  volume       = {37}
-}
-
-@article{gusfieldbook,
-  author    = {Gusfield, Dan},
-  journal   = {Acm Sigact News},
-  number    = {4},
-  pages     = {41--60},
-  publisher = {ACM New York, NY, USA},
-  title     = {Algorithms on stings, trees, and sequences: Computer science and computational biology},
-  volume    = {28},
-  year      = {1997}
+@article{yangNanoSimNanoporeSequence2017,
+  abstract     = {The MinION sequencing instrument from Oxford Nanopore Technologies (ONT) produces long read lengths from single-molecule sequencing – valuable features for detailed genome characterization. To realize the potential of this platform, a number of groups are developing bioinformatics tools tuned for the unique characteristics of its data. We note that these development efforts would benefit from a simulator software, the output of which could be used to benchmark analysis tools. ~Here, we introduce NanoSim, a fast and scalable read simulator that captures the technology-specific features of ONT data and allows for adjustments upon improvement of nanopore sequencing technology. The first step of NanoSim is read characterization, which provides a comprehensive alignment-based analysis and generates a set of read profiles serving as the input to the next step, the simulation stage. The simulation stage uses the model built in the previous step to produce in silico reads for a given reference genome. NanoSim is written in Python and R. The source files and manual are available at the Genome Sciences Centre website: http://www.bcgsc.ca/platform/bioinfo/software/nanosim. In this work, we model the base-calling errors of ONT reads to inform the simulation of sequences with similar characteristics. We showcase the performance of NanoSim on publicly available datasets generated using the R7 and R7.3 chemistries and different sequencing kits and compare the resulting synthetic reads to those of other long-sequence simulators and experimental ONT reads. We expect NanoSim to have an enabling role in the field and benefit the development of scalable next-generation sequencing technologies for the long nanopore reads, including genome assembly, mutation detection, and even metagenomic analysis software.},
+  author       = {Yang, Chen and Chu, Justin and Warren, René L and Birol, Inanç},
+  date         = {2017-04-01},
+  doi          = {10.1093/gigascience/gix010},
+  issn         = {2047-217X},
+  journaltitle = {GigaScience},
+  number       = {4},
+  shortjournal = {GigaScience},
+  shorttitle   = {{{NanoSim}}},
+  title        = {{{NanoSim}}: Nanopore Sequence Read Simulator Based on Statistical Characterization},
+  volume       = {6}
 }

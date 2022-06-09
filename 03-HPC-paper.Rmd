@@ -77,7 +77,7 @@ errors, but in long reads, these tend to be short insertions and deletions; most
 common are expansions or contractions of homopolymers (i.e. reporting 3 As
 instead of 4) [@dohmBenchmarkingLongreadCorrection2020]. Many algorithmic
 problems, such as alignment, become trivial if not for sequencing
-errors [@gusfieldbook]. Error correction can often decrease the error rate but
+errors [@gusfieldAlgorithmsStringsTrees1997]. Error correction can often decrease the error rate but
 does not eliminate all errors. Most tools therefore incorporate the uncertainty
 caused by errors into their underlying algorithms. The higher the error rate,
 the more detrimental its effect on algorithm speed, memory, and accuracy. While
@@ -102,7 +102,7 @@ sensitivity usually outweighs it [@liMinimap2PairwiseAlignment2018].
 
 The first use of HPC that we are aware of was in 2008 as a pre-processing step
 for 454 pyrosequencing data in the Celera
-assembler @millerAggressiveAssemblyPyrosequencing2008. It is used by a wide
+assembler [@millerAggressiveAssemblyPyrosequencing2008]. It is used by a wide
 range of error-correction algorithms, e.g. for 454
 data [@braggFastAccurateErrorcorrection2012], PacBio
 data [@auImprovingPacBioLong2012], and Oxford Nanopore
