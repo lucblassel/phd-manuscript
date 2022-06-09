@@ -108,7 +108,7 @@ The marking of primers and ddNTP with fluorescence allowed to do the polymerizat
 
 ***I need to speak of performance / throughput of these methods here.***
 
-With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999% [@shendureNextgenerationDNASequencing2008]. Although very time consuming and expensive at it's dawn, through refinements and automation, the cost of Sanger sequencing were greatly reduced from \$1000 per Bp [@collinsHumanGenomeProject2003] to \$0.5 per kBp [@shendureNextgenerationDNASequencing2008], and the throughput increased from 1 kBp per day [@collinsHumanGenomeProject2003] to 120 kBp per hour [@liuComparisonNextGenerationSequencing2012] .
+With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999% [@shendureNextgenerationDNASequencing2008]. Although very time consuming and expensive at it's dawn, the sequencing of the first human genome costing between 500 million and 1 billion dollars [@CostSequencingHuman]. Over time and with technological advancments, the cost of Sanger sequencing was greatly reduced from \$1000 per Bp [@collinsHumanGenomeProject2003] to \$0.5 per kBp [@shendureNextgenerationDNASequencing2008], and the throughput increased from 1 kBp per day [@collinsHumanGenomeProject2003] to up to 120 kBp per hour [@liuComparisonNextGenerationSequencing2012].
 
 ### Next-generation sequencing
 
@@ -124,7 +124,7 @@ Developed to lower cost and more throughput
 
         -   Attach fragments to solid support so we can thousands to billions of sequencing reactions at once
 
-        -    detect the polymerization as it happens, speeding up the process.
+        -   detect the polymerization as it happens, speeding up the process.
 
     -   Illumina:
 
@@ -144,42 +144,95 @@ Developed to lower cost and more throughput
 
 -   Long reads sequencing (i.e. 3rd gen):
 
-    -   Introduce need for longer reads
-    -   PacBIO SMRT [@eidRealTimeDNASequencing2009]
-    -   NanoPore [@clarkeContinuousBaseIdentification2009]
+    -   Introduce need for longer reads:
+
+        -   Better for analyzing complex and repetitive parts of the genome, and were used for assembly **[CITE]**, structural variant detection **[CITE]**, etc...
+
+        -   Real time sequencing, i.e.
+
+        -   High throughput and
+
+    -   PacBIO SMRT [@eidRealTimeDNASequencing2009]:
+
+        -   Tech summary:
+            -   Link 2 strands of DNA to sequence with a hairpin sequence to create circular DNA
+
+            -   Capture inserted with polymerase fixed to bottom of a well (up to 8million wells in 1 sequencing cell)
+
+            -   Florescently marked dNTP are added and excited with laser and light emission recorded by camera
+
+            -   Stop when you reach the hairpin
+        -   Most reads around 10kb in length with reads up to 60kb [@rhoadsPacBioSequencingIts2015]
+        -   85% to 92% accuracy [@chaissonResolvingComplexityHuman2015; @logsdonLongreadHumanGenome2020]
+        -   \$0.32 per Mbp [@murigneuxComparisonLongreadMethods2020]
+        -   2Gbp to 11Gbp per hour [@logsdonLongreadHumanGenome2020]
+
+    -   NanoPore [@clarkeContinuousBaseIdentification2009]:
+
+        -   Tech summary:
+
+            -   100k nanopores spread out on synthetic membrane
+
+            -   Protein splits the 2 strands and pushes 1 of the brands through a nanopore at a controlled rate
+
+            -   As DNA goes through the pore it disrupts the electrical current between 2 sides of the membrane
+
+            -   Disruptions are characteristic of the 5/6 bases in the nanopore channel -\> deduce sequence from current disruptions (i.e. base calling)
+
+        -   Median read length around 10kb - 12kb [@ipMinIONAnalysisReference2015; @logsdonLongreadHumanGenome2020].
+
+        -   you can get ultra long reads, of almost 1Mb [@jainNanoporeSequencingAssembly2018; @TharSheBlows] and even up to 2.3 Mb [@payneBulkVisGraphicalViewer2019].
+
+        -   87% to 98% accuracy [@jainOxfordNanoporeMinION2016; @logsdonLongreadHumanGenome2020]
+
+        -   \$0.13 per Mbp [@murigneuxComparisonLongreadMethods2020]
+
+        -   12.5Gbp to 260Gbp per hour !! [@logsdonLongreadHumanGenome2020]
 
 As a conclusion, quickly mention the work done on protein sequencing, but we usually get the protein sequence from the DNA sequence that is translated from codons.
 
 ## Sequencing errors, how to account for them ?
 
-general context of sequencing errors, i.e. short reads have high accuracy (After computational correction you can get 10^-4^ to 10^-5^ error rate [@maAnalysisErrorProfiles2019] ) , long reads high error rate
+### What type of sequencing errors happen ?
 
-### Long read errors
+general context of sequencing errors, i.e. short reads have high accuracy (After computational correction you can get 10^-4^ to 10^-5^ error rate [@maAnalysisErrorProfiles2019] ) , long reads high error rate as stated before.
 
-Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017], for PacBIO circular consensus [@wenger2019]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020].
+Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020].
 
-### How do we deal with errors ? 
+### How do we deal with errors ?
 
-#### HPC
+#### Error correction methods
 
--   HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\
-    *Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)*
+-   In Non-Hybrid error correcting methods only the long reads are used, by overlapping them and taking the consensus of the overlap it is possible to eliminate some errors, as well as filtering very rare subsequences likely due to a sequencing error [@limaComparativeAssessmentLongread2020; @amarasingheOpportunitiesChallengesLongread2020]. These methods are applied in several pieces of software like wtdbg2 [@ruanFastAccurateLongread2020], canu [@korenCanuScalableAccurate2017], or daccord [@tischlerNonHybridLong2017].
 
--   Empirically is has been shown to improve downstream analyses
+-   In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread [@hacklProovreadLargescaleHighaccuracy2014], Jabba [@miclotteJabbaHybridError2016] or LoRDEC [@salmelaLoRDECAccurateEfficient2014]
 
-#### Other error correction methods
+-   In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow [@heplerImprovedCircularConsensus2016] or Nanopolish [@simpsonDetectingDNACytosine2017] respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon [@walkerPilonIntegratedTool2014] or Racon [@vaserFastAccurateNovo2017].
 
--   Combining short and long reads, T2T / polishing
-
--   *(Polishing specific to certain sequencing technologies) ?*
+-   Error correction bibliography is rich and many people are working on this [@limaComparativeAssessmentLongread2020; @fuComparativeEvaluationHybrid2019; @zhangComprehensiveEvaluationLong2020]
 
 #### More accurate sequencing methods
 
--   CCS / HiFi stuff -\> 99.8% accuracy on very long reads (13.5kb) [@wenger2019]
+-   CCS / HiFi stuff -\> 99.8% to 99.9% accuracy on long reads [@wenger2019; @logsdonLongreadHumanGenome2020] because errors are randomly distributed. Most errors are still indels in homopolymers [@wenger2019]
+
+-   Using unique molecular identifiers and consensus reads, you can reduce error rate to 99.59% and 99.93% accuracies for ONT and PacBio CCS [@karstHighaccuracyLongreadAmplicon2021].
+
+-   Improving chemistries of ONT pores to R10 supposedly improves homopolymer performance [@R10NewestNanopore; @amarasingheOpportunitiesChallengesLongread2020]
+
+-   Improve base calling models for ONT by switching from HMMs to deep learning, [@peresiniNanoporeBaseCalling2021; @bozaDeepNanoDeepRecurrent2017; @wickPerformanceNeuralNetwork2019; @amarasingheOpportunitiesChallengesLongread2020]
 
 -   Built in error correction [@chenHighlyAccurateFluorogenic2017], results in shorter reads with 99.82% accuracy (200-250nt reads though). Error free up to 200bp.
 
 -   To come Illumina Infinity [@HighPerformanceLong], high throughput long reads.
+
+#### HPC Trick
+
+homopolymers are still tricky regions even with long high accuracy reads -\> so HPC
+
+-   HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\
+    *Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)*
+
+-   Used in many software tools for long reads [@auImprovingPacBioLong2012; @nurkHiCanuAccurateAssembly2020; @liMinimap2PairwiseAlignment2018; @ruanFastAccurateLongread2020; @shafinNanoporeSequencingShasta2020; @sahlin2020novo; @ekimMinimizerspaceBruijnGraphs2021] and even pyrosequencing reads [@miller2008aggressive]
 
 ## Biological sequences, a computational view
 

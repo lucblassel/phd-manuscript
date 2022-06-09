@@ -17,6 +17,7 @@ bookdown::pdf_book:
   includes:
     in_header: tex/preamble.tex
     before_body: tex/preface.tex
+    after_body: tex/postface.tex
   latex_engine: xelatex
   toc: yes
   citation_package: biblatex
