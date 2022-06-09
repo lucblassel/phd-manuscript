@@ -233,7 +233,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-08}
+\date{2022-06-09}
 
 \begin{document}
 \maketitle
@@ -244,14 +244,6 @@
 
 \pagestyle{empty}
 \frontmatter
-
-\chapter{Abstract}
-This will be the abstract of my PhD. 
-\lipsum[1-3]
-
-\chapter{Résumé}
-Ceci sera le résumé de la thèse. 
-\lipsum[4-7]
 
 \chapter{Aknowledgments}
 Here will go my aknowledgments
@@ -457,7 +449,7 @@ The marking of primers and ddNTP with fluorescence allowed to do the polymerizat
 
 \textbf{\emph{I need to speak of performance / throughput of these methods here.}}
 
-With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999\% \autocite{shendureNextgenerationDNASequencing2008}. Although very time consuming and expensive at it's dawn, through refinements and automation, the cost of Sanger sequencing were greatly reduced from \$1000 per Bp \autocite{collinsHumanGenomeProject2003} to \$0.5 per kBp \autocite{shendureNextgenerationDNASequencing2008}, and the throughput increased from 1 kBp per day \autocite{collinsHumanGenomeProject2003} to 120 kBp per hour \autocite{liuComparisonNextGenerationSequencing2012} .
+With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999\% \autocite{shendureNextgenerationDNASequencing2008}. Although very time consuming and expensive at it's dawn, the sequencing of the first human genome costing between 500 million and 1 billion dollars \autocite{CostSequencingHuman}. Over time and with technological advancments, the cost of Sanger sequencing was greatly reduced from \$1000 per Bp \autocite{collinsHumanGenomeProject2003} to \$0.5 per kBp \autocite{shendureNextgenerationDNASequencing2008}, and the throughput increased from 1 kBp per day \autocite{collinsHumanGenomeProject2003} to up to 120 kBp per hour \autocite{liuComparisonNextGenerationSequencing2012}.
 
 \hypertarget{next-generation-sequencing}{%
 \subsection{Next-generation sequencing}\label{next-generation-sequencing}}
@@ -509,13 +501,72 @@ Developed to lower cost and more throughput
   Long reads sequencing (i.e.~3rd gen):
 
   \begin{itemize}
-  \tightlist
   \item
-    Introduce need for longer reads
+    Introduce need for longer reads:
+
+    \begin{itemize}
+    \item
+      Better for analyzing complex and repetitive parts of the genome, and were used for assembly \textbf{{[}CITE{]}}, structural variant detection \textbf{{[}CITE{]}}, etc\ldots{}
+    \item
+      Real time sequencing, i.e.
+    \item
+      High throughput and
+    \end{itemize}
   \item
-    PacBIO SMRT \autocite{eidRealTimeDNASequencing2009}
+    PacBIO SMRT \autocite{eidRealTimeDNASequencing2009}:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Tech summary:
+
+      \begin{itemize}
+      \item
+        Link 2 strands of DNA to sequence with a hairpin sequence to create circular DNA
+      \item
+        Capture inserted with polymerase fixed to bottom of a well (up to 8million wells in 1 sequencing cell)
+      \item
+        Florescently marked dNTP are added and excited with laser and light emission recorded by camera
+      \item
+        Stop when you reach the hairpin
+      \end{itemize}
+    \item
+      Most reads around 10kb in length with reads up to 60kb \autocite{rhoadsPacBioSequencingIts2015}
+    \item
+      85\% to 92\% accuracy \autocite{chaissonResolvingComplexityHuman2015,logsdonLongreadHumanGenome2020}
+    \item
+      \$0.32 per Mbp \autocite{murigneuxComparisonLongreadMethods2020}
+    \item
+      2Gbp to 11Gbp per hour \autocite{logsdonLongreadHumanGenome2020}
+    \end{itemize}
   \item
-    NanoPore \autocite{clarkeContinuousBaseIdentification2009}
+    NanoPore \autocite{clarkeContinuousBaseIdentification2009}:
+
+    \begin{itemize}
+    \item
+      Tech summary:
+
+      \begin{itemize}
+      \item
+        100k nanopores spread out on synthetic membrane
+      \item
+        Protein splits the 2 strands and pushes 1 of the brands through a nanopore at a controlled rate
+      \item
+        As DNA goes through the pore it disrupts the electrical current between 2 sides of the membrane
+      \item
+        Disruptions are characteristic of the 5/6 bases in the nanopore channel -\textgreater{} deduce sequence from current disruptions (i.e.~base calling)
+      \end{itemize}
+    \item
+      Median read length around 10kb - 12kb \autocite{ipMinIONAnalysisReference2015,logsdonLongreadHumanGenome2020}.
+    \item
+      you can get ultra long reads, of almost 1Mb \autocite{jainNanoporeSequencingAssembly2018,TharSheBlows} and even up to 2.3 Mb \autocite{payneBulkVisGraphicalViewer2019}.
+    \item
+      87\% to 98\% accuracy \autocite{jainOxfordNanoporeMinION2016,logsdonLongreadHumanGenome2020}
+    \item
+      \$0.13 per Mbp \autocite{murigneuxComparisonLongreadMethods2020}
+    \item
+      12.5Gbp to 260Gbp per hour !! \autocite{logsdonLongreadHumanGenome2020}
+    \end{itemize}
   \end{itemize}
 \end{itemize}
 
@@ -524,35 +575,28 @@ As a conclusion, quickly mention the work done on protein sequencing, but we usu
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
 
-general context of sequencing errors, i.e.~short reads have high accuracy (After computational correction you can get 10\textsuperscript{-4} to 10\textsuperscript{-5} error rate \autocite{maAnalysisErrorProfiles2019} ) , long reads high error rate
+\hypertarget{what-type-of-sequencing-errors-happen}{%
+\subsection{What type of sequencing errors happen ?}\label{what-type-of-sequencing-errors-happen}}
 
-\hypertarget{long-read-errors}{%
-\subsection{Long read errors}\label{long-read-errors}}
+general context of sequencing errors, i.e.~short reads have high accuracy (After computational correction you can get 10\textsuperscript{-4} to 10\textsuperscript{-5} error rate \autocite{maAnalysisErrorProfiles2019} ) , long reads high error rate as stated before.
 
-Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}, for PacBIO circular consensus \autocite{wenger2019}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}.
+Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}.
 
 \hypertarget{how-do-we-deal-with-errors}{%
 \subsection{How do we deal with errors ?}\label{how-do-we-deal-with-errors}}
 
-\hypertarget{hpc}{%
-\subsubsection{HPC}\label{hpc}}
+\hypertarget{error-correction-methods}{%
+\subsubsection{Error correction methods}\label{error-correction-methods}}
 
 \begin{itemize}
 \item
-  HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\\
-  \emph{Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)}
+  In Non-Hybrid error correcting methods only the long reads are used, by overlapping them and taking the consensus of the overlap it is possible to eliminate some errors, as well as filtering very rare subsequences likely due to a sequencing error \autocite{limaComparativeAssessmentLongread2020,amarasingheOpportunitiesChallengesLongread2020}. These methods are applied in several pieces of software like wtdbg2 \autocite{ruanFastAccurateLongread2020}, canu \autocite{korenCanuScalableAccurate2017}, or daccord \autocite{tischlerNonHybridLong2017}.
 \item
-  Empirically is has been shown to improve downstream analyses
-\end{itemize}
-
-\hypertarget{other-error-correction-methods}{%
-\subsubsection{Other error correction methods}\label{other-error-correction-methods}}
-
-\begin{itemize}
+  In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread \autocite{hacklProovreadLargescaleHighaccuracy2014}, Jabba \autocite{miclotteJabbaHybridError2016} or LoRDEC \autocite{salmelaLoRDECAccurateEfficient2014}
 \item
-  Combining short and long reads, T2T / polishing
+  In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow \autocite{heplerImprovedCircularConsensus2016} or Nanopolish \autocite{simpsonDetectingDNACytosine2017} respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}.
 \item
-  \emph{(Polishing specific to certain sequencing technologies) ?}
+  Error correction bibliography is rich and many people are working on this \autocite{limaComparativeAssessmentLongread2020,fuComparativeEvaluationHybrid2019,zhangComprehensiveEvaluationLong2020}
 \end{itemize}
 
 \hypertarget{more-accurate-sequencing-methods}{%
@@ -560,11 +604,30 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 
 \begin{itemize}
 \item
-  CCS / HiFi stuff -\textgreater{} 99.8\% accuracy on very long reads (13.5kb) \autocite{wenger2019}
+  CCS / HiFi stuff -\textgreater{} 99.8\% to 99.9\% accuracy on long reads \autocite{wenger2019,logsdonLongreadHumanGenome2020} because errors are randomly distributed. Most errors are still indels in homopolymers \autocite{wenger2019}
+\item
+  Using unique molecular identifiers and consensus reads, you can reduce error rate to 99.59\% and 99.93\% accuracies for ONT and PacBio CCS \autocite{karstHighaccuracyLongreadAmplicon2021}.
+\item
+  Improving chemistries of ONT pores to R10 supposedly improves homopolymer performance \autocite{R10NewestNanopore,amarasingheOpportunitiesChallengesLongread2020}
+\item
+  Improve base calling models for ONT by switching from HMMs to deep learning, \autocite{peresiniNanoporeBaseCalling2021,bozaDeepNanoDeepRecurrent2017,wickPerformanceNeuralNetwork2019,amarasingheOpportunitiesChallengesLongread2020}
 \item
   Built in error correction \autocite{chenHighlyAccurateFluorogenic2017}, results in shorter reads with 99.82\% accuracy (200-250nt reads though). Error free up to 200bp.
 \item
   To come Illumina Infinity \autocite{HighPerformanceLong}, high throughput long reads.
+\end{itemize}
+
+\hypertarget{hpc-trick}{%
+\subsubsection{HPC Trick}\label{hpc-trick}}
+
+homopolymers are still tricky regions even with long high accuracy reads -\textgreater{} so HPC
+
+\begin{itemize}
+\item
+  HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\\
+  \emph{Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)}
+\item
+  Used in many software tools for long reads \autocite{auImprovingPacBioLong2012,nurkHiCanuAccurateAssembly2020,liMinimap2PairwiseAlignment2018,ruanFastAccurateLongread2020,shafinNanoporeSequencingShasta2020,sahlin2020novo,ekimMinimizerspaceBruijnGraphs2021} and even pyrosequencing reads \autocite{miller2008aggressive}
 \end{itemize}
 
 \hypertarget{biological-sequences-a-computational-view}{%
@@ -3349,8 +3412,24 @@ Out of the \(221\) significative tests, 156 pairs were composed of 2 known RAMS 
 
 \backmatter
 \fancyhead[RO,LE]{REFERENCES}
-\SetMaxBibnames{999}
 
 \printbibliography[title=Global References]
+
+
+\cleardoubleevenpage
+{
+
+  \KOMAoptions{twoside = false}
+  \pagestyle{empty}
+
+  \section*{Abstract}
+  This will be the abstract of my PhD. 
+  \lipsum[1-2]
+
+  \section*{Résumé}
+  Ceci sera le résumé de la thèse. 
+  \lipsum[4-5]
+  
+}
 
 \end{document}
