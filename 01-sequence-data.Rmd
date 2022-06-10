@@ -199,11 +199,9 @@ but we usually deduce the protein sequence from the DNA sequence that is transla
 
 ## Sequencing errors, how to account for them ?
 
-### What type of sequencing errors happen ?
+Just like mutations we can get substitutions and indels.
 
-general context of sequencing errors, i.e. short reads have high accuracy (After computational correction you can get 10^-4^ to 10^-5^ error rate [@maAnalysisErrorProfiles2019] ) , long reads high error rate as stated before.
-
-Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020].
+general context of sequencing errors, i.e. short reads have high accuracy (After computational correction you can get 10^-4^ to 10^-5^ error rate [@maAnalysisErrorProfiles2019] ) , long reads high error rate as stated before, 10% to 15%.
 
 ### How do we deal with errors ?
 
@@ -213,7 +211,7 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 
 -   In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread [@hacklProovreadLargescaleHighaccuracy2014], Jabba [@miclotteJabbaHybridError2016] or LoRDEC [@salmelaLoRDECAccurateEfficient2014]
 
--   In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow [@heplerImprovedCircularConsensus2016] or Nanopolish [@simpsonDetectingDNACytosine2017] respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon [@walkerPilonIntegratedTool2014] or Racon [@vaserFastAccurateNovo2017]. In some cases homopolymers are taken into special consideration during polishing [@huangHomopolishMethodRemoval2021].
+-   In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow [@heplerImprovedCircularConsensus2016] or Nanopolish [@simpsonDetectingDNACytosine2017] respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon [@walkerPilonIntegratedTool2014] or Racon [@vaserFastAccurateNovo2017].
 
 -   Error correction bibliography is rich and many people are working on this [@limaComparativeAssessmentLongread2020; @fuComparativeEvaluationHybrid2019; @zhangComprehensiveEvaluationLong2020]
 
@@ -223,13 +221,44 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 
 -   Using unique molecular identifiers and consensus reads, you can reduce error rate to 99.59% and 99.93% accuracies for ONT and PacBio CCS [@karstHighaccuracyLongreadAmplicon2021].
 
--   Improving chemistries of ONT pores to R10 supposedly improves homopolymer performance [@R10NewestNanopore; @amarasingheOpportunitiesChallengesLongread2020]
-
 -   Improve base calling models for ONT by switching from HMMs to deep learning, [@peresiniNanoporeBaseCalling2021; @bozaDeepNanoDeepRecurrent2017; @wickPerformanceNeuralNetwork2019; @amarasingheOpportunitiesChallengesLongread2020]
 
 -   Built in error correction [@chenHighlyAccurateFluorogenic2017], results in shorter reads with 99.82% accuracy (200-250nt reads though). Error free up to 200bp.
 
 -   To come Illumina Infinity [@HighPerformanceLong], high throughput long reads.
+
+## The special case of homopolymers
+
+### Homopolymers and the genome
+
+-   What are homopolymers -\> repeated stretches of identical nucleotides
+
+```{=html}
+<!-- -->
+```
+-   On the CHM13 whole human genome assembly v1.1, 29.7% of the 3Gb are in homopolymers (i.e. are identical to the preceding nucleotide in the sequence) Longest HP is 86.
+
+-   More than 1.4 million homopolymers 4-mers and up in the exome (i.e. DNA that is translated into proteins) [@ivadyAnalyticalParametersValidation2018]
+
+-   according to [@booeshaghiPseudoalignmentFacilitatesAssignment2022], in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.
+
+### Homopolymers and long reads
+
+Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020]. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT's error rate in HPs does not depend on the length (even though it's the highest it's flat) [@fooxPerformanceAssessmentDNA2021].
+
+### Accounting for homopolymers
+
+#### Specific error correction
+
+-   In some cases homopolymers are taken into special consideration during polishing [@huangHomopolishMethodRemoval2021; @simpsonDetectingDNACytosine2017], and computational approaches are developed to deal with homopolymers [@rangSquiggleBasepairComputational2018; @sarkozyCallingHomopolymerStretches2018]
+-   Specific technologies:
+    -   R.10 Nanopore: [@R10NewestNanopore; @amarasingheOpportunitiesChallengesLongread2020]
+
+    -   Solid state nanopores: [@zhouDetectionDNAHomopolymer2019; @gotoIdentificationFourSinglestranded2018]
+
+    -   BaseCallers which deal with homopolymers, like can be seen in Fig 3 of [@wickPerformanceNeuralNetwork2019] (scrappie raw 1.4.1 or guppy)
+-   Avoid using HPs in barcode sequences [@hawkinsIndelcorrectingDNABarcodes2018; @srivathsanMinIONBasedPipeline2018].
+-   A little different but HPs have to be taken into account when developing DNA based data storage [@wangConstructionBioConstrainedCode2019]
 
 #### HPC Trick
 
@@ -240,10 +269,14 @@ homopolymers are still tricky regions even with long high accuracy reads -\> so 
 
 -   Used in many software tools for long reads [@auImprovingPacBioLong2012; @nurkHiCanuAccurateAssembly2020; @liMinimap2PairwiseAlignment2018; @ruanFastAccurateLongread2020; @shafinNanoporeSequencingShasta2020; @sahlinNovoClusteringLongRead2020; @ekimMinimizerspaceBruijnGraphs2021] and even pyrosequencing reads [@millerAggressiveAssemblyPyrosequencing2008]
 
-## Biological sequences, a computational view
+## Conclusion
 
-Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
+-   **Sequencing is an active field:** new methods, both in short reads (ultima) and long reads (illumina infinity), as well as improving existing technologies
 
-*Maybe I don't need this to be a separate section but just a conclusion and transition to the next chapter on alignment.*
+-   **Long reads are good:** Super useful for plenty of very important tasks but...
+
+-   **Errors are bad:** particularly in HPs since they are an important part of the genome and a major source of error in long reads
+
+-   **Computational view:** sequences Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
