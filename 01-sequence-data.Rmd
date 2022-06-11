@@ -6,7 +6,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 
 ### What is DNA ?
 
-**D**esoxyribo**N**ucleic **A**cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.!g molecular biology tetbo
+**D**esoxyribo**N**ucleic **A**cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
 
 DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA [@watson1953] shown in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
@@ -203,9 +203,7 @@ Just like mutations we can get substitutions and indels.
 
 general context of sequencing errors, i.e. short reads have high accuracy (After computational correction you can get 10^-4^ to 10^-5^ error rate [@maAnalysisErrorProfiles2019] ) , long reads high error rate as stated before, 10% to 15%.
 
-### How do we deal with errors ?
-
-#### Error correction methods
+### Error correction methods
 
 -   In Non-Hybrid error correcting methods only the long reads are used, by overlapping them and taking the consensus of the overlap it is possible to eliminate some errors, as well as filtering very rare subsequences likely due to a sequencing error [@limaComparativeAssessmentLongread2020; @amarasingheOpportunitiesChallengesLongread2020]. These methods are applied in several pieces of software like wtdbg2 [@ruanFastAccurateLongread2020], canu [@korenCanuScalableAccurate2017], or daccord [@tischlerNonHybridLong2017].
 
@@ -215,7 +213,7 @@ general context of sequencing errors, i.e. short reads have high accuracy (After
 
 -   Error correction bibliography is rich and many people are working on this [@limaComparativeAssessmentLongread2020; @fuComparativeEvaluationHybrid2019; @zhangComprehensiveEvaluationLong2020]
 
-#### More accurate sequencing methods
+### More accurate sequencing methods
 
 -   CCS / HiFi stuff -\> 99.8% to 99.9% accuracy on long reads [@wenger2019; @logsdonLongreadHumanGenome2020] because errors are randomly distributed. Most errors are still indels in homopolymers [@wenger2019]
 
@@ -231,16 +229,64 @@ general context of sequencing errors, i.e. short reads have high accuracy (After
 
 ### Homopolymers and the genome
 
+```{r, hp-analysis}
+names <- c("chromosome", "length", "base", "count")
+hps <- read.table("./data/chm13_hp_counts2.txt", sep="\t", col.names=names)
+big <- hps %>% filter(length >= 4)
+
+genome_size  <- 3054832041
+hp_size <- sum(hps$length * hps$count)
+big_hp_size <- sum(big$length * big$count)
+
+freqs <- hps %>% 
+  group_by(length) %>% 
+  summarize(prop = sum(count)/genome_size)
+```
+
 -   What are homopolymers -\> repeated stretches of identical nucleotides
 
-```{=html}
 <!-- -->
-```
+
 -   On the CHM13 whole human genome assembly v1.1, 29.7% of the 3Gb are in homopolymers (i.e. are identical to the preceding nucleotide in the sequence) Longest HP is 86.
 
 -   More than 1.4 million homopolymers 4-mers and up in the exome (i.e. DNA that is translated into proteins) [@ivadyAnalyticalParametersValidation2018]
 
 -   according to [@booeshaghiPseudoalignmentFacilitatesAssignment2022], in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.
+
+```{r, big-hp-distrib, fig.cap="Distribution of homopolymer lengths per base in the human genome"}
+ggplot(big, aes(x=length, y=count, fill=base)) +
+  geom_col() +
+  facet_wrap(. ~ base)
+```
+
+```{r, hp-freq, fig.cap="Homopolymer length as fraction of the genome"}
+#labels = c("", "", "", "", "", "", "", "", "", "10^1", "", "", "", "", "", "", "", "", "10^2"),
+breaks <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
+
+f <- function(x) {
+  p <- log10(x)
+  if (round(p) == p) {
+    return(paste("1e",p))
+  } else {
+    return("")
+  }
+}
+
+labels <- lapply(breaks, f)
+
+ggplot(freqs, aes(x=length, y=prop)) +
+  geom_point() +
+    scale_x_log10(
+    breaks = breaks,
+    labels = labels,
+  name="homopolymer length"
+  ) +
+ scale_y_log10(
+    breaks = scales::trans_breaks("log10", function(x) 10^x),
+    labels = scales::trans_format("log10", scales::math_format(10^.x)),
+    name="cumulative occurence as a\nfraction of genome size"
+ )
+```
 
 ### Homopolymers and long reads
 

@@ -25,6 +25,7 @@ titlepage: tex/titlepage.tex
 ```{r, setup, include=FALSE}
 library(tidyr)
 library(readr)
+library(dplyr)
 library(ggplot2)
 library(kableExtra)
 library(flextable)
