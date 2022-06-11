@@ -233,7 +233,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-09}
+\date{2022-06-10}
 
 \begin{document}
 \maketitle
@@ -312,7 +312,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 \hypertarget{what-is-dna}{%
 \subsection{What is DNA ?}\label{what-is-dna}}
 
-\textbf{D}esoxyribo\textbf{N}ucleic \textbf{A}cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.!g molecular biology tetbo
+\textbf{D}esoxyribo\textbf{N}ucleic \textbf{A}cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
 
 DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA \autocite{watson1953} shown in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
@@ -584,12 +584,9 @@ but we usually deduce the protein sequence from the DNA sequence that is transla
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
 
-\hypertarget{what-type-of-sequencing-errors-happen}{%
-\subsection{What type of sequencing errors happen ?}\label{what-type-of-sequencing-errors-happen}}
+Just like mutations we can get substitutions and indels.
 
-general context of sequencing errors, i.e.~short reads have high accuracy (After computational correction you can get 10\textsuperscript{-4} to 10\textsuperscript{-5} error rate \autocite{maAnalysisErrorProfiles2019} ) , long reads high error rate as stated before.
-
-Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}.
+general context of sequencing errors, i.e.~short reads have high accuracy (After computational correction you can get 10\textsuperscript{-4} to 10\textsuperscript{-5} error rate \autocite{maAnalysisErrorProfiles2019} ) , long reads high error rate as stated before, 10\% to 15\%.
 
 \hypertarget{how-do-we-deal-with-errors}{%
 \subsection{How do we deal with errors ?}\label{how-do-we-deal-with-errors}}
@@ -603,7 +600,7 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 \item
   In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread \autocite{hacklProovreadLargescaleHighaccuracy2014}, Jabba \autocite{miclotteJabbaHybridError2016} or LoRDEC \autocite{salmelaLoRDECAccurateEfficient2014}
 \item
-  In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow \autocite{heplerImprovedCircularConsensus2016} or Nanopolish \autocite{simpsonDetectingDNACytosine2017} respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}. In some cases homopolymers are taken into special consideration during polishing \autocite{huangHomopolishMethodRemoval2021}.
+  In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow \autocite{heplerImprovedCircularConsensus2016} or Nanopolish \autocite{simpsonDetectingDNACytosine2017} respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}.
 \item
   Error correction bibliography is rich and many people are working on this \autocite{limaComparativeAssessmentLongread2020,fuComparativeEvaluationHybrid2019,zhangComprehensiveEvaluationLong2020}
 \end{itemize}
@@ -617,13 +614,64 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 \item
   Using unique molecular identifiers and consensus reads, you can reduce error rate to 99.59\% and 99.93\% accuracies for ONT and PacBio CCS \autocite{karstHighaccuracyLongreadAmplicon2021}.
 \item
-  Improving chemistries of ONT pores to R10 supposedly improves homopolymer performance \autocite{R10NewestNanopore,amarasingheOpportunitiesChallengesLongread2020}
-\item
   Improve base calling models for ONT by switching from HMMs to deep learning, \autocite{peresiniNanoporeBaseCalling2021,bozaDeepNanoDeepRecurrent2017,wickPerformanceNeuralNetwork2019,amarasingheOpportunitiesChallengesLongread2020}
 \item
   Built in error correction \autocite{chenHighlyAccurateFluorogenic2017}, results in shorter reads with 99.82\% accuracy (200-250nt reads though). Error free up to 200bp.
 \item
   To come Illumina Infinity \autocite{HighPerformanceLong}, high throughput long reads.
+\end{itemize}
+
+\hypertarget{the-special-case-of-homopolymers}{%
+\section{The special case of homopolymers}\label{the-special-case-of-homopolymers}}
+
+\hypertarget{homopolymers-and-the-genome}{%
+\subsection{Homopolymers and the genome}\label{homopolymers-and-the-genome}}
+
+\begin{itemize}
+\tightlist
+\item
+  What are homopolymers -\textgreater{} repeated stretches of identical nucleotides
+\end{itemize}
+
+\begin{itemize}
+\item
+  On the CHM13 whole human genome assembly v1.1, 29.7\% of the 3Gb are in homopolymers (i.e.~are identical to the preceding nucleotide in the sequence) Longest HP is 86.
+\item
+  More than 1.4 million homopolymers 4-mers and up in the exome (i.e.~DNA that is translated into proteins) \autocite{ivadyAnalyticalParametersValidation2018}
+\item
+  according to \autocite{booeshaghiPseudoalignmentFacilitatesAssignment2022}, in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.
+\end{itemize}
+
+\hypertarget{homopolymers-and-long-reads}{%
+\subsection{Homopolymers and long reads}\label{homopolymers-and-long-reads}}
+
+Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT's error rate in HPs does not depend on the length (even though it's the highest it's flat) \autocite{fooxPerformanceAssessmentDNA2021}.
+
+\hypertarget{accounting-for-homopolymers}{%
+\subsection{Accounting for homopolymers}\label{accounting-for-homopolymers}}
+
+\hypertarget{specific-error-correction}{%
+\subsubsection{Specific error correction}\label{specific-error-correction}}
+
+\begin{itemize}
+\tightlist
+\item
+  In some cases homopolymers are taken into special consideration during polishing \autocite{huangHomopolishMethodRemoval2021,simpsonDetectingDNACytosine2017}, and computational approaches are developed to deal with homopolymers \autocite{rangSquiggleBasepairComputational2018,sarkozyCallingHomopolymerStretches2018}
+\item
+  Specific technologies:
+
+  \begin{itemize}
+  \item
+    R.10 Nanopore: \autocite{R10NewestNanopore,amarasingheOpportunitiesChallengesLongread2020}
+  \item
+    Solid state nanopores: \autocite{zhouDetectionDNAHomopolymer2019,gotoIdentificationFourSinglestranded2018}
+  \item
+    BaseCallers which deal with homopolymers, like can be seen in Fig 3 of \autocite{wickPerformanceNeuralNetwork2019} (scrappie raw 1.4.1 or guppy)
+  \end{itemize}
+\item
+  Avoid using HPs in barcode sequences \autocite{hawkinsIndelcorrectingDNABarcodes2018,srivathsanMinIONBasedPipeline2018}.
+\item
+  A little different but HPs have to be taken into account when developing DNA based data storage \autocite{wangConstructionBioConstrainedCode2019}
 \end{itemize}
 
 \hypertarget{hpc-trick}{%
@@ -639,12 +687,19 @@ homopolymers are still tricky regions even with long high accuracy reads -\textg
   Used in many software tools for long reads \autocite{auImprovingPacBioLong2012,nurkHiCanuAccurateAssembly2020,liMinimap2PairwiseAlignment2018,ruanFastAccurateLongread2020,shafinNanoporeSequencingShasta2020,sahlinNovoClusteringLongRead2020,ekimMinimizerspaceBruijnGraphs2021} and even pyrosequencing reads \autocite{millerAggressiveAssemblyPyrosequencing2008}
 \end{itemize}
 
-\hypertarget{biological-sequences-a-computational-view}{%
-\section{Biological sequences, a computational view}\label{biological-sequences-a-computational-view}}
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
 
-Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
-
-\emph{Maybe I don't need this to be a separate section but just a conclusion and transition to the next chapter on alignment.}
+\begin{itemize}
+\item
+  \textbf{Sequencing is an active field:} new methods, both in short reads (ultima) and long reads (illumina infinity), as well as improving existing technologies
+\item
+  \textbf{Long reads are good:} Super useful for plenty of very important tasks but\ldots{}
+\item
+  \textbf{Errors are bad:} particularly in HPs since they are an important part of the genome and a major source of error in long reads
+\item
+  \textbf{Computational view:} sequences Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
+\end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
