@@ -93,7 +93,7 @@ In order to study living organisms we need to be able to obtain their genetic in
 
 ### Sanger sequencing, a breakthrough
 
-The first true sequencing method was developed in 1977 [@sangerDNASequencingChainterminating1977]. Sanger *et al.* devised a simple method to read the sequence of nucleotides that make up a DNA sequence.
+The first true sequencing method was developed in 1977 [@sangerDNASequencingChainterminating1977]. Sanger *et al.* devised a simple method to read the sequence of nucleotides that make up a DNA sequence *(also represented in Figure* \@ref(fig:sanger)*)*.
 
 1.  Clone sequence / amplify
 2.  Prepare 4 different sequencing environments with a majority of dNTP (ie regular nucleotides) and in each a single type of ddNTP (a terminator). ddNTP are marked
@@ -105,6 +105,23 @@ The first true sequencing method was developed in 1977 [@sangerDNASequencingChai
 This allowed Sanger *et al.* to sequence the first whole $\varphi X174$ bacteriophage genome [@sangerNucleotideSequenceBacteriophage1977]. This method, although revolutionnary was costly and time consuming.
 
 The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis [@smithSynthesisOligonucleotidesContaining1985; @smithFluorescenceDetectionAutomated1986]. The fluorescence also allowed for automated reading with optical systems. Plus switching to capillary electrophoresis allowed for automation and speeding up. Shotgun sequencing also speed up stuff at the reconstruct the whole genome.
+
+```{r, sangerCaption}
+sangerCaption <- "caption (WIP)"
+```
+
+```{r, sanger, label="sanger", fig.cap=sangerCaption, eval=knitr::is_html_output, out.width="60%"}
+knitr::include_graphics("./figures/Basic-Intro/sanger-sequencing.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Basic-Intro/sanger-sequencing.pdf}
+\extcaption{Caption}{(WIP)}
+\label{fig:sanger}
+\end{figure}
+```
 
 ***I need to speak of performance / throughput of these methods here.***
 
@@ -232,47 +249,40 @@ general context of sequencing errors, i.e. short reads have high accuracy (After
 ```{r, hp-analysis}
 names <- c("chromosome", "length", "base", "count")
 hps <- read.table("./data/chm13_hp_counts2.txt", sep="\t", col.names=names)
-big <- hps %>% filter(length >= 4)
+big_l <- 4
+big <- hps %>% filter(length >= big_l)
 
 genome_size  <- 3054832041
 hp_size <- sum(hps$length * hps$count)
 big_hp_size <- sum(big$length * big$count)
 
-freqs <- hps %>% 
-  group_by(length) %>% 
+freqs <- hps %>%
+  group_by(length) %>%
   summarize(prop = sum(count)/genome_size)
 ```
 
 -   What are homopolymers -\> repeated stretches of identical nucleotides
-
-<!-- -->
-
--   On the CHM13 whole human genome assembly v1.1, 29.7% of the 3Gb are in homopolymers (i.e. are identical to the preceding nucleotide in the sequence) Longest HP is 86.
-
+-   On the CHM13 whole human genome assembly v1.1, `r format(100 * hp_size / genome_size, digits=1)`% of the 3Gb are in homopolymers of size length or more, and `r format(100 * big_hp_size / genome_size, digits=1)`% are in homopolymers fof size `r big_l` or more. The longest homopolymer in the CHM13 v1.1 whole human genome assembly is `r max(hps$length)`. Homopolymers of short/medium lengths make up a significant part of the human genome (Figure \@ref(fig:HPpercent)).
+-   HPs are more often A/T rich than G/C rich in the human genome (Figure \@ref(fig:HPdistrib)).
 -   More than 1.4 million homopolymers 4-mers and up in the exome (i.e. DNA that is translated into proteins) [@ivadyAnalyticalParametersValidation2018]
-
 -   according to [@booeshaghiPseudoalignmentFacilitatesAssignment2022], in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.
 
-```{r, big-hp-distrib, fig.cap="Distribution of homopolymer lengths per base in the human genome"}
+```{r, hpCaption}
+hpDistribCaption <- paste0("Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\\geq ", big_l, "$.)")
+```
+
+```{r, HPdistrib, fig.cap=hpDistribCaption, label="HPdistrib", out.width="70%", cache=FALSE}
+
 ggplot(big, aes(x=length, y=count, fill=base)) +
   geom_col() +
+  theme(legend.position = "none") +
   facet_wrap(. ~ base)
 ```
 
-```{r, hp-freq, fig.cap="Homopolymer length as fraction of the genome"}
-#labels = c("", "", "", "", "", "", "", "", "", "10^1", "", "", "", "", "", "", "", "", "10^2"),
+```{r, HPpercent, fig.cap="Homopolymer length as fraction of the genome", label="HPpercent",out.width="70%"}
+# 
+labels <- c("", "", "", "", "", "", "", "", "", expression(10^1), "", "", "", "", "", "", "", "", expression(10^2))
 breaks <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
-
-f <- function(x) {
-  p <- log10(x)
-  if (round(p) == p) {
-    return(paste("1e",p))
-  } else {
-    return("")
-  }
-}
-
-labels <- lapply(breaks, f)
 
 ggplot(freqs, aes(x=length, y=prop)) +
   geom_point() +
@@ -310,10 +320,30 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 
 homopolymers are still tricky regions even with long high accuracy reads -\> so HPC
 
--   HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence\
-    *Short schematic example of HPC with example where it removes an error ? (don't talk about mapping yet)*
+-   HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence
+
+-   Can help resolve ambiguities in some cases c.f. Figure \@ref(fig:hpcSchema).
 
 -   Used in many software tools for long reads [@auImprovingPacBioLong2012; @nurkHiCanuAccurateAssembly2020; @liMinimap2PairwiseAlignment2018; @ruanFastAccurateLongread2020; @shafinNanoporeSequencingShasta2020; @sahlinNovoClusteringLongRead2020; @ekimMinimizerspaceBruijnGraphs2021] and even pyrosequencing reads [@millerAggressiveAssemblyPyrosequencing2008]
+
+reconstruct the whole genome.
+
+```{r, hpcCaption}
+hpcCaption <- "caption (WIP)"
+```
+
+```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output,out.width="60%"}
+knitr::include_graphics("./figures/Basic-Intro/hpc-helps.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Basic-Intro/hpc-helps.pdf}
+\extcaption{Caption}{(WIP)}
+\label{fig:hpcSchema}
+\end{figure}
+```
 
 ## Conclusion
 
