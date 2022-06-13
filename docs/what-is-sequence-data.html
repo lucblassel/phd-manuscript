@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-06-11" />
+<meta name="date" content="2022-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -130,11 +130,15 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#what-is-an-alignment"><i class="fa fa-check"></i><b>2.1</b> What is an alignment ?</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-to-align"><i class="fa fa-check"></i><b>2.1.1</b> How to align ?</a></li>
-<li class="chapter" data-level="2.1.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#substitution-models"><i class="fa fa-check"></i><b>2.1.2</b> Substitution models</a></li>
-<li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#why-align"><i class="fa fa-check"></i><b>2.1.3</b> Why align ?</a></li>
+<li class="chapter" data-level="2.1.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#why-align"><i class="fa fa-check"></i><b>2.1.1</b> Why align ?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-to-align"><i class="fa fa-check"></i><b>2.1.2</b> How to align ?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#substitution-models"><i class="fa fa-check"></i><b>2.1.3</b> Substitution models</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-local-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up local alignment ?</a></li>
+<li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up alignment ?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#heuristic-algorithms"><i class="fa fa-check"></i><b>2.2.1</b> Heuristic algorithms</a></li>
+<li class="chapter" data-level="2.2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#indexes-heuristics"><i class="fa fa-check"></i><b>2.2.2</b> Indexes + heuristics</a></li>
+</ul></li>
 <li class="chapter" data-level="2.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#msa-short"><i class="fa fa-check"></i><b>2.3</b> MSA (short)</a></li>
 <li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#mapping"><i class="fa fa-check"></i><b>2.4</b> Mapping</a></li>
 </ul></li>
@@ -370,7 +374,7 @@ Each strand of DNA has a phosphate-sugar backbone on which are attached nucleoba
 <p>In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.</p>
 <div id="sanger-sequencing-a-breakthrough" class="section level3 hasAnchor" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Sanger sequencing, a breakthrough<a href="what-is-sequence-data.html#sanger-sequencing-a-breakthrough" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first true sequencing method was developed in 1977<span class="citation"><sup><a href="#ref-sangerDNASequencingChainterminating1977" role="doc-biblioref">31</a></sup></span>. Sanger <em>et al.</em> devised a simple method to read the sequence of nucleotides that make up a DNA sequence.</p>
+<p>The first true sequencing method was developed in 1977<span class="citation"><sup><a href="#ref-sangerDNASequencingChainterminating1977" role="doc-biblioref">31</a></sup></span>. Sanger <em>et al.</em> devised a simple method to read the sequence of nucleotides that make up a DNA sequence <em>(also represented in Figure</em> <a href="what-is-sequence-data.html#fig:sanger">1.2</a><em>)</em>.</p>
 <ol style="list-style-type: decimal">
 <li>Clone sequence / amplify</li>
 <li>Prepare 4 different sequencing environments with a majority of dNTP (ie regular nucleotides) and in each a single type of ddNTP (a terminator). ddNTP are marked</li>
@@ -381,7 +385,12 @@ Each strand of DNA has a phosphate-sugar backbone on which are attached nucleoba
 </ol>
 <p>This allowed Sanger <em>et al.</em> to sequence the first whole <span class="math inline">\(\varphi X174\)</span> bacteriophage genome<span class="citation"><sup><a href="#ref-sangerNucleotideSequenceBacteriophage1977" role="doc-biblioref">2</a></sup></span>. This method, although revolutionnary was costly and time consuming.</p>
 <p>The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis<span class="citation"><sup><a href="#ref-smithSynthesisOligonucleotidesContaining1985" role="doc-biblioref">32</a>,<a href="#ref-smithFluorescenceDetectionAutomated1986" role="doc-biblioref">33</a></sup></span>. The fluorescence also allowed for automated reading with optical systems. Plus switching to capillary electrophoresis allowed for automation and speeding up. Shotgun sequencing also speed up stuff at the reconstruct the whole genome.</p>
-<p><strong><em>I need to speak of performance / throughput of these methods here.</em></strong></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sanger"></span>
+<img src="figures/Basic-Intro/sanger-sequencing.png" alt="caption (WIP)" width="60%" />
+<p class="caption">
+Figure 1.2: caption (WIP)
+</p>
+</div>
 <p>With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999%<span class="citation"><sup><a href="#ref-shendureNextgenerationDNASequencing2008" role="doc-biblioref">34</a></sup></span>. Although very time consuming and expensive at it’s dawn, the sequencing of the first human genome costing between 500 million and 1 billion dollars<span class="citation"><sup><a href="#ref-CostSequencingHuman" role="doc-biblioref">35</a></sup></span>. Over time and with technological advancments, the cost of Sanger sequencing was greatly reduced from $1000 per Bp<span class="citation"><sup><a href="#ref-collinsHumanGenomeProject2003" role="doc-biblioref">36</a></sup></span> to $0.5 per kBp<span class="citation"><sup><a href="#ref-shendureNextgenerationDNASequencing2008" role="doc-biblioref">34</a></sup></span>, and the throughput increased from 1 kBp per day<span class="citation"><sup><a href="#ref-collinsHumanGenomeProject2003" role="doc-biblioref">36</a></sup></span> to up to 120 kBp per hour<span class="citation"><sup><a href="#ref-liuComparisonNextGenerationSequencing2012" role="doc-biblioref">37</a></sup></span>.</p>
 </div>
 <div id="next-generation-sequencing" class="section level3 hasAnchor" number="1.2.2">
@@ -487,23 +496,21 @@ Each strand of DNA has a phosphate-sugar backbone on which are attached nucleoba
 <h3><span class="header-section-number">1.4.1</span> Homopolymers and the genome<a href="what-is-sequence-data.html#homopolymers-and-the-genome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>What are homopolymers -&gt; repeated stretches of identical nucleotides</li>
+<li>On the CHM13 whole human genome assembly v1.1, 50% of the 3Gb are in homopolymers of size length or more, and 10% are in homopolymers fof size 4 or more. The longest homopolymer in the CHM13 v1.1 whole human genome assembly is 86. Homopolymers of short/medium lengths make up a significant part of the human genome (Figure <a href="what-is-sequence-data.html#fig:HPpercent">1.4</a>).</li>
+<li>HPs are more often A/T rich than G/C rich in the human genome (Figure <a href="what-is-sequence-data.html#fig:HPdistrib">1.3</a>).</li>
+<li>More than 1.4 million homopolymers 4-mers and up in the exome (i.e. DNA that is translated into proteins)<span class="citation"><sup><a href="#ref-ivadyAnalyticalParametersValidation2018" role="doc-biblioref">76</a></sup></span></li>
+<li>according to<span class="citation"><sup><a href="#ref-booeshaghiPseudoalignmentFacilitatesAssignment2022" role="doc-biblioref">77</a></sup></span>, in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.</li>
 </ul>
-<!-- -->
-<ul>
-<li><p>On the CHM13 whole human genome assembly v1.1, 29.7% of the 3Gb are in homopolymers (i.e. are identical to the preceding nucleotide in the sequence) Longest HP is 86.</p></li>
-<li><p>More than 1.4 million homopolymers 4-mers and up in the exome (i.e. DNA that is translated into proteins)<span class="citation"><sup><a href="#ref-ivadyAnalyticalParametersValidation2018" role="doc-biblioref">76</a></sup></span></p></li>
-<li><p>according to<span class="citation"><sup><a href="#ref-booeshaghiPseudoalignmentFacilitatesAssignment2022" role="doc-biblioref">77</a></sup></span>, in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.</p></li>
-</ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:big-hp-distrib"></span>
-<img src="_main_files/figure-html/big-hp-distrib-1.png" alt="Distribution of homopolymer lengths per base in the human genome" width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:HPdistrib"></span>
+<img src="_main_files/figure-html/HPdistrib-1.png" alt="Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\geq 4$.)" width="70%" />
 <p class="caption">
-Figure 1.2: Distribution of homopolymer lengths per base in the human genome
+Figure 1.3: Distribution of homopolymer lengths per base in the human genome (for homopolyers of length <span class="math inline">\(\geq 4\)</span>.)
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hp-freq"></span>
-<img src="_main_files/figure-html/hp-freq-1.png" alt="Homopolymer length as fraction of the genome" width="90%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:HPpercent"></span>
+<img src="_main_files/figure-html/HPpercent-1.png" alt="Homopolymer length as fraction of the genome" width="70%" />
 <p class="caption">
-Figure 1.3: Homopolymer length as fraction of the genome
+Figure 1.4: Homopolymer length as fraction of the genome
 </p>
 </div>
 </div>
@@ -531,10 +538,17 @@ Figure 1.3: Homopolymer length as fraction of the genome
 <h4><span class="header-section-number">1.4.3.2</span> HPC Trick<a href="what-is-sequence-data.html#hpc-trick" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>homopolymers are still tricky regions even with long high accuracy reads -&gt; so HPC</p>
 <ul>
-<li><p>HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence<br />
-<em>Short schematic example of HPC with example where it removes an error ? (don’t talk about mapping yet)</em></p></li>
+<li><p>HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence</p></li>
+<li><p>Can help resolve ambiguities in some cases c.f. Figure <a href="what-is-sequence-data.html#fig:hpcSchema">1.5</a>.</p></li>
 <li><p>Used in many software tools for long reads<span class="citation"><sup><a href="#ref-ruanFastAccurateLongread2020" role="doc-biblioref">57</a>,<a href="#ref-auImprovingPacBioLong2012" role="doc-biblioref">92</a>–<a href="#ref-ekimMinimizerspaceBruijnGraphs2021" role="doc-biblioref">97</a></sup></span> and even pyrosequencing reads<span class="citation"><sup><a href="#ref-millerAggressiveAssemblyPyrosequencing2008" role="doc-biblioref">98</a></sup></span></p></li>
 </ul>
+<p>reconstruct the whole genome.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:hpcSchema"></span>
+<img src="figures/Basic-Intro/hpc-helps.png" alt="caption (WIP)" width="60%" />
+<p class="caption">
+Figure 1.5: caption (WIP)
+</p>
+</div>
 </div>
 </div>
 </div>

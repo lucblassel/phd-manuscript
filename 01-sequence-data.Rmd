@@ -110,7 +110,7 @@ The marking of primers and ddNTP with fluorescence allowed to do the polymerizat
 sangerCaption <- "caption (WIP)"
 ```
 
-```{r, sanger, label="sanger", fig.cap=sangerCaption, eval=knitr::is_html_output, out.width="60%"}
+```{r, sanger, label="sanger", fig.cap=sangerCaption, eval=knitr::is_html_output(), out.width="60%"}
 knitr::include_graphics("./figures/Basic-Intro/sanger-sequencing.png")
 ```
 
@@ -122,9 +122,6 @@ knitr::include_graphics("./figures/Basic-Intro/sanger-sequencing.png")
 \label{fig:sanger}
 \end{figure}
 ```
-
-***I need to speak of performance / throughput of these methods here.***
-
 With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999% [@shendureNextgenerationDNASequencing2008]. Although very time consuming and expensive at it's dawn, the sequencing of the first human genome costing between 500 million and 1 billion dollars [@CostSequencingHuman]. Over time and with technological advancments, the cost of Sanger sequencing was greatly reduced from \$1000 per Bp [@collinsHumanGenomeProject2003] to \$0.5 per kBp [@shendureNextgenerationDNASequencing2008], and the throughput increased from 1 kBp per day [@collinsHumanGenomeProject2003] to up to 120 kBp per hour [@liuComparisonNextGenerationSequencing2012].
 
 ### Next-generation sequencing
@@ -332,7 +329,7 @@ reconstruct the whole genome.
 hpcCaption <- "caption (WIP)"
 ```
 
-```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output,out.width="60%"}
+```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output(),out.width="60%"}
 knitr::include_graphics("./figures/Basic-Intro/hpc-helps.png")
 ```
 
