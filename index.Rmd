@@ -13,7 +13,8 @@ bibliography:
   - ./references/HPC-MSRs.bib
   - ./references/HIV-DRMs.bib
   - ./references/Sequence-Data.bib
-biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=nyt,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false]
+  - ./references/Aligning-Sequences.bib
+biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=nyt,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false,backend=biber]
 link-citations: yes
 github-repo: lucblassel/phd-manuscript
 biblio-title: Global References
