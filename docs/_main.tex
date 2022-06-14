@@ -226,7 +226,7 @@
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\usepackage[style=authoryear,backref=true,refsegment=chapter,defernumbers=true,sorting=nyt,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false,backend=biber]{biblatex}
+\usepackage[style=authoryear,backref=true,refsegment=chapter,defernumbers=true,sorting=none,citestyle=numeric,bibstyle=numeric,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false,backend=biber]{biblatex}
 \addbibresource{./references/HPC-MSRs.bib}
 \addbibresource{./references/HIV-DRMs.bib}
 \addbibresource{./references/Sequence-Data.bib}
@@ -234,7 +234,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-13}
+\date{2022-06-14}
 
 \begin{document}
 \maketitle
@@ -601,7 +601,7 @@ general context of sequencing errors, i.e.~short reads have high accuracy (After
 \item
   In Non-Hybrid error correcting methods only the long reads are used, by overlapping them and taking the consensus of the overlap it is possible to eliminate some errors, as well as filtering very rare subsequences likely due to a sequencing error \autocite{limaComparativeAssessmentLongread2020,amarasingheOpportunitiesChallengesLongread2020}. These methods are applied in several pieces of software like wtdbg2 \autocite{ruanFastAccurateLongread2020}, canu \autocite{korenCanuScalableAccurate2017}, or daccord \autocite{tischlerNonHybridLong2017}.
 \item
-  In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread \autocite{hacklProovreadLargescaleHighaccuracy2014}, Jabba \autocite{miclotteJabbaHybridError2016} or LoRDEC \autocite{salmelaLoRDECAccurateEfficient2014}
+  In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread \autocite{hacklProovreadLargescaleHighaccuracy2014}, Jabba \autocite{miclotteJabbaHybridError2016}, PBcR \autocite{korenHybridErrorCorrection2012} or LoRDEC \autocite{salmelaLoRDECAccurateEfficient2014}
 \item
   In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow \autocite{heplerImprovedCircularConsensus2016} or Nanopolish \autocite{simpsonDetectingDNACytosine2017} respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}.
 \item
@@ -748,7 +748,7 @@ We want to compare individuals, species, whatever. To do this we need to compare
   When we align 2 sequences together we talk about \textbf{pairwise} alignment as opposed to \textbf{multiple} alignment where we align more than 2 sequences all together. We will first focus on pairwise alignment.
 \end{itemize}
 
-2 ways of going about for pairwise alignment:
+2 ways of going about for pairwise alignment \autocite{sungAlgorithmsBioinformaticsPractical2011}:
 
 \begin{itemize}
 \item
@@ -757,30 +757,65 @@ We want to compare individuals, species, whatever. To do this we need to compare
   \textbf{Local alignment}: we look at the sequences portion by portion, trying to find the best place where they match up.
 \end{itemize}
 
-This is very similar to another well known problem in computer science: the string-edit problem (\textbf{REFS?})
-
 \hypertarget{why-align}{%
 \subsection{Why align ?}\label{why-align}}
 
 \begin{itemize}
 \item
-  We do global alignment when we expect 2 sequences to be related, for example if we sequence the same genome twice we can globally align the two resulting genomes, if we find positions where they differ then that might be a sequencing or assembly error.
+  hamming distance is an easy method \autocite{hammingCodingInformationTheory1980}
+
+  \begin{itemize}
+  \item
+    Although it is easy to compute -\textgreater{} sequences must have same length
+  \item
+    When dealing with DNA/proteins we have to be able to deal with insertions/deletions and hamming cannot do that\ldots{}
+  \end{itemize}
 \item
-  Similarly if we sequence two related organisms, like a human and a chimp we can see which regions of the genome are identical, which are different and learn what makes a human a human or a chimp a chimp.
+  This is very similar to other well known problems in computer science: the string-edit problem \autocite{gusfieldAlgorithmsStringsTrees1997} and the Levenshtein distance \autocite{levenshteinBinaryCodesCapable1966}
 \item
-  For local alignment there we can align a read to a reference sequence in order to correct sequencing errors or find out where the read comes from.
+  Alignments are used in many cases so that:
+
+  \begin{itemize}
+  \item
+    we can examine similarities/differences between them (i.e.~comparative genomics ) \autocite{hardisonComparativeGenomics2003}
+  \item
+    we can infer (usually with multiple alignment):
+
+    \begin{itemize}
+    \item
+      evolutionary relationships (phylogenetics), and most methods to reconstruct phylogenetic trees take as input a multiple alignment: \autocite{felsensteinEvolutionaryTreesDNA1981,kumarMEGAMolecularEvolutionary1994,kozlovRAxMLNGFastScalable2019,guindonNewAlgorithmsMethods2010,priceFastTreeApproximatelyMaximumLikelihood2010}
+    \item
+      protein:
+
+      \begin{itemize}
+      \item
+        structure \autocites[ ]{jumperHighlyAccurateProtein2021,karplusPredictingProteinStructure1999}
+      \item
+        function \autocite{watsonPredictingProteinFunction2005,leePredictingProteinFunction2007}
+      \end{itemize}
+    \end{itemize}
+  \item
+    we can correct sequencing errors \autocite{hacklProovreadLargescaleHighaccuracy2014,korenHybridErrorCorrection2012,salmelaCorrectingErrorsShort2011}.
+  \item
+    Structural variant detection \autocite{medvedevComputationalMethodsDiscovering2009,mahmoudStructuralVariantCalling2019}
+  \end{itemize}
 \end{itemize}
 
-\hypertarget{how-to-align}{%
-\subsection{How to align ?}\label{how-to-align}}
+\hypertarget{how-to-align-two-sequences}{%
+\subsection{How to align two sequences ?}\label{how-to-align-two-sequences}}
 
 The seminal method for pairwise alignment was the Needleman-Wünsch algorithm \autocite{needlemanGeneralMethodApplicable1970} based on a dynamic programming method. A decade later, the Smith-Waterman algorithm \autocite{smithIdentificationCommonMolecular1981} was developed with similar ideas to perform local alignment. Both are still used today for pairwise alignment.
 
-Dynamic programming is a method to solve complex problems by breaking it
-into smaller sub-problems and solving each one optimally and separately \autocite{bradleyAppliedMathematicalProgramming1977}, it is widely used when we wish to have a precise alignment between 2 sequences.
+Dynamic programming is a method to solve complex problems by breaking it into smaller sub-problems and solving each one optimally and separately \autocite{bradleyAppliedMathematicalProgramming1977,bellmanTheoryDynamicProgramming1954}, it is widely used when we wish to have a precise alignment between 2 sequences.
 
 \hypertarget{global-alignment}{%
 \subsubsection{Global alignment}\label{global-alignment}}
+
+\begin{itemize}
+\tightlist
+\item
+  We do global alignment when we expect two sequences to be related and of similar genes/proteins, etc\ldots{}
+\end{itemize}
 
 \begin{itemize}
 \item
@@ -788,24 +823,28 @@ into smaller sub-problems and solving each one optimally and separately \autocit
 
   \begin{itemize}
   \item
+    The score of an alignment can be defined recursively -\textgreater{} dynamic programming
+  \item
     Fill out DP matrix
   \item
     Traceback to find optimal alignment
   \end{itemize}
 \item
-  Example\ldots{}
+  Example\ldots{} (can be at the same time as the algo presentation)
+\end{itemize}
+
+\begin{itemize}
 \item
   This algorithm although very precise, has a time complexity of \(O(nm)\) where \(n\) and \(m\) are the lengths of the sequences to align \autocite{sungAlgorithmsBioinformaticsPractical2011}. Some methods have been proposed to speed up \autocite{masekFasterAlgorithmComputing1980}, however the complexity is still \(O(nm/\log(n))\). Lower bounds have been studied and there is not much optimization we can do if we want to keep an optimal exact alignment \autocite{vinhInformationTheoreticMeasures2010,ullmanBoundsComplexityLongest1976}. If we want to do better we have to rely on heuristics.
 \item
   Another issue is space complexity since we need to store the matrix, we get \(O(nm)\) as well for space, so if we wish to align 2 human genomes we would need to store \(\approx 10^{19}\) matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers (meaning it would take an entire data center to store that).
 
   \begin{itemize}
-  \tightlist
   \item
     However in practice we can do much better than that, and construct an optimal alignment in linear space complexity \(O(n+m)\) \autocite{hirschbergLinearSpaceAlgorithm1975} meaning we would only need a couple gigabytes to store the matrix for 2 human genomes.
+  \item
+    Above idea resulting in Myers-miller algorithm \autocite{myersOptimalAlignmentsLinear1988}, implemented in the EMBOSS stretcher tool \autocite{riceEMBOSSEuropeanMolecular2000}
   \end{itemize}
-\item
-  Use in software: \ldots{}
 \end{itemize}
 
 \hypertarget{local-alignment}{%
@@ -819,47 +858,100 @@ into smaller sub-problems and solving each one optimally and separately \autocit
 \item
   In terms of complexity is the same as NW in quadratic in time and space \autocite{sungAlgorithmsBioinformaticsPractical2011} but can be taken down to linear space with the same approach as NW.
 \item
-  Used in software: \ldots{}
+  Optimizations were made and resulted in the Huang and Miller algorithm \autocite{huangTimeefficientLinearspaceLocal1991} which is implemented in the EMBOSS Lalign tool \autocite{riceEMBOSSEuropeanMolecular2000}, and the Waterman Eggert algorithm \autocite{watermanNewAlgorithmBest1987}.
 \end{itemize}
 
-\hypertarget{substitution-models}{%
-\subsection{Substitution models}\label{substitution-models}}
+Both methods are implemented in many different software tools and are used when performing pairwise alignments of short sequences \autocite{stajichBioperlToolkitPerl2002,gentlemanBioconductorOpenSoftware2004,riceEMBOSSEuropeanMolecular2000} with version implemented for specific CPU instruction sets \autocite{dailyParasailSIMDLibrary2016} or GPUs \autocite{frohmbergGPASImprovedVersion2012} to speed up alignment.
 
-mismatch depends on models, BLOSUM, PAML, \ldots{}
+\hypertarget{substitution-models-scoring}{%
+\subsection{Substitution models / scoring}\label{substitution-models-scoring}}
+
+When scoring an alignment we can use different scoring models/substitution matrices \autocite{altschulSubstitutionMatrices2013}:
+
+\begin{itemize}
+\item
+  A lot of work has been done on protein scoring matrices
+
+  \begin{itemize}
+  \item
+    Log-Odds models, based on the fact that mutations are not equiprobable, and some mutations will be much more common (I \(\leftrightarrow\) L in proteins)
+  \item
+    PAM (Point Accepted Mutations) \autocite{dayhoffModelEvolutionaryChange1978}, gotten from studying closely related protein sequences, estimate the probability of one amino acid changing to another one over time. With more data refinements have been made for PAM-like matrices \autocite{mullerModelingAminoAcid2000}.
+  \item
+    BLOSUM \autocite{henikoffAminoAcidSubstitution1992}, similar idea to PAM except they were constructed on several ``blocks''. A block is a segment of a protein that is very well conserved within a family and computed the probabilities on these blocks.
+  \item
+    Some matrices estimated with ML instad of log-odds methods \autocite{whelanGeneralEmpiricalModel2001,leImprovedGeneralAmino2008}
+  \item
+    Model specific matrices:
+
+    \begin{itemize}
+    \item
+      Transmembrane matrices \autocite{mullerNonsymmetricScoreMatrices2001,ngPHATTransmembranespecificSubstitution2000}
+    \item
+      Disordered regions in proteins: \autocite{trivediAminoAcidSubstitution2019}
+    \item
+      context-specific matrices \autocite{goonesekereContextspecificAminoAcid2008}
+    \item
+      Specific organisms like \emph{P. falciparum} with pfSSM \autocite{pailaGenomeBiasInfluences2008} or HIV \autocite{nickleHIVSpecificProbabilisticModels2007}
+    \item
+      specific to global alignment \autocite{sardiuScoreStatisticsGlobal2005}
+    \end{itemize}
+  \end{itemize}
+\item
+  Some on DNA alignment
+
+  \begin{itemize}
+  \tightlist
+  \item
+    You can derive a matrix with methods similar to PAM \autocite{chiaromonteScoringPairwiseGenomic2001}
+  \item
+    You can do codon substitution matrices \autocite{schneiderEmpiricalCodonSubstitution2005}, or combine codon matrices with AA matrices \autocite{doron-faigenboimCombinedEmpiricalMechanistic2007}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{dealing-with-gaps}{%
-\subsubsection{Dealing with gaps}\label{dealing-with-gaps}}
+\subsection{Dealing with gaps}\label{dealing-with-gaps}}
 
 \begin{itemize}
 \item
   biologically longer deletions are more likely than plenty of shorter ones
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Here a short example of 2 alignments with different gap strategies
+  \end{itemize}
 \item
-  Affine gap penalties
+  Semi global alignment (i.e.~gaps on the ends of the sequence are free\ldots)
+\item
+  Affine gap penalties, proposed by Gotoh \autocite{gotohImprovedAlgorithmMatching1982}
+\item
+  Non affine gap penalties \autocite{bennerEmpiricalStructuralModels1993,guSizeDistributionInsertions1995,watermanEfficientSequenceAlignment1984}
 \end{itemize}
 
-\hypertarget{how-do-we-speed-up-alignment}{%
-\section{How do we speed up alignment ?}\label{how-do-we-speed-up-alignment}}
+\hypertarget{how-do-we-speed-up-pairwise-alignment}{%
+\section{How do we speed up pairwise alignment ?}\label{how-do-we-speed-up-pairwise-alignment}}
 
-\hypertarget{heuristic-algorithms}{%
-\subsection{Heuristic algorithms}\label{heuristic-algorithms}}
+review \autocite{chaoDevelopmentsAlgorithmsSequence2022}
 
 \begin{itemize}
 \item
-  Better local alignment
+  HMMs
 \item
-  Better global alignment
-\end{itemize}
-
-\hypertarget{indexes-heuristics}{%
-\subsection{Indexes + heuristics}\label{indexes-heuristics}}
-
-Pre-computing indexes -\textgreater{} when we know we will have lots of queries:
-
-\begin{itemize}
+  Bounded DP
 \item
-  BLAST
+  Divide and conquer\ldots{} FFT of MAFFT
 \item
-  FASTA
+  Indexes and data structures:
+
+  \begin{itemize}
+  \item
+    BLAST
+  \item
+    FM index
+  \item
+    minimizers
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{msa-short}{%
