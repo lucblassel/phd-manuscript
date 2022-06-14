@@ -221,7 +221,7 @@ general context of sequencing errors, i.e. short reads have high accuracy (After
 
 -   In Non-Hybrid error correcting methods only the long reads are used, by overlapping them and taking the consensus of the overlap it is possible to eliminate some errors, as well as filtering very rare subsequences likely due to a sequencing error [@limaComparativeAssessmentLongread2020; @amarasingheOpportunitiesChallengesLongread2020]. These methods are applied in several pieces of software like wtdbg2 [@ruanFastAccurateLongread2020], canu [@korenCanuScalableAccurate2017], or daccord [@tischlerNonHybridLong2017].
 
--   In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread [@hacklProovreadLargescaleHighaccuracy2014], Jabba [@miclotteJabbaHybridError2016] or LoRDEC [@salmelaLoRDECAccurateEfficient2014]
+-   In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread [@hacklProovreadLargescaleHighaccuracy2014], Jabba [@miclotteJabbaHybridError2016], PBcR [@korenHybridErrorCorrection2012] or LoRDEC [@salmelaLoRDECAccurateEfficient2014]
 
 -   In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow [@heplerImprovedCircularConsensus2016] or Nanopolish [@simpsonDetectingDNACytosine2017] respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon [@walkerPilonIntegratedTool2014] or Racon [@vaserFastAccurateNovo2017].
 
