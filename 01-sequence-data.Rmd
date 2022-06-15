@@ -16,13 +16,13 @@ Each strand of DNA has a phosphate-sugar backbone on which are attached nucleoba
 ```
 
 ```{r, figDNA, fig.cap=figDNACaption, label="figDNA", eval=knitr::is_html_output(), cache=FALSE}
-knitr::include_graphics("./figures/Basic-Intro/DNA.png")
+knitr::include_graphics("./figures/Sequence-Intro/DNA.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{./figures/Basic-Intro/DNA.pdf}
+\includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.pdf}
 \extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
 \label{fig:figDNA}
 \end{figure}
@@ -111,13 +111,13 @@ sangerCaption <- "caption (WIP)"
 ```
 
 ```{r, sanger, label="sanger", fig.cap=sangerCaption, eval=knitr::is_html_output(), out.width="60%"}
-knitr::include_graphics("./figures/Basic-Intro/sanger-sequencing.png")
+knitr::include_graphics("./figures/Sequence-Intro/sanger-sequencing.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Basic-Intro/sanger-sequencing.pdf}
+\includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/sanger-sequencing.pdf}
 \extcaption{Caption}{(WIP)}
 \label{fig:sanger}
 \end{figure}
@@ -330,18 +330,17 @@ hpcCaption <- "caption (WIP)"
 ```
 
 ```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output(),out.width="60%"}
-knitr::include_graphics("./figures/Basic-Intro/hpc-helps.png")
+knitr::include_graphics("./figures/Sequence-Intro/hpc-helps.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Basic-Intro/hpc-helps.pdf}
+\includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
 \extcaption{Caption}{(WIP)}
 \label{fig:hpcSchema}
 \end{figure}
 ```
-
 ## Conclusion
 
 -   **Sequencing is an active field:** new methods, both in short reads (ultima) and long reads (illumina infinity), as well as improving existing technologies
