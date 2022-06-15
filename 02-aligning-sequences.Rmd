@@ -139,7 +139,7 @@ review [@chaoDevelopmentsAlgorithmsSequence2022], we need heuristics.
 
     -   In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. \@ref(fig:optimMethods)
 
-    -   Many ways of finding seeds
+    -   Many ways of finding seeds [@sunChoosingBestHeuristic2006]
 
 ```{r}
 optimCaption <- "**2 heuristic methods to speed up alignment:**\
@@ -195,6 +195,8 @@ knitr::include_graphics("./figures/Align-Intro/optim-to-adapt.png")
 
     -   Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) [@karlinMethodsAssessingStatistical1990a; @mottAlignmentStatisticalSignificance2005]
 
+    -   Diamond [@buchfinkFastSensitiveProtein2015]
+
     -   Specific data structures Particularly used when aligning NGS data [@liSurveySequenceAlignment2010]:
 
         -   Suffix Trees/suffix arrays:
@@ -221,15 +223,15 @@ NP-hard problem so we need heuristics or tricks
 
 Even if we align all sequences pairwise we need to then combine all gaps and stuff -\> complicated.
 
-#### Progressive
+### Progressive
 
 guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. [@fengProgressiveSequenceAlignment1987]
 
-#### HMMs / profile alignments / pairwise
+### HMMs / profile alignments / pairwise
 
 Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. *(point to appendix with covid align ?)*
 
-#### Other optimization methods (short)
+### Other optimization methods (short)
 
 -   Simulated annealing
 
@@ -253,5 +255,10 @@ Huge review of mapping in [@alserTechnologyDictatesAlgorithms2021]
     -   Hardware accelerated [@olsonHardwareAccelerationShort2012]
 -   Long read mapping:
     -   software: winnowmap [@jainWeightedMinimizerSampling2020], winnowmap2 [@jainLongreadMappingRepetitive2022] and tandemtools [@mikheenkoTandemToolsMappingLong2020] for repetitive regions.
+-   Mapping quality:
+    -   Intro and definition, quite a loosely defined term.
+
+    -   Mapping quality from tandem simulation [@langmeadTandemSimulationFramework2017]
+-   Benchmarking is of interest of field [@brindaRNFGeneralFramework2016]
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

@@ -951,7 +951,7 @@ review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, we need heuristics.
   \item
     In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. \ref{fig:optimMethods}
   \item
-    Many ways of finding seeds
+    Many ways of finding seeds \autocite{sunChoosingBestHeuristic2006}
   \end{itemize}
 \end{itemize}
 
@@ -1009,6 +1009,8 @@ review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, we need heuristics.
   \item
     Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) \autocite{karlinMethodsAssessingStatistical1990a,mottAlignmentStatisticalSignificance2005}
   \item
+    Diamond \autocite{buchfinkFastSensitiveProtein2015}
+  \item
     Specific data structures Particularly used when aligning NGS data \autocite{liSurveySequenceAlignment2010}:
 
     \begin{itemize}
@@ -1048,17 +1050,17 @@ NP-hard problem so we need heuristics or tricks
 Even if we align all sequences pairwise we need to then combine all gaps and stuff -\textgreater{} complicated.
 
 \hypertarget{progressive}{%
-\subsubsection{Progressive}\label{progressive}}
+\subsection{Progressive}\label{progressive}}
 
 guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. \autocite{fengProgressiveSequenceAlignment1987}
 
 \hypertarget{hmms-profile-alignments-pairwise}{%
-\subsubsection{HMMs / profile alignments / pairwise}\label{hmms-profile-alignments-pairwise}}
+\subsection{HMMs / profile alignments / pairwise}\label{hmms-profile-alignments-pairwise}}
 
 Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. \emph{(point to appendix with covid align ?)}
 
 \hypertarget{other-optimization-methods-short}{%
-\subsubsection{Other optimization methods (short)}\label{other-optimization-methods-short}}
+\subsection{Other optimization methods (short)}\label{other-optimization-methods-short}}
 
 \begin{itemize}
 \item
@@ -1106,6 +1108,17 @@ Huge review of mapping in \autocite{alserTechnologyDictatesAlgorithms2021}
   \item
     software: winnowmap \autocite{jainWeightedMinimizerSampling2020}, winnowmap2 \autocite{jainLongreadMappingRepetitive2022} and tandemtools \autocite{mikheenkoTandemToolsMappingLong2020} for repetitive regions.
   \end{itemize}
+\item
+  Mapping quality:
+
+  \begin{itemize}
+  \item
+    Intro and definition, quite a loosely defined term.
+  \item
+    Mapping quality from tandem simulation \autocite{langmeadTandemSimulationFramework2017}
+  \end{itemize}
+\item
+  Benchmarking is of interest of field \autocite{brindaRNFGeneralFramework2016}
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
