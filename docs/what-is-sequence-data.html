@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-06-14" />
+<meta name="date" content="2022-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -137,7 +137,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-pairwise-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up pairwise alignment ?</a></li>
 <li class="chapter" data-level="2.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#msa-short"><i class="fa fa-check"></i><b>2.3</b> MSA (short)</a></li>
-<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#mapping"><i class="fa fa-check"></i><b>2.4</b> Mapping</a></li>
+<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#the-case-of-mapping"><i class="fa fa-check"></i><b>2.4</b> The case of Mapping</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><i class="fa fa-check"></i><b>3</b> Contribution 1: Improving local alignment by exploring a sequence transformation space</a>
 <ul>
@@ -300,7 +300,7 @@ div.csl-indent {
 <p><strong>D</strong>esoxyribo<strong>N</strong>ucleic <strong>A</strong>cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.</p>
 <p>DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA<span class="citation"><sup><a href="#ref-watson1953" role="doc-biblioref">1</a></sup></span> shown in Figure <a href="what-is-sequence-data.html#fig:figDNA">1.1</a>. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:figDNA"></span>
-<img src="figures/Basic-Intro/DNA.png" alt="**Double-helix structure of DNA**.
+<img src="figures/Sequence-Intro/DNA.png" alt="**Double-helix structure of DNA**.
 Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G)." width="90%" />
 <p class="caption">
 Figure 1.1: <strong>Double-helix structure of DNA</strong>.
@@ -383,7 +383,7 @@ Each strand of DNA has a phosphate-sugar backbone on which are attached nucleoba
 <p>This allowed Sanger <em>et al.</em> to sequence the first whole <span class="math inline">\(\varphi X174\)</span> bacteriophage genome<span class="citation"><sup><a href="#ref-sangerNucleotideSequenceBacteriophage1977" role="doc-biblioref">2</a></sup></span>. This method, although revolutionnary was costly and time consuming.</p>
 <p>The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis<span class="citation"><sup><a href="#ref-smithSynthesisOligonucleotidesContaining1985" role="doc-biblioref">32</a>,<a href="#ref-smithFluorescenceDetectionAutomated1986" role="doc-biblioref">33</a></sup></span>. The fluorescence also allowed for automated reading with optical systems. Plus switching to capillary electrophoresis allowed for automation and speeding up. Shotgun sequencing also speed up stuff at the reconstruct the whole genome.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:sanger"></span>
-<img src="figures/Basic-Intro/sanger-sequencing.png" alt="caption (WIP)" width="60%" />
+<img src="figures/Sequence-Intro/sanger-sequencing.png" alt="caption (WIP)" width="60%" />
 <p class="caption">
 Figure 1.2: caption (WIP)
 </p>
@@ -541,7 +541,7 @@ Figure 1.4: Homopolymer length as fraction of the genome
 </ul>
 <p>reconstruct the whole genome.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:hpcSchema"></span>
-<img src="figures/Basic-Intro/hpc-helps.png" alt="caption (WIP)" width="60%" />
+<img src="figures/Sequence-Intro/hpc-helps.png" alt="caption (WIP)" width="60%" />
 <p class="caption">
 Figure 1.5: caption (WIP)
 </p>

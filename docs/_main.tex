@@ -234,7 +234,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-14}
+\date{2022-06-15}
 
 \begin{document}
 \maketitle
@@ -319,7 +319,7 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{./figures/Basic-Intro/DNA.pdf}
+\includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.pdf}
 \extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
 \label{fig:figDNA}
 \end{figure}
@@ -450,7 +450,7 @@ The marking of primers and ddNTP with fluorescence allowed to do the polymerizat
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Basic-Intro/sanger-sequencing.pdf}
+\includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/sanger-sequencing.pdf}
 \extcaption{Caption}{(WIP)}
 \label{fig:sanger}
 \end{figure}
@@ -712,7 +712,7 @@ reconstruct the whole genome.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Basic-Intro/hpc-helps.pdf}
+\includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
 \extcaption{Caption}{(WIP)}
 \label{fig:hpcSchema}
 \end{figure}
@@ -815,9 +815,6 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
 \tightlist
 \item
   We do global alignment when we expect two sequences to be related and of similar genes/proteins, etc\ldots{}
-\end{itemize}
-
-\begin{itemize}
 \item
   short presentation of NW algo:
 
@@ -831,9 +828,6 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
   \end{itemize}
 \item
   Example\ldots{} (can be at the same time as the algo presentation)
-\end{itemize}
-
-\begin{itemize}
 \item
   This algorithm although very precise, has a time complexity of \(O(nm)\) where \(n\) and \(m\) are the lengths of the sequences to align \autocite{sungAlgorithmsBioinformaticsPractical2011}. Some methods have been proposed to speed up \autocite{masekFasterAlgorithmComputing1980}, however the complexity is still \(O(nm/\log(n))\). Lower bounds have been studied and there is not much optimization we can do if we want to keep an optimal exact alignment \autocite{vinhInformationTheoreticMeasures2010,ullmanBoundsComplexityLongest1976}. If we want to do better we have to rely on heuristics.
 \item
@@ -932,26 +926,116 @@ When scoring an alignment we can use different scoring models/substitution matri
 \hypertarget{how-do-we-speed-up-pairwise-alignment}{%
 \section{How do we speed up pairwise alignment ?}\label{how-do-we-speed-up-pairwise-alignment}}
 
-review \autocite{chaoDevelopmentsAlgorithmsSequence2022}
+review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, we need heuristics.
 
 \begin{itemize}
 \item
-  HMMs
+  Bounded DP \autocite{spougeSpeedingDynamicProgramming1989a,fickettFastOptimalAlignment1984}, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. \ref{fig:optimMethods}
 \item
-  Bounded DP
-\item
-  Divide and conquer\ldots{} FFT of MAFFT
-\item
-  Indexes and data structures:
+  HMMs:
 
   \begin{itemize}
   \item
-    BLAST
+    PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW \autocite{durbinBiologicalSequenceAnalysis1998}.
   \item
-    FM index
-  \item
-    minimizers
+    Software: HHsearch \autocite{sodingProteinHomologyDetection2005}, HMMer \autocite{finnHMMERWebServer2011}, MCALIGN2 \autocite{wangMCALIGN2FasterAccurate2006},
   \end{itemize}
+\item
+  General idea:
+
+  \begin{itemize}
+  \item
+    Seed + extend for local alignment
+  \item
+    Find anchors for global alignment
+  \item
+    In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. \ref{fig:optimMethods}
+  \item
+    Many ways of finding seeds
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\linewidth]{./figures/Align-Intro/optim-to-adapt.png}
+\extcaption{2 heuristic methods to speed up alignment:}{divide and conquer and bounded dynamic programming. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+}
+\label{fig:optimMethods}
+\end{figure}
+
+\begin{itemize}
+\item
+  Building indices/databases (useful when you want to try aligning a query sequence to a bunch of possible targets, i.e.~in order to search for homology, this does approximate local alignment):
+
+  \begin{itemize}
+  \item
+    BLAST \autocite{altschulBasicLocalAlignment1990}
+
+    \begin{itemize}
+    \item
+      We break up our sequences into overlapping ``words'' i.e.~all possible short sub-sequences.
+    \item
+      Construct a database of words with positions in the reference sequence(s)
+    \item
+      Get list of words for your query sequence and generate possible ``hits'', i.e.~words that align with your query words with a score higher than a threshold.
+    \item
+      Scan the database for these generated words, if you find one it is a hit and these 2 words are a candidate position for a local alignment.
+    \item
+      extend the local alignment with SW in both directions from the hit to get a local alignment, stop extending if the alignment score gets too low.
+    \item
+      Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST \autocite{edgarSearchClusteringOrders2010}.
+    \item
+      It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal \autocite{shpaerSensitivitySelectivityProtein1996}, it is however much faster and can allow users to search for similarities among millions of sequences at once
+    \item
+      Particularly useful, one of the most cited papers in the world: quickly search for homologs of unknown sequences, \ldots{} available as a web service hosted by NCBI (\url{https://blast.ncbi.nlm.nih.gov/Blast.cgi}).
+    \end{itemize}
+  \item
+    FASTA \autocite{pearsonImprovedToolsBiological1988}, derived from FASTP \autocite{lipmanRapidSensitiveProtein1985} which could not deal with gaps, preceded BLAST.
+
+    \begin{itemize}
+    \item
+      Similarly to BLAST, break query up into overlapping words
+    \item
+      Scan the library for exact-matching words to build up regions with high similarity (save 10 best regions)
+    \item
+      Score regions with a substitution matrix
+    \item
+      High scoring regions are combined to build an approximate alignment
+    \item
+      Highest scoring ungapped alignment is realigned with banded SW.
+    \end{itemize}
+  \item
+    Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences \autocite{saripellaBenchmarkingNextGeneration2016} in a database of over 80 million sequences \autocite{finnPfamProteinFamilies2016}, with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW \autocite{essoussiComparisonFourPairwise2007}.
+  \item
+    Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) \autocite{karlinMethodsAssessingStatistical1990a,mottAlignmentStatisticalSignificance2005}
+  \item
+    Specific data structures Particularly used when aligning NGS data \autocite{liSurveySequenceAlignment2010}:
+
+    \begin{itemize}
+    \item
+      Suffix Trees/suffix arrays:
+
+      \begin{itemize}
+      \item
+        Used in many pattern matching problems \autocite{gusfieldAlgorithmsStringsTrees1997}.
+      \item
+        Software: AVID uses suffix trees to find anchors \autocite{brayAVIDGlobalAlignment2003}, MUMmer finds largest identical subsequences between 2 sequences to anchor alignments using suffix trees \autocite{delcherFastAlgorithmsLargescale2002}
+      \end{itemize}
+    \item
+      FM index \autocite{ferraginaOpportunisticDataStructures2000}:
+
+      \begin{itemize}
+      \item
+        In some cases when using suffix trees take too much memory we can use an FM indiex which is based on the burrows wheeler transform \autocite{burrowsBlockSortingLosslessData1994}.
+      \item
+        used for in exact and approximate string matching \autocite{sungAlgorithmsBioinformaticsPractical2011}
+      \item
+        Software: BWT-SW uses an FM-index to speed up local alignment \autocite{lamCompressedIndexingLocal2008}, Bowtie 2 uses an FM index to find seeds \autocite{langmeadFastGappedreadAlignment2012}, BWA and BWA-SW use a similar idea \autocite{liFastAccurateShort2009,liFastAccurateLongread2010}, BWA-MEM \autocite{liAligningSequenceReads2013} and CUSHAW \autocite{liuLongReadAlignment2012} also uses FM indices to find exact matches to seed a local alignment .
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\item
+  You can also find seeds with Fast Fourier Transforms (FFT) as in MAFFT \autocite{katohMAFFTNovelMethod2002} by quickly computing correlations with FFT to find homologous regions.
 \end{itemize}
 
 \hypertarget{msa-short}{%
@@ -966,7 +1050,7 @@ Even if we align all sequences pairwise we need to then combine all gaps and stu
 \hypertarget{progressive}{%
 \subsubsection{Progressive}\label{progressive}}
 
-guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder.
+guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. \autocite{fengProgressiveSequenceAlignment1987}
 
 \hypertarget{hmms-profile-alignments-pairwise}{%
 \subsubsection{HMMs / profile alignments / pairwise}\label{hmms-profile-alignments-pairwise}}
@@ -983,35 +1067,45 @@ Example of COVID where homology is high so we can get away with using HMMS / pai
   Genetic algorithm
 \end{itemize}
 
-\hypertarget{mapping}{%
-\section{Mapping}\label{mapping}}
+\hypertarget{the-case-of-mapping}{%
+\section{The case of Mapping}\label{the-case-of-mapping}}
+
+Huge review of mapping in \autocite{alserTechnologyDictatesAlgorithms2021}
 
 \begin{itemize}
 \tightlist
 \item
-  short intro
+  Mapping is effectively the task of finding a bunch of independent local alignments between query sequences and a target reference sequence.
 \item
-  context of short read on large reference sequence
-\item
-  Build an index:
-
-  \begin{itemize}
-  \item
-    FM-index (bowtie2, bwa-mem?)
-  \item
-    minimizers (minimap2)
-  \end{itemize}
+  context of short read (query) on large reference sequence (even with long reads they are usually much smaller than the reference genome)
 \item
   Problems:
 
   \begin{itemize}
   \item
-    Repetitive regions (centromeres, telomeres)
+    Repetitive regions (centromeres, telomeres) make it hard \autocite{alserTechnologyDictatesAlgorithms2021}
   \item
-    low homology / sequencing errors\ldots{}
+    low homology / sequencing errors\ldots{} make mapping and other tasks hard \autocite{gusfieldAlgorithmsStringsTrees1997}
   \end{itemize}
 \item
-  specific heuristics like minimizers / FM-index help \emph{(Needed here since I introduce it earlier ? )}
+  short-reads mapping
+
+  \begin{itemize}
+  \item
+    benchmarks/review \autocite{schbathMappingReadsGenomic2012,hatemBenchmarkingShortSequence2013}
+  \item
+    Algorithms in short read mapping \autocite{canzarShortReadMapping2017} (basically same thing as speeding up section)
+  \item
+    Hardware accelerated \autocite{olsonHardwareAccelerationShort2012}
+  \end{itemize}
+\item
+  Long read mapping:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    software: winnowmap \autocite{jainWeightedMinimizerSampling2020}, winnowmap2 \autocite{jainLongreadMappingRepetitive2022} and tandemtools \autocite{mikheenkoTandemToolsMappingLong2020} for repetitive regions.
+  \end{itemize}
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
