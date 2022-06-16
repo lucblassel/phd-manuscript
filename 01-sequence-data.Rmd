@@ -295,7 +295,7 @@ ggplot(freqs, aes(x=length, y=prop)) +
  )
 ```
 
-### Homopolymers and long reads
+### Homopolymers and long reads {#homopolymers-and-long-reads}
 
 Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT [@delahaye2021; @goodwin2015], for PacBIO and ONT [@dohmBenchmarkingLongreadCorrection2020; @weirather2017]. ONT has more homopolymer errors than PacBIO [@logsdonLongreadHumanGenome2020]. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT's error rate in HPs does not depend on the length (even though it's the highest it's flat) [@fooxPerformanceAssessmentDNA2021].
 
@@ -313,7 +313,7 @@ Mainly indels, in certain regions of the genomes, particularly homopolymers. For
 -   Avoid using HPs in barcode sequences [@hawkinsIndelcorrectingDNABarcodes2018; @srivathsanMinIONBasedPipeline2018].
 -   A little different but HPs have to be taken into account when developing DNA based data storage [@wangConstructionBioConstrainedCode2019]
 
-#### HPC Trick
+#### HPC Trick {#hpc-trick}
 
 homopolymers are still tricky regions even with long high accuracy reads -\> so HPC
 

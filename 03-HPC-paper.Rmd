@@ -1,7 +1,16 @@
 
-# Contribution 1: Improving local alignment by exploring a sequence transformation space
+# Contribution 1: Improving read alignment by exploring a sequence transformation space
 
 ***Intro to this chapter within the context of the thesis to go here!***
+
+Recall that:  
+
+-   Homopolymers are a problem (c.f. \@ref(homopolymers-and-long-reads))
+
+-   Mapping is hard (c.f. \@ref(the-specifities-of-read-mapping))
+
+-   HPC has been used successfully used to improve mapping (c.f. \@ref(hpc-trick))
+
 
 This chapter was written as an article titled:   
 **"Mapping-friendly sequence reductions: going beyond homopolymer compression"**  

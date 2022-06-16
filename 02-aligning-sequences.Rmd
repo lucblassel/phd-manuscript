@@ -121,15 +121,21 @@ When scoring an alignment we can use different scoring models/substitution matri
 
 ## How do we speed up pairwise alignment ?
 
-review [@chaoDevelopmentsAlgorithmsSequence2022], we need heuristics.
+Although NW and SW give us optimal alignments [@pearson27DynamicProgramming1992] when dealing with large sequences they become impractical due to time and space complexity. We need heuristics, review [@chaoDevelopmentsAlgorithmsSequence2022], .
+
+### Change the method
 
 -   Bounded DP [@spougeSpeedingDynamicProgramming1989a; @fickettFastOptimalAlignment1984], we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. \@ref(fig:optimMethods)
 
--   HMMs:
+-   HMMs: ***(I Need to find out if they actually are faster for pairwise, and how fast)***
 
     -   PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW [@durbinBiologicalSequenceAnalysis1998].
 
-    -   Software: HHsearch [@sodingProteinHomologyDetection2005], HMMer [@finnHMMERWebServer2011], MCALIGN2 [@wangMCALIGN2FasterAccurate2006],
+    -   Software: HHsearch [@sodingProteinHomologyDetection2005], HMMer [@finnHMMERWebServer2011], MCALIGN2 [@wangMCALIGN2FasterAccurate2006] is used to efficiently search for alignments in large databases
+
+-   You can also align with Fast Fourier Transforms (FFT) as in MAFFT [@katohMAFFTNovelMethod2002] by quickly computing correlations with FFT to find homologous regions and then using these to align.
+
+### Seed and extend with data structures
 
 -   General idea:
 
@@ -139,7 +145,17 @@ review [@chaoDevelopmentsAlgorithmsSequence2022], we need heuristics.
 
     -   In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. \@ref(fig:optimMethods)
 
-    -   Many ways of finding seeds [@sunChoosingBestHeuristic2006]
+    -   Many ways of finding seeds [@sunChoosingBestHeuristic2006] and to index them [@liSurveySequenceAlignment2010]
+
+    -   2 use cases:
+
+        -   global alignment: align 2 large sequences that would overload computing resources.
+
+        -   local alignment:
+
+            -   to a database: ie. find hits in many sequences.
+
+            -   to a reference: ie find best hit in one sequence.
 
 ```{r}
 optimCaption <- "**2 heuristic methods to speed up alignment:**\
@@ -161,83 +177,140 @@ knitr::include_graphics("./figures/Align-Intro/optim-to-adapt.png")
 ```
 -   Building indices/databases (useful when you want to try aligning a query sequence to a bunch of possible targets, i.e. in order to search for homology, this does approximate local alignment):
 
-    -   BLAST [@altschulBasicLocalAlignment1990]
+#### Hash tables
 
-        -   We break up our sequences into overlapping "words" i.e. all possible short sub-sequences.
+-   BLAST [@altschulBasicLocalAlignment1990]
 
-        -   Construct a database of words with positions in the reference sequence(s)
+    -   We break up our sequences into overlapping "words" i.e. all possible short sub-sequences.
 
-        -   Get list of words for your query sequence and generate possible "hits", i.e. words that align with your query words with a score higher than a threshold.
+    -   Construct a database of words with positions in the reference sequence(s)
 
-        -   Scan the database for these generated words, if you find one it is a hit and these 2 words are a candidate position for a local alignment.
+    -   Get list of words for your query sequence and generate possible "hits", i.e. words that align with your query words with a score higher than a threshold.
 
-        -   extend the local alignment with SW in both directions from the hit to get a local alignment, stop extending if the alignment score gets too low.
+    -   Scan the database for these generated words, if you find one it is a hit and these 2 words are a candidate position for a local alignment.
 
-        -   Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST [@edgarSearchClusteringOrders2010].
+    -   extend the local alignment with SW in both directions from the hit to get a local alignment, stop extending if the alignment score gets too low.
 
-        -   It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal [@shpaerSensitivitySelectivityProtein1996], it is however much faster and can allow users to search for similarities among millions of sequences at once
+    -   Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST [@edgarSearchClusteringOrders2010].
 
-        -   Particularly useful, one of the most cited papers in the world: quickly search for homologs of unknown sequences, ... available as a web service hosted by NCBI (<https://blast.ncbi.nlm.nih.gov/Blast.cgi>).
+    -   It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal [@shpaerSensitivitySelectivityProtein1996], it is however much faster and can allow users to search for similarities among millions of sequences at once
 
-    -   FASTA [@pearsonImprovedToolsBiological1988], derived from FASTP [@lipmanRapidSensitiveProtein1985] which could not deal with gaps, preceded BLAST.
+    -   Particularly useful, one of the most cited papers in the world: quickly search for homologs of unknown sequences, ... available as a web service hosted by NCBI (<https://blast.ncbi.nlm.nih.gov/Blast.cgi>).
 
-        -   Similarly to BLAST, break query up into overlapping words
+-   FASTA [@pearsonImprovedToolsBiological1988], derived from FASTP [@lipmanRapidSensitiveProtein1985] which could not deal with gaps, preceded BLAST.
 
-        -   Scan the library for exact-matching words to build up regions with high similarity (save 10 best regions)
+    -   Similarly to BLAST, break query up into overlapping words
 
-        -   Score regions with a substitution matrix
+    -   Scan the library for exact-matching words to build up regions with high similarity (save 10 best regions)
 
-        -   High scoring regions are combined to build an approximate alignment
+    -   Score regions with a substitution matrix
 
-        -   Highest scoring ungapped alignment is realigned with banded SW.
+    -   High scoring regions are combined to build an approximate alignment
 
-    -   Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences [@saripellaBenchmarkingNextGeneration2016] in a database of over 80 million sequences [@finnPfamProteinFamilies2016], with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW [@essoussiComparisonFourPairwise2007].
+    -   Highest scoring ungapped alignment is realigned with banded SW.
 
-    -   Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) [@karlinMethodsAssessingStatistical1990a; @mottAlignmentStatisticalSignificance2005]
+-   Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences [@saripellaBenchmarkingNextGeneration2016] in a database of over 80 million sequences [@finnPfamProteinFamilies2016], with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW [@essoussiComparisonFourPairwise2007].
 
-    -   Diamond [@buchfinkFastSensitiveProtein2015]
+-   Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) [@karlinMethodsAssessingStatistical1990a; @mottAlignmentStatisticalSignificance2005]
 
-    -   Specific data structures Particularly used when aligning NGS data [@liSurveySequenceAlignment2010]:
+-   Minimap2 [@liMinimap2PairwiseAlignment2018] minimizer hash table
 
-        -   Suffix Trees/suffix arrays:
+-   Diamond [@buchfinkFastSensitiveProtein2015; @buchfinkSensitiveProteinAlignments2021] which indexes both the reference and query at the same time.
 
-            -   Used in many pattern matching problems [@gusfieldAlgorithmsStringsTrees1997].
+#### Suffix trees / suffix arrays
 
-            -   Software: AVID uses suffix trees to find anchors [@brayAVIDGlobalAlignment2003], MUMmer finds largest identical subsequences between 2 sequences to anchor alignments using suffix trees [@delcherFastAlgorithmsLargescale2002]
+-   Used in many pattern matching problems [@gusfieldAlgorithmsStringsTrees1997].
 
-        -   FM index [@ferraginaOpportunisticDataStructures2000]:
+-   Software: AVID uses suffix trees to find anchors [@brayAVIDGlobalAlignment2003], MUMmer finds largest identical subsequences between 2 sequences to anchor alignments using suffix trees [@delcherFastAlgorithmsLargescale2002]
 
-            -   In some cases when using suffix trees take too much memory we can use an FM indiex which is based on the burrows wheeler transform [@burrowsBlockSortingLosslessData1994].
+#### FM Index
 
-            -   used for in exact and approximate string matching [@sungAlgorithmsBioinformaticsPractical2011]
+-   FM index [@ferraginaOpportunisticDataStructures2000]:
 
-            -   Software: BWT-SW uses an FM-index to speed up local alignment [@lamCompressedIndexingLocal2008], Bowtie 2 uses an FM index to find seeds [@langmeadFastGappedreadAlignment2012], BWA and BWA-SW use a similar idea [@liFastAccurateShort2009; @liFastAccurateLongread2010], BWA-MEM [@liAligningSequenceReads2013] and CUSHAW [@liuLongReadAlignment2012] also uses FM indices to find exact matches to seed a local alignment .
+-   In some cases when using suffix trees take too much memory we can use an FM index which is based on the burrows wheeler transform [@burrowsBlockSortingLosslessData1994].
 
--   You can also find seeds with Fast Fourier Transforms (FFT) as in MAFFT [@katohMAFFTNovelMethod2002] by quickly computing correlations with FFT to find homologous regions.
+-   used for in exact and approximate string matching [@sungAlgorithmsBioinformaticsPractical2011]
 
-## MSA (short)
+-   Software: BWT-SW uses an FM-index to speed up local alignment [@lamCompressedIndexingLocal2008], Bowtie 2 uses an FM index to find seeds [@langmeadFastGappedreadAlignment2012], BWA and BWA-SW use a similar idea [@liFastAccurateShort2009; @liFastAccurateLongread2010], BWA-MEM [@liAligningSequenceReads2013] and CUSHAW [@liuLongReadAlignment2012] also uses FM indices to find exact matches to seed a local alignment .
 
-When we need to compare a lot of individuals together we can do MSA.
+## Multiple sequence alignment
 
-NP-hard problem so we need heuristics or tricks
+When we need to compare a lot of individuals together we can do MSA, essential task in many bioinformatics analyses [@russellMultipleSequenceAlignment2014].
+
+NP-hard [@wangComplexityMultipleSequence1994; @justComputationalComplexityMultiple2001] problem if you do it with DP so we need heuristics or tricks
 
 Even if we align all sequences pairwise we need to then combine all gaps and stuff -\> complicated.
 
-### Progressive
+### Progressive alignment
 
-guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. [@fengProgressiveSequenceAlignment1987]
+guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. [@fengProgressiveSequenceAlignment1987] Main MSA method.
 
-### HMMs / profile alignments / pairwise
+1.  Compute pairwise distance matrix for sequence set:
+    -   either by doing N(N-1)/2 pairwise alignments
 
-Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. *(point to appendix with covid align ?)*
+    -   Or alignment free methods to speed things up [@jonesRapidGenerationMutation1992; @blaisdellMeasureSimilaritySets1986]
+2.  Build guide tree from distances (neighbor joining, UPGMA, ...)
+3.  Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).
+
+```{r, progcaption}
+progCaption <- "*Overview of the progressive alignment process.*\
+A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]"
+```
+
+```{r, progAlign, label="progAlign", eval=knitr::is_html_output(), fig.cap=progCaption, out.width="70%"}
+knitr::include_graphics("./figures/Align-Intro/progressive-aln.png")
+```
+
+```{=tex}
+\begin{figure}
+{
+  \centering
+  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
+}
+\extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
+\label{fig:progAlign}
+\end{figure}
+```
+Problems -\> keeps gaps and if bad alignment at first steps error propagates ("once a gap, always a gap" [@fengProgressiveSequenceAlignment1987]).
+
+In order to curtail this problem we have iterative refinement [@russellMultipleSequenceAlignment2014]:
+
+1.  create MSA (e.g. progressive)
+2.  divide MSA into 2 groups + remove columns with only gaps
+3.  realign with profile alignment
+4.  Redo 2+3 until no improvement is made, according to some scoring function (Weighted sum-of-pair [@altschulWeightsDataRelated1989], or others like log-odds, correlation [@edgarComparisonScoringFunctions2004] or consistency [@notredameCOFFEEObjectiveFunction1998])
+
+Some of the most used MSA software uses these methods of progressive/iterative refinement:
+
+-   CLUSTAL-W [@thompsonCLUSTALImprovingSensitivity1994] and CLUSTAL-X [@thompsonCLUSTALWindowsInterface1997]
+
+-   T-Coffee [@notredameTcoffeeNovelMethod2000]
+
+-   MUSCLE [@edgarMUSCLEMultipleSequence2004a; @edgarMUSCLEMultipleSequence2004]
+
+-   MAFFT [@katohMAFFTNovelMethod2002]
+
+-   ProbCons [@doProbConsProbabilisticConsistencybased2005]
+
+Different strenghts/weaknesses so many reviews and benchmarks to make a choice [@notredameRecentEvolutionsMultiple2007; @notredameRecentProgressMultiple2002; @edgarMultipleSequenceAlignment2006; @paisAssessingEfficiencyMultiple2014; @thompsonBAliBASEBenchmarkAlignment1999]
+
+### HMMs in profile-profile or seq-profile alignments 
+
+HMM method similar performance to clustal-w [@eddyMultipleAlignmentUsing], HHMer [@finnHMMERWebServer2011] and COVID-align COVID-align [@lemoineCOVIDAlignAccurateOnline2020]
+
+Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign [@aksamentovNextcladeCladeAssignment2021]
 
 ### Other optimization methods (short)
 
--   Simulated annealing
+-   Simulated annealing to speed up DP [@kimMultipleSequenceAlignment1994; @ishikawaMultipleSequenceAlignment1993]
 
--   Genetic algorithm
+-   Genetic algorithm, review [@chowdhuryReviewMultipleSequence2017]
 
-## The case of Mapping
+    -   SAGA [@notredameSAGASequenceAlignment1996]
+
+-   recently: regressive method [@garrigaLargeMultipleSequence2019] root to leaf allows to align a very large number of sequences: 1.4 million!
+
+## The specifities of read-mapping {#the-specifities-of-read-mapping}
 
 Huge review of mapping in [@alserTechnologyDictatesAlgorithms2021]
 
