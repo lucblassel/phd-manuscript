@@ -234,7 +234,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-15}
+\date{2022-06-16}
 
 \begin{document}
 \maketitle
@@ -926,20 +926,31 @@ When scoring an alignment we can use different scoring models/substitution matri
 \hypertarget{how-do-we-speed-up-pairwise-alignment}{%
 \section{How do we speed up pairwise alignment ?}\label{how-do-we-speed-up-pairwise-alignment}}
 
-review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, we need heuristics.
+Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramming1992} when dealing with large sequences they become impractical due to time and space complexity. We need heuristics, review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, .
+
+\hypertarget{change-the-method}{%
+\subsection{Change the method}\label{change-the-method}}
 
 \begin{itemize}
 \item
   Bounded DP \autocite{spougeSpeedingDynamicProgramming1989a,fickettFastOptimalAlignment1984}, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. \ref{fig:optimMethods}
 \item
-  HMMs:
+  HMMs: \textbf{\emph{(I Need to find out if they actually are faster for pairwise, and how fast)}}
 
   \begin{itemize}
   \item
     PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW \autocite{durbinBiologicalSequenceAnalysis1998}.
   \item
-    Software: HHsearch \autocite{sodingProteinHomologyDetection2005}, HMMer \autocite{finnHMMERWebServer2011}, MCALIGN2 \autocite{wangMCALIGN2FasterAccurate2006},
+    Software: HHsearch \autocite{sodingProteinHomologyDetection2005}, HMMer \autocite{finnHMMERWebServer2011}, MCALIGN2 \autocite{wangMCALIGN2FasterAccurate2006} is used to efficiently search for alignments in large databases
   \end{itemize}
+\item
+  You can also align with Fast Fourier Transforms (FFT) as in MAFFT \autocite{katohMAFFTNovelMethod2002} by quickly computing correlations with FFT to find homologous regions and then using these to align.
+\end{itemize}
+
+\hypertarget{seed-and-extend-with-data-structures}{%
+\subsection{Seed and extend with data structures}\label{seed-and-extend-with-data-structures}}
+
+\begin{itemize}
 \item
   General idea:
 
@@ -951,7 +962,23 @@ review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, we need heuristics.
   \item
     In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. \ref{fig:optimMethods}
   \item
-    Many ways of finding seeds \autocite{sunChoosingBestHeuristic2006}
+    Many ways of finding seeds \autocite{sunChoosingBestHeuristic2006} and to index them \autocite{liSurveySequenceAlignment2010}
+  \item
+    2 use cases:
+
+    \begin{itemize}
+    \item
+      global alignment: align 2 large sequences that would overload computing resources.
+    \item
+      local alignment:
+
+      \begin{itemize}
+      \item
+        to a database: ie. find hits in many sequences.
+      \item
+        to a reference: ie find best hit in one sequence.
+      \end{itemize}
+    \end{itemize}
   \end{itemize}
 \end{itemize}
 
@@ -964,113 +991,187 @@ review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, we need heuristics.
 \end{figure}
 
 \begin{itemize}
+\tightlist
 \item
   Building indices/databases (useful when you want to try aligning a query sequence to a bunch of possible targets, i.e.~in order to search for homology, this does approximate local alignment):
+\end{itemize}
+
+\hypertarget{hash-tables}{%
+\subsubsection{Hash tables}\label{hash-tables}}
+
+\begin{itemize}
+\item
+  BLAST \autocite{altschulBasicLocalAlignment1990}
 
   \begin{itemize}
   \item
-    BLAST \autocite{altschulBasicLocalAlignment1990}
-
-    \begin{itemize}
-    \item
-      We break up our sequences into overlapping ``words'' i.e.~all possible short sub-sequences.
-    \item
-      Construct a database of words with positions in the reference sequence(s)
-    \item
-      Get list of words for your query sequence and generate possible ``hits'', i.e.~words that align with your query words with a score higher than a threshold.
-    \item
-      Scan the database for these generated words, if you find one it is a hit and these 2 words are a candidate position for a local alignment.
-    \item
-      extend the local alignment with SW in both directions from the hit to get a local alignment, stop extending if the alignment score gets too low.
-    \item
-      Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST \autocite{edgarSearchClusteringOrders2010}.
-    \item
-      It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal \autocite{shpaerSensitivitySelectivityProtein1996}, it is however much faster and can allow users to search for similarities among millions of sequences at once
-    \item
-      Particularly useful, one of the most cited papers in the world: quickly search for homologs of unknown sequences, \ldots{} available as a web service hosted by NCBI (\url{https://blast.ncbi.nlm.nih.gov/Blast.cgi}).
-    \end{itemize}
+    We break up our sequences into overlapping ``words'' i.e.~all possible short sub-sequences.
   \item
-    FASTA \autocite{pearsonImprovedToolsBiological1988}, derived from FASTP \autocite{lipmanRapidSensitiveProtein1985} which could not deal with gaps, preceded BLAST.
-
-    \begin{itemize}
-    \item
-      Similarly to BLAST, break query up into overlapping words
-    \item
-      Scan the library for exact-matching words to build up regions with high similarity (save 10 best regions)
-    \item
-      Score regions with a substitution matrix
-    \item
-      High scoring regions are combined to build an approximate alignment
-    \item
-      Highest scoring ungapped alignment is realigned with banded SW.
-    \end{itemize}
+    Construct a database of words with positions in the reference sequence(s)
   \item
-    Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences \autocite{saripellaBenchmarkingNextGeneration2016} in a database of over 80 million sequences \autocite{finnPfamProteinFamilies2016}, with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW \autocite{essoussiComparisonFourPairwise2007}.
+    Get list of words for your query sequence and generate possible ``hits'', i.e.~words that align with your query words with a score higher than a threshold.
   \item
-    Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) \autocite{karlinMethodsAssessingStatistical1990a,mottAlignmentStatisticalSignificance2005}
+    Scan the database for these generated words, if you find one it is a hit and these 2 words are a candidate position for a local alignment.
   \item
-    Diamond \autocite{buchfinkFastSensitiveProtein2015}
+    extend the local alignment with SW in both directions from the hit to get a local alignment, stop extending if the alignment score gets too low.
   \item
-    Specific data structures Particularly used when aligning NGS data \autocite{liSurveySequenceAlignment2010}:
-
-    \begin{itemize}
-    \item
-      Suffix Trees/suffix arrays:
-
-      \begin{itemize}
-      \item
-        Used in many pattern matching problems \autocite{gusfieldAlgorithmsStringsTrees1997}.
-      \item
-        Software: AVID uses suffix trees to find anchors \autocite{brayAVIDGlobalAlignment2003}, MUMmer finds largest identical subsequences between 2 sequences to anchor alignments using suffix trees \autocite{delcherFastAlgorithmsLargescale2002}
-      \end{itemize}
-    \item
-      FM index \autocite{ferraginaOpportunisticDataStructures2000}:
-
-      \begin{itemize}
-      \item
-        In some cases when using suffix trees take too much memory we can use an FM indiex which is based on the burrows wheeler transform \autocite{burrowsBlockSortingLosslessData1994}.
-      \item
-        used for in exact and approximate string matching \autocite{sungAlgorithmsBioinformaticsPractical2011}
-      \item
-        Software: BWT-SW uses an FM-index to speed up local alignment \autocite{lamCompressedIndexingLocal2008}, Bowtie 2 uses an FM index to find seeds \autocite{langmeadFastGappedreadAlignment2012}, BWA and BWA-SW use a similar idea \autocite{liFastAccurateShort2009,liFastAccurateLongread2010}, BWA-MEM \autocite{liAligningSequenceReads2013} and CUSHAW \autocite{liuLongReadAlignment2012} also uses FM indices to find exact matches to seed a local alignment .
-      \end{itemize}
-    \end{itemize}
+    Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST \autocite{edgarSearchClusteringOrders2010}.
+  \item
+    It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal \autocite{shpaerSensitivitySelectivityProtein1996}, it is however much faster and can allow users to search for similarities among millions of sequences at once
+  \item
+    Particularly useful, one of the most cited papers in the world: quickly search for homologs of unknown sequences, \ldots{} available as a web service hosted by NCBI (\url{https://blast.ncbi.nlm.nih.gov/Blast.cgi}).
   \end{itemize}
 \item
-  You can also find seeds with Fast Fourier Transforms (FFT) as in MAFFT \autocite{katohMAFFTNovelMethod2002} by quickly computing correlations with FFT to find homologous regions.
+  FASTA \autocite{pearsonImprovedToolsBiological1988}, derived from FASTP \autocite{lipmanRapidSensitiveProtein1985} which could not deal with gaps, preceded BLAST.
+
+  \begin{itemize}
+  \item
+    Similarly to BLAST, break query up into overlapping words
+  \item
+    Scan the library for exact-matching words to build up regions with high similarity (save 10 best regions)
+  \item
+    Score regions with a substitution matrix
+  \item
+    High scoring regions are combined to build an approximate alignment
+  \item
+    Highest scoring ungapped alignment is realigned with banded SW.
+  \end{itemize}
+\item
+  Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences \autocite{saripellaBenchmarkingNextGeneration2016} in a database of over 80 million sequences \autocite{finnPfamProteinFamilies2016}, with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW \autocite{essoussiComparisonFourPairwise2007}.
+\item
+  Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) \autocite{karlinMethodsAssessingStatistical1990a,mottAlignmentStatisticalSignificance2005}
+\item
+  Minimap2 \autocite{liMinimap2PairwiseAlignment2018} minimizer hash table
+\item
+  Diamond \autocite{buchfinkFastSensitiveProtein2015,buchfinkSensitiveProteinAlignments2021} which indexes both the reference and query at the same time.
 \end{itemize}
 
-\hypertarget{msa-short}{%
-\section{MSA (short)}\label{msa-short}}
+\hypertarget{suffix-trees-suffix-arrays}{%
+\subsubsection{Suffix trees / suffix arrays}\label{suffix-trees-suffix-arrays}}
 
-When we need to compare a lot of individuals together we can do MSA.
+\begin{itemize}
+\item
+  Used in many pattern matching problems \autocite{gusfieldAlgorithmsStringsTrees1997}.
+\item
+  Software: AVID uses suffix trees to find anchors \autocite{brayAVIDGlobalAlignment2003}, MUMmer finds largest identical subsequences between 2 sequences to anchor alignments using suffix trees \autocite{delcherFastAlgorithmsLargescale2002}
+\end{itemize}
 
-NP-hard problem so we need heuristics or tricks
+\hypertarget{fm-index}{%
+\subsubsection{FM Index}\label{fm-index}}
+
+\begin{itemize}
+\item
+  FM index \autocite{ferraginaOpportunisticDataStructures2000}:
+\item
+  In some cases when using suffix trees take too much memory we can use an FM index which is based on the burrows wheeler transform \autocite{burrowsBlockSortingLosslessData1994}.
+\item
+  used for in exact and approximate string matching \autocite{sungAlgorithmsBioinformaticsPractical2011}
+\item
+  Software: BWT-SW uses an FM-index to speed up local alignment \autocite{lamCompressedIndexingLocal2008}, Bowtie 2 uses an FM index to find seeds \autocite{langmeadFastGappedreadAlignment2012}, BWA and BWA-SW use a similar idea \autocite{liFastAccurateShort2009,liFastAccurateLongread2010}, BWA-MEM \autocite{liAligningSequenceReads2013} and CUSHAW \autocite{liuLongReadAlignment2012} also uses FM indices to find exact matches to seed a local alignment .
+\end{itemize}
+
+\hypertarget{multiple-sequence-alignment}{%
+\section{Multiple sequence alignment}\label{multiple-sequence-alignment}}
+
+When we need to compare a lot of individuals together we can do MSA, essential task in many bioinformatics analyses \autocite{russellMultipleSequenceAlignment2014}.
+
+NP-hard \autocite{wangComplexityMultipleSequence1994,justComputationalComplexityMultiple2001} problem if you do it with DP so we need heuristics or tricks
 
 Even if we align all sequences pairwise we need to then combine all gaps and stuff -\textgreater{} complicated.
 
-\hypertarget{progressive}{%
-\subsection{Progressive}\label{progressive}}
+\hypertarget{progressive-alignment}{%
+\subsection{Progressive alignment}\label{progressive-alignment}}
 
-guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. \autocite{fengProgressiveSequenceAlignment1987}
+guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. \autocite{fengProgressiveSequenceAlignment1987} Main MSA method.
 
-\hypertarget{hmms-profile-alignments-pairwise}{%
-\subsection{HMMs / profile alignments / pairwise}\label{hmms-profile-alignments-pairwise}}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Compute pairwise distance matrix for sequence set:
 
-Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. \emph{(point to appendix with covid align ?)}
+  \begin{itemize}
+  \item
+    either by doing N(N-1)/2 pairwise alignments
+  \item
+    Or alignment free methods to speed things up \autocite{jonesRapidGenerationMutation1992,blaisdellMeasureSimilaritySets1986}
+  \end{itemize}
+\item
+  Build guide tree from distances (neighbor joining, UPGMA, \ldots)
+\item
+  Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).
+\end{enumerate}
+
+\begin{figure}
+{
+  \centering
+  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
+}
+\extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
+\label{fig:progAlign}
+\end{figure}
+
+Problems -\textgreater{} keeps gaps and if bad alignment at first steps error propagates (``once a gap, always a gap'' \autocite{fengProgressiveSequenceAlignment1987}).
+
+In order to curtail this problem we have iterative refinement \autocite{russellMultipleSequenceAlignment2014}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  create MSA (e.g.~progressive)
+\item
+  divide MSA into 2 groups + remove columns with only gaps
+\item
+  realign with profile alignment
+\item
+  Redo 2+3 until no improvement is made, according to some scoring function (Weighted sum-of-pair \autocite{altschulWeightsDataRelated1989}, or others like log-odds, correlation \autocite{edgarComparisonScoringFunctions2004} or consistency \autocite{notredameCOFFEEObjectiveFunction1998})
+\end{enumerate}
+
+Some of the most used MSA software uses these methods of progressive/iterative refinement:
+
+\begin{itemize}
+\item
+  CLUSTAL-W \autocite{thompsonCLUSTALImprovingSensitivity1994} and CLUSTAL-X \autocite{thompsonCLUSTALWindowsInterface1997}
+\item
+  T-Coffee \autocite{notredameTcoffeeNovelMethod2000}
+\item
+  MUSCLE \autocite{edgarMUSCLEMultipleSequence2004a,edgarMUSCLEMultipleSequence2004}
+\item
+  MAFFT \autocite{katohMAFFTNovelMethod2002}
+\item
+  ProbCons \autocite{doProbConsProbabilisticConsistencybased2005}
+\end{itemize}
+
+Different strenghts/weaknesses so many reviews and benchmarks to make a choice \autocite{notredameRecentEvolutionsMultiple2007,notredameRecentProgressMultiple2002,edgarMultipleSequenceAlignment2006,paisAssessingEfficiencyMultiple2014,thompsonBAliBASEBenchmarkAlignment1999}
+
+\hypertarget{hmms-in-profile-profile-or-seq-profile-alignments}{%
+\subsection{HMMs in profile-profile or seq-profile alignments}\label{hmms-in-profile-profile-or-seq-profile-alignments}}
+
+HMM method similar performance to clustal-w \autocite{eddyMultipleAlignmentUsing}, HHMer \autocite{finnHMMERWebServer2011} and COVID-align COVID-align \autocite{lemoineCOVIDAlignAccurateOnline2020}
+
+Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign \autocite{aksamentovNextcladeCladeAssignment2021}
 
 \hypertarget{other-optimization-methods-short}{%
 \subsection{Other optimization methods (short)}\label{other-optimization-methods-short}}
 
 \begin{itemize}
 \item
-  Simulated annealing
+  Simulated annealing to speed up DP \autocite{kimMultipleSequenceAlignment1994,ishikawaMultipleSequenceAlignment1993}
 \item
-  Genetic algorithm
+  Genetic algorithm, review \autocite{chowdhuryReviewMultipleSequence2017}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    SAGA \autocite{notredameSAGASequenceAlignment1996}
+  \end{itemize}
+\item
+  recently: regressive method \autocite{garrigaLargeMultipleSequence2019} root to leaf allows to align a very large number of sequences: 1.4 million!
 \end{itemize}
 
-\hypertarget{the-case-of-mapping}{%
-\section{The case of Mapping}\label{the-case-of-mapping}}
+\hypertarget{the-specifities-of-read-mapping}{%
+\section{The specifities of read-mapping}\label{the-specifities-of-read-mapping}}
 
 Huge review of mapping in \autocite{alserTechnologyDictatesAlgorithms2021}
 
@@ -1123,10 +1224,21 @@ Huge review of mapping in \autocite{alserTechnologyDictatesAlgorithms2021}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
-\hypertarget{contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space}{%
-\chapter{Contribution 1: Improving local alignment by exploring a sequence transformation space}\label{contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space}}
+\hypertarget{contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space}{%
+\chapter{Contribution 1: Improving read alignment by exploring a sequence transformation space}\label{contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space}}
 
 \textbf{\emph{Intro to this chapter within the context of the thesis to go here!}}
+
+Recall that:
+
+\begin{itemize}
+\item
+  Homopolymers are a problem (c.f. \ref{homopolymers-and-long-reads})
+\item
+  Mapping is hard (c.f. \ref{the-specifities-of-read-mapping})
+\item
+  HPC has been used successfully used to improve mapping (c.f. \ref{hpc-trick})
+\end{itemize}
 
 This chapter was written as an article titled:\\
 \textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''}\\

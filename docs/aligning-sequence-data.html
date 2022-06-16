@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-06-15" />
+<meta name="date" content="2022-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="what-is-sequence-data.html"/>
-<link rel="next" href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"/>
+<link rel="next" href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -135,42 +135,46 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#substitution-models-scoring"><i class="fa fa-check"></i><b>2.1.3</b> Substitution models / scoring</a></li>
 <li class="chapter" data-level="2.1.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#dealing-with-gaps"><i class="fa fa-check"></i><b>2.1.4</b> Dealing with gaps</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-pairwise-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up pairwise alignment ?</a></li>
-<li class="chapter" data-level="2.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#msa-short"><i class="fa fa-check"></i><b>2.3</b> MSA (short)</a>
+<li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-pairwise-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up pairwise alignment ?</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#progressive"><i class="fa fa-check"></i><b>2.3.1</b> Progressive</a></li>
-<li class="chapter" data-level="2.3.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#hmms-profile-alignments-pairwise"><i class="fa fa-check"></i><b>2.3.2</b> HMMs / profile alignments / pairwise</a></li>
+<li class="chapter" data-level="2.2.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#change-the-method"><i class="fa fa-check"></i><b>2.2.1</b> Change the method</a></li>
+<li class="chapter" data-level="2.2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#seed-and-extend-with-data-structures"><i class="fa fa-check"></i><b>2.2.2</b> Seed and extend with data structures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#multiple-sequence-alignment"><i class="fa fa-check"></i><b>2.3</b> Multiple sequence alignment</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#progressive-alignment"><i class="fa fa-check"></i><b>2.3.1</b> Progressive alignment</a></li>
+<li class="chapter" data-level="2.3.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#hmms-in-profile-profile-or-seq-profile-alignments"><i class="fa fa-check"></i><b>2.3.2</b> HMMs in profile-profile or seq-profile alignments</a></li>
 <li class="chapter" data-level="2.3.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#other-optimization-methods-short"><i class="fa fa-check"></i><b>2.3.3</b> Other optimization methods (short)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#the-case-of-mapping"><i class="fa fa-check"></i><b>2.4</b> The case of Mapping</a></li>
+<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#the-specifities-of-read-mapping"><i class="fa fa-check"></i><b>2.4</b> The specifities of read-mapping</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><i class="fa fa-check"></i><b>3</b> Contribution 1: Improving local alignment by exploring a sequence transformation space</a>
+<li class="chapter" data-level="3" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><i class="fa fa-check"></i><b>3</b> Contribution 1: Improving read alignment by exploring a sequence transformation space</a>
 <ul>
-<li class="chapter" data-level="" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#hpc-abstract"><i class="fa fa-check"></i>Abstract</a></li>
-<li class="chapter" data-level="3.1" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#hpc-introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#hpc-methods"><i class="fa fa-check"></i><b>3.2</b> Methods</a>
+<li class="chapter" data-level="" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#hpc-abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="3.1" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#hpc-introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#hpc-methods"><i class="fa fa-check"></i><b>3.2</b> Methods</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#sec:msr-def"><i class="fa fa-check"></i><b>3.2.1</b> Streaming sequence reductions</a></li>
-<li class="chapter" data-level="3.2.2" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#sec:enum"><i class="fa fa-check"></i><b>3.2.2</b> Restricting the space of Streaming sequence reductions</a></li>
+<li class="chapter" data-level="3.2.1" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#sec:msr-def"><i class="fa fa-check"></i><b>3.2.1</b> Streaming sequence reductions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#sec:enum"><i class="fa fa-check"></i><b>3.2.2</b> Restricting the space of Streaming sequence reductions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#datasets-and-pipelines"><i class="fa fa-check"></i><b>3.3</b> Datasets and Pipelines</a>
+<li class="chapter" data-level="3.3" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#datasets-and-pipelines"><i class="fa fa-check"></i><b>3.3</b> Datasets and Pipelines</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#datasets"><i class="fa fa-check"></i><b>3.3.1</b> Datasets</a></li>
-<li class="chapter" data-level="3.3.2" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#simulation-pipeline"><i class="fa fa-check"></i><b>3.3.2</b> Simulation pipeline</a></li>
-<li class="chapter" data-level="3.3.3" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#sec:evalpipeline"><i class="fa fa-check"></i><b>3.3.3</b> Evaluation pipeline</a></li>
+<li class="chapter" data-level="3.3.1" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#datasets"><i class="fa fa-check"></i><b>3.3.1</b> Datasets</a></li>
+<li class="chapter" data-level="3.3.2" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#simulation-pipeline"><i class="fa fa-check"></i><b>3.3.2</b> Simulation pipeline</a></li>
+<li class="chapter" data-level="3.3.3" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#sec:evalpipeline"><i class="fa fa-check"></i><b>3.3.3</b> Evaluation pipeline</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#hpc-results"><i class="fa fa-check"></i><b>3.4</b> Results</a>
+<li class="chapter" data-level="3.4" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#hpc-results"><i class="fa fa-check"></i><b>3.4</b> Results</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#selection-of-mapping-friendly-sequence-reductions"><i class="fa fa-check"></i><b>3.4.1</b> Selection of mapping-friendly sequence reductions</a></li>
-<li class="chapter" data-level="3.4.2" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes"><i class="fa fa-check"></i><b>3.4.2</b> Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes</a></li>
-<li class="chapter" data-level="3.4.3" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome"><i class="fa fa-check"></i><b>3.4.3</b> Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome</a></li>
-<li class="chapter" data-level="3.4.4" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#raw-mapping-improves-upon-hpc-on-centromeric-regions"><i class="fa fa-check"></i><b>3.4.4</b> Raw mapping improves upon HPC on centromeric regions</a></li>
-<li class="chapter" data-level="3.4.5" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#positions-of-incorrectly-mapped-reads-across-the-entire-human-genome"><i class="fa fa-check"></i><b>3.4.5</b> Positions of incorrectly mapped reads across the entire human genome</a></li>
+<li class="chapter" data-level="3.4.1" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#selection-of-mapping-friendly-sequence-reductions"><i class="fa fa-check"></i><b>3.4.1</b> Selection of mapping-friendly sequence reductions</a></li>
+<li class="chapter" data-level="3.4.2" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes"><i class="fa fa-check"></i><b>3.4.2</b> Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes</a></li>
+<li class="chapter" data-level="3.4.3" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome"><i class="fa fa-check"></i><b>3.4.3</b> Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome</a></li>
+<li class="chapter" data-level="3.4.4" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#raw-mapping-improves-upon-hpc-on-centromeric-regions"><i class="fa fa-check"></i><b>3.4.4</b> Raw mapping improves upon HPC on centromeric regions</a></li>
+<li class="chapter" data-level="3.4.5" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#positions-of-incorrectly-mapped-reads-across-the-entire-human-genome"><i class="fa fa-check"></i><b>3.4.5</b> Positions of incorrectly mapped reads across the entire human genome</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#hpc-discussion"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
-<li class="chapter" data-level="3.6" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#limitations-of-this-study"><i class="fa fa-check"></i><b>3.6</b> Limitations of this study</a></li>
-<li class="chapter" data-level="3.7" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#code-availability"><i class="fa fa-check"></i><b>3.7</b> Code availability</a></li>
-<li class="chapter" data-level="" data-path="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html#supplementary-information"><i class="fa fa-check"></i>Supplementary information</a></li>
+<li class="chapter" data-level="3.5" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#hpc-discussion"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#limitations-of-this-study"><i class="fa fa-check"></i><b>3.6</b> Limitations of this study</a></li>
+<li class="chapter" data-level="3.7" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#code-availability"><i class="fa fa-check"></i><b>3.7</b> Code availability</a></li>
+<li class="chapter" data-level="" data-path="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html"><a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html#supplementary-information"><i class="fa fa-check"></i>Supplementary information</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html"><i class="fa fa-check"></i><b>4</b> Learning from alignments</a>
 <ul>
@@ -410,20 +414,37 @@ div.csl-indent {
 </div>
 <div id="how-do-we-speed-up-pairwise-alignment" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> How do we speed up pairwise alignment ?<a href="aligning-sequence-data.html#how-do-we-speed-up-pairwise-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>review<span class="citation"><sup><a href="#ref-chaoDevelopmentsAlgorithmsSequence2022" role="doc-biblioref">153</a></sup></span>, we need heuristics.</p>
+<p>Although NW and SW give us optimal alignments<span class="citation"><sup><a href="#ref-pearson27DynamicProgramming1992" role="doc-biblioref">153</a></sup></span> when dealing with large sequences they become impractical due to time and space complexity. We need heuristics, review<span class="citation"><sup><a href="#ref-chaoDevelopmentsAlgorithmsSequence2022" role="doc-biblioref">154</a></sup></span>, .</p>
+<div id="change-the-method" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Change the method<a href="aligning-sequence-data.html#change-the-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p>Bounded DP<span class="citation"><sup><a href="#ref-spougeSpeedingDynamicProgramming1989a" role="doc-biblioref">154</a>,<a href="#ref-fickettFastOptimalAlignment1984" role="doc-biblioref">155</a></sup></span>, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. <a href="aligning-sequence-data.html#fig:optimMethods">2.1</a></p></li>
-<li><p>HMMs:</p>
+<li><p>Bounded DP<span class="citation"><sup><a href="#ref-spougeSpeedingDynamicProgramming1989a" role="doc-biblioref">155</a>,<a href="#ref-fickettFastOptimalAlignment1984" role="doc-biblioref">156</a></sup></span>, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. <a href="aligning-sequence-data.html#fig:optimMethods">2.1</a></p></li>
+<li><p>HMMs: <strong><em>(I Need to find out if they actually are faster for pairwise, and how fast)</em></strong></p>
 <ul>
-<li><p>PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW<span class="citation"><sup><a href="#ref-durbinBiologicalSequenceAnalysis1998" role="doc-biblioref">156</a></sup></span>.</p></li>
-<li><p>Software: HHsearch<span class="citation"><sup><a href="#ref-sodingProteinHomologyDetection2005" role="doc-biblioref">157</a></sup></span>, HMMer<span class="citation"><sup><a href="#ref-finnHMMERWebServer2011" role="doc-biblioref">158</a></sup></span>, MCALIGN2<span class="citation"><sup><a href="#ref-wangMCALIGN2FasterAccurate2006" role="doc-biblioref">159</a></sup></span>,</p></li>
+<li><p>PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW<span class="citation"><sup><a href="#ref-durbinBiologicalSequenceAnalysis1998" role="doc-biblioref">157</a></sup></span>.</p></li>
+<li><p>Software: HHsearch<span class="citation"><sup><a href="#ref-sodingProteinHomologyDetection2005" role="doc-biblioref">158</a></sup></span>, HMMer<span class="citation"><sup><a href="#ref-finnHMMERWebServer2011" role="doc-biblioref">159</a></sup></span>, MCALIGN2<span class="citation"><sup><a href="#ref-wangMCALIGN2FasterAccurate2006" role="doc-biblioref">160</a></sup></span> is used to efficiently search for alignments in large databases</p></li>
 </ul></li>
+<li><p>You can also align with Fast Fourier Transforms (FFT) as in MAFFT<span class="citation"><sup><a href="#ref-katohMAFFTNovelMethod2002" role="doc-biblioref">161</a></sup></span> by quickly computing correlations with FFT to find homologous regions and then using these to align.</p></li>
+</ul>
+</div>
+<div id="seed-and-extend-with-data-structures" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Seed and extend with data structures<a href="aligning-sequence-data.html#seed-and-extend-with-data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
 <li><p>General idea:</p>
 <ul>
 <li><p>Seed + extend for local alignment</p></li>
 <li><p>Find anchors for global alignment</p></li>
 <li><p>In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. <a href="aligning-sequence-data.html#fig:optimMethods">2.1</a></p></li>
-<li><p>Many ways of finding seeds<span class="citation"><sup><a href="#ref-sunChoosingBestHeuristic2006" role="doc-biblioref">160</a></sup></span></p></li>
+<li><p>Many ways of finding seeds<span class="citation"><sup><a href="#ref-sunChoosingBestHeuristic2006" role="doc-biblioref">162</a></sup></span> and to index them<span class="citation"><sup><a href="#ref-liSurveySequenceAlignment2010" role="doc-biblioref">163</a></sup></span></p></li>
+<li><p>2 use cases:</p>
+<ul>
+<li><p>global alignment: align 2 large sequences that would overload computing resources.</p></li>
+<li><p>local alignment:</p>
+<ul>
+<li><p>to a database: ie. find hits in many sequences.</p></li>
+<li><p>to a reference: ie find best hit in one sequence.</p></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:optimMethods"></span>
@@ -431,24 +452,27 @@ div.csl-indent {
 divide and conquer and bounded dynamic programming. Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**" width="80%" />
 <p class="caption">
 Figure 2.1: <strong>2 heuristic methods to speed up alignment:</strong>
-divide and conquer and bounded dynamic programming. Adapted from<span class="citation"><sup><a href="#ref-chaoDevelopmentsAlgorithmsSequence2022" role="doc-biblioref">153</a></sup></span> <strong>(Original figure here as a placeholder, I will adapt it)</strong>
+divide and conquer and bounded dynamic programming. Adapted from<span class="citation"><sup><a href="#ref-chaoDevelopmentsAlgorithmsSequence2022" role="doc-biblioref">154</a></sup></span> <strong>(Original figure here as a placeholder, I will adapt it)</strong>
 </p>
 </div>
 <ul>
-<li><p>Building indices/databases (useful when you want to try aligning a query sequence to a bunch of possible targets, i.e. in order to search for homology, this does approximate local alignment):</p>
+<li>Building indices/databases (useful when you want to try aligning a query sequence to a bunch of possible targets, i.e. in order to search for homology, this does approximate local alignment):</li>
+</ul>
+<div id="hash-tables" class="section level4 hasAnchor" number="2.2.2.1">
+<h4><span class="header-section-number">2.2.2.1</span> Hash tables<a href="aligning-sequence-data.html#hash-tables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li><p>BLAST<span class="citation"><sup><a href="#ref-altschulBasicLocalAlignment1990" role="doc-biblioref">161</a></sup></span></p>
+<li><p>BLAST<span class="citation"><sup><a href="#ref-altschulBasicLocalAlignment1990" role="doc-biblioref">164</a></sup></span></p>
 <ul>
 <li><p>We break up our sequences into overlapping “words” i.e. all possible short sub-sequences.</p></li>
 <li><p>Construct a database of words with positions in the reference sequence(s)</p></li>
 <li><p>Get list of words for your query sequence and generate possible “hits”, i.e. words that align with your query words with a score higher than a threshold.</p></li>
 <li><p>Scan the database for these generated words, if you find one it is a hit and these 2 words are a candidate position for a local alignment.</p></li>
 <li><p>extend the local alignment with SW in both directions from the hit to get a local alignment, stop extending if the alignment score gets too low.</p></li>
-<li><p>Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST<span class="citation"><sup><a href="#ref-edgarSearchClusteringOrders2010" role="doc-biblioref">162</a></sup></span>.</p></li>
-<li><p>It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal<span class="citation"><sup><a href="#ref-shpaerSensitivitySelectivityProtein1996" role="doc-biblioref">163</a></sup></span>, it is however much faster and can allow users to search for similarities among millions of sequences at once</p></li>
+<li><p>Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST<span class="citation"><sup><a href="#ref-edgarSearchClusteringOrders2010" role="doc-biblioref">165</a></sup></span>.</p></li>
+<li><p>It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal<span class="citation"><sup><a href="#ref-shpaerSensitivitySelectivityProtein1996" role="doc-biblioref">166</a></sup></span>, it is however much faster and can allow users to search for similarities among millions of sequences at once</p></li>
 <li><p>Particularly useful, one of the most cited papers in the world: quickly search for homologs of unknown sequences, … available as a web service hosted by NCBI (<a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi" class="uri">https://blast.ncbi.nlm.nih.gov/Blast.cgi</a>).</p></li>
 </ul></li>
-<li><p>FASTA<span class="citation"><sup><a href="#ref-pearsonImprovedToolsBiological1988" role="doc-biblioref">164</a></sup></span>, derived from FASTP<span class="citation"><sup><a href="#ref-lipmanRapidSensitiveProtein1985" role="doc-biblioref">165</a></sup></span> which could not deal with gaps, preceded BLAST.</p>
+<li><p>FASTA<span class="citation"><sup><a href="#ref-pearsonImprovedToolsBiological1988" role="doc-biblioref">167</a></sup></span>, derived from FASTP<span class="citation"><sup><a href="#ref-lipmanRapidSensitiveProtein1985" role="doc-biblioref">168</a></sup></span> which could not deal with gaps, preceded BLAST.</p>
 <ul>
 <li><p>Similarly to BLAST, break query up into overlapping words</p></li>
 <li><p>Scan the library for exact-matching words to build up regions with high similarity (save 10 best regions)</p></li>
@@ -456,75 +480,117 @@ divide and conquer and bounded dynamic programming. Adapted from<span class="cit
 <li><p>High scoring regions are combined to build an approximate alignment</p></li>
 <li><p>Highest scoring ungapped alignment is realigned with banded SW.</p></li>
 </ul></li>
-<li><p>Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences<span class="citation"><sup><a href="#ref-saripellaBenchmarkingNextGeneration2016" role="doc-biblioref">166</a></sup></span> in a database of over 80 million sequences<span class="citation"><sup><a href="#ref-finnPfamProteinFamilies2016" role="doc-biblioref">167</a></sup></span>, with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW<span class="citation"><sup><a href="#ref-essoussiComparisonFourPairwise2007" role="doc-biblioref">168</a></sup></span>.</p></li>
-<li><p>Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value)<span class="citation"><sup><a href="#ref-karlinMethodsAssessingStatistical1990a" role="doc-biblioref">169</a>,<a href="#ref-mottAlignmentStatisticalSignificance2005" role="doc-biblioref">170</a></sup></span></p></li>
-<li><p>Diamond<span class="citation"><sup><a href="#ref-buchfinkFastSensitiveProtein2015" role="doc-biblioref">171</a></sup></span></p></li>
-<li><p>Specific data structures Particularly used when aligning NGS data<span class="citation"><sup><a href="#ref-liSurveySequenceAlignment2010" role="doc-biblioref">172</a></sup></span>:</p>
-<ul>
-<li><p>Suffix Trees/suffix arrays:</p>
-<ul>
-<li><p>Used in many pattern matching problems<span class="citation"><sup><a href="#ref-gusfieldAlgorithmsStringsTrees1997" role="doc-biblioref">102</a></sup></span>.</p></li>
-<li><p>Software: AVID uses suffix trees to find anchors<span class="citation"><sup><a href="#ref-brayAVIDGlobalAlignment2003" role="doc-biblioref">173</a></sup></span>, MUMmer finds largest identical subsequences between 2 sequences to anchor alignments using suffix trees<span class="citation"><sup><a href="#ref-delcherFastAlgorithmsLargescale2002" role="doc-biblioref">174</a></sup></span></p></li>
-</ul></li>
-<li><p>FM index<span class="citation"><sup><a href="#ref-ferraginaOpportunisticDataStructures2000" role="doc-biblioref">175</a></sup></span>:</p>
-<ul>
-<li><p>In some cases when using suffix trees take too much memory we can use an FM indiex which is based on the burrows wheeler transform<span class="citation"><sup><a href="#ref-burrowsBlockSortingLosslessData1994" role="doc-biblioref">176</a></sup></span>.</p></li>
-<li><p>used for in exact and approximate string matching<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">100</a></sup></span></p></li>
-<li><p>Software: BWT-SW uses an FM-index to speed up local alignment<span class="citation"><sup><a href="#ref-lamCompressedIndexingLocal2008" role="doc-biblioref">177</a></sup></span>, Bowtie 2 uses an FM index to find seeds<span class="citation"><sup><a href="#ref-langmeadFastGappedreadAlignment2012" role="doc-biblioref">178</a></sup></span>, BWA and BWA-SW use a similar idea<span class="citation"><sup><a href="#ref-liFastAccurateShort2009" role="doc-biblioref">179</a>,<a href="#ref-liFastAccurateLongread2010" role="doc-biblioref">180</a></sup></span>, BWA-MEM<span class="citation"><sup><a href="#ref-liAligningSequenceReads2013" role="doc-biblioref">181</a></sup></span> and CUSHAW<span class="citation"><sup><a href="#ref-liuLongReadAlignment2012" role="doc-biblioref">182</a></sup></span> also uses FM indices to find exact matches to seed a local alignment .</p></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>You can also find seeds with Fast Fourier Transforms (FFT) as in MAFFT<span class="citation"><sup><a href="#ref-katohMAFFTNovelMethod2002" role="doc-biblioref">183</a></sup></span> by quickly computing correlations with FFT to find homologous regions.</p></li>
+<li><p>Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences<span class="citation"><sup><a href="#ref-saripellaBenchmarkingNextGeneration2016" role="doc-biblioref">169</a></sup></span> in a database of over 80 million sequences<span class="citation"><sup><a href="#ref-finnPfamProteinFamilies2016" role="doc-biblioref">170</a></sup></span>, with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW<span class="citation"><sup><a href="#ref-essoussiComparisonFourPairwise2007" role="doc-biblioref">171</a></sup></span>.</p></li>
+<li><p>Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value)<span class="citation"><sup><a href="#ref-karlinMethodsAssessingStatistical1990a" role="doc-biblioref">172</a>,<a href="#ref-mottAlignmentStatisticalSignificance2005" role="doc-biblioref">173</a></sup></span></p></li>
+<li><p>Minimap2<span class="citation"><sup><a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">95</a></sup></span> minimizer hash table</p></li>
+<li><p>Diamond<span class="citation"><sup><a href="#ref-buchfinkFastSensitiveProtein2015" role="doc-biblioref">174</a>,<a href="#ref-buchfinkSensitiveProteinAlignments2021" role="doc-biblioref">175</a></sup></span> which indexes both the reference and query at the same time.</p></li>
 </ul>
 </div>
-<div id="msa-short" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> MSA (short)<a href="aligning-sequence-data.html#msa-short" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>When we need to compare a lot of individuals together we can do MSA.</p>
-<p>NP-hard problem so we need heuristics or tricks</p>
-<p>Even if we align all sequences pairwise we need to then combine all gaps and stuff -&gt; complicated.</p>
-<div id="progressive" class="section level3 hasAnchor" number="2.3.1">
-<h3><span class="header-section-number">2.3.1</span> Progressive<a href="aligning-sequence-data.html#progressive" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder.<span class="citation"><sup><a href="#ref-fengProgressiveSequenceAlignment1987" role="doc-biblioref">184</a></sup></span></p>
+<div id="suffix-trees-suffix-arrays" class="section level4 hasAnchor" number="2.2.2.2">
+<h4><span class="header-section-number">2.2.2.2</span> Suffix trees / suffix arrays<a href="aligning-sequence-data.html#suffix-trees-suffix-arrays" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>Used in many pattern matching problems<span class="citation"><sup><a href="#ref-gusfieldAlgorithmsStringsTrees1997" role="doc-biblioref">102</a></sup></span>.</p></li>
+<li><p>Software: AVID uses suffix trees to find anchors<span class="citation"><sup><a href="#ref-brayAVIDGlobalAlignment2003" role="doc-biblioref">176</a></sup></span>, MUMmer finds largest identical subsequences between 2 sequences to anchor alignments using suffix trees<span class="citation"><sup><a href="#ref-delcherFastAlgorithmsLargescale2002" role="doc-biblioref">177</a></sup></span></p></li>
+</ul>
 </div>
-<div id="hmms-profile-alignments-pairwise" class="section level3 hasAnchor" number="2.3.2">
-<h3><span class="header-section-number">2.3.2</span> HMMs / profile alignments / pairwise<a href="aligning-sequence-data.html#hmms-profile-alignments-pairwise" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Example of COVID where homology is high so we can get away with using HMMS / pairwise to root sequence. <em>(point to appendix with covid align ?)</em></p>
+<div id="fm-index" class="section level4 hasAnchor" number="2.2.2.3">
+<h4><span class="header-section-number">2.2.2.3</span> FM Index<a href="aligning-sequence-data.html#fm-index" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><p>FM index<span class="citation"><sup><a href="#ref-ferraginaOpportunisticDataStructures2000" role="doc-biblioref">178</a></sup></span>:</p></li>
+<li><p>In some cases when using suffix trees take too much memory we can use an FM index which is based on the burrows wheeler transform<span class="citation"><sup><a href="#ref-burrowsBlockSortingLosslessData1994" role="doc-biblioref">179</a></sup></span>.</p></li>
+<li><p>used for in exact and approximate string matching<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">100</a></sup></span></p></li>
+<li><p>Software: BWT-SW uses an FM-index to speed up local alignment<span class="citation"><sup><a href="#ref-lamCompressedIndexingLocal2008" role="doc-biblioref">180</a></sup></span>, Bowtie 2 uses an FM index to find seeds<span class="citation"><sup><a href="#ref-langmeadFastGappedreadAlignment2012" role="doc-biblioref">181</a></sup></span>, BWA and BWA-SW use a similar idea<span class="citation"><sup><a href="#ref-liFastAccurateShort2009" role="doc-biblioref">182</a>,<a href="#ref-liFastAccurateLongread2010" role="doc-biblioref">183</a></sup></span>, BWA-MEM<span class="citation"><sup><a href="#ref-liAligningSequenceReads2013" role="doc-biblioref">184</a></sup></span> and CUSHAW<span class="citation"><sup><a href="#ref-liuLongReadAlignment2012" role="doc-biblioref">185</a></sup></span> also uses FM indices to find exact matches to seed a local alignment .</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="multiple-sequence-alignment" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Multiple sequence alignment<a href="aligning-sequence-data.html#multiple-sequence-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we need to compare a lot of individuals together we can do MSA, essential task in many bioinformatics analyses<span class="citation"><sup><a href="#ref-russellMultipleSequenceAlignment2014" role="doc-biblioref">186</a></sup></span>.</p>
+<p>NP-hard<span class="citation"><sup><a href="#ref-wangComplexityMultipleSequence1994" role="doc-biblioref">187</a>,<a href="#ref-justComputationalComplexityMultiple2001" role="doc-biblioref">188</a></sup></span> problem if you do it with DP so we need heuristics or tricks</p>
+<p>Even if we align all sequences pairwise we need to then combine all gaps and stuff -&gt; complicated.</p>
+<div id="progressive-alignment" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Progressive alignment<a href="aligning-sequence-data.html#progressive-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder.<span class="citation"><sup><a href="#ref-fengProgressiveSequenceAlignment1987" role="doc-biblioref">189</a></sup></span> Main MSA method.</p>
+<ol style="list-style-type: decimal">
+<li>Compute pairwise distance matrix for sequence set:
+<ul>
+<li><p>either by doing N(N-1)/2 pairwise alignments</p></li>
+<li><p>Or alignment free methods to speed things up<span class="citation"><sup><a href="#ref-jonesRapidGenerationMutation1992" role="doc-biblioref">190</a>,<a href="#ref-blaisdellMeasureSimilaritySets1986" role="doc-biblioref">191</a></sup></span></p></li>
+</ul></li>
+<li>Build guide tree from distances (neighbor joining, UPGMA, …)</li>
+<li>Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).</li>
+</ol>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:progAlign"></span>
+<img src="figures/Align-Intro/progressive-aln.png" alt="*Overview of the progressive alignment process.*
+A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]" width="70%" />
+<p class="caption">
+Figure 2.2: <em>Overview of the progressive alignment process.</em>
+A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">100</a></sup></span>
+</p>
+</div>
+<p>Problems -&gt; keeps gaps and if bad alignment at first steps error propagates (“once a gap, always a gap”<span class="citation"><sup><a href="#ref-fengProgressiveSequenceAlignment1987" role="doc-biblioref">189</a></sup></span>).</p>
+<p>In order to curtail this problem we have iterative refinement<span class="citation"><sup><a href="#ref-russellMultipleSequenceAlignment2014" role="doc-biblioref">186</a></sup></span>:</p>
+<ol style="list-style-type: decimal">
+<li>create MSA (e.g. progressive)</li>
+<li>divide MSA into 2 groups + remove columns with only gaps</li>
+<li>realign with profile alignment</li>
+<li>Redo 2+3 until no improvement is made, according to some scoring function (Weighted sum-of-pair<span class="citation"><sup><a href="#ref-altschulWeightsDataRelated1989" role="doc-biblioref">192</a></sup></span>, or others like log-odds, correlation<span class="citation"><sup><a href="#ref-edgarComparisonScoringFunctions2004" role="doc-biblioref">193</a></sup></span> or consistency<span class="citation"><sup><a href="#ref-notredameCOFFEEObjectiveFunction1998" role="doc-biblioref">194</a></sup></span>)</li>
+</ol>
+<p>Some of the most used MSA software uses these methods of progressive/iterative refinement:</p>
+<ul>
+<li><p>CLUSTAL-W<span class="citation"><sup><a href="#ref-thompsonCLUSTALImprovingSensitivity1994" role="doc-biblioref">195</a></sup></span> and CLUSTAL-X<span class="citation"><sup><a href="#ref-thompsonCLUSTALWindowsInterface1997" role="doc-biblioref">196</a></sup></span></p></li>
+<li><p>T-Coffee<span class="citation"><sup><a href="#ref-notredameTcoffeeNovelMethod2000" role="doc-biblioref">197</a></sup></span></p></li>
+<li><p>MUSCLE<span class="citation"><sup><a href="#ref-edgarMUSCLEMultipleSequence2004a" role="doc-biblioref">198</a>,<a href="#ref-edgarMUSCLEMultipleSequence2004" role="doc-biblioref">199</a></sup></span></p></li>
+<li><p>MAFFT<span class="citation"><sup><a href="#ref-katohMAFFTNovelMethod2002" role="doc-biblioref">161</a></sup></span></p></li>
+<li><p>ProbCons<span class="citation"><sup><a href="#ref-doProbConsProbabilisticConsistencybased2005" role="doc-biblioref">200</a></sup></span></p></li>
+</ul>
+<p>Different strenghts/weaknesses so many reviews and benchmarks to make a choice<span class="citation"><sup><a href="#ref-notredameRecentEvolutionsMultiple2007" role="doc-biblioref">201</a>–<a href="#ref-thompsonBAliBASEBenchmarkAlignment1999" role="doc-biblioref">205</a></sup></span></p>
+</div>
+<div id="hmms-in-profile-profile-or-seq-profile-alignments" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> HMMs in profile-profile or seq-profile alignments<a href="aligning-sequence-data.html#hmms-in-profile-profile-or-seq-profile-alignments" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>HMM method similar performance to clustal-w<span class="citation"><sup><a href="#ref-eddyMultipleAlignmentUsing" role="doc-biblioref">206</a></sup></span>, HHMer<span class="citation"><sup><a href="#ref-finnHMMERWebServer2011" role="doc-biblioref">159</a></sup></span> and COVID-align COVID-align<span class="citation"><sup><a href="#ref-lemoineCOVIDAlignAccurateOnline2020" role="doc-biblioref">207</a></sup></span></p>
+<p>Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign<span class="citation"><sup><a href="#ref-aksamentovNextcladeCladeAssignment2021" role="doc-biblioref">208</a></sup></span></p>
 </div>
 <div id="other-optimization-methods-short" class="section level3 hasAnchor" number="2.3.3">
 <h3><span class="header-section-number">2.3.3</span> Other optimization methods (short)<a href="aligning-sequence-data.html#other-optimization-methods-short" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p>Simulated annealing</p></li>
-<li><p>Genetic algorithm</p></li>
+<li><p>Simulated annealing to speed up DP<span class="citation"><sup><a href="#ref-kimMultipleSequenceAlignment1994" role="doc-biblioref">209</a>,<a href="#ref-ishikawaMultipleSequenceAlignment1993" role="doc-biblioref">210</a></sup></span></p></li>
+<li><p>Genetic algorithm, review<span class="citation"><sup><a href="#ref-chowdhuryReviewMultipleSequence2017" role="doc-biblioref">211</a></sup></span></p>
+<ul>
+<li>SAGA<span class="citation"><sup><a href="#ref-notredameSAGASequenceAlignment1996" role="doc-biblioref">212</a></sup></span></li>
+</ul></li>
+<li><p>recently: regressive method<span class="citation"><sup><a href="#ref-garrigaLargeMultipleSequence2019" role="doc-biblioref">213</a></sup></span> root to leaf allows to align a very large number of sequences: 1.4 million!</p></li>
 </ul>
 </div>
 </div>
-<div id="the-case-of-mapping" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> The case of Mapping<a href="aligning-sequence-data.html#the-case-of-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Huge review of mapping in<span class="citation"><sup><a href="#ref-alserTechnologyDictatesAlgorithms2021" role="doc-biblioref">185</a></sup></span></p>
+<div id="the-specifities-of-read-mapping" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> The specifities of read-mapping<a href="aligning-sequence-data.html#the-specifities-of-read-mapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Huge review of mapping in<span class="citation"><sup><a href="#ref-alserTechnologyDictatesAlgorithms2021" role="doc-biblioref">214</a></sup></span></p>
 <ul>
 <li>Mapping is effectively the task of finding a bunch of independent local alignments between query sequences and a target reference sequence.</li>
 <li>context of short read (query) on large reference sequence (even with long reads they are usually much smaller than the reference genome)</li>
 <li>Problems:
 <ul>
-<li><p>Repetitive regions (centromeres, telomeres) make it hard<span class="citation"><sup><a href="#ref-alserTechnologyDictatesAlgorithms2021" role="doc-biblioref">185</a></sup></span></p></li>
+<li><p>Repetitive regions (centromeres, telomeres) make it hard<span class="citation"><sup><a href="#ref-alserTechnologyDictatesAlgorithms2021" role="doc-biblioref">214</a></sup></span></p></li>
 <li><p>low homology / sequencing errors… make mapping and other tasks hard<span class="citation"><sup><a href="#ref-gusfieldAlgorithmsStringsTrees1997" role="doc-biblioref">102</a></sup></span></p></li>
 </ul></li>
 <li>short-reads mapping
 <ul>
-<li><p>benchmarks/review<span class="citation"><sup><a href="#ref-schbathMappingReadsGenomic2012" role="doc-biblioref">186</a>,<a href="#ref-hatemBenchmarkingShortSequence2013" role="doc-biblioref">187</a></sup></span></p></li>
-<li><p>Algorithms in short read mapping<span class="citation"><sup><a href="#ref-canzarShortReadMapping2017" role="doc-biblioref">188</a></sup></span> (basically same thing as speeding up section)</p></li>
-<li><p>Hardware accelerated<span class="citation"><sup><a href="#ref-olsonHardwareAccelerationShort2012" role="doc-biblioref">189</a></sup></span></p></li>
+<li><p>benchmarks/review<span class="citation"><sup><a href="#ref-schbathMappingReadsGenomic2012" role="doc-biblioref">215</a>,<a href="#ref-hatemBenchmarkingShortSequence2013" role="doc-biblioref">216</a></sup></span></p></li>
+<li><p>Algorithms in short read mapping<span class="citation"><sup><a href="#ref-canzarShortReadMapping2017" role="doc-biblioref">217</a></sup></span> (basically same thing as speeding up section)</p></li>
+<li><p>Hardware accelerated<span class="citation"><sup><a href="#ref-olsonHardwareAccelerationShort2012" role="doc-biblioref">218</a></sup></span></p></li>
 </ul></li>
 <li>Long read mapping:
 <ul>
-<li>software: winnowmap<span class="citation"><sup><a href="#ref-jainWeightedMinimizerSampling2020" role="doc-biblioref">190</a></sup></span>, winnowmap2<span class="citation"><sup><a href="#ref-jainLongreadMappingRepetitive2022" role="doc-biblioref">191</a></sup></span> and tandemtools<span class="citation"><sup><a href="#ref-mikheenkoTandemToolsMappingLong2020" role="doc-biblioref">192</a></sup></span> for repetitive regions.</li>
+<li>software: winnowmap<span class="citation"><sup><a href="#ref-jainWeightedMinimizerSampling2020" role="doc-biblioref">219</a></sup></span>, winnowmap2<span class="citation"><sup><a href="#ref-jainLongreadMappingRepetitive2022" role="doc-biblioref">220</a></sup></span> and tandemtools<span class="citation"><sup><a href="#ref-mikheenkoTandemToolsMappingLong2020" role="doc-biblioref">221</a></sup></span> for repetitive regions.</li>
 </ul></li>
 <li>Mapping quality:
 <ul>
 <li><p>Intro and definition, quite a loosely defined term.</p></li>
-<li><p>Mapping quality from tandem simulation<span class="citation"><sup><a href="#ref-langmeadTandemSimulationFramework2017" role="doc-biblioref">193</a></sup></span></p></li>
+<li><p>Mapping quality from tandem simulation<span class="citation"><sup><a href="#ref-langmeadTandemSimulationFramework2017" role="doc-biblioref">222</a></sup></span></p></li>
 </ul></li>
-<li>Benchmarking is of interest of field<span class="citation"><sup><a href="#ref-brindaRNFGeneralFramework2016" role="doc-biblioref">194</a></sup></span></li>
+<li>Benchmarking is of interest of field<span class="citation"><sup><a href="#ref-brindaRNFGeneralFramework2016" role="doc-biblioref">223</a></sup></span></li>
 </ul>
 
 </div>
@@ -536,6 +602,9 @@ divide and conquer and bounded dynamic programming. Adapted from<span class="cit
 </div>
 <div id="ref-korenHybridErrorCorrection2012" class="csl-entry">
 <div class="csl-left-margin">62. </div><div class="csl-right-inline">Koren, S. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.2280">Hybrid error correction and de novo assembly of single-molecule sequencing reads</a>. <em>Nature Biotechnology</em> <strong>30</strong>, 693–700 (2012).</div>
+</div>
+<div id="ref-liMinimap2PairwiseAlignment2018" class="csl-entry">
+<div class="csl-left-margin">95. </div><div class="csl-right-inline">Li, H. <a href="https://doi.org/10.1093/bioinformatics/bty191">Minimap2: Pairwise alignment for nucleotide sequences</a>. <em>Bioinformatics</em> <strong>34</strong>, 3094–3100 (2018).</div>
 </div>
 <div id="ref-sungAlgorithmsBioinformaticsPractical2011" class="csl-entry">
 <div class="csl-left-margin">100. </div><div class="csl-right-inline">Sung, W.-K. <em>Algorithms in bioinformatics: A practical introduction</em>. (Chapman; Hall/CRC, 2011). doi:<a href="https://doi.org/10.1201/9781420070347">10.1201/9781420070347</a>.</div>
@@ -684,131 +753,209 @@ divide and conquer and bounded dynamic programming. Adapted from<span class="cit
 <div id="ref-watermanEfficientSequenceAlignment1984" class="csl-entry">
 <div class="csl-left-margin">152. </div><div class="csl-right-inline">Waterman, M. S. <a href="https://doi.org/10.1016/S0022-5193(84)80037-5">Efficient sequence alignment algorithms</a>. <em>Journal of Theoretical Biology</em> <strong>108</strong>, 333–337 (1984).</div>
 </div>
+<div id="ref-pearson27DynamicProgramming1992" class="csl-entry">
+<div class="csl-left-margin">153. </div><div class="csl-right-inline">Pearson, W. R. &amp; Miller, W. <a href="https://doi.org/10.1016/0076-6879(92)10029-D">[27] Dynamic programming algorithms for biological sequence comparison</a>. in vol. 210 575–601 (Academic Press, 1992).</div>
+</div>
 <div id="ref-chaoDevelopmentsAlgorithmsSequence2022" class="csl-entry">
-<div class="csl-left-margin">153. </div><div class="csl-right-inline">Chao, J., Tang, F. &amp; Xu, L. <a href="https://doi.org/10.3390/biom12040546">Developments in Algorithms for Sequence Alignment: A Review</a>. <em>Biomolecules</em> <strong>12</strong>, 546 (2022).</div>
+<div class="csl-left-margin">154. </div><div class="csl-right-inline">Chao, J., Tang, F. &amp; Xu, L. <a href="https://doi.org/10.3390/biom12040546">Developments in Algorithms for Sequence Alignment: A Review</a>. <em>Biomolecules</em> <strong>12</strong>, 546 (2022).</div>
 </div>
 <div id="ref-spougeSpeedingDynamicProgramming1989a" class="csl-entry">
-<div class="csl-left-margin">154. </div><div class="csl-right-inline">Spouge, J. L. <a href="https://doi.org/10.1137/0149094">Speeding up dynamic programming algorithms for finding optimal lattice paths</a>. <em>SIAM Journal on Applied Mathematics</em> <strong>49</strong>, 1552–1566 (1989).</div>
+<div class="csl-left-margin">155. </div><div class="csl-right-inline">Spouge, J. L. <a href="https://doi.org/10.1137/0149094">Speeding up dynamic programming algorithms for finding optimal lattice paths</a>. <em>SIAM Journal on Applied Mathematics</em> <strong>49</strong>, 1552–1566 (1989).</div>
 </div>
 <div id="ref-fickettFastOptimalAlignment1984" class="csl-entry">
-<div class="csl-left-margin">155. </div><div class="csl-right-inline">Fickett, J. W. <a href="https://doi.org/10.1093/nar/12.1Part1.175">Fast optimal alignment</a>. <em>Nucleic Acids Research</em> <strong>12</strong>, 175–179 (1984).</div>
+<div class="csl-left-margin">156. </div><div class="csl-right-inline">Fickett, J. W. <a href="https://doi.org/10.1093/nar/12.1Part1.175">Fast optimal alignment</a>. <em>Nucleic Acids Research</em> <strong>12</strong>, 175–179 (1984).</div>
 </div>
 <div id="ref-durbinBiologicalSequenceAnalysis1998" class="csl-entry">
-<div class="csl-left-margin">156. </div><div class="csl-right-inline">Durbin, R., Eddy, S. R., Krogh, A. &amp; Mitchison, G. <em>Biological sequence analysis: Probabilistic models of proteins and nucleic acids</em>. (Cambridge University Press, 1998). doi:<a href="https://doi.org/10.1017/CBO9780511790492">10.1017/CBO9780511790492</a>.</div>
+<div class="csl-left-margin">157. </div><div class="csl-right-inline">Durbin, R., Eddy, S. R., Krogh, A. &amp; Mitchison, G. <em>Biological sequence analysis: Probabilistic models of proteins and nucleic acids</em>. (Cambridge University Press, 1998). doi:<a href="https://doi.org/10.1017/CBO9780511790492">10.1017/CBO9780511790492</a>.</div>
 </div>
 <div id="ref-sodingProteinHomologyDetection2005" class="csl-entry">
-<div class="csl-left-margin">157. </div><div class="csl-right-inline">Söding, J. <a href="https://doi.org/10.1093/bioinformatics/bti125">Protein homology detection by HMM-HMM comparison</a>. <em>Bioinformatics (Oxford, England)</em> <strong>21</strong>, 951–960 (2005).</div>
+<div class="csl-left-margin">158. </div><div class="csl-right-inline">Söding, J. <a href="https://doi.org/10.1093/bioinformatics/bti125">Protein homology detection by HMM-HMM comparison</a>. <em>Bioinformatics (Oxford, England)</em> <strong>21</strong>, 951–960 (2005).</div>
 </div>
 <div id="ref-finnHMMERWebServer2011" class="csl-entry">
-<div class="csl-left-margin">158. </div><div class="csl-right-inline">Finn, R. D., Clements, J. &amp; Eddy, S. R. <a href="https://doi.org/10.1093/nar/gkr367">HMMER web server: Interactive sequence similarity searching</a>. <em>Nucleic Acids Research</em> <strong>39</strong>, W29–W37 (2011).</div>
+<div class="csl-left-margin">159. </div><div class="csl-right-inline">Finn, R. D., Clements, J. &amp; Eddy, S. R. <a href="https://doi.org/10.1093/nar/gkr367">HMMER web server: Interactive sequence similarity searching</a>. <em>Nucleic Acids Research</em> <strong>39</strong>, W29–W37 (2011).</div>
 </div>
 <div id="ref-wangMCALIGN2FasterAccurate2006" class="csl-entry">
-<div class="csl-left-margin">159. </div><div class="csl-right-inline">Wang, J., Keightley, P. D. &amp; Johnson, T. <a href="https://doi.org/10.1186/1471-2105-7-292">MCALIGN2: Faster, accurate global pairwise alignment of non-coding DNA sequences based on explicit models of indel evolution</a>. <em>BMC Bioinformatics</em> <strong>7</strong>, 292 (2006).</div>
-</div>
-<div id="ref-sunChoosingBestHeuristic2006" class="csl-entry">
-<div class="csl-left-margin">160. </div><div class="csl-right-inline">Sun, Y. &amp; Buhler, J. <a href="https://doi.org/10.1186/1471-2105-7-133">Choosing the best heuristic for seeded alignment of DNA sequences</a>. <em>BMC Bioinformatics</em> <strong>7</strong>, 133 (2006).</div>
-</div>
-<div id="ref-altschulBasicLocalAlignment1990" class="csl-entry">
-<div class="csl-left-margin">161. </div><div class="csl-right-inline">Altschul, S. F., Gish, W., Miller, W., Myers, E. W. &amp; Lipman, D. J. <a href="https://doi.org/10.1016/S0022-2836(05)80360-2">Basic local alignment search tool</a>. <em>Journal of Molecular Biology</em> <strong>215</strong>, 403–410 (1990).</div>
-</div>
-<div id="ref-edgarSearchClusteringOrders2010" class="csl-entry">
-<div class="csl-left-margin">162. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1093/bioinformatics/btq461">Search and clustering orders of magnitude faster than BLAST</a>. <em>Bioinformatics</em> <strong>26</strong>, 2460–2461 (2010).</div>
-</div>
-<div id="ref-shpaerSensitivitySelectivityProtein1996" class="csl-entry">
-<div class="csl-left-margin">163. </div><div class="csl-right-inline">Shpaer, E. G. <em>et al.</em> <a href="https://doi.org/10.1006/geno.1996.0614">Sensitivity and Selectivity in Protein Similarity Searches: A Comparison of Smith<span></span>Waterman in Hardware to BLAST and FASTA</a>. <em>Genomics</em> <strong>38</strong>, 179–191 (1996).</div>
-</div>
-<div id="ref-pearsonImprovedToolsBiological1988" class="csl-entry">
-<div class="csl-left-margin">164. </div><div class="csl-right-inline">Pearson, W. R. &amp; Lipman, D. J. <a href="https://doi.org/10.1073/pnas.85.8.2444">Improved tools for biological sequence comparison</a>. <em>Proceedings of the National Academy of Sciences of the United States of America</em> <strong>85</strong>, 2444–2448 (1988).</div>
-</div>
-<div id="ref-lipmanRapidSensitiveProtein1985" class="csl-entry">
-<div class="csl-left-margin">165. </div><div class="csl-right-inline">Lipman, D. J. &amp; Pearson, W. R. <a href="https://doi.org/10.1126/science.2983426">Rapid and sensitive protein similarity searches</a>. <em>Science (New York, N.Y.)</em> <strong>227</strong>, 1435–1441 (1985).</div>
-</div>
-<div id="ref-saripellaBenchmarkingNextGeneration2016" class="csl-entry">
-<div class="csl-left-margin">166. </div><div class="csl-right-inline">Saripella, G. V., Sonnhammer, E. L. L. &amp; Forslund, K. <a href="https://doi.org/10.1093/bioinformatics/btw305">Benchmarking the next generation of homology inference tools</a>. <em>Bioinformatics</em> <strong>32</strong>, 2636 (2016).</div>
-</div>
-<div id="ref-finnPfamProteinFamilies2016" class="csl-entry">
-<div class="csl-left-margin">167. </div><div class="csl-right-inline">Finn, R. D. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkv1344">The Pfam protein families database: towards a more sustainable future</a>. <em>Nucleic Acids Research</em> <strong>44</strong>, D279 (2016).</div>
-</div>
-<div id="ref-essoussiComparisonFourPairwise2007" class="csl-entry">
-<div class="csl-left-margin">168. </div><div class="csl-right-inline">Essoussi, N. &amp; Fayech, S. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2255065/">A comparison of four pair-wise sequence alignment methods</a>. <em>Bioinformation</em> <strong>2</strong>, 166–168 (2007).</div>
-</div>
-<div id="ref-karlinMethodsAssessingStatistical1990a" class="csl-entry">
-<div class="csl-left-margin">169. </div><div class="csl-right-inline">Karlin, S. &amp; Altschul, S. F. <a href="https://doi.org/10.1073/pnas.87.6.2264">Methods for assessing the statistical significance of molecular sequence features by using general scoring schemes.</a> <em>Proceedings of the National Academy of Sciences</em> <strong>87</strong>, 2264–2268 (1990).</div>
-</div>
-<div id="ref-mottAlignmentStatisticalSignificance2005" class="csl-entry">
-<div class="csl-left-margin">170. </div><div class="csl-right-inline">Mott, R. Alignment: Statistical Significance. in (John Wiley &amp; Sons, Ltd, 2005). doi:<a href="https://doi.org/10.1038/npg.els.0005264">10.1038/npg.els.0005264</a>.</div>
-</div>
-<div id="ref-buchfinkFastSensitiveProtein2015" class="csl-entry">
-<div class="csl-left-margin">171. </div><div class="csl-right-inline">Buchfink, B., Xie, C. &amp; Huson, D. H. <a href="https://doi.org/10.1038/nmeth.3176">Fast and sensitive protein alignment using DIAMOND</a>. <em>Nature Methods</em> <strong>12</strong>, 59–60 (2015).</div>
-</div>
-<div id="ref-liSurveySequenceAlignment2010" class="csl-entry">
-<div class="csl-left-margin">172. </div><div class="csl-right-inline">Li, H. &amp; Homer, N. <a href="https://doi.org/10.1093/bib/bbq015">A survey of sequence alignment algorithms for next-generation sequencing</a>. <em>Briefings in Bioinformatics</em> <strong>11</strong>, 473–483 (2010).</div>
-</div>
-<div id="ref-brayAVIDGlobalAlignment2003" class="csl-entry">
-<div class="csl-left-margin">173. </div><div class="csl-right-inline">Bray, N., Dubchak, I. &amp; Pachter, L. <a href="https://doi.org/10.1101/gr.789803">AVID: A global alignment program</a>. <em>Genome Research</em> <strong>13</strong>, 97–102 (2003).</div>
-</div>
-<div id="ref-delcherFastAlgorithmsLargescale2002" class="csl-entry">
-<div class="csl-left-margin">174. </div><div class="csl-right-inline">Delcher, A. L., Phillippy, A., Carlton, J. &amp; Salzberg, S. L. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC117189/">Fast algorithms for large-scale genome alignment and comparison</a>. <em>Nucleic Acids Research</em> <strong>30</strong>, 2478–2483 (2002).</div>
-</div>
-<div id="ref-ferraginaOpportunisticDataStructures2000" class="csl-entry">
-<div class="csl-left-margin">175. </div><div class="csl-right-inline">Ferragina, P. &amp; Manzini, G. Proceedings 41st annual symposium on foundations of computer science. in 390–398 (2000). doi:<a href="https://doi.org/10.1109/SFCS.2000.892127">10.1109/SFCS.2000.892127</a>.</div>
-</div>
-<div id="ref-burrowsBlockSortingLosslessData1994" class="csl-entry">
-<div class="csl-left-margin">176. </div><div class="csl-right-inline">Burrows, M. &amp; Wheeler, D. <em>A block-sorting lossless data compression algorithm</em>. (1994).</div>
-</div>
-<div id="ref-lamCompressedIndexingLocal2008" class="csl-entry">
-<div class="csl-left-margin">177. </div><div class="csl-right-inline">Lam, T. W., Sung, W. K., Tam, S. L., Wong, C. K. &amp; Yiu, S. M. <a href="https://doi.org/10.1093/bioinformatics/btn032">Compressed indexing and local alignment of DNA</a>. <em>Bioinformatics</em> <strong>24</strong>, 791–797 (2008).</div>
-</div>
-<div id="ref-langmeadFastGappedreadAlignment2012" class="csl-entry">
-<div class="csl-left-margin">178. </div><div class="csl-right-inline">Langmead, B. &amp; Salzberg, S. L. <a href="https://doi.org/10.1038/nmeth.1923">Fast gapped-read alignment with <span>Bowtie</span> 2</a>. <em>Nat Methods</em> <strong>9</strong>, 357–359 (2012).</div>
-</div>
-<div id="ref-liFastAccurateShort2009" class="csl-entry">
-<div class="csl-left-margin">179. </div><div class="csl-right-inline">Li, H. &amp; Durbin, R. <a href="https://doi.org/10.1093/bioinformatics/btp324">Fast and accurate short read alignment with burrows<span></span>wheeler transform</a>. <em>Bioinformatics</em> <strong>25</strong>, 1754–1760 (2009).</div>
-</div>
-<div id="ref-liFastAccurateLongread2010" class="csl-entry">
-<div class="csl-left-margin">180. </div><div class="csl-right-inline">Li, H. &amp; Durbin, R. <a href="https://doi.org/10.1093/bioinformatics/btp698">Fast and accurate long-read alignment with burrows<span></span>wheeler transform</a>. <em>Bioinformatics</em> <strong>26</strong>, 589–595 (2010).</div>
-</div>
-<div id="ref-liAligningSequenceReads2013" class="csl-entry">
-<div class="csl-left-margin">181. </div><div class="csl-right-inline">Li, H. Aligning sequence reads, clone sequences and assembly contigs with <span>BWA</span>-<span>MEM</span>. <a href="https://arxiv.org/abs/1303.3997">https://arxiv.org/abs/1303.3997</a> (2013).</div>
-</div>
-<div id="ref-liuLongReadAlignment2012" class="csl-entry">
-<div class="csl-left-margin">182. </div><div class="csl-right-inline">Liu, Y. &amp; Schmidt, B. <a href="https://doi.org/10.1093/bioinformatics/bts414">Long read alignment based on maximal exact match seeds</a>. <em>Bioinformatics</em> <strong>28</strong>, i318–i324 (2012).</div>
+<div class="csl-left-margin">160. </div><div class="csl-right-inline">Wang, J., Keightley, P. D. &amp; Johnson, T. <a href="https://doi.org/10.1186/1471-2105-7-292">MCALIGN2: Faster, accurate global pairwise alignment of non-coding DNA sequences based on explicit models of indel evolution</a>. <em>BMC Bioinformatics</em> <strong>7</strong>, 292 (2006).</div>
 </div>
 <div id="ref-katohMAFFTNovelMethod2002" class="csl-entry">
-<div class="csl-left-margin">183. </div><div class="csl-right-inline">Katoh, K., Misawa, K., Kuma, K. &amp; Miyata, T. <a href="https://doi.org/10.1093/nar/gkf436">MAFFT: A novel method for rapid multiple sequence alignment based on fast fourier transform</a>. <em>Nucleic Acids Research</em> <strong>30</strong>, 3059–3066 (2002).</div>
+<div class="csl-left-margin">161. </div><div class="csl-right-inline">Katoh, K., Misawa, K., Kuma, K. &amp; Miyata, T. <a href="https://doi.org/10.1093/nar/gkf436">MAFFT: A novel method for rapid multiple sequence alignment based on fast fourier transform</a>. <em>Nucleic Acids Research</em> <strong>30</strong>, 3059–3066 (2002).</div>
+</div>
+<div id="ref-sunChoosingBestHeuristic2006" class="csl-entry">
+<div class="csl-left-margin">162. </div><div class="csl-right-inline">Sun, Y. &amp; Buhler, J. <a href="https://doi.org/10.1186/1471-2105-7-133">Choosing the best heuristic for seeded alignment of DNA sequences</a>. <em>BMC Bioinformatics</em> <strong>7</strong>, 133 (2006).</div>
+</div>
+<div id="ref-liSurveySequenceAlignment2010" class="csl-entry">
+<div class="csl-left-margin">163. </div><div class="csl-right-inline">Li, H. &amp; Homer, N. <a href="https://doi.org/10.1093/bib/bbq015">A survey of sequence alignment algorithms for next-generation sequencing</a>. <em>Briefings in Bioinformatics</em> <strong>11</strong>, 473–483 (2010).</div>
+</div>
+<div id="ref-altschulBasicLocalAlignment1990" class="csl-entry">
+<div class="csl-left-margin">164. </div><div class="csl-right-inline">Altschul, S. F., Gish, W., Miller, W., Myers, E. W. &amp; Lipman, D. J. <a href="https://doi.org/10.1016/S0022-2836(05)80360-2">Basic local alignment search tool</a>. <em>Journal of Molecular Biology</em> <strong>215</strong>, 403–410 (1990).</div>
+</div>
+<div id="ref-edgarSearchClusteringOrders2010" class="csl-entry">
+<div class="csl-left-margin">165. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1093/bioinformatics/btq461">Search and clustering orders of magnitude faster than BLAST</a>. <em>Bioinformatics</em> <strong>26</strong>, 2460–2461 (2010).</div>
+</div>
+<div id="ref-shpaerSensitivitySelectivityProtein1996" class="csl-entry">
+<div class="csl-left-margin">166. </div><div class="csl-right-inline">Shpaer, E. G. <em>et al.</em> <a href="https://doi.org/10.1006/geno.1996.0614">Sensitivity and Selectivity in Protein Similarity Searches: A Comparison of Smith<span></span>Waterman in Hardware to BLAST and FASTA</a>. <em>Genomics</em> <strong>38</strong>, 179–191 (1996).</div>
+</div>
+<div id="ref-pearsonImprovedToolsBiological1988" class="csl-entry">
+<div class="csl-left-margin">167. </div><div class="csl-right-inline">Pearson, W. R. &amp; Lipman, D. J. <a href="https://doi.org/10.1073/pnas.85.8.2444">Improved tools for biological sequence comparison</a>. <em>Proceedings of the National Academy of Sciences of the United States of America</em> <strong>85</strong>, 2444–2448 (1988).</div>
+</div>
+<div id="ref-lipmanRapidSensitiveProtein1985" class="csl-entry">
+<div class="csl-left-margin">168. </div><div class="csl-right-inline">Lipman, D. J. &amp; Pearson, W. R. <a href="https://doi.org/10.1126/science.2983426">Rapid and sensitive protein similarity searches</a>. <em>Science (New York, N.Y.)</em> <strong>227</strong>, 1435–1441 (1985).</div>
+</div>
+<div id="ref-saripellaBenchmarkingNextGeneration2016" class="csl-entry">
+<div class="csl-left-margin">169. </div><div class="csl-right-inline">Saripella, G. V., Sonnhammer, E. L. L. &amp; Forslund, K. <a href="https://doi.org/10.1093/bioinformatics/btw305">Benchmarking the next generation of homology inference tools</a>. <em>Bioinformatics</em> <strong>32</strong>, 2636 (2016).</div>
+</div>
+<div id="ref-finnPfamProteinFamilies2016" class="csl-entry">
+<div class="csl-left-margin">170. </div><div class="csl-right-inline">Finn, R. D. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkv1344">The Pfam protein families database: towards a more sustainable future</a>. <em>Nucleic Acids Research</em> <strong>44</strong>, D279 (2016).</div>
+</div>
+<div id="ref-essoussiComparisonFourPairwise2007" class="csl-entry">
+<div class="csl-left-margin">171. </div><div class="csl-right-inline">Essoussi, N. &amp; Fayech, S. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2255065/">A comparison of four pair-wise sequence alignment methods</a>. <em>Bioinformation</em> <strong>2</strong>, 166–168 (2007).</div>
+</div>
+<div id="ref-karlinMethodsAssessingStatistical1990a" class="csl-entry">
+<div class="csl-left-margin">172. </div><div class="csl-right-inline">Karlin, S. &amp; Altschul, S. F. <a href="https://doi.org/10.1073/pnas.87.6.2264">Methods for assessing the statistical significance of molecular sequence features by using general scoring schemes.</a> <em>Proceedings of the National Academy of Sciences</em> <strong>87</strong>, 2264–2268 (1990).</div>
+</div>
+<div id="ref-mottAlignmentStatisticalSignificance2005" class="csl-entry">
+<div class="csl-left-margin">173. </div><div class="csl-right-inline">Mott, R. Alignment: Statistical Significance. in (John Wiley &amp; Sons, Ltd, 2005). doi:<a href="https://doi.org/10.1038/npg.els.0005264">10.1038/npg.els.0005264</a>.</div>
+</div>
+<div id="ref-buchfinkFastSensitiveProtein2015" class="csl-entry">
+<div class="csl-left-margin">174. </div><div class="csl-right-inline">Buchfink, B., Xie, C. &amp; Huson, D. H. <a href="https://doi.org/10.1038/nmeth.3176">Fast and sensitive protein alignment using DIAMOND</a>. <em>Nature Methods</em> <strong>12</strong>, 59–60 (2015).</div>
+</div>
+<div id="ref-buchfinkSensitiveProteinAlignments2021" class="csl-entry">
+<div class="csl-left-margin">175. </div><div class="csl-right-inline">Buchfink, B., Reuter, K. &amp; Drost, H.-G. <a href="https://doi.org/10.1038/s41592-021-01101-x">Sensitive protein alignments at tree-of-life scale using DIAMOND</a>. <em>Nature Methods</em> <strong>18</strong>, 366–368 (2021).</div>
+</div>
+<div id="ref-brayAVIDGlobalAlignment2003" class="csl-entry">
+<div class="csl-left-margin">176. </div><div class="csl-right-inline">Bray, N., Dubchak, I. &amp; Pachter, L. <a href="https://doi.org/10.1101/gr.789803">AVID: A global alignment program</a>. <em>Genome Research</em> <strong>13</strong>, 97–102 (2003).</div>
+</div>
+<div id="ref-delcherFastAlgorithmsLargescale2002" class="csl-entry">
+<div class="csl-left-margin">177. </div><div class="csl-right-inline">Delcher, A. L., Phillippy, A., Carlton, J. &amp; Salzberg, S. L. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC117189/">Fast algorithms for large-scale genome alignment and comparison</a>. <em>Nucleic Acids Research</em> <strong>30</strong>, 2478–2483 (2002).</div>
+</div>
+<div id="ref-ferraginaOpportunisticDataStructures2000" class="csl-entry">
+<div class="csl-left-margin">178. </div><div class="csl-right-inline">Ferragina, P. &amp; Manzini, G. Proceedings 41st annual symposium on foundations of computer science. in 390–398 (2000). doi:<a href="https://doi.org/10.1109/SFCS.2000.892127">10.1109/SFCS.2000.892127</a>.</div>
+</div>
+<div id="ref-burrowsBlockSortingLosslessData1994" class="csl-entry">
+<div class="csl-left-margin">179. </div><div class="csl-right-inline">Burrows, M. &amp; Wheeler, D. <em>A block-sorting lossless data compression algorithm</em>. (1994).</div>
+</div>
+<div id="ref-lamCompressedIndexingLocal2008" class="csl-entry">
+<div class="csl-left-margin">180. </div><div class="csl-right-inline">Lam, T. W., Sung, W. K., Tam, S. L., Wong, C. K. &amp; Yiu, S. M. <a href="https://doi.org/10.1093/bioinformatics/btn032">Compressed indexing and local alignment of DNA</a>. <em>Bioinformatics</em> <strong>24</strong>, 791–797 (2008).</div>
+</div>
+<div id="ref-langmeadFastGappedreadAlignment2012" class="csl-entry">
+<div class="csl-left-margin">181. </div><div class="csl-right-inline">Langmead, B. &amp; Salzberg, S. L. <a href="https://doi.org/10.1038/nmeth.1923">Fast gapped-read alignment with <span>Bowtie</span> 2</a>. <em>Nat Methods</em> <strong>9</strong>, 357–359 (2012).</div>
+</div>
+<div id="ref-liFastAccurateShort2009" class="csl-entry">
+<div class="csl-left-margin">182. </div><div class="csl-right-inline">Li, H. &amp; Durbin, R. <a href="https://doi.org/10.1093/bioinformatics/btp324">Fast and accurate short read alignment with burrows<span></span>wheeler transform</a>. <em>Bioinformatics</em> <strong>25</strong>, 1754–1760 (2009).</div>
+</div>
+<div id="ref-liFastAccurateLongread2010" class="csl-entry">
+<div class="csl-left-margin">183. </div><div class="csl-right-inline">Li, H. &amp; Durbin, R. <a href="https://doi.org/10.1093/bioinformatics/btp698">Fast and accurate long-read alignment with burrows<span></span>wheeler transform</a>. <em>Bioinformatics</em> <strong>26</strong>, 589–595 (2010).</div>
+</div>
+<div id="ref-liAligningSequenceReads2013" class="csl-entry">
+<div class="csl-left-margin">184. </div><div class="csl-right-inline">Li, H. Aligning sequence reads, clone sequences and assembly contigs with <span>BWA</span>-<span>MEM</span>. <a href="https://arxiv.org/abs/1303.3997">https://arxiv.org/abs/1303.3997</a> (2013).</div>
+</div>
+<div id="ref-liuLongReadAlignment2012" class="csl-entry">
+<div class="csl-left-margin">185. </div><div class="csl-right-inline">Liu, Y. &amp; Schmidt, B. <a href="https://doi.org/10.1093/bioinformatics/bts414">Long read alignment based on maximal exact match seeds</a>. <em>Bioinformatics</em> <strong>28</strong>, i318–i324 (2012).</div>
+</div>
+<div id="ref-russellMultipleSequenceAlignment2014" class="csl-entry">
+<div class="csl-left-margin">186. </div><div class="csl-right-inline"><em><a href="https://doi.org/10.1007/978-1-62703-646-7">Multiple Sequence Alignment Methods</a></em>. vol. 1079 (Humana Press, 2014).</div>
+</div>
+<div id="ref-wangComplexityMultipleSequence1994" class="csl-entry">
+<div class="csl-left-margin">187. </div><div class="csl-right-inline">Wang, L. &amp; Jiang, T. <a href="https://doi.org/10.1089/cmb.1994.1.337">On the complexity of multiple sequence alignment</a>. <em>Journal of Computational Biology</em> <strong>1</strong>, 337–348 (1994).</div>
+</div>
+<div id="ref-justComputationalComplexityMultiple2001" class="csl-entry">
+<div class="csl-left-margin">188. </div><div class="csl-right-inline">Just, W. <a href="https://doi.org/10.1089/106652701753307511">Computational complexity of multiple sequence alignment with SP-score</a>. <em>Journal of Computational Biology</em> <strong>8</strong>, 615–623 (2001).</div>
 </div>
 <div id="ref-fengProgressiveSequenceAlignment1987" class="csl-entry">
-<div class="csl-left-margin">184. </div><div class="csl-right-inline">Feng, D.-F. &amp; Doolittle, R. F. <a href="https://doi.org/10.1007/BF02603120">Progressive sequence alignment as a prerequisitetto correct phylogenetic trees</a>. <em>Journal of Molecular Evolution</em> <strong>25</strong>, 351–360 (1987).</div>
+<div class="csl-left-margin">189. </div><div class="csl-right-inline">Feng, D.-F. &amp; Doolittle, R. F. <a href="https://doi.org/10.1007/BF02603120">Progressive sequence alignment as a prerequisitetto correct phylogenetic trees</a>. <em>Journal of Molecular Evolution</em> <strong>25</strong>, 351–360 (1987).</div>
+</div>
+<div id="ref-jonesRapidGenerationMutation1992" class="csl-entry">
+<div class="csl-left-margin">190. </div><div class="csl-right-inline">Jones, D. T., Taylor, W. R. &amp; Thornton, J. M. <a href="https://doi.org/10.1093/bioinformatics/8.3.275">The rapid generation of mutation data matrices from protein sequences</a>. <em>Bioinformatics</em> <strong>8</strong>, 275–282 (1992).</div>
+</div>
+<div id="ref-blaisdellMeasureSimilaritySets1986" class="csl-entry">
+<div class="csl-left-margin">191. </div><div class="csl-right-inline">Blaisdell, B. E. <a href="https://doi.org/10.1073/pnas.83.14.5155">A measure of the similarity of sets of sequences not requiring sequence alignment.</a> <em>Proceedings of the National Academy of Sciences</em> <strong>83</strong>, 5155–5159 (1986).</div>
+</div>
+<div id="ref-altschulWeightsDataRelated1989" class="csl-entry">
+<div class="csl-left-margin">192. </div><div class="csl-right-inline">Altschul, S. F., Carroll, R. J. &amp; Lipman, D. J. <a href="https://doi.org/10.1016/0022-2836(89)90234-9">Weights for data related by a tree</a>. <em>Journal of Molecular Biology</em> <strong>207</strong>, 647–653 (1989).</div>
+</div>
+<div id="ref-edgarComparisonScoringFunctions2004" class="csl-entry">
+<div class="csl-left-margin">193. </div><div class="csl-right-inline">Edgar, R. C. &amp; Sjölander, K. <a href="https://doi.org/10.1093/bioinformatics/bth090">A comparison of scoring functions for protein sequence profile alignment</a>. <em>Bioinformatics</em> <strong>20</strong>, 1301–1308 (2004).</div>
+</div>
+<div id="ref-notredameCOFFEEObjectiveFunction1998" class="csl-entry">
+<div class="csl-left-margin">194. </div><div class="csl-right-inline">Notredame, C., Holm, L. &amp; Higgins, D. G. <a href="https://doi.org/10.1093/bioinformatics/14.5.407">COFFEE: An objective function for multiple sequence alignments.</a> <em>Bioinformatics</em> <strong>14</strong>, 407–422 (1998).</div>
+</div>
+<div id="ref-thompsonCLUSTALImprovingSensitivity1994" class="csl-entry">
+<div class="csl-left-margin">195. </div><div class="csl-right-inline">Thompson, J. D., Higgins, D. G. &amp; Gibson, T. J. <a href="https://doi.org/10.1093/nar/22.22.4673">CLUSTAL W: improving the sensitivity of progressive multiple sequence alignment through sequence weighting, position-specific gap penalties and weight matrix choice</a>. <em>Nucleic Acids Research</em> <strong>22</strong>, 4673–4680 (1994).</div>
+</div>
+<div id="ref-thompsonCLUSTALWindowsInterface1997" class="csl-entry">
+<div class="csl-left-margin">196. </div><div class="csl-right-inline">Thompson, J. D., Gibson, T. J., Plewniak, F., Jeanmougin, F. &amp; Higgins, D. G. <a href="https://doi.org/10.1093/nar/25.24.4876">The CLUSTAL<span>_</span>x windows interface: Flexible strategies for multiple sequence alignment aided by quality analysis tools</a>. <em>Nucleic Acids Research</em> <strong>25</strong>, 4876–4882 (1997).</div>
+</div>
+<div id="ref-notredameTcoffeeNovelMethod2000" class="csl-entry">
+<div class="csl-left-margin">197. </div><div class="csl-right-inline">Notredame, C., Higgins, D. G. &amp; Heringa, J. <a href="https://doi.org/10.1006/jmbi.2000.4042">T-coffee: a novel method for fast and accurate multiple sequence alignment11Edited by J. Thornton</a>. <em>Journal of Molecular Biology</em> <strong>302</strong>, 205–217 (2000).</div>
+</div>
+<div id="ref-edgarMUSCLEMultipleSequence2004a" class="csl-entry">
+<div class="csl-left-margin">198. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1186/1471-2105-5-113">MUSCLE: A multiple sequence alignment method with reduced time and space complexity</a>. <em>BMC Bioinformatics</em> <strong>5</strong>, 113 (2004).</div>
+</div>
+<div id="ref-edgarMUSCLEMultipleSequence2004" class="csl-entry">
+<div class="csl-left-margin">199. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1093/nar/gkh340">MUSCLE: Multiple sequence alignment with high accuracy and high throughput</a>. <em>Nucleic Acids Research</em> <strong>32</strong>, 1792–1797 (2004).</div>
+</div>
+<div id="ref-doProbConsProbabilisticConsistencybased2005" class="csl-entry">
+<div class="csl-left-margin">200. </div><div class="csl-right-inline">Do, C. B., Mahabhashyam, M. S. P., Brudno, M. &amp; Batzoglou, S. <a href="https://doi.org/10.1101/gr.2821705">ProbCons: Probabilistic consistency-based multiple sequence alignment</a>. <em>Genome Research</em> <strong>15</strong>, 330–340 (2005).</div>
+</div>
+<div id="ref-notredameRecentEvolutionsMultiple2007" class="csl-entry">
+<div class="csl-left-margin">201. </div><div class="csl-right-inline">Notredame, C. <a href="https://doi.org/10.1371/journal.pcbi.0030123">Recent Evolutions of Multiple Sequence Alignment Algorithms</a>. <em>PLOS Computational Biology</em> <strong>3</strong>, e123 (2007).</div>
+</div>
+<div id="ref-thompsonBAliBASEBenchmarkAlignment1999" class="csl-entry">
+<div class="csl-left-margin">205. </div><div class="csl-right-inline">Thompson, J. D., Plewniak, F. &amp; Poch, O. <a href="https://doi.org/10.1093/bioinformatics/15.1.87">BAliBASE: a benchmark alignment database for the evaluation of multiple alignment programs.</a> <em>Bioinformatics</em> <strong>15</strong>, 87–88 (1999).</div>
+</div>
+<div id="ref-eddyMultipleAlignmentUsing" class="csl-entry">
+<div class="csl-left-margin">206. </div><div class="csl-right-inline">Eddy, S. R. Multiple Alignment Using Hidden Markov Models. 7.</div>
+</div>
+<div id="ref-lemoineCOVIDAlignAccurateOnline2020" class="csl-entry">
+<div class="csl-left-margin">207. </div><div class="csl-right-inline">Lemoine, F., Blassel, L., Voznica, J. &amp; Gascuel, O. COVID-align: Accurate online alignment of hCoV-19 genomes using a profile HMM. <em>Bioinformatics</em> (2020) doi:<a href="https://doi.org/10.1093/bioinformatics/btaa871">10.1093/bioinformatics/btaa871</a>.</div>
+</div>
+<div id="ref-aksamentovNextcladeCladeAssignment2021" class="csl-entry">
+<div class="csl-left-margin">208. </div><div class="csl-right-inline">Aksamentov, I., Roemer, C., Hodcroft, E. &amp; Neher, R. <a href="https://doi.org/10.21105/joss.03773">Nextclade: clade assignment, mutation calling and quality control for viral genomes</a>. <em>Journal of Open Source Software</em> <strong>6</strong>, 3773 (2021).</div>
+</div>
+<div id="ref-kimMultipleSequenceAlignment1994" class="csl-entry">
+<div class="csl-left-margin">209. </div><div class="csl-right-inline">Kim, J., Pramanik, S. &amp; Chung, M. J. <a href="https://doi.org/10.1093/bioinformatics/10.4.419">Multiple sequence alignment using simulated annealing</a>. <em>Bioinformatics</em> <strong>10</strong>, 419–426 (1994).</div>
+</div>
+<div id="ref-ishikawaMultipleSequenceAlignment1993" class="csl-entry">
+<div class="csl-left-margin">210. </div><div class="csl-right-inline">Ishikawa, M. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/9.3.267">Multiple sequence alignment by parallel simulated annealing</a>. <em>Bioinformatics</em> <strong>9</strong>, 267–273 (1993).</div>
+</div>
+<div id="ref-chowdhuryReviewMultipleSequence2017" class="csl-entry">
+<div class="csl-left-margin">211. </div><div class="csl-right-inline">Chowdhury, B. &amp; Garai, G. <a href="https://doi.org/10.1016/j.ygeno.2017.06.007">A review on multiple sequence alignment from the perspective of genetic algorithm</a>. <em>Genomics</em> <strong>109</strong>, 419–431 (2017).</div>
+</div>
+<div id="ref-notredameSAGASequenceAlignment1996" class="csl-entry">
+<div class="csl-left-margin">212. </div><div class="csl-right-inline">Notredame, C. &amp; Higgins, D. G. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC145823/">SAGA: Sequence alignment by genetic algorithm.</a> <em>Nucleic Acids Research</em> <strong>24</strong>, 1515–1524 (1996).</div>
+</div>
+<div id="ref-garrigaLargeMultipleSequence2019" class="csl-entry">
+<div class="csl-left-margin">213. </div><div class="csl-right-inline">Garriga, E. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-019-0333-6">Large multiple sequence alignments with a root-to-leaf regressive method</a>. <em>Nature Biotechnology</em> <strong>37</strong>, 1466–1470 (2019).</div>
 </div>
 <div id="ref-alserTechnologyDictatesAlgorithms2021" class="csl-entry">
-<div class="csl-left-margin">185. </div><div class="csl-right-inline">Alser, M. <em>et al.</em> <a href="https://doi.org/10.1186/s13059-021-02443-7">Technology dictates algorithms: Recent developments in read alignment</a>. <em>Genome Biology</em> <strong>22</strong>, 249 (2021).</div>
+<div class="csl-left-margin">214. </div><div class="csl-right-inline">Alser, M. <em>et al.</em> <a href="https://doi.org/10.1186/s13059-021-02443-7">Technology dictates algorithms: Recent developments in read alignment</a>. <em>Genome Biology</em> <strong>22</strong>, 249 (2021).</div>
 </div>
 <div id="ref-schbathMappingReadsGenomic2012" class="csl-entry">
-<div class="csl-left-margin">186. </div><div class="csl-right-inline">Schbath, S. <em>et al.</em> <a href="https://doi.org/10.1089/cmb.2012.0022">Mapping reads on a genomic sequence: An algorithmic overview and a practical comparative analysis</a>. <em>Journal of Computational Biology</em> <strong>19</strong>, 796–813 (2012).</div>
+<div class="csl-left-margin">215. </div><div class="csl-right-inline">Schbath, S. <em>et al.</em> <a href="https://doi.org/10.1089/cmb.2012.0022">Mapping reads on a genomic sequence: An algorithmic overview and a practical comparative analysis</a>. <em>Journal of Computational Biology</em> <strong>19</strong>, 796–813 (2012).</div>
 </div>
 <div id="ref-hatemBenchmarkingShortSequence2013" class="csl-entry">
-<div class="csl-left-margin">187. </div><div class="csl-right-inline">Hatem, A., Bozdağ, D., Toland, A. E. &amp; Çatalyürek, Ü. V. <a href="https://doi.org/10.1186/1471-2105-14-184">Benchmarking short sequence mapping tools</a>. <em>BMC Bioinformatics</em> <strong>14</strong>, 184 (2013).</div>
+<div class="csl-left-margin">216. </div><div class="csl-right-inline">Hatem, A., Bozdağ, D., Toland, A. E. &amp; Çatalyürek, Ü. V. <a href="https://doi.org/10.1186/1471-2105-14-184">Benchmarking short sequence mapping tools</a>. <em>BMC Bioinformatics</em> <strong>14</strong>, 184 (2013).</div>
 </div>
 <div id="ref-canzarShortReadMapping2017" class="csl-entry">
-<div class="csl-left-margin">188. </div><div class="csl-right-inline">Canzar, S. &amp; Salzberg, S. L. <a href="https://doi.org/10.1109/JPROC.2015.2455551">Short read mapping: An algorithmic tour</a>. <em>Proceedings of the IEEE</em> <strong>105</strong>, 436–458 (2017).</div>
+<div class="csl-left-margin">217. </div><div class="csl-right-inline">Canzar, S. &amp; Salzberg, S. L. <a href="https://doi.org/10.1109/JPROC.2015.2455551">Short read mapping: An algorithmic tour</a>. <em>Proceedings of the IEEE</em> <strong>105</strong>, 436–458 (2017).</div>
 </div>
 <div id="ref-olsonHardwareAccelerationShort2012" class="csl-entry">
-<div class="csl-left-margin">189. </div><div class="csl-right-inline">Olson, C. B. <em>et al.</em> 2012 IEEE 20th international symposium on field-programmable custom computing machines. in 161–168 (2012). doi:<a href="https://doi.org/10.1109/FCCM.2012.36">10.1109/FCCM.2012.36</a>.</div>
+<div class="csl-left-margin">218. </div><div class="csl-right-inline">Olson, C. B. <em>et al.</em> 2012 IEEE 20th international symposium on field-programmable custom computing machines. in 161–168 (2012). doi:<a href="https://doi.org/10.1109/FCCM.2012.36">10.1109/FCCM.2012.36</a>.</div>
 </div>
 <div id="ref-jainWeightedMinimizerSampling2020" class="csl-entry">
-<div class="csl-left-margin">190. </div><div class="csl-right-inline">Jain, C. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btaa435">Weighted minimizer sampling improves long read mapping</a>. <em>Bioinformatics</em> <strong>36</strong>, i111–i118 (2020).</div>
+<div class="csl-left-margin">219. </div><div class="csl-right-inline">Jain, C. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btaa435">Weighted minimizer sampling improves long read mapping</a>. <em>Bioinformatics</em> <strong>36</strong>, i111–i118 (2020).</div>
 </div>
 <div id="ref-jainLongreadMappingRepetitive2022" class="csl-entry">
-<div class="csl-left-margin">191. </div><div class="csl-right-inline">Jain, C., Rhie, A., Hansen, N. F., Koren, S. &amp; Phillippy, A. M. <a href="https://doi.org/10.1038/s41592-022-01457-8">Long-read mapping to repetitive reference sequences using Winnowmap2</a>. <em>Nature Methods</em> <strong>19</strong>, 705–710 (2022).</div>
+<div class="csl-left-margin">220. </div><div class="csl-right-inline">Jain, C., Rhie, A., Hansen, N. F., Koren, S. &amp; Phillippy, A. M. <a href="https://doi.org/10.1038/s41592-022-01457-8">Long-read mapping to repetitive reference sequences using Winnowmap2</a>. <em>Nature Methods</em> <strong>19</strong>, 705–710 (2022).</div>
 </div>
 <div id="ref-mikheenkoTandemToolsMappingLong2020" class="csl-entry">
-<div class="csl-left-margin">192. </div><div class="csl-right-inline">Mikheenko, A., Bzikadze, A. V., Gurevich, A., Miga, K. H. &amp; Pevzner, P. A. <a href="https://doi.org/10.1093/bioinformatics/btaa440"><span>TandemTools</span>: Mapping long reads and assessing/improving assembly quality in extra-long tandem repeats</a>. <em>Bioinformatics</em> <strong>36</strong>, i75–i83 (2020).</div>
+<div class="csl-left-margin">221. </div><div class="csl-right-inline">Mikheenko, A., Bzikadze, A. V., Gurevich, A., Miga, K. H. &amp; Pevzner, P. A. <a href="https://doi.org/10.1093/bioinformatics/btaa440"><span>TandemTools</span>: Mapping long reads and assessing/improving assembly quality in extra-long tandem repeats</a>. <em>Bioinformatics</em> <strong>36</strong>, i75–i83 (2020).</div>
 </div>
 <div id="ref-langmeadTandemSimulationFramework2017" class="csl-entry">
-<div class="csl-left-margin">193. </div><div class="csl-right-inline">Langmead, B. <a href="https://doi.org/10.1186/s13059-017-1290-3">A tandem simulation framework for predicting mapping quality</a>. <em>Genome Biology</em> <strong>18</strong>, 152 (2017).</div>
+<div class="csl-left-margin">222. </div><div class="csl-right-inline">Langmead, B. <a href="https://doi.org/10.1186/s13059-017-1290-3">A tandem simulation framework for predicting mapping quality</a>. <em>Genome Biology</em> <strong>18</strong>, 152 (2017).</div>
 </div>
 <div id="ref-brindaRNFGeneralFramework2016" class="csl-entry">
-<div class="csl-left-margin">194. </div><div class="csl-right-inline">Břinda, K., Boeva, V. &amp; Kucherov, G. <a href="https://doi.org/10.1093/bioinformatics/btv524">RNF: A general framework to evaluate NGS read mappers</a>. <em>Bioinformatics</em> <strong>32</strong>, 136–139 (2016).</div>
+<div class="csl-left-margin">223. </div><div class="csl-right-inline">Břinda, K., Boeva, V. &amp; Kucherov, G. <a href="https://doi.org/10.1093/bioinformatics/btv524">RNF: A general framework to evaluate NGS read mappers</a>. <em>Bioinformatics</em> <strong>32</strong>, 136–139 (2016).</div>
 </div>
 </div>
             </section>
@@ -817,7 +964,7 @@ divide and conquer and bounded dynamic programming. Adapted from<span class="cit
         </div>
       </div>
 <a href="what-is-sequence-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="contribution-1-improving-local-alignment-by-exploring-a-sequence-transformation-space.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="contribution-1-improving-read-alignment-by-exploring-a-sequence-transformation-space.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
