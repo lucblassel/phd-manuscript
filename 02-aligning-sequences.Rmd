@@ -253,7 +253,7 @@ guide tree, clustering of sequences then refine alignment. Good heuristic but wi
 3.  Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).
 
 ```{r, progcaption}
-progCaption <- "*Overview of the progressive alignment process.*\
+progCaption <- "**Overview of the progressive alignment process.**\
 A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]"
 ```
 
