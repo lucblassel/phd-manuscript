@@ -523,13 +523,13 @@ Figure 1.2: caption (WIP)
 <li>according to<span class="citation"><sup><a href="#ref-booeshaghiPseudoalignmentFacilitatesAssignment2022" role="doc-biblioref">78</a></sup></span>, in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:HPdistrib"></span>
-<img src="_main_files/figure-html/HPdistrib-1.png" alt="Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\geq 4$.)" width="70%" />
+<img src="_main_files/figure-html/HPdistrib-1.png" alt="Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\geq 4$.)" width="60%" />
 <p class="caption">
 Figure 1.3: Distribution of homopolymer lengths per base in the human genome (for homopolyers of length <span class="math inline">\(\geq 4\)</span>.)
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:HPpercent"></span>
-<img src="_main_files/figure-html/HPpercent-1.png" alt="Homopolymer length as fraction of the genome" width="70%" />
+<img src="_main_files/figure-html/HPpercent-1.png" alt="Homopolymer length as fraction of the genome" width="60%" />
 <p class="caption">
 Figure 1.4: Homopolymer length as fraction of the genome
 </p>
@@ -572,9 +572,12 @@ Figure 1.4: Homopolymer length as fraction of the genome
 </ul>
 <p>reconstruct the whole genome.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:hpcSchema"></span>
-<img src="figures/Sequence-Intro/hpc-helps.png" alt="caption (WIP)" width="60%" />
+<img src="figures/Sequence-Intro/hpc-helps.png" alt="**Homopolymer compression can help resolve ambiguities due to sequencing errors**
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome. After applying HPC, this ambiguity is resolved and the read is homologous to only one region. 
+" width="60%" />
 <p class="caption">
-Figure 1.5: caption (WIP)
+Figure 1.5: <strong>Homopolymer compression can help resolve ambiguities due to sequencing errors</strong>
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome. After applying HPC, this ambiguity is resolved and the read is homologous to only one region.
 </p>
 </div>
 </div>
@@ -583,7 +586,7 @@ Figure 1.5: caption (WIP)
 <div id="conclusion" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Conclusion<a href="what-is-sequence-data.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p><strong>Sequencing is an active field:</strong> new methods, both in short reads (ultima) and long reads (illumina infinity), as well as improving existing technologies</p></li>
+<li><p><strong>Sequencing is an active field:</strong> new methods, both in short reads (ultima<span class="citation"><sup><a href="#ref-almogyCostefficientWholeGenomesequencing2022" role="doc-biblioref">103</a></sup></span> ) and long reads (illumina infinity<span class="citation"><sup><a href="#ref-HighPerformanceLong" role="doc-biblioref">76</a></sup></span> ), as well as improving existing technologies, PacBio (by acquiring Omniome<span class="citation"><sup><a href="#ref-ShortreadSequencingBinding" role="doc-biblioref">104</a></sup></span>) developing a new accurate short read technology<span class="citation"><sup><a href="#ref-cetinPlasmonicSensorCould2018" role="doc-biblioref">105</a></sup></span></p></li>
 <li><p><strong>Long reads are good:</strong> Super useful for plenty of very important tasks but…</p></li>
 <li><p><strong>Errors are bad:</strong> particularly in HPs since they are an important part of the genome and a major source of error in long reads</p></li>
 <li><p><strong>Computational view:</strong> sequences Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.</p></li>
@@ -895,6 +898,15 @@ Figure 1.5: caption (WIP)
 </div>
 <div id="ref-vannesteForensicSTRAnalysis2012" class="csl-entry">
 <div class="csl-left-margin">102. </div><div class="csl-right-inline">Van Neste, C., Van Nieuwerburgh, F., Van Hoofstat, D. &amp; Deforce, D. <a href="https://doi.org/10.1016/j.fsigen.2012.03.004">Forensic STR analysis using massive parallel sequencing</a>. <em>Forensic Science International: Genetics</em> <strong>6</strong>, 810–818 (2012).</div>
+</div>
+<div id="ref-almogyCostefficientWholeGenomesequencing2022" class="csl-entry">
+<div class="csl-left-margin">103. </div><div class="csl-right-inline">Almogy, G. <em>et al.</em> Cost-efficient whole genome-sequencing using novel mostly natural sequencing-by-synthesis chemistry and open fluidics platform. doi:<a href="https://doi.org/10.1101/2022.05.29.493900">10.1101/2022.05.29.493900</a>.</div>
+</div>
+<div id="ref-ShortreadSequencingBinding" class="csl-entry">
+<div class="csl-left-margin">104. </div><div class="csl-right-inline"><a href="https://www.pacb.com/technology/sequencing-by-binding/">Short-read sequencing by binding</a>.</div>
+</div>
+<div id="ref-cetinPlasmonicSensorCould2018" class="csl-entry">
+<div class="csl-left-margin">105. </div><div class="csl-right-inline">Cetin, A. E. <em>et al.</em> <a href="https://doi.org/10.1021/acssensors.7b00957">Plasmonic sensor could enable label-free DNA sequencing</a>. <em>ACS Sensors</em> <strong>3</strong>, 561–568 (2018).</div>
 </div>
 </div>
             </section>

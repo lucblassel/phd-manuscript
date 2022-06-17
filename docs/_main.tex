@@ -695,7 +695,7 @@ general context of sequencing errors, i.e.~short reads have high accuracy (After
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.7\linewidth]{_main_files/figure-latex/HPdistrib-1} 
+{\centering \includegraphics[width=0.6\linewidth]{_main_files/figure-latex/HPdistrib-1} 
 
 }
 
@@ -704,7 +704,7 @@ general context of sequencing errors, i.e.~short reads have high accuracy (After
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.7\linewidth]{_main_files/figure-latex/HPpercent-1} 
+{\centering \includegraphics[width=0.6\linewidth]{_main_files/figure-latex/HPpercent-1} 
 
 }
 
@@ -775,7 +775,9 @@ reconstruct the whole genome.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
-\extcaption{Caption}{(WIP)}
+\extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome. After applying HPC, this ambiguity is resolved and the read is homologous to only one region.
+}
 \label{fig:hpcSchema}
 \end{figure}
 
@@ -784,7 +786,7 @@ reconstruct the whole genome.
 
 \begin{itemize}
 \item
-  \textbf{Sequencing is an active field:} new methods, both in short reads (ultima) and long reads (illumina infinity), as well as improving existing technologies
+  \textbf{Sequencing is an active field:} new methods, both in short reads (ultima \autocite{almogyCostefficientWholeGenomesequencing2022} ) and long reads (illumina infinity \autocite{HighPerformanceLong} ), as well as improving existing technologies, PacBio (by acquiring Omniome \autocite{ShortreadSequencingBinding}) developing a new accurate short read technology \autocite{cetinPlasmonicSensorCould2018}
 \item
   \textbf{Long reads are good:} Super useful for plenty of very important tasks but\ldots{}
 \item

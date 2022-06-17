@@ -268,7 +268,7 @@ freqs <- hps %>%
 hpDistribCaption <- paste0("Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\\geq ", big_l, "$.)")
 ```
 
-```{r, HPdistrib, fig.cap=hpDistribCaption, label="HPdistrib", out.width="70%", cache=FALSE}
+```{r, HPdistrib, fig.cap=hpDistribCaption, label="HPdistrib", out.width="60%", cache=FALSE}
 
 ggplot(big, aes(x=length, y=count, fill=base)) +
   geom_col() +
@@ -276,7 +276,7 @@ ggplot(big, aes(x=length, y=count, fill=base)) +
   facet_wrap(. ~ base)
 ```
 
-```{r, HPpercent, fig.cap="Homopolymer length as fraction of the genome", label="HPpercent",out.width="70%"}
+```{r, HPpercent, fig.cap="Homopolymer length as fraction of the genome", label="HPpercent",out.width="60%"}
 # 
 labels <- c("", "", "", "", "", "", "", "", "", expression(10^1), "", "", "", "", "", "", "", "", expression(10^2))
 breaks <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
@@ -336,10 +336,12 @@ homopolymers are still tricky regions even with long high accuracy reads -\> so 
 reconstruct the whole genome.
 
 ```{r, hpcCaption}
-hpcCaption <- "caption (WIP)"
+hpcCaption <- "**Homopolymer compression can help resolve ambiguities due to sequencing errors**\
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome. After applying HPC, this ambiguity is resolved and the read is homologous to only one region. 
+"
 ```
 
-```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output(),out.width="60%"}
+```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output(),out.width="60%", cache=FALSE}
 knitr::include_graphics("./figures/Sequence-Intro/hpc-helps.png")
 ```
 
@@ -347,13 +349,15 @@ knitr::include_graphics("./figures/Sequence-Intro/hpc-helps.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
-\extcaption{Caption}{(WIP)}
+\extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome. After applying HPC, this ambiguity is resolved and the read is homologous to only one region.
+}
 \label{fig:hpcSchema}
 \end{figure}
 ```
 ## Conclusion
 
--   **Sequencing is an active field:** new methods, both in short reads (ultima) and long reads (illumina infinity), as well as improving existing technologies
+-   **Sequencing is an active field:** new methods, both in short reads (ultima [@almogyCostefficientWholeGenomesequencing2022] ) and long reads (illumina infinity [@HighPerformanceLong] ), as well as improving existing technologies, PacBio (by acquiring Omniome [@ShortreadSequencingBinding]) developing a new accurate short read technology [@cetinPlasmonicSensorCould2018]
 
 -   **Long reads are good:** Super useful for plenty of very important tasks but...
 
