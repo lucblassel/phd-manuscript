@@ -234,7 +234,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-16}
+\date{2022-06-17}
 
 \begin{document}
 \maketitle
@@ -265,19 +265,21 @@ This is the glossary
 
 \begin{comment}
 
-# Abstract {.unnumbered}
+#  {.unnumbered}
+
+## Abstract {.unnumbered}
 
 This is the Abstract
 
-# Résumé {.unnumbered}
+## Résumé {.unnumbered}
 
 Ceci est le résumé
 
-# Acknowledgments {.unnumbered}
+## Acknowledgments {.unnumbered}
 
 Thanks everybody
 
-# Glossary {.unnumbered}
+## Glossary {.unnumbered}
 
 What are these terms ?
 
@@ -310,26 +312,43 @@ What are these terms ?
   Organisation of the manuscript
 \end{itemize}
 
-\hypertarget{publications-produced}{%
-\section*{Publications produced}\label{publications-produced}}
-\addcontentsline{toc}{section}{Publications produced}
+\hypertarget{research-output}{%
+\section*{Research output}\label{research-output}}
+\addcontentsline{toc}{section}{Research output}
+
+\hypertarget{journal-publications}{%
+\subsection*{Journal publications}\label{journal-publications}}
+\addcontentsline{toc}{subsection}{Journal publications}
 
 \begin{itemize}
 \item
   \textbf{Blassel, Luc}, Paul Medvedev and Rayan Chikhi. 2022. \textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''}. \emph{iScience}\\
-  \href{https://google.com}{DOI goes here} \emph{(Included in Chapter \ref{HPC-paper})}
+  \href{https://google.com}{DOI goes here} \emph{(Included in Chapter} \ref{HPC-paper}\emph{)}
 \item
-  \textbf{Blassel, Luc}\footnote{co-first authors: Luc Blassel and Anna Zhukova}, Anna Zhukova\textsuperscript{1}, Christian J Villabona-Arenas, Katherine E Atkins, Stéphane Hué, and Olivier Gascuel. 2021. \textbf{``Drug Resistance Mutations in HIV: New Bioinformatics Approaches and Challenges.''} \emph{Current Opinion in Virology} 51 (December): 56--64.\\
+  \textbf{Blassel, Luc}\footnote{Co-first authors: Luc Blassel and Anna Zhukova}, Anna Zhukova\textsuperscript{1}, Christian J Villabona-Arenas, Katherine E Atkins, Stéphane Hué, and Olivier Gascuel. 2021. \textbf{``Drug Resistance Mutations in HIV: New Bioinformatics Approaches and Challenges.''} \emph{Current Opinion in Virology} 51 (December): 56--64.\\
   \href{https://doi.org/10.1016/j.coviro.2021.09.009}{10.1016/j.coviro.2021.09.009}
 \item
   \textbf{Blassel, Luc}, Anna Tostevin, Christian Julian Villabona-Arenas, MartinePeeters, Stéphane Hué, and Olivier Gascuel. 2021. \textbf{``Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV.''} \emph{PLOS Computational Biology} 17 (8): e1008873.\\
-  \href{https://doi.org/10.1371/journal.pcbi.1008873}{10.1371/journal.pcbi.1008873}. \emph{(Included in Chapter \ref{HIV-paper})}
+  \href{https://doi.org/10.1371/journal.pcbi.1008873}{10.1371/journal.pcbi.1008873}. \emph{(Included in Chapter} \ref{HIV-paper}\emph{)}
 \item
   Zhukova, Anna, \textbf{Luc Blassel}, Frédéric Lemoine, Marie Morel, JakubVoznica, and Olivier Gascuel. 2021. \textbf{``Origin, Evolution and Global Spread of SARS-CoV-2.''} \emph{Comptes Rendus. Biologies} 344 (1): 57--75.\\
   \href{https://doi.org/10.5802/crbiol.29}{10.5802/crbiol.29}.
 \item
   Lemoine, Frédéric, \textbf{Luc Blassel}, Jakub Voznica, and Olivier Gascuel.2020. \textbf{``COVID-Align: accurate online alignment of hCoV-19 genomes using a profile HMM''} \emph{Bioinformatics}, 37 (12): 1761-1762.\\
   \href{https://doi.org/10.1093/bioinformatics/btaa871}{10.1093/bioinformatics/btaa871}.
+\end{itemize}
+
+\hypertarget{presentations-and-posters}{%
+\subsection*{Presentations and posters}\label{presentations-and-posters}}
+\addcontentsline{toc}{subsection}{Presentations and posters}
+
+\begin{itemize}
+\item
+  \textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''} proceedings talk, \href{https://recomb2022.net/recomb-seq/}{RECOMB-SEQ 2022}. San Diego, USA \emph{(May 21\textsuperscript{st} 2022)}
+\item
+  \textbf{``Can we improve analyses be transforming DNA?''} Joint RECOMB-SEQ RECOMB-CCB scientific \href{https://recomb2022.net/recomb-ccb-seq-scientific-communication/}{communication session}\footnote{2nd place prize awarded}. San Diego, USA (\emph{May 21\textsuperscript{st}} \emph{2022).}
+\item
+  ``\textbf{Machine learning approaches to reveal resistance mutations in HIV''} Poster at \href{https://www.lirmm.fr/mceb2019/}{MCEB 2019}. Porquerolles, France \emph{(May XXX 2019)}
 \end{itemize}
 
 \hypertarget{what-is-sequence-data}{%
@@ -542,11 +561,11 @@ Developed to lower cost and more throughput
 
     \begin{itemize}
     \item
-      Better for analyzing complex and repetitive parts of the genome, and were used for assembly \textbf{{[}CITE{]}}, structural variant detection \textbf{{[}CITE{]}}, etc\ldots{}
+      Better for analyzing complex and repetitive parts of the genome.
     \item
-      Real time sequencing, i.e.
+      Real time sequencing.
     \item
-      High throughput and
+      High throughput.
     \end{itemize}
   \item
     PacBIO SMRT \autocite{eidRealTimeDNASequencing2009}:
@@ -735,7 +754,20 @@ homopolymers are still tricky regions even with long high accuracy reads -\textg
 \item
   Can help resolve ambiguities in some cases c.f. Figure \ref{fig:hpcSchema}.
 \item
-  Used in many software tools for long reads \autocite{auImprovingPacBioLong2012,nurkHiCanuAccurateAssembly2020,liMinimap2PairwiseAlignment2018,ruanFastAccurateLongread2020,shafinNanoporeSequencingShasta2020,sahlinNovoClusteringLongRead2020,ekimMinimizerspaceBruijnGraphs2021} and even pyrosequencing reads \autocite{millerAggressiveAssemblyPyrosequencing2008}
+  Used in many software tools:
+
+  \begin{itemize}
+  \item
+    assembly: HiCanu \autocite{nurkHiCanuAccurateAssembly2020}, MDBG \autocite{ekimMinimizerspaceBruijnGraphs2021}, pyrosequencing assembly \autocite{millerAggressiveAssemblyPyrosequencing2008}, wtdbg2 \autocite{ruanFastAccurateLongread2020}, shasta \autocite{shafinNanoporeSequencingShasta2020}
+  \item
+    clustering: \autocite{sahlinNovoClusteringLongRead2020}
+  \item
+    error correction: LSC \autocite{auImprovingPacBioLong2012} and LSCPlus \autocite{huLSCplusFastSolution2016}
+  \item
+    alignment: minimap2 \autocite{liMinimap2PairwiseAlignment2018}, winnowmap2 \autocite{jainWeightedMinimizerSampling2020}.
+  \item
+    Satellite tandem repeat analysis \autocite{vannesteForensicSTRAnalysis2012}
+  \end{itemize}
 \end{itemize}
 
 reconstruct the whole genome.
@@ -846,18 +878,27 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
 \item
   We do global alignment when we expect two sequences to be related and of similar genes/proteins, etc\ldots{}
 \item
-  short presentation of NW algo:
+  short presentation of NW algo (c.f. Figure \ref{fig:nwAlign}):
 
   \begin{itemize}
   \item
     The score of an alignment can be defined recursively -\textgreater{} dynamic programming
   \item
-    Fill out DP matrix
+    Fill out DP matrix:
   \item
-    Traceback to find optimal alignment
+    Traceback to find optimal alignment: start in the bottom right and follow the arrows up to the upper left. Diagonal: Match/mismatch, vertical arrow: gap in ``columns'' sequence, horizontal arrow: gap in ``rows'' sequence.
   \end{itemize}
-\item
-  Example\ldots{} (can be at the same time as the algo presentation)
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/Nw-dp.pdf}
+\extcaption{Example global alignment with the Needleman-Wunsch algorithm}{The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments.}
+\label{fig:nwAlign}
+\end{figure}
+
+\begin{itemize}
+\tightlist
 \item
   This algorithm although very precise, has a time complexity of \(O(nm)\) where \(n\) and \(m\) are the lengths of the sequences to align \autocite{sungAlgorithmsBioinformaticsPractical2011}. Some methods have been proposed to speed up \autocite{masekFasterAlgorithmComputing1980}, however the complexity is still \(O(nm/\log(n))\). Lower bounds have been studied and there is not much optimization we can do if we want to keep an optimal exact alignment \autocite{vinhInformationTheoreticMeasures2010,ullmanBoundsComplexityLongest1976}. If we want to do better we have to rely on heuristics.
 \item
@@ -876,9 +917,11 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
 
 \begin{itemize}
 \item
-  Similar ideas to NW
+  We want to align a subsequence to a subsequence.
 \item
-  Basic example of NW
+  Similar ideas to NW, except we start the traceback at the maximally valued cell and stop when we hit a score of 0. i.e.
+\item
+  In the example in Figure \ref{fig:nwAlign} there are two possible starting cells with a score of 2. This will yield 2 optimal local alignments: AC to AC and GA to GA.
 \item
   In terms of complexity is the same as NW in quadratic in time and space \autocite{sungAlgorithmsBioinformaticsPractical2011} but can be taken down to linear space with the same approach as NW.
 \item
@@ -965,7 +1008,9 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
 \item
   Bounded DP \autocite{spougeSpeedingDynamicProgramming1989a,fickettFastOptimalAlignment1984}, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. \ref{fig:optimMethods}
 \item
-  HMMs: \textbf{\emph{(I Need to find out if they actually are faster for pairwise, and how fast)}}
+  New Algorithms like the wavefront algorithm \autocite{marco-solaFastGapaffinePairwise2020}
+\item
+  HMMs:
 
   \begin{itemize}
   \item
@@ -1071,10 +1116,19 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
 \item
   Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) \autocite{karlinMethodsAssessingStatistical1990a,mottAlignmentStatisticalSignificance2005}
 \item
-  Minimap2 \autocite{liMinimap2PairwiseAlignment2018} minimizer hash table
+  Minimap2 \autocite{liMinimap2PairwiseAlignment2018} minimizer (Figure \ref{fig:minimizers}) hash table
 \item
   Diamond \autocite{buchfinkFastSensitiveProtein2015,buchfinkSensitiveProteinAlignments2021} which indexes both the reference and query at the same time.
 \end{itemize}
+
+\begin{figure}[h]
+{
+  \centering
+  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
+}
+\extcaption{Example of kmers sharing a minimizer}{}
+\label{fig:minimizers}
+\end{figure}
 
 \hypertarget{suffix-trees-suffix-arrays}{%
 \subsubsection{Suffix trees / suffix arrays}\label{suffix-trees-suffix-arrays}}
@@ -1132,7 +1186,7 @@ guide tree, clustering of sequences then refine alignment. Good heuristic but wi
   Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[h]
 {
   \centering
   \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
@@ -1178,78 +1232,106 @@ Different strenghts/weaknesses so many reviews and benchmarks to make a choice \
 \hypertarget{hmms-in-profile-profile-or-seq-profile-alignments}{%
 \subsection{HMMs in profile-profile or seq-profile alignments}\label{hmms-in-profile-profile-or-seq-profile-alignments}}
 
-HMM method similar performance to clustal-w \autocite{eddyMultipleAlignmentUsing}, HHMer \autocite{finnHMMERWebServer2011} and COVID-align COVID-align \autocite{lemoineCOVIDAlignAccurateOnline2020}
+HMM method similar performance to clustal-w \autocite{eddyMultipleAlignmentUsing}, HHMer \autocite{finnHMMERWebServer2011}, MSAProbs \autocite{liuMSAProbsMultipleSequence2010} and COVID-align \autocite{lemoineCOVIDAlignAccurateOnline2020}
 
 Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign \autocite{aksamentovNextcladeCladeAssignment2021}
 
-\hypertarget{other-optimization-methods-short}{%
-\subsection{Other optimization methods (short)}\label{other-optimization-methods-short}}
+\hypertarget{other-methods-short}{%
+\subsection{Other methods (short)}\label{other-methods-short}}
 
 \begin{itemize}
 \item
-  Simulated annealing to speed up DP \autocite{kimMultipleSequenceAlignment1994,ishikawaMultipleSequenceAlignment1993}
+  Simulated annealing to speed up DP \autocite{kimMultipleSequenceAlignment1994,ishikawaMultipleSequenceAlignment1993,huoSimulatedAnnealingAlgorithm2007}
 \item
-  Genetic algorithm, review \autocite{chowdhuryReviewMultipleSequence2017}
+  Genetic algorithm, review \autocite{chowdhuryReviewMultipleSequence2017}, can speed things up \autocite{zhangGeneticAlgorithmMultiple1997}
 
   \begin{itemize}
   \tightlist
   \item
-    SAGA \autocite{notredameSAGASequenceAlignment1996}
+    SAGA \autocite{notredameSAGASequenceAlignment1996}, VGDA \autocite{nazninVerticalDecompositionGenetic2011}, GAPAM \autocite{nazninProgressiveAlignmentMethod2012}
   \end{itemize}
 \item
   recently: regressive method \autocite{garrigaLargeMultipleSequence2019} root to leaf allows to align a very large number of sequences: 1.4 million!
 \end{itemize}
 
-\hypertarget{the-specifities-of-read-mapping}{%
-\section{The specifities of read-mapping}\label{the-specifities-of-read-mapping}}
+\hypertarget{the-specificities-of-read-mapping}{%
+\section{The specificities of read-mapping}\label{the-specificities-of-read-mapping}}
 
 Huge review of mapping in \autocite{alserTechnologyDictatesAlgorithms2021}
 
+\hypertarget{what-is-read-mapping}{%
+\subsection{What is read-mapping ?}\label{what-is-read-mapping}}
+
+Task: locally/semi-globally align independent sequencing reads to a reference genome.
+
+Plenty of aligners both for short reads (reviews \autocite{schbathMappingReadsGenomic2012,hatemBenchmarkingShortSequence2013,canzarShortReadMapping2017}) and long-reads (\autocite{liMinimap2PairwiseAlignment2018}. Active field and there are benchmarks \autocite{brindaRNFGeneralFramework2016} and reviews \autocite{alserTechnologyDictatesAlgorithms2021,ruffaloComparativeAnalysisAlgorithms2011}.
+
 \begin{itemize}
 \tightlist
-\item
-  Mapping is effectively the task of finding a bunch of independent local alignments between query sequences and a target reference sequence.
-\item
-  context of short read (query) on large reference sequence (even with long reads they are usually much smaller than the reference genome)
-\item
-  Problems:
-
-  \begin{itemize}
-  \item
-    Repetitive regions (centromeres, telomeres) make it hard \autocite{alserTechnologyDictatesAlgorithms2021}
-  \item
-    low homology / sequencing errors\ldots{} make mapping and other tasks hard \autocite{gusfieldAlgorithmsStringsTrees1997}
-  \end{itemize}
-\item
-  short-reads mapping
-
-  \begin{itemize}
-  \item
-    benchmarks/review \autocite{schbathMappingReadsGenomic2012,hatemBenchmarkingShortSequence2013}
-  \item
-    Algorithms in short read mapping \autocite{canzarShortReadMapping2017} (basically same thing as speeding up section)
-  \item
-    Hardware accelerated \autocite{olsonHardwareAccelerationShort2012}
-  \end{itemize}
-\item
-  Long read mapping:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    software: winnowmap \autocite{jainWeightedMinimizerSampling2020}, winnowmap2 \autocite{jainLongreadMappingRepetitive2022} and tandemtools \autocite{mikheenkoTandemToolsMappingLong2020} for repetitive regions.
-  \end{itemize}
 \item
   Mapping quality:
 
   \begin{itemize}
   \item
     Intro and definition, quite a loosely defined term.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Different definitions/implementations ?
+    \end{itemize}
   \item
     Mapping quality from tandem simulation \autocite{langmeadTandemSimulationFramework2017}
   \end{itemize}
 \item
-  Benchmarking is of interest of field \autocite{brindaRNFGeneralFramework2016}
+  Technical aspects to speed up, since we usually have a couple refs and and many many query reads, the index strategy described earlier is particularly well suited:
+
+  \begin{itemize}
+  \item
+    hash tables: \autocite{liMinimap2PairwiseAlignment2018}
+  \item
+    FM index / BWT: BWT-SW \autocite{lamCompressedIndexingLocal2008}, Bowtie 2 \autocite{langmeadFastGappedreadAlignment2012}, BWA, BWA-SW \autocite{liFastAccurateShort2009,liFastAccurateLongread2010}, BWA-MEM \autocite{liAligningSequenceReads2013} and CUSHAW \autocite{liuLongReadAlignment2012}.
+  \end{itemize}
+\item
+  Divide and conquer as well: \autocite{linKartDivideandconquerAlgorithm2017}
+\item
+  These heuristics also become more and more needed as sequencing technologies yield longer and longer reads.
+\item
+  Also hardware acceleration for short \autocite{olsonHardwareAccelerationShort2012} and long \autocite{chenAcceleratingNextGeneration2014,suzukiIntroducingDifferenceRecurrence2018,zeniLOGANHighPerformanceGPUBased2020} reads.
+\end{itemize}
+
+\hypertarget{challenges-of-read-mapping}{%
+\subsection{Challenges of read-mapping}\label{challenges-of-read-mapping}}
+
+\begin{itemize}
+\tightlist
+\item
+  low homology / sequencing errors\ldots{} make mapping and other tasks hard \autocite{gusfieldAlgorithmsStringsTrees1997}
+
+  \begin{itemize}
+  \item
+    Particularly with long reads since sequencing error rate is higher: specific long read mappers that take this into account:
+
+    \begin{itemize}
+    \item
+      PB: BLASR \autocite{chaissonMappingSingleMolecule2012}, lordFAST \autocite{haghshenasLordFASTSensitiveFast2019}
+    \item
+      ONT: GraphMap \autocite{sovicFastSensitiveMapping2016}
+    \item
+      Both: NGMLR \autocite{sedlazeckAccurateDetectionComplex2018}, MashMap \autocite{jainFastApproximateAlgorithm2018}, DuploMap \autocite{prodanovSensitiveAlignmentUsing2020}
+    \end{itemize}
+  \end{itemize}
+\item
+  Repetitive regions (centromeres, telomeres) make it hard to map \autocite{alserTechnologyDictatesAlgorithms2021}. Specific tools have been developed for this:
+
+  \begin{itemize}
+  \item
+    winnowmap \autocite{jainWeightedMinimizerSampling2020}, winnowmap2 \autocite{jainLongreadMappingRepetitive2022}
+  \item
+    tandemtools \autocite{mikheenkoTandemToolsMappingLong2020} for tandem repeats.
+  \end{itemize}
+\item
+  homopolymers can also be a problem, so HPC is implemented in mappers *(c.f. \ref{hpc-trick})*
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
@@ -1265,7 +1347,7 @@ Recall that:
 \item
   Homopolymers are a problem (c.f. \ref{homopolymers-and-long-reads})
 \item
-  Mapping is hard (c.f. \ref{the-specifities-of-read-mapping})
+  Mapping is hard (c.f. \ref{the-specificities-of-read-mapping})
 \item
   HPC has been used successfully used to improve mapping (c.f. \ref{hpc-trick})
 \end{itemize}

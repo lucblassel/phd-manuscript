@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-06-16" />
+<meta name="date" content="2022-06-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -96,14 +96,21 @@ div.csl-indent {
 <li><a href="./">My PhD thesis.</a></li>
 
 <li class="divider"></li>
+<li><a href="index.html#section"></a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
-<li class="chapter" data-level="" data-path="résumé.html"><a href="résumé.html"><i class="fa fa-check"></i>Résumé</a></li>
-<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="" data-path="glossary.html"><a href="glossary.html"><i class="fa fa-check"></i>Glossary</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#résumé"><i class="fa fa-check"></i>Résumé</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#glossary"><i class="fa fa-check"></i>Glossary</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html"><i class="fa fa-check"></i>General Introduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#organization-of-this-manuscript"><i class="fa fa-check"></i>Organization of this manuscript</a></li>
-<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#publications-produced"><i class="fa fa-check"></i>Publications produced</a></li>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#research-output"><i class="fa fa-check"></i>Research output</a>
+<ul>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#journal-publications"><i class="fa fa-check"></i>Journal publications</a></li>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#presentations-and-posters"><i class="fa fa-check"></i>Presentations and posters</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html"><i class="fa fa-check"></i><b>1</b> What is Sequence data ?</a>
 <ul>
@@ -148,9 +155,13 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.3.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#progressive-alignment"><i class="fa fa-check"></i><b>2.3.1</b> Progressive alignment</a></li>
 <li class="chapter" data-level="2.3.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#hmms-in-profile-profile-or-seq-profile-alignments"><i class="fa fa-check"></i><b>2.3.2</b> HMMs in profile-profile or seq-profile alignments</a></li>
-<li class="chapter" data-level="2.3.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#other-optimization-methods-short"><i class="fa fa-check"></i><b>2.3.3</b> Other optimization methods (short)</a></li>
+<li class="chapter" data-level="2.3.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#other-methods-short"><i class="fa fa-check"></i><b>2.3.3</b> Other methods (short)</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#the-specifities-of-read-mapping"><i class="fa fa-check"></i><b>2.4</b> The specifities of read-mapping</a></li>
+<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#the-specificities-of-read-mapping"><i class="fa fa-check"></i><b>2.4</b> The specificities of read-mapping</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#what-is-read-mapping"><i class="fa fa-check"></i><b>2.4.1</b> What is read-mapping ?</a></li>
+<li class="chapter" data-level="2.4.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#challenges-of-read-mapping"><i class="fa fa-check"></i><b>2.4.2</b> Challenges of read-mapping</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="HPC-paper.html"><a href="HPC-paper.html"><i class="fa fa-check"></i><b>3</b> Contribution 1: Improving read alignment by exploring a sequence transformation space</a>
 <ul>
@@ -433,9 +444,9 @@ Figure 1.2: caption (WIP)
 <ul>
 <li><p>Introduce need for longer reads:</p>
 <ul>
-<li><p>Better for analyzing complex and repetitive parts of the genome, and were used for assembly <strong>[CITE]</strong>, structural variant detection <strong>[CITE]</strong>, etc…</p></li>
-<li><p>Real time sequencing, i.e.</p></li>
-<li><p>High throughput and</p></li>
+<li><p>Better for analyzing complex and repetitive parts of the genome.</p></li>
+<li><p>Real time sequencing.</p></li>
+<li><p>High throughput.</p></li>
 </ul></li>
 <li><p>PacBIO SMRT<span class="citation"><sup><a href="#ref-eidRealTimeDNASequencing2009" role="doc-biblioref">40</a></sup></span>:</p>
 <ul>
@@ -550,7 +561,14 @@ Figure 1.4: Homopolymer length as fraction of the genome
 <ul>
 <li><p>HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence</p></li>
 <li><p>Can help resolve ambiguities in some cases c.f. Figure <a href="what-is-sequence-data.html#fig:hpcSchema">1.5</a>.</p></li>
-<li><p>Used in many software tools for long reads<span class="citation"><sup><a href="#ref-ruanFastAccurateLongread2020" role="doc-biblioref">57</a>,<a href="#ref-auImprovingPacBioLong2012" role="doc-biblioref">93</a>–<a href="#ref-ekimMinimizerspaceBruijnGraphs2021" role="doc-biblioref">98</a></sup></span> and even pyrosequencing reads<span class="citation"><sup><a href="#ref-millerAggressiveAssemblyPyrosequencing2008" role="doc-biblioref">99</a></sup></span></p></li>
+<li><p>Used in many software tools:</p>
+<ul>
+<li><p>assembly: HiCanu<span class="citation"><sup><a href="#ref-nurkHiCanuAccurateAssembly2020" role="doc-biblioref">93</a></sup></span>, MDBG<span class="citation"><sup><a href="#ref-ekimMinimizerspaceBruijnGraphs2021" role="doc-biblioref">94</a></sup></span>, pyrosequencing assembly<span class="citation"><sup><a href="#ref-millerAggressiveAssemblyPyrosequencing2008" role="doc-biblioref">95</a></sup></span>, wtdbg2<span class="citation"><sup><a href="#ref-ruanFastAccurateLongread2020" role="doc-biblioref">57</a></sup></span>, shasta<span class="citation"><sup><a href="#ref-shafinNanoporeSequencingShasta2020" role="doc-biblioref">96</a></sup></span></p></li>
+<li><p>clustering:<span class="citation"><sup><a href="#ref-sahlinNovoClusteringLongRead2020" role="doc-biblioref">97</a></sup></span></p></li>
+<li><p>error correction: LSC<span class="citation"><sup><a href="#ref-auImprovingPacBioLong2012" role="doc-biblioref">98</a></sup></span> and LSCPlus<span class="citation"><sup><a href="#ref-huLSCplusFastSolution2016" role="doc-biblioref">99</a></sup></span></p></li>
+<li><p>alignment: minimap2<span class="citation"><sup><a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">100</a></sup></span>, winnowmap2<span class="citation"><sup><a href="#ref-jainWeightedMinimizerSampling2020" role="doc-biblioref">101</a></sup></span>.</p></li>
+<li><p>Satellite tandem repeat analysis<span class="citation"><sup><a href="#ref-vannesteForensicSTRAnalysis2012" role="doc-biblioref">102</a></sup></span></p></li>
+</ul></li>
 </ul>
 <p>reconstruct the whole genome.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:hpcSchema"></span>
@@ -848,14 +866,35 @@ Figure 1.5: caption (WIP)
 <div id="ref-wangConstructionBioConstrainedCode2019" class="csl-entry">
 <div class="csl-left-margin">92. </div><div class="csl-right-inline">Wang, Y., Noor-A-Rahim, Md., Gunawan, E., Guan, Y. L. &amp; Poh, C. L. <a href="https://doi.org/10.1109/LCOMM.2019.2912572">Construction of bio-constrained code for DNA data storage</a>. <em>IEEE Communications Letters</em> <strong>23</strong>, 963–966 (2019).</div>
 </div>
-<div id="ref-auImprovingPacBioLong2012" class="csl-entry">
-<div class="csl-left-margin">93. </div><div class="csl-right-inline">Au, K. F., Underwood, J. G., Lee, L. &amp; Wong, W. H. <a href="https://doi.org/10.1371/journal.pone.0046679">Improving <span>PacBio Long Read Accuracy</span> by <span>Short Read Alignment</span></a>. <em>PLOS ONE</em> <strong>7</strong>, e46679 (2012).</div>
+<div id="ref-nurkHiCanuAccurateAssembly2020" class="csl-entry">
+<div class="csl-left-margin">93. </div><div class="csl-right-inline">Nurk, S. <em>et al.</em> <a href="https://doi.org/10.1101/gr.263566.120"><span>HiCanu</span>: Accurate assembly of segmental duplications, satellites, and allelic variants from high-fidelity long reads</a>. <em>Genome Res.</em> <strong>30</strong>, 1291–1305 (2020).</div>
 </div>
 <div id="ref-ekimMinimizerspaceBruijnGraphs2021" class="csl-entry">
-<div class="csl-left-margin">98. </div><div class="csl-right-inline">Ekim, B., Berger, B. &amp; Chikhi, R. <a href="https://doi.org/10.1016/j.cels.2021.08.009">Minimizer-space de <span>Bruijn</span> graphs: Whole-genome assembly of long reads in minutes on a personal computer</a>. <em>Cell Systems</em> <strong>12</strong>, 958–968.e6 (2021).</div>
+<div class="csl-left-margin">94. </div><div class="csl-right-inline">Ekim, B., Berger, B. &amp; Chikhi, R. <a href="https://doi.org/10.1016/j.cels.2021.08.009">Minimizer-space de <span>Bruijn</span> graphs: Whole-genome assembly of long reads in minutes on a personal computer</a>. <em>Cell Systems</em> <strong>12</strong>, 958–968.e6 (2021).</div>
 </div>
 <div id="ref-millerAggressiveAssemblyPyrosequencing2008" class="csl-entry">
-<div class="csl-left-margin">99. </div><div class="csl-right-inline">Miller, J. R. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btn548">Aggressive assembly of pyrosequencing reads with mates</a>. <em>Bioinformatics</em> <strong>24</strong>, 2818–2824 (2008).</div>
+<div class="csl-left-margin">95. </div><div class="csl-right-inline">Miller, J. R. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btn548">Aggressive assembly of pyrosequencing reads with mates</a>. <em>Bioinformatics</em> <strong>24</strong>, 2818–2824 (2008).</div>
+</div>
+<div id="ref-shafinNanoporeSequencingShasta2020" class="csl-entry">
+<div class="csl-left-margin">96. </div><div class="csl-right-inline">Shafin, K. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-020-0503-6">Nanopore sequencing and the Shasta toolkit enable efficient de novo assembly of eleven human genomes</a>. <em>Nature Biotechnology</em> <strong>38</strong>, 1044–1053 (2020).</div>
+</div>
+<div id="ref-sahlinNovoClusteringLongRead2020" class="csl-entry">
+<div class="csl-left-margin">97. </div><div class="csl-right-inline">Sahlin, K. &amp; Medvedev, P. <a href="https://doi.org/10.1089/cmb.2019.0299">De <span>Novo Clustering</span> of <span>Long-Read Transcriptome Data Using</span> a <span>Greedy</span>, <span>Quality Value-Based Algorithm</span></a>. <em>Journal of Computational Biology</em> <strong>27</strong>, 472–484 (2020).</div>
+</div>
+<div id="ref-auImprovingPacBioLong2012" class="csl-entry">
+<div class="csl-left-margin">98. </div><div class="csl-right-inline">Au, K. F., Underwood, J. G., Lee, L. &amp; Wong, W. H. <a href="https://doi.org/10.1371/journal.pone.0046679">Improving <span>PacBio Long Read Accuracy</span> by <span>Short Read Alignment</span></a>. <em>PLOS ONE</em> <strong>7</strong>, e46679 (2012).</div>
+</div>
+<div id="ref-huLSCplusFastSolution2016" class="csl-entry">
+<div class="csl-left-margin">99. </div><div class="csl-right-inline">Hu, R., Sun, G. &amp; Sun, X. <a href="https://doi.org/10.1186/s12859-016-1316-y">LSCplus: a fast solution for improving long read accuracy by short read alignment</a>. <em>BMC Bioinformatics</em> <strong>17</strong>, 451 (2016).</div>
+</div>
+<div id="ref-liMinimap2PairwiseAlignment2018" class="csl-entry">
+<div class="csl-left-margin">100. </div><div class="csl-right-inline">Li, H. <a href="https://doi.org/10.1093/bioinformatics/bty191">Minimap2: Pairwise alignment for nucleotide sequences</a>. <em>Bioinformatics</em> <strong>34</strong>, 3094–3100 (2018).</div>
+</div>
+<div id="ref-jainWeightedMinimizerSampling2020" class="csl-entry">
+<div class="csl-left-margin">101. </div><div class="csl-right-inline">Jain, C. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btaa435">Weighted minimizer sampling improves long read mapping</a>. <em>Bioinformatics</em> <strong>36</strong>, i111–i118 (2020).</div>
+</div>
+<div id="ref-vannesteForensicSTRAnalysis2012" class="csl-entry">
+<div class="csl-left-margin">102. </div><div class="csl-right-inline">Van Neste, C., Van Nieuwerburgh, F., Van Hoofstat, D. &amp; Deforce, D. <a href="https://doi.org/10.1016/j.fsigen.2012.03.004">Forensic STR analysis using massive parallel sequencing</a>. <em>Forensic Science International: Genetics</em> <strong>6</strong>, 810–818 (2012).</div>
 </div>
 </div>
             </section>
