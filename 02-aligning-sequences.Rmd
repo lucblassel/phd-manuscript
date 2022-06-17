@@ -51,13 +51,29 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
 #### Global alignment
 
 -   We do global alignment when we expect two sequences to be related and of similar genes/proteins, etc...
--   short presentation of NW algo:
+-   short presentation of NW algo (c.f. Figure \@ref(fig:nwAlign)):
     -   The score of an alignment can be defined recursively -\> dynamic programming
 
-    -   Fill out DP matrix
+    -   Fill out DP matrix:
 
-    -   Traceback to find optimal alignment
--   Example... (can be at the same time as the algo presentation)
+    -   Traceback to find optimal alignment: start in the bottom right and follow the arrows up to the upper left. Diagonal: Match/mismatch, vertical arrow: gap in "columns" sequence, horizontal arrow: gap in "rows" sequence.
+
+```{r, nwCaption}
+nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm**\ The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments."
+```
+
+```{r, nwAlign, label="nwAlign", fig.cap=nwCaption, eval=knitr::is_html_output(), out.width="60%"}
+knitr::include_graphics("./figures/Align-Intro/Nw-dp.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/Nw-dp.pdf}
+\extcaption{Example global alignment with the Needleman-Wunsch algorithm}{The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments.}
+\label{fig:nwAlign}
+\end{figure}
+```
 -   This algorithm although very precise, has a time complexity of $O(nm)$ where $n$ and $m$ are the lengths of the sequences to align [@sungAlgorithmsBioinformaticsPractical2011]. Some methods have been proposed to speed up [@masekFasterAlgorithmComputing1980], however the complexity is still $O(nm/\log(n))$. Lower bounds have been studied and there is not much optimization we can do if we want to keep an optimal exact alignment [@vinhInformationTheoreticMeasures2010; @ullmanBoundsComplexityLongest1976]. If we want to do better we have to rely on heuristics.
 -   Another issue is space complexity since we need to store the matrix, we get $O(nm)$ as well for space, so if we wish to align 2 human genomes we would need to store $\approx 10^{19}$ matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers (meaning it would take an entire data center to store that).
     -   However in practice we can do much better than that, and construct an optimal alignment in linear space complexity $O(n+m)$ [@hirschbergLinearSpaceAlgorithm1975] meaning we would only need a couple gigabytes to store the matrix for 2 human genomes.
@@ -66,9 +82,11 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
 
 #### Local alignment
 
--   Similar ideas to NW
+-   We want to align a subsequence to a subsequence.
 
--   Basic example of NW
+-   Similar ideas to NW, except we start the traceback at the maximally valued cell and stop when we hit a score of 0. i.e.
+
+-   In the example in Figure \@ref(fig:nwAlign) there are two possible starting cells with a score of 2. This will yield 2 optimal local alignments: AC to AC and GA to GA.
 
 -   In terms of complexity is the same as NW in quadratic in time and space [@sungAlgorithmsBioinformaticsPractical2011] but can be taken down to linear space with the same approach as NW.
 
@@ -127,7 +145,9 @@ Although NW and SW give us optimal alignments [@pearson27DynamicProgramming1992]
 
 -   Bounded DP [@spougeSpeedingDynamicProgramming1989a; @fickettFastOptimalAlignment1984], we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. \@ref(fig:optimMethods)
 
--   HMMs: ***(I Need to find out if they actually are faster for pairwise, and how fast)***
+-   New Algorithms like the wavefront algorithm [@marco-solaFastGapaffinePairwise2020]
+
+-   HMMs:
 
     -   PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW [@durbinBiologicalSequenceAnalysis1998].
 
@@ -213,10 +233,28 @@ knitr::include_graphics("./figures/Align-Intro/optim-to-adapt.png")
 
 -   Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) [@karlinMethodsAssessingStatistical1990a; @mottAlignmentStatisticalSignificance2005]
 
--   Minimap2 [@liMinimap2PairwiseAlignment2018] minimizer hash table
+-   Minimap2 [@liMinimap2PairwiseAlignment2018] minimizer (Figure \@ref(fig:minimizers)) hash table
 
 -   Diamond [@buchfinkFastSensitiveProtein2015; @buchfinkSensitiveProteinAlignments2021] which indexes both the reference and query at the same time.
 
+```{r, minimizercaption}
+progCaption <- "**Example of kmers sharing a minimizer**"
+```
+
+```{r, minimizers, label="minimizers", eval=knitr::is_html_output(), fig.cap=progCaption, out.width="70%"}
+knitr::include_graphics("./figures/Align-Intro/minimizers.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+{
+  \centering
+  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
+}
+\extcaption{Example of kmers sharing a minimizer}{}
+\label{fig:minimizers}
+\end{figure}
+```
 #### Suffix trees / suffix arrays
 
 -   Used in many pattern matching problems [@gusfieldAlgorithmsStringsTrees1997].
@@ -262,7 +300,7 @@ knitr::include_graphics("./figures/Align-Intro/progressive-aln.png")
 ```
 
 ```{=tex}
-\begin{figure}
+\begin{figure}[h]
 {
   \centering
   \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
@@ -294,44 +332,60 @@ Some of the most used MSA software uses these methods of progressive/iterative r
 
 Different strenghts/weaknesses so many reviews and benchmarks to make a choice [@notredameRecentEvolutionsMultiple2007; @notredameRecentProgressMultiple2002; @edgarMultipleSequenceAlignment2006; @paisAssessingEfficiencyMultiple2014; @thompsonBAliBASEBenchmarkAlignment1999]
 
-### HMMs in profile-profile or seq-profile alignments 
+### HMMs in profile-profile or seq-profile alignments
 
-HMM method similar performance to clustal-w [@eddyMultipleAlignmentUsing], HHMer [@finnHMMERWebServer2011] and COVID-align COVID-align [@lemoineCOVIDAlignAccurateOnline2020]
+HMM method similar performance to clustal-w [@eddyMultipleAlignmentUsing], HHMer [@finnHMMERWebServer2011], MSAProbs [@liuMSAProbsMultipleSequence2010] and COVID-align [@lemoineCOVIDAlignAccurateOnline2020]
 
 Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign [@aksamentovNextcladeCladeAssignment2021]
 
-### Other optimization methods (short)
+### Other methods (short)
 
--   Simulated annealing to speed up DP [@kimMultipleSequenceAlignment1994; @ishikawaMultipleSequenceAlignment1993]
+-   Simulated annealing to speed up DP [@kimMultipleSequenceAlignment1994; @ishikawaMultipleSequenceAlignment1993; @huoSimulatedAnnealingAlgorithm2007]
 
--   Genetic algorithm, review [@chowdhuryReviewMultipleSequence2017]
+-   Genetic algorithm, review [@chowdhuryReviewMultipleSequence2017], can speed things up [@zhangGeneticAlgorithmMultiple1997]
 
-    -   SAGA [@notredameSAGASequenceAlignment1996]
+    -   SAGA [@notredameSAGASequenceAlignment1996], VGDA [@nazninVerticalDecompositionGenetic2011], GAPAM [@nazninProgressiveAlignmentMethod2012]
 
 -   recently: regressive method [@garrigaLargeMultipleSequence2019] root to leaf allows to align a very large number of sequences: 1.4 million!
 
-## The specifities of read-mapping {#the-specifities-of-read-mapping}
+## The specificities of read-mapping {#the-specificities-of-read-mapping}
 
 Huge review of mapping in [@alserTechnologyDictatesAlgorithms2021]
 
--   Mapping is effectively the task of finding a bunch of independent local alignments between query sequences and a target reference sequence.
--   context of short read (query) on large reference sequence (even with long reads they are usually much smaller than the reference genome)
--   Problems:
-    -   Repetitive regions (centromeres, telomeres) make it hard [@alserTechnologyDictatesAlgorithms2021]
+### What is read-mapping ?
 
-    -   low homology / sequencing errors... make mapping and other tasks hard [@gusfieldAlgorithmsStringsTrees1997]
--   short-reads mapping
-    -   benchmarks/review [@schbathMappingReadsGenomic2012; @hatemBenchmarkingShortSequence2013]
+Task: locally/semi-globally align independent sequencing reads to a reference genome.
 
-    -   Algorithms in short read mapping [@canzarShortReadMapping2017] (basically same thing as speeding up section)
+Plenty of aligners both for short reads (reviews [@schbathMappingReadsGenomic2012; @hatemBenchmarkingShortSequence2013; @canzarShortReadMapping2017]) and long-reads ([@liMinimap2PairwiseAlignment2018]. Active field and there are benchmarks [@brindaRNFGeneralFramework2016] and reviews [@alserTechnologyDictatesAlgorithms2021; @ruffaloComparativeAnalysisAlgorithms2011].
 
-    -   Hardware accelerated [@olsonHardwareAccelerationShort2012]
--   Long read mapping:
-    -   software: winnowmap [@jainWeightedMinimizerSampling2020], winnowmap2 [@jainLongreadMappingRepetitive2022] and tandemtools [@mikheenkoTandemToolsMappingLong2020] for repetitive regions.
 -   Mapping quality:
     -   Intro and definition, quite a loosely defined term.
 
+        -   Different definitions/implementations ?
+
     -   Mapping quality from tandem simulation [@langmeadTandemSimulationFramework2017]
--   Benchmarking is of interest of field [@brindaRNFGeneralFramework2016]
+-   Technical aspects to speed up, since we usually have a couple refs and and many many query reads, the index strategy described earlier is particularly well suited:
+    -   hash tables: [@liMinimap2PairwiseAlignment2018]
+
+    -   FM index / BWT: BWT-SW [@lamCompressedIndexingLocal2008], Bowtie 2 [@langmeadFastGappedreadAlignment2012], BWA, BWA-SW [@liFastAccurateShort2009; @liFastAccurateLongread2010], BWA-MEM [@liAligningSequenceReads2013] and CUSHAW [@liuLongReadAlignment2012].
+-   Divide and conquer as well: [@linKartDivideandconquerAlgorithm2017]
+-   These heuristics also become more and more needed as sequencing technologies yield longer and longer reads.
+-   Also hardware acceleration for short [@olsonHardwareAccelerationShort2012] and long [@chenAcceleratingNextGeneration2014; @suzukiIntroducingDifferenceRecurrence2018; @zeniLOGANHighPerformanceGPUBased2020] reads.
+
+### Challenges of read-mapping
+
+-   low homology / sequencing errors... make mapping and other tasks hard [@gusfieldAlgorithmsStringsTrees1997]
+    -   Particularly with long reads since sequencing error rate is higher: specific long read mappers that take this into account:
+
+        -   PB: BLASR [@chaissonMappingSingleMolecule2012], lordFAST [@haghshenasLordFASTSensitiveFast2019]
+
+        -   ONT: GraphMap [@sovicFastSensitiveMapping2016]
+
+        -   Both: NGMLR [@sedlazeckAccurateDetectionComplex2018], MashMap [@jainFastApproximateAlgorithm2018], DuploMap [@prodanovSensitiveAlignmentUsing2020]
+-   Repetitive regions (centromeres, telomeres) make it hard to map [@alserTechnologyDictatesAlgorithms2021]. Specific tools have been developed for this:
+    -   winnowmap [@jainWeightedMinimizerSampling2020], winnowmap2 [@jainLongreadMappingRepetitive2022]
+
+    -   tandemtools [@mikheenkoTandemToolsMappingLong2020] for tandem repeats.
+-   homopolymers can also be a problem, so HPC is implemented in mappers \*(c.f. \@ref(hpc-trick))\*
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

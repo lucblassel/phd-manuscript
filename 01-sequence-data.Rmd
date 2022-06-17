@@ -160,11 +160,11 @@ Developed to lower cost and more throughput
 
     -   Introduce need for longer reads:
 
-        -   Better for analyzing complex and repetitive parts of the genome, and were used for assembly **[CITE]**, structural variant detection **[CITE]**, etc...
+        -   Better for analyzing complex and repetitive parts of the genome.
 
-        -   Real time sequencing, i.e.
+        -   Real time sequencing.
 
-        -   High throughput and
+        -   High throughput.
 
     -   PacBIO SMRT [@eidRealTimeDNASequencing2009]:
 
@@ -321,7 +321,17 @@ homopolymers are still tricky regions even with long high accuracy reads -\> so 
 
 -   Can help resolve ambiguities in some cases c.f. Figure \@ref(fig:hpcSchema).
 
--   Used in many software tools for long reads [@auImprovingPacBioLong2012; @nurkHiCanuAccurateAssembly2020; @liMinimap2PairwiseAlignment2018; @ruanFastAccurateLongread2020; @shafinNanoporeSequencingShasta2020; @sahlinNovoClusteringLongRead2020; @ekimMinimizerspaceBruijnGraphs2021] and even pyrosequencing reads [@millerAggressiveAssemblyPyrosequencing2008]
+-   Used in many software tools:
+
+    -   assembly: HiCanu [@nurkHiCanuAccurateAssembly2020], MDBG [@ekimMinimizerspaceBruijnGraphs2021], pyrosequencing assembly [@millerAggressiveAssemblyPyrosequencing2008], wtdbg2 [@ruanFastAccurateLongread2020], shasta [@shafinNanoporeSequencingShasta2020]
+
+    -   clustering: [@sahlinNovoClusteringLongRead2020]
+
+    -   error correction: LSC [@auImprovingPacBioLong2012] and LSCPlus [@huLSCplusFastSolution2016]
+
+    -   alignment: minimap2 [@liMinimap2PairwiseAlignment2018], winnowmap2 [@jainWeightedMinimizerSampling2020].
+
+    -   Satellite tandem repeat analysis [@vannesteForensicSTRAnalysis2012]
 
 reconstruct the whole genome.
 
