@@ -231,10 +231,11 @@
 \addbibresource{./references/HIV-DRMs.bib}
 \addbibresource{./references/Sequence-Data.bib}
 \addbibresource{./references/Aligning-Sequences.bib}
+\addbibresource{./references/HIV-context.bib}
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-17}
+\date{2022-06-20}
 
 \begin{document}
 \maketitle
@@ -348,7 +349,7 @@ What are these terms ?
 \item
   \textbf{``Can we improve analyses be transforming DNA?''} Joint RECOMB-SEQ RECOMB-CCB scientific \href{https://recomb2022.net/recomb-ccb-seq-scientific-communication/}{communication session}\footnote{2nd place prize awarded}. San Diego, USA (\emph{May 21\textsuperscript{st}} \emph{2022).}
 \item
-  ``\textbf{Machine learning approaches to reveal resistance mutations in HIV''} Poster at \href{https://www.lirmm.fr/mceb2019/}{MCEB 2019}. Porquerolles, France \emph{(May XXX 2019)}
+  ``\textbf{Machine learning approaches to reveal resistance mutations in HIV''} Poster at \href{https://www.lirmm.fr/mceb2019/}{MCEB 2019}. Porquerolles, France \emph{(May 29\textsuperscript{th} 2019)}
 \end{itemize}
 
 \hypertarget{what-is-sequence-data}{%
@@ -2368,9 +2369,119 @@ end-to-end training like aligning sequences, this is harder because it requires 
 \hypertarget{what-are-viruses}{%
 \section{What are viruses ?}\label{what-are-viruses}}
 
-small presentation / definition of viruses
+\begin{itemize}
+\item
+  Viruses are intracellular parasites \autocite{minorViruses2014}
+\item
+  Weird in between, are they organisms or molecules ?
+\item
+  André Lwoff, famous Pasteur Virologist gave the most apt definition: \emph{``viruses are viruses''} \autocite{lwoffConceptVirus1957}, there are however some key characteristics:
 
-DNA / RNA viruses
+  \begin{itemize}
+  \item
+    They have some type of genetic information that is contained in some envelope
+  \item
+    They use the machinery of host cells to make copies of themselves
+  \item
+    can be pathogenic (HIV, SARS-CoV, Influenza, \ldots) or not (GBV-C \autocite{stapletonGBVirusesReview2011} , a strain of H5N1 influenza \autocite{yamamotoCharacterizationNonpathogenicH5N12011} )
+  \end{itemize}
+\item
+  All types of living organisms have their viruses:
+
+  \begin{itemize}
+  \item
+    Animals:
+
+    \begin{itemize}
+    \item
+      vertebrates \autocite{shiEvolutionaryHistoryVertebrate2018}
+    \item
+      invertrebrates \autocite{adamsAtlasInvertebrateViruses2017}
+    \end{itemize}
+  \item
+    Plants \autocite{lefeuvreEvolutionEcologyPlant2019}
+  \item
+    Bacteria \autocite{delbrockBacterialVirusesBacteriophages1946}, phages being considered as therapy option separate to antibiotics \autocite{clarkBacterialVirusesHuman2004,vankan-davelaarUsingVirusesNanomedicines2014}
+  \item
+    Archea \autocite{prangishviliVirusesArchaea2016,prangishviliVirusesArchaeaUnifying2006}
+  \item
+    Virus of viruses like plant satellite viruses \autocite{franckiPlantVirusSatellites,xuPlantVirusSatellites2011} and hepatitis delta virus \autocite{laiMolecularBiologyHepatitis1995,hughesHepatitisDeltaVirus2011}. In both cases these ``viroids'' cannot replicate on theire own they must have a co-infection with the larger virus to replicate.
+  \end{itemize}
+\item
+  Where and when viruses originated is still under study \autocite{nasirInvestigatingConceptOrigin2020,forterreOriginViruses2009}, but they may have played an important role in emergence of eukaryotic cells \autocite{forterreOriginVirusesTheir2006}.
+\item
+  In any case, because of co-evolution there is a strong link between virus and host genomes, and parts of the genome are probably ancient retroviral sequences \autocite{boekeRetrotransposonsEndogenousRetroviruses1997,kojimaViruslikeInsertionsSequence2021}, it has been estimated that 1\% to 8\% of the human genome is composed of these endogenous retroviral sequences \autocite{lowerVirusesAllUs1996,griffithsEndogenousRetrovirusesHuman2001}
+\end{itemize}
+
+great diversity in viruses (support and replication strategy form the basis of the Baltimore virus classification system \autocite{baltimoreExpressionAnimalVirus1971} , still used today \autocite{kooninBaltimoreClassificationViruses2021} ):
+
+\begin{itemize}
+\item
+  Information support:
+
+  \begin{itemize}
+  \item
+    DNA: Hepatitis B
+
+    \begin{itemize}
+    \item
+      Double Stranded: like Herpesvirus \autocite{mcgeochTopicsHerpesvirusGenomics2006,boehmerHerpesVirusReplication2003}
+    \item
+      Single Stranded: Papillomavirus \autocite{brentjensHumanPapillomavirusReview2002}
+    \item
+      circular DNA: Hepatitis B \autocite{kayHepatitisVirusGenetic2007}
+    \end{itemize}
+  \item
+    RNA: HIV/SARS-CoV (about 70\% of human pathogenic viruses are RNA viruses \autocite{domingoRNAVirusGenomes2018}
+
+    \begin{itemize}
+    \item
+      Single Stranded:
+
+      \begin{itemize}
+      \item
+        positive strand: Hep C \autocite{simmondsVariabilityHepatitisVirus1995} / polio \autocite{wimmerGeneticsPoliovirus1993,racanielloOneHundredYears2006}
+      \item
+        negative strand: Influenza, Measles \autocite{paleseNegativestrandRNAViruses1996}
+      \end{itemize}
+    \item
+      Double stranded: Rotavirus \autocite{parasharRotavirus1998}
+    \end{itemize}
+  \end{itemize}
+\item
+  Replication strategies \autocite{domingoVirusEvolution2014}:
+
+  \begin{itemize}
+  \item
+    RNA -\textgreater{} RNA: SARS-CoV, Hep C, Dengue
+  \item
+    RNA -\textgreater{} DNA -\textgreater{} RNA: HIV-1
+  \item
+    DNA -\textgreater{} DNA: Papillomavirus, Smallpox
+  \item
+    DNA -\textgreater{} RNA -\textgreater{} DNA: Hep B
+  \end{itemize}
+\item
+  size both physical and genomic:
+
+  \begin{itemize}
+  \item
+    17nm for plant satellites \autocite{pyleChapter58Biology2017} to Mimivirus a giant virus of 400nm \autocite{raoult2megabaseGenomeSequence2004}.
+  \item
+    860 bp for \emph{Circovirus SFBeef} to 2.5 Mbp for \emph{Pandoravirus salinus} \autocite{campillo-balderasViralGenomeSize2015}
+  \end{itemize}
+\item
+  Shape of the virus :\autocite{cannVirusStructure2015}
+
+  \begin{itemize}
+  \item
+    Icosahedral: HIV
+  \item
+    helical: tobacco mosaic virus
+  \item
+    Head-tail: bacteriophages
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{what-is-hiv}{%
 \section{What is HIV ?}\label{what-is-hiv}}
@@ -2378,64 +2489,319 @@ DNA / RNA viruses
 \hypertarget{quick-presentation-of-hiv}{%
 \subsection{Quick Presentation of HIV}\label{quick-presentation-of-hiv}}
 
+Function / consequences:
+
 \begin{itemize}
-\tightlist
 \item
-  pandemic
+  Retrovirus that causes the AIDS (acquired immune deficiency syndrome) pandemic
 \item
-  history
+  Affects human immune system
+\item
+  Transmitted through sexual contact or through blood:
+
+  \begin{itemize}
+  \item
+    Sexual activity is the largest case contributor \autocite{hladikSettingStageHost2008,shawHIVTransmission2012}:
+
+    \begin{enumerate}
+    \def\labelenumi{\arabic{enumi}.}
+    \item
+      Female genital tract (12.6 million)
+    \item
+      Male genital tract (10.2 million)
+    \item
+      Male/Female lower GI tract (3.9 million)
+    \item
+      Blood stream (2.6 million)
+    \end{enumerate}
+  \end{itemize}
+\item
+  It causes AIDS by penetrating CD4 cells of the host immune system, using them to replicate and destroying them in doing so \autocite{weissHowDoesHIV1993}
+\item
+  the infection typically starts out with an asymptomatic phase that can last years, followed by a decrease in CDA cells that progresses to AIDS \autocite{melhuishNaturalHistoryHIV2018}. When the CD4 cell count is low opportunistic diseases like tuberculosis, pneumonia or meningitis can more easily infect the host and lead to death.
 \end{itemize}
 
-\hypertarget{replication-cycle-of-hiv}{%
-\subsection{Replication cycle of HIV}\label{replication-cycle-of-hiv}}
+History / pandemic:
+
+\begin{itemize}
+\item
+  Massive global pandemic, 2010 numbers \autocite{worldhealthorganizationGlobalReportUNAIDS2010}:
+
+  \begin{itemize}
+  \item
+    approx 33 million people were living with HIV, 2.6 million new infections in HIV and 1.8 millions AIDS deaths.
+  \item
+    This is decreasing with the 2020 numbers reporting 680,000 deaths and 1.5 million new infections \autocite{GlobalHIVAIDS}.
+  \item
+    70\% of the new infections are from sub-saharan africa \autocite{worldhealthorganizationGlobalReportUNAIDS2010}
+  \end{itemize}
+\item
+  Discovered simultaneously by Françoise Barré-Sinoussi, and Luc Montagnier and Robert Gallo in 1983 \autocite{barre-sinoussiIsolationTlymphotropicRetrovirus1983,galloIsolationHumanTcell1983}
+\item
+  VIH-1 vs VIH-2. VIH-1 is more transmissible and is largely responsible for the global pandemic \autocite{gilbert2003}, in fact in Africa HIV-1 infections are rising where HIV-2 are declining \autocite{vanderloeffSixteenYearsHIV2006}
+\item
+  VIH-1 From Simian Immunodeficiency viruses most likely \autocite{sharpOriginsHIVAIDS2011}, probably from a chimpanzee \autocite{gaoOriginHIV1Chimpanzee1999,hamelTwentyYearsProspective2007}.
+\item
+  VIH-2 also from a SIV probably from sooty mangabey \autocite{hirschAfricanPrimateLentivirus1989,gaoHumanInfectionGenetically1992,chenGeneticCharacterizationNew1996}
+\item
+  There is not 1 lineage: Different groups (MNOP) correspond to distinct crossing over events (from chimp to human)
+\item
+  Group M is mostly responsible for the pandemic, estimated Last common ancestor of group M estimated between 1910 to 1931 \autocite{korberTimingAncestorHIV12000,worobeyDirectEvidenceExtensive2008,rambautCausesConsequencesHIV2004}, and probably originated in what is now the DRC \autocite{worobeyDirectEvidenceExtensive2008,vidalUnprecedentedDegreeHuman2000,fariaEarlySpreadEpidemic2014}.
+\item
+  In group M there are 9 subtypes (A to K) \autocite{mccutchanGlobalEpidemiologyHIV2006,sharpOriginsHIVAIDS2011}
+\item
+  There is recombination \autocite{robertsonRecombinationAIDSViruses1995} which complicates phylogenetic analyses \autocite{posadaRecombinationEvolutionaryGenomics2002}, and are a pathway to resistance and complicate vaccine development \autocite{taylorChallengeHIV1Subtype2008}.
+\item
+  There are 118 identified HIV-1 CRFs currently in the Los Alamos National Laboratory HIV sequence database \autocite{HIVCirculatingRecombinant} (1 for HIV-2). There are also unique recombinant forms
+\item
+  While subtype C represented almost half of global infections from 2004 to 2007, subtype B is the major subtype in richer countries in North America and Western Europe \autocite{hemelaarGlobalTrendsMolecular2011} where sequencing efforts are more common. This accounts for an over-representation of subtype B sequences in the LA database where 54\% of sequences are of the B subtype and only 15\% are C \autocite{DistributionAllHIV1}.
+\end{itemize}
+
+\hypertarget{life-cycle-of-hiv}{%
+\subsection{Life cycle of HIV}\label{life-cycle-of-hiv}}
 
 \begin{itemize}
 \tightlist
 \item
-  proteins ( + computational representation as a string of letters)
+  Cycle \autocite{freedHIV1Replication2001,fergusonHIV1ReplicationCycle2002} shown in Figure \ref{fig:hivCycle}:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \item
+    Virion attaches to CD4 host cell through membrane proteins
+  \item
+    Membrane fusion and entry of viral material into cell
+  \item
+    Reverse transcription of viral RNA into viral DNA (RT)
+  \item
+    integration of viral DNA into host DNA (IN)
+  \item
+    transcription of viral DNA into viral RNA
+  \item
+    translation of viral RNA into polyprotein
+  \item
+    cleaving of polyprotein to create mature viral proteins (PR)
+  \item
+    assembly of viral RNA + mature viral proteins into new virion
+  \item
+    Exit of new virion
+  \end{enumerate}
+\end{itemize}
+
+\begin{figure}
+{
+  \centering
+  \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
+}
+\extcaption{Simplified HIV-1 life cycle}{}
+\label{fig:hivCycle}
+\end{figure}
+
+\hypertarget{genetics-of-hiv}{%
+\subsection{Genetics of HIV}\label{genetics-of-hiv}}
+
+\begin{itemize}
 \item
-  schematic cycle
+  9 genes:
+
+  \begin{itemize}
+  \item
+    gag polyprotein: -\textgreater{} structural proteins
+
+    \begin{itemize}
+    \item
+      p17: mature protein matrix
+    \item
+      p24: capsid
+    \item
+      p7: nucleocapsid
+    \item
+      p6: promotes budding / virion release \autocite{gottlingerEffectMutationsAffecting1991,huangP6GagRequiredParticle1995}
+    \end{itemize}
+  \item
+    pol polyprotein: -\textgreater{} functional proteins
+
+    \begin{itemize}
+    \item
+      prot
+    \item
+      p51/p66 RT
+    \item
+      p32 int
+    \end{itemize}
+  \item
+    env polyprotein: -\textgreater{} envelope
+
+    \begin{itemize}
+    \item
+      gp 120: responsible for biding to CD4 cells \autocite{bourHumanImmunodeficiencyVirus1995}
+    \item
+      gp 41: together with gp120 causes membrane fusion
+    \end{itemize}
+  \item
+    regulatory elements:
+
+    \begin{itemize}
+    \item
+      tat (!!) activates transcription
+    \item
+      rev (!!) helps RNA get out of nucleus for translation
+    \item
+      nef (accs)
+    \item
+      vif (accs)
+    \item
+      vpu (accs)
+    \end{itemize}
+  \item
+    A 10th gene ?
+
+    \begin{itemize}
+    \item
+      First suggested in 1988 \autocite{millerHumanImmunodeficiencyVirus1988}
+    \item
+      overlaps env and is read in the reverse sense than the rest of the genome
+    \item
+      Under selective pressure and correlated with the spread of the pandemic (specific to HIV-M) \autocite{cassanConcomitantEmergenceAntisense2016}
+    \item
+      under active research \autocite{savoretPilotStudyHumoral2020}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{main-protein-mechanisms-in-replication}{%
+\subsection{Main protein mechanisms in replication}\label{main-protein-mechanisms-in-replication}}
+
+\begin{itemize}
+\item
+  RT
+\item
+  IN
+\item
+  PR
 \end{itemize}
 
 \hypertarget{drug-resistance-in-hiv}{%
 \section{Drug resistance in HIV}\label{drug-resistance-in-hiv}}
 
-When on ART, virus evolves under selectuve pressure and develops resitance -\textgreater{} treatment failure.
+When on ART, virus evolves under selective pressure and develops resistance -\textgreater{} treatment failure.
 
-\hypertarget{how-does-art-work}{%
-\subsection{How does ART work}\label{how-does-art-work}}
+\hypertarget{what-is-art}{%
+\subsection{What is ART ?}\label{what-is-art}}
 
-target the proteins, RT, PR, IN (small history of ART)
+ART is very important in reducing the viral load and therefore reducing transmission \autocite{eisingerHIVViralLoad2019}, however it does not ``cure'' HIV, it controls it drastically reducing mortality and morbidity \autocite{palellaDecliningMorbidityMortality1998}.
 
-\hypertarget{different-types-of-resistance}{%
-\subsection{different types of resistance}\label{different-types-of-resistance}}
+Mostly target the RT and PR proteins
+
+History \autocite{zolopaEvolutionHIVTreatment2010,forsytheTwentyYearsAntiretroviral2019}:
+
+\begin{itemize}
+\item
+  azidothymidine (AZT), an RTI, was shown to be effective against HIV in 1987 \autocite{fischlEfficacyAzidothymidineAZT1987}, only 3 years later resistant strains of the virus were circulating \autocite{richmanSusceptibilityNucleosideAnalogues1990}, because it was a monotherapy.
+\item
+  Between 1088 and 1995 four more RTIs were approved by the FDA and a combination therapy was shown to be effective \autocite{gulickTreatmentIndinavirZidovudine1997}
+\item
+  In 2008 there were 30 antiretroviral drugs have approved by the FDA \autocite{palmisanoBriefHistoryAntiretroviral2011}, of which 12 were RTI, 10 PIs and 5 combination drugs, often available as a single pill.
+\item
+  In 2019 there are 11 licensed single pill regimens in Europe \autocite{OnepilladayHIVTreatments}.
+\end{itemize}
+
+Other drugs:
+
+\begin{itemize}
+\item
+  entry inhibitors: have been shown to be effective 2 have been approved in the USA \autocite{tiltonEntryInhibitorsTreatment2010}
+\item
+  integrase inhibitors (INI): recent focus on development, 5 approved drugs since 2007 \autocite{scarsiHIV1IntegraseInhibitors2020}
+\item
+  Pre-exposure prophylaxis (PrEP), putting uninfected but at risk populations on ART before any known exposure. Has been shown effectively lower risk of infection in several studies \autocite{grantPreexposureChemoprophylaxisHIV2010,baetenAntiretroviralProphylaxisHIV2012,buchbinderPreexposureProphylaxisPromise2011}. When adherence is maintained studies have shown a infection risk between 44\% and 100\% \autocite{riddellHIVPreexposureProphylaxis2018}.\\
+  In 2022 there are 1 PrEP regimen approved for use in Europe \autocite{emaTruvada2018}.
+\item
+  Action of ART drugs:
+
+  \begin{itemize}
+  \item
+    RTI:
+
+    \begin{itemize}
+    \item
+      NRTI: nucleoside analogue RTI work by binding with the active site of RT blocking DNA polymerization -\textgreater{} chain terminating inhibitors
+    \item
+      NNRTI: non-nucleoside analogue RTI, bind to other a hydrophobic pocket behind the active site the RT, changing its flexibility and rendering it incative \autocite{esnoufUniqueFeaturesStructure1997}
+    \end{itemize}
+  \item
+    PI: bind to active site of protease to hinder action \autocite{robertsRationalDesignPeptideBased1990}
+  \item
+    Entry inhibitors are being found \autocite{esteHIVEntryInhibitors2007,kilbyNovelTherapiesBased2003}. enfuvirtide binds to gp41 and prevents fusion \autocite{fletcherEnfuvirtideNewDrug2003}
+  \item
+    INI: prevent strand transfer where viral DNA is first linked to host DNA \autocite{pommierIntegraseInhibitorsTreat2005}
+  \end{itemize}
+\end{itemize}
+
+However Drug resistance has emerged for most treatment types even PrEP \autocite{knoxMultidrugResistantHIV1Infection2017,hurtPreexposureProphylaxisAntiretroviral2011} but seem to be rare and due to pre-treatment but unknown HIV infection \autocite{gibasDrugResistanceHIV2019}
+
+\hypertarget{how-can-hiv-evade-art}{%
+\subsection{How can HIV evade ART ?}\label{how-can-hiv-evade-art}}
+
+review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistance2004}
 
 \begin{itemize}
 \tightlist
 \item
-  NRTI
+  NRTI \autocite{menendez-ariasMechanismsResistanceNucleoside2008,sluis-cremerMolecularMechanismsHIV12000}:
+
+  \begin{itemize}
+  \item
+    Prevent incorporation of NRTI, like M184V \autocite{sarafianosLamivudine3TCResistance1999}
+  \item
+    Remove incorporated NRTI: TAMs \autocite{meyerMechanismAZTResistance1999,boyerSelectiveExcisionAZTMP2001}
+  \end{itemize}
 \item
-  NNRTI
+  NNRTI: mutations limiting access to the binding pocket like Y181C or changing the shape of it like K103N \autocite{deeksNonnucleosideReverseTranscriptase2001}. dangerous because a single mutation produces viruses that are both fit and highly resistant \autocite{ammaranondMechanismHIVAntiretroviral2012} + cross-resistance
 \item
-  Entry inhibitors
+  PI: make active site bigger reducing affinity to inhibitors but also to natural substrate \autocite{wensingFifteenYearsHIV2010}
 \item
-  PI
-\item
-  INSTI
+  INI: reduce affinity to inhibitors \autocite{blancoHIV1IntegraseInhibitor2011}
 \end{itemize}
 
 \hypertarget{consequences-on-global-health}{%
 \subsection{Consequences on global health}\label{consequences-on-global-health}}
 
-Transmitted DRMS can be very serious , \ldots{} however fitness cost, \ldots{}
+\begin{itemize}
+\item
+  Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}, creating long lasting drug resistance reservoirs in naive population.
+\item
+  Dangerous because there can be therapeutic failure of first line regimen.
+\item
+  Fitness is lower for some DRMs \autocite{kuhnertQuantifyingFitnessCost2018,mespledeViralFitnessCost2013} which means there is evolutionary pressure for these mutations to disappear in the absence of treatment
+\item
+  the reversion to WT can last a long time with a wide range of median loss times from 1 to 13 years \autocite{castroPersistenceHIV1Transmitted2013}, depending on the type of mutation (NRTI \textgreater{} NNRTI).
+\end{itemize}
 
 \hypertarget{finding-drms}{%
 \subsection{Finding DRMS}\label{finding-drms}}
 
+(This sections build upon a review we did \autocite{blasselDrugResistanceMutations2021}
+
 \begin{itemize}
 \tightlist
 \item
-  Consortiums / HIVDB, UK-CHIC, \ldots{}
+  Finding and categorizing DRMs is an important task.
+\item
+  Sequence databases useful in discovery:
+
+  \begin{itemize}
+  \item
+    UK-CHIC \autocite{ukchicsteeringcommitteeCreationLargeUKbased2004} and the uk HIV drug resistance database (\url{https://www.hivrdb.org.uk/})
+  \item
+    Swiss cohort study (\url{https://www.shcs.ch/})
+  \item
+    PANGEA \autocite{abeler-dornerPANGEAHIVPhylogeneticsNetworks2019}
+  \item
+    Standford HIV Drug resistance database (\url{https://hivdb.stanford.edu/}) with sequences \autocite{rheeHumanImmunodeficiencyVirus2003}
+  \end{itemize}
+\item
+  Databases of mutations are kept \autocite{shaferRationaleUsesPublic2006} with regularly update lists of important DRMs \autocite{wensing2019UpdateDrug2019,clarkMutationsRetroviralGenes2007} and tools to help practitioners detect and interpret resistance \autocite{liuWebResourcesHIV2006d}.
 \item
   stat tests
 
