@@ -14,6 +14,7 @@ bibliography:
   - ./references/HIV-DRMs.bib
   - ./references/Sequence-Data.bib
   - ./references/Aligning-Sequences.bib
+  - ./references/HIV-context.bib
 biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=none,citestyle=numeric,bibstyle=numeric,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false,backend=biber]
 link-citations: yes
 github-repo: lucblassel/phd-manuscript
@@ -85,7 +86,7 @@ knitr::asis_output('\n\n\\end{comment}')
 
 ## Research output {.unnumbered}
 
-### Journal publications  {.unnumbered}
+### Journal publications {.unnumbered}
 
 -   **Blassel, Luc**, Paul Medvedev and Rayan Chikhi. 2022. **"Mapping-friendly sequence reductions: going beyond homopolymer compression"**. *iScience*\
     [DOI goes here](https://google.com) *(Included in Chapter* \@ref(HPC-paper)*)*
@@ -104,12 +105,12 @@ knitr::asis_output('\n\n\\end{comment}')
 
 [^index-1]: Co-first authors: Luc Blassel and Anna Zhukova
 
-### Presentations and posters  {.unnumbered}
+### Presentations and posters {.unnumbered}
 
 -   **"Mapping-friendly sequence reductions: going beyond homopolymer compression"** proceedings talk, [RECOMB-SEQ 2022](https://recomb2022.net/recomb-seq/). San Diego, USA *(May 21^st^ 2022)*
 
 -   **"Can we improve analyses be transforming DNA?"** Joint RECOMB-SEQ RECOMB-CCB scientific [communication session](https://recomb2022.net/recomb-ccb-seq-scientific-communication/)[^index-2]. San Diego, USA (*May 21^st^* *2022).*
 
--   "**Machine learning approaches to reveal resistance mutations in HIV"** Poster at [MCEB 2019](https://www.lirmm.fr/mceb2019/). Porquerolles, France *(May XXX 2019)*
+-   "**Machine learning approaches to reveal resistance mutations in HIV"** Poster at [MCEB 2019](https://www.lirmm.fr/mceb2019/). Porquerolles, France *(May 29^th^ 2019)*
 
 [^index-2]: 2nd place prize awarded

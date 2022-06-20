@@ -2,45 +2,319 @@
 
 ## What are viruses ?
 
-small presentation / definition of viruses
+-   Viruses are intracellular parasites [@minorViruses2014]
 
-DNA / RNA viruses
+-   Weird in between, are they organisms or molecules ?
+
+-   André Lwoff, famous Pasteur Virologist gave the most apt definition: *"viruses are viruses"* [@lwoffConceptVirus1957], there are however some key characteristics:
+
+    -   They have some type of genetic information that is contained in some envelope
+
+    -   They use the machinery of host cells to make copies of themselves
+
+    -   can be pathogenic (HIV, SARS-CoV, Influenza, ...) or not (GBV-C [@stapletonGBVirusesReview2011] , a strain of H5N1 influenza [@yamamotoCharacterizationNonpathogenicH5N12011] )
+
+-   All types of living organisms have their viruses:
+
+    -   Animals:
+
+        -   vertebrates [@shiEvolutionaryHistoryVertebrate2018]
+
+        -   invertrebrates [@adamsAtlasInvertebrateViruses2017]
+
+    -   Plants [@lefeuvreEvolutionEcologyPlant2019]
+
+    -   Bacteria [@delbrockBacterialVirusesBacteriophages1946], phages being considered as therapy option separate to antibiotics [@clarkBacterialVirusesHuman2004; @vankan-davelaarUsingVirusesNanomedicines2014]
+
+    -   Archea [@prangishviliVirusesArchaea2016; @prangishviliVirusesArchaeaUnifying2006]
+
+    -   Virus of viruses like plant satellite viruses [@franckiPlantVirusSatellites; @xuPlantVirusSatellites2011] and hepatitis delta virus [@laiMolecularBiologyHepatitis1995; @hughesHepatitisDeltaVirus2011]. In both cases these "viroids" cannot replicate on theire own they must have a co-infection with the larger virus to replicate.
+
+-   Where and when viruses originated is still under study [@nasirInvestigatingConceptOrigin2020; @forterreOriginViruses2009], but they may have played an important role in emergence of eukaryotic cells [@forterreOriginVirusesTheir2006].
+
+-   In any case, because of co-evolution there is a strong link between virus and host genomes, and parts of the genome are probably ancient retroviral sequences [@boekeRetrotransposonsEndogenousRetroviruses1997; @kojimaViruslikeInsertionsSequence2021], it has been estimated that 1% to 8% of the human genome is composed of these endogenous retroviral sequences [@lowerVirusesAllUs1996; @griffithsEndogenousRetrovirusesHuman2001]
+
+great diversity in viruses (support and replication strategy form the basis of the Baltimore virus classification system [@baltimoreExpressionAnimalVirus1971] , still used today [@kooninBaltimoreClassificationViruses2021] ):
+
+-   Information support:
+
+    -   DNA: Hepatitis B
+
+        -   Double Stranded: like Herpesvirus [@mcgeochTopicsHerpesvirusGenomics2006; @boehmerHerpesVirusReplication2003]
+
+        -   Single Stranded: Papillomavirus [@brentjensHumanPapillomavirusReview2002]
+
+        -   circular DNA: Hepatitis B [@kayHepatitisVirusGenetic2007]
+
+    -   RNA: HIV/SARS-CoV (about 70% of human pathogenic viruses are RNA viruses [@domingoRNAVirusGenomes2018]
+
+        -   Single Stranded:
+
+            -   positive strand: Hep C [@simmondsVariabilityHepatitisVirus1995] / polio [@wimmerGeneticsPoliovirus1993; @racanielloOneHundredYears2006]
+
+            -   negative strand: Influenza, Measles [@paleseNegativestrandRNAViruses1996]
+
+        -   Double stranded: Rotavirus [@parasharRotavirus1998]
+
+-   Replication strategies [@domingoVirusEvolution2014]:
+
+    -   RNA -\> RNA: SARS-CoV, Hep C, Dengue
+
+    -   RNA -\> DNA -\> RNA: HIV-1
+
+    -   DNA -\> DNA: Papillomavirus, Smallpox
+
+    -   DNA -\> RNA -\> DNA: Hep B
+
+-   size both physical and genomic:
+
+    -   17nm for plant satellites [@pyleChapter58Biology2017] to Mimivirus a giant virus of 400nm [@raoult2megabaseGenomeSequence2004].
+
+    -   860 bp for *Circovirus SFBeef* to 2.5 Mbp for *Pandoravirus salinus* [@campillo-balderasViralGenomeSize2015]
+
+-   Shape of the virus :[@cannVirusStructure2015]
+
+    -   Icosahedral: HIV
+
+    -   helical: tobacco mosaic virus
+
+    -   Head-tail: bacteriophages
 
 ## What is HIV ?
 
 ### Quick Presentation of HIV
 
--   pandemic
--   history
+Function / consequences:
 
-### Replication cycle of HIV
+-   Retrovirus that causes the AIDS (acquired immune deficiency syndrome) pandemic
 
--   proteins ( + computational representation as a string of letters)
--   schematic cycle
+-   Affects human immune system
+
+-   Transmitted through sexual contact or through blood:
+
+    -   Sexual activity is the largest case contributor [@hladikSettingStageHost2008; @shawHIVTransmission2012]:
+
+        1.  Female genital tract (12.6 million)
+
+        2.  Male genital tract (10.2 million)
+
+        3.  Male/Female lower GI tract (3.9 million)
+
+        4.  Blood stream (2.6 million)
+
+-   It causes AIDS by penetrating CD4 cells of the host immune system, using them to replicate and destroying them in doing so [@weissHowDoesHIV1993]
+
+-   the infection typically starts out with an asymptomatic phase that can last years, followed by a decrease in CDA cells that progresses to AIDS [@melhuishNaturalHistoryHIV2018]. When the CD4 cell count is low opportunistic diseases like tuberculosis, pneumonia or meningitis can more easily infect the host and lead to death.
+
+History / pandemic:
+
+-   Massive global pandemic, 2010 numbers [@worldhealthorganizationGlobalReportUNAIDS2010]:
+
+    -   approx 33 million people were living with HIV, 2.6 million new infections in HIV and 1.8 millions AIDS deaths.
+
+    -   This is decreasing with the 2020 numbers reporting 680,000 deaths and 1.5 million new infections [@GlobalHIVAIDS].
+
+    -   70% of the new infections are from sub-saharan africa [@worldhealthorganizationGlobalReportUNAIDS2010]
+
+-   Discovered simultaneously by Françoise Barré-Sinoussi, and Luc Montagnier and Robert Gallo in 1983 [@barre-sinoussiIsolationTlymphotropicRetrovirus1983; @galloIsolationHumanTcell1983]
+
+-   VIH-1 vs VIH-2. VIH-1 is more transmissible and is largely responsible for the global pandemic [@gilbert2003], in fact in Africa HIV-1 infections are rising where HIV-2 are declining [@vanderloeffSixteenYearsHIV2006]
+
+-   VIH-1 From Simian Immunodeficiency viruses most likely [@sharpOriginsHIVAIDS2011], probably from a chimpanzee [@gaoOriginHIV1Chimpanzee1999; @hamelTwentyYearsProspective2007].
+
+-   VIH-2 also from a SIV probably from sooty mangabey [@hirschAfricanPrimateLentivirus1989; @gaoHumanInfectionGenetically1992; @chenGeneticCharacterizationNew1996]
+
+-   There is not 1 lineage: Different groups (MNOP) correspond to distinct crossing over events (from chimp to human)
+
+-   Group M is mostly responsible for the pandemic, estimated Last common ancestor of group M estimated between 1910 to 1931 [@korberTimingAncestorHIV12000; @worobeyDirectEvidenceExtensive2008; @rambautCausesConsequencesHIV2004], and probably originated in what is now the DRC [@worobeyDirectEvidenceExtensive2008; @vidalUnprecedentedDegreeHuman2000; @fariaEarlySpreadEpidemic2014].
+
+-   In group M there are 9 subtypes (A to K) [@mccutchanGlobalEpidemiologyHIV2006; @sharpOriginsHIVAIDS2011]
+
+-   There is recombination [@robertsonRecombinationAIDSViruses1995] which complicates phylogenetic analyses [@posadaRecombinationEvolutionaryGenomics2002], and are a pathway to resistance and complicate vaccine development [@taylorChallengeHIV1Subtype2008].
+
+-   There are 118 identified HIV-1 CRFs currently in the Los Alamos National Laboratory HIV sequence database [@HIVCirculatingRecombinant] (1 for HIV-2). There are also unique recombinant forms
+
+-   While subtype C represented almost half of global infections from 2004 to 2007, subtype B is the major subtype in richer countries in North America and Western Europe [@hemelaarGlobalTrendsMolecular2011] where sequencing efforts are more common. This accounts for an over-representation of subtype B sequences in the LA database where 54% of sequences are of the B subtype and only 15% are C [@DistributionAllHIV1].
+
+### Life cycle of HIV
+
+-   Cycle [@freedHIV1Replication2001; @fergusonHIV1ReplicationCycle2002] shown in Figure \@ref(fig:hivCycle):
+    1.  Virion attaches to CD4 host cell through membrane proteins
+
+    2.  Membrane fusion and entry of viral material into cell
+
+    3.  Reverse transcription of viral RNA into viral DNA (RT)
+
+    4.  integration of viral DNA into host DNA (IN)
+
+    5.  transcription of viral DNA into viral RNA
+
+    6.  translation of viral RNA into polyprotein
+
+    7.  cleaving of polyprotein to create mature viral proteins (PR)
+
+    8.  assembly of viral RNA + mature viral proteins into new virion
+
+    9.  Exit of new virion
+
+```{r, hivCycleCaption}
+hivCycleCaption <- "**Simplified HIV-1 life cycle**\
+"
+```
+
+```{r, hivCycle, label="hivCycle", fig.cap=hivCycleCaption, eval=knitr::is_html_output(), out.width="60%", cache=FALSE}
+knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
+```
+
+```{=tex}
+\begin{figure}
+{
+  \centering
+  \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
+}
+\extcaption{Simplified HIV-1 life cycle}{}
+\label{fig:hivCycle}
+\end{figure}
+```
+### Genetics of HIV
+
+-   9 genes:
+
+    -   gag polyprotein: -\> structural proteins
+
+        -   p17: mature protein matrix
+
+        -   p24: capsid
+
+        -   p7: nucleocapsid
+
+        -   p6: promotes budding / virion release [@gottlingerEffectMutationsAffecting1991; @huangP6GagRequiredParticle1995]
+
+    -   pol polyprotein: -\> functional proteins
+
+        -   prot
+
+        -   p51/p66 RT
+
+        -   p32 int
+
+    -   env polyprotein: -\> envelope
+
+        -   gp 120: responsible for biding to CD4 cells [@bourHumanImmunodeficiencyVirus1995]
+
+        -   gp 41: together with gp120 causes membrane fusion
+
+    -   regulatory elements:
+
+        -   tat (!!) activates transcription
+
+        -   rev (!!) helps RNA get out of nucleus for translation
+
+        -   nef (accs)
+
+        -   vif (accs)
+
+        -   vpu (accs)
+
+    -   A 10th gene ?
+
+        -   First suggested in 1988 [@millerHumanImmunodeficiencyVirus1988]
+
+        -   overlaps env and is read in the reverse sense than the rest of the genome
+
+        -   Under selective pressure and correlated with the spread of the pandemic (specific to HIV-M) [@cassanConcomitantEmergenceAntisense2016]
+
+        -   under active research [@savoretPilotStudyHumoral2020]
+
+### Main protein mechanisms in replication
+
+-   RT
+
+-   IN
+
+-   PR
 
 ## Drug resistance in HIV
 
-When on ART, virus evolves under selectuve pressure and develops resitance -\> treatment failure.
+When on ART, virus evolves under selective pressure and develops resistance -\> treatment failure.
 
-### How does ART work
+### What is ART ?
 
-target the proteins, RT, PR, IN (small history of ART)
+ART is very important in reducing the viral load and therefore reducing transmission [@eisingerHIVViralLoad2019], however it does not "cure" HIV, it controls it drastically reducing mortality and morbidity [@palellaDecliningMorbidityMortality1998].
 
-### different types of resistance
+Mostly target the RT and PR proteins
 
--   NRTI
--   NNRTI
--   Entry inhibitors
--   PI
--   INSTI
+History [@zolopaEvolutionHIVTreatment2010; @forsytheTwentyYearsAntiretroviral2019]:
+
+-   azidothymidine (AZT), an RTI, was shown to be effective against HIV in 1987 [@fischlEfficacyAzidothymidineAZT1987], only 3 years later resistant strains of the virus were circulating [@richmanSusceptibilityNucleosideAnalogues1990], because it was a monotherapy.
+
+-   Between 1088 and 1995 four more RTIs were approved by the FDA and a combination therapy was shown to be effective [@gulickTreatmentIndinavirZidovudine1997]
+
+-   In 2008 there were 30 antiretroviral drugs have approved by the FDA [@palmisanoBriefHistoryAntiretroviral2011], of which 12 were RTI, 10 PIs and 5 combination drugs, often available as a single pill.
+
+-   In 2019 there are 11 licensed single pill regimens in Europe [@OnepilladayHIVTreatments].
+
+Other drugs:
+
+-   entry inhibitors: have been shown to be effective 2 have been approved in the USA [@tiltonEntryInhibitorsTreatment2010]
+
+-   integrase inhibitors (INI): recent focus on development, 5 approved drugs since 2007 [@scarsiHIV1IntegraseInhibitors2020]
+
+-   Pre-exposure prophylaxis (PrEP), putting uninfected but at risk populations on ART before any known exposure. Has been shown effectively lower risk of infection in several studies [@grantPreexposureChemoprophylaxisHIV2010; @baetenAntiretroviralProphylaxisHIV2012; @buchbinderPreexposureProphylaxisPromise2011]. When adherence is maintained studies have shown a infection risk between 44% and 100% [@riddellHIVPreexposureProphylaxis2018].\
+    In 2022 there are 1 PrEP regimen approved for use in Europe [@emaTruvada2018].
+
+-   Action of ART drugs:
+
+    -   RTI:
+
+        -   NRTI: nucleoside analogue RTI work by binding with the active site of RT blocking DNA polymerization -\> chain terminating inhibitors
+
+        -   NNRTI: non-nucleoside analogue RTI, bind to other a hydrophobic pocket behind the active site the RT, changing its flexibility and rendering it incative [@esnoufUniqueFeaturesStructure1997]
+
+    -   PI: bind to active site of protease to hinder action [@robertsRationalDesignPeptideBased1990]
+
+    -   Entry inhibitors are being found [@esteHIVEntryInhibitors2007; @kilbyNovelTherapiesBased2003]. enfuvirtide binds to gp41 and prevents fusion [@fletcherEnfuvirtideNewDrug2003]
+
+    -   INI: prevent strand transfer where viral DNA is first linked to host DNA [@pommierIntegraseInhibitorsTreat2005]
+
+However Drug resistance has emerged for most treatment types even PrEP [@knoxMultidrugResistantHIV1Infection2017; @hurtPreexposureProphylaxisAntiretroviral2011] but seem to be rare and due to pre-treatment but unknown HIV infection [@gibasDrugResistanceHIV2019]
+
+### How can HIV evade ART ?
+
+review [@ammaranondMechanismHIVAntiretroviral2012; @clavelHIVDrugResistance2004]
+
+-   NRTI [@menendez-ariasMechanismsResistanceNucleoside2008; @sluis-cremerMolecularMechanismsHIV12000]:
+    -   Prevent incorporation of NRTI, like M184V [@sarafianosLamivudine3TCResistance1999]
+
+    -   Remove incorporated NRTI: TAMs [@meyerMechanismAZTResistance1999; @boyerSelectiveExcisionAZTMP2001]
+-   NNRTI: mutations limiting access to the binding pocket like Y181C or changing the shape of it like K103N [@deeksNonnucleosideReverseTranscriptase2001]. dangerous because a single mutation produces viruses that are both fit and highly resistant [@ammaranondMechanismHIVAntiretroviral2012] + cross-resistance
+-   PI: make active site bigger reducing affinity to inhibitors but also to natural substrate [@wensingFifteenYearsHIV2010]
+-   INI: reduce affinity to inhibitors [@blancoHIV1IntegraseInhibitor2011]
 
 ### Consequences on global health
 
-Transmitted DRMS can be very serious , ... however fitness cost, ...
+-   Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK [@mouradPhylotypebasedAnalysisHighlights2015] and Switzerland [@drescherTreatmentNaiveIndividualsAre2014], creating long lasting drug resistance reservoirs in naive population.
+
+-   Dangerous because there can be therapeutic failure of first line regimen.
+
+-   Fitness is lower for some DRMs [@kuhnertQuantifyingFitnessCost2018; @mespledeViralFitnessCost2013] which means there is evolutionary pressure for these mutations to disappear in the absence of treatment
+
+-   the reversion to WT can last a long time with a wide range of median loss times from 1 to 13 years [@castroPersistenceHIV1Transmitted2013], depending on the type of mutation (NRTI \> NNRTI).
 
 ### Finding DRMS
 
--   Consortiums / HIVDB, UK-CHIC, ...
+(This sections build upon a review we did [@blasselDrugResistanceMutations2021]
+
+-   Finding and categorizing DRMs is an important task.
+-   Sequence databases useful in discovery:
+    -   UK-CHIC [@ukchicsteeringcommitteeCreationLargeUKbased2004] and the uk HIV drug resistance database (<https://www.hivrdb.org.uk/>)
+
+    -   Swiss cohort study (<https://www.shcs.ch/>)
+
+    -   PANGEA [@abeler-dornerPANGEAHIVPhylogeneticsNetworks2019]
+
+    -   Standford HIV Drug resistance database (<https://hivdb.stanford.edu/>) with sequences [@rheeHumanImmunodeficiencyVirus2003]
+-   Databases of mutations are kept [@shaferRationaleUsesPublic2006] with regularly update lists of important DRMs [@wensing2019UpdateDrug2019; @clarkMutationsRetroviralGenes2007] and tools to help practitioners detect and interpret resistance [@liuWebResourcesHIV2006d].
 -   stat tests
     -   multiple testing
     -   phylogenetic correlation
