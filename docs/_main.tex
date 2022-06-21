@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-20}
+\date{2022-06-21}
 
 \begin{document}
 \maketitle
@@ -1125,10 +1125,8 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
 \end{itemize}
 
 \begin{figure}[h]
-{
-  \centering
-  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
-}
+\centering
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
 \extcaption{Example of kmers sharing a minimizer}{}
 \label{fig:minimizers}
 \end{figure}
@@ -1190,10 +1188,8 @@ guide tree, clustering of sequences then refine alignment. Good heuristic but wi
 \end{enumerate}
 
 \begin{figure}[h]
-{
-  \centering
-  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
-}
+\centering
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
 \extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
 \label{fig:progAlign}
 \end{figure}
@@ -2588,11 +2584,9 @@ History / pandemic:
   \end{enumerate}
 \end{itemize}
 
-\begin{figure}
-{
-  \centering
-  \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
-}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
 \extcaption{Simplified HIV-1 life cycle}{}
 \label{fig:hivCycle}
 \end{figure}
@@ -2672,11 +2666,36 @@ History / pandemic:
 \hypertarget{main-protein-mechanisms-in-replication}{%
 \subsection{Main protein mechanisms in replication}\label{main-protein-mechanisms-in-replication}}
 
+ALl 3 are cleaved and matured from the pol polyprotein
+
 \begin{itemize}
 \item
-  RT
+  RT: \autocite{sarafianosStructureFunctionHIV12009}, c.f. Figure \ref{fig:rtStruct}
+
+  \begin{itemize}
+  \item
+    2 subunits: p66 and p51 (i.e.~same chain but 1 is cleaved). p66=functional, p51=structural mainly (except for NNIBP).
+  \item
+    Fold to form a canal -\textgreater{} fingers/palm/thumb with the polymerase active site in the palm
+  \item
+    RNA strand and DNA go through the canal and are synthesized in the palm
+  \item
+    RNase domain at the other end of p66 to cleave the RNA strand off of the DNA once it's RTed.
+  \item
+    Once the RNA has been RTed the RT does another pass to synthesize the complementary DNA brand, this time the RNase is not active.
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}
+\extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}
+\label{fig:rtStruct}
+\end{figure}
+
+\begin{itemize}
 \item
-  IN
+  IN:
 \item
   PR
 \end{itemize}
