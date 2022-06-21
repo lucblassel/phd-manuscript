@@ -247,10 +247,8 @@ knitr::include_graphics("./figures/Align-Intro/minimizers.png")
 
 ```{=tex}
 \begin{figure}[h]
-{
-  \centering
-  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
-}
+\centering
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
 \extcaption{Example of kmers sharing a minimizer}{}
 \label{fig:minimizers}
 \end{figure}
@@ -301,10 +299,8 @@ knitr::include_graphics("./figures/Align-Intro/progressive-aln.png")
 
 ```{=tex}
 \begin{figure}[h]
-{
-  \centering
-  \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
-}
+\centering
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
 \extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
 \label{fig:progAlign}
 \end{figure}

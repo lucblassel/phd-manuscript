@@ -167,11 +167,9 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 ```
 
 ```{=tex}
-\begin{figure}
-{
-  \centering
-  \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
-}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
 \extcaption{Simplified HIV-1 life cycle}{}
 \label{fig:hivCycle}
 \end{figure}
@@ -228,9 +226,38 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 
 ### Main protein mechanisms in replication
 
--   RT
+ALl 3 are cleaved and matured from the pol polyprotein
 
--   IN
+-   RT: [@sarafianosStructureFunctionHIV12009], c.f. Figure \@ref(fig:rtStruct)
+
+    -   2 subunits: p66 and p51 (i.e. same chain but 1 is cleaved). p66=functional, p51=structural mainly (except for NNIBP).
+
+    -   Fold to form a canal -\> fingers/palm/thumb with the polymerase active site in the palm
+
+    -   RNA strand and DNA go through the canal and are synthesized in the palm
+
+    -   RNase domain at the other end of p66 to cleave the RNA strand off of the DNA once it's RTed.
+
+    -   Once the RNA has been RTed the RT does another pass to synthesize the complementary DNA brand, this time the RNase is not active.
+
+```{r, rtCaption}
+rtCaption <- "**3D structure of HIV-1 Reverse-transcriptase**\ 
+the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate [@goodsellIllustrateSoftwareBiomolecular2019] using the [2hmi](https://www.rcsb.org/structure/2HMI) PDB structure."
+```
+
+```{r, rtStruct, lavel="rtStruct", fig.cap=rtCaption, out.width="80%", eval=knitr::is_html_output(), cache=FALSE}
+knitr::include_graphics("./figures/HIV-Intro/rt.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}
+\extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}
+\label{fig:rtStruct}
+\end{figure}
+```
+-   IN:
 
 -   PR
 
