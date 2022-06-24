@@ -1,0 +1,33 @@
+# Supporting Information for "HIV and DRMs" {#HIV-intro-appendix}
+
+## Detailed list of HIV-1 protein structures used for figure generation.
+
+The images for HIV-1 structures used in Figure \@ref(fig:hivStructure) were obtained from: [https://cdn.rcsb.org/pdb101/learn/resources/structural-biology-of-hiv/](https://cdn.rcsb.org/pdb101/learn/resources/structural-biology-of-hiv/index.html#). They are licensed under a Creative Commons By 4.0 license which allows reuse and adaptation for non commercial use.
+
+PDB structure IDs:
+
+-   **SU** and **TM**: [4nco](http://www.rcsb.org/pdb/explore.do?structureId=4nco)
+
+-   **MA**: [1hiw](http://rcsb.org/pdb/explore/explore.do?structureId=1hiw)
+
+-   **CA**: [3h47](http://rcsb.org/pdb/explore/explore.do?structureId=3h47)
+
+-   **NC**: [1a1t](http://rcsb.org/pdb/explore/explore.do?structureId=1a1t)
+
+-   **RT**: [1hys](http://www.rcsb.org/pdb/explore.do?structureId=1hys) (for Figure \@ref(fig:hivStructure)) and [2hmi](http://www.rcsb.org/pdb/explore.do?structureId=2hmi) (for Figure \@ref(fig:rtStruct))
+
+-   **IN**: [1ex4](http://www.rcsb.org/pdb/explore.do?structureId=1ex4)
+
+-   **PR**: [1hpv](http://www.rcsb.org/pdb/explore.do?structureId=1hpv)
+
+-   **Vpu**: [1pi7](http://www.rcsb.org/pdb/explore.do?structureId=1pi7) and [1vpu](http://www.rcsb.org/pdb/explore.do?structureId=1vpu)
+
+-   **Vif**: [3dcg](http://www.rcsb.org/pdb/explore.do?structureId=3dcg)
+
+-   **Vpr**: [1esx](http://www.rcsb.org/pdb/explore.do?structureId=1esx)
+
+-   **Nef**: [1avv](http://www.rcsb.org/pdb/explore.do?structureId=1avv) and [1qa5](http://www.rcsb.org/pdb/explore.do?structureId=1qa5)
+
+-   **Rev**: [1etf](http://www.rcsb.org/pdb/explore.do?structureId=1etf)
+
+-   **Tat**: [1biv](http://www.rcsb.org/pdb/explore.do?structureId=1biv) and [1jfw](http://www.rcsb.org/pdb/explore.do?structureId=1jfw)
