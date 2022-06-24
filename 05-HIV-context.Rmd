@@ -182,9 +182,9 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 
         -   p17/MA: mature protein matrix, line the internal virion membrane
 
-        -   p24/CA: capsid, core of the viral particle
+        -   p24/CA: capsid, core of the viral particle, protects the RNA by encapsulating it
 
-        -   p7/NC: nucleocapsid, protects the genetic information in the viral particle
+        -   p7/NC: nucleocapsid, protects the genetic information in the viral particle by binding with viral RNA
 
         -   p6: promotes budding / virion release [@gottlingerEffectMutationsAffecting1991; @huangP6GagRequiredParticle1995], largely unstructured
 
@@ -198,23 +198,23 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 
     -   env polyprotein: -\> envelope
 
-        -   SU (surface)/gp 120: responsible for biding to CD4 cells [@bourHumanImmunodeficiencyVirus1995]
+        -   SU (surface)/gp 120: responsible for binding to CD4 cells [@bourHumanImmunodeficiencyVirus1995]
 
-        -   TM (transmembrane)/gp 41: together with gp120 causes membrane fusion
+        -   TM (transmembrane)/gp 41: together with gp120 causes membrane fusion, anchors SU to the viral particle [@hernandezViruscellCellcellFusion1996]
 
     -   regulatory elements:
 
-        -   tat (trans-activator of transcription) (!!) activates transcription -\> essential promoter
+        -   tat (trans-activator of transcription) (!!) activates transcription -\> essential promoter and leads to longer transcripts [@jonesControlRnaInitiation1994]
 
-        -   rev (Regulator of viron) (!!) helps RNA get out of nucleus (before splicing?) for translation
+        -   rev (Regulator of viron) (!!) helps RNA get out of nucleus for translation [@hopeViralRNAExport1997]
 
-        -   nef (Negative regulatory factor) (accs) prevents host cell from producing defence proteins (CD4)
+        -   nef (Negative regulatory factor) (accs) prevents host cell from producing defence proteins (CD4) and boosting infectivity [@mangasarianMultifacetedRoleHIV1997]
 
-        -   vif (viral infectivity factor) (accs)
+        -   vif (viral infectivity factor) (accs) probably boosts infection as mutants have less infectivity [@cohenRoleAuxiliaryProteins1996]
 
-        -   vpu (viral prot U) (accs) helps during budding (59,61)
+        -   vpu (viral prot U) (accs) helps during release [@lambVpuVprHuman1997; @cohenRoleAuxiliaryProteins1996]
 
-        -   vpr (viral prot R) (accs)
+        -   vpr (viral prot R) (accs), prevents mitosis and helps entry in nucleus of host [@emermanHIV1VprCell1996]
 
     -   A 10th gene ?
 
@@ -277,9 +277,19 @@ knitr::include_graphics("./figures/HIV-Intro/rt.png")
 \label{fig:rtStruct}
 \end{figure}
 ```
--   IN:
+-   IN: It pre-processes the ends of the viral DNA, cleaves the host DNA and binds the viral DNA to the host DNA (i.e. strand transfer). [@chiuStructureFunctionHIV12004; @espositoHIVIntegraseStructure1999; @delelisIntegraseIntegrationBiochemical2008]. Multimer -\> chains link up. Each chain has:
 
--   PR:
+    -   Core catalytic domain: Binds with viral DNA and performs the integration
+
+    -   C-terminal domain: Binds with any DNA, adding stability
+
+    -   N-terminal domain: Binds with Zn^2+^ and helps multimerisation (i.e integrase stability)
+
+-   PR: cleaves gag and pol polyproteins to produce individual structural and regulatory proteins. Symetric dimer structure [@pearlStructuralModelRetroviral1987; @gulnikHIVProteaseEnzyme2000], 2 identical chains.
+
+    -   Ionization of an Aspartate residue in each active site produces acid-base reaction that cleaves precursor [@silvaInhibitionCatalyticMechanism1996]. (active site)
+
+    -   Flaps are flexible parts of PR that can open and close [@hornakHIV1ProteaseFlaps2006], probably controls access of substrates to active site [@yuStructuralInsightsHIV12017]
 
 ## Drug resistance in HIV
 
@@ -335,14 +345,14 @@ review [@ammaranondMechanismHIVAntiretroviral2012; @clavelHIVDrugResistance2004]
 
     -   Remove incorporated NRTI: TAMs [@meyerMechanismAZTResistance1999; @boyerSelectiveExcisionAZTMP2001]
 -   NNRTI: mutations limiting access to the binding pocket like Y181C or changing the shape of it like K103N [@deeksNonnucleosideReverseTranscriptase2001]. dangerous because a single mutation produces viruses that are both fit and highly resistant [@ammaranondMechanismHIVAntiretroviral2012] + cross-resistance
--   PI: make active site bigger reducing affinity to inhibitors but also to natural substrate [@wensingFifteenYearsHIV2010]
+-   PI: make active site bigger reducing affinity to inhibitors but also to natural substrate [@wensingFifteenYearsHIV2010], also change flap conformation to deny access to active site to PI [@kurtyilmazImprovingViralProtease2016].
 -   INI: reduce affinity to inhibitors [@blancoHIV1IntegraseInhibitor2011]
 
 ### Consequences on global health
 
 -   Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK [@mouradPhylotypebasedAnalysisHighlights2015] and Switzerland [@drescherTreatmentNaiveIndividualsAre2014], creating long lasting drug resistance reservoirs in naive population.
 
--   Dangerous because there can be therapeutic failure of first line regimen.
+-   Dangerous because there can be therapeutic failure of first line regimen. [@boermaHighLevelsPretreatment2016]
 
 -   Fitness is lower for some DRMs [@kuhnertQuantifyingFitnessCost2018; @mespledeViralFitnessCost2013] which means there is evolutionary pressure for these mutations to disappear in the absence of treatment
 
@@ -350,7 +360,7 @@ review [@ammaranondMechanismHIVAntiretroviral2012; @clavelHIVDrugResistance2004]
 
 ### Finding DRMS
 
-(This sections build upon a review we did [@blasselDrugResistanceMutations2021]
+(This sections build upon a review we did [@blasselDrugResistanceMutations2021])
 
 -   Finding and categorizing DRMs is an important task.
 -   Sequence databases useful in discovery:
@@ -360,7 +370,7 @@ review [@ammaranondMechanismHIVAntiretroviral2012; @clavelHIVDrugResistance2004]
 
     -   PANGEA [@abeler-dornerPANGEAHIVPhylogeneticsNetworks2019]
 
-    -   Standford HIV Drug resistance database (<https://hivdb.stanford.edu/>) with sequences [@rheeHumanImmunodeficiencyVirus2003]
+    -   Stanford HIV Drug resistance database (<https://hivdb.stanford.edu/>) with sequences [@rheeHumanImmunodeficiencyVirus2003]
 -   Databases of mutations are kept [@shaferRationaleUsesPublic2006] with regularly update lists of important DRMs [@wensing2019UpdateDrug2019; @clarkMutationsRetroviralGenes2007] and tools to help practitioners detect and interpret resistance [@liuWebResourcesHIV2006d].
 -   stat tests
     -   multiple testing
