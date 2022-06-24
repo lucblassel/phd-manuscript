@@ -176,43 +176,45 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 ```
 ### Genetics of HIV
 
--   9 genes:
+-   9 genes coding for 15 proteins [@frankelHIV1FifteenProteins1998], structure visible in Figure \@ref(fig:hivStructure):
 
     -   gag polyprotein: -\> structural proteins
 
-        -   p17: mature protein matrix
+        -   p17/MA: mature protein matrix, line the internal virion membrane
 
-        -   p24: capsid
+        -   p24/CA: capsid, core of the viral particle
 
-        -   p7: nucleocapsid
+        -   p7/NC: nucleocapsid, protects the genetic information in the viral particle
 
-        -   p6: promotes budding / virion release [@gottlingerEffectMutationsAffecting1991; @huangP6GagRequiredParticle1995]
+        -   p6: promotes budding / virion release [@gottlingerEffectMutationsAffecting1991; @huangP6GagRequiredParticle1995], largely unstructured
 
-    -   pol polyprotein: -\> functional proteins
+    -   pol polyprotein: -\> essential functional proteins
 
-        -   prot
+        -   PR: cleaves polyproteins to get individual proteins.
 
-        -   p51/p66 RT
+        -   RT/p51/p66: turns viral RNA into DNA
 
-        -   p32 int
+        -   IN/p32: intergrates viral DNA in host DNA
 
     -   env polyprotein: -\> envelope
 
-        -   gp 120: responsible for biding to CD4 cells [@bourHumanImmunodeficiencyVirus1995]
+        -   SU (surface)/gp 120: responsible for biding to CD4 cells [@bourHumanImmunodeficiencyVirus1995]
 
-        -   gp 41: together with gp120 causes membrane fusion
+        -   TM (transmembrane)/gp 41: together with gp120 causes membrane fusion
 
     -   regulatory elements:
 
-        -   tat (!!) activates transcription
+        -   tat (trans-activator of transcription) (!!) activates transcription -\> essential promoter
 
-        -   rev (!!) helps RNA get out of nucleus for translation
+        -   rev (Regulator of viron) (!!) helps RNA get out of nucleus (before splicing?) for translation
 
-        -   nef (accs)
+        -   nef (Negative regulatory factor) (accs) prevents host cell from producing defence proteins (CD4)
 
-        -   vif (accs)
+        -   vif (viral infectivity factor) (accs)
 
-        -   vpu (accs)
+        -   vpu (viral prot U) (accs) helps during budding (59,61)
+
+        -   vpr (viral prot R) (accs)
 
     -   A 10th gene ?
 
@@ -224,6 +226,24 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 
         -   under active research [@savoretPilotStudyHumoral2020]
 
+```{r, hivStructCaption}
+structCaption <- "**Structure and main components of HIV-1 virion.**\ 
+Structural proteins are represented in Blue, functional enzymes in pink, RNA proteins in orange and accessory proteins in green.  
+Figure adapted from PDB101 [@zardecki2022] ([PDB101.rcsb.org](https://PDB101.rcsb.org), *CC By 4.0 License*, detailed list of structures used available in Appendix \\@ref(HIV-intro-appendix))."
+```
+
+```{r, hivStructure, label="hivStructure", eval=knitr::is_html_output(), fig.cap=structCaption, out.width="90%", cache=FALSE}
+knitr::include_graphics("./figures/HIV-Intro/HIV-structure.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./figures/HIV-Intro/HIV-structure.png}
+  \extcaption{Structure and main components of HIV-1 virion.}{Structural proteins are represented in Blue, functional enzymes in pink, RNA proteins in orange and accessory proteins in green. \\
+Figure adapted from PDB101 \autocite{zardecki2022} (\href{https://PDB101.rcsb.org}{PDB101.rcsb.org}, \textit{CC By 4.0 License}, detailed list of structures used available in Appendix \autoref(sec:HIV-intro-appendix)).}
+\end{figure}
+```
 ### Main protein mechanisms in replication
 
 ALl 3 are cleaved and matured from the pol polyprotein
@@ -259,7 +279,7 @@ knitr::include_graphics("./figures/HIV-Intro/rt.png")
 ```
 -   IN:
 
--   PR
+-   PR:
 
 ## Drug resistance in HIV
 

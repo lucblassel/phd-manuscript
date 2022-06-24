@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-21}
+\date{2022-06-24}
 
 \begin{document}
 \maketitle
@@ -2596,7 +2596,7 @@ History / pandemic:
 
 \begin{itemize}
 \item
-  9 genes:
+  9 genes coding for 15 proteins \autocite{frankelHIV1FifteenProteins1998}, structure visible in Figure \ref{fig:hivStructure}:
 
   \begin{itemize}
   \item
@@ -2604,48 +2604,50 @@ History / pandemic:
 
     \begin{itemize}
     \item
-      p17: mature protein matrix
+      p17/MA: mature protein matrix, line the internal virion membrane
     \item
-      p24: capsid
+      p24/CA: capsid, core of the viral particle
     \item
-      p7: nucleocapsid
+      p7/NC: nucleocapsid, protects the genetic information in the viral particle
     \item
-      p6: promotes budding / virion release \autocite{gottlingerEffectMutationsAffecting1991,huangP6GagRequiredParticle1995}
+      p6: promotes budding / virion release \autocite{gottlingerEffectMutationsAffecting1991,huangP6GagRequiredParticle1995}, largely unstructured
     \end{itemize}
   \item
-    pol polyprotein: -\textgreater{} functional proteins
+    pol polyprotein: -\textgreater{} essential functional proteins
 
     \begin{itemize}
     \item
-      prot
+      PR: cleaves polyproteins to get individual proteins.
     \item
-      p51/p66 RT
+      RT/p51/p66: turns viral RNA into DNA
     \item
-      p32 int
+      IN/p32: intergrates viral DNA in host DNA
     \end{itemize}
   \item
     env polyprotein: -\textgreater{} envelope
 
     \begin{itemize}
     \item
-      gp 120: responsible for biding to CD4 cells \autocite{bourHumanImmunodeficiencyVirus1995}
+      SU (surface)/gp 120: responsible for biding to CD4 cells \autocite{bourHumanImmunodeficiencyVirus1995}
     \item
-      gp 41: together with gp120 causes membrane fusion
+      TM (transmembrane)/gp 41: together with gp120 causes membrane fusion
     \end{itemize}
   \item
     regulatory elements:
 
     \begin{itemize}
     \item
-      tat (!!) activates transcription
+      tat (trans-activator of transcription) (!!) activates transcription -\textgreater{} essential promoter
     \item
-      rev (!!) helps RNA get out of nucleus for translation
+      rev (Regulator of viron) (!!) helps RNA get out of nucleus (before splicing?) for translation
     \item
-      nef (accs)
+      nef (Negative regulatory factor) (accs) prevents host cell from producing defence proteins (CD4)
     \item
-      vif (accs)
+      vif (viral infectivity factor) (accs)
     \item
-      vpu (accs)
+      vpu (viral prot U) (accs) helps during budding (59,61)
+    \item
+      vpr (viral prot R) (accs)
     \end{itemize}
   \item
     A 10th gene ?
@@ -2662,6 +2664,13 @@ History / pandemic:
     \end{itemize}
   \end{itemize}
 \end{itemize}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{./figures/HIV-Intro/HIV-structure.png}
+  \extcaption{Structure and main components of HIV-1 virion.}{Structural proteins are represented in Blue, functional enzymes in pink, RNA proteins in orange and accessory proteins in green. \\
+Figure adapted from PDB101 \autocite{zardecki2022} (\href{https://PDB101.rcsb.org}{PDB101.rcsb.org}, \textit{CC By 4.0 License}, detailed list of structures used available in Appendix \autoref(sec:HIV-intro-appendix)).}
+\end{figure}
 
 \hypertarget{main-protein-mechanisms-in-replication}{%
 \subsection{Main protein mechanisms in replication}\label{main-protein-mechanisms-in-replication}}
@@ -2697,7 +2706,7 @@ ALl 3 are cleaved and matured from the pol polyprotein
 \item
   IN:
 \item
-  PR
+  PR:
 \end{itemize}
 
 \hypertarget{drug-resistance-in-hiv}{%
@@ -4190,6 +4199,45 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \end{figure}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]
+
+\hypertarget{HIV-intro-appendix}{%
+\chapter{Supporting Information for ``HIV and DRMs''}\label{HIV-intro-appendix}}
+
+\hypertarget{detailed-list-of-hiv-1-protein-structures-used-for-figure-generation.}{%
+\section{Detailed list of HIV-1 protein structures used for figure generation.}\label{detailed-list-of-hiv-1-protein-structures-used-for-figure-generation.}}
+
+The images for HIV-1 structures used in Figure \ref{fig:hivStructure} were obtained from: \href{https://cdn.rcsb.org/pdb101/learn/resources/structural-biology-of-hiv/index.html\#}{https://cdn.rcsb.org/pdb101/learn/resources/structural-biology-of-hiv/}. They are licensed under a Creative Commons By 4.0 license which allows reuse and adaptation for non commercial use.
+
+PDB structure IDs:
+
+\begin{itemize}
+\item
+  \textbf{SU} and \textbf{TM}: \href{http://www.rcsb.org/pdb/explore.do?structureId=4nco}{4nco}
+\item
+  \textbf{MA}: \href{http://rcsb.org/pdb/explore/explore.do?structureId=1hiw}{1hiw}
+\item
+  \textbf{CA}: \href{http://rcsb.org/pdb/explore/explore.do?structureId=3h47}{3h47}
+\item
+  \textbf{NC}: \href{http://rcsb.org/pdb/explore/explore.do?structureId=1a1t}{1a1t}
+\item
+  \textbf{RT}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1hys}{1hys} (for Figure \ref{fig:hivStructure}) and \href{http://www.rcsb.org/pdb/explore.do?structureId=2hmi}{2hmi} (for Figure \ref{fig:rtStruct})
+\item
+  \textbf{IN}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1ex4}{1ex4}
+\item
+  \textbf{PR}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1hpv}{1hpv}
+\item
+  \textbf{Vpu}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1pi7}{1pi7} and \href{http://www.rcsb.org/pdb/explore.do?structureId=1vpu}{1vpu}
+\item
+  \textbf{Vif}: \href{http://www.rcsb.org/pdb/explore.do?structureId=3dcg}{3dcg}
+\item
+  \textbf{Vpr}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1esx}{1esx}
+\item
+  \textbf{Nef}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1avv}{1avv} and \href{http://www.rcsb.org/pdb/explore.do?structureId=1qa5}{1qa5}
+\item
+  \textbf{Rev}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1etf}{1etf}
+\item
+  \textbf{Tat}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1biv}{1biv} and \href{http://www.rcsb.org/pdb/explore.do?structureId=1jfw}{1jfw}
+\end{itemize}
 
 \hypertarget{HIV-appendix}{%
 \chapter{Supporting Information for ``Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV''}\label{HIV-appendix}}
