@@ -2606,9 +2606,9 @@ History / pandemic:
     \item
       p17/MA: mature protein matrix, line the internal virion membrane
     \item
-      p24/CA: capsid, core of the viral particle
+      p24/CA: capsid, core of the viral particle, protects the RNA by encapsulating it
     \item
-      p7/NC: nucleocapsid, protects the genetic information in the viral particle
+      p7/NC: nucleocapsid, protects the genetic information in the viral particle by binding with viral RNA
     \item
       p6: promotes budding / virion release \autocite{gottlingerEffectMutationsAffecting1991,huangP6GagRequiredParticle1995}, largely unstructured
     \end{itemize}
@@ -2628,26 +2628,26 @@ History / pandemic:
 
     \begin{itemize}
     \item
-      SU (surface)/gp 120: responsible for biding to CD4 cells \autocite{bourHumanImmunodeficiencyVirus1995}
+      SU (surface)/gp 120: responsible for binding to CD4 cells \autocite{bourHumanImmunodeficiencyVirus1995}
     \item
-      TM (transmembrane)/gp 41: together with gp120 causes membrane fusion
+      TM (transmembrane)/gp 41: together with gp120 causes membrane fusion, anchors SU to the viral particle \autocite{hernandezViruscellCellcellFusion1996}
     \end{itemize}
   \item
     regulatory elements:
 
     \begin{itemize}
     \item
-      tat (trans-activator of transcription) (!!) activates transcription -\textgreater{} essential promoter
+      tat (trans-activator of transcription) (!!) activates transcription -\textgreater{} essential promoter and leads to longer transcripts \autocite{jonesControlRnaInitiation1994}
     \item
-      rev (Regulator of viron) (!!) helps RNA get out of nucleus (before splicing?) for translation
+      rev (Regulator of viron) (!!) helps RNA get out of nucleus for translation \autocite{hopeViralRNAExport1997}
     \item
-      nef (Negative regulatory factor) (accs) prevents host cell from producing defence proteins (CD4)
+      nef (Negative regulatory factor) (accs) prevents host cell from producing defence proteins (CD4) and boosting infectivity \autocite{mangasarianMultifacetedRoleHIV1997}
     \item
-      vif (viral infectivity factor) (accs)
+      vif (viral infectivity factor) (accs) probably boosts infection as mutants have less infectivity \autocite{cohenRoleAuxiliaryProteins1996}
     \item
-      vpu (viral prot U) (accs) helps during budding (59,61)
+      vpu (viral prot U) (accs) helps during release \autocite{lambVpuVprHuman1997,cohenRoleAuxiliaryProteins1996}
     \item
-      vpr (viral prot R) (accs)
+      vpr (viral prot R) (accs), prevents mitosis and helps entry in nucleus of host \autocite{emermanHIV1VprCell1996}
     \end{itemize}
   \item
     A 10th gene ?
@@ -2704,9 +2704,25 @@ ALl 3 are cleaved and matured from the pol polyprotein
 
 \begin{itemize}
 \item
-  IN:
+  IN: It pre-processes the ends of the viral DNA, cleaves the host DNA and binds the viral DNA to the host DNA (i.e.~strand transfer). \autocite{chiuStructureFunctionHIV12004,espositoHIVIntegraseStructure1999,delelisIntegraseIntegrationBiochemical2008}. Multimer -\textgreater{} chains link up. Each chain has:
+
+  \begin{itemize}
+  \item
+    Core catalytic domain: Binds with viral DNA and performs the integration
+  \item
+    C-terminal domain: Binds with any DNA, adding stability
+  \item
+    N-terminal domain: Binds with Zn\textsuperscript{2+} and helps multimerisation (i.e integrase stability)
+  \end{itemize}
 \item
-  PR:
+  PR: cleaves gag and pol polyproteins to produce individual structural and regulatory proteins. Symetric dimer structure \autocite{pearlStructuralModelRetroviral1987,gulnikHIVProteaseEnzyme2000}, 2 identical chains.
+
+  \begin{itemize}
+  \item
+    Ionization of an Aspartate residue in each active site produces acid-base reaction that cleaves precursor \autocite{silvaInhibitionCatalyticMechanism1996}. (active site)
+  \item
+    Flaps are flexible parts of PR that can open and close \autocite{hornakHIV1ProteaseFlaps2006}, probably controls access of substrates to active site \autocite{yuStructuralInsightsHIV12017}
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{drug-resistance-in-hiv}{%
@@ -2787,7 +2803,7 @@ review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistanc
 \item
   NNRTI: mutations limiting access to the binding pocket like Y181C or changing the shape of it like K103N \autocite{deeksNonnucleosideReverseTranscriptase2001}. dangerous because a single mutation produces viruses that are both fit and highly resistant \autocite{ammaranondMechanismHIVAntiretroviral2012} + cross-resistance
 \item
-  PI: make active site bigger reducing affinity to inhibitors but also to natural substrate \autocite{wensingFifteenYearsHIV2010}
+  PI: make active site bigger reducing affinity to inhibitors but also to natural substrate \autocite{wensingFifteenYearsHIV2010}, also change flap conformation to deny access to active site to PI \autocite{kurtyilmazImprovingViralProtease2016}.
 \item
   INI: reduce affinity to inhibitors \autocite{blancoHIV1IntegraseInhibitor2011}
 \end{itemize}
@@ -2799,7 +2815,7 @@ review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistanc
 \item
   Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}, creating long lasting drug resistance reservoirs in naive population.
 \item
-  Dangerous because there can be therapeutic failure of first line regimen.
+  Dangerous because there can be therapeutic failure of first line regimen. \autocite{boermaHighLevelsPretreatment2016}
 \item
   Fitness is lower for some DRMs \autocite{kuhnertQuantifyingFitnessCost2018,mespledeViralFitnessCost2013} which means there is evolutionary pressure for these mutations to disappear in the absence of treatment
 \item
@@ -2809,7 +2825,7 @@ review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistanc
 \hypertarget{finding-drms}{%
 \subsection{Finding DRMS}\label{finding-drms}}
 
-(This sections build upon a review we did \autocite{blasselDrugResistanceMutations2021}
+(This sections build upon a review we did \autocite{blasselDrugResistanceMutations2021})
 
 \begin{itemize}
 \tightlist
@@ -2826,7 +2842,7 @@ review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistanc
   \item
     PANGEA \autocite{abeler-dornerPANGEAHIVPhylogeneticsNetworks2019}
   \item
-    Standford HIV Drug resistance database (\url{https://hivdb.stanford.edu/}) with sequences \autocite{rheeHumanImmunodeficiencyVirus2003}
+    Stanford HIV Drug resistance database (\url{https://hivdb.stanford.edu/}) with sequences \autocite{rheeHumanImmunodeficiencyVirus2003}
   \end{itemize}
 \item
   Databases of mutations are kept \autocite{shaferRationaleUsesPublic2006} with regularly update lists of important DRMs \autocite{wensing2019UpdateDrug2019,clarkMutationsRetroviralGenes2007} and tools to help practitioners detect and interpret resistance \autocite{liuWebResourcesHIV2006d}.
