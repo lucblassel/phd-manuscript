@@ -1,4 +1,4 @@
-# HIV and DRMs
+# Viruses, HIV and drug resistance
 
 ## What are viruses ?
 
@@ -36,63 +36,29 @@ Finally, the genetic diversity of viruses is reflected in their physical charact
 
 Although there are a large number of viruses, and many of them are of great importance for human health, we will now focus on one virus of particular importance: Human Immunodeficiency Virus otherwise known as HIV.
 
-## What is HIV ?
+## Getting to know HIV
 
 ### Quick Presentation of HIV
 
-Function / consequences:
+HIV is a single-stranded RNA retrovirus that is responsible for the Acquired Immune Deficiency Syndrome (AIDS) pandemic that has been around for the last couple decades. This virus is transmitted through sexual contact or through blood. Sexual activity is the largest transmission factor followed by intravenous drug use [@hladikSettingStageHost2008; @shawHIVTransmission2012].
 
--   Retrovirus that causes the AIDS (acquired immune deficiency syndrome) pandemic
+The HIV infects cells of the host immune system, specifically CD4 T-cell lymphocytes and destroys them due to it's replication process [@weissHowDoesHIV1993]. An HIV infection typically start with an asymptomatic phase that can last years, followed by a growth in viral replication leading to a decrease in CD4 cells which progresses into AIDS [@melhuishNaturalHistoryHIV2018]. During AIDS, when the CD4 cell count is low enough opportunistic diseases such as pneumonia or tuberculosis [@murrayPulmonaryComplicationsAcquired1984] can easily infect the host, leading to death when the immune system is weak enough.
 
--   Affects human immune system
+The HIV/AIDS is one of the deadliest pandemics in history, estimated to have lead to the death of 36 million people [@sampathPandemicsThroughoutHistory2021]. In 2010 [@worldhealthorganizationGlobalReportUNAIDS2010] approximately 33 million people were infected with HIV, 2.6 million of which were due to new infections, and 1.8 million died of AIDS. Most of the new infections happened in economically developing regions of the world, 70% of them coming from sub-Saharan Africa [@worldhealthorganizationGlobalReportUNAIDS2010]. As of 2020, these numbers have decreased with "only" 1.5 million new infections and 680,000 AIDS deaths, which is encouraging from a public health perspective.
 
--   Transmitted through sexual contact or through blood:
+The HIV-1 virus was discovered simultaneously in 1983 by Françoise Barré-Sinoussi, Luc Montagnier [@barre-sinoussiIsolationTlymphotropicRetrovirus1983] and Robert Gallo [@galloIsolationHumanTcell1983]. There exists a second HIV-2 virus discovered shortly after HIV-1 [@clavelIsolationNewHuman1986], it is however less transmissible than HIV-1 which is largely responsible for the global HIV/AIDS pandemic [@gilbert2003]. In Africa in 2006, HIV-1 infections were rising where HIV-2 were declining [@vanderloeffSixteenYearsHIV2006].
 
-    -   Sexual activity is the largest case contributor [@hladikSettingStageHost2008; @shawHIVTransmission2012]:
+While both viruses are of zoonotic origin, from transmissions of Simian Immunodeficiency Virus (SIV) from primates to humans. HIV-1 most likely originates from an SIV present in chimpanzees [@gaoOriginHIV1Chimpanzee1999; @hamelTwentyYearsProspective2007;@sharpOriginsHIVAIDS2011], and HIV-2 from an SIV present in Sooty mangabeys [@hirschAfricanPrimateLentivirus1989; @gaoHumanInfectionGenetically1992; @chenGeneticCharacterizationNew1996].
 
-        1.  Female genital tract (12.6 million)
+Several independent such transmissions have resulted in 4 lineages of HIV-1 labeled groups M, N, O and P [@hemelaarOriginDiversityHIV12012] (similarly HIV-2 is split into groups A to H also resulting from independent zoonotic transmissions). While Groups N and P have been identified in only a handful of individuals in Cameroon , and group O is estimated to a few thousand cases in western Africa, the majority of the pandemic is due to viruses from group M.
 
-        2.  Male genital tract (10.2 million)
+The most most recent common ancestor, *i.e. the putative virus that founded group M*, is estimated to have originated in what is now the Democratic Republic of Congo [@worobeyDirectEvidenceExtensive2008; @vidalUnprecedentedDegreeHuman2000; @fariaEarlySpreadEpidemic2014] at some point between 1910 and 1931 [@korberTimingAncestorHIV12000; @worobeyDirectEvidenceExtensive2008; @rambautCausesConsequencesHIV2004].
 
-        3.  Male/Female lower GI tract (3.9 million)
+Group M is further subdivided into 9 subtypes each with distinct genetic characteristics, labeled A to K [@mccutchanGlobalEpidemiologyHIV2006; @sharpOriginsHIVAIDS2011]. Like in many viruses [@perez-losadaRecombinationVirusesMechanisms2015], when 2 genetically different strains of HIV co-infect a single host there is a risk genetic recombination leading to a new strain [@robertsonRecombinationAIDSViruses1995]. During recombination, a new genome is formed from parts of the original genomes. This can lead to new strains that can spread and form lineages of their own. HIV strains resulting from recombination are called Cirulating Recombinant Forms (CRFs). There are currently 118 identifed HIV-1 CRFs in the Los Alamos National Laboratory HIV sequence database [@HIVCirculatingRecombinant] (1 for HIV-2). There also exist many unique recombinant forms (URFs). Recombination can be particulary bothersome, complicating evolutionary analyses [@posadaRecombinationEvolutionaryGenomics2002], or facilitating drug resistance and hindering vaccine development [@taylorChallengeHIV1Subtype2008].
 
-        4.  Blood stream (2.6 million)
+While subtype C represented almost half of global infections from 2004 to 2007, subtype B is the majority subtype in richer countries of North America and Western Europe [@hemelaarGlobalTrendsMolecular2011] where sequencing efforts are more common. This accounts for an over-representation of subtype B sequences in public databases such as the Los Alamos sequence database where 54% of sequences are of the B subtype and only 15% are C [@DistributionAllHIV1].
 
--   It causes AIDS by penetrating CD4 cells of the host immune system, using them to replicate and destroying them in doing so [@weissHowDoesHIV1993]
-
--   the infection typically starts out with an asymptomatic phase that can last years, followed by a decrease in CDA cells that progresses to AIDS [@melhuishNaturalHistoryHIV2018]. When the CD4 cell count is low opportunistic diseases like tuberculosis, pneumonia or meningitis can more easily infect the host and lead to death.
-
-History / pandemic:
-
--   Massive global pandemic, 2010 numbers [@worldhealthorganizationGlobalReportUNAIDS2010]:
-
-    -   approx 33 million people were living with HIV, 2.6 million new infections in HIV and 1.8 millions AIDS deaths.
-
-    -   This is decreasing with the 2020 numbers reporting 680,000 deaths and 1.5 million new infections [@GlobalHIVAIDS].
-
-    -   70% of the new infections are from sub-saharan africa [@worldhealthorganizationGlobalReportUNAIDS2010]
-
--   Discovered simultaneously by Françoise Barré-Sinoussi, and Luc Montagnier and Robert Gallo in 1983 [@barre-sinoussiIsolationTlymphotropicRetrovirus1983; @galloIsolationHumanTcell1983]
-
--   VIH-1 vs VIH-2. VIH-1 is more transmissible and is largely responsible for the global pandemic [@gilbert2003], in fact in Africa HIV-1 infections are rising where HIV-2 are declining [@vanderloeffSixteenYearsHIV2006]
-
--   VIH-1 From Simian Immunodeficiency viruses most likely [@sharpOriginsHIVAIDS2011], probably from a chimpanzee [@gaoOriginHIV1Chimpanzee1999; @hamelTwentyYearsProspective2007].
-
--   VIH-2 also from a SIV probably from sooty mangabey [@hirschAfricanPrimateLentivirus1989; @gaoHumanInfectionGenetically1992; @chenGeneticCharacterizationNew1996]
-
--   There is not 1 lineage: Different groups (MNOP) correspond to distinct crossing over events (from chimp to human)
-
--   Group M is mostly responsible for the pandemic, estimated Last common ancestor of group M estimated between 1910 to 1931 [@korberTimingAncestorHIV12000; @worobeyDirectEvidenceExtensive2008; @rambautCausesConsequencesHIV2004], and probably originated in what is now the DRC [@worobeyDirectEvidenceExtensive2008; @vidalUnprecedentedDegreeHuman2000; @fariaEarlySpreadEpidemic2014].
-
--   In group M there are 9 subtypes (A to K) [@mccutchanGlobalEpidemiologyHIV2006; @sharpOriginsHIVAIDS2011]
-
--   There is recombination [@robertsonRecombinationAIDSViruses1995] which complicates phylogenetic analyses [@posadaRecombinationEvolutionaryGenomics2002], and are a pathway to resistance and complicate vaccine development [@taylorChallengeHIV1Subtype2008].
-
--   There are 118 identified HIV-1 CRFs currently in the Los Alamos National Laboratory HIV sequence database [@HIVCirculatingRecombinant] (1 for HIV-2). There are also unique recombinant forms
-
--   While subtype C represented almost half of global infections from 2004 to 2007, subtype B is the major subtype in richer countries in North America and Western Europe [@hemelaarGlobalTrendsMolecular2011] where sequencing efforts are more common. This accounts for an over-representation of subtype B sequences in the LA database where 54% of sequences are of the B subtype and only 15% are C [@DistributionAllHIV1].
-
-### Life cycle of HIV
+### The life cycle of HIV
 
 -   Cycle [@freedHIV1Replication2001; @fergusonHIV1ReplicationCycle2002] shown in Figure \@ref(fig:hivCycle):
     1.  Virion attaches to CD4 host cell through membrane proteins
