@@ -2,83 +2,39 @@
 
 ## What are viruses ?
 
--   Viruses are intracellular parasites [@minorViruses2014]
+Viruses occupy a strange place in the tree of life, with many debating if they are actually alive or not. André Lwoff gave what is probably the most fitting definition: *"viruses are viruses"* [@lwoffConceptVirus1957]. Despite this ambiguity, viruses share some common characteristics which allow us to define them as intracellular parasites [@minorViruses2014]:
 
--   Weird in between, are they organisms or molecules ?
+1.  Viruses have some type of genetic information, contained in either DNA or RNA
+2.  This genetic information is protected by some form of envelope
+3.  They use the cellular machinery of host cells to make copies of themselves.
 
--   André Lwoff, famous Pasteur Virologist gave the most apt definition: *"viruses are viruses"* [@lwoffConceptVirus1957], there are however some key characteristics:
+While we all know that viruses can be pathogenic and dangerous (the recent example of SARS-CoV2 springs to mind), that is not necessarily the case and some viruses like GBV-C [@stapletonGBVirusesReview2011] and certain strains of H5N1 *Influenza* [@yamamotoCharacterizationNonpathogenicH5N12011] are non pathogenic and essentially harmless.
 
-    -   They have some type of genetic information that is contained in some envelope
+Viruses have been discovered for all three domains of life: Eukaryota, Bacteria and Archea. In Eukaryota many viruses have been discovered for animals (both vertebrate [@shiEvolutionaryHistoryVertebrate2018] and invertebrate [@adamsAtlasInvertebrateViruses2017]), plants [@lefeuvreEvolutionEcologyPlant2019], protozoa [@wangVirusesParasiticProtozoa1991], chromista [@ferminVirusesProkaryotesProtozoa2018] and even fungi [@sutelaVirusesFungiOomycetes2019]. Bacterial viruses known as phages have been known to exists since the beginning of the 20th century [@twortINVESTIGATIONNATUREULTRAMICROSCOPIC1915; @delbrockBacterialVirusesBacteriophages1946]. These bacteriophages are being considered as a therapeutic alternative to antibiotics [@clarkBacterialVirusesHuman2004; @vankan-davelaarUsingVirusesNanomedicines2014] which could help with multi-drug-resistant bacterial pathogens. Archea are also known to have their own viral infections [@prangishviliVirusesArchaea2016; @prangishviliVirusesArchaeaUnifying2006].
 
-    -   They use the machinery of host cells to make copies of themselves
+Strangely even viruses of viruses seem to exist such as the plant satellite virus [@franckiPlantVirusSatellites; @xuPlantVirusSatellites2011] or hepatitis delta virus [@laiMolecularBiologyHepatitis1995; @hughesHepatitisDeltaVirus2011]. These "viroids" do not infect viral hosts *per se* but they cannot replicate on their own. Replication must happen during co-infection with a larger virus.
 
-    -   can be pathogenic (HIV, SARS-CoV, Influenza, ...) or not (GBV-C [@stapletonGBVirusesReview2011] , a strain of H5N1 influenza [@yamamotoCharacterizationNonpathogenicH5N12011] )
+There is a huge diversity of viruses affecting all types of life, and new viruses are being discovered all the time [@edgarPetabasescaleSequenceAlignment2022]. This diversity hints at a rich and long evolutionary history. When and where viruses originated is still under study [@nasirInvestigatingConceptOrigin2020; @forterreOriginViruses2009] and we might never know how they emerged, it is however believed that they may have played an important role in the emergence of eukaryotic cells [@forterreOriginVirusesTheir2006]. This co-evolution between virus and host cell shows a strong link between the two organisms and some parts of the human genome are likely of ancient viral origin [@boekeRetrotransposonsEndogenousRetroviruses1997; @kojimaViruslikeInsertionsSequence2021]. It has been estimated that 1% to 8% of the human genome are endogenous retroviral sequences [@lowerVirusesAllUs1996; @griffithsEndogenousRetrovirusesHuman2001].
 
--   All types of living organisms have their viruses:
+The rich diversity of viruses is reflected in the variety of genetic information support, replication strategy, physical and genomic size, as well as shape. The differences in genetic information support and replication strategy form the basis of the Baltimore virus classification system [@baltimoreExpressionAnimalVirus1971] , still used today [@kooninBaltimoreClassificationViruses2021] to classify virus lineages.
 
-    -   Animals:
+As stated above all viruses have some genetic information, this information is stored either as DNA or as RNA, which is the molecule of choice for 70% of human pathogenic viruses [@domingoRNAVirusGenomes2018] *(HIV and SARS-CoV 2 are RNA viruses)*.
 
-        -   vertebrates [@shiEvolutionaryHistoryVertebrate2018]
+For DNA viruses, the molecule can be double-stranded as for *Herpesvirus* [@mcgeochTopicsHerpesvirusGenomics2006; @boehmerHerpesVirusReplication2003], single-stranded like in the case of *Papillomavirus* [@brentjensHumanPapillomavirusReview2002] or even circular in the case of the Hepatitis B virus [@kayHepatitisVirusGenetic2007]. This molecular diversity is also present in RNA viruses where the RNA molecule can be double-stranded like for *Rotavirus* [@parasharRotavirus1998], or single-stranded. Furthermore, for single-stranded RNA viruses the strand can either be positive *(i.e. can be directly translated into a protein)* like Hepatitis C virus [@simmondsVariabilityHepatitisVirus1995] or *Poliovirus* [@wimmerGeneticsPoliovirus1993; @racanielloOneHundredYears2006]; conversely there are negative-strand RNA viruses, for which the complementary strand of RNA must be synthesized before translation into a protein, such as the Influenza or Measles viruses [@paleseNegativestrandRNAViruses1996].
 
-        -   invertrebrates [@adamsAtlasInvertebrateViruses2017]
+This diversity in genetic information support implies a necessary diversity in replication strategy. The main replication strategies are as follows [@domingoVirusEvolution2014]:
 
-    -   Plants [@lefeuvreEvolutionEcologyPlant2019]
+-   The RNA molecule is directly copied as RNA. This is the strategy followed by single-stranded RNA coronaviruses [@vkovskiCoronavirusBiologyReplication2021], Dengue viruses [@backDengueVirusesOverview2013] or Hepatitis C virus [@dustinHepatitisVirusLife2016].
 
-    -   Bacteria [@delbrockBacterialVirusesBacteriophages1946], phages being considered as therapy option separate to antibiotics [@clarkBacterialVirusesHuman2004; @vankan-davelaarUsingVirusesNanomedicines2014]
+-   The DNA molecule is directly replicated as DNA. this can happen for both single-stranded DNA viruses like *Papillomavirus* [@kadajaPapillomavirusDNAReplication2009]and double-stranded DNA viruses like Herpes simplex virus [@wellerHerpesSimplexViruses2012].
 
-    -   Archea [@prangishviliVirusesArchaea2016; @prangishviliVirusesArchaeaUnifying2006]
+-   The DNA molecule is replicated by going through an RNA intermediary like Hepatitis B virus [@beckHepatitisVirusReplication2007].
 
-    -   Virus of viruses like plant satellite viruses [@franckiPlantVirusSatellites; @xuPlantVirusSatellites2011] and hepatitis delta virus [@laiMolecularBiologyHepatitis1995; @hughesHepatitisDeltaVirus2011]. In both cases these "viroids" cannot replicate on theire own they must have a co-infection with the larger virus to replicate.
+-   The RNA molecule is replicated by going through a DNA intermediary. This strategy is used by retroviruses that integrate this viral DNA intermediary into the host DNA, like HIV-1 (see Section \@ref(life-cycle-of-hiv)).
 
--   Where and when viruses originated is still under study [@nasirInvestigatingConceptOrigin2020; @forterreOriginViruses2009], but they may have played an important role in emergence of eukaryotic cells [@forterreOriginVirusesTheir2006].
+Finally, the genetic diversity of viruses is reflected in their physical characteristics: viruses come in all shapes and sizes. Physical size range from 17nm for plant satellite viruses [@pyleChapter58Biology2017] to the giant 400nm *Mimivirus* [@raoult2megabaseGenomeSequence2004]. Genomic size is also quite variable, there is a stark contrast between the 860 bp *Circovirus SFBeef* and the 2.5 Mbp *Pandoravirus salinus* genomes [@campillo-balderasViralGenomeSize2015]. Viruses come in a variety of shapes [@cannVirusStructure2015]: icosahedral for HIV, helical for the tobacco mosaic virus or a distinctive head-tail shape for bacteriophages.
 
--   In any case, because of co-evolution there is a strong link between virus and host genomes, and parts of the genome are probably ancient retroviral sequences [@boekeRetrotransposonsEndogenousRetroviruses1997; @kojimaViruslikeInsertionsSequence2021], it has been estimated that 1% to 8% of the human genome is composed of these endogenous retroviral sequences [@lowerVirusesAllUs1996; @griffithsEndogenousRetrovirusesHuman2001]
-
-great diversity in viruses (support and replication strategy form the basis of the Baltimore virus classification system [@baltimoreExpressionAnimalVirus1971] , still used today [@kooninBaltimoreClassificationViruses2021] ):
-
--   Information support:
-
-    -   DNA: Hepatitis B
-
-        -   Double Stranded: like Herpesvirus [@mcgeochTopicsHerpesvirusGenomics2006; @boehmerHerpesVirusReplication2003]
-
-        -   Single Stranded: Papillomavirus [@brentjensHumanPapillomavirusReview2002]
-
-        -   circular DNA: Hepatitis B [@kayHepatitisVirusGenetic2007]
-
-    -   RNA: HIV/SARS-CoV (about 70% of human pathogenic viruses are RNA viruses [@domingoRNAVirusGenomes2018]
-
-        -   Single Stranded:
-
-            -   positive strand: Hep C [@simmondsVariabilityHepatitisVirus1995] / polio [@wimmerGeneticsPoliovirus1993; @racanielloOneHundredYears2006]
-
-            -   negative strand: Influenza, Measles [@paleseNegativestrandRNAViruses1996]
-
-        -   Double stranded: Rotavirus [@parasharRotavirus1998]
-
--   Replication strategies [@domingoVirusEvolution2014]:
-
-    -   RNA -\> RNA: SARS-CoV, Hep C, Dengue
-
-    -   RNA -\> DNA -\> RNA: HIV-1
-
-    -   DNA -\> DNA: Papillomavirus, Smallpox
-
-    -   DNA -\> RNA -\> DNA: Hep B
-
--   size both physical and genomic:
-
-    -   17nm for plant satellites [@pyleChapter58Biology2017] to Mimivirus a giant virus of 400nm [@raoult2megabaseGenomeSequence2004].
-
-    -   860 bp for *Circovirus SFBeef* to 2.5 Mbp for *Pandoravirus salinus* [@campillo-balderasViralGenomeSize2015]
-
--   Shape of the virus :[@cannVirusStructure2015]
-
-    -   Icosahedral: HIV
-
-    -   helical: tobacco mosaic virus
-
-    -   Head-tail: bacteriophages
+Although there are a large number of viruses, and many of them are of great importance for human health, we will now focus on one virus of particular importance: Human Immunodeficiency Virus otherwise known as HIV.
 
 ## What is HIV ?
 
