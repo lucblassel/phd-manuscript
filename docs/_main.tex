@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-06-24}
+\date{2022-07-04}
 
 \begin{document}
 \maketitle
@@ -2365,119 +2365,49 @@ end-to-end training like aligning sequences, this is harder because it requires 
 \hypertarget{what-are-viruses}{%
 \section{What are viruses ?}\label{what-are-viruses}}
 
-\begin{itemize}
-\item
-  Viruses are intracellular parasites \autocite{minorViruses2014}
-\item
-  Weird in between, are they organisms or molecules ?
-\item
-  André Lwoff, famous Pasteur Virologist gave the most apt definition: \emph{``viruses are viruses''} \autocite{lwoffConceptVirus1957}, there are however some key characteristics:
+Viruses occupy a strange place in the tree of life, with many debating if they are actually alive or not. André Lwoff gave what is probably the most fitting definition: \emph{``viruses are viruses''} \autocite{lwoffConceptVirus1957}. Despite this ambiguity, viruses share some common characteristics which allow us to define them as intracellular parasites \autocite{minorViruses2014}:
 
-  \begin{itemize}
-  \item
-    They have some type of genetic information that is contained in some envelope
-  \item
-    They use the machinery of host cells to make copies of themselves
-  \item
-    can be pathogenic (HIV, SARS-CoV, Influenza, \ldots) or not (GBV-C \autocite{stapletonGBVirusesReview2011} , a strain of H5N1 influenza \autocite{yamamotoCharacterizationNonpathogenicH5N12011} )
-  \end{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  All types of living organisms have their viruses:
-
-  \begin{itemize}
-  \item
-    Animals:
-
-    \begin{itemize}
-    \item
-      vertebrates \autocite{shiEvolutionaryHistoryVertebrate2018}
-    \item
-      invertrebrates \autocite{adamsAtlasInvertebrateViruses2017}
-    \end{itemize}
-  \item
-    Plants \autocite{lefeuvreEvolutionEcologyPlant2019}
-  \item
-    Bacteria \autocite{delbrockBacterialVirusesBacteriophages1946}, phages being considered as therapy option separate to antibiotics \autocite{clarkBacterialVirusesHuman2004,vankan-davelaarUsingVirusesNanomedicines2014}
-  \item
-    Archea \autocite{prangishviliVirusesArchaea2016,prangishviliVirusesArchaeaUnifying2006}
-  \item
-    Virus of viruses like plant satellite viruses \autocite{franckiPlantVirusSatellites,xuPlantVirusSatellites2011} and hepatitis delta virus \autocite{laiMolecularBiologyHepatitis1995,hughesHepatitisDeltaVirus2011}. In both cases these ``viroids'' cannot replicate on theire own they must have a co-infection with the larger virus to replicate.
-  \end{itemize}
+  Viruses have some type of genetic information, contained in either DNA or RNA
 \item
-  Where and when viruses originated is still under study \autocite{nasirInvestigatingConceptOrigin2020,forterreOriginViruses2009}, but they may have played an important role in emergence of eukaryotic cells \autocite{forterreOriginVirusesTheir2006}.
+  This genetic information is protected by some form of envelope
 \item
-  In any case, because of co-evolution there is a strong link between virus and host genomes, and parts of the genome are probably ancient retroviral sequences \autocite{boekeRetrotransposonsEndogenousRetroviruses1997,kojimaViruslikeInsertionsSequence2021}, it has been estimated that 1\% to 8\% of the human genome is composed of these endogenous retroviral sequences \autocite{lowerVirusesAllUs1996,griffithsEndogenousRetrovirusesHuman2001}
-\end{itemize}
+  They use the cellular machinery of host cells to make copies of themselves.
+\end{enumerate}
 
-great diversity in viruses (support and replication strategy form the basis of the Baltimore virus classification system \autocite{baltimoreExpressionAnimalVirus1971} , still used today \autocite{kooninBaltimoreClassificationViruses2021} ):
+While we all know that viruses can be pathogenic and dangerous (the recent example of SARS-CoV2 springs to mind), that is not necessarily the case and some viruses like GBV-C \autocite{stapletonGBVirusesReview2011} and certain strains of H5N1 \emph{Influenza} \autocite{yamamotoCharacterizationNonpathogenicH5N12011} are non pathogenic and essentially harmless.
+
+Viruses have been discovered for all three domains of life: Eukaryota, Bacteria and Archea. In Eukaryota many viruses have been discovered for animals (both vertebrate \autocite{shiEvolutionaryHistoryVertebrate2018} and invertebrate \autocite{adamsAtlasInvertebrateViruses2017}), plants \autocite{lefeuvreEvolutionEcologyPlant2019}, protozoa \autocite{wangVirusesParasiticProtozoa1991}, chromista \autocite{ferminVirusesProkaryotesProtozoa2018} and even fungi \autocite{sutelaVirusesFungiOomycetes2019}. Bacterial viruses known as phages have been known to exists since the beginning of the 20th century \autocite{twortINVESTIGATIONNATUREULTRAMICROSCOPIC1915,delbrockBacterialVirusesBacteriophages1946}. These bacteriophages are being considered as a therapeutic alternative to antibiotics \autocite{clarkBacterialVirusesHuman2004,vankan-davelaarUsingVirusesNanomedicines2014} which could help with multi-drug-resistant bacterial pathogens. Archea are also known to have their own viral infections \autocite{prangishviliVirusesArchaea2016,prangishviliVirusesArchaeaUnifying2006}.
+
+Strangely even viruses of viruses seem to exist such as the plant satellite virus \autocite{franckiPlantVirusSatellites,xuPlantVirusSatellites2011} or hepatitis delta virus \autocite{laiMolecularBiologyHepatitis1995,hughesHepatitisDeltaVirus2011}. These ``viroids'' do not infect viral hosts \emph{per se} but they cannot replicate on their own. Replication must happen during co-infection with a larger virus.
+
+There is a huge diversity of viruses affecting all types of life, and new viruses are being discovered all the time \autocite{edgarPetabasescaleSequenceAlignment2022}. This diversity hints at a rich and long evolutionary history. When and where viruses originated is still under study \autocite{nasirInvestigatingConceptOrigin2020,forterreOriginViruses2009} and we might never know how they emerged, it is however believed that they may have played an important role in the emergence of eukaryotic cells \autocite{forterreOriginVirusesTheir2006}. This co-evolution between virus and host cell shows a strong link between the two organisms and some parts of the human genome are likely of ancient viral origin \autocite{boekeRetrotransposonsEndogenousRetroviruses1997,kojimaViruslikeInsertionsSequence2021}. It has been estimated that 1\% to 8\% of the human genome are endogenous retroviral sequences \autocite{lowerVirusesAllUs1996,griffithsEndogenousRetrovirusesHuman2001}.
+
+The rich diversity of viruses is reflected in the variety of genetic information support, replication strategy, physical and genomic size, as well as shape. The differences in genetic information support and replication strategy form the basis of the Baltimore virus classification system \autocite{baltimoreExpressionAnimalVirus1971} , still used today \autocite{kooninBaltimoreClassificationViruses2021} to classify virus lineages.
+
+As stated above all viruses have some genetic information, this information is stored either as DNA or as RNA, which is the molecule of choice for 70\% of human pathogenic viruses \autocite{domingoRNAVirusGenomes2018} \emph{(HIV and SARS-CoV 2 are RNA viruses)}.
+
+For DNA viruses, the molecule can be double-stranded as for \emph{Herpesvirus} \autocite{mcgeochTopicsHerpesvirusGenomics2006,boehmerHerpesVirusReplication2003}, single-stranded like in the case of \emph{Papillomavirus} \autocite{brentjensHumanPapillomavirusReview2002} or even circular in the case of the Hepatitis B virus \autocite{kayHepatitisVirusGenetic2007}. This molecular diversity is also present in RNA viruses where the RNA molecule can be double-stranded like for \emph{Rotavirus} \autocite{parasharRotavirus1998}, or single-stranded. Furthermore, for single-stranded RNA viruses the strand can either be positive \emph{(i.e.~can be directly translated into a protein)} like Hepatitis C virus \autocite{simmondsVariabilityHepatitisVirus1995} or \emph{Poliovirus} \autocite{wimmerGeneticsPoliovirus1993,racanielloOneHundredYears2006}; conversely there are negative-strand RNA viruses, for which the complementary strand of RNA must be synthesized before translation into a protein, such as the Influenza or Measles viruses \autocite{paleseNegativestrandRNAViruses1996}.
+
+This diversity in genetic information support implies a necessary diversity in replication strategy. The main replication strategies are as follows \autocite{domingoVirusEvolution2014}:
 
 \begin{itemize}
 \item
-  Information support:
-
-  \begin{itemize}
-  \item
-    DNA: Hepatitis B
-
-    \begin{itemize}
-    \item
-      Double Stranded: like Herpesvirus \autocite{mcgeochTopicsHerpesvirusGenomics2006,boehmerHerpesVirusReplication2003}
-    \item
-      Single Stranded: Papillomavirus \autocite{brentjensHumanPapillomavirusReview2002}
-    \item
-      circular DNA: Hepatitis B \autocite{kayHepatitisVirusGenetic2007}
-    \end{itemize}
-  \item
-    RNA: HIV/SARS-CoV (about 70\% of human pathogenic viruses are RNA viruses \autocite{domingoRNAVirusGenomes2018}
-
-    \begin{itemize}
-    \item
-      Single Stranded:
-
-      \begin{itemize}
-      \item
-        positive strand: Hep C \autocite{simmondsVariabilityHepatitisVirus1995} / polio \autocite{wimmerGeneticsPoliovirus1993,racanielloOneHundredYears2006}
-      \item
-        negative strand: Influenza, Measles \autocite{paleseNegativestrandRNAViruses1996}
-      \end{itemize}
-    \item
-      Double stranded: Rotavirus \autocite{parasharRotavirus1998}
-    \end{itemize}
-  \end{itemize}
+  The RNA molecule is directly copied as RNA. This is the strategy followed by single-stranded RNA coronaviruses \autocite{vkovskiCoronavirusBiologyReplication2021}, Dengue viruses \autocite{backDengueVirusesOverview2013} or Hepatitis C virus \autocite{dustinHepatitisVirusLife2016}.
 \item
-  Replication strategies \autocite{domingoVirusEvolution2014}:
-
-  \begin{itemize}
-  \item
-    RNA -\textgreater{} RNA: SARS-CoV, Hep C, Dengue
-  \item
-    RNA -\textgreater{} DNA -\textgreater{} RNA: HIV-1
-  \item
-    DNA -\textgreater{} DNA: Papillomavirus, Smallpox
-  \item
-    DNA -\textgreater{} RNA -\textgreater{} DNA: Hep B
-  \end{itemize}
+  The DNA molecule is directly replicated as DNA. this can happen for both single-stranded DNA viruses like \emph{Papillomavirus} \autocite{kadajaPapillomavirusDNAReplication2009}and double-stranded DNA viruses like Herpes simplex virus \autocite{wellerHerpesSimplexViruses2012}.
 \item
-  size both physical and genomic:
-
-  \begin{itemize}
-  \item
-    17nm for plant satellites \autocite{pyleChapter58Biology2017} to Mimivirus a giant virus of 400nm \autocite{raoult2megabaseGenomeSequence2004}.
-  \item
-    860 bp for \emph{Circovirus SFBeef} to 2.5 Mbp for \emph{Pandoravirus salinus} \autocite{campillo-balderasViralGenomeSize2015}
-  \end{itemize}
+  The DNA molecule is replicated by going through an RNA intermediary like Hepatitis B virus \autocite{beckHepatitisVirusReplication2007}.
 \item
-  Shape of the virus :\autocite{cannVirusStructure2015}
-
-  \begin{itemize}
-  \item
-    Icosahedral: HIV
-  \item
-    helical: tobacco mosaic virus
-  \item
-    Head-tail: bacteriophages
-  \end{itemize}
+  The RNA molecule is replicated by going through a DNA intermediary. This strategy is used by retroviruses that integrate this viral DNA intermediary into the host DNA, like HIV-1 (see Section \ref{life-cycle-of-hiv}).
 \end{itemize}
+
+Finally, the genetic diversity of viruses is reflected in their physical characteristics: viruses come in all shapes and sizes. Physical size range from 17nm for plant satellite viruses \autocite{pyleChapter58Biology2017} to the giant 400nm \emph{Mimivirus} \autocite{raoult2megabaseGenomeSequence2004}. Genomic size is also quite variable, there is a stark contrast between the 860 bp \emph{Circovirus SFBeef} and the 2.5 Mbp \emph{Pandoravirus salinus} genomes \autocite{campillo-balderasViralGenomeSize2015}. Viruses come in a variety of shapes \autocite{cannVirusStructure2015}: icosahedral for HIV, helical for the tobacco mosaic virus or a distinctive head-tail shape for bacteriophages.
+
+Although there are a large number of viruses, and many of them are of great importance for human health, we will now focus on one virus of particular importance: Human Immunodeficiency Virus otherwise known as HIV.
 
 \hypertarget{what-is-hiv}{%
 \section{What is HIV ?}\label{what-is-hiv}}
