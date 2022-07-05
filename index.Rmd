@@ -89,13 +89,13 @@ knitr::asis_output('\n\n\\end{comment}')
 ### Journal publications {.unnumbered}
 
 -   **Blassel, Luc**, Paul Medvedev and Rayan Chikhi. 2022. **"Mapping-friendly sequence reductions: going beyond homopolymer compression"**. *iScience*\
-    [DOI goes here](https://google.com) *(Included in Chapter* \@ref(HPC-paper)*)*
+    [DOI goes here](https://google.com) *(Adapted as Chapter* \@ref(HPC-paper)*)*
 
 -   **Blassel, Luc**[^index-1], Anna Zhukova^1^, Christian J Villabona-Arenas, Katherine E Atkins, Stéphane Hué, and Olivier Gascuel. 2021. **"Drug Resistance Mutations in HIV: New Bioinformatics Approaches and Challenges."** *Current Opinion in Virology* 51 (December): 56--64.\
-    [10.1016/j.coviro.2021.09.009](https://doi.org/10.1016/j.coviro.2021.09.009)
+    [10.1016/j.coviro.2021.09.009](https://doi.org/10.1016/j.coviro.2021.09.009) *(Used as the basis for Section* \@ref(finding-drms)*)*
 
 -   **Blassel, Luc**, Anna Tostevin, Christian Julian Villabona-Arenas, MartinePeeters, Stéphane Hué, and Olivier Gascuel. 2021. **"Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV."** *PLOS Computational Biology* 17 (8): e1008873.\
-    [10.1371/journal.pcbi.1008873](https://doi.org/10.1371/journal.pcbi.1008873). *(Included in Chapter* \@ref(HIV-paper)*)*
+    [10.1371/journal.pcbi.1008873](https://doi.org/10.1371/journal.pcbi.1008873). *(Adapted as Chapter* \@ref(HIV-paper)*)*
 
 -   Zhukova, Anna, **Luc Blassel**, Frédéric Lemoine, Marie Morel, JakubVoznica, and Olivier Gascuel. 2021. **"Origin, Evolution and Global Spread of SARS-CoV-2."** *Comptes Rendus. Biologies* 344 (1): 57--75.\
     [10.5802/crbiol.29](https://doi.org/10.5802/crbiol.29).

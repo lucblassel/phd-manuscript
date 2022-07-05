@@ -149,7 +149,7 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-structure.png")
 ```
 
 ```{=tex}
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/HIV-Intro/HIV-structure.png}
   \extcaption{Structure and main components of a mature HIV-1 virion.}{Structural proteins MA, CA, SU and TM are represented in Blue, functional enzymes RT, IN and PR in pink, RNA binding proteins Rev, Tat and NC in orange and accessory proteins Vif, Nef, Vpr and Vpu in green. Viral RNA is shown in yellow. The phospholipd membrane of the virion is shown in a light purple color. The p6 protein is not represented as it is largely unsctructured. Vpu is not believed to be present in the HIV virion. \\

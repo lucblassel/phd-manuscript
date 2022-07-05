@@ -2,13 +2,13 @@
 
 ## Biological sequences, a primer
 
-To fully understand the work that was done during this thesis, as well as the choices that were made some basic knowledge of biology and more particularly genetics are needed. If you are already familiar with biological sequences, feel free to skip ahead to section \@ref(obtaining-sequence-data).
+To fully understand the work that was done during this thesis, as well as the choices that were made, some basic knowledge of molecular biology and genetics is needed. If you are already familiar with biological sequences, feel free to skip ahead to section \@ref(obtaining-sequence-data).
 
 ### What is DNA ?
 
 **D**esoxyribo**N**ucleic **A**cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
 
-DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These 4 types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA [@watson1953] shown in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
+DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA [@watson1953] shown in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
 ```{r}
 figDNACaption <- "**Double-helix structure of DNA**.\
@@ -27,65 +27,77 @@ knitr::include_graphics("./figures/Sequence-Intro/DNA.png")
 \label{fig:figDNA}
 \end{figure}
 ```
-The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the $\varphi X174$ phage [@sangerNucleotideSequenceBacteriophage1977], 4.9MBp for *Escherichia coli* [@archer2011], 3.1GBp for *Homo sapiens* [@nurk2022] all the way up to almost 150GBp for *Paris japonica,* a Japanese mountain flowering plant [@pellicer2010]. While very small genome size tend to occur in smaller, simpler organisms genome size does not correlate with organism complexity [@macgregor2001].
+The amount of DNA necessary to encode the information varies greatly from organism to organism: 5400 base pairs (5.4kBp) for the $\varphi X174$ phage [@sangerNucleotideSequenceBacteriophage1977], 4.9MBp for *Escherichia coli* [@archer2011], 3.1GBp for *Homo sapiens* [@nurk2022] all the way up to almost 150GBp for *Paris japonica,* a Japanese mountain flowering plant [@pellicer2010]. While very small genome size tend to occur in smaller, simpler organisms, genome size does not correlate with organism complexity [@macgregor2001].
 
 ### From Information to action
 
 #### Proteins, their structure and their role
 
-The double stranded DNA molecules present in the cells of a living organism contains only information; in order for the organism to live, this information must be read and transformed into actions. Most of the actions necessary for "life" are taken by large molecules called proteins, they have a very wide range of functions from catalyzing reactions in the cell to giving it it's structure [@alberts2002].
+The double stranded DNA molecules present in the cells of a living organism contain information only; in order for the organism to live this information must be read and translated into actions. Most of the actions necessary for "life" are taken by large molecules called proteins, they have a very wide range of functions from catalyzing reactions in the cell to giving it its structure [@alberts2002].
 
-Proteins are macromolecules, that are made up of one or several chains of amino acids. These chains then link together and fold up in a specific 3 dimensional structure, giving the protein the shape it needs to fulfill it's goal. This structure is determined by the sequence of amino acids, and a given protein can be identified by this amino acid sequence [@alberts2002].
+Proteins are macromolecules, that are made up of one or several chains of amino acids. These chains then link together and fold up in a specific three dimensional structure, giving the protein the shape it needs to fulfill its goal. This structure is determined by the sequence of amino acids, and a given protein can be identified by this amino acid sequence [@alberts2002].
 
-This sequence is directly dependent on the information contained in the DNA. First the DNA is transcripted in a similar, but single stranded, molecule called RNA which encodes the same sequence. This RNA molecule is then translated into a protein by the following process [@crick1961]:
+This sequence is directly dependent on the information contained in the DNA. First the DNA is transcripted in a similar, but single stranded, molecule called RNA (Ribonucleic Acid) which encodes the same sequence. This RNA molecule is then translated into a protein by the following process [@crick1961]:
 
-1.  Nucleotides in the RNA sequence are read in groups of 3 called a codon.
-2.  These codons are read sequentially along the RNA molecule
+1.  Nucleotides in the RNA sequence are read in groups of three called codons.
+2.  These codons are read sequentially along the RNA molecule.
 3.  Each codon corresponds to an amino acid, according to the genetic code.
 4.  The sequence of codons in RNA *(and by extension DNA)* determines the sequence of amino acids.
-5.  The translation process is stopped when a specific type of codon is read.
+5.  The translation process is stopped when a specific type of codon *(a "Stop" codon)* is read.
 
-With 4 types of nucleotides and codons grouping 3 nucleotides there are $4^3=64$ possible codons. However, as stated above, proteins are only made up of 20 different amino acids, meaning that several different codons correspond to the same amino acid. This gives the translation process a certain robustness to errors that can occur when the DNA is copied to create a new cell, or when it is transformed into RNA prior to protein translation.
+With four types of nucleotides and codons grouping three nucleotides there are $4^3=64$ possible codons. However, as stated above, proteins are only made up of 20 different amino acids, meaning that several different codons correspond to the same amino acid. This gives the translation process a certain robustness to errors that can occur when the DNA is copied to create a new cell, or when it is transformed into RNA prior to protein translation.
 
 The portion of DNA that is read to create the protein is said to be "coding", and is called a gene. There are several thousands of genes in the human genome [@internationalhumangenomesequencingconsortiumFinishingEuchromaticSequence2004] resulting in proteins executing thousands of different functions in a cell. In human beings, coding DNA represents only 1% to 2% of the total genome [@elkonCharacterizationNoncodingRegulatory2017; @omennReflectionsHUPOHuman2021]. The large majority of the DNA in a human being is not translated into proteins, a portion of it has a regulatory role, controlling transcription and translation, but the role remains unknown for a portion of the human genome [@shabalinaMammalianTranscriptomeFunction2004; @IntegratedEncyclopediaDNA2012].
 
 #### Making mistakes
 
-Going from DNA sequence to protein is quite a complicated process involving several steps, it is therefore possible for a mistake to happen. There are several mechanisms to avoid mistakes and alteration of the genetic information: the complementary nature of the 2 strands of DNA, the redundant nature of the genetic code as well as error correction mechanisms in the molecules that read and write DNA and RNA *(polymerases)*. However, despite all that, some errors still make it through.
+Going from DNA sequence to protein is quite a complicated process involving several steps, it is therefore possible for a mistake to happen. There are several mechanisms to avoid mistakes and alteration of the genetic information: the complementary nature of the two strands of DNA, the redundant nature of the genetic code as well as error correction mechanisms in the molecules *(called "polymerases")* that read and write DNA and RNA. However, despite all that, some errors in the nucleic acid (DNA and RNA) or protein sequences still make it through, these are called mutations.
 
 ##### Where can mistakes happen ?
 
 There are several sources of error that can alter the genetic information [@chatterjee2017]:
 
--   **DNA replication:** When a cell divides, or when an organism reproduces, the DNA molecule must be copied in order to transmit genetic information. This process has a very low rate of errors, with as low as 1 error for every billion to every hundred billions of base pairs replicated [@fijalkowska2012]. This is due to the fact that the DNA polymerase (the protein that is responsible for copying DNA molecules), has a relatively error rate to start with, but mostly due to the error correcting mechanisms that are present in certain cells and bacteria [@pray2008dna].
+-   **DNA replication:** When a cell divides, or when an organism reproduces, the DNA molecule must be copied in order to preserve and transmit genetic information. This process has a very low rate of errors, with as low as one error for every billion to every hundred billion of replicated base pairs [@fijalkowska2012]. This is due to the fact that the DNA polymerase (the protein responsible for copying DNA molecules), has a relatively low error rate to start with, but mostly to the error correcting mechanisms that are present in certain cells and bacteria [@pray2008dna].
 
--   **RNA transcription:** error rate between 4 errors for each million [@gout2013] to 2 errors for each hundred thousand [@gout2017] base pairs transcribed.
+-   **RNA transcription:** Since errors in RNA transcripts are less important than in replicated DNA, RNA polymerases have a much higher error rate than their DNA counterparts. This error rate has been estimated to be between four errors for each million [@gout2013] to two errors for each hundred thousand [@gout2017] transcribed bases.
 
--   **Other mutagenic events:** Ionizing radiation [@desouky2015], UV rays [@kiefer2007], Toxins [@bennett2003], heat Stress [@kantidze2016], cold stress [@gregory1994], oxidative stress [@gafter-gvili2013].
+-   **Protein translation:** The process of translating RNA to a protein is done by proteins called ribosomes. This is a very error prone process with a mistranslation rate estimated to be of the order of one error for every 10,000 codons translated [@shcherbakovRibosomalMistranslationLeads2019]
+
+-   **Other mutagenic events:** Many external events and factors have been shown to provoke mutations in exposed DNA such as Ionizing radiation [@desouky2015], UV rays [@kiefer2007], Toxins [@bennett2003], heat Stress [@kantidze2016], cold stress [@gregory1994] or oxidative stress [@gafter-gvili2013].
 
 ##### What kind of errors are possible?
 
--   substitution
--   insertion
--   deletion
+In biological sequences (nucleic acids and proteins), mutations can result from one of three error modes:
 
+-   **Substitutions**, where the original base units (nucleotide or amino acid) is mistakenly replaced by another one, for instance inserting an A instead of a G during RNA transcription.
+-   **Insertions**,where a new base unit not present in the original sequence is added to the newly synthesized biological sequence.
+-   **deletions**, where a base unit from the original sequence is skipped and not taken into account when synthesizing the new sequence.
+
+While these three types of errors occur both in nucleic acids and proteins there are some things to consider about the consequences of nucleic acid mutations on protein synthesis. Due to the redundant nature of the genetic code mentioned in Section \@ref(proteins-their-structure-and-their-role), some mutations in the nucleic acid sequence will result in the same protein sequence and therefore not have altered protein activity. Some mutations however will result in a substitution at the amino acid level which could potentially lead to a physicochemically altered or even non-functional protein. Finally, insertion and deletion errors (collectively called indels) can have big consequences on resulting proteins. Inserting or deleting nucleotides in multiples of three will result in the insertion/deletion of amino acids in the resulting protein, any other length of indel will result in what is called a frameshift mutation [@rothFrameshiftMutations1974]. These mutations causes changes in the codons, potentially resulting in a completely different amino-acid sequence, including premature stop codon apparition as shown in Figure \@ref(fig:frameshift).
+
+```{r, frameshiftCaption}
+frameshiftCaption <- "**Effect of frameshift mutations**\
+The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in grey, with corresponding amino acids, above the sequence) translate to the functional protein. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein. 
+"
+```
+
+```{r, frameshift, label="frameshift", fig.cap=frameshiftCaption, eval=knitr::is_html_output(), out.width="60%", cache=FALSE}
+knitr::include_graphics("./figures/Sequence-Intro/Frameshift.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/Frameshift.pdf}
+\extcaption{Effect of frameshift mutations}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in grey, with corresponding amino acids, above the sequence) translate to the functional protein. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein. }
+\label{fig:frameshift}
+\end{figure}
+```
 ##### What effect can mutations have ?
 
-SNPs, many individual mutations have been linked to certain traits (however, a trait is not usually caused only by a single mutation, plus hard to prove causality)
+As we stated above, some mutations in DNA may have no repercussions, some others can lead to non-functional proteins. In some cases mutations can be associated with a trait in the mutated individual. For example a single mutation in a gene linked with coagulation can lead to pathological Leiden thrombophilia [@kujovichFactorLeidenThrombophilia2011], a single amino acid deletion in the CFTR protein leads to *(the very deadly)* cystic fibrosis [@cuttingCysticFibrosisGenetics2015], and many mutations have been linked to complex diseases like type 2 diabetes [@fuchsbergerGeneticArchitectureType2016; @morrisLargescaleAssociationAnalysis2012]. All mutational effects are not necessarily bad for the organism though, and mutations are essential for bacteria [@woodfordEmergenceAntibioticResistance2007] or viruses like HIV [@rheeHumanImmunodeficiencyVirus2003] to develop resistance to treatment *(more on that in Chapters* \@ref(viruses-hiv-and-drug-resistance) *and* \@ref(HIV-paper)*).*
 
--   Diseases:
-
-    -   Pathologic coagulation linked to a single mutation in DNA coding for a coagulation protein [@kujovichFactorLeidenThrombophilia2011].
-
-    -   Cystic Fibrosis, a deletion of a single amino acid in the protein leads to fatal disease [@cuttingCysticFibrosisGenetics2015]
-
-    -   Plenty of mutation in specific genes have been linked with type 2 diabetes [@fuchsbergerGeneticArchitectureType2016; @morrisLargescaleAssociationAnalysis2012]
-
--   Added traits, like drug resistance:
-
-    -   Dozens of mutations proven to confer HIV resistance to commonly used drugs [@rheeHumanImmunodeficiencyVirus2003]
-
-    -   A large amount of mutations have been shown to confer antibacterial resistance in a range of bacteria [@woodfordEmergenceAntibioticResistance2007]
+While some mutations, their mechanisms and consequences have been thoroughly studied, in many cases mutations are simply linked to a trait. Since it is easier to show correlation than causation, and that the former does not necessarily imply the latter, it is important to further study mutations of notice to understand their potential consequences.
 
 ## Obtaining sequence data
 
