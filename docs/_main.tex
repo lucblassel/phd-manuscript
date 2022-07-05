@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-07-04}
+\date{2022-07-05}
 
 \begin{document}
 \maketitle
@@ -2402,7 +2402,7 @@ This diversity in genetic information support implies a necessary diversity in r
 \item
   The DNA molecule is replicated by going through an RNA intermediary like Hepatitis B virus \autocite{beckHepatitisVirusReplication2007}.
 \item
-  The RNA molecule is replicated by going through a DNA intermediary. This strategy is used by retroviruses that integrate this viral DNA intermediary into the host DNA, like HIV-1 (see Section \ref{life-cycle-of-hiv}).
+  The RNA molecule is replicated by going through a DNA intermediary. This strategy is used by retroviruses that integrate this viral DNA intermediary into the host DNA, like HIV-1 (see Section \ref{the-replication-cycle-of-hiv}).
 \end{itemize}
 
 Finally, the genetic diversity of viruses is reflected in their physical characteristics: viruses come in all shapes and sizes. Physical size range from 17nm for plant satellite viruses \autocite{pyleChapter58Biology2017} to the giant 400nm \emph{Mimivirus} \autocite{raoult2megabaseGenomeSequence2004}. Genomic size is also quite variable, there is a stark contrast between the 860 bp \emph{Circovirus SFBeef} and the 2.5 Mbp \emph{Pandoravirus salinus} genomes \autocite{campillo-balderasViralGenomeSize2015}. Viruses come in a variety of shapes \autocite{cannVirusStructure2015}: icosahedral for HIV, helical for the tobacco mosaic virus or a distinctive head-tail shape for bacteriophages.
@@ -2417,7 +2417,7 @@ Although there are a large number of viruses, and many of them are of great impo
 
 HIV is a single-stranded RNA retrovirus that is responsible for the Acquired Immune Deficiency Syndrome (AIDS) pandemic that has been around for the last couple decades. This virus is transmitted through sexual contact or through blood. Sexual activity is the largest transmission factor followed by intravenous drug use \autocite{hladikSettingStageHost2008,shawHIVTransmission2012}.
 
-The HIV infects cells of the host immune system, specifically CD4 T-cell lymphocytes and destroys them due to it's replication process \autocite{weissHowDoesHIV1993}. An HIV infection typically start with an asymptomatic phase that can last years, followed by a growth in viral replication leading to a decrease in CD4 cells which progresses into AIDS \autocite{melhuishNaturalHistoryHIV2018}. During AIDS, when the CD4 cell count is low enough opportunistic diseases such as pneumonia or tuberculosis \autocite{murrayPulmonaryComplicationsAcquired1984} can easily infect the host, leading to death when the immune system is weak enough.
+The HIV infects cells of the host immune system, specifically CD4 T-cell lymphocytes and destroys them due to it's replication process \autocite{weissHowDoesHIV1993}. CD4 T-cells are an essential part of the immune system response helping fight against infection in humans. An HIV infection typically start with an asymptomatic phase that can last years, followed by a growth in viral replication leading to a decrease in CD4 cells which progresses into AIDS \autocite{melhuishNaturalHistoryHIV2018}. During AIDS, when the CD4 cell count is low enough opportunistic diseases such as pneumonia or tuberculosis \autocite{murrayPulmonaryComplicationsAcquired1984} can easily infect the host, leading to death when the immune system is weak enough.
 
 The HIV/AIDS is one of the deadliest pandemics in history, estimated to have lead to the death of 36 million people \autocite{sampathPandemicsThroughoutHistory2021}. In 2010 \autocite{worldhealthorganizationGlobalReportUNAIDS2010} approximately 33 million people were infected with HIV, 2.6 million of which were due to new infections, and 1.8 million died of AIDS. Most of the new infections happened in economically developing regions of the world, 70\% of them coming from sub-Saharan Africa \autocite{worldhealthorganizationGlobalReportUNAIDS2010}. As of 2020, these numbers have decreased with ``only'' 1.5 million new infections and 680,000 AIDS deaths, which is encouraging from a public health perspective.
 
@@ -2433,123 +2433,96 @@ Group M is further subdivided into 9 subtypes each with distinct genetic charact
 
 While subtype C represented almost half of global infections from 2004 to 2007, subtype B is the majority subtype in richer countries of North America and Western Europe \autocite{hemelaarGlobalTrendsMolecular2011} where sequencing efforts are more common. This accounts for an over-representation of subtype B sequences in public databases such as the Los Alamos sequence database where 54\% of sequences are of the B subtype and only 15\% are C \autocite{DistributionAllHIV1}.
 
-\hypertarget{the-life-cycle-of-hiv}{%
-\subsection{The life cycle of HIV}\label{the-life-cycle-of-hiv}}
+\hypertarget{the-replication-cycle-of-hiv}{%
+\subsection{The replication cycle of HIV}\label{the-replication-cycle-of-hiv}}
 
-\begin{itemize}
-\tightlist
+The viruses replication cycle and its immune-cell host specificity are what makes it particularly dangerous. This replication cycle can broadly be categorized into 9 separate steps \autocite{freedHIV1Replication2001,fergusonHIV1ReplicationCycle2002} shown in Figure \ref{fig:hivCycle}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \item
-  Cycle \autocite{freedHIV1Replication2001,fergusonHIV1ReplicationCycle2002} shown in Figure \ref{fig:hivCycle}:
+  An HIV virion binds itself to the CD4 host cell through membrane proteins.
+\item
+  The virion envelope and host cell membrane fuse together allowing the viral genetic material and proteins to enter the host cell.
+\item
+  The viral RNA is reverse-transcripted into viral DNA
+\item
+  The viral DNA is integrated into the host cell genome
+\item
+  The integrated viral DNA is transcribed by the host cell machinery into multiple copies of viral RNA
+\item
+  The viral RNA is translated into immature viral polyproteins
+\item
+  The viral polyproteins are cleaved to form individual viral proteins.
+\item
+  The newly synthesized viral RNA and viral proteins gather around the host-cell membrane which starts budding to create a new virion
+\item
+  Once the budding is complete, the virion is released from the host cell and matures before being able to infect other CD4 cells and replicate again.
+\end{enumerate}
 
-  \begin{enumerate}
-  \def\labelenumi{\arabic{enumi}.}
-  \item
-    Virion attaches to CD4 host cell through membrane proteins
-  \item
-    Membrane fusion and entry of viral material into cell
-  \item
-    Reverse transcription of viral RNA into viral DNA (RT)
-  \item
-    integration of viral DNA into host DNA (IN)
-  \item
-    transcription of viral DNA into viral RNA
-  \item
-    translation of viral RNA into polyprotein
-  \item
-    cleaving of polyprotein to create mature viral proteins (PR)
-  \item
-    assembly of viral RNA + mature viral proteins into new virion
-  \item
-    Exit of new virion
-  \end{enumerate}
-\end{itemize}
+The successive infection of CD4 cells by HIV virions leads to cellular death due to inflammatory response and/or activation of apoptosis \autocite{gougeonDirectIndirectMechanisms1993,vidyavijayanPathophysiologyCD4TCell2017}. The gradual depletion of CD4 cells in the infected individual's body lead to the suppression of the immune system, eventually leading to AIDS.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
-\extcaption{Simplified HIV-1 life cycle}{}
+\extcaption{Main steps of HIV-1 replication cycle}{The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.}
 \label{fig:hivCycle}
 \end{figure}
 
 \hypertarget{genetics-of-hiv}{%
 \subsection{Genetics of HIV}\label{genetics-of-hiv}}
 
+The replication cycle described in Section \ref{the-replication-cycle-of-hiv} is made possible by the 15 proteins of HIV. These proteins are coded by 9 separate genes \autocite{frankelHIV1FifteenProteins1998}. An overview of the HIV proteins, their structure and localization within the viral particle can be seen in Figure \ref{fig:hivStructure}.
+
+The HIV genome is made up of three main genes each coding for polyproteins and six genes coding for proteins with regulatory and accessory roles. The three polyproteins correspond to long chains of amino acids which are subsequently cleaved at specific positions to result in separate viral proteins.
+
+The \emph{gag} (``group-specific-antigen'') gene codes for the Gag polyprotein which, once cleaved, results in four proteins with mainly structural roles:
+
 \begin{itemize}
 \item
-  9 genes coding for 15 proteins \autocite{frankelHIV1FifteenProteins1998}, structure visible in Figure \ref{fig:hivStructure}:
-
-  \begin{itemize}
-  \item
-    gag polyprotein: -\textgreater{} structural proteins
-
-    \begin{itemize}
-    \item
-      p17/MA: mature protein matrix, line the internal virion membrane
-    \item
-      p24/CA: capsid, core of the viral particle, protects the RNA by encapsulating it
-    \item
-      p7/NC: nucleocapsid, protects the genetic information in the viral particle by binding with viral RNA
-    \item
-      p6: promotes budding / virion release \autocite{gottlingerEffectMutationsAffecting1991,huangP6GagRequiredParticle1995}, largely unstructured
-    \end{itemize}
-  \item
-    pol polyprotein: -\textgreater{} essential functional proteins
-
-    \begin{itemize}
-    \item
-      PR: cleaves polyproteins to get individual proteins.
-    \item
-      RT/p51/p66: turns viral RNA into DNA
-    \item
-      IN/p32: intergrates viral DNA in host DNA
-    \end{itemize}
-  \item
-    env polyprotein: -\textgreater{} envelope
-
-    \begin{itemize}
-    \item
-      SU (surface)/gp 120: responsible for binding to CD4 cells \autocite{bourHumanImmunodeficiencyVirus1995}
-    \item
-      TM (transmembrane)/gp 41: together with gp120 causes membrane fusion, anchors SU to the viral particle \autocite{hernandezViruscellCellcellFusion1996}
-    \end{itemize}
-  \item
-    regulatory elements:
-
-    \begin{itemize}
-    \item
-      tat (trans-activator of transcription) (!!) activates transcription -\textgreater{} essential promoter and leads to longer transcripts \autocite{jonesControlRnaInitiation1994}
-    \item
-      rev (Regulator of viron) (!!) helps RNA get out of nucleus for translation \autocite{hopeViralRNAExport1997}
-    \item
-      nef (Negative regulatory factor) (accs) prevents host cell from producing defence proteins (CD4) and boosting infectivity \autocite{mangasarianMultifacetedRoleHIV1997}
-    \item
-      vif (viral infectivity factor) (accs) probably boosts infection as mutants have less infectivity \autocite{cohenRoleAuxiliaryProteins1996}
-    \item
-      vpu (viral prot U) (accs) helps during release \autocite{lambVpuVprHuman1997,cohenRoleAuxiliaryProteins1996}
-    \item
-      vpr (viral prot R) (accs), prevents mitosis and helps entry in nucleus of host \autocite{emermanHIV1VprCell1996}
-    \end{itemize}
-  \item
-    A 10th gene ?
-
-    \begin{itemize}
-    \item
-      First suggested in 1988 \autocite{millerHumanImmunodeficiencyVirus1988}
-    \item
-      overlaps env and is read in the reverse sense than the rest of the genome
-    \item
-      Under selective pressure and correlated with the spread of the pandemic (specific to HIV-M) \autocite{cassanConcomitantEmergenceAntisense2016}
-    \item
-      under active research \autocite{savoretPilotStudyHumoral2020}
-    \end{itemize}
-  \end{itemize}
+  The Matrix protein (MA or p17) lines the internal surface if the virion membrane maintaining the shape and structural integrity of the virion.
+\item
+  The Capsid protein (CA or p24) forms an inner core (the capsid) inside the virion around the viral RNA. It helps protect the viral genetic information.
+\item
+  The Nucleocapsid protein (NC or p7) binds with the viral RNA inside the capsid, stabilizing the molecule and further protecting the genetic information.
+\item
+  The p6 protein is a small, largely unstructured protein \autocite{fossenSolutionStructureHuman2005} that is suspected of playing a role in virion budding and release from the host cell at the end of the replication cycle \autocite{gottlingerEffectMutationsAffecting1991,huangP6GagRequiredParticle1995}.
 \end{itemize}
 
-\begin{figure}[h]
+The \emph{pol} (``polymerase'') gene coding for the Pol polyprotein. After cleaving this results in the three essential viral enzymes at the heart of the replication cycle:
+
+\begin{itemize}
+\item
+  The Protease (PR) is responsible for cleaving the Gag, Pol and Env polyproteins to get the individual viral proteins. Without it the individual viral proteins cannot come into being and therefore cannot function, stopping viral replication.
+\item
+  The Reverse Transcriptase (RT or p51/p66) is responsible for synthesizing viral DNA from the viral RNA template contained in the virion. This is the first step in hijacking the cellular machinery for replication. Without viral DNA, HIV replication is impossible.
+\item
+  The Integrase (IN) is responsible for integrating the viral DNA produced by RT in to the host cell DNA. Once the viral DNA is inside the host genome it can be transcribed and then translated (as described in Section \ref{biological-sequences-a-primer}) to produce new copies of the viral RNA and proteins. Without this integration step the viral genetic information cannot be expressed and the replication cycle is stopped.
+\end{itemize}
+
+The \emph{env} (``envelope'') gene code for the Env, the third and last polyprotein. The two resulting proteins coat the membrane of the virion and are responsible for binding with the CD4 host cells.
+
+\begin{itemize}
+\item
+  The Surface protein (SU or gp120) binds to receptors on the surface of CD4 cells and allow the virion to attach itself to the host cell \autocite{bourHumanImmunodeficiencyVirus1995}. It also enables membrane fusion, the essential first step in the viral replication cycle \autocite{hernandezViruscellCellcellFusion1996}.
+\item
+  The Transmembrane protein (TM or gp41) anchors SU into the virion membrane.
+\end{itemize}
+
+The 6 remaining genes all code for single proteins. Two of these have essential regulatory roles and the remaining four have accessory roles.
+
+The \emph{tat} (``trans-activator of transcription'') gene codes for Tat, the first essential regulatory protein. Tat activates and promotes transcription leading to more numerous and longer copies of the viral RNA \autocite{jonesControlRnaInitiation1994}. The \emph{rev} (for ``regulator of virion'') gene codes for Rev, the second essential regulatory protein. Rev helps transcribed viral RNA exist the nucleus of the host cell in order to be translated to viral proteins or be packages in new, budding virions \autocite{hopeViralRNAExport1997}.
+
+The remaining four accessory genes are as follows: \emph{nef} (``negative regulatory factor'') code for the Nef protein which prevents the production of the CD4 cellular defense proteins increasing infectivity \autocite{mangasarianMultifacetedRoleHIV1997}; \emph{vif} (``viral infectivity factor'') codes for the Vif protein which also increases viral infectivity \autocite{cohenRoleAuxiliaryProteins1996}; \emph{vpu} (``viral protein U'') codes for Vpu which likely helps during release of new virions \autocite{lambVpuVprHuman1997,cohenRoleAuxiliaryProteins1996} as well as preventing production of CD4 in the host cell, it is not believed to be present in the mature virion as it binds to host cellulat membranes \autocite{khanRoleViralProtein2021}; \emph{vpr} (``viral protein R'') likely helps viral DNA enter the host cell nucleus and prevents the natural host cell reproduction cycle \autocite{emermanHIV1VprCell1996}.
+
+The existence of a 10th HIV-1 gene was suggested in 1988 \autocite{millerHumanImmunodeficiencyVirus1988}, overlapping the \emph{env} gene and coding for proteins on the other strand of viral DNA than the other genes. This putative gene was named \emph{asp} (``antisense protein'') and Asp transcripts were isolated during an HIV-1 infection in 2002 \autocite{briquetImmunolocalizationStudiesAntisense2002}. The function of this protein is still unknown but it has been shown to have a strong evolutionary correlation with HIV-1 group M responsible for the pandemic \autocite{cassanConcomitantEmergenceAntisense2016}. Although this Asp protein is still a source of debate, it is under active research \autocite{savoretPilotStudyHumoral2020}.
+
+\begin{figure}[H]
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/HIV-Intro/HIV-structure.png}
-  \extcaption{Structure and main components of HIV-1 virion.}{Structural proteins are represented in Blue, functional enzymes in pink, RNA proteins in orange and accessory proteins in green. \\
-Figure adapted from PDB101 \autocite{zardecki2022} (\href{https://PDB101.rcsb.org}{PDB101.rcsb.org}, \textit{CC By 4.0 License}, detailed list of structures used available in Appendix \autoref(sec:HIV-intro-appendix)).}
+  \extcaption{Structure and main components of a mature HIV-1 virion.}{Structural proteins MA, CA, SU and TM are represented in Blue, functional enzymes RT, IN and PR in pink, RNA binding proteins Rev, Tat and NC in orange and accessory proteins Vif, Nef, Vpr and Vpu in green. Viral RNA is shown in yellow. The phospholipd membrane of the virion is shown in a light purple color. The p6 protein is not represented as it is largely unsctructured. Vpu is not believed to be present in the HIV virion. \\
+Figure adapted from PDB101 \autocite{zardecki2022} (\href{https://PDB101.rcsb.org}{PDB101.rcsb.org}, \textit{CC By 4.0 License}, detailed list of structures used available in Appendix \autoref{HIV-intro-appendix}).}
+\label{fig:hivStructure}
 \end{figure}
 
 \hypertarget{main-protein-mechanisms-in-replication}{%
@@ -2575,7 +2548,7 @@ ALl 3 are cleaved and matured from the pol polyprotein
   \end{itemize}
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}
 \extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}
