@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-07-05}
+\date{2022-07-06}
 
 \begin{document}
 \maketitle
@@ -365,7 +365,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 
 \textbf{D}esoxyribo\textbf{N}ucleic \textbf{A}cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
 
-DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA \autocite{watson1953} shown in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
+DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide\footnote{I will prefer the term ``nucleotide'' instead of ``nucleobase'' from now on. Chemically speaking they do not refer to the exact same molecule, but for our purposes you can consider these terms interchangeable.} monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA \autocite{watson1953} shown in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
 \begin{figure}[h]
 \centering
@@ -405,7 +405,7 @@ This sequence is directly dependent on the information contained in the DNA. Fir
 
 With four types of nucleotides and codons grouping three nucleotides there are \(4^3=64\) possible codons. However, as stated above, proteins are only made up of 20 different amino acids, meaning that several different codons correspond to the same amino acid. This gives the translation process a certain robustness to errors that can occur when the DNA is copied to create a new cell, or when it is transformed into RNA prior to protein translation.
 
-The portion of DNA that is read to create the protein is said to be ``coding'', and is called a gene. There are several thousands of genes in the human genome \autocite{internationalhumangenomesequencingconsortiumFinishingEuchromaticSequence2004} resulting in proteins executing thousands of different functions in a cell. In human beings, coding DNA represents only 1\% to 2\% of the total genome \autocite{elkonCharacterizationNoncodingRegulatory2017,omennReflectionsHUPOHuman2021}. The large majority of the DNA in a human being is not translated into proteins, a portion of it has a regulatory role, controlling transcription and translation, but the role remains unknown for a portion of the human genome \autocite{shabalinaMammalianTranscriptomeFunction2004,IntegratedEncyclopediaDNA2012}.
+The portion of DNA that is read to create the protein is said to be ``coding'', and is called a gene. There are several thousands of genes in the human genome \autocite{internationalhumangenomesequencingconsortiumFinishingEuchromaticSequence2004} resulting in proteins executing thousands of different functions in a cell. In human beings, coding DNA represents only 1\% to 2\% of the total genome \autocite{elkonCharacterizationNoncodingRegulatory2017,omennReflectionsHUPOHuman2021}. The large majority of the DNA in a human being is not translated into proteins, a portion of it has a regulatory role, controlling transcription and translation, but the role remains unknown for the rest of the human genome \autocite{shabalinaMammalianTranscriptomeFunction2004,IntegratedEncyclopediaDNA2012}.
 
 \hypertarget{making-mistakes}{%
 \subsubsection{Making mistakes}\label{making-mistakes}}
@@ -462,33 +462,35 @@ While some mutations, their mechanisms and consequences have been thoroughly stu
 \hypertarget{obtaining-sequence-data}{%
 \section{Obtaining sequence data}\label{obtaining-sequence-data}}
 
-In order to study living organisms we need to be able to obtain their genetic information, i.e figure out a way to get the sequence of nucleobases that make up their DNA.
+In many fields, especially in computational biology, we need to know what genetic information the studied organism has, that is to say, what is the exact sequence of nucleotides that make up its DNA. The process of figuring out this sequence is, perhaps unsurprisingly, called sequencing. And a sequence that is inferred from this process is called a \emph{sequencing read} or, more commonly, just a \emph{read}.
 
 \hypertarget{sanger-sequencing-a-breakthrough}{%
 \subsection{Sanger sequencing, a breakthrough}\label{sanger-sequencing-a-breakthrough}}
 
-The first true sequencing method was developed in 1977 \autocite{sangerDNASequencingChainterminating1977}. Sanger \emph{et al.} devised a simple method to read the sequence of nucleotides that make up a DNA sequence \emph{(also represented in Figure} \ref{fig:sanger}\emph{)}.
+The first sequencing method was developed in 1977 \autocite{sangerDNASequencingChainterminating1977}. Sanger \emph{et al.} devised a simple method to read the sequence of nucleotides that make up a DNA sequence known as ``chain termination sequencing'' or more commonly ``Sanger sequencing'' \emph{(represented in Figure} \ref{fig:sanger}\emph{)}.
+
+To understand Sanger sequencing, one must first understand how to synthesize DNA. As we stated in Section \ref{what-is-dna}, DNA is built up from building blocks that we called nucleotides, more specifically deoxynucleotidetriphosphates or dNTPs. these dNTPs are made up of a sugar (deoxyribose) a nucleobase (A, T, G or C) and 3 phosphate groups. By succesively adding these dNTPs at the end of an existing DNA molecule, we extend it, linking one of the phospates of the dNTP to an oxygen atom on the last nucleotide of the DNA molecule. Let us now consider a dideoxynucleotidestriphosphate (ddNTP), which is identical to a dNTP except we remove a specific oxygen atom. This ddNTP can be added to the growing molecule of DNA like regular dNTPS, but since it is missing that one oxygen atom no more dNTPs or ddNTPs can be added to the DNA molecule after this one. The elongation is terminated and we call these ddNTPs chain-terminators. This combination of DNA synthesis followed by termination are at the heart of Sanger sequencing.
+
+It is important to note that while dNTPs and ddNTPs refer to nucleotides with any nucleobase, we can refer to specific dNTPs by replacing the ``N'' with the base of choice. For example, dATP refers to the dNTP that has adenine as a base. Similarly we have dCTP, dGTP and dTTP (as well as ddATP, ddCTP, ddGTP and ddTTP).
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Clone sequence / amplify
+  The first step of Sanger sequencing (and most sequencing methods) is to amplify the DNA molecule we wish to sequence, \emph{i.e.} make plenty of copies of it (usually through a process called PCR). These clones of the sequence are then separated into their two complementary brands one of which will be used as a template for the sequencing steps.
 \item
-  Prepare 4 different sequencing environments with a majority of dNTP (ie regular nucleotides) and in each a single type of ddNTP (a terminator). ddNTP are marked
+  The second step is to prepare 4 different sequencing environments \emph{(think of it as 4 test tubes)}. In each environment we introduce an equal mix of the 4 dNTPs, that will be used to elongate new DNA molecules from the amplified templates, and a single type of ddNTP. So in the first test tube we will have only ddATP, ddCTP in the second, \emph{et caetera.} In addition, these ddNTP are marked, at first with radioactive isotopes, and later on with dyes. This marking means that we can observe the location of these ddNTP later on.
 \item
-  In each test tube add DNA polymerase, primers and denatures DNA fragments you want to sequence
+  Then an equal portion of the template is introduced in each environment with DNA polymerases (that will add the nucleotides to elongate a sequence that is complementary to the template), and short specific DNA molecules called primers that are necessary for the polymerases to start synthesizing new DNA.
 \item
-  Sequence is replicated until incorporation of ddNTP stopping reaction
+  During synthesis the chain will be elongated with dNTPs by the polymerase and the reaction will be stopped once a ddNTP is incorporated. At the end of this process we have plenty of fragments of DNA in each test tube, and we know that these fragments end with a specific base in a given environment. For example, in the test tube where we added ddATP, we know that all the fragments end with an A, and that we have all the possible fragments that start at the beginning of the template and end with an A. If the template is AACTA, then the fragments we would get in the ddATP test tube would be A, AA, and AACTA.
 \item
-  Separate replicated fragments by gel electrophoresis (i.e shorter fragments go further), 1 ddNTP type in each lane
+  Then, a sample from each environment is taken and deposited in a gel, each in its own lane. A process called electrophoresis is then used to separate the fragments according to their weight. By applying an electrical current to the gel, the fragments of DNA will migrate away from where they were deposited along their lane in the gel. Lighter, shorted DNA fragments will travel further than heavier ones. We then get clusters of fragments ordered by weight (and therefore by length) called bands. With the marked ddNTP we can reveal these bands in the gel.
 \item
-  With marked you can see which nucleotide is present at a given position
+  We know that: 1) bands are ordered by weight; 2) consecutive bands correspond to the addition of a single nucleotide; 3) in a specific lane fragments corresponding to a band end with a specific base. This knowledge is enough to deduce the sequence of the template we sequenced. An example gel is shown in Figure \ref{fig:sanger}.
 \end{enumerate}
 
-This allowed Sanger \emph{et al.} to sequence the first whole \(\varphi X174\) bacteriophage genome \autocite{sangerNucleotideSequenceBacteriophage1977}. This method, although revolutionnary was costly and time consuming.
-
-The marking of primers and ddNTP with fluorescence allowed to do the polymerization in a single test tube and use a single lane for electrophoresis \autocite{smithSynthesisOligonucleotidesContaining1985,smithFluorescenceDetectionAutomated1986}. The fluorescence also allowed for automated reading with optical systems. Plus switching to capillary electrophoresis allowed for automation and speeding up. Shotgun sequencing also speed up stuff at the reconstruct the whole genome.
+This process allowed Sanger \emph{et al.} to sequence the first genome, of a \(\varphi X174\) bacteriophage, in 1977 \autocite{sangerNucleotideSequenceBacteriophage1977}. Although revolutionnary, this method was costly, time consuming and labor intensive. Adjustments to this method were made in order to make it faster and less expensive. An important step was to change the way ddNTPs were marked. By using fluorescent markers, each base having a distinct ``color'', we can eliminate the need to have 4 different environments and lanes in the gel \autocite{smithSynthesisOligonucleotidesContaining1985,smithFluorescenceDetectionAutomated1986}. This also paved the way for automating sequencing, each fluorescently marked band can be excited with a laser, and the resulting specific wavelength can be recorded by optical systems and the corresponding base automatically deduced \autocite{ansorgeAutomatedDNASequencing1987} (Also see Figure \ref{fig:sanger}). Other improvements were made such as using capillary electrophoresis instead of gel electrophoresis.
 
 \begin{figure}[h]
 \centering
@@ -497,126 +499,81 @@ The marking of primers and ddNTP with fluorescence allowed to do the polymerizat
 \label{fig:sanger}
 \end{figure}
 
-With the latest Sanger sequencing technologies, sequenced sequences can reach 1kBp with an accuracy of 99.999\% \autocite{shendureNextgenerationDNASequencing2008}. Although very time consuming and expensive at it's dawn, the sequencing of the first human genome costing between 500 million and 1 billion dollars \autocite{CostSequencingHuman}. Over time and with technological advancments, the cost of Sanger sequencing was greatly reduced from \$1000 per Bp \autocite{collinsHumanGenomeProject2003} to \$0.5 per kBp \autocite{shendureNextgenerationDNASequencing2008}, and the throughput increased from 1 kBp per day \autocite{collinsHumanGenomeProject2003} to up to 120 kBp per hour \autocite{liuComparisonNextGenerationSequencing2012}.
+These gradual improvements to the Sanger sequencing protocol, allowed to sequence longer and more accurate reads, with the latest technologies resulting in reads reaching 1 ,000 base pairs with an accuracy of 99.999\% \autocite{shendureNextgenerationDNASequencing2008}. These improvements also resulted in a lower cost for sequencing, which was greatly decreased from around \$1000 per base-pair \autocite{collinsHumanGenomeProject2003} to only \$0.5 per kilobase \autocite{shendureNextgenerationDNASequencing2008}. FInally these technological improvements also increased the throughput of sequencing machines from around 1 kilobase per day \autocite{collinsHumanGenomeProject2003} to 120 kilobases per hour \autocite{liuComparisonNextGenerationSequencing2012}.
+
+Despite these improvements, for ambitious endeavours such as the human genome project, sequencing was a massive undertaking: the first human genome is estimated to have cost between 500 million and 1 billion US dollars to sequence \autocite{CostSequencingHuman}.
 
 \hypertarget{next-generation-sequencing}{%
 \subsection{Next-generation sequencing}\label{next-generation-sequencing}}
 
-Developed to lower cost and more throughput
+Through these large sequencing projects and the genomics field in general, the richness and usefulness of sequence data was made ever more apparent. This growing need of sequence data ushered in a new era of sequencing with the development of many new sequencing methods designed to have a higher throughput and a lower cost than Sanger sequencing. This second generation of sequencing technologies, also referred to as Next-Generation Sequencing (NGS) or Massively parallel sequencing. While there were different technologies, there are a few common key points \autocite{metzkerSequencingTechnologiesNext2010}:
 
 \begin{itemize}
 \item
-  Massively parallel \emph{(no need to detail technology, just numbers i.e.~throughput and cost) (i.e.~2nd gen)} \autocite{metzkerSequencingTechnologiesNext2010}
-
-  \begin{itemize}
-  \item
-    Key points:
-
-    \begin{itemize}
-    \item
-      Break up DNA to sequence in smaller fragments
-    \item
-      Amplify fragments (i.e.~clone them)
-    \item
-      Attach fragments to solid support so we can thousands to billions of sequencing reactions at once
-    \item
-      detect the polymerization as it happens, speeding up the process.
-    \end{itemize}
-  \item
-    Illumina:
-
-    \begin{itemize}
-    \item
-      150nt \autocite{mardisDecadePerspectiveDNA2011}
-    \item
-      98\% accuracy, \$0.07 per MBp, 2.5 to 12.5 Gbp per hour \autocite{liuComparisonNextGenerationSequencing2012}
-    \item
-      Detect polymerization by adding marked terminating NTP, imaging and cleaving terminating group to allow further polymerization.
-    \end{itemize}
-  \item
-    pyrosequencing:
-
-    \begin{itemize}
-    \item
-      400nt \autocite{mardisDecadePerspectiveDNA2011}
-    \item
-      99.9\% accuracy, \$10 per MBp, 30Mbp per hour \autocite{liuComparisonNextGenerationSequencing2012}
-    \item
-      Detect polymerization with a reaction that emits light during the incorporation of a dNTP to the synthesized DNA, measure the light emission to determine the base that was added.
-    \end{itemize}
-  \end{itemize}
+  As with Sanger sequencing the we need to amplify and clone the DNA template, however since these technologies result in shorted reads than Sanger sequencing, the DNA we want to sequence must first be randomly broken up into small template fragments before being amplified.
 \item
-  Long reads sequencing (i.e.~3rd gen):
-
-  \begin{itemize}
-  \item
-    Introduce need for longer reads:
-
-    \begin{itemize}
-    \item
-      Better for analyzing complex and repetitive parts of the genome.
-    \item
-      Real time sequencing.
-    \item
-      High throughput.
-    \end{itemize}
-  \item
-    PacBIO SMRT \autocite{eidRealTimeDNASequencing2009}:
-
-    \begin{itemize}
-    \tightlist
-    \item
-      Tech summary:
-
-      \begin{itemize}
-      \item
-        Link 2 strands of DNA to sequence with a hairpin sequence to create circular DNA
-      \item
-        Capture inserted with polymerase fixed to bottom of a well (up to 8million wells in 1 sequencing cell)
-      \item
-        Florescently marked dNTP are added and excited with laser and light emission recorded by camera
-      \item
-        Stop when you reach the hairpin
-      \end{itemize}
-    \item
-      Most reads around 10kb in length with reads up to 60kb \autocite{rhoadsPacBioSequencingIts2015}
-    \item
-      85\% to 92\% accuracy \autocite{chaissonResolvingComplexityHuman2015,logsdonLongreadHumanGenome2020}
-    \item
-      \$0.32 per Mbp \autocite{murigneuxComparisonLongreadMethods2020}
-    \item
-      2Gbp to 11Gbp per hour \autocite{logsdonLongreadHumanGenome2020}
-    \end{itemize}
-  \item
-    NanoPore \autocite{clarkeContinuousBaseIdentification2009}:
-
-    \begin{itemize}
-    \item
-      Tech summary:
-
-      \begin{itemize}
-      \item
-        100k nanopores spread out on synthetic membrane
-      \item
-        Protein splits the 2 strands and pushes 1 of the brands through a nanopore at a controlled rate
-      \item
-        As DNA goes through the pore it disrupts the electrical current between 2 sides of the membrane
-      \item
-        Disruptions are characteristic of the 5/6 bases in the nanopore channel -\textgreater{} deduce sequence from current disruptions (i.e.~base calling)
-      \end{itemize}
-    \item
-      Median read length around 10kb - 12kb \autocite{ipMinIONAnalysisReference2015,logsdonLongreadHumanGenome2020}.
-    \item
-      you can get ultra long reads, of almost 1Mb \autocite{jainNanoporeSequencingAssembly2018,TharSheBlows} and even up to 2.3 Mb \autocite{payneBulkVisGraphicalViewer2019}.
-    \item
-      87\% to 98\% accuracy \autocite{jainOxfordNanoporeMinION2016,logsdonLongreadHumanGenome2020}
-    \item
-      \$0.13 per Mbp \autocite{murigneuxComparisonLongreadMethods2020}
-    \item
-      12.5Gbp to 260Gbp per hour !! \autocite{logsdonLongreadHumanGenome2020}
-    \end{itemize}
-  \end{itemize}
+  The amplified template fragments are attached to some sort of solid support, resulting in a physical support with billions of template fragments attached to it.
+\item
+  As in Sanger sequencing, DNA molecules, complementary to the template fragments, are elongated. This happens for billions of fragments at the same time (hence the ``massively parallel'' epithet).
+\item
+  The addition of specific nucleotides to a chain are detected in real time, and there is no chain termination. There is no need for the long step of electrophoresis. These detections are simultaneous for all the molecules being elongated at once.
 \end{itemize}
+
+The result of these steps is a very large number of short reads. With data analysis these short reads can be used to deduce longer sequences and eventually the orginal whole genome sequence through a process called \emph{assembly}.
+
+The main NGS method is called ``sequencing by synthesis'', developed by a company: Illumina. It is commonly referred to as \emph{llumina sequencing}. This method is based on \emph{reversible chain terminators}, developed at the Institut Pasteur in the 90's \autocite{canardDNAPolymeraseFluorescent1994}. These are marked dNTPs that can be used to elongate DNA molecules, but that have an additional molecular group that makes them terminators by default. However this terminating group can be removed once the NTP is included in a DNA molecule allowing the elongation process to continue. These dNTPs are fluorescently marked and when excited with a laser they emit light with a distinctive color. During Illumina sequencing, these reversible chain terminators are included to millions of fragments at the same time, stopping elongation. At this point all the fragments are excited with a laser and an optical system takes a picture of the emitted colors for all the fragments as once. In this image, a pixel loosely corresponds to a sequenced fragment, and its color to the most recently added dNTP. The terminating groups are then cleaved and the process can start over by incorporating a new batch of reversible terminators. By observing the successive images we can deduce the sequence of added nucleotides for each sequenced fragment and obtain all of our reads.
+
+Another NGS method is called pyrosequencing, commercialized by 454 Life Sciences. Contrary to Illumina sequencing, this method does not use reversible chain terminators. Instead it uses a special enzyme called luciferase that emits light as specific dNTPs are added. This process is repeated for the 4 dNTPs (similarly to Sanger sequencing) and from the light emissions we can deduce the sequence of nucleotides \autocite{nyrenSolidPhaseDNA1993}.
+
+These technologies yield reads around 150 nucleotides for Illumina and 400nt for pyrosequencing \autocite{mardisDecadePerspectiveDNA2011}, this is much shorter than the 1kB reads obtainable from the latest Sanger sequencing technologies. However the throughputs are much higher \autocite{liuComparisonNextGenerationSequencing2012}: 2.5 to 12.5 Gigabases per hour for Illumina and 30 Megabases per hour for pyrosequencing. Costs are also quite low: \$0.07 and \$10 per Megabase for Illumina and pyrosequencing respectively. The per-base sequencing accuracies are also quite high, up to 99.9\% for both Illumina \autocite{stolerSequencingErrorProfiles2021} and pyrosequencing \autocite{liuComparisonNextGenerationSequencing2012}. A summary of the key characteristics for various sequencing technologies can be found in Table \ref{tab:sequencing}. The lower cost and higher throughput has made the Illumina sequencing technology the dominant one, the company estimating that 90\% of the world's sequencing data was generated with Illumina machines in 2015 \autocite{SequencingTechnologySequencing}.
+
+\hypertarget{long-read-sequencing}{%
+\subsection{Long read sequencing}\label{long-read-sequencing}}
+
+Although NGS technologies revolutionized the sequencing world, recent efforts have been made to get longer reads. These third-generation methods generate reads of tens of kilobases and are commonly called \emph{long-read sequencing} method. Long reads have a host of applications \autocite{pollardLongReadsTheir2018} for which short NGS reads might not be well suited: \emph{De novo} assembly of large complex genomes, studying complex repetitive regions such as centromeres or telomeres or detection of structural variants. They have recently been use to assemble the first truly complete human genome, including telomeric and centromeric regions \autocite{nurk2022}.
+
+The two available long read technologies are: Single Molecule Real Time sequencing (SMRT), commercialized by Pacific Biosciences (PacBio) and Nanopore sequencing, commercialized by Oxford Nanopore Technologies (ONT). While both technologies are quite different they result in much longer reads than even Sanger sequencing in real time, without the need for chain terminators or separate sequencing reactions, with a high throughput and at a reasonably low cost.
+
+SMRT sequencing was first developed in 2009 \autocite{eidRealTimeDNASequencing2009}, before being commercialized and furthered by PacBio. The basic principle is as follows:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Fragment and amplify DNA to obtain a very large number of DNA templates.
+\item
+  Link both strands of each DNA template together with known sequences called \emph{bell adapters}. Denature the DNA to create a single stranded, circular DNA molecule.
+\item
+  Primers and polymerases are attached to the circular molecule specifically on one of the bell adapters.
+\item
+  Add the circular DNA template, primer, polymerases complexes to a SMRT chip. This chip is essentially a large aluminium surface with hundreds of thousands of microscopic wells called \emph{Zero-Mode Waveguides} (ZMWs) only 100nm in diameter \autocite{leveneZeroModeWaveguidesSingleMolecule2003}. The polymerases are chemically bonded to the bottom of each of these ZMWs so we effectively get a single DNA template and polymerase per well.
+\item
+  Fluorescently marked dNTPs are incorporated progressively in each of the wells. When a marked dNTP is incorporated in the newly synthesized DNA brand, light of a specific wavelength is emitted.
+\item
+  The size of these ZMWs make the detection of the fluoresence possible with an optical system. Incorporation of dNTPs in each ZMW can be detected simultaneously in a parallel fashion and the resulting sequences deduced.
+\end{enumerate}
+
+Nanopore sequencing, also developed in 2009 \autocite{clarkeContinuousBaseIdentification2009}, is completely different from all the sequencing technologies previously mentioned. Where all the other ones are based on synthesizing a complementary DNA strand and detecting specific dNTP incorporation in some way or another, there is no synthesis in nanopore sequencing. The principle relies on feeding a single strand of a DNA template through a small hole in a membrane, a nanopore, at a controlled speed. As the nucleotides go through the nanopore, the electric current is formed between both sides of the membrane. This current can be measured and is specific to the succession of 5 to 6 nucleotides inside the nanopore channel at any given time. By looking at the evolution of the electric current as the DNA strand goes through the nanopore, we can deduce the sequence of nucleotides through a process called \emph{base calling.} Base calling is usually done with machine learning methods, mainly artificial neural networks \autocite{wickPerformanceNeuralNetwork2019}. In the flow cells used in ONT sequencers, there are hundreds of thousands of nanopores, spread out over a synthetic membrane, allowing for massively parallel sequencing as well. Theoretically, since this method is not based on synthesis, the upper limit for read length is only limited by the length of the template, and in practice ONT sequencing produces the longest reads.
+
+Both technologies yield long reads, the median and highest read lengths being 10 kilobases and 60 kilobases respectively for PacBio sequencing \autocite{rhoadsPacBioSequencingIts2015}. For nanopore the median read lengths of 10 to 12 kilobases \autocite{ipMinIONAnalysisReference2015,logsdonLongreadHumanGenome2020} are similar to PacBio, but in it can also yield ultra-long reads of 1 up to 2.3 megabases long \autocite{jainNanoporeSequencingAssembly2018,TharSheBlows,payneBulkVisGraphicalViewer2019}. The length of the reads and parallel nature of these two technologies allow these sequencers to have truly massive throughputs. PacBio sequencers can sequence between 2 and 11 gigabases per hour and ONT from 12.5 gigabases per hour, up to a staggering 260 gigabases per hour for the latest ONT PromethION machines \autocite{logsdonLongreadHumanGenome2020}. The cost of sequencing with these machines, while higher than for Illumina sequencers, remains reasonably affordable at \$0.32 and \$0.13 per megabase for PacBio and ONT respectively \autocite{murigneuxComparisonLongreadMethods2020}. These characteristics are summarized in Table \ref{tab:sequencing} along with other sequencing technologies.
+
+The length, throughput and sequencing cost of both these technologies paint a pretty picture, and indeed they have proved useful in many settings, sequencing accuracy however is the main problem with these technologies. The per-base sequencing accuracy has been estimated to be between 85\% and 92\% for PacBio sequencers and 87\% to 98\% for ONT machines \autocite{chaissonResolvingComplexityHuman2015,logsdonLongreadHumanGenome2020,jainOxfordNanoporeMinION2016}. This accuracy is much lower than either Sanger sequencing or Illumina reads. Characterizing, correcting and accounting for these errors is widely studied and it will be discussed in more detail in Sections \ref{sequencing-errors-how-to-account-for-them} and \ref{the-special-case-of-homopolymers}.
+
+\begin{table}
+    \centering
+    \begin{tabular}{lllll}
+        \toprule
+        technology & read length (nt) & throughput (nt/hour) & cost (\$/Mb) & accuracy \\ \midrule
+        Sanger & \numprint{1000} & 120 $10^3$ & \$500 & 99.999\% \\
+        Illumina & 150 & 2.5-12.5 $10^9$ & \$0.07 & 99.9\% \\
+        Pyrosequencing & 400 & 30 $10^6$ & \$10 & 99.9\% \\
+        PacBio SMRT & \numprint{10000} (up to \numprint{60000}) & 2-11 $10^9$ & \$0.32 & 85-92\% \\
+        Nanopore & \numprint{12000} (up to 2.5 $10^6$) & 12.5-260 $10^9$ & \$0.13 & 87-98\% \\
+    \bottomrule
+    \end{tabular}
+    \extcaption{Comparison of sequencing technology characteristics.}{Characteristics for the latest sequencers were used for the Sanger sequencing entry. The length is given in nucleotides, throughputs in sequences nuctleotides per hour and cost in US dollars per megabase.}
+    \label{tab:sequencing}
+\end{table}
 
 As a conclusion, quickly mention the work done on protein sequencing:
 
@@ -2374,7 +2331,7 @@ While we all know that viruses can be pathogenic and dangerous (the recent examp
 
 Viruses have been discovered for all three domains of life: Eukaryota, Bacteria and Archea. In Eukaryota many viruses have been discovered for animals (both vertebrate \autocite{shiEvolutionaryHistoryVertebrate2018} and invertebrate \autocite{adamsAtlasInvertebrateViruses2017}), plants \autocite{lefeuvreEvolutionEcologyPlant2019}, protozoa \autocite{wangVirusesParasiticProtozoa1991}, chromista \autocite{ferminVirusesProkaryotesProtozoa2018} and even fungi \autocite{sutelaVirusesFungiOomycetes2019}. Bacterial viruses known as phages have been known to exists since the beginning of the 20th century \autocite{twortINVESTIGATIONNATUREULTRAMICROSCOPIC1915,delbrockBacterialVirusesBacteriophages1946}. These bacteriophages are being considered as a therapeutic alternative to antibiotics \autocite{clarkBacterialVirusesHuman2004,vankan-davelaarUsingVirusesNanomedicines2014} which could help with multi-drug-resistant bacterial pathogens. Archea are also known to have their own viral infections \autocite{prangishviliVirusesArchaea2016,prangishviliVirusesArchaeaUnifying2006}.
 
-Strangely even viruses of viruses seem to exist such as the plant satellite virus \autocite{franckiPlantVirusSatellites,xuPlantVirusSatellites2011} or hepatitis delta virus \autocite{laiMolecularBiologyHepatitis1995,hughesHepatitisDeltaVirus2011}. These ``viroids'' do not infect viral hosts \emph{per se} but they cannot replicate on their own. Replication must happen during co-infection with a larger virus.
+Strangely even viruses of viruses seem to exist such as the plant satellite virus \autocite{franckiPlantVirusSatellites,xuPlantVirusSatellites2011} or hepatitis delta virus \autocite{laiMolecularBiologyHepatitis1995,hughesHepatitisDeltaVirus2011}. These ``viroids'' do not infect viral hosts \emph{per se} but they cannot replicate on their own. Replication must happen during co-infection with a larger virus. More recently, true viruses of viruses called virophages have been discovered. These virophages like sputnik \autocite{desnuesChapterSputnikVirophage2012} or zamilon \autocite{gaiaZamilonNovelVirophage2014} specifically infect giant viruses.
 
 There is a huge diversity of viruses affecting all types of life, and new viruses are being discovered all the time \autocite{edgarPetabasescaleSequenceAlignment2022}. This diversity hints at a rich and long evolutionary history. When and where viruses originated is still under study \autocite{nasirInvestigatingConceptOrigin2020,forterreOriginViruses2009} and we might never know how they emerged, it is however believed that they may have played an important role in the emergence of eukaryotic cells \autocite{forterreOriginVirusesTheir2006}. This co-evolution between virus and host cell shows a strong link between the two organisms and some parts of the human genome are likely of ancient viral origin \autocite{boekeRetrotransposonsEndogenousRetroviruses1997,kojimaViruslikeInsertionsSequence2021}. It has been estimated that 1\% to 8\% of the human genome are endogenous retroviral sequences \autocite{lowerVirusesAllUs1996,griffithsEndogenousRetrovirusesHuman2001}.
 
