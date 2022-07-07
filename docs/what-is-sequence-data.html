@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-07-06" />
+<meta name="date" content="2022-07-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -93,7 +93,7 @@ div.csl-indent {
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">My PhD thesis.</a></li>
+<li><a href="./">From sequences to knowledge,</br> improving and learning from sequence alignments.</a></li>
 
 <li class="divider"></li>
 <li><a href="index.html#section"></a>
@@ -132,7 +132,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#the-special-case-of-homopolymers"><i class="fa fa-check"></i><b>1.4</b> The special case of homopolymers</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#homopolymers-and-the-genome"><i class="fa fa-check"></i><b>1.4.1</b> Homopolymers and the genome</a></li>
+<li class="chapter" data-level="1.4.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#homopolymers-and-the-human-genome"><i class="fa fa-check"></i><b>1.4.1</b> Homopolymers and the human genome</a></li>
 <li class="chapter" data-level="1.4.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#homopolymers-and-long-reads"><i class="fa fa-check"></i><b>1.4.2</b> Homopolymers and long reads</a></li>
 <li class="chapter" data-level="1.4.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#accounting-for-homopolymers"><i class="fa fa-check"></i><b>1.4.3</b> Accounting for homopolymers</a></li>
 </ul></li>
@@ -451,10 +451,10 @@ Figure 1.3: <strong>Overview of the sanger sequencing protocol.</strong>
 <li>Fluorescently marked dNTPs are incorporated progressively in each of the wells. When a marked dNTP is incorporated in the newly synthesized DNA brand, light of a specific wavelength is emitted.</li>
 <li>The size of these ZMWs make the detection of the fluoresence possible with an optical system. Incorporation of dNTPs in each ZMW can be detected simultaneously in a parallel fashion and the resulting sequences deduced.</li>
 </ol>
-<p>Nanopore sequencing, also developed in 2009<span class="citation"><sup><a href="#ref-clarkeContinuousBaseIdentification2009" role="doc-biblioref">50</a></sup></span>, is completely different from all the sequencing technologies previously mentioned. Where all the other ones are based on synthesizing a complementary DNA strand and detecting specific dNTP incorporation in some way or another, there is no synthesis in nanopore sequencing. The principle relies on feeding a single strand of a DNA template through a small hole in a membrane, a nanopore, at a controlled speed. As the nucleotides go through the nanopore, the electric current is formed between both sides of the membrane. This current can be measured and is specific to the succession of 5 to 6 nucleotides inside the nanopore channel at any given time. By looking at the evolution of the electric current as the DNA strand goes through the nanopore, we can deduce the sequence of nucleotides through a process called <em>base calling.</em> Base calling is usually done with machine learning methods, mainly artificial neural networks<span class="citation"><sup><a href="#ref-wickPerformanceNeuralNetwork2019" role="doc-biblioref">51</a></sup></span>. In the flow cells used in ONT sequencers, there are hundreds of thousands of nanopores, spread out over a synthetic membrane, allowing for massively parallel sequencing as well. Theoretically, since this method is not based on synthesis, the upper limit for read length is only limited by the length of the template, and in practice ONT sequencing produces the longest reads.</p>
-<p>Both technologies yield long reads, the median and highest read lengths being 10 kilobases and 60 kilobases respectively for PacBio sequencing<span class="citation"><sup><a href="#ref-rhoadsPacBioSequencingIts2015" role="doc-biblioref">52</a></sup></span>. For nanopore the median read lengths of 10 to 12 kilobases<span class="citation"><sup><a href="#ref-ipMinIONAnalysisReference2015" role="doc-biblioref">53</a>,<a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">54</a></sup></span> are similar to PacBio, but in it can also yield ultra-long reads of 1 up to 2.3 megabases long<span class="citation"><sup><a href="#ref-jainNanoporeSequencingAssembly2018" role="doc-biblioref">55</a>–<a href="#ref-payneBulkVisGraphicalViewer2019" role="doc-biblioref">57</a></sup></span>. The length of the reads and parallel nature of these two technologies allow these sequencers to have truly massive throughputs. PacBio sequencers can sequence between 2 and 11 gigabases per hour and ONT from 12.5 gigabases per hour, up to a staggering 260 gigabases per hour for the latest ONT PromethION machines<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">54</a></sup></span>. The cost of sequencing with these machines, while higher than for Illumina sequencers, remains reasonably affordable at $0.32 and $0.13 per megabase for PacBio and ONT respectively<span class="citation"><sup><a href="#ref-murigneuxComparisonLongreadMethods2020" role="doc-biblioref">58</a></sup></span>. These characteristics are summarized in Table <a href="what-is-sequence-data.html#tab:sequencing">1.1</a> along with other sequencing technologies.</p>
-<p>The length, throughput and sequencing cost of both these technologies paint a pretty picture, and indeed they have proved useful in many settings, sequencing accuracy however is the main problem with these technologies. The per-base sequencing accuracy has been estimated to be between 85% and 92% for PacBio sequencers and 87% to 98% for ONT machines<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">54</a>,<a href="#ref-chaissonResolvingComplexityHuman2015" role="doc-biblioref">59</a>,<a href="#ref-jainOxfordNanoporeMinION2016" role="doc-biblioref">60</a></sup></span>. This accuracy is much lower than either Sanger sequencing or Illumina reads. Characterizing, correcting and accounting for these errors is widely studied and it will be discussed in more detail in Sections <a href="what-is-sequence-data.html#sequencing-errors-how-to-account-for-them">1.3</a> and <a href="what-is-sequence-data.html#the-special-case-of-homopolymers">1.4</a>.</p>
-<template id="079a50d6-c90c-4d47-ab2d-03673a5eb9f0"><style>
+<p>Nanopore sequencing, though of in the eighties, further developed along the years<span class="citation"><sup><a href="#ref-clarkeContinuousBaseIdentification2009" role="doc-biblioref">50</a></sup></span> and first commercialized by ONT in 2014<span class="citation"><sup><a href="#ref-deamerThreeDecadesNanopore2016" role="doc-biblioref">51</a></sup></span>, is completely different from all the sequencing technologies previously mentioned. Where all the other ones are based on synthesizing a complementary DNA strand and detecting specific dNTP incorporation in some way or another, there is no synthesis in nanopore sequencing. The principle relies on feeding a single strand of a DNA template through a small hole in a membrane, a nanopore, at a controlled speed. As the nucleotides go through the nanopore, the electric current is formed between both sides of the membrane. This current can be measured and is specific to the succession of 5 to 6 nucleotides inside the nanopore channel at any given time. By looking at the evolution of the electric current as the DNA strand goes through the nanopore, we can deduce the sequence of nucleotides through a process called <em>base calling.</em> Base calling is usually done with machine learning methods, mainly artificial neural networks<span class="citation"><sup><a href="#ref-wickPerformanceNeuralNetwork2019" role="doc-biblioref">52</a></sup></span>. In the flow cells used in ONT sequencers, there are hundreds of thousands of nanopores, spread out over a synthetic membrane, allowing for massively parallel sequencing as well. Theoretically, since this method is not based on synthesis, the upper limit for read length is only limited by the length of the template, and in practice ONT sequencing produces the longest reads.</p>
+<p>Both technologies yield long reads, the median and highest read lengths being 10 kilobases and 60 kilobases respectively for PacBio sequencing<span class="citation"><sup><a href="#ref-rhoadsPacBioSequencingIts2015" role="doc-biblioref">53</a></sup></span>. For nanopore the median read lengths of 10 to 12 kilobases<span class="citation"><sup><a href="#ref-ipMinIONAnalysisReference2015" role="doc-biblioref">54</a>,<a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">55</a></sup></span> are similar to PacBio, but in it can also yield ultra-long reads of 1 up to 2.3 megabases long<span class="citation"><sup><a href="#ref-jainNanoporeSequencingAssembly2018" role="doc-biblioref">56</a>–<a href="#ref-payneBulkVisGraphicalViewer2019" role="doc-biblioref">58</a></sup></span>. The length of the reads and parallel nature of these two technologies allow these sequencers to have truly massive throughputs. PacBio sequencers can sequence between 2 and 11 gigabases per hour and ONT from 12.5 gigabases per hour, up to a staggering 260 gigabases per hour for the latest ONT PromethION machines<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">55</a></sup></span>. The cost of sequencing with these machines, while higher than for Illumina sequencers, remains reasonably affordable at $0.32 and $0.13 per megabase for PacBio and ONT respectively<span class="citation"><sup><a href="#ref-murigneuxComparisonLongreadMethods2020" role="doc-biblioref">59</a></sup></span>. These characteristics are summarized in Table <a href="what-is-sequence-data.html#tab:sequencing">1.1</a> along with other sequencing technologies.</p>
+<p>The length, throughput and sequencing cost of both these technologies paint a pretty picture, and indeed they have proved useful in many settings, sequencing accuracy however is the main problem with these technologies. The per-base sequencing accuracy has been estimated to be between 85% and 92% for PacBio sequencers and 87% to 98% for ONT machines<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">55</a>,<a href="#ref-chaissonResolvingComplexityHuman2015" role="doc-biblioref">60</a>,<a href="#ref-jainOxfordNanoporeMinION2016" role="doc-biblioref">61</a></sup></span>. This accuracy is much lower than either Sanger sequencing or Illumina reads. Characterizing, correcting and accounting for these errors is widely studied and it will be discussed in more detail in Sections <a href="what-is-sequence-data.html#sequencing-errors-how-to-account-for-them">1.3</a> and <a href="what-is-sequence-data.html#the-special-case-of-homopolymers">1.4</a>.</p>
+<template id="b1add9ca-aad2-4224-8f31-41ea5641dd9d"><style>
 .tabwid table{
   border-spacing:0px !important;
   border-collapse:collapse;
@@ -488,16 +488,16 @@ Figure 1.3: <strong>Overview of the sanger sequencing protocol.</strong>
 .tabwid table tr {
 background-color: transparent;
 }
-</style><div class="tabwid"><style>.cl-c482f9ea{table-layout:auto;width:100%;}.cl-c47dbf7a{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-c47dbfac{font-family:'Helvetica';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-c47dd2d0{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-c47e02c8{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c47e02c9{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-c47e02d2{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-c482f9ea'><thead><tr style="overflow-wrap:break-word;"><td class="cl-c47e02d2"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">technology</span></p></td><td class="cl-c47e02d2"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">read length (nt)</span></p></td><td class="cl-c47e02d2"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">throughput (nt/hour)</span></p></td><td class="cl-c47e02d2"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">cost ($/Mb)</span></p></td><td class="cl-c47e02d2"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">accuracy</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">Sanger</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">1000</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">120</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">10</span><span class="cl-c47dbfac">3</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">$500</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">99.999%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">Illumina</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">150</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">2.5-12.5</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">10</span><span class="cl-c47dbfac">9</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">$0.07</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">99.9%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">Pyrosequencing</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">400</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">30</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">10</span><span class="cl-c47dbfac">6</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">$10</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">99.9%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">PacBio</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">SMRT</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">10000</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">(up</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">to</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">60000)</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">2-11</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">10</span><span class="cl-c47dbfac">9</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">$0.32</span></p></td><td class="cl-c47e02c8"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">85-92%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-c47e02c9"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">Nanopore</span></p></td><td class="cl-c47e02c9"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">12000</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">(up</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">to</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">2.5</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">10</span><span class="cl-c47dbfac">6</span><span class="cl-c47dbf7a">)</span></p></td><td class="cl-c47e02c9"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">12.5-260</span><span class="cl-c47dbf7a"> </span><span class="cl-c47dbf7a">10</span><span class="cl-c47dbfac">9</span></p></td><td class="cl-c47e02c9"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">$0.13</span></p></td><td class="cl-c47e02c9"><p class="cl-c47dd2d0"><span class="cl-c47dbf7a">87-98%</span></p></td></tr></tbody>
+</style><div class="tabwid"><style>.cl-ee472212{table-layout:auto;width:100%;}.cl-ee3fc47c{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-ee3fc4b8{font-family:'Helvetica';font-size:6.6pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;position: relative;bottom:3.3pt;}.cl-ee3fe650{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:5pt;padding-top:5pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-ee403092{background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ee4030a6{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-ee4030b0{background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(102, 102, 102, 1.00);border-top: 2pt solid rgba(102, 102, 102, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-ee472212'><thead><tr style="overflow-wrap:break-word;"><td class="cl-ee4030b0"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">technology</span></p></td><td class="cl-ee4030b0"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">read length (nt)</span></p></td><td class="cl-ee4030b0"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">throughput (nt/hour)</span></p></td><td class="cl-ee4030b0"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">cost ($/Mb)</span></p></td><td class="cl-ee4030b0"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">accuracy</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">Sanger</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">1000</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">120</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">10</span><span class="cl-ee3fc4b8">3</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">$500</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">99.999%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">Illumina</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">150</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">2.5-12.5</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">10</span><span class="cl-ee3fc4b8">9</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">$0.07</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">99.9%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">Pyrosequencing</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">400</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">30</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">10</span><span class="cl-ee3fc4b8">6</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">$10</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">99.9%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">PacBio</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">SMRT</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">10000</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">(up</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">to</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">60000)</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">2-11</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">10</span><span class="cl-ee3fc4b8">9</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">$0.32</span></p></td><td class="cl-ee403092"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">85-92%</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-ee4030a6"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">Nanopore</span></p></td><td class="cl-ee4030a6"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">12000</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">(up</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">to</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">2.5</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">10</span><span class="cl-ee3fc4b8">6</span><span class="cl-ee3fc47c">)</span></p></td><td class="cl-ee4030a6"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">12.5-260</span><span class="cl-ee3fc47c"> </span><span class="cl-ee3fc47c">10</span><span class="cl-ee3fc4b8">9</span></p></td><td class="cl-ee4030a6"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">$0.13</span></p></td><td class="cl-ee4030a6"><p class="cl-ee3fe650"><span class="cl-ee3fc47c">87-98%</span></p></td></tr></tbody>
 <caption class="caption">
 <p><span id="tab:sequencing">Table 1.1: </span><strong>Comparison of sequencing technology characteristics.</strong>
 Characteristics for the latest sequencers were used for the Sanger sequencing entry. The length is given in nucleotides, throughputs in sequences nuctleotides per hour and cost in US dollars per megabase.</p>
 </caption>
 </table></div></template>
-<div class="flextable-shadow-host" id="d4e3a8d5-83fe-464f-bcd2-1905d44fca55"></div>
+<div class="flextable-shadow-host" id="b22d5a9b-a104-4113-b1b1-cac94a004292"></div>
 <script>
-var dest = document.getElementById("d4e3a8d5-83fe-464f-bcd2-1905d44fca55");
-var template = document.getElementById("079a50d6-c90c-4d47-ab2d-03673a5eb9f0");
+var dest = document.getElementById("b22d5a9b-a104-4113-b1b1-cac94a004292");
+var template = document.getElementById("b1add9ca-aad2-4224-8f31-41ea5641dd9d");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -510,80 +510,72 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script>
 
-<p>As a conclusion, quickly mention the work done on protein sequencing:</p>
-<ul>
-<li><p>has been going on for a long time<span class="citation"><sup><a href="#ref-huntProteinSequencingTandem1986" role="doc-biblioref">61</a>,<a href="#ref-smithProteinSequencingProtocols2002" role="doc-biblioref">62</a></sup></span> with mass spectrometry</p></li>
-<li><p>But still ongoing with new methods<span class="citation"><sup><a href="#ref-restrepo-perezPavingWaySinglemolecule2018" role="doc-biblioref">63</a></sup></span></p></li>
-</ul>
-<p>but we usually deduce the protein sequence from the DNA sequence that is translated from codons after detecting ORFs.</p>
+<p>While most of the mentioned technologies can also be adapted and used to sequence RNA instead of DNA<span class="citation"><sup><a href="#ref-hongRNASequencingNew2020" role="doc-biblioref">62</a>,<a href="#ref-ozsolakRNASequencingAdvances2011" role="doc-biblioref">63</a></sup></span>, directly sequencing proteins remains a challenge. The sequence of amino acids making up a protein is usually deduced from the codons in sequenced DNA or RNA after detection of potentially coding regions called open reading frames (ORFs). Development of methods to directly sequence protein molecules using mass spectrometry was started not very long after Sanger sequencing<span class="citation"><sup><a href="#ref-huntProteinSequencingTandem1986" role="doc-biblioref">64</a></sup></span> and improved<span class="citation"><sup><a href="#ref-smithProteinSequencingProtocols2002" role="doc-biblioref">65</a></sup></span>. New methods are still being developed<span class="citation"><sup><a href="#ref-restrepo-perezPavingWaySinglemolecule2018" role="doc-biblioref">66</a></sup></span> but protein sequencing is still a challenge.</p>
 </div>
 </div>
 <div id="sequencing-errors-how-to-account-for-them" class="section level2 hasAnchor" number="1.3">
 <h2><span class="header-section-number">1.3</span> Sequencing errors, how to account for them ?<a href="what-is-sequence-data.html#sequencing-errors-how-to-account-for-them" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Just like mutations we can get substitutions and indels.</p>
-<p>general context of sequencing errors, i.e. short reads have high accuracy (After computational correction you can get 10<sup>-4</sup> to 10<sup>-5</sup> error rate<span class="citation"><sup><a href="#ref-maAnalysisErrorProfiles2019" role="doc-biblioref">64</a></sup></span> ) , long reads high error rate as stated before, 10% to 15%.</p>
+<p>Sequencing technologies are not perfect, they make errors as we can see from the various accuracy rates reported in Section <a href="what-is-sequence-data.html#obtaining-sequence-data">1.2</a>. For technologies based on nucleic acid synthesis (i.e. everything except ONT), since they use polymerases it stands to reason that the same three types of errors, described in Section <a href="what-is-sequence-data.html#making-mistakes">1.1.2.2</a>, occur: substitutions, insertions and deletions. For long read technologies though, most of the errors do not come from the polymerase, but from signal processing used to deduce the sequence. Since both technologies execute single molecule sequencing, the signal to noise ratio is low<span class="citation"><sup><a href="#ref-weirather2017" role="doc-biblioref">67</a>,<a href="#ref-wangNanoporeSequencingTechnology2021" role="doc-biblioref">68</a></sup></span> making base calling more complicated.</p>
+<p>This explains the discrepancy in error rates between short and long read sequencing technologies: the former getting as low as 10<sup>-4</sup> or 10<sup>-5</sup> after computational processing<span class="citation"><sup><a href="#ref-maAnalysisErrorProfiles2019" role="doc-biblioref">69</a></sup></span> where the latter are between 10% and 15%. This high error rate long reads is bothersome and many efforts have been made lower this error rate, computationally or technologically.</p>
 <div id="error-correction-methods" class="section level3 hasAnchor" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Error correction methods<a href="what-is-sequence-data.html#error-correction-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>In Non-Hybrid error correcting methods only the long reads are used, by overlapping them and taking the consensus of the overlap it is possible to eliminate some errors, as well as filtering very rare subsequences likely due to a sequencing error<span class="citation"><sup><a href="#ref-limaComparativeAssessmentLongread2020" role="doc-biblioref">65</a>,<a href="#ref-amarasingheOpportunitiesChallengesLongread2020" role="doc-biblioref">66</a></sup></span>. These methods are applied in several pieces of software like wtdbg2<span class="citation"><sup><a href="#ref-ruanFastAccurateLongread2020" role="doc-biblioref">67</a></sup></span>, canu<span class="citation"><sup><a href="#ref-korenCanuScalableAccurate2017" role="doc-biblioref">68</a></sup></span>, or daccord<span class="citation"><sup><a href="#ref-tischlerNonHybridLong2017" role="doc-biblioref">69</a></sup></span>.</p></li>
-<li><p>In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread<span class="citation"><sup><a href="#ref-hacklProovreadLargescaleHighaccuracy2014" role="doc-biblioref">70</a></sup></span>, Jabba<span class="citation"><sup><a href="#ref-miclotteJabbaHybridError2016" role="doc-biblioref">71</a></sup></span>, PBcR<span class="citation"><sup><a href="#ref-korenHybridErrorCorrection2012" role="doc-biblioref">72</a></sup></span> or LoRDEC<span class="citation"><sup><a href="#ref-salmelaLoRDECAccurateEfficient2014" role="doc-biblioref">73</a></sup></span></p></li>
-<li><p>In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow<span class="citation"><sup><a href="#ref-heplerImprovedCircularConsensus2016" role="doc-biblioref">74</a></sup></span> or Nanopolish<span class="citation"><sup><a href="#ref-simpsonDetectingDNACytosine2017" role="doc-biblioref">75</a></sup></span> respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon<span class="citation"><sup><a href="#ref-walkerPilonIntegratedTool2014" role="doc-biblioref">76</a></sup></span> or Racon<span class="citation"><sup><a href="#ref-vaserFastAccurateNovo2017" role="doc-biblioref">77</a></sup></span>.</p></li>
-<li><p>Error correction bibliography is rich and many people are working on this<span class="citation"><sup><a href="#ref-limaComparativeAssessmentLongread2020" role="doc-biblioref">65</a>,<a href="#ref-fuComparativeEvaluationHybrid2019" role="doc-biblioref">78</a>,<a href="#ref-zhangComprehensiveEvaluationLong2020" role="doc-biblioref">79</a></sup></span></p></li>
-</ul>
+<p>The long read error-correction literature and toolset is rich and active<span class="citation"><sup><a href="#ref-limaComparativeAssessmentLongread2020" role="doc-biblioref">70</a>–<a href="#ref-zhangComprehensiveEvaluationLong2020" role="doc-biblioref">72</a></sup></span>. There are two main ways to correct errors: 1) hybrid methods where higher-accuracy shorter reads are used to correct errors and 2) non-hybrid methods where only the long-reads are used.</p>
+<p>In Non-hybrid methods<span class="citation"><sup><a href="#ref-limaComparativeAssessmentLongread2020" role="doc-biblioref">70</a>,<a href="#ref-amarasingheOpportunitiesChallengesLongread2020" role="doc-biblioref">73</a></sup></span>, by finding regions that overlap fairly well between reads and taking the consensus (i.e. the majority nucleotide at each position) of the overlapped regions some errors can be eliminated. In many analyses and sequencing data processing pipelines, the first step is to break up the reads into all possible overlapping subsequences of length <span class="math inline">\(k\)</span> called k-mers (e.g the 3-mers of the ATTGC are ATT, TTG and TGC). Rare k-mers in the read dataset, i.e. k-mers that appear only a handful of times in all the reads, are likely the result of an error and filtering them out can improve analysis. One or both of these procedures are implemented in several pieces of commonly used software like the wtdbg<span class="citation"><sup><a href="#ref-ruanFastAccurateLongread2020" role="doc-biblioref">74</a></sup></span>, and canu<span class="citation"><sup><a href="#ref-korenCanuScalableAccurate2017" role="doc-biblioref">75</a></sup></span> assemblers or the standalone daccord long-read correcter<span class="citation"><sup><a href="#ref-tischlerNonHybridLong2017" role="doc-biblioref">76</a></sup></span>. In some cases, errors are corrected not on the raw reads but after having assembled the long reads into long continuous sequences (contigs), this process is called polishing. The ntEdit polisher<span class="citation"><sup><a href="#ref-warrenNtEditScalableGenome2019" role="doc-biblioref">77</a></sup></span> also filters out rare kmers to correct errors. The Arrow<span class="citation"><sup><a href="#ref-heplerImprovedCircularConsensus2016" role="doc-biblioref">78</a></sup></span> and Nanopolish<span class="citation"><sup><a href="#ref-simpsonDetectingDNACytosine2017" role="doc-biblioref">79</a></sup></span> polishers correct the assembly using the raw PacBio and ONT long reads respectively.</p>
+<p>Hybrid methods, as their name suggest, makes use of short reads to correct errors in long reads. By finding similar regions between the short and long reads we can use the higher accuracy of short reads to correct the long ones. This is implemented in many pieces of software proovread<span class="citation"><sup><a href="#ref-hacklProovreadLargescaleHighaccuracy2014" role="doc-biblioref">80</a></sup></span>, Jabba<span class="citation"><sup><a href="#ref-miclotteJabbaHybridError2016" role="doc-biblioref">81</a></sup></span>, PBcR<span class="citation"><sup><a href="#ref-korenHybridErrorCorrection2012" role="doc-biblioref">82</a></sup></span> or LoRDEC<span class="citation"><sup><a href="#ref-salmelaLoRDECAccurateEfficient2014" role="doc-biblioref">83</a></sup></span>. Short reads can also be used to polish long read assemblies with tools like Pilon<span class="citation"><sup><a href="#ref-walkerPilonIntegratedTool2014" role="doc-biblioref">84</a></sup></span> or Racon<span class="citation"><sup><a href="#ref-vaserFastAccurateNovo2017" role="doc-biblioref">85</a></sup></span>. The first complete human genome was assembled and polished using many different sequencing technologies including PacBIo, ONT and Illumina technologies<span class="citation"><sup><a href="#ref-nurk2022" role="doc-biblioref">4</a></sup></span>.</p>
 </div>
 <div id="more-accurate-sequencing-methods" class="section level3 hasAnchor" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> More accurate sequencing methods<a href="what-is-sequence-data.html#more-accurate-sequencing-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>CCS / HiFi stuff -&gt; 99.8% to 99.9% accuracy on long reads<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">54</a>,<a href="#ref-wenger2019" role="doc-biblioref">80</a></sup></span> because errors are randomly distributed. Most errors are still indels in homopolymers<span class="citation"><sup><a href="#ref-wenger2019" role="doc-biblioref">80</a></sup></span></p></li>
-<li><p>Using unique molecular identifiers and consensus reads, you can reduce error rate to 99.59% and 99.93% accuracies for ONT and PacBio CCS<span class="citation"><sup><a href="#ref-karstHighaccuracyLongreadAmplicon2021" role="doc-biblioref">81</a></sup></span>.</p></li>
-<li><p>Improve base calling models for ONT by switching from HMMs to deep learning,<span class="citation"><sup><a href="#ref-wickPerformanceNeuralNetwork2019" role="doc-biblioref">51</a>,<a href="#ref-amarasingheOpportunitiesChallengesLongread2020" role="doc-biblioref">66</a>,<a href="#ref-peresiniNanoporeBaseCalling2021" role="doc-biblioref">82</a>,<a href="#ref-bozaDeepNanoDeepRecurrent2017" role="doc-biblioref">83</a></sup></span></p></li>
-<li><p>Built in error correction<span class="citation"><sup><a href="#ref-chenHighlyAccurateFluorogenic2017" role="doc-biblioref">84</a></sup></span>, results in shorter reads with 99.82% accuracy (200-250nt reads though). Error free up to 200bp.</p></li>
-<li><p>To come Illumina Infinity<span class="citation"><sup><a href="#ref-HighPerformanceLong" role="doc-biblioref">85</a></sup></span>, high throughput long reads.</p></li>
-</ul>
+<p>While a lot of effort is being put into error correction, another angle of attack to lower the error rate of long reads is to improve the sequencing technology.</p>
+<p>In 2019, PacBio introduced HiFi reads, based on a circular consensus (CCS) technique<span class="citation"><sup><a href="#ref-wenger2019" role="doc-biblioref">86</a></sup></span>. During SRMT sequencing the 2 brands are linked together by ball adapters to form a circular DNA template (c.f. Section <a href="what-is-sequence-data.html#long-read-sequencing">1.2.3</a>), the central idea of CCS is to sequence this molecule multiple time by going over the circle multiple times. In the resulting long sequence the, known bell adapter sequences can be removed, and a consensus sequence can be built from the multiple passes over the same DNA template. This results in long-read accuracies of 99.8% to 99.9%<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">55</a>,<a href="#ref-wenger2019" role="doc-biblioref">86</a></sup></span>. This works because PacBio sequencing errors are mostly randomly distributed along the sequenced template (more on that in Section <a href="what-is-sequence-data.html#homopolymers-and-long-reads">1.4.2</a>), therefore it is unlikely that the same error will appear in multiple passes over the same template portion.</p>
+<p>For ONT sequencing, most improvement efforts have been focused on base-callers. These tools were originally based on Hidden Markov Models<span class="citation"><sup><a href="#ref-timpDNABaseCallingNanopore2012" role="doc-biblioref">87</a></sup></span> (HMMs), but gradually they have been shifting over to neural network based deep learning methods<span class="citation"><sup><a href="#ref-wickPerformanceNeuralNetwork2019" role="doc-biblioref">52</a>,<a href="#ref-amarasingheOpportunitiesChallengesLongread2020" role="doc-biblioref">73</a>,<a href="#ref-peresiniNanoporeBaseCalling2021" role="doc-biblioref">88</a>,<a href="#ref-bozaDeepNanoDeepRecurrent2017" role="doc-biblioref">89</a></sup></span> with faster inference times and better performance.</p>
+<p>A technologically agnostic method using unique molecular identifiers added during the template preparation phase, and consensus sequencing has been shown, in specific contexts, to improve the accuracies of both ONT and PacBio CCS long reads to 99.59% and 99.93% respectively<span class="citation"><sup><a href="#ref-karstHighaccuracyLongreadAmplicon2021" role="doc-biblioref">90</a></sup></span>.</p>
+<p>Finally, new sequencing technologies are being developed, like built in error-correction short-read technologies yielding error-free reads of up to 200 nucleotides<span class="citation"><sup><a href="#ref-chenHighlyAccurateFluorogenic2017" role="doc-biblioref">91</a></sup></span>. Illumina also recently announced its own high-throughput, high-accuracy long-read sequencing technology in 2022<span class="citation"><sup><a href="#ref-HighPerformanceLong" role="doc-biblioref">92</a></sup></span>, although details about the performance and technology are scarce.</p>
 </div>
 </div>
 <div id="the-special-case-of-homopolymers" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> The special case of homopolymers<a href="what-is-sequence-data.html#the-special-case-of-homopolymers" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="homopolymers-and-the-genome" class="section level3 hasAnchor" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Homopolymers and the genome<a href="what-is-sequence-data.html#homopolymers-and-the-genome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Despite improvement in error correction methods and sequencing technologies, certain genetic patterns are particularly difficult to process, homopolymers are one such pattern.</p>
+<div id="homopolymers-and-the-human-genome" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Homopolymers and the human genome<a href="what-is-sequence-data.html#homopolymers-and-the-human-genome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><em>Homopolymers</em> consist of a stretch of repeated nucleotides (i.e. <span class="math inline">\(\geq 2\)</span>) occurring at some point in the genome. For example the sequence AAAA is a length 4 adenine homopolymer.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:HPpercent"></span>
+<img src="_main_files/figure-html/HPpercent-1.png" alt="Homopolymer length as fraction of the genome" width="60%" />
+<p class="caption">
+Figure 1.4: Homopolymer length as fraction of the genome
+</p>
+</div>
 <ul>
 <li>What are homopolymers -&gt; repeated stretches of identical nucleotides</li>
-<li>On the CHM13 whole human genome assembly v1.1, 50% of the 3Gb are in homopolymers of size length or more, and 10% are in homopolymers fof size 4 or more. The longest homopolymer in the CHM13 v1.1 whole human genome assembly is 86. Homopolymers of short/medium lengths make up a significant part of the human genome (Figure <a href="what-is-sequence-data.html#fig:HPpercent">1.5</a>).</li>
-<li>HPs are more often A/T rich than G/C rich in the human genome (Figure <a href="what-is-sequence-data.html#fig:HPdistrib">1.4</a>).</li>
-<li>More than 1.4 million homopolymers 4-mers and up in the exome (i.e. DNA that is translated into proteins)<span class="citation"><sup><a href="#ref-ivadyAnalyticalParametersValidation2018" role="doc-biblioref">86</a></sup></span></li>
-<li>according to<span class="citation"><sup><a href="#ref-booeshaghiPseudoalignmentFacilitatesAssignment2022" role="doc-biblioref">87</a></sup></span>, in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.</li>
+<li>On the CHM13 whole human genome assembly v1.1, 50% of the 3Gb are in homopolymers of size 2 or more, and 10% are in homopolymers fof size 4 or more. The longest homopolymer in the CHM13 v1.1 whole human genome assembly is 86. Homopolymers of short/medium lengths make up a significant part of the human genome (Figure <a href="what-is-sequence-data.html#fig:HPpercent">1.4</a>).</li>
+<li>HPs are more often A/T rich than G/C rich in the human genome (Figure <a href="what-is-sequence-data.html#fig:HPdistrib">1.5</a>).</li>
+<li>More than 1.4 million homopolymers 4-mers and up in the exome (i.e. DNA that is translated into proteins)<span class="citation"><sup><a href="#ref-ivadyAnalyticalParametersValidation2018" role="doc-biblioref">93</a></sup></span></li>
+<li>according to<span class="citation"><sup><a href="#ref-booeshaghiPseudoalignmentFacilitatesAssignment2022" role="doc-biblioref">94</a></sup></span>, in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.</li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:HPdistrib"></span>
 <img src="_main_files/figure-html/HPdistrib-1.png" alt="Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\geq 4$.)" width="60%" />
 <p class="caption">
-Figure 1.4: Distribution of homopolymer lengths per base in the human genome (for homopolyers of length <span class="math inline">\(\geq 4\)</span>.)
-</p>
-</div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:HPpercent"></span>
-<img src="_main_files/figure-html/HPpercent-1.png" alt="Homopolymer length as fraction of the genome" width="60%" />
-<p class="caption">
-Figure 1.5: Homopolymer length as fraction of the genome
+Figure 1.5: Distribution of homopolymer lengths per base in the human genome (for homopolyers of length <span class="math inline">\(\geq 4\)</span>.)
 </p>
 </div>
 </div>
 <div id="homopolymers-and-long-reads" class="section level3 hasAnchor" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Homopolymers and long reads<a href="what-is-sequence-data.html#homopolymers-and-long-reads" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT<span class="citation"><sup><a href="#ref-delahaye2021" role="doc-biblioref">88</a>,<a href="#ref-goodwin2015" role="doc-biblioref">89</a></sup></span>, for PacBIO and ONT<span class="citation"><sup><a href="#ref-dohmBenchmarkingLongreadCorrection2020" role="doc-biblioref">90</a>,<a href="#ref-weirather2017" role="doc-biblioref">91</a></sup></span>. ONT has more homopolymer errors than PacBIO<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">54</a></sup></span>. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT’s error rate in HPs does not depend on the length (even though it’s the highest it’s flat)<span class="citation"><sup><a href="#ref-fooxPerformanceAssessmentDNA2021" role="doc-biblioref">92</a></sup></span>.</p>
+<p>Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT<span class="citation"><sup><a href="#ref-delahaye2021" role="doc-biblioref">95</a>,<a href="#ref-goodwin2015" role="doc-biblioref">96</a></sup></span>, for PacBIO and ONT<span class="citation"><sup><a href="#ref-weirather2017" role="doc-biblioref">67</a>,<a href="#ref-dohmBenchmarkingLongreadCorrection2020" role="doc-biblioref">97</a></sup></span>. ONT has more homopolymer errors than PacBIO<span class="citation"><sup><a href="#ref-logsdonLongreadHumanGenome2020" role="doc-biblioref">55</a></sup></span>. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT’s error rate in HPs does not depend on the length (even though it’s the highest it’s flat)<span class="citation"><sup><a href="#ref-fooxPerformanceAssessmentDNA2021" role="doc-biblioref">98</a></sup></span>. Most HiFi errors are still indels in homopolymers<span class="citation"><sup><a href="#ref-wenger2019" role="doc-biblioref">86</a></sup></span></p>
 </div>
 <div id="accounting-for-homopolymers" class="section level3 hasAnchor" number="1.4.3">
 <h3><span class="header-section-number">1.4.3</span> Accounting for homopolymers<a href="what-is-sequence-data.html#accounting-for-homopolymers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="specific-error-correction" class="section level4 hasAnchor" number="1.4.3.1">
 <h4><span class="header-section-number">1.4.3.1</span> Specific error correction<a href="what-is-sequence-data.html#specific-error-correction" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <ul>
-<li>In some cases homopolymers are taken into special consideration during polishing<span class="citation"><sup><a href="#ref-simpsonDetectingDNACytosine2017" role="doc-biblioref">75</a>,<a href="#ref-huangHomopolishMethodRemoval2021" role="doc-biblioref">93</a></sup></span>, and computational approaches are developed to deal with homopolymers<span class="citation"><sup><a href="#ref-rangSquiggleBasepairComputational2018" role="doc-biblioref">94</a>,<a href="#ref-sarkozyCallingHomopolymerStretches2018" role="doc-biblioref">95</a></sup></span></li>
+<li>In some cases homopolymers are taken into special consideration during polishing<span class="citation"><sup><a href="#ref-simpsonDetectingDNACytosine2017" role="doc-biblioref">79</a>,<a href="#ref-huangHomopolishMethodRemoval2021" role="doc-biblioref">99</a></sup></span>, and computational approaches are developed to deal with homopolymers<span class="citation"><sup><a href="#ref-rangSquiggleBasepairComputational2018" role="doc-biblioref">100</a>,<a href="#ref-sarkozyCallingHomopolymerStretches2018" role="doc-biblioref">101</a></sup></span></li>
 <li>Specific technologies:
 <ul>
-<li><p>R.10 Nanopore:<span class="citation"><sup><a href="#ref-amarasingheOpportunitiesChallengesLongread2020" role="doc-biblioref">66</a>,<a href="#ref-R10NewestNanopore" role="doc-biblioref">96</a></sup></span></p></li>
-<li><p>Solid state nanopores:<span class="citation"><sup><a href="#ref-zhouDetectionDNAHomopolymer2019" role="doc-biblioref">97</a>,<a href="#ref-gotoIdentificationFourSinglestranded2018" role="doc-biblioref">98</a></sup></span></p></li>
-<li><p>BaseCallers which deal with homopolymers, like can be seen in Fig 3 of<span class="citation"><sup><a href="#ref-wickPerformanceNeuralNetwork2019" role="doc-biblioref">51</a></sup></span> (scrappie raw 1.4.1 or guppy)</p></li>
+<li><p>R.10 Nanopore:<span class="citation"><sup><a href="#ref-amarasingheOpportunitiesChallengesLongread2020" role="doc-biblioref">73</a>,<a href="#ref-R10NewestNanopore" role="doc-biblioref">102</a></sup></span></p></li>
+<li><p>Solid state nanopores:<span class="citation"><sup><a href="#ref-zhouDetectionDNAHomopolymer2019" role="doc-biblioref">103</a>,<a href="#ref-gotoIdentificationFourSinglestranded2018" role="doc-biblioref">104</a></sup></span></p></li>
+<li><p>BaseCallers which deal with homopolymers, like can be seen in Fig 3 of<span class="citation"><sup><a href="#ref-wickPerformanceNeuralNetwork2019" role="doc-biblioref">52</a></sup></span> (scrappie raw 1.4.1 or guppy)</p></li>
 </ul></li>
-<li>Avoid using HPs in barcode sequences<span class="citation"><sup><a href="#ref-hawkinsIndelcorrectingDNABarcodes2018" role="doc-biblioref">99</a>,<a href="#ref-srivathsanMinIONBasedPipeline2018" role="doc-biblioref">100</a></sup></span>.</li>
-<li>A little different but HPs have to be taken into account when developing DNA based data storage<span class="citation"><sup><a href="#ref-wangConstructionBioConstrainedCode2019" role="doc-biblioref">101</a></sup></span></li>
+<li>Avoid using HPs in barcode sequences<span class="citation"><sup><a href="#ref-hawkinsIndelcorrectingDNABarcodes2018" role="doc-biblioref">105</a>,<a href="#ref-srivathsanMinIONBasedPipeline2018" role="doc-biblioref">106</a></sup></span>.</li>
+<li>A little different but HPs have to be taken into account when developing DNA based data storage<span class="citation"><sup><a href="#ref-wangConstructionBioConstrainedCode2019" role="doc-biblioref">107</a></sup></span></li>
 </ul>
 </div>
 <div id="hpc-trick" class="section level4 hasAnchor" number="1.4.3.2">
@@ -594,11 +586,11 @@ Figure 1.5: Homopolymer length as fraction of the genome
 <li><p>Can help resolve ambiguities in some cases c.f. Figure <a href="what-is-sequence-data.html#fig:hpcSchema">1.6</a>.</p></li>
 <li><p>Used in many software tools:</p>
 <ul>
-<li><p>assembly: HiCanu<span class="citation"><sup><a href="#ref-nurkHiCanuAccurateAssembly2020" role="doc-biblioref">102</a></sup></span>, MDBG<span class="citation"><sup><a href="#ref-ekimMinimizerspaceBruijnGraphs2021" role="doc-biblioref">103</a></sup></span>, pyrosequencing assembly<span class="citation"><sup><a href="#ref-millerAggressiveAssemblyPyrosequencing2008" role="doc-biblioref">104</a></sup></span>, wtdbg2<span class="citation"><sup><a href="#ref-ruanFastAccurateLongread2020" role="doc-biblioref">67</a></sup></span>, shasta<span class="citation"><sup><a href="#ref-shafinNanoporeSequencingShasta2020" role="doc-biblioref">105</a></sup></span></p></li>
-<li><p>clustering:<span class="citation"><sup><a href="#ref-sahlinNovoClusteringLongRead2020" role="doc-biblioref">106</a></sup></span></p></li>
-<li><p>error correction: LSC<span class="citation"><sup><a href="#ref-auImprovingPacBioLong2012" role="doc-biblioref">107</a></sup></span> and LSCPlus<span class="citation"><sup><a href="#ref-huLSCplusFastSolution2016" role="doc-biblioref">108</a></sup></span></p></li>
-<li><p>alignment: minimap2<span class="citation"><sup><a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">109</a></sup></span>, winnowmap2<span class="citation"><sup><a href="#ref-jainWeightedMinimizerSampling2020" role="doc-biblioref">110</a></sup></span>.</p></li>
-<li><p>Satellite tandem repeat analysis<span class="citation"><sup><a href="#ref-vannesteForensicSTRAnalysis2012" role="doc-biblioref">111</a></sup></span></p></li>
+<li><p>assembly: HiCanu<span class="citation"><sup><a href="#ref-nurkHiCanuAccurateAssembly2020" role="doc-biblioref">108</a></sup></span>, MDBG<span class="citation"><sup><a href="#ref-ekimMinimizerspaceBruijnGraphs2021" role="doc-biblioref">109</a></sup></span>, pyrosequencing assembly<span class="citation"><sup><a href="#ref-millerAggressiveAssemblyPyrosequencing2008" role="doc-biblioref">110</a></sup></span>, wtdbg2<span class="citation"><sup><a href="#ref-ruanFastAccurateLongread2020" role="doc-biblioref">74</a></sup></span>, shasta<span class="citation"><sup><a href="#ref-shafinNanoporeSequencingShasta2020" role="doc-biblioref">111</a></sup></span></p></li>
+<li><p>clustering:<span class="citation"><sup><a href="#ref-sahlinNovoClusteringLongRead2020" role="doc-biblioref">112</a></sup></span></p></li>
+<li><p>error correction: LSC<span class="citation"><sup><a href="#ref-auImprovingPacBioLong2012" role="doc-biblioref">113</a></sup></span> and LSCPlus<span class="citation"><sup><a href="#ref-huLSCplusFastSolution2016" role="doc-biblioref">114</a></sup></span></p></li>
+<li><p>alignment: minimap2<span class="citation"><sup><a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">115</a></sup></span>, winnowmap2<span class="citation"><sup><a href="#ref-jainWeightedMinimizerSampling2020" role="doc-biblioref">116</a></sup></span>.</p></li>
+<li><p>Satellite tandem repeat analysis<span class="citation"><sup><a href="#ref-vannesteForensicSTRAnalysis2012" role="doc-biblioref">117</a></sup></span></p></li>
 </ul></li>
 </ul>
 <p>reconstruct the whole genome.</p>
@@ -617,7 +609,7 @@ A read with homopolymer related sequencing errors can be homologous to two diffe
 <div id="conclusion" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> Conclusion<a href="what-is-sequence-data.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
-<li><p><strong>Sequencing is an active field:</strong> new methods, both in short reads (ultima<span class="citation"><sup><a href="#ref-almogyCostefficientWholeGenomesequencing2022" role="doc-biblioref">112</a></sup></span> ) and long reads (illumina infinity<span class="citation"><sup><a href="#ref-HighPerformanceLong" role="doc-biblioref">85</a></sup></span> ), as well as improving existing technologies, PacBio (by acquiring Omniome<span class="citation"><sup><a href="#ref-ShortreadSequencingBinding" role="doc-biblioref">113</a></sup></span>) developing a new accurate short read technology<span class="citation"><sup><a href="#ref-cetinPlasmonicSensorCould2018" role="doc-biblioref">114</a></sup></span></p></li>
+<li><p><strong>Sequencing is an active field:</strong> new methods, both in short reads (ultima<span class="citation"><sup><a href="#ref-almogyCostefficientWholeGenomesequencing2022" role="doc-biblioref">118</a></sup></span> ) and long reads (illumina infinity<span class="citation"><sup><a href="#ref-HighPerformanceLong" role="doc-biblioref">92</a></sup></span> ), as well as improving existing technologies, PacBio (by acquiring Omniome<span class="citation"><sup><a href="#ref-ShortreadSequencingBinding" role="doc-biblioref">119</a></sup></span>) developing a new accurate short read technology<span class="citation"><sup><a href="#ref-cetinPlasmonicSensorCould2018" role="doc-biblioref">120</a></sup></span></p></li>
 <li><p><strong>Long reads are good:</strong> Super useful for plenty of very important tasks but…</p></li>
 <li><p><strong>Errors are bad:</strong> particularly in HPs since they are an important part of the genome and a major source of error in long reads</p></li>
 <li><p><strong>Computational view:</strong> sequences Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.</p></li>
@@ -777,194 +769,209 @@ A read with homopolymer related sequencing errors can be homologous to two diffe
 <div id="ref-clarkeContinuousBaseIdentification2009" class="csl-entry">
 <div class="csl-left-margin">50. </div><div class="csl-right-inline">Clarke, J. <em>et al.</em> <a href="https://doi.org/10.1038/nnano.2009.12">Continuous base identification for single-molecule nanopore DNA sequencing</a>. <em>Nature Nanotechnology</em> <strong>4</strong>, 265–270 (2009).</div>
 </div>
+<div id="ref-deamerThreeDecadesNanopore2016" class="csl-entry">
+<div class="csl-left-margin">51. </div><div class="csl-right-inline">Deamer, D., Akeson, M. &amp; Branton, D. <a href="https://doi.org/10.1038/nbt.3423">Three decades of nanopore sequencing</a>. <em>Nature Biotechnology</em> <strong>34</strong>, 518–524 (2016).</div>
+</div>
 <div id="ref-wickPerformanceNeuralNetwork2019" class="csl-entry">
-<div class="csl-left-margin">51. </div><div class="csl-right-inline">Wick, R. R., Judd, L. M. &amp; Holt, K. E. <a href="https://doi.org/10.1186/s13059-019-1727-y">Performance of neural network basecalling tools for Oxford Nanopore sequencing</a>. <em>Genome Biology</em> <strong>20</strong>, 129 (2019).</div>
+<div class="csl-left-margin">52. </div><div class="csl-right-inline">Wick, R. R., Judd, L. M. &amp; Holt, K. E. <a href="https://doi.org/10.1186/s13059-019-1727-y">Performance of neural network basecalling tools for Oxford Nanopore sequencing</a>. <em>Genome Biology</em> <strong>20</strong>, 129 (2019).</div>
 </div>
 <div id="ref-rhoadsPacBioSequencingIts2015" class="csl-entry">
-<div class="csl-left-margin">52. </div><div class="csl-right-inline">Rhoads, A. &amp; Au, K. F. <a href="https://doi.org/10.1016/j.gpb.2015.08.002">PacBio Sequencing and Its Applications</a>. <em>Genomics, Proteomics &amp; Bioinformatics</em> <strong>13</strong>, 278–289 (2015).</div>
+<div class="csl-left-margin">53. </div><div class="csl-right-inline">Rhoads, A. &amp; Au, K. F. <a href="https://doi.org/10.1016/j.gpb.2015.08.002">PacBio Sequencing and Its Applications</a>. <em>Genomics, Proteomics &amp; Bioinformatics</em> <strong>13</strong>, 278–289 (2015).</div>
 </div>
 <div id="ref-ipMinIONAnalysisReference2015" class="csl-entry">
-<div class="csl-left-margin">53. </div><div class="csl-right-inline">Ip, C. L. C. <em>et al.</em> <a href="https://doi.org/10.12688/f1000research.7201.1">MinION analysis and reference consortium: Phase 1 data release and analysis</a>. <em>F1000Research</em> <strong>4</strong>, 1075 (2015).</div>
+<div class="csl-left-margin">54. </div><div class="csl-right-inline">Ip, C. L. C. <em>et al.</em> <a href="https://doi.org/10.12688/f1000research.7201.1">MinION analysis and reference consortium: Phase 1 data release and analysis</a>. <em>F1000Research</em> <strong>4</strong>, 1075 (2015).</div>
 </div>
 <div id="ref-logsdonLongreadHumanGenome2020" class="csl-entry">
-<div class="csl-left-margin">54. </div><div class="csl-right-inline">Logsdon, G. A., Vollger, M. R. &amp; Eichler, E. E. <a href="https://doi.org/10.1038/s41576-020-0236-x">Long-read human genome sequencing and its applications</a>. <em>Nat Rev Genet</em> <strong>21</strong>, 597–614 (2020).</div>
+<div class="csl-left-margin">55. </div><div class="csl-right-inline">Logsdon, G. A., Vollger, M. R. &amp; Eichler, E. E. <a href="https://doi.org/10.1038/s41576-020-0236-x">Long-read human genome sequencing and its applications</a>. <em>Nat Rev Genet</em> <strong>21</strong>, 597–614 (2020).</div>
 </div>
 <div id="ref-jainNanoporeSequencingAssembly2018" class="csl-entry">
-<div class="csl-left-margin">55. </div><div class="csl-right-inline">Jain, M. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.4060">Nanopore sequencing and assembly of a human genome with ultra-long reads</a>. <em>Nature Biotechnology</em> <strong>36</strong>, 338–345 (2018).</div>
+<div class="csl-left-margin">56. </div><div class="csl-right-inline">Jain, M. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.4060">Nanopore sequencing and assembly of a human genome with ultra-long reads</a>. <em>Nature Biotechnology</em> <strong>36</strong>, 338–345 (2018).</div>
 </div>
 <div id="ref-payneBulkVisGraphicalViewer2019" class="csl-entry">
-<div class="csl-left-margin">57. </div><div class="csl-right-inline">Payne, A., Holmes, N., Rakyan, V. &amp; Loose, M. <a href="https://doi.org/10.1093/bioinformatics/bty841">BulkVis: A graphical viewer for oxford nanopore bulk FAST5 files</a>. <em>Bioinformatics</em> <strong>35</strong>, 2193–2198 (2019).</div>
+<div class="csl-left-margin">58. </div><div class="csl-right-inline">Payne, A., Holmes, N., Rakyan, V. &amp; Loose, M. <a href="https://doi.org/10.1093/bioinformatics/bty841">BulkVis: A graphical viewer for oxford nanopore bulk FAST5 files</a>. <em>Bioinformatics</em> <strong>35</strong>, 2193–2198 (2019).</div>
 </div>
 <div id="ref-murigneuxComparisonLongreadMethods2020" class="csl-entry">
-<div class="csl-left-margin">58. </div><div class="csl-right-inline">Murigneux, V. <em>et al.</em> <a href="https://doi.org/10.1093/gigascience/giaa146">Comparison of long-read methods for sequencing and assembly of a plant genome</a>. <em>GigaScience</em> <strong>9</strong>, giaa146 (2020).</div>
+<div class="csl-left-margin">59. </div><div class="csl-right-inline">Murigneux, V. <em>et al.</em> <a href="https://doi.org/10.1093/gigascience/giaa146">Comparison of long-read methods for sequencing and assembly of a plant genome</a>. <em>GigaScience</em> <strong>9</strong>, giaa146 (2020).</div>
 </div>
 <div id="ref-chaissonResolvingComplexityHuman2015" class="csl-entry">
-<div class="csl-left-margin">59. </div><div class="csl-right-inline">Chaisson, M. J. P. <em>et al.</em> <a href="https://doi.org/10.1038/nature13907">Resolving the complexity of the human genome using single-molecule sequencing</a>. <em>Nature</em> <strong>517</strong>, 608–611 (2015).</div>
+<div class="csl-left-margin">60. </div><div class="csl-right-inline">Chaisson, M. J. P. <em>et al.</em> <a href="https://doi.org/10.1038/nature13907">Resolving the complexity of the human genome using single-molecule sequencing</a>. <em>Nature</em> <strong>517</strong>, 608–611 (2015).</div>
 </div>
 <div id="ref-jainOxfordNanoporeMinION2016" class="csl-entry">
-<div class="csl-left-margin">60. </div><div class="csl-right-inline">Jain, M., Olsen, H. E., Paten, B. &amp; Akeson, M. <a href="https://doi.org/10.1186/s13059-016-1103-0">The Oxford Nanopore MinION: delivery of nanopore sequencing to the genomics community</a>. <em>Genome Biology</em> <strong>17</strong>, 239 (2016).</div>
+<div class="csl-left-margin">61. </div><div class="csl-right-inline">Jain, M., Olsen, H. E., Paten, B. &amp; Akeson, M. <a href="https://doi.org/10.1186/s13059-016-1103-0">The Oxford Nanopore MinION: delivery of nanopore sequencing to the genomics community</a>. <em>Genome Biology</em> <strong>17</strong>, 239 (2016).</div>
+</div>
+<div id="ref-hongRNASequencingNew2020" class="csl-entry">
+<div class="csl-left-margin">62. </div><div class="csl-right-inline">Hong, M. <em>et al.</em> <a href="https://doi.org/10.1186/s13045-020-01005-x">RNA sequencing: New technologies and applications in cancer research</a>. <em>Journal of Hematology &amp; Oncology</em> <strong>13</strong>, 166 (2020).</div>
+</div>
+<div id="ref-ozsolakRNASequencingAdvances2011" class="csl-entry">
+<div class="csl-left-margin">63. </div><div class="csl-right-inline">Ozsolak, F. &amp; Milos, P. M. <a href="https://doi.org/10.1038/nrg2934">RNA sequencing: advances, challenges and opportunities</a>. <em>Nature Reviews Genetics</em> <strong>12</strong>, 87–98 (2011).</div>
 </div>
 <div id="ref-huntProteinSequencingTandem1986" class="csl-entry">
-<div class="csl-left-margin">61. </div><div class="csl-right-inline">Hunt, D. F., Yates, J. R., Shabanowitz, J., Winston, S. &amp; Hauer, C. R. <a href="https://doi.org/10.1073/pnas.83.17.6233">Protein sequencing by tandem mass spectrometry.</a> <em>Proceedings of the National Academy of Sciences</em> <strong>83</strong>, 6233–6237 (1986).</div>
+<div class="csl-left-margin">64. </div><div class="csl-right-inline">Hunt, D. F., Yates, J. R., Shabanowitz, J., Winston, S. &amp; Hauer, C. R. <a href="https://doi.org/10.1073/pnas.83.17.6233">Protein sequencing by tandem mass spectrometry.</a> <em>Proceedings of the National Academy of Sciences</em> <strong>83</strong>, 6233–6237 (1986).</div>
 </div>
 <div id="ref-smithProteinSequencingProtocols2002" class="csl-entry">
-<div class="csl-left-margin">62. </div><div class="csl-right-inline">Smith, B. J. <em>Protein Sequencing Protocols</em>. (Springer Science &amp; Business Media, 2002).</div>
+<div class="csl-left-margin">65. </div><div class="csl-right-inline">Smith, B. J. <em>Protein Sequencing Protocols</em>. (Springer Science &amp; Business Media, 2002).</div>
 </div>
 <div id="ref-restrepo-perezPavingWaySinglemolecule2018" class="csl-entry">
-<div class="csl-left-margin">63. </div><div class="csl-right-inline">Restrepo-Pérez, L., Joo, C. &amp; Dekker, C. <a href="https://doi.org/10.1038/s41565-018-0236-6">Paving the way to single-molecule protein sequencing</a>. <em>Nature Nanotechnology</em> <strong>13</strong>, 786–796 (2018).</div>
-</div>
-<div id="ref-maAnalysisErrorProfiles2019" class="csl-entry">
-<div class="csl-left-margin">64. </div><div class="csl-right-inline">Ma, X. <em>et al.</em> <a href="https://doi.org/10.1186/s13059-019-1659-6">Analysis of error profiles in deep next-generation sequencing data</a>. <em>Genome Biology</em> <strong>20</strong>, 50 (2019).</div>
-</div>
-<div id="ref-limaComparativeAssessmentLongread2020" class="csl-entry">
-<div class="csl-left-margin">65. </div><div class="csl-right-inline">Lima, L. <em>et al.</em> <a href="https://doi.org/10.1093/bib/bbz058">Comparative assessment of long-read error correction software applied to nanopore RNA-sequencing data</a>. <em>Briefings in Bioinformatics</em> <strong>21</strong>, 1164–1181 (2020).</div>
-</div>
-<div id="ref-amarasingheOpportunitiesChallengesLongread2020" class="csl-entry">
-<div class="csl-left-margin">66. </div><div class="csl-right-inline">Amarasinghe, S. L. <em>et al.</em> <a href="https://doi.org/10.1186/s13059-020-1935-5">Opportunities and challenges in long-read sequencing data analysis</a>. <em>Genome Biology</em> <strong>21</strong>, 30 (2020).</div>
-</div>
-<div id="ref-ruanFastAccurateLongread2020" class="csl-entry">
-<div class="csl-left-margin">67. </div><div class="csl-right-inline">Ruan, J. &amp; Li, H. <a href="https://doi.org/10.1038/s41592-019-0669-3">Fast and accurate long-read assembly with wtdbg2</a>. <em>Nature Methods</em> <strong>17</strong>, 155–158 (2020).</div>
-</div>
-<div id="ref-korenCanuScalableAccurate2017" class="csl-entry">
-<div class="csl-left-margin">68. </div><div class="csl-right-inline">Koren, S. <em>et al.</em> <a href="https://doi.org/10.1101/gr.215087.116">Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation</a>. <em>Genome Research</em> <strong>27</strong>, 722–736 (2017).</div>
-</div>
-<div id="ref-tischlerNonHybridLong2017" class="csl-entry">
-<div class="csl-left-margin">69. </div><div class="csl-right-inline">Tischler, G. &amp; Myers, E. W. <em>Non Hybrid Long Read Consensus Using Local De Bruijn Graph Assembly</em>. 106252 <a href="https://www.biorxiv.org/content/10.1101/106252v1">https://www.biorxiv.org/content/10.1101/106252v1</a> (2017) doi:<a href="https://doi.org/10.1101/106252">10.1101/106252</a>.</div>
-</div>
-<div id="ref-hacklProovreadLargescaleHighaccuracy2014" class="csl-entry">
-<div class="csl-left-margin">70. </div><div class="csl-right-inline">Hackl, T., Hedrich, R., Schultz, J. &amp; Förster, F. <a href="https://doi.org/10.1093/bioinformatics/btu392">Proovread : Large-scale high-accuracy PacBio correction through iterative short read consensus</a>. <em>Bioinformatics</em> <strong>30</strong>, 3004–3011 (2014).</div>
-</div>
-<div id="ref-miclotteJabbaHybridError2016" class="csl-entry">
-<div class="csl-left-margin">71. </div><div class="csl-right-inline">Miclotte, G. <em>et al.</em> <a href="https://doi.org/10.1186/s13015-016-0075-7">Jabba: Hybrid error correction for long sequencing reads</a>. <em>Algorithms for Molecular Biology</em> <strong>11</strong>, 10 (2016).</div>
-</div>
-<div id="ref-korenHybridErrorCorrection2012" class="csl-entry">
-<div class="csl-left-margin">72. </div><div class="csl-right-inline">Koren, S. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.2280">Hybrid error correction and de novo assembly of single-molecule sequencing reads</a>. <em>Nature Biotechnology</em> <strong>30</strong>, 693–700 (2012).</div>
-</div>
-<div id="ref-salmelaLoRDECAccurateEfficient2014" class="csl-entry">
-<div class="csl-left-margin">73. </div><div class="csl-right-inline">Salmela, L. &amp; Rivals, E. <a href="https://doi.org/10.1093/bioinformatics/btu538">LoRDEC: Accurate and efficient long read error correction</a>. <em>Bioinformatics</em> <strong>30</strong>, 3506–3514 (2014).</div>
-</div>
-<div id="ref-heplerImprovedCircularConsensus2016" class="csl-entry">
-<div class="csl-left-margin">74. </div><div class="csl-right-inline">Hepler, N. L. <em>et al.</em> An improved circular consensus algorithm with an application to detect HIV-1 drug-resistance associated mutations (DRAMs). in (2016).</div>
-</div>
-<div id="ref-simpsonDetectingDNACytosine2017" class="csl-entry">
-<div class="csl-left-margin">75. </div><div class="csl-right-inline">Simpson, J. T. <em>et al.</em> <a href="https://doi.org/10.1038/nmeth.4184">Detecting DNA cytosine methylation using nanopore sequencing</a>. <em>Nature Methods</em> <strong>14</strong>, 407–410 (2017).</div>
-</div>
-<div id="ref-walkerPilonIntegratedTool2014" class="csl-entry">
-<div class="csl-left-margin">76. </div><div class="csl-right-inline">Walker, B. J. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0112963">Pilon: An Integrated Tool for Comprehensive Microbial Variant Detection and Genome Assembly Improvement</a>. <em>PLOS ONE</em> <strong>9</strong>, e112963 (2014).</div>
-</div>
-<div id="ref-vaserFastAccurateNovo2017" class="csl-entry">
-<div class="csl-left-margin">77. </div><div class="csl-right-inline">Vaser, R., Sović, I., Nagarajan, N. &amp; Šikić, M. <a href="https://doi.org/10.1101/gr.214270.116">Fast and accurate de novo genome assembly from long uncorrected reads</a>. <em>Genome Research</em> <strong>27</strong>, 737–746 (2017).</div>
-</div>
-<div id="ref-fuComparativeEvaluationHybrid2019" class="csl-entry">
-<div class="csl-left-margin">78. </div><div class="csl-right-inline">Fu, S., Wang, A. &amp; Au, K. F. <a href="https://doi.org/10.1186/s13059-018-1605-z">A comparative evaluation of hybrid error correction methods for error-prone long reads</a>. <em>Genome Biology</em> <strong>20</strong>, 26 (2019).</div>
-</div>
-<div id="ref-zhangComprehensiveEvaluationLong2020" class="csl-entry">
-<div class="csl-left-margin">79. </div><div class="csl-right-inline">Zhang, H., Jain, C. &amp; Aluru, S. <a href="https://doi.org/10.1186/s12864-020-07227-0">A comprehensive evaluation of long read error correction methods</a>. <em>BMC Genomics</em> <strong>21</strong>, 889 (2020).</div>
-</div>
-<div id="ref-wenger2019" class="csl-entry">
-<div class="csl-left-margin">80. </div><div class="csl-right-inline">Wenger, A. M. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-019-0217-9">Accurate circular consensus long-read sequencing improves variant detection and assembly of a human genome</a>. <em>Nature Biotechnology</em> <strong>37</strong>, 1155–1162 (2019).</div>
-</div>
-<div id="ref-karstHighaccuracyLongreadAmplicon2021" class="csl-entry">
-<div class="csl-left-margin">81. </div><div class="csl-right-inline">Karst, S. M. <em>et al.</em> <a href="https://doi.org/10.1038/s41592-020-01041-y">High-accuracy long-read amplicon sequences using unique molecular identifiers with Nanopore or PacBio sequencing</a>. <em>Nature Methods</em> <strong>18</strong>, 165–169 (2021).</div>
-</div>
-<div id="ref-peresiniNanoporeBaseCalling2021" class="csl-entry">
-<div class="csl-left-margin">82. </div><div class="csl-right-inline">Perešíni, P., Boža, V., Brejová, B. &amp; Vinař, T. <a href="https://doi.org/10.1093/bioinformatics/btab528">Nanopore base calling on the edge</a>. <em>Bioinformatics</em> <strong>37</strong>, 4661–4667 (2021).</div>
-</div>
-<div id="ref-bozaDeepNanoDeepRecurrent2017" class="csl-entry">
-<div class="csl-left-margin">83. </div><div class="csl-right-inline">Boža, V., Brejová, B. &amp; Vinař, T. <a href="https://doi.org/10.1371/journal.pone.0178751">DeepNano: Deep recurrent neural networks for base calling in MinION nanopore reads</a>. <em>PLOS ONE</em> <strong>12</strong>, e0178751 (2017).</div>
-</div>
-<div id="ref-chenHighlyAccurateFluorogenic2017" class="csl-entry">
-<div class="csl-left-margin">84. </div><div class="csl-right-inline">Chen, Z. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.3982">Highly accurate fluorogenic DNA sequencing with information theory<span></span>based error correction</a>. <em>Nature Biotechnology</em> <strong>35</strong>, 1170–1178 (2017).</div>
-</div>
-<div id="ref-HighPerformanceLong" class="csl-entry">
-<div class="csl-left-margin">85. </div><div class="csl-right-inline"><a href="https://www.illumina.com/content/illumina-marketing/amr/en_US/science/genomics-research/articles/infinity-high-performance-long-read-assay.html">High Performance Long Read Assay Enables Contiguous Data up to 10Kb on Existing Illumina Platforms</a>.</div>
-</div>
-<div id="ref-ivadyAnalyticalParametersValidation2018" class="csl-entry">
-<div class="csl-left-margin">86. </div><div class="csl-right-inline">Ivády, G. <em>et al.</em> <a href="https://doi.org/10.1186/s12864-018-4544-x">Analytical parameters and validation of homopolymer detection in a pyrosequencing-based next generation sequencing system</a>. <em>BMC Genomics</em> <strong>19</strong>, 158 (2018).</div>
-</div>
-<div id="ref-booeshaghiPseudoalignmentFacilitatesAssignment2022" class="csl-entry">
-<div class="csl-left-margin">87. </div><div class="csl-right-inline">Booeshaghi, A. S. &amp; Pachter, L. Pseudoalignment facilitates assignment of error-prone Ultima Genomics reads. doi:<a href="https://doi.org/10.1101/2022.06.04.494845">10.1101/2022.06.04.494845</a>.</div>
-</div>
-<div id="ref-delahaye2021" class="csl-entry">
-<div class="csl-left-margin">88. </div><div class="csl-right-inline">Delahaye, C. &amp; Nicolas, J. <a href="https://doi.org/10.1371/journal.pone.0257521">Sequencing DNA with nanopores: Troubles and biases</a>. <em>PLOS ONE</em> <strong>16</strong>, e0257521 (2021).</div>
-</div>
-<div id="ref-goodwin2015" class="csl-entry">
-<div class="csl-left-margin">89. </div><div class="csl-right-inline">Goodwin, S. <em>et al.</em> <a href="https://doi.org/10.1101/gr.191395.115">Oxford Nanopore sequencing, hybrid error correction, and de novo assembly of a eukaryotic genome</a>. <em>Genome Research</em> <strong>25</strong>, 1750–1756 (2015).</div>
-</div>
-<div id="ref-dohmBenchmarkingLongreadCorrection2020" class="csl-entry">
-<div class="csl-left-margin">90. </div><div class="csl-right-inline">Dohm, J. C., Peters, P., Stralis-Pavese, N. &amp; Himmelbauer, H. <a href="https://doi.org/10.1093/nargab/lqaa037">Benchmarking of long-read correction methods</a>. <em>NAR Genomics and Bioinformatics</em> <strong>2</strong>, (2020).</div>
+<div class="csl-left-margin">66. </div><div class="csl-right-inline">Restrepo-Pérez, L., Joo, C. &amp; Dekker, C. <a href="https://doi.org/10.1038/s41565-018-0236-6">Paving the way to single-molecule protein sequencing</a>. <em>Nature Nanotechnology</em> <strong>13</strong>, 786–796 (2018).</div>
 </div>
 <div id="ref-weirather2017" class="csl-entry">
-<div class="csl-left-margin">91. </div><div class="csl-right-inline">Weirather, J. L. <em>et al.</em> <a href="https://doi.org/10.12688/f1000research.10571.2">Comprehensive comparison of pacific biosciences and oxford nanopore technologies and their applications to transcriptome analysis</a>. <em>F1000Research</em> <strong>6</strong>, 100 (2017).</div>
+<div class="csl-left-margin">67. </div><div class="csl-right-inline">Weirather, J. L. <em>et al.</em> <a href="https://doi.org/10.12688/f1000research.10571.2">Comprehensive comparison of pacific biosciences and oxford nanopore technologies and their applications to transcriptome analysis</a>. <em>F1000Research</em> <strong>6</strong>, 100 (2017).</div>
+</div>
+<div id="ref-wangNanoporeSequencingTechnology2021" class="csl-entry">
+<div class="csl-left-margin">68. </div><div class="csl-right-inline">Wang, Y., Zhao, Y., Bollas, A., Wang, Y. &amp; Au, K. F. <a href="https://doi.org/10.1038/s41587-021-01108-x">Nanopore sequencing technology, bioinformatics and applications</a>. <em>Nature Biotechnology</em> <strong>39</strong>, 1348–1365 (2021).</div>
+</div>
+<div id="ref-maAnalysisErrorProfiles2019" class="csl-entry">
+<div class="csl-left-margin">69. </div><div class="csl-right-inline">Ma, X. <em>et al.</em> <a href="https://doi.org/10.1186/s13059-019-1659-6">Analysis of error profiles in deep next-generation sequencing data</a>. <em>Genome Biology</em> <strong>20</strong>, 50 (2019).</div>
+</div>
+<div id="ref-limaComparativeAssessmentLongread2020" class="csl-entry">
+<div class="csl-left-margin">70. </div><div class="csl-right-inline">Lima, L. <em>et al.</em> <a href="https://doi.org/10.1093/bib/bbz058">Comparative assessment of long-read error correction software applied to nanopore RNA-sequencing data</a>. <em>Briefings in Bioinformatics</em> <strong>21</strong>, 1164–1181 (2020).</div>
+</div>
+<div id="ref-zhangComprehensiveEvaluationLong2020" class="csl-entry">
+<div class="csl-left-margin">72. </div><div class="csl-right-inline">Zhang, H., Jain, C. &amp; Aluru, S. <a href="https://doi.org/10.1186/s12864-020-07227-0">A comprehensive evaluation of long read error correction methods</a>. <em>BMC Genomics</em> <strong>21</strong>, 889 (2020).</div>
+</div>
+<div id="ref-amarasingheOpportunitiesChallengesLongread2020" class="csl-entry">
+<div class="csl-left-margin">73. </div><div class="csl-right-inline">Amarasinghe, S. L. <em>et al.</em> <a href="https://doi.org/10.1186/s13059-020-1935-5">Opportunities and challenges in long-read sequencing data analysis</a>. <em>Genome Biology</em> <strong>21</strong>, 30 (2020).</div>
+</div>
+<div id="ref-ruanFastAccurateLongread2020" class="csl-entry">
+<div class="csl-left-margin">74. </div><div class="csl-right-inline">Ruan, J. &amp; Li, H. <a href="https://doi.org/10.1038/s41592-019-0669-3">Fast and accurate long-read assembly with wtdbg2</a>. <em>Nature Methods</em> <strong>17</strong>, 155–158 (2020).</div>
+</div>
+<div id="ref-korenCanuScalableAccurate2017" class="csl-entry">
+<div class="csl-left-margin">75. </div><div class="csl-right-inline">Koren, S. <em>et al.</em> <a href="https://doi.org/10.1101/gr.215087.116">Canu: scalable and accurate long-read assembly via adaptive k-mer weighting and repeat separation</a>. <em>Genome Research</em> <strong>27</strong>, 722–736 (2017).</div>
+</div>
+<div id="ref-tischlerNonHybridLong2017" class="csl-entry">
+<div class="csl-left-margin">76. </div><div class="csl-right-inline">Tischler, G. &amp; Myers, E. W. <em>Non Hybrid Long Read Consensus Using Local De Bruijn Graph Assembly</em>. 106252 <a href="https://www.biorxiv.org/content/10.1101/106252v1">https://www.biorxiv.org/content/10.1101/106252v1</a> (2017) doi:<a href="https://doi.org/10.1101/106252">10.1101/106252</a>.</div>
+</div>
+<div id="ref-warrenNtEditScalableGenome2019" class="csl-entry">
+<div class="csl-left-margin">77. </div><div class="csl-right-inline">Warren, R. L. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btz400">ntEdit: Scalable genome sequence polishing</a>. <em>Bioinformatics</em> <strong>35</strong>, 4430–4432 (2019).</div>
+</div>
+<div id="ref-heplerImprovedCircularConsensus2016" class="csl-entry">
+<div class="csl-left-margin">78. </div><div class="csl-right-inline">Hepler, N. L. <em>et al.</em> An improved circular consensus algorithm with an application to detect HIV-1 drug-resistance associated mutations (DRAMs). in (2016).</div>
+</div>
+<div id="ref-simpsonDetectingDNACytosine2017" class="csl-entry">
+<div class="csl-left-margin">79. </div><div class="csl-right-inline">Simpson, J. T. <em>et al.</em> <a href="https://doi.org/10.1038/nmeth.4184">Detecting DNA cytosine methylation using nanopore sequencing</a>. <em>Nature Methods</em> <strong>14</strong>, 407–410 (2017).</div>
+</div>
+<div id="ref-hacklProovreadLargescaleHighaccuracy2014" class="csl-entry">
+<div class="csl-left-margin">80. </div><div class="csl-right-inline">Hackl, T., Hedrich, R., Schultz, J. &amp; Förster, F. <a href="https://doi.org/10.1093/bioinformatics/btu392">Proovread : Large-scale high-accuracy PacBio correction through iterative short read consensus</a>. <em>Bioinformatics</em> <strong>30</strong>, 3004–3011 (2014).</div>
+</div>
+<div id="ref-miclotteJabbaHybridError2016" class="csl-entry">
+<div class="csl-left-margin">81. </div><div class="csl-right-inline">Miclotte, G. <em>et al.</em> <a href="https://doi.org/10.1186/s13015-016-0075-7">Jabba: Hybrid error correction for long sequencing reads</a>. <em>Algorithms for Molecular Biology</em> <strong>11</strong>, 10 (2016).</div>
+</div>
+<div id="ref-korenHybridErrorCorrection2012" class="csl-entry">
+<div class="csl-left-margin">82. </div><div class="csl-right-inline">Koren, S. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.2280">Hybrid error correction and de novo assembly of single-molecule sequencing reads</a>. <em>Nature Biotechnology</em> <strong>30</strong>, 693–700 (2012).</div>
+</div>
+<div id="ref-salmelaLoRDECAccurateEfficient2014" class="csl-entry">
+<div class="csl-left-margin">83. </div><div class="csl-right-inline">Salmela, L. &amp; Rivals, E. <a href="https://doi.org/10.1093/bioinformatics/btu538">LoRDEC: Accurate and efficient long read error correction</a>. <em>Bioinformatics</em> <strong>30</strong>, 3506–3514 (2014).</div>
+</div>
+<div id="ref-walkerPilonIntegratedTool2014" class="csl-entry">
+<div class="csl-left-margin">84. </div><div class="csl-right-inline">Walker, B. J. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0112963">Pilon: An Integrated Tool for Comprehensive Microbial Variant Detection and Genome Assembly Improvement</a>. <em>PLOS ONE</em> <strong>9</strong>, e112963 (2014).</div>
+</div>
+<div id="ref-vaserFastAccurateNovo2017" class="csl-entry">
+<div class="csl-left-margin">85. </div><div class="csl-right-inline">Vaser, R., Sović, I., Nagarajan, N. &amp; Šikić, M. <a href="https://doi.org/10.1101/gr.214270.116">Fast and accurate de novo genome assembly from long uncorrected reads</a>. <em>Genome Research</em> <strong>27</strong>, 737–746 (2017).</div>
+</div>
+<div id="ref-wenger2019" class="csl-entry">
+<div class="csl-left-margin">86. </div><div class="csl-right-inline">Wenger, A. M. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-019-0217-9">Accurate circular consensus long-read sequencing improves variant detection and assembly of a human genome</a>. <em>Nature Biotechnology</em> <strong>37</strong>, 1155–1162 (2019).</div>
+</div>
+<div id="ref-timpDNABaseCallingNanopore2012" class="csl-entry">
+<div class="csl-left-margin">87. </div><div class="csl-right-inline">Timp, W., Comer, J. &amp; Aksimentiev, A. <a href="https://doi.org/10.1016/j.bpj.2012.04.009">DNA Base-Calling from a Nanopore Using a Viterbi Algorithm</a>. <em>Biophysical Journal</em> <strong>102</strong>, L37–L39 (2012).</div>
+</div>
+<div id="ref-peresiniNanoporeBaseCalling2021" class="csl-entry">
+<div class="csl-left-margin">88. </div><div class="csl-right-inline">Perešíni, P., Boža, V., Brejová, B. &amp; Vinař, T. <a href="https://doi.org/10.1093/bioinformatics/btab528">Nanopore base calling on the edge</a>. <em>Bioinformatics</em> <strong>37</strong>, 4661–4667 (2021).</div>
+</div>
+<div id="ref-bozaDeepNanoDeepRecurrent2017" class="csl-entry">
+<div class="csl-left-margin">89. </div><div class="csl-right-inline">Boža, V., Brejová, B. &amp; Vinař, T. <a href="https://doi.org/10.1371/journal.pone.0178751">DeepNano: Deep recurrent neural networks for base calling in MinION nanopore reads</a>. <em>PLOS ONE</em> <strong>12</strong>, e0178751 (2017).</div>
+</div>
+<div id="ref-karstHighaccuracyLongreadAmplicon2021" class="csl-entry">
+<div class="csl-left-margin">90. </div><div class="csl-right-inline">Karst, S. M. <em>et al.</em> <a href="https://doi.org/10.1038/s41592-020-01041-y">High-accuracy long-read amplicon sequences using unique molecular identifiers with Nanopore or PacBio sequencing</a>. <em>Nature Methods</em> <strong>18</strong>, 165–169 (2021).</div>
+</div>
+<div id="ref-chenHighlyAccurateFluorogenic2017" class="csl-entry">
+<div class="csl-left-margin">91. </div><div class="csl-right-inline">Chen, Z. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.3982">Highly accurate fluorogenic DNA sequencing with information theory<span></span>based error correction</a>. <em>Nature Biotechnology</em> <strong>35</strong>, 1170–1178 (2017).</div>
+</div>
+<div id="ref-HighPerformanceLong" class="csl-entry">
+<div class="csl-left-margin">92. </div><div class="csl-right-inline"><a href="https://www.illumina.com/content/illumina-marketing/amr/en_US/science/genomics-research/articles/infinity-high-performance-long-read-assay.html">High Performance Long Read Assay Enables Contiguous Data up to 10Kb on Existing Illumina Platforms</a>.</div>
+</div>
+<div id="ref-ivadyAnalyticalParametersValidation2018" class="csl-entry">
+<div class="csl-left-margin">93. </div><div class="csl-right-inline">Ivády, G. <em>et al.</em> <a href="https://doi.org/10.1186/s12864-018-4544-x">Analytical parameters and validation of homopolymer detection in a pyrosequencing-based next generation sequencing system</a>. <em>BMC Genomics</em> <strong>19</strong>, 158 (2018).</div>
+</div>
+<div id="ref-booeshaghiPseudoalignmentFacilitatesAssignment2022" class="csl-entry">
+<div class="csl-left-margin">94. </div><div class="csl-right-inline">Booeshaghi, A. S. &amp; Pachter, L. Pseudoalignment facilitates assignment of error-prone Ultima Genomics reads. doi:<a href="https://doi.org/10.1101/2022.06.04.494845">10.1101/2022.06.04.494845</a>.</div>
+</div>
+<div id="ref-delahaye2021" class="csl-entry">
+<div class="csl-left-margin">95. </div><div class="csl-right-inline">Delahaye, C. &amp; Nicolas, J. <a href="https://doi.org/10.1371/journal.pone.0257521">Sequencing DNA with nanopores: Troubles and biases</a>. <em>PLOS ONE</em> <strong>16</strong>, e0257521 (2021).</div>
+</div>
+<div id="ref-goodwin2015" class="csl-entry">
+<div class="csl-left-margin">96. </div><div class="csl-right-inline">Goodwin, S. <em>et al.</em> <a href="https://doi.org/10.1101/gr.191395.115">Oxford Nanopore sequencing, hybrid error correction, and de novo assembly of a eukaryotic genome</a>. <em>Genome Research</em> <strong>25</strong>, 1750–1756 (2015).</div>
+</div>
+<div id="ref-dohmBenchmarkingLongreadCorrection2020" class="csl-entry">
+<div class="csl-left-margin">97. </div><div class="csl-right-inline">Dohm, J. C., Peters, P., Stralis-Pavese, N. &amp; Himmelbauer, H. <a href="https://doi.org/10.1093/nargab/lqaa037">Benchmarking of long-read correction methods</a>. <em>NAR Genomics and Bioinformatics</em> <strong>2</strong>, (2020).</div>
 </div>
 <div id="ref-fooxPerformanceAssessmentDNA2021" class="csl-entry">
-<div class="csl-left-margin">92. </div><div class="csl-right-inline">Foox, J. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-021-01049-5">Performance assessment of DNA sequencing platforms in the ABRF Next-Generation Sequencing Study</a>. <em>Nature Biotechnology</em> <strong>39</strong>, 1129–1140 (2021).</div>
+<div class="csl-left-margin">98. </div><div class="csl-right-inline">Foox, J. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-021-01049-5">Performance assessment of DNA sequencing platforms in the ABRF Next-Generation Sequencing Study</a>. <em>Nature Biotechnology</em> <strong>39</strong>, 1129–1140 (2021).</div>
 </div>
 <div id="ref-huangHomopolishMethodRemoval2021" class="csl-entry">
-<div class="csl-left-margin">93. </div><div class="csl-right-inline">Huang, Y.-T., Liu, P.-Y. &amp; Shih, P.-W. <a href="https://doi.org/10.1186/s13059-021-02282-6">Homopolish: A method for the removal of systematic errors in nanopore sequencing by homologous polishing</a>. <em>Genome Biology</em> <strong>22</strong>, 95 (2021).</div>
+<div class="csl-left-margin">99. </div><div class="csl-right-inline">Huang, Y.-T., Liu, P.-Y. &amp; Shih, P.-W. <a href="https://doi.org/10.1186/s13059-021-02282-6">Homopolish: A method for the removal of systematic errors in nanopore sequencing by homologous polishing</a>. <em>Genome Biology</em> <strong>22</strong>, 95 (2021).</div>
 </div>
 <div id="ref-rangSquiggleBasepairComputational2018" class="csl-entry">
-<div class="csl-left-margin">94. </div><div class="csl-right-inline">Rang, F. J., Kloosterman, W. P. &amp; Ridder, J. de. <a href="https://doi.org/10.1186/s13059-018-1462-9">From squiggle to basepair: Computational approaches for improving nanopore sequencing read accuracy</a>. <em>Genome Biology</em> <strong>19</strong>, 90 (2018).</div>
+<div class="csl-left-margin">100. </div><div class="csl-right-inline">Rang, F. J., Kloosterman, W. P. &amp; Ridder, J. de. <a href="https://doi.org/10.1186/s13059-018-1462-9">From squiggle to basepair: Computational approaches for improving nanopore sequencing read accuracy</a>. <em>Genome Biology</em> <strong>19</strong>, 90 (2018).</div>
 </div>
 <div id="ref-sarkozyCallingHomopolymerStretches2018" class="csl-entry">
-<div class="csl-left-margin">95. </div><div class="csl-right-inline">Sarkozy, P., Jobbágy, Á. &amp; Antal, P. Calling Homopolymer Stretches from Raw Nanopore Reads by Analyzing k-mer Dwell Times. in (eds. Eskola, H., Väisänen, O., Viik, J. &amp; Hyttinen, J.) 241–244 (Springer, 2018). doi:<a href="https://doi.org/10.1007/978-981-10-5122-7_61">10.1007/978-981-10-5122-7_61</a>.</div>
+<div class="csl-left-margin">101. </div><div class="csl-right-inline">Sarkozy, P., Jobbágy, Á. &amp; Antal, P. Calling Homopolymer Stretches from Raw Nanopore Reads by Analyzing k-mer Dwell Times. in (eds. Eskola, H., Väisänen, O., Viik, J. &amp; Hyttinen, J.) 241–244 (Springer, 2018). doi:<a href="https://doi.org/10.1007/978-981-10-5122-7_61">10.1007/978-981-10-5122-7_61</a>.</div>
 </div>
 <div id="ref-R10NewestNanopore" class="csl-entry">
-<div class="csl-left-margin">96. </div><div class="csl-right-inline"><a href="http://nanoporetech.com/about-us/news/r103-newest-nanopore-high-accuracy-nanopore-sequencing-now-available-store">R10.3: the newest nanopore for high accuracy nanopore sequencing <span></span> now available in store</a>.</div>
+<div class="csl-left-margin">102. </div><div class="csl-right-inline"><a href="http://nanoporetech.com/about-us/news/r103-newest-nanopore-high-accuracy-nanopore-sequencing-now-available-store">R10.3: the newest nanopore for high accuracy nanopore sequencing <span></span> now available in store</a>.</div>
 </div>
 <div id="ref-zhouDetectionDNAHomopolymer2019" class="csl-entry">
-<div class="csl-left-margin">97. </div><div class="csl-right-inline">Zhou, L. <em>et al.</em> <a href="https://doi.org/10.1116/1.5116295">Detection of DNA homopolymer with graphene nanopore</a>. <em>Journal of Vacuum Science &amp; Technology B</em> <strong>37</strong>, 061809 (2019).</div>
+<div class="csl-left-margin">103. </div><div class="csl-right-inline">Zhou, L. <em>et al.</em> <a href="https://doi.org/10.1116/1.5116295">Detection of DNA homopolymer with graphene nanopore</a>. <em>Journal of Vacuum Science &amp; Technology B</em> <strong>37</strong>, 061809 (2019).</div>
 </div>
 <div id="ref-gotoIdentificationFourSinglestranded2018" class="csl-entry">
-<div class="csl-left-margin">98. </div><div class="csl-right-inline">Goto, Y., Yanagi, I., Matsui, K., Yokoi, T. &amp; Takeda, K. <a href="https://doi.org/10.1039/C8NR04238A">Identification of four single-stranded DNA homopolymers with a solid-state nanopore in alkaline CsCl solution</a>. <em>Nanoscale</em> <strong>10</strong>, 20844–20850 (2018).</div>
+<div class="csl-left-margin">104. </div><div class="csl-right-inline">Goto, Y., Yanagi, I., Matsui, K., Yokoi, T. &amp; Takeda, K. <a href="https://doi.org/10.1039/C8NR04238A">Identification of four single-stranded DNA homopolymers with a solid-state nanopore in alkaline CsCl solution</a>. <em>Nanoscale</em> <strong>10</strong>, 20844–20850 (2018).</div>
 </div>
 <div id="ref-hawkinsIndelcorrectingDNABarcodes2018" class="csl-entry">
-<div class="csl-left-margin">99. </div><div class="csl-right-inline">Hawkins, J. A., Jones, S. K., Finkelstein, I. J. &amp; Press, W. H. <a href="https://doi.org/10.1073/pnas.1802640115">Indel-correcting DNA barcodes for high-throughput sequencing</a>. <em>Proceedings of the National Academy of Sciences</em> <strong>115</strong>, E6217–E6226 (2018).</div>
+<div class="csl-left-margin">105. </div><div class="csl-right-inline">Hawkins, J. A., Jones, S. K., Finkelstein, I. J. &amp; Press, W. H. <a href="https://doi.org/10.1073/pnas.1802640115">Indel-correcting DNA barcodes for high-throughput sequencing</a>. <em>Proceedings of the National Academy of Sciences</em> <strong>115</strong>, E6217–E6226 (2018).</div>
 </div>
 <div id="ref-srivathsanMinIONBasedPipeline2018" class="csl-entry">
-<div class="csl-left-margin">100. </div><div class="csl-right-inline">Srivathsan, A. <em>et al.</em> <a href="https://doi.org/10.1111/1755-0998.12890">A MinION<span></span>-based pipeline for fast and cost-effective DNA barcoding</a>. <em>Molecular Ecology Resources</em> <strong>18</strong>, 1035–1049 (2018).</div>
+<div class="csl-left-margin">106. </div><div class="csl-right-inline">Srivathsan, A. <em>et al.</em> <a href="https://doi.org/10.1111/1755-0998.12890">A MinION<span></span>-based pipeline for fast and cost-effective DNA barcoding</a>. <em>Molecular Ecology Resources</em> <strong>18</strong>, 1035–1049 (2018).</div>
 </div>
 <div id="ref-wangConstructionBioConstrainedCode2019" class="csl-entry">
-<div class="csl-left-margin">101. </div><div class="csl-right-inline">Wang, Y., Noor-A-Rahim, Md., Gunawan, E., Guan, Y. L. &amp; Poh, C. L. <a href="https://doi.org/10.1109/LCOMM.2019.2912572">Construction of bio-constrained code for DNA data storage</a>. <em>IEEE Communications Letters</em> <strong>23</strong>, 963–966 (2019).</div>
+<div class="csl-left-margin">107. </div><div class="csl-right-inline">Wang, Y., Noor-A-Rahim, Md., Gunawan, E., Guan, Y. L. &amp; Poh, C. L. <a href="https://doi.org/10.1109/LCOMM.2019.2912572">Construction of bio-constrained code for DNA data storage</a>. <em>IEEE Communications Letters</em> <strong>23</strong>, 963–966 (2019).</div>
 </div>
 <div id="ref-nurkHiCanuAccurateAssembly2020" class="csl-entry">
-<div class="csl-left-margin">102. </div><div class="csl-right-inline">Nurk, S. <em>et al.</em> <a href="https://doi.org/10.1101/gr.263566.120"><span>HiCanu</span>: Accurate assembly of segmental duplications, satellites, and allelic variants from high-fidelity long reads</a>. <em>Genome Res.</em> <strong>30</strong>, 1291–1305 (2020).</div>
+<div class="csl-left-margin">108. </div><div class="csl-right-inline">Nurk, S. <em>et al.</em> <a href="https://doi.org/10.1101/gr.263566.120"><span>HiCanu</span>: Accurate assembly of segmental duplications, satellites, and allelic variants from high-fidelity long reads</a>. <em>Genome Res.</em> <strong>30</strong>, 1291–1305 (2020).</div>
 </div>
 <div id="ref-ekimMinimizerspaceBruijnGraphs2021" class="csl-entry">
-<div class="csl-left-margin">103. </div><div class="csl-right-inline">Ekim, B., Berger, B. &amp; Chikhi, R. <a href="https://doi.org/10.1016/j.cels.2021.08.009">Minimizer-space de <span>Bruijn</span> graphs: Whole-genome assembly of long reads in minutes on a personal computer</a>. <em>Cell Systems</em> <strong>12</strong>, 958–968.e6 (2021).</div>
+<div class="csl-left-margin">109. </div><div class="csl-right-inline">Ekim, B., Berger, B. &amp; Chikhi, R. <a href="https://doi.org/10.1016/j.cels.2021.08.009">Minimizer-space de <span>Bruijn</span> graphs: Whole-genome assembly of long reads in minutes on a personal computer</a>. <em>Cell Systems</em> <strong>12</strong>, 958–968.e6 (2021).</div>
 </div>
 <div id="ref-millerAggressiveAssemblyPyrosequencing2008" class="csl-entry">
-<div class="csl-left-margin">104. </div><div class="csl-right-inline">Miller, J. R. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btn548">Aggressive assembly of pyrosequencing reads with mates</a>. <em>Bioinformatics</em> <strong>24</strong>, 2818–2824 (2008).</div>
+<div class="csl-left-margin">110. </div><div class="csl-right-inline">Miller, J. R. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btn548">Aggressive assembly of pyrosequencing reads with mates</a>. <em>Bioinformatics</em> <strong>24</strong>, 2818–2824 (2008).</div>
 </div>
 <div id="ref-shafinNanoporeSequencingShasta2020" class="csl-entry">
-<div class="csl-left-margin">105. </div><div class="csl-right-inline">Shafin, K. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-020-0503-6">Nanopore sequencing and the Shasta toolkit enable efficient de novo assembly of eleven human genomes</a>. <em>Nature Biotechnology</em> <strong>38</strong>, 1044–1053 (2020).</div>
+<div class="csl-left-margin">111. </div><div class="csl-right-inline">Shafin, K. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-020-0503-6">Nanopore sequencing and the Shasta toolkit enable efficient de novo assembly of eleven human genomes</a>. <em>Nature Biotechnology</em> <strong>38</strong>, 1044–1053 (2020).</div>
 </div>
 <div id="ref-sahlinNovoClusteringLongRead2020" class="csl-entry">
-<div class="csl-left-margin">106. </div><div class="csl-right-inline">Sahlin, K. &amp; Medvedev, P. <a href="https://doi.org/10.1089/cmb.2019.0299">De <span>Novo Clustering</span> of <span>Long-Read Transcriptome Data Using</span> a <span>Greedy</span>, <span>Quality Value-Based Algorithm</span></a>. <em>Journal of Computational Biology</em> <strong>27</strong>, 472–484 (2020).</div>
+<div class="csl-left-margin">112. </div><div class="csl-right-inline">Sahlin, K. &amp; Medvedev, P. <a href="https://doi.org/10.1089/cmb.2019.0299">De <span>Novo Clustering</span> of <span>Long-Read Transcriptome Data Using</span> a <span>Greedy</span>, <span>Quality Value-Based Algorithm</span></a>. <em>Journal of Computational Biology</em> <strong>27</strong>, 472–484 (2020).</div>
 </div>
 <div id="ref-auImprovingPacBioLong2012" class="csl-entry">
-<div class="csl-left-margin">107. </div><div class="csl-right-inline">Au, K. F., Underwood, J. G., Lee, L. &amp; Wong, W. H. <a href="https://doi.org/10.1371/journal.pone.0046679">Improving <span>PacBio Long Read Accuracy</span> by <span>Short Read Alignment</span></a>. <em>PLOS ONE</em> <strong>7</strong>, e46679 (2012).</div>
+<div class="csl-left-margin">113. </div><div class="csl-right-inline">Au, K. F., Underwood, J. G., Lee, L. &amp; Wong, W. H. <a href="https://doi.org/10.1371/journal.pone.0046679">Improving <span>PacBio Long Read Accuracy</span> by <span>Short Read Alignment</span></a>. <em>PLOS ONE</em> <strong>7</strong>, e46679 (2012).</div>
 </div>
 <div id="ref-huLSCplusFastSolution2016" class="csl-entry">
-<div class="csl-left-margin">108. </div><div class="csl-right-inline">Hu, R., Sun, G. &amp; Sun, X. <a href="https://doi.org/10.1186/s12859-016-1316-y">LSCplus: a fast solution for improving long read accuracy by short read alignment</a>. <em>BMC Bioinformatics</em> <strong>17</strong>, 451 (2016).</div>
+<div class="csl-left-margin">114. </div><div class="csl-right-inline">Hu, R., Sun, G. &amp; Sun, X. <a href="https://doi.org/10.1186/s12859-016-1316-y">LSCplus: a fast solution for improving long read accuracy by short read alignment</a>. <em>BMC Bioinformatics</em> <strong>17</strong>, 451 (2016).</div>
 </div>
 <div id="ref-liMinimap2PairwiseAlignment2018" class="csl-entry">
-<div class="csl-left-margin">109. </div><div class="csl-right-inline">Li, H. <a href="https://doi.org/10.1093/bioinformatics/bty191">Minimap2: Pairwise alignment for nucleotide sequences</a>. <em>Bioinformatics</em> <strong>34</strong>, 3094–3100 (2018).</div>
+<div class="csl-left-margin">115. </div><div class="csl-right-inline">Li, H. <a href="https://doi.org/10.1093/bioinformatics/bty191">Minimap2: Pairwise alignment for nucleotide sequences</a>. <em>Bioinformatics</em> <strong>34</strong>, 3094–3100 (2018).</div>
 </div>
 <div id="ref-jainWeightedMinimizerSampling2020" class="csl-entry">
-<div class="csl-left-margin">110. </div><div class="csl-right-inline">Jain, C. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btaa435">Weighted minimizer sampling improves long read mapping</a>. <em>Bioinformatics</em> <strong>36</strong>, i111–i118 (2020).</div>
+<div class="csl-left-margin">116. </div><div class="csl-right-inline">Jain, C. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btaa435">Weighted minimizer sampling improves long read mapping</a>. <em>Bioinformatics</em> <strong>36</strong>, i111–i118 (2020).</div>
 </div>
 <div id="ref-vannesteForensicSTRAnalysis2012" class="csl-entry">
-<div class="csl-left-margin">111. </div><div class="csl-right-inline">Van Neste, C., Van Nieuwerburgh, F., Van Hoofstat, D. &amp; Deforce, D. <a href="https://doi.org/10.1016/j.fsigen.2012.03.004">Forensic STR analysis using massive parallel sequencing</a>. <em>Forensic Science International: Genetics</em> <strong>6</strong>, 810–818 (2012).</div>
+<div class="csl-left-margin">117. </div><div class="csl-right-inline">Van Neste, C., Van Nieuwerburgh, F., Van Hoofstat, D. &amp; Deforce, D. <a href="https://doi.org/10.1016/j.fsigen.2012.03.004">Forensic STR analysis using massive parallel sequencing</a>. <em>Forensic Science International: Genetics</em> <strong>6</strong>, 810–818 (2012).</div>
 </div>
 <div id="ref-almogyCostefficientWholeGenomesequencing2022" class="csl-entry">
-<div class="csl-left-margin">112. </div><div class="csl-right-inline">Almogy, G. <em>et al.</em> Cost-efficient whole genome-sequencing using novel mostly natural sequencing-by-synthesis chemistry and open fluidics platform. doi:<a href="https://doi.org/10.1101/2022.05.29.493900">10.1101/2022.05.29.493900</a>.</div>
+<div class="csl-left-margin">118. </div><div class="csl-right-inline">Almogy, G. <em>et al.</em> Cost-efficient whole genome-sequencing using novel mostly natural sequencing-by-synthesis chemistry and open fluidics platform. doi:<a href="https://doi.org/10.1101/2022.05.29.493900">10.1101/2022.05.29.493900</a>.</div>
 </div>
 <div id="ref-ShortreadSequencingBinding" class="csl-entry">
-<div class="csl-left-margin">113. </div><div class="csl-right-inline"><a href="https://www.pacb.com/technology/sequencing-by-binding/">Short-read sequencing by binding</a>.</div>
+<div class="csl-left-margin">119. </div><div class="csl-right-inline"><a href="https://www.pacb.com/technology/sequencing-by-binding/">Short-read sequencing by binding</a>.</div>
 </div>
 <div id="ref-cetinPlasmonicSensorCould2018" class="csl-entry">
-<div class="csl-left-margin">114. </div><div class="csl-right-inline">Cetin, A. E. <em>et al.</em> <a href="https://doi.org/10.1021/acssensors.7b00957">Plasmonic sensor could enable label-free DNA sequencing</a>. <em>ACS Sensors</em> <strong>3</strong>, 561–568 (2018).</div>
+<div class="csl-left-margin">120. </div><div class="csl-right-inline">Cetin, A. E. <em>et al.</em> <a href="https://doi.org/10.1021/acssensors.7b00957">Plasmonic sensor could enable label-free DNA sequencing</a>. <em>ACS Sensors</em> <strong>3</strong>, 561–568 (2018).</div>
 </div>
 </div>
 <div class="footnotes">

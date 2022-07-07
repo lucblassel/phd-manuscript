@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-07-06}
+\date{2022-07-07}
 
 \begin{document}
 \maketitle
@@ -553,7 +553,7 @@ SMRT sequencing was first developed in 2009 \autocite{eidRealTimeDNASequencing20
   The size of these ZMWs make the detection of the fluoresence possible with an optical system. Incorporation of dNTPs in each ZMW can be detected simultaneously in a parallel fashion and the resulting sequences deduced.
 \end{enumerate}
 
-Nanopore sequencing, also developed in 2009 \autocite{clarkeContinuousBaseIdentification2009}, is completely different from all the sequencing technologies previously mentioned. Where all the other ones are based on synthesizing a complementary DNA strand and detecting specific dNTP incorporation in some way or another, there is no synthesis in nanopore sequencing. The principle relies on feeding a single strand of a DNA template through a small hole in a membrane, a nanopore, at a controlled speed. As the nucleotides go through the nanopore, the electric current is formed between both sides of the membrane. This current can be measured and is specific to the succession of 5 to 6 nucleotides inside the nanopore channel at any given time. By looking at the evolution of the electric current as the DNA strand goes through the nanopore, we can deduce the sequence of nucleotides through a process called \emph{base calling.} Base calling is usually done with machine learning methods, mainly artificial neural networks \autocite{wickPerformanceNeuralNetwork2019}. In the flow cells used in ONT sequencers, there are hundreds of thousands of nanopores, spread out over a synthetic membrane, allowing for massively parallel sequencing as well. Theoretically, since this method is not based on synthesis, the upper limit for read length is only limited by the length of the template, and in practice ONT sequencing produces the longest reads.
+Nanopore sequencing, though of in the eighties, further developed along the years \autocite{clarkeContinuousBaseIdentification2009} and first commercialized by ONT in 2014 \autocite{deamerThreeDecadesNanopore2016}, is completely different from all the sequencing technologies previously mentioned. Where all the other ones are based on synthesizing a complementary DNA strand and detecting specific dNTP incorporation in some way or another, there is no synthesis in nanopore sequencing. The principle relies on feeding a single strand of a DNA template through a small hole in a membrane, a nanopore, at a controlled speed. As the nucleotides go through the nanopore, the electric current is formed between both sides of the membrane. This current can be measured and is specific to the succession of 5 to 6 nucleotides inside the nanopore channel at any given time. By looking at the evolution of the electric current as the DNA strand goes through the nanopore, we can deduce the sequence of nucleotides through a process called \emph{base calling.} Base calling is usually done with machine learning methods, mainly artificial neural networks \autocite{wickPerformanceNeuralNetwork2019}. In the flow cells used in ONT sequencers, there are hundreds of thousands of nanopores, spread out over a synthetic membrane, allowing for massively parallel sequencing as well. Theoretically, since this method is not based on synthesis, the upper limit for read length is only limited by the length of the template, and in practice ONT sequencing produces the longest reads.
 
 Both technologies yield long reads, the median and highest read lengths being 10 kilobases and 60 kilobases respectively for PacBio sequencing \autocite{rhoadsPacBioSequencingIts2015}. For nanopore the median read lengths of 10 to 12 kilobases \autocite{ipMinIONAnalysisReference2015,logsdonLongreadHumanGenome2020} are similar to PacBio, but in it can also yield ultra-long reads of 1 up to 2.3 megabases long \autocite{jainNanoporeSequencingAssembly2018,TharSheBlows,payneBulkVisGraphicalViewer2019}. The length of the reads and parallel nature of these two technologies allow these sequencers to have truly massive throughputs. PacBio sequencers can sequence between 2 and 11 gigabases per hour and ONT from 12.5 gigabases per hour, up to a staggering 260 gigabases per hour for the latest ONT PromethION machines \autocite{logsdonLongreadHumanGenome2020}. The cost of sequencing with these machines, while higher than for Illumina sequencers, remains reasonably affordable at \$0.32 and \$0.13 per megabase for PacBio and ONT respectively \autocite{murigneuxComparisonLongreadMethods2020}. These characteristics are summarized in Table \ref{tab:sequencing} along with other sequencing technologies.
 
@@ -575,66 +575,62 @@ The length, throughput and sequencing cost of both these technologies paint a pr
     \label{tab:sequencing}
 \end{table}
 
-As a conclusion, quickly mention the work done on protein sequencing:
-
-\begin{itemize}
-\item
-  has been going on for a long time \autocite{huntProteinSequencingTandem1986,smithProteinSequencingProtocols2002} with mass spectrometry
-\item
-  But still ongoing with new methods \autocite{restrepo-perezPavingWaySinglemolecule2018}
-\end{itemize}
-
-but we usually deduce the protein sequence from the DNA sequence that is translated from codons after detecting ORFs.
+While most of the mentioned technologies can also be adapted and used to sequence RNA instead of DNA \autocite{hongRNASequencingNew2020,ozsolakRNASequencingAdvances2011}, directly sequencing proteins remains a challenge. The sequence of amino acids making up a protein is usually deduced from the codons in sequenced DNA or RNA after detection of potentially coding regions called open reading frames (ORFs). Development of methods to directly sequence protein molecules using mass spectrometry was started not very long after Sanger sequencing \autocite{huntProteinSequencingTandem1986} and improved \autocite{smithProteinSequencingProtocols2002}. New methods are still being developed \autocite{restrepo-perezPavingWaySinglemolecule2018} but protein sequencing is still a challenge.
 
 \hypertarget{sequencing-errors-how-to-account-for-them}{%
 \section{Sequencing errors, how to account for them ?}\label{sequencing-errors-how-to-account-for-them}}
 
-Just like mutations we can get substitutions and indels.
+Sequencing technologies are not perfect, they make errors as we can see from the various accuracy rates reported in Section \ref{obtaining-sequence-data}. For technologies based on nucleic acid synthesis (i.e.~everything except ONT), since they use polymerases it stands to reason that the same three types of errors, described in Section \ref{making-mistakes}, occur: substitutions, insertions and deletions. For long read technologies though, most of the errors do not come from the polymerase, but from signal processing used to deduce the sequence. Since both technologies execute single molecule sequencing, the signal to noise ratio is low \autocite{weirather2017,wangNanoporeSequencingTechnology2021} making base calling more complicated.
 
-general context of sequencing errors, i.e.~short reads have high accuracy (After computational correction you can get 10\textsuperscript{-4} to 10\textsuperscript{-5} error rate \autocite{maAnalysisErrorProfiles2019} ) , long reads high error rate as stated before, 10\% to 15\%.
+This explains the discrepancy in error rates between short and long read sequencing technologies: the former getting as low as 10\textsuperscript{-4} or 10\textsuperscript{-5} after computational processing \autocite{maAnalysisErrorProfiles2019} where the latter are between 10\% and 15\%. This high error rate long reads is bothersome and many efforts have been made lower this error rate, computationally or technologically.
 
 \hypertarget{error-correction-methods}{%
 \subsection{Error correction methods}\label{error-correction-methods}}
 
-\begin{itemize}
-\item
-  In Non-Hybrid error correcting methods only the long reads are used, by overlapping them and taking the consensus of the overlap it is possible to eliminate some errors, as well as filtering very rare subsequences likely due to a sequencing error \autocite{limaComparativeAssessmentLongread2020,amarasingheOpportunitiesChallengesLongread2020}. These methods are applied in several pieces of software like wtdbg2 \autocite{ruanFastAccurateLongread2020}, canu \autocite{korenCanuScalableAccurate2017}, or daccord \autocite{tischlerNonHybridLong2017}.
-\item
-  In Hybrid methods, shorter more accurate reads are used to correct long-read errors, it has been used in software like proovread \autocite{hacklProovreadLargescaleHighaccuracy2014}, Jabba \autocite{miclotteJabbaHybridError2016}, PBcR \autocite{korenHybridErrorCorrection2012} or LoRDEC \autocite{salmelaLoRDECAccurateEfficient2014}
-\item
-  In some cases it can be useful to correct errors after having assembled the raw reads in a process called polishing. One can use non-hybrid methods by filtering out rare subsequences like in ntEdits , or correcting with raw PacBio or ONT data as is done in Arrow \autocite{heplerImprovedCircularConsensus2016} or Nanopolish \autocite{simpsonDetectingDNACytosine2017} respectively. Conversly, hybrid methods using short reads also exist to correct assembled reads like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}.
-\item
-  Error correction bibliography is rich and many people are working on this \autocite{limaComparativeAssessmentLongread2020,fuComparativeEvaluationHybrid2019,zhangComprehensiveEvaluationLong2020}
-\end{itemize}
+The long read error-correction literature and toolset is rich and active \autocite{limaComparativeAssessmentLongread2020,fuComparativeEvaluationHybrid2019,zhangComprehensiveEvaluationLong2020}. There are two main ways to correct errors: 1) hybrid methods where higher-accuracy shorter reads are used to correct errors and 2) non-hybrid methods where only the long-reads are used.
+
+In Non-hybrid methods \autocite{limaComparativeAssessmentLongread2020,amarasingheOpportunitiesChallengesLongread2020}, by finding regions that overlap fairly well between reads and taking the consensus (i.e.~the majority nucleotide at each position) of the overlapped regions some errors can be eliminated. In many analyses and sequencing data processing pipelines, the first step is to break up the reads into all possible overlapping subsequences of length \(k\) called k-mers (e.g the 3-mers of the ATTGC are ATT, TTG and TGC). Rare k-mers in the read dataset, i.e.~k-mers that appear only a handful of times in all the reads, are likely the result of an error and filtering them out can improve analysis. One or both of these procedures are implemented in several pieces of commonly used software like the wtdbg \autocite{ruanFastAccurateLongread2020}, and canu \autocite{korenCanuScalableAccurate2017} assemblers or the standalone daccord long-read correcter \autocite{tischlerNonHybridLong2017}. In some cases, errors are corrected not on the raw reads but after having assembled the long reads into long continuous sequences (contigs), this process is called polishing. The ntEdit polisher \autocite{warrenNtEditScalableGenome2019} also filters out rare kmers to correct errors. The Arrow \autocite{heplerImprovedCircularConsensus2016} and Nanopolish \autocite{simpsonDetectingDNACytosine2017} polishers correct the assembly using the raw PacBio and ONT long reads respectively.
+
+Hybrid methods, as their name suggest, makes use of short reads to correct errors in long reads. By finding similar regions between the short and long reads we can use the higher accuracy of short reads to correct the long ones. This is implemented in many pieces of software proovread \autocite{hacklProovreadLargescaleHighaccuracy2014}, Jabba \autocite{miclotteJabbaHybridError2016}, PBcR \autocite{korenHybridErrorCorrection2012} or LoRDEC \autocite{salmelaLoRDECAccurateEfficient2014}. Short reads can also be used to polish long read assemblies with tools like Pilon \autocite{walkerPilonIntegratedTool2014} or Racon \autocite{vaserFastAccurateNovo2017}. The first complete human genome was assembled and polished using many different sequencing technologies including PacBIo, ONT and Illumina technologies \autocite{nurk2022}.
 
 \hypertarget{more-accurate-sequencing-methods}{%
 \subsection{More accurate sequencing methods}\label{more-accurate-sequencing-methods}}
 
-\begin{itemize}
-\item
-  CCS / HiFi stuff -\textgreater{} 99.8\% to 99.9\% accuracy on long reads \autocite{wenger2019,logsdonLongreadHumanGenome2020} because errors are randomly distributed. Most errors are still indels in homopolymers \autocite{wenger2019}
-\item
-  Using unique molecular identifiers and consensus reads, you can reduce error rate to 99.59\% and 99.93\% accuracies for ONT and PacBio CCS \autocite{karstHighaccuracyLongreadAmplicon2021}.
-\item
-  Improve base calling models for ONT by switching from HMMs to deep learning, \autocite{peresiniNanoporeBaseCalling2021,bozaDeepNanoDeepRecurrent2017,wickPerformanceNeuralNetwork2019,amarasingheOpportunitiesChallengesLongread2020}
-\item
-  Built in error correction \autocite{chenHighlyAccurateFluorogenic2017}, results in shorter reads with 99.82\% accuracy (200-250nt reads though). Error free up to 200bp.
-\item
-  To come Illumina Infinity \autocite{HighPerformanceLong}, high throughput long reads.
-\end{itemize}
+While a lot of effort is being put into error correction, another angle of attack to lower the error rate of long reads is to improve the sequencing technology.
+
+In 2019, PacBio introduced HiFi reads, based on a circular consensus (CCS) technique \autocite{wenger2019}. During SRMT sequencing the 2 brands are linked together by ball adapters to form a circular DNA template (c.f. Section \ref{long-read-sequencing}), the central idea of CCS is to sequence this molecule multiple time by going over the circle multiple times. In the resulting long sequence the, known bell adapter sequences can be removed, and a consensus sequence can be built from the multiple passes over the same DNA template. This results in long-read accuracies of 99.8\% to 99.9\% \autocite{wenger2019,logsdonLongreadHumanGenome2020}. This works because PacBio sequencing errors are mostly randomly distributed along the sequenced template (more on that in Section \ref{homopolymers-and-long-reads}), therefore it is unlikely that the same error will appear in multiple passes over the same template portion.
+
+For ONT sequencing, most improvement efforts have been focused on base-callers. These tools were originally based on Hidden Markov Models \autocite{timpDNABaseCallingNanopore2012} (HMMs), but gradually they have been shifting over to neural network based deep learning methods \autocite{peresiniNanoporeBaseCalling2021,bozaDeepNanoDeepRecurrent2017,wickPerformanceNeuralNetwork2019,amarasingheOpportunitiesChallengesLongread2020} with faster inference times and better performance.
+
+A technologically agnostic method using unique molecular identifiers added during the template preparation phase, and consensus sequencing has been shown, in specific contexts, to improve the accuracies of both ONT and PacBio CCS long reads to 99.59\% and 99.93\% respectively \autocite{karstHighaccuracyLongreadAmplicon2021}.
+
+Finally, new sequencing technologies are being developed, like built in error-correction short-read technologies yielding error-free reads of up to 200 nucleotides \autocite{chenHighlyAccurateFluorogenic2017}. Illumina also recently announced its own high-throughput, high-accuracy long-read sequencing technology in 2022 \autocite{HighPerformanceLong}, although details about the performance and technology are scarce.
 
 \hypertarget{the-special-case-of-homopolymers}{%
 \section{The special case of homopolymers}\label{the-special-case-of-homopolymers}}
 
-\hypertarget{homopolymers-and-the-genome}{%
-\subsection{Homopolymers and the genome}\label{homopolymers-and-the-genome}}
+Despite improvement in error correction methods and sequencing technologies, certain genetic patterns are particularly difficult to process, homopolymers are one such pattern.
+
+\hypertarget{homopolymers-and-the-human-genome}{%
+\subsection{Homopolymers and the human genome}\label{homopolymers-and-the-human-genome}}
+
+\emph{Homopolymers} consist of a stretch of repeated nucleotides (i.e.~\(\geq 2\)) occurring at some point in the genome. For example the sequence AAAA is a length 4 adenine homopolymer.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{_main_files/figure-latex/HPpercent-1} 
+
+}
+
+\caption{Homopolymer length as fraction of the genome}\label{fig:HPpercent}
+\end{figure}
 
 \begin{itemize}
 \tightlist
 \item
   What are homopolymers -\textgreater{} repeated stretches of identical nucleotides
 \item
-  On the CHM13 whole human genome assembly v1.1, 50\% of the 3Gb are in homopolymers of size length or more, and 10\% are in homopolymers fof size 4 or more. The longest homopolymer in the CHM13 v1.1 whole human genome assembly is 86. Homopolymers of short/medium lengths make up a significant part of the human genome (Figure \ref{fig:HPpercent}).
+  On the CHM13 whole human genome assembly v1.1, 50\% of the 3Gb are in homopolymers of size 2 or more, and 10\% are in homopolymers fof size 4 or more. The longest homopolymer in the CHM13 v1.1 whole human genome assembly is 86. Homopolymers of short/medium lengths make up a significant part of the human genome (Figure \ref{fig:HPpercent}).
 \item
   HPs are more often A/T rich than G/C rich in the human genome (Figure \ref{fig:HPdistrib}).
 \item
@@ -652,19 +648,10 @@ general context of sequencing errors, i.e.~short reads have high accuracy (After
 \caption{Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\geq 4$.)}\label{fig:HPdistrib}
 \end{figure}
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.6\linewidth]{_main_files/figure-latex/HPpercent-1} 
-
-}
-
-\caption{Homopolymer length as fraction of the genome}\label{fig:HPpercent}
-\end{figure}
-
 \hypertarget{homopolymers-and-long-reads}{%
 \subsection{Homopolymers and long reads}\label{homopolymers-and-long-reads}}
 
-Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT's error rate in HPs does not depend on the length (even though it's the highest it's flat) \autocite{fooxPerformanceAssessmentDNA2021}.
+Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT's error rate in HPs does not depend on the length (even though it's the highest it's flat) \autocite{fooxPerformanceAssessmentDNA2021}. Most HiFi errors are still indels in homopolymers \autocite{wenger2019}
 
 \hypertarget{accounting-for-homopolymers}{%
 \subsection{Accounting for homopolymers}\label{accounting-for-homopolymers}}
