@@ -3,7 +3,7 @@ bookdown::gitbook:
   config:
     toc:
       before: |
-        <li><a href="./">My PhD thesis.</a></li>
+        <li><a href="./">From sequences to knowledge,</br> improving and learning from sequence alignments.</a></li>
       after: |
         <li><a href="https://lucblassel.com" target="blank">Back to main website</a></li>
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
