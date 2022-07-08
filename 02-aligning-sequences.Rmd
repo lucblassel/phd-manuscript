@@ -382,6 +382,6 @@ Plenty of aligners both for short reads (reviews [@schbathMappingReadsGenomic201
     -   winnowmap [@jainWeightedMinimizerSampling2020], winnowmap2 [@jainLongreadMappingRepetitive2022]
 
     -   tandemtools [@mikheenkoTandemToolsMappingLong2020] for tandem repeats.
--   homopolymers can also be a problem, so HPC is implemented in mappers \*(c.f. \@ref(hpc-trick))\*
+-   homopolymers can also be a problem, so HPC is implemented in mappers *(c.f.* \@ref(hpc-trick)*)*
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

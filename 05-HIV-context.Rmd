@@ -263,7 +263,7 @@ review [@ammaranondMechanismHIVAntiretroviral2012; @clavelHIVDrugResistance2004]
 
 ### Consequences on global health
 
--   Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK [@mouradPhylotypebasedAnalysisHighlights2015] and Switzerland [@drescherTreatmentNaiveIndividualsAre2014], creating long lasting drug resistance reservoirs in naive population.
+-   Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK [@mouradPhylotypebasedAnalysisHighlights2015; @hueDemonstrationSustainedDrugResistant2009] and Switzerland [@drescherTreatmentNaiveIndividualsAre2014], creating long lasting drug resistance reservoirs in naive population.
 
 -   Dangerous because there can be therapeutic failure of first line regimen. [@boermaHighLevelsPretreatment2016]
 
@@ -284,12 +284,24 @@ review [@ammaranondMechanismHIVAntiretroviral2012; @clavelHIVDrugResistance2004]
     -   PANGEA [@abeler-dornerPANGEAHIVPhylogeneticsNetworks2019]
 
     -   Stanford HIV Drug resistance database (<https://hivdb.stanford.edu/>) with sequences [@rheeHumanImmunodeficiencyVirus2003]
+
+    -   Los alamos sequence database (<http://www.hiv.lanl.gov/>), mainly for general HIV knowledge, no specific resistance metadata [@kuikenHIVSequenceDatabases2003]
 -   Databases of mutations are kept [@shaferRationaleUsesPublic2006] with regularly update lists of important DRMs [@wensing2019UpdateDrug2019; @clarkMutationsRetroviralGenes2007] and tools to help practitioners detect and interpret resistance [@liuWebResourcesHIV2006d].
--   stat tests
+-   Biological tests [@johnsonUpdateDrugResistance2016; @wensing2019UpdateDrug2019]:
+    -   In vitro:
+
+        -   Site directed mutagenesis [@larderMultipleMutationsHIV11989; @devreeseResistanceHumanImmunodeficiency1992]
+
+        -   Phenotypic susceptibility testing frmo clinical isolates [@masquelierGenotypicPhenotypicResistance2001] using assays like phenosense [@petropoulosNovelPhenotypicDrug2000] or antivirogram [@hertogsRapidMethodSimultaneous1998]
+
+    -   in vivo: sequence patients for which treatment is failing [@tambuyzerEffectMutationsPosition2011; @katzensteinPhenotypicSusceptibilityVirological2003]
+-   statistical tests [@johnsonUpdateDrugResistance2016; @wensing2019UpdateDrug2019]
+    -   You can use statistical association tests e.g. Fisher tests [@villabona-arenasIndepthAnalysisHIV12016; @shulmanGeneticCorrelatesEfavirenz2004]; or Spearman correlation method [@millerGenotypicPhenotypicPredictors2004]
     -   multiple testing
     -   phylogenetic correlation
--   assays
+-   assays: -\> phenotypic validation
 -   novel approaches
+    -   machine learning in general
     -   deep learning
     -   ...
 
