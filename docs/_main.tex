@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-07-07}
+\date{2022-07-08}
 
 \begin{document}
 \maketitle
@@ -365,7 +365,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 
 \textbf{D}esoxyribo\textbf{N}ucleic \textbf{A}cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
 
-DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of Ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide\footnote{I will prefer the term ``nucleotide'' instead of ``nucleobase'' from now on. Chemically speaking they do not refer to the exact same molecule, but for our purposes you can consider these terms interchangeable.} monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA \autocite{watson1953} shown in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
+DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA \autocite{watson1953} shown in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
 \begin{figure}[h]
 \centering
@@ -614,106 +614,61 @@ Despite improvement in error correction methods and sequencing technologies, cer
 \hypertarget{homopolymers-and-the-human-genome}{%
 \subsection{Homopolymers and the human genome}\label{homopolymers-and-the-human-genome}}
 
-\emph{Homopolymers} consist of a stretch of repeated nucleotides (i.e.~\(\geq 2\)) occurring at some point in the genome. For example the sequence AAAA is a length 4 adenine homopolymer.
+\emph{Homopolymers} consist of a stretch of repeated nucleotides (i.e.~\(\geq 2\)) occurring at some point in the genome. For example the sequence AAAA is a length 4 adenine homopolymer. In the complete human genome assembly (CHM13 v1.1 from the T2T consortium \autocite{nurk2022}), 50\% of its three gigabases are in homopolymers of size 2 or more, and 10\% are in homopolymers of size 4 or more. As can be seen in Figure \ref{fig:HPpercent}, short and medium length homopolymers make up a significant part of the genome. In a previous GRCh38 human genome assembly, more than 1.9 megabases are in homopolymers of length 8 or higher \autocite{booeshaghiPseudoalignmentFacilitatesAssignment2022}, representing about 1‰ of that assembly. The longest homopolymer run in the CHM13 v1.1 assembly is 86 \emph{(90 in GRCh38 \autocite{booeshaghiPseudoalignmentFacilitatesAssignment2022})}.
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{_main_files/figure-latex/HPpercent-1} 
+{\centering \includegraphics[width=0.7\linewidth]{_main_files/figure-latex/HPpercent-1} 
 
 }
 
-\caption{Homopolymer length as fraction of the genome}\label{fig:HPpercent}
+\caption{Homopolymer fraction of the whole human genome by homopolymer length.}\label{fig:HPpercent}
 \end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  What are homopolymers -\textgreater{} repeated stretches of identical nucleotides
-\item
-  On the CHM13 whole human genome assembly v1.1, 50\% of the 3Gb are in homopolymers of size 2 or more, and 10\% are in homopolymers fof size 4 or more. The longest homopolymer in the CHM13 v1.1 whole human genome assembly is 86. Homopolymers of short/medium lengths make up a significant part of the human genome (Figure \ref{fig:HPpercent}).
-\item
-  HPs are more often A/T rich than G/C rich in the human genome (Figure \ref{fig:HPdistrib}).
-\item
-  More than 1.4 million homopolymers 4-mers and up in the exome (i.e.~DNA that is translated into proteins) \autocite{ivadyAnalyticalParametersValidation2018}
-\item
-  according to \autocite{booeshaghiPseudoalignmentFacilitatesAssignment2022}, in the GRCh38 human genome assembly, more than 1.9 Mb are in homopolymers of length 8 or higher, representing about a thousandth of the genome, still a lot of bases to make mistakes on! Longest HP is 90.
-\end{itemize}
+In the human genome, homopolymers tend to occur more often in adenine and thymine runs than guanine and cytosine. There are are approximately twice as more nucleotides within A or T homopolymers (481 Mb and 484 Mb) than G or C (278 Mb and 279 Mb). This discrepancy is even more pronounced when looking homopolymers longer than four nucleotides (Figure \ref{fig:HPdistrib}).
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{_main_files/figure-latex/HPdistrib-1} 
+{\centering \includegraphics[width=0.7\linewidth]{_main_files/figure-latex/HPdistrib-1} 
 
 }
 
-\caption{Distribution of homopolymer lengths per base in the human genome (for homopolyers of length $\geq 4$.)}\label{fig:HPdistrib}
+\caption{Distribution of homopolymer lengths per base in the human genome (for homopolymers of length $\geq$ 4.)}\label{fig:HPdistrib}
 \end{figure}
 
 \hypertarget{homopolymers-and-long-reads}{%
 \subsection{Homopolymers and long reads}\label{homopolymers-and-long-reads}}
 
-Mainly indels, in certain regions of the genomes, particularly homopolymers. For ONT \autocite{delahaye2021,goodwin2015}, for PacBIO and ONT \autocite{dohmBenchmarkingLongreadCorrection2020,weirather2017}. ONT has more homopolymer errors than PacBIO \autocite{logsdonLongreadHumanGenome2020}. For short reads and PacBio the error rate usually goes up as the homopolymer length grows, however ONT's error rate in HPs does not depend on the length (even though it's the highest it's flat) \autocite{fooxPerformanceAssessmentDNA2021}. Most HiFi errors are still indels in homopolymers \autocite{wenger2019}
+Unfortunately homopolymers are a source of errors in sequencing, particularly for long-read technologies: while substitutions seem to be randomly distributed along the reads for PacBio and ONT, the main error mode seems to be indels in homopolymeric sections, \emph{i.e.} reading the same nucleotide several times or skipping over one of the repeated nucleotides. Many study show that homopolymeric indels is the main type of error for PacBIO SMRT and ONT long-read sequencing \autocite{delahaye2021,goodwin2015,dohmBenchmarkingLongreadCorrection2020,weirather2017}. This is even the case for PacBio HiFi reads, while the ciruclar concensus approach eliminates the randomly distributed substitutions homopolymer indels remain \autocite{wenger2019}. It seems that ONT reads are more prone to this type of error than PacBIo \autocite{logsdonLongreadHumanGenome2020}. The rate of these errors is independent of the length of the homopolymer for ONT, but it rises with homopolymer length for short-read and PacBio technologies \autocite{fooxPerformanceAssessmentDNA2021}.
 
 \hypertarget{accounting-for-homopolymers}{%
 \subsection{Accounting for homopolymers}\label{accounting-for-homopolymers}}
 
+The fact that they make up a significant part of the human genome, and that they are a source of errors for long read technologies means that they warrant special attention and care. Methods have been devised and implemented, specifically to counter homopolymer-linked errors.
+
 \hypertarget{specific-error-correction}{%
 \subsubsection{Specific error correction}\label{specific-error-correction}}
 
-\begin{itemize}
-\tightlist
-\item
-  In some cases homopolymers are taken into special consideration during polishing \autocite{huangHomopolishMethodRemoval2021,simpsonDetectingDNACytosine2017}, and computational approaches are developed to deal with homopolymers \autocite{rangSquiggleBasepairComputational2018,sarkozyCallingHomopolymerStretches2018}
-\item
-  Specific technologies:
+Homopolymer errors are taken under special consideration during assembly polishing when using certain tools like HomoPolish \autocite{huangHomopolishMethodRemoval2021} or NanoPolish \autocite{simpsonDetectingDNACytosine2017}. Methods to improve base calling of homopolymer stretches have been developed for nanopore sequencing \autocite{rangSquiggleBasepairComputational2018,sarkozyCallingHomopolymerStretches2018}, and implemented in state of the art base-callers such as guppy or scrappie \autocite{wickPerformanceNeuralNetwork2019}.
 
-  \begin{itemize}
-  \item
-    R.10 Nanopore: \autocite{R10NewestNanopore,amarasingheOpportunitiesChallengesLongread2020}
-  \item
-    Solid state nanopores: \autocite{zhouDetectionDNAHomopolymer2019,gotoIdentificationFourSinglestranded2018}
-  \item
-    BaseCallers which deal with homopolymers, like can be seen in Fig 3 of \autocite{wickPerformanceNeuralNetwork2019} (scrappie raw 1.4.1 or guppy)
-  \end{itemize}
-\item
-  Avoid using HPs in barcode sequences \autocite{hawkinsIndelcorrectingDNABarcodes2018,srivathsanMinIONBasedPipeline2018}.
-\item
-  A little different but HPs have to be taken into account when developing DNA based data storage \autocite{wangConstructionBioConstrainedCode2019}
-\end{itemize}
+Steps before sequencing can also be taken in order to reduce the effect of these errors, like avoiding homopolymers in barcode sequences \autocite{hawkinsIndelcorrectingDNABarcodes2018,srivathsanMinIONBasedPipeline2018}. or during the development of DNA based storage systems \autocite{wangConstructionBioConstrainedCode2019}.
+
+Improving the sequencing technologies can also be a solution by reducing the number of homopolymer errors straight from the source. The latest ONT chemistry R.10 reportedly improves accuracy in homopolymer rich regions \autocite{R10NewestNanopore,amarasingheOpportunitiesChallengesLongread2020}, non-biological solid-state nanopores also reduces errors in homopolymers \autocite{zhouDetectionDNAHomopolymer2019,gotoIdentificationFourSinglestranded2018}.
 
 \hypertarget{hpc-trick}{%
-\subsubsection{HPC Trick}\label{hpc-trick}}
+\subsubsection{Homopolymer compression, a nifty trick}\label{hpc-trick}}
 
-homopolymers are still tricky regions even with long high accuracy reads -\textgreater{} so HPC
+In many cases, reads cannot be re-sequenced with newer technologies, or base-called with better base callers. Only the read sequences, potentially containing homopolymer errors, are available for usage. In order to account for this sort of error, a simple pre-processing trick was developed: \emph{homopolymer compression} (HPC).
 
-\begin{itemize}
-\item
-  HPC takes repeated runs of a single nucleotide and compresses them to a single occurrence
-\item
-  Can help resolve ambiguities in some cases c.f. Figure \ref{fig:hpcSchema}.
-\item
-  Used in many software tools:
+The idea is very simple, for any sequence replace a repeated run of any nucleotide (i.e.~homopolymers) by a single occurrence of that nucleotide. This means that after going through HPC the sequence AAACTGGG will yield the sequence ACTG. This simple pre-processing step, applied to all the reads and sequences to analyze removes all indels in homopolymers, and can resolve some ambiguities (c.f. Figure \ref{fig:hpcSchema}). It can also remove legitimate information contained in homopolymers, however the trade-off with the reduced error rate has been deemed advantageous.
 
-  \begin{itemize}
-  \item
-    assembly: HiCanu \autocite{nurkHiCanuAccurateAssembly2020}, MDBG \autocite{ekimMinimizerspaceBruijnGraphs2021}, pyrosequencing assembly \autocite{millerAggressiveAssemblyPyrosequencing2008}, wtdbg2 \autocite{ruanFastAccurateLongread2020}, shasta \autocite{shafinNanoporeSequencingShasta2020}
-  \item
-    clustering: \autocite{sahlinNovoClusteringLongRead2020}
-  \item
-    error correction: LSC \autocite{auImprovingPacBioLong2012} and LSCPlus \autocite{huLSCplusFastSolution2016}
-  \item
-    alignment: minimap2 \autocite{liMinimap2PairwiseAlignment2018}, winnowmap2 \autocite{jainWeightedMinimizerSampling2020}.
-  \item
-    Satellite tandem repeat analysis \autocite{vannesteForensicSTRAnalysis2012}
-  \end{itemize}
-\end{itemize}
-
-reconstruct the whole genome.
+HPC has been implemented in many sequence bioinformatics sowftware tools. The HiCanu \autocite{nurkHiCanuAccurateAssembly2020}, MDBG \autocite{ekimMinimizerspaceBruijnGraphs2021}, wtdbg2 \autocite{ruanFastAccurateLongread2020}, shasta \autocite{shafinNanoporeSequencingShasta2020} assemblers all use HPC under the hood to provide better assemblies, and it was used to assemble the complete human genome sequence \autocite{nurk2022}. The first published usage of HPC, was actually in the CABOG assembler \autocite{millerAggressiveAssemblyPyrosequencing2008} developed for pyrosequencing reads. HPC has also been implemented for other tasks, like clustering \autocite{sahlinNovoClusteringLongRead2020}, long read error correction with LSC \autocite{auImprovingPacBioLong2012} and LSCPlus \autocite{huLSCplusFastSolution2016}, alignment with minimap2 \autocite{liMinimap2PairwiseAlignment2018} and winnowmap2 \autocite{jainWeightedMinimizerSampling2020}, or specific analysis pipelines for satellite tandem repeats \autocite{vannesteForensicSTRAnalysis2012}.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
 \extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
-A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome. After applying HPC, this ambiguity is resolved and the read is homologous to only one region.
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is resolved and the read is homologous to only one region.
 }
 \label{fig:hpcSchema}
 \end{figure}
@@ -721,16 +676,13 @@ A read with homopolymer related sequencing errors can be homologous to two diffe
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
-\begin{itemize}
-\item
-  \textbf{Sequencing is an active field:} new methods, both in short reads (ultima \autocite{almogyCostefficientWholeGenomesequencing2022} ) and long reads (illumina infinity \autocite{HighPerformanceLong} ), as well as improving existing technologies, PacBio (by acquiring Omniome \autocite{ShortreadSequencingBinding}) developing a new accurate short read technology \autocite{cetinPlasmonicSensorCould2018}
-\item
-  \textbf{Long reads are good:} Super useful for plenty of very important tasks but\ldots{}
-\item
-  \textbf{Errors are bad:} particularly in HPs since they are an important part of the genome and a major source of error in long reads
-\item
-  \textbf{Computational view:} sequences Essentially a text file. Just a long succession of letters, so we can apply String/text algorithmics to it.
-\end{itemize}
+I hope, after reading this chapter, you will agree with me that sequencing is fundamental for furthering our knowledge of biological processes, organisms and Life in general. And as such, the sequencing field is still very active with new technologies being developed, to improve the current technologies in various aspects: Illumina promising high accuracy long reads with Infinity \autocite{HighPerformanceLong}, PacBio developing its own short read sequencing technology, moving away from sequencing by synthesis \autocite{ShortreadSequencingBinding,cetinPlasmonicSensorCould2018}. Finally efforts are also being made to make sequencing more affordable and available in a greater number settings with Ultima genomics promising accurate short reads for as low as \$1 per gigabase \autocite{almogyCostefficientWholeGenomesequencing2022}.
+
+With all these technological improvements we are approaching an era where sequencing is easy and quick, opening the door for massive projects like Tara Oceans \autocite{sunagawaTaraOceansGlobal2020} or the BioGenome project \autocite{lewinEarthBioGenomeProject2018} to better understand biodiversity. Routine whole-genome sequencing could usher in an era personalized medicine \autocite{lightbodyReviewApplicationsHighthroughput2019}.
+
+Despite all these advancements, sequencing errors remain an obstacle to certain analyses. This is particularly true for the ever more used and useful long reads, and the important fraction of genomes made up of homopolymers. Detecting, removing or accounting for these errors in some way is a crucial step to improve any analysis based on sequencing data, and to make sure that no theory or conclusion are built upon erroneous sequence data.
+
+Finally, it is important to note (at least for the remainder of this thesis) that, from a computational standpoint, a biological sequence is simply a succession of letters and a set of reads is simply a text file. Therefore many analysis and data processing methods are inspired or directly transposed from the field of text algorithmics.
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
