@@ -1218,7 +1218,7 @@ Plenty of aligners both for short reads (reviews \autocite{schbathMappingReadsGe
     tandemtools \autocite{mikheenkoTandemToolsMappingLong2020} for tandem repeats.
   \end{itemize}
 \item
-  homopolymers can also be a problem, so HPC is implemented in mappers *(c.f. \ref{hpc-trick})*
+  homopolymers can also be a problem, so HPC is implemented in mappers \emph{(c.f.} \ref{hpc-trick}\emph{)}
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
@@ -2554,7 +2554,7 @@ review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistanc
 
 \begin{itemize}
 \item
-  Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}, creating long lasting drug resistance reservoirs in naive population.
+  Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015,hueDemonstrationSustainedDrugResistant2009} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}, creating long lasting drug resistance reservoirs in naive population.
 \item
   Dangerous because there can be therapeutic failure of first line regimen. \autocite{boermaHighLevelsPretreatment2016}
 \item
@@ -2584,26 +2584,48 @@ review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistanc
     PANGEA \autocite{abeler-dornerPANGEAHIVPhylogeneticsNetworks2019}
   \item
     Stanford HIV Drug resistance database (\url{https://hivdb.stanford.edu/}) with sequences \autocite{rheeHumanImmunodeficiencyVirus2003}
+  \item
+    Los alamos sequence database (\url{http://www.hiv.lanl.gov/}), mainly for general HIV knowledge, no specific resistance metadata \autocite{kuikenHIVSequenceDatabases2003}
   \end{itemize}
 \item
   Databases of mutations are kept \autocite{shaferRationaleUsesPublic2006} with regularly update lists of important DRMs \autocite{wensing2019UpdateDrug2019,clarkMutationsRetroviralGenes2007} and tools to help practitioners detect and interpret resistance \autocite{liuWebResourcesHIV2006d}.
 \item
-  stat tests
+  Biological tests \autocite{johnsonUpdateDrugResistance2016,wensing2019UpdateDrug2019}:
+
+  \begin{itemize}
+  \item
+    In vitro:
+
+    \begin{itemize}
+    \item
+      Site directed mutagenesis \autocite{larderMultipleMutationsHIV11989,devreeseResistanceHumanImmunodeficiency1992}
+    \item
+      Phenotypic susceptibility testing frmo clinical isolates \autocite{masquelierGenotypicPhenotypicResistance2001} using assays like phenosense \autocite{petropoulosNovelPhenotypicDrug2000} or antivirogram \autocite{hertogsRapidMethodSimultaneous1998}
+    \end{itemize}
+  \item
+    in vivo: sequence patients for which treatment is failing \autocite{tambuyzerEffectMutationsPosition2011,katzensteinPhenotypicSusceptibilityVirological2003}
+  \end{itemize}
+\item
+  statistical tests \autocite{johnsonUpdateDrugResistance2016,wensing2019UpdateDrug2019}
 
   \begin{itemize}
   \tightlist
+  \item
+    You can use statistical association tests e.g.~Fisher tests \autocite{villabona-arenasIndepthAnalysisHIV12016,shulmanGeneticCorrelatesEfavirenz2004}; or Spearman correlation method \autocite{millerGenotypicPhenotypicPredictors2004}
   \item
     multiple testing
   \item
     phylogenetic correlation
   \end{itemize}
 \item
-  assays
+  assays: -\textgreater{} phenotypic validation
 \item
   novel approaches
 
   \begin{itemize}
   \tightlist
+  \item
+    machine learning in general
   \item
     deep learning
   \item
