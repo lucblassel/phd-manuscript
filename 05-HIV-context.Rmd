@@ -124,6 +124,8 @@ The *pol* ("polymerase") gene coding for the Pol polyprotein. After cleaving thi
 
 -   The Integrase (IN) is responsible for integrating the viral DNA produced by RT in to the host cell DNA. Once the viral DNA is inside the host genome it can be transcribed and then translated (as described in Section \@ref(biological-sequences-a-primer)) to produce new copies of the viral RNA and proteins. Without this integration step the viral genetic information cannot be expressed and the replication cycle is stopped.
 
+These three proteins are of particular importance and we will go into more detail about them in Section \@ref(main-mechanisms-of-viral-proteins-and-antiretroviral-drugs).
+
 The *env* ("envelope") gene code for the Env, the third and last polyprotein. The two resulting proteins coat the membrane of the virion and are responsible for binding with the CD4 host cells.
 
 -   The Surface protein (SU or gp120) binds to receptors on the surface of CD4 cells and allow the virion to attach itself to the host cell [@bourHumanImmunodeficiencyVirus1995]. It also enables membrane fusion, the essential first step in the viral replication cycle [@hernandezViruscellCellcellFusion1996].
@@ -157,9 +159,56 @@ Figure adapted from PDB101 \autocite{zardecki2022} (\href{https://PDB101.rcsb.or
 \label{fig:hivStructure}
 \end{figure}
 ```
-### Main protein mechanisms in replication
+## Drug resistance in HIV
 
-ALl 3 are cleaved and matured from the pol polyprotein
+Although the HIV/AIDS pandemic has been very deadly around the world, we are not completely defenseless against it. The first antiretroviral therapy (ART) drugs were made available in the late eighties, only a couple years after discovery of the virus. ART reduce the viral load in an HIV positive patient reducing its transmissibility [@eisingerHIVViralLoad2019], while ART is not a cure for an HIV infection it has been shown to drastically reduce mortality and morbidity [@palellaDecliningMorbidityMortality1998]. ART is estimated to have saved the lives of 9.5 million individuals between 1995 and 2015 [@forsytheTwentyYearsAntiretroviral2019].
+
+### A quick history of ART ?
+
+-   azidothymidine (AZT), an RTI, was shown to be effective against HIV in 1987 [@fischlEfficacyAzidothymidineAZT1987], only 3 years later resistant strains of the virus were circulating [@richmanSusceptibilityNucleosideAnalogues1990], because it was a monotherapy.
+
+-   Between 1088 and 1995 four more RTIs were approved by the FDA and a combination therapy was shown to be effective [@gulickTreatmentIndinavirZidovudine1997]
+
+-   In 2008 there were 30 antiretroviral drugs have approved by the FDA [@palmisanoBriefHistoryAntiretroviral2011], of which 12 were RTI, 10 PIs and 5 combination drugs, often available as a single pill.
+
+-   In 2019 there are 11 licensed single pill regimens in Europe [@OnepilladayHIVTreatments].
+
+These drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners [@zolopaEvolutionHIVTreatment2010] and global organisms [@worldhealthorganizationConsolidatedGuidelinesHIV2021] alike.
+
+Other drugs:
+
+-   entry inhibitors: have been shown to be effective 2 have been approved in the USA [@tiltonEntryInhibitorsTreatment2010]
+
+-   integrase inhibitors (INI): recent focus on development, 5 approved drugs since 2007 [@scarsiHIV1IntegraseInhibitors2020]
+
+-   Pre-exposure prophylaxis (PrEP), putting uninfected but at risk populations on ART before any known exposure. Has been shown effectively lower risk of infection in several studies [@grantPreexposureChemoprophylaxisHIV2010; @baetenAntiretroviralProphylaxisHIV2012; @buchbinderPreexposureProphylaxisPromise2011]. When adherence is maintained studies have shown a infection risk between 44% and 100% [@riddellHIVPreexposureProphylaxis2018].\
+    In 2022 there are 1 PrEP regimen approved for use in Europe [@emaTruvada2018].
+
+```{r, timelineCaption}
+timelineCaption <- "**Timeline of ART single drug FDA approvals.**\
+Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INI), Fusion Inhibitors (FI), Entry Inhibitors (EI). COBI, shown in gray, is a pharmacokinetic enhancer, it enhances the effect of certain other drugs.  
+* RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.  
+✝ These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.  
+*Information collected from <https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines>, <https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines> and <https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm>.*"
+```
+
+```{r, timeline, label="timeline", eval=knitr::is_html_output(), fig.cap=timelineCaption, out.width="100%", cache=FALSE}
+knitr::include_graphics("./figures/HIV-Intro/timeline.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{./figures/HIV-Intro/HIV-timeline.png}
+  \extcaption{Timeline of ART single drug FDA approvals.}{Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INI), Fusion Inhibitors (FI), Entry Inhibitors (EI). COBI, shown in gray, is a pharmacokinetic enhancer, it enhances the effect of certain other drugs.\\
+\* RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.\\
+✝ These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.\\
+\textit{Information collected from \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
+\href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.}
+\label{fig:timeline}
+\end{figure}
+```
+### Main mechanisms of viral proteins and antiretroviral drugs 
 
 -   RT: [@sarafianosStructureFunctionHIV12009], c.f. Figure \@ref(fig:rtStruct)
 
@@ -173,9 +222,14 @@ ALl 3 are cleaved and matured from the pol polyprotein
 
     -   Once the RNA has been RTed the RT does another pass to synthesize the complementary DNA brand, this time the RNase is not active.
 
+-   RTI:
+
+    -   NRTI: nucleoside analogue RTI work by binding with the active site of RT blocking DNA polymerization -\> chain terminating inhibitors
+
+    -   NNRTI: non-nucleoside analogue RTI, bind to other a hydrophobic pocket behind the active site the RT, changing its flexibility and rendering it incative [@esnoufUniqueFeaturesStructure1997]
+
 ```{r, rtCaption}
-rtCaption <- "**3D structure of HIV-1 Reverse-transcriptase**\ 
-the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate [@goodsellIllustrateSoftwareBiomolecular2019] using the [2hmi](https://www.rcsb.org/structure/2HMI) PDB structure."
+rtCaption <- "**3D structure of HIV-1 Reverse-transcriptase**\ the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate [@goodsellIllustrateSoftwareBiomolecular2019] using the [2hmi](https://www.rcsb.org/structure/2HMI) PDB structure."
 ```
 
 ```{r, rtStruct, lavel="rtStruct", fig.cap=rtCaption, out.width="80%", eval=knitr::is_html_output(), cache=FALSE}
@@ -183,11 +237,10 @@ knitr::include_graphics("./figures/HIV-Intro/rt.png")
 ```
 
 ```{=tex}
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}
-\extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}
-\label{fig:rtStruct}
+\begin{figure}[H] 
+  \centering 
+  \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}      \extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}       
+  \label{fig:rtStruct} 
 \end{figure}
 ```
 -   IN: It pre-processes the ends of the viral DNA, cleaves the host DNA and binds the viral DNA to the host DNA (i.e. strand transfer). [@chiuStructureFunctionHIV12004; @espositoHIVIntegraseStructure1999; @delelisIntegraseIntegrationBiochemical2008]. Multimer -\> chains link up. Each chain has:
@@ -198,54 +251,19 @@ knitr::include_graphics("./figures/HIV-Intro/rt.png")
 
     -   N-terminal domain: Binds with Zn^2+^ and helps multimerisation (i.e integrase stability)
 
+    -   INI: prevent strand transfer where viral DNA is first linked to host DNA [@pommierIntegraseInhibitorsTreat2005]
+
 -   PR: cleaves gag and pol polyproteins to produce individual structural and regulatory proteins. Symetric dimer structure [@pearlStructuralModelRetroviral1987; @gulnikHIVProteaseEnzyme2000], 2 identical chains.
 
     -   Ionization of an Aspartate residue in each active site produces acid-base reaction that cleaves precursor [@silvaInhibitionCatalyticMechanism1996]. (active site)
 
     -   Flaps are flexible parts of PR that can open and close [@hornakHIV1ProteaseFlaps2006], probably controls access of substrates to active site [@yuStructuralInsightsHIV12017]
 
-## Drug resistance in HIV
-
-When on ART, virus evolves under selective pressure and develops resistance -\> treatment failure.
-
-### What is ART ?
-
-ART is very important in reducing the viral load and therefore reducing transmission [@eisingerHIVViralLoad2019], however it does not "cure" HIV, it controls it drastically reducing mortality and morbidity [@palellaDecliningMorbidityMortality1998].
-
-Mostly target the RT and PR proteins
-
-History [@zolopaEvolutionHIVTreatment2010; @forsytheTwentyYearsAntiretroviral2019]:
-
--   azidothymidine (AZT), an RTI, was shown to be effective against HIV in 1987 [@fischlEfficacyAzidothymidineAZT1987], only 3 years later resistant strains of the virus were circulating [@richmanSusceptibilityNucleosideAnalogues1990], because it was a monotherapy.
-
--   Between 1088 and 1995 four more RTIs were approved by the FDA and a combination therapy was shown to be effective [@gulickTreatmentIndinavirZidovudine1997]
-
--   In 2008 there were 30 antiretroviral drugs have approved by the FDA [@palmisanoBriefHistoryAntiretroviral2011], of which 12 were RTI, 10 PIs and 5 combination drugs, often available as a single pill.
-
--   In 2019 there are 11 licensed single pill regimens in Europe [@OnepilladayHIVTreatments].
-
-Other drugs:
-
--   entry inhibitors: have been shown to be effective 2 have been approved in the USA [@tiltonEntryInhibitorsTreatment2010]
-
--   integrase inhibitors (INI): recent focus on development, 5 approved drugs since 2007 [@scarsiHIV1IntegraseInhibitors2020]
-
--   Pre-exposure prophylaxis (PrEP), putting uninfected but at risk populations on ART before any known exposure. Has been shown effectively lower risk of infection in several studies [@grantPreexposureChemoprophylaxisHIV2010; @baetenAntiretroviralProphylaxisHIV2012; @buchbinderPreexposureProphylaxisPromise2011]. When adherence is maintained studies have shown a infection risk between 44% and 100% [@riddellHIVPreexposureProphylaxis2018].\
-    In 2022 there are 1 PrEP regimen approved for use in Europe [@emaTruvada2018].
-
--   Action of ART drugs:
-
-    -   RTI:
-
-        -   NRTI: nucleoside analogue RTI work by binding with the active site of RT blocking DNA polymerization -\> chain terminating inhibitors
-
-        -   NNRTI: non-nucleoside analogue RTI, bind to other a hydrophobic pocket behind the active site the RT, changing its flexibility and rendering it incative [@esnoufUniqueFeaturesStructure1997]
-
     -   PI: bind to active site of protease to hinder action [@robertsRationalDesignPeptideBased1990]
 
-    -   Entry inhibitors are being found [@esteHIVEntryInhibitors2007; @kilbyNovelTherapiesBased2003]. enfuvirtide binds to gp41 and prevents fusion [@fletcherEnfuvirtideNewDrug2003]
+Other drug targets:
 
-    -   INI: prevent strand transfer where viral DNA is first linked to host DNA [@pommierIntegraseInhibitorsTreat2005]
+-   Entry inhibitors are being found [@esteHIVEntryInhibitors2007; @kilbyNovelTherapiesBased2003]. enfuvirtide binds to gp41 and prevents fusion [@fletcherEnfuvirtideNewDrug2003]
 
 However Drug resistance has emerged for most treatment types even PrEP [@knoxMultidrugResistantHIV1Infection2017; @hurtPreexposureProphylaxisAntiretroviral2011] but seem to be rare and due to pre-treatment but unknown HIV infection [@gibasDrugResistanceHIV2019]
 
