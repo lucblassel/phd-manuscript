@@ -197,12 +197,12 @@ knitr::include_graphics("./figures/HIV-Intro/timeline.png")
 ```
 
 ```{=tex}
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \includegraphics[width=\textwidth]{./figures/HIV-Intro/timeline.pdf}
   \extcaption{Timeline of ART single drug FDA approvals.}{Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INI), Fusion Inhibitors (FI), Entry Inhibitors (EI). COBI, shown in gray, is a pharmacokinetic enhancer, it enhances the effect of certain other drugs.\\
-\* RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.\\
-✝ These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.\\
+* RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.\\
+\dag These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.\\
 \textit{Information collected from \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
 \href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.}
 \label{fig:timeline}
