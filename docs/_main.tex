@@ -235,7 +235,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-08-07}
+\date{2022-08-09}
 
 \begin{document}
 \maketitle
@@ -2423,30 +2423,13 @@ Although the HIV/AIDS pandemic has been very deadly around the world, we are not
 \hypertarget{a-quick-history-of-art}{%
 \subsection{A quick history of ART ?}\label{a-quick-history-of-art}}
 
-\begin{itemize}
-\item
-  azidothymidine (AZT), an RTI, was shown to be effective against HIV in 1987 \autocite{fischlEfficacyAzidothymidineAZT1987}, only 3 years later resistant strains of the virus were circulating \autocite{richmanSusceptibilityNucleosideAnalogues1990}, because it was a monotherapy.
-\item
-  Between 1088 and 1995 four more RTIs were approved by the FDA and a combination therapy was shown to be effective \autocite{gulickTreatmentIndinavirZidovudine1997}
-\item
-  In 2008 there were 30 antiretroviral drugs have approved by the FDA \autocite{palmisanoBriefHistoryAntiretroviral2011}, of which 12 were RTI, 10 PIs and 5 combination drugs, often available as a single pill.
-\item
-  In 2019 there are 11 licensed single pill regimens in Europe \autocite{OnepilladayHIVTreatments}.
-\end{itemize}
+The first available anti-HIV drug was Zidovudine (ZDV, also known as azidothymidine or AZT) approved by the FDA for usage in the USA in 1987 \autocite{fischlEfficacyAzidothymidineAZT1987}, a few years only after the discovery of the virus. This drug was a reverse transcriptase inhibitor (RTI) therefore preventing the viral RNA from being transcribed into viral DNA. Unfortunately, 3 years later strains of HIV resistant to ZDV were circulating \autocite{richmanSusceptibilityNucleosideAnalogues1990}. This rapid emergence of resistance to treatment is common for HIV \autocite{yeoDeterminationHIV1RT2020} due to its very high evolution rate \autocite{cuevasExtremelyHighMutation2015} allowing it to explore many possible mutations in response to selective pressures. To counter this resistance new drugs were rapidly developed and, between 1988 and 1995, four more RTIs were approved by the FDA. Using a combination of these drugs was also shown to be effective and led to a slower rise of resistance \autocite{gulickTreatmentIndinavirZidovudine1997}.
 
-These drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners \autocite{zolopaEvolutionHIVTreatment2010} and global organisms \autocite{worldhealthorganizationConsolidatedGuidelinesHIV2021} alike.
+Then focus was shifted to the development of a new type of drug: Protease Inhibitors (PI). Between 1995 and 1997 4 of them were approved. These, taken in combination with RTI made if harder for the virus to develop resistance \autocite{wensingFifteenYearsHIV2010}. A new class of RTIs was also explored, Non-Nucleoside RTIs (NNRTIs) that block the RT action in another manner than the previously approved Nucleoside RTIs (NRTIs). When taken in combination with other drugs they are also highly effective \autocite{pedersenNonNucleosideReverseTranscriptase1999}. As the years advanced even more drug targets were explored, with 5 Integrase inhibitors (INSTI) being approved since 2007 \autocite{scarsiHIV1IntegraseInhibitors2020}, A Fusion Inhibitor (FI) in 2003, and 3 other Entry inhibitors (EI) since 2007 all targeting different steps in the replication cycle of HIV \emph{(see Table} \ref{tab:tableDrugs} and Figure \ref{fig:timeline}\emph{)}.
 
-Other drugs:
+In response to the rapid emergence of resistance in HIV when treated with a single drug, clinicians started systematically treating HIV with a combination of multiple drugs targeting different proteins, as early as 1996. This is now referred to as Highly active antiretroviral combination therapy (HAART, also known as tritherapy). HAART usually consists of 2 NRTIs coupled with another drug: NNRTI or PI at first and later FI or INSTI \autocite{yeniUpdateHAARTHIV2006}. As of 2008 22 anti-HIV single drugs were approved by the FDA \autocite{palmisanoBriefHistoryAntiretroviral2011}, and 27 as of today. This large array of available drugs made HAART possible and gave options to clinicians to switch targets when the multi-resistant HIV emerged.
 
-\begin{itemize}
-\item
-  entry inhibitors: have been shown to be effective 2 have been approved in the USA \autocite{tiltonEntryInhibitorsTreatment2010}
-\item
-  integrase inhibitors (INI): recent focus on development, 5 approved drugs since 2007 \autocite{scarsiHIV1IntegraseInhibitors2020}
-\item
-  Pre-exposure prophylaxis (PrEP), putting uninfected but at risk populations on ART before any known exposure. Has been shown effectively lower risk of infection in several studies \autocite{grantPreexposureChemoprophylaxisHIV2010,baetenAntiretroviralProphylaxisHIV2012,buchbinderPreexposureProphylaxisPromise2011}. When adherence is maintained studies have shown a infection risk between 44\% and 100\% \autocite{riddellHIVPreexposureProphylaxis2018}.\\
-  In 2022 there are 1 PrEP regimen approved for use in Europe \autocite{emaTruvada2018}.
-\end{itemize}
+With the advent of HAART, patients had access to more potent treatments, however complexity of the treatment regimen grew. Treatments often involved several pills a day to take at precise intervals. Complex drug regimens have been associated with poorer treatment adherence \autocite{mehtaPotentialFactorsAffecting1997,millerComplianceTreatmentRegimens1997}, which can lead to poor treatment outcome as well as the emergence of multi-resistant HIV strains \autocite{chesneyAdherenceHIVCombination2000} and its spread within the population. To avoid this issue, increasingly more single pill regimens are being developed with a staggering 7 new drugs approved by the FDA in 2018. These single pill regimens greatly reduce the burden of adherence for patients leading to better therapeutic outcomes and reduced healthcare costs \autocite{aldirSingletabletRegimensHIV2014}.
 
 \begin{figure}[H]
   \centering
@@ -2458,6 +2441,10 @@ Other drugs:
 \href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.}
 \label{fig:timeline}
 \end{figure}
+
+Most recently, some studies explored using some of these single pill regimens (such as Truvada, c.f. Table \ref{tab:tableDrugs}) as prophylactics \emph{i.e.} Pre-exposure prophylaxis (PrEP). Putting uninfected but at risk populations on ART before any known exposure has been shown to effectively lower the risk of infection \autocite{grantPreexposureChemoprophylaxisHIV2010,baetenAntiretroviralProphylaxisHIV2012,buchbinderPreexposureProphylaxisPromise2011}. When adherence is maintained, this risk reduction has been estimated to be between 44\% and 100\% \autocite{riddellHIVPreexposureProphylaxis2018}. As of 2022, Truvada is the only authorized drug for PrEP in Europe \autocite{emaTruvada2018}, although Descovy and Apretude are also authorized for PrEP in the USA \autocite{PrEPPrEPHIV2022}.
+
+All of these drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners \autocite{zolopaEvolutionHIVTreatment2010} and global organisms \autocite{worldhealthorganizationConsolidatedGuidelinesHIV2021} alike.
 
 \hypertarget{main-mechanisms-of-viral-proteins-and-antiretroviral-drugs}{%
 \subsection{Main mechanisms of viral proteins and antiretroviral drugs}\label{main-mechanisms-of-viral-proteins-and-antiretroviral-drugs}}
@@ -4024,6 +4011,92 @@ PDB structure IDs:
 \item
   \textbf{Tat}: \href{http://www.rcsb.org/pdb/explore.do?structureId=1biv}{1biv} and \href{http://www.rcsb.org/pdb/explore.do?structureId=1jfw}{1jfw}
 \end{itemize}
+
+\hypertarget{list-of-all-antiretroviral-drugs}{%
+\section{List of all antiretroviral drugs}\label{list-of-all-antiretroviral-drugs}}
+
+\begin{longtable}{lllll}
+        \toprule
+        Name & Brand name & Abbreviation & Class & Approval date \\ \midrule
+        zidovudine & retrovir & ZDV & NRTI & 1987-03-19 \\ 
+        didanosine\textsuperscript{\dag} & videx & ddI & NRTI & 1991-10-09 \\ 
+        zalcitabine\textsuperscript{\dag} & hivid & ddC & NRTI & 1992-06-19 \\ 
+        stavudine\textsuperscript{\dag} & zerit & d4T & NRTI & 1994-06-24 \\ 
+        lamivudine & epivir & 3TC & NRTI & 1995-11-17 \\ 
+        saquinavir & invirase & SQV & PI & 1995-12-06 \\ 
+        ritonavir\textsuperscript{*} & norvir & RTV & PI & 1996-03-01 \\ 
+        indinavir\textsuperscript{\dag} & crixivan & IDV & PI & 1996-03-13 \\ 
+        neviparine & viramune & NVP & NNRTI & 1996-06-21 \\ 
+        nelfinavir\textsuperscript{\dag} & viracept & NFV & PI & 1997-03-14 \\ 
+        delavirdine\textsuperscript{\dag} & rescriptor & DLV & NNRTI & 1997-04-04 \\ 
+        combivir & combivir & 3TC+ZDV & FDC & 1997-09-27 \\ 
+        efavirenz & sustiva & EFV & NNRTI & 1998-09-17 \\ 
+        abacavir & ziagen & ABC & NRTI & 1998-12-17 \\ 
+        amprenavir\textsuperscript{\dag} & agenerase & APV & PI & 1999-04-15 \\ 
+        kaletra & kaletra & LPV+RTV & FDC & 2000-09-15 \\ 
+        didanosine-ec\textsuperscript{\dag} & videx-ec & ddI-EC & NRTI & 2000-10-31 \\ 
+        trizivir & trizivir & ABC+3TC+ZDV & FDC & 2000-11-14 \\ 
+        tenofovir-df & viread & TDF & NRTI & 2001-10-26 \\ 
+        enfuvirtide & fuzeon & T-20 & FI & 2003-03-13 \\ 
+        atazanavir & reyataz & ATC & PI & 2003-06-20 \\ 
+        emtricitabine & emtriva & FTC & NRTI & 2003-07-02 \\ 
+        fosamprenavir & lexiva & FPV & PI & 2003-10-20 \\ 
+        epzicom & epzicom & ABC+3TC & FDC & 2004-08-02 \\ 
+        truvada & truvada & FTC+TDF & FDC & 2004-08-02 \\ 
+        tipranavir & aptivus & TPV & PI & 2005-06-22 \\ 
+        darunavir & prezista & DRV & PI & 2006-06-23 \\ 
+        atripla & atripla & EFV+FTC+TDF & FDC & 2006-07-12 \\ 
+        maraviroc & selzentry & MVC & CA & 2007-08-06 \\ 
+        raltegravir & isentress & RAL & INSTI & 2007-10-12 \\ 
+        etravirine & intelence & ETR & NNRTI & 2008-01-18 \\ 
+        neviparine-xr & viramune-xr & NVP-XR & NNRTI & 2011-03-25 \\ 
+        rilpivirine & edurant & RPV & NNRTI & 2011-05-20 \\ 
+        complera & complera & FTC+RPV+TDF & FDC & 2011-08-10 \\ 
+        stribild & stribild & EVG+COBI+FTC+TDF & FDC & 2012-08-27 \\ 
+        dolutegravir & tivicay & DTG & INSTI & 2013-08-12 \\ 
+        triumeq & triumeq & ABC+DTG+3TC & FDC & 2014-08-22 \\ 
+        elvitegravir\textsuperscript{\dag} & vitekta & EVG & INSTI & 2014-09-14 \\ 
+        cobicistat & tybost & COBI & PE & 2014-09-24 \\ 
+        evotaz & evotaz & ATV+COBI & FDC & 2015-01-29 \\ 
+        prezcobix & prezcobix & DRV+COBI & FDC & 2015-01-29 \\ 
+        genvoya & genvoya & EVG+COBI+FTC+TAF & FDC & 2015-11-05 \\ 
+        odefsey & odefsey & FTC+RPV+TAF & FDC & 2016-03-01 \\ 
+        descovy & descovy & FTC+TAF & FDC & 2016-04-04 \\ 
+        raltegravir & isentress-hd & RAL & INSTI & 2017-05-26 \\ 
+        juluca & juluca & DTG+RPV & FDC & 2017-11-21 \\ 
+        symfi-lo & symfi-lo & EFV+3TC+TDF & FDC & 2018-02-05 \\ 
+        biktarvy & biktarvy & BIC+FTC+TAF & FDC & 2018-02-07 \\ 
+        cimduo & cimduo & 3TC+TDF & FDC & 2018-02-28 \\ 
+        ibalizumab-uiyk & trogarzo & TNX-355 & PAI & 2018-03-06 \\ 
+        symfi & symfi & EFV+3TC+TDF & FDC & 2018-03-22 \\ 
+        symtuza & symtuza & DRV+COBI+FTC+TAF & FDC & 2018-07-17 \\ 
+        delstrigo & delstrigo & DOR+3TC+TDF & FDC & 2018-08-30 \\ 
+        doravirine & pifeltro & DOR & NNRTI & 2018-08-30 \\ 
+        temixys & temixys & 3TC+TDF & FDC & 2018-11-16 \\ 
+        dovato & dovato & DTG+3TC & FDC & 2019-04-08 \\ 
+        dolutegravir & tivicay-pd & DTG & INSTI & 2020-06-12 \\ 
+        fostemsavir & rukobia & FTR & AI & 2020-07-02 \\ 
+        cabenuva & cabenuva & CAB+RPV & FDC & 2021-01-22 \\ 
+        cabotegravir & vocabria & CAB & INSTI & 2021-01-22 \\ \bottomrule
+    \extcaption{List of all antiretroviral drugs used in HIV therapy}{
+Zidovudine (ZDV) is also referred to as Azidothymidine (AZT) in litterature, Fixed Dose combinations (i.e. single pills combining multiple drugs) are referred to by their commercial name, the composition of these can be seen in the abbreviation. Drugs were ordered by FDA approval date.\\    
+\textbf{AI}: Attachment Inhibitor,
+\textbf{CA}: CCR5 Antagonist,
+\textbf{FDC}: Fixed Dose Combination,
+\textbf{FI}: Fusion Inhibitor,
+\textbf{INSTI}: Integrase Inhibitor
+\textbf{NNRTI}: Non-Nucleoside Reverse Transcriptase Inhibitor, 
+\textbf{NRTI}: Nucleoside Reverse Transcriptase Inhibitor,
+\textbf{PE}: Pharmacokinetic Enhancer,
+\textbf{PAI}: Post-Attachment Inhibitor,  
+\textbf{PI}: Protease Inhibitor. 
+\textbf{AI}, \textbf{CA}, \textbf{FI} and \textbf{PAI} can be grouped in a class of Entry inhibitors.\\
+* Although Ritonavir is originally a PI it is now mainly used as a PE to boost the action of other drugs.\\
+\dag These drugs are no longer available or recommended in HIV treatment guidelines. They may still be used in FDC regimens.\\
+Adapted from \href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}
+}
+\label{tab:tableDrugs}
+\end{longtable}
 
 \hypertarget{HIV-appendix}{%
 \chapter{Supporting Information for ``Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV''}\label{HIV-appendix}}
