@@ -31,3 +31,125 @@ PDB structure IDs:
 -   **Rev**: [1etf](http://www.rcsb.org/pdb/explore.do?structureId=1etf)
 
 -   **Tat**: [1biv](http://www.rcsb.org/pdb/explore.do?structureId=1biv) and [1jfw](http://www.rcsb.org/pdb/explore.do?structureId=1jfw)
+
+## List of all antiretroviral drugs
+
+```{r}
+drugsCaption <- "**List of all antiretroviral drugs used in HIV therapy**
+Zidovudine (ZDV) is also referred to as Azidothymidine (AZT) in litterature, Fixed Dose combinations (i.e. single pills combining multiple drugs) are referred to by their commercial name, the composition of these can be seen in the abbreviation. Drugs were ordered by FDA approval date.    
+**AI**: Attachment Inhibitor,
+**CA**: CCR5 Antagonist,
+**FDC**: Fixed Dose Combination,
+**FI**: Fusion Inhibitor,
+**INSTI**: Integrase Inhibitor
+**NNRTI**: Non-Nucleoside Reverse Transcriptase Inhibitor, 
+**NRTI**: Nucleoside Reverse Transcriptase Inhibitor,
+**PE**: Pharmacokinetic Enhancer,
+**PAI**: Post-Attachment Inhibitor,  
+**PI**: Protease Inhibitor. 
+**AI**, **CA**, **FI** and **PAI** can be grouped in a class of Entry inhibitors.  
+\\* Although Ritonavir is originally a PI it is now mainly used as a PE to boost the action of other drugs.  
+† These drugs are no longer available or recommended in HIV treatment guidelines. They may still be used in FDC regimens.  
+Adapted from https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines and https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines
+"
+```
+```{r, tableDrugs, label="tableDrugs", eval=knitr::is_html_output(), tab.topcaption=FALSE, tab.cap.style="caption", cache=FALSE}
+dt <- read_csv("tables/HIV-DRMs/Sup1.csv") %>%
+  mutate(annot=if_else(
+    discontinued, paste0(name, "^†^"), if_else(
+      abbrev=="RTV", paste0(name, "\\*"), name
+    )
+  )) %>%
+  select(annot, brand, abbrev, class, date)
+
+ft <- flextable(dt) %>%
+  ftExtra::colformat_md() %>%
+  set_table_properties(width=0.9, layout="autofit")
+
+ft <- set_caption(ft, caption=drugsCaption, style="caption")
+set_header_labels(ft, annot="Name", brand="Brand name", abbrev="Abbreviation", class="Class", date="Approval date")
+```
+
+\begin{longtable}{lllll}
+        \toprule
+        Name & Brand name & Abbreviation & Class & Approval date \\ \midrule
+        zidovudine & retrovir & ZDV & NRTI & 1987-03-19 \\ 
+        didanosine\textsuperscript{\dag} & videx & ddI & NRTI & 1991-10-09 \\ 
+        zalcitabine\textsuperscript{\dag} & hivid & ddC & NRTI & 1992-06-19 \\ 
+        stavudine\textsuperscript{\dag} & zerit & d4T & NRTI & 1994-06-24 \\ 
+        lamivudine & epivir & 3TC & NRTI & 1995-11-17 \\ 
+        saquinavir & invirase & SQV & PI & 1995-12-06 \\ 
+        ritonavir\textsuperscript{*} & norvir & RTV & PI & 1996-03-01 \\ 
+        indinavir\textsuperscript{\dag} & crixivan & IDV & PI & 1996-03-13 \\ 
+        neviparine & viramune & NVP & NNRTI & 1996-06-21 \\ 
+        nelfinavir\textsuperscript{\dag} & viracept & NFV & PI & 1997-03-14 \\ 
+        delavirdine\textsuperscript{\dag} & rescriptor & DLV & NNRTI & 1997-04-04 \\ 
+        combivir & combivir & 3TC+ZDV & FDC & 1997-09-27 \\ 
+        efavirenz & sustiva & EFV & NNRTI & 1998-09-17 \\ 
+        abacavir & ziagen & ABC & NRTI & 1998-12-17 \\ 
+        amprenavir\textsuperscript{\dag} & agenerase & APV & PI & 1999-04-15 \\ 
+        kaletra & kaletra & LPV+RTV & FDC & 2000-09-15 \\ 
+        didanosine-ec\textsuperscript{\dag} & videx-ec & ddI-EC & NRTI & 2000-10-31 \\ 
+        trizivir & trizivir & ABC+3TC+ZDV & FDC & 2000-11-14 \\ 
+        tenofovir-df & viread & TDF & NRTI & 2001-10-26 \\ 
+        enfuvirtide & fuzeon & T-20 & FI & 2003-03-13 \\ 
+        atazanavir & reyataz & ATC & PI & 2003-06-20 \\ 
+        emtricitabine & emtriva & FTC & NRTI & 2003-07-02 \\ 
+        fosamprenavir & lexiva & FPV & PI & 2003-10-20 \\ 
+        epzicom & epzicom & ABC+3TC & FDC & 2004-08-02 \\ 
+        truvada & truvada & FTC+TDF & FDC & 2004-08-02 \\ 
+        tipranavir & aptivus & TPV & PI & 2005-06-22 \\ 
+        darunavir & prezista & DRV & PI & 2006-06-23 \\ 
+        atripla & atripla & EFV+FTC+TDF & FDC & 2006-07-12 \\ 
+        maraviroc & selzentry & MVC & CA & 2007-08-06 \\ 
+        raltegravir & isentress & RAL & INSTI & 2007-10-12 \\ 
+        etravirine & intelence & ETR & NNRTI & 2008-01-18 \\ 
+        neviparine-xr & viramune-xr & NVP-XR & NNRTI & 2011-03-25 \\ 
+        rilpivirine & edurant & RPV & NNRTI & 2011-05-20 \\ 
+        complera & complera & FTC+RPV+TDF & FDC & 2011-08-10 \\ 
+        stribild & stribild & EVG+COBI+FTC+TDF & FDC & 2012-08-27 \\ 
+        dolutegravir & tivicay & DTG & INSTI & 2013-08-12 \\ 
+        triumeq & triumeq & ABC+DTG+3TC & FDC & 2014-08-22 \\ 
+        elvitegravir\textsuperscript{\dag} & vitekta & EVG & INSTI & 2014-09-14 \\ 
+        cobicistat & tybost & COBI & PE & 2014-09-24 \\ 
+        evotaz & evotaz & ATV+COBI & FDC & 2015-01-29 \\ 
+        prezcobix & prezcobix & DRV+COBI & FDC & 2015-01-29 \\ 
+        genvoya & genvoya & EVG+COBI+FTC+TAF & FDC & 2015-11-05 \\ 
+        odefsey & odefsey & FTC+RPV+TAF & FDC & 2016-03-01 \\ 
+        descovy & descovy & FTC+TAF & FDC & 2016-04-04 \\ 
+        raltegravir & isentress-hd & RAL & INSTI & 2017-05-26 \\ 
+        juluca & juluca & DTG+RPV & FDC & 2017-11-21 \\ 
+        symfi-lo & symfi-lo & EFV+3TC+TDF & FDC & 2018-02-05 \\ 
+        biktarvy & biktarvy & BIC+FTC+TAF & FDC & 2018-02-07 \\ 
+        cimduo & cimduo & 3TC+TDF & FDC & 2018-02-28 \\ 
+        ibalizumab-uiyk & trogarzo & TNX-355 & PAI & 2018-03-06 \\ 
+        symfi & symfi & EFV+3TC+TDF & FDC & 2018-03-22 \\ 
+        symtuza & symtuza & DRV+COBI+FTC+TAF & FDC & 2018-07-17 \\ 
+        delstrigo & delstrigo & DOR+3TC+TDF & FDC & 2018-08-30 \\ 
+        doravirine & pifeltro & DOR & NNRTI & 2018-08-30 \\ 
+        temixys & temixys & 3TC+TDF & FDC & 2018-11-16 \\ 
+        dovato & dovato & DTG+3TC & FDC & 2019-04-08 \\ 
+        dolutegravir & tivicay-pd & DTG & INSTI & 2020-06-12 \\ 
+        fostemsavir & rukobia & FTR & AI & 2020-07-02 \\ 
+        cabenuva & cabenuva & CAB+RPV & FDC & 2021-01-22 \\ 
+        cabotegravir & vocabria & CAB & INSTI & 2021-01-22 \\ \bottomrule
+    \extcaption{List of all antiretroviral drugs used in HIV therapy}{
+Zidovudine (ZDV) is also referred to as Azidothymidine (AZT) in litterature, Fixed Dose combinations (i.e. single pills combining multiple drugs) are referred to by their commercial name, the composition of these can be seen in the abbreviation. Drugs were ordered by FDA approval date.\\    
+\textbf{AI}: Attachment Inhibitor,
+\textbf{CA}: CCR5 Antagonist,
+\textbf{FDC}: Fixed Dose Combination,
+\textbf{FI}: Fusion Inhibitor,
+\textbf{INSTI}: Integrase Inhibitor
+\textbf{NNRTI}: Non-Nucleoside Reverse Transcriptase Inhibitor, 
+\textbf{NRTI}: Nucleoside Reverse Transcriptase Inhibitor,
+\textbf{PE}: Pharmacokinetic Enhancer,
+\textbf{PAI}: Post-Attachment Inhibitor,  
+\textbf{PI}: Protease Inhibitor. 
+\textbf{AI}, \textbf{CA}, \textbf{FI} and \textbf{PAI} can be grouped in a class of Entry inhibitors.\\
+* Although Ritonavir is originally a PI it is now mainly used as a PE to boost the action of other drugs.\\
+\dag These drugs are no longer available or recommended in HIV treatment guidelines. They may still be used in FDC regimens.\\
+Adapted from \href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}
+}
+\label{tab:tableDrugs}
+\end{longtable}
+

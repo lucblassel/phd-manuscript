@@ -165,31 +165,21 @@ Although the HIV/AIDS pandemic has been very deadly around the world, we are not
 
 ### A quick history of ART ?
 
--   azidothymidine (AZT), an RTI, was shown to be effective against HIV in 1987 [@fischlEfficacyAzidothymidineAZT1987], only 3 years later resistant strains of the virus were circulating [@richmanSusceptibilityNucleosideAnalogues1990], because it was a monotherapy.
+The first available anti-HIV drug was Zidovudine (ZDV, also known as azidothymidine or AZT) approved by the FDA for usage in the USA in 1987 [@fischlEfficacyAzidothymidineAZT1987], a few years only after the discovery of the virus. This drug was a reverse transcriptase inhibitor (RTI) therefore preventing the viral RNA from being transcribed into viral DNA. Unfortunately, 3 years later strains of HIV resistant to ZDV were circulating [@richmanSusceptibilityNucleosideAnalogues1990]. This rapid emergence of resistance to treatment is common for HIV [@yeoDeterminationHIV1RT2020] due to its very high evolution rate [@cuevasExtremelyHighMutation2015] allowing it to explore many possible mutations in response to selective pressures. To counter this resistance new drugs were rapidly developed and, between 1988 and 1995, four more RTIs were approved by the FDA. Using a combination of these drugs was also shown to be effective and led to a slower rise of resistance [@gulickTreatmentIndinavirZidovudine1997].
 
--   Between 1088 and 1995 four more RTIs were approved by the FDA and a combination therapy was shown to be effective [@gulickTreatmentIndinavirZidovudine1997]
+Then focus was shifted to the development of a new type of drug: Protease Inhibitors (PI). Between 1995 and 1997 4 of them were approved. These, taken in combination with RTI made if harder for the virus to develop resistance [@wensingFifteenYearsHIV2010]. A new class of RTIs was also explored, Non-Nucleoside RTIs (NNRTIs) that block the RT action in another manner than the previously approved Nucleoside RTIs (NRTIs). When taken in combination with other drugs they are also highly effective [@pedersenNonNucleosideReverseTranscriptase1999]. As the years advanced even more drug targets were explored, with 5 Integrase inhibitors (INSTI) being approved since 2007 [@scarsiHIV1IntegraseInhibitors2020], A Fusion Inhibitor (FI) in 2003, and 3 other Entry inhibitors (EI) since 2007 all targeting different steps in the replication cycle of HIV *(see Table* \@ref(tab:tableDrugs) and Figure \@ref(fig:timeline)*)*.
 
--   In 2008 there were 30 antiretroviral drugs have approved by the FDA [@palmisanoBriefHistoryAntiretroviral2011], of which 12 were RTI, 10 PIs and 5 combination drugs, often available as a single pill.
+In response to the rapid emergence of resistance in HIV when treated with a single drug, clinicians started systematically treating HIV with a combination of multiple drugs targeting different proteins, as early as 1996. This is now referred to as Highly active antiretroviral combination therapy (HAART, also known as tritherapy). HAART usually consists of 2 NRTIs coupled with another drug: NNRTI or PI at first and later FI or INSTI [@yeniUpdateHAARTHIV2006]. As of 2008 22 anti-HIV single drugs were approved by the FDA [@palmisanoBriefHistoryAntiretroviral2011], and 27 as of today. This large array of available drugs made HAART possible and gave options to clinicians to switch targets when the multi-resistant HIV emerged.
 
--   In 2019 there are 11 licensed single pill regimens in Europe [@OnepilladayHIVTreatments].
-
-These drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners [@zolopaEvolutionHIVTreatment2010] and global organisms [@worldhealthorganizationConsolidatedGuidelinesHIV2021] alike.
-
-Other drugs:
-
--   entry inhibitors: have been shown to be effective 2 have been approved in the USA [@tiltonEntryInhibitorsTreatment2010]
-
--   integrase inhibitors (INI): recent focus on development, 5 approved drugs since 2007 [@scarsiHIV1IntegraseInhibitors2020]
-
--   Pre-exposure prophylaxis (PrEP), putting uninfected but at risk populations on ART before any known exposure. Has been shown effectively lower risk of infection in several studies [@grantPreexposureChemoprophylaxisHIV2010; @baetenAntiretroviralProphylaxisHIV2012; @buchbinderPreexposureProphylaxisPromise2011]. When adherence is maintained studies have shown a infection risk between 44% and 100% [@riddellHIVPreexposureProphylaxis2018].\
-    In 2022 there are 1 PrEP regimen approved for use in Europe [@emaTruvada2018].
+With the advent of HAART, patients had access to more potent treatments, however complexity of the treatment regimen grew. Treatments often involved several pills a day to take at precise intervals. Complex drug regimens have been associated with poorer treatment adherence [@mehtaPotentialFactorsAffecting1997; @millerComplianceTreatmentRegimens1997], which can lead to poor treatment outcome as well as the emergence of multi-resistant HIV strains [@chesneyAdherenceHIVCombination2000] and its spread within the population. To avoid this issue, increasingly more single pill regimens are being developed with a staggering 7 new drugs approved by the FDA in 2018. These single pill regimens greatly reduce the burden of adherence for patients leading to better therapeutic outcomes and reduced healthcare costs [@aldirSingletabletRegimensHIV2014].
 
 ```{r, timelineCaption}
 timelineCaption <- "**Timeline of ART single drug FDA approvals.**\
 Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INI), Fusion Inhibitors (FI), Entry Inhibitors (EI). COBI, shown in gray, is a pharmacokinetic enhancer, it enhances the effect of certain other drugs.  
 * RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.  
 ✝ These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.  
-*Information collected from <https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines>, <https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines> and <https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm>.*"
+*Information collected from <https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines>, <https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines> and <https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm>.*  
+See also Table \\@ref(tab:tableDrugs)"
 ```
 
 ```{r, timeline, label="timeline", eval=knitr::is_html_output(), fig.cap=timelineCaption, out.width="100%", cache=FALSE}
@@ -208,7 +198,11 @@ knitr::include_graphics("./figures/HIV-Intro/timeline.png")
 \label{fig:timeline}
 \end{figure}
 ```
-### Main mechanisms of viral proteins and antiretroviral drugs 
+Most recently, some studies explored using some of these single pill regimens (such as Truvada, c.f. Table \@ref(tab:tableDrugs)) as prophylactics *i.e.* Pre-exposure prophylaxis (PrEP). Putting uninfected but at risk populations on ART before any known exposure has been shown to effectively lower the risk of infection [@grantPreexposureChemoprophylaxisHIV2010; @baetenAntiretroviralProphylaxisHIV2012; @buchbinderPreexposureProphylaxisPromise2011]. When adherence is maintained, this risk reduction has been estimated to be between 44% and 100% [@riddellHIVPreexposureProphylaxis2018]. As of 2022, Truvada is the only authorized drug for PrEP in Europe [@emaTruvada2018], although Descovy and Apretude are also authorized for PrEP in the USA [@PrEPPrEPHIV2022].
+
+All of these drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners [@zolopaEvolutionHIVTreatment2010] and global organisms [@worldhealthorganizationConsolidatedGuidelinesHIV2021] alike.
+
+### Main mechanisms of viral proteins and antiretroviral drugs
 
 -   RT: [@sarafianosStructureFunctionHIV12009], c.f. Figure \@ref(fig:rtStruct)
 
