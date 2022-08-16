@@ -233,9 +233,11 @@
 \addbibresource{./references/Aligning-Sequences.bib}
 \addbibresource{./references/HIV-context.bib}
 
+\raggedbottom
+
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-08-09}
+\date{2022-08-15}
 
 \begin{document}
 \maketitle
@@ -367,7 +369,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 
 DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA \autocite{watson1953} shown in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.pdf}
 \extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
@@ -445,7 +447,7 @@ In biological sequences (nucleic acids and proteins), mutations can result from 
 
 While these three types of errors occur both in nucleic acids and proteins there are some things to consider about the consequences of nucleic acid mutations on protein synthesis. Due to the redundant nature of the genetic code mentioned in Section \ref{proteins-their-structure-and-their-role}, some mutations in the nucleic acid sequence will result in the same protein sequence and therefore not have altered protein activity. Some mutations however will result in a substitution at the amino acid level which could potentially lead to a physicochemically altered or even non-functional protein. Finally, insertion and deletion errors (collectively called indels) can have big consequences on resulting proteins. Inserting or deleting nucleotides in multiples of three will result in the insertion/deletion of amino acids in the resulting protein, any other length of indel will result in what is called a frameshift mutation \autocite{rothFrameshiftMutations1974}. These mutations causes changes in the codons, potentially resulting in a completely different amino-acid sequence, including premature stop codon apparition as shown in Figure \ref{fig:frameshift}.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/Frameshift.pdf}
 \extcaption{Effect of frameshift mutations}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in grey, with corresponding amino acids, above the sequence) translate to the functional protein. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein. }
@@ -492,7 +494,7 @@ It is important to note that while dNTPs and ddNTPs refer to nucleotides with an
 
 This process allowed Sanger \emph{et al.} to sequence the first genome, of a \(\varphi X174\) bacteriophage, in 1977 \autocite{sangerNucleotideSequenceBacteriophage1977}. Although revolutionnary, this method was costly, time consuming and labor intensive. Adjustments to this method were made in order to make it faster and less expensive. An important step was to change the way ddNTPs were marked. By using fluorescent markers, each base having a distinct ``color'', we can eliminate the need to have 4 different environments and lanes in the gel \autocite{smithSynthesisOligonucleotidesContaining1985,smithFluorescenceDetectionAutomated1986}. This also paved the way for automating sequencing, each fluorescently marked band can be excited with a laser, and the resulting specific wavelength can be recorded by optical systems and the corresponding base automatically deduced \autocite{ansorgeAutomatedDNASequencing1987} (Also see Figure \ref{fig:sanger}). Other improvements were made such as using capillary electrophoresis instead of gel electrophoresis.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/sanger-sequencing.pdf}
 \extcaption{Caption}{(WIP)}
@@ -664,7 +666,7 @@ The idea is very simple, for any sequence replace a repeated run of any nucleoti
 
 HPC has been implemented in many sequence bioinformatics sowftware tools. The HiCanu \autocite{nurkHiCanuAccurateAssembly2020}, MDBG \autocite{ekimMinimizerspaceBruijnGraphs2021}, wtdbg2 \autocite{ruanFastAccurateLongread2020}, shasta \autocite{shafinNanoporeSequencingShasta2020} assemblers all use HPC under the hood to provide better assemblies, and it was used to assemble the complete human genome sequence \autocite{nurk2022}. The first published usage of HPC, was actually in the CABOG assembler \autocite{millerAggressiveAssemblyPyrosequencing2008} developed for pyrosequencing reads. HPC has also been implemented for other tasks, like clustering \autocite{sahlinNovoClusteringLongRead2020}, long read error correction with LSC \autocite{auImprovingPacBioLong2012} and LSCPlus \autocite{huLSCplusFastSolution2016}, alignment with minimap2 \autocite{liMinimap2PairwiseAlignment2018} and winnowmap2 \autocite{jainWeightedMinimizerSampling2020}, or specific analysis pipelines for satellite tandem repeats \autocite{vannesteForensicSTRAnalysis2012}.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
 \extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
@@ -781,7 +783,7 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
   \end{itemize}
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/Nw-dp.pdf}
 \extcaption{Example global alignment with the Needleman-Wunsch algorithm}{The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments.}
@@ -948,7 +950,7 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
   \end{itemize}
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=\linewidth]{./figures/Align-Intro/optim-to-adapt.png}
 \extcaption{2 heuristic methods to speed up alignment:}{divide and conquer and bounded dynamic programming. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
@@ -1012,7 +1014,7 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
   Diamond \autocite{buchfinkFastSensitiveProtein2015,buchfinkSensitiveProteinAlignments2021} which indexes both the reference and query at the same time.
 \end{itemize}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
 \extcaption{Example of kmers sharing a minimizer}{}
@@ -1075,7 +1077,7 @@ guide tree, clustering of sequences then refine alignment. Good heuristic but wi
   Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).
 \end{enumerate}
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
 \extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
@@ -2350,7 +2352,7 @@ The viruses replication cycle and its immune-cell host specificity are what make
 
 The successive infection of CD4 cells by HIV virions leads to cellular death due to inflammatory response and/or activation of apoptosis \autocite{gougeonDirectIndirectMechanisms1993,vidyavijayanPathophysiologyCD4TCell2017}. The gradual depletion of CD4 cells in the infected individual's body lead to the suppression of the immune system, eventually leading to AIDS.
 
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
 \extcaption{Main steps of HIV-1 replication cycle}{The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.}
@@ -2388,7 +2390,7 @@ The \emph{pol} (``polymerase'') gene coding for the Pol polyprotein. After cleav
   The Integrase (IN) is responsible for integrating the viral DNA produced by RT in to the host cell DNA. Once the viral DNA is inside the host genome it can be transcribed and then translated (as described in Section \ref{biological-sequences-a-primer}) to produce new copies of the viral RNA and proteins. Without this integration step the viral genetic information cannot be expressed and the replication cycle is stopped.
 \end{itemize}
 
-These three proteins are of particular importance and we will go into more detail about them in Section \ref{main-mechanisms-of-viral-proteins-and-antiretroviral-drugs}.
+These three proteins are of particular importance and we will go into more detail about them in Section \ref{drug-mechanisms}.
 
 The \emph{env} (``envelope'') gene code for the Env, the third and last polyprotein. The two resulting proteins coat the membrane of the virion and are responsible for binding with the CD4 host cells.
 
@@ -2407,7 +2409,7 @@ The remaining four accessory genes are as follows: \emph{nef} (``negative regula
 
 The existence of a 10th HIV-1 gene was suggested in 1988 \autocite{millerHumanImmunodeficiencyVirus1988}, overlapping the \emph{env} gene and coding for proteins on the other strand of viral DNA than the other genes. This putative gene was named \emph{asp} (``antisense protein'') and Asp transcripts were isolated during an HIV-1 infection in 2002 \autocite{briquetImmunolocalizationStudiesAntisense2002}. The function of this protein is still unknown but it has been shown to have a strong evolutionary correlation with HIV-1 group M responsible for the pandemic \autocite{cassanConcomitantEmergenceAntisense2016}. Although this Asp protein is still a source of debate, it is under active research \autocite{savoretPilotStudyHumoral2020}.
 
-\begin{figure}[h]
+\begin{figure}
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/HIV-Intro/HIV-structure.png}
   \extcaption{Structure and main components of a mature HIV-1 virion.}{Structural proteins MA, CA, SU and TM are represented in Blue, functional enzymes RT, IN and PR in pink, RNA binding proteins Rev, Tat and NC in orange and accessory proteins Vif, Nef, Vpr and Vpu in green. Viral RNA is shown in yellow. The phospholipd membrane of the virion is shown in a light purple color. The p6 protein is not represented as it is largely unsctructured. Vpu is not believed to be present in the HIV virion. \\
@@ -2425,20 +2427,22 @@ Although the HIV/AIDS pandemic has been very deadly around the world, we are not
 
 The first available anti-HIV drug was Zidovudine (ZDV, also known as azidothymidine or AZT) approved by the FDA for usage in the USA in 1987 \autocite{fischlEfficacyAzidothymidineAZT1987}, a few years only after the discovery of the virus. This drug was a reverse transcriptase inhibitor (RTI) therefore preventing the viral RNA from being transcribed into viral DNA. Unfortunately, 3 years later strains of HIV resistant to ZDV were circulating \autocite{richmanSusceptibilityNucleosideAnalogues1990}. This rapid emergence of resistance to treatment is common for HIV \autocite{yeoDeterminationHIV1RT2020} due to its very high evolution rate \autocite{cuevasExtremelyHighMutation2015} allowing it to explore many possible mutations in response to selective pressures. To counter this resistance new drugs were rapidly developed and, between 1988 and 1995, four more RTIs were approved by the FDA. Using a combination of these drugs was also shown to be effective and led to a slower rise of resistance \autocite{gulickTreatmentIndinavirZidovudine1997}.
 
-Then focus was shifted to the development of a new type of drug: Protease Inhibitors (PI). Between 1995 and 1997 4 of them were approved. These, taken in combination with RTI made if harder for the virus to develop resistance \autocite{wensingFifteenYearsHIV2010}. A new class of RTIs was also explored, Non-Nucleoside RTIs (NNRTIs) that block the RT action in another manner than the previously approved Nucleoside RTIs (NRTIs). When taken in combination with other drugs they are also highly effective \autocite{pedersenNonNucleosideReverseTranscriptase1999}. As the years advanced even more drug targets were explored, with 5 Integrase inhibitors (INSTI) being approved since 2007 \autocite{scarsiHIV1IntegraseInhibitors2020}, A Fusion Inhibitor (FI) in 2003, and 3 other Entry inhibitors (EI) since 2007 all targeting different steps in the replication cycle of HIV \emph{(see Table} \ref{tab:tableDrugs} and Figure \ref{fig:timeline}\emph{)}.
+Then focus was shifted to the development of a new type of drug: Protease Inhibitors (PI). Between 1995 and 1997 4 of them were approved. These, taken in combination with RTI made if harder for the virus to develop resistance \autocite{wensingFifteenYearsHIV2010}. A new class of RTIs was also explored, Non-Nucleoside RTIs (NNRTIs) that block the RT action in another manner than the previously approved Nucleoside RTIs (NRTIs). When taken in combination with other drugs they are also highly effective \autocite{pedersenNonNucleosideReverseTranscriptase1999}. As the years advanced even more drug targets were explored, with 5 Integrase inhibitors (INSTI) being approved since 2007 \autocite{scarsiHIV1IntegraseInhibitors2020}, A Fusion Inhibitor (FI) in 2003 \autocite{fletcherEnfuvirtideNewDrug2003}, and 3 other Entry inhibitors (EI) \autocite{esteHIVEntryInhibitors2007,kilbyNovelTherapiesBased2003} since 2007 all targeting different steps in the replication cycle of HIV \emph{(see Table} \ref{tab:tableDrugs} and Figure \ref{fig:timeline}\emph{)}.
 
 In response to the rapid emergence of resistance in HIV when treated with a single drug, clinicians started systematically treating HIV with a combination of multiple drugs targeting different proteins, as early as 1996. This is now referred to as Highly active antiretroviral combination therapy (HAART, also known as tritherapy). HAART usually consists of 2 NRTIs coupled with another drug: NNRTI or PI at first and later FI or INSTI \autocite{yeniUpdateHAARTHIV2006}. As of 2008 22 anti-HIV single drugs were approved by the FDA \autocite{palmisanoBriefHistoryAntiretroviral2011}, and 27 as of today. This large array of available drugs made HAART possible and gave options to clinicians to switch targets when the multi-resistant HIV emerged.
 
 With the advent of HAART, patients had access to more potent treatments, however complexity of the treatment regimen grew. Treatments often involved several pills a day to take at precise intervals. Complex drug regimens have been associated with poorer treatment adherence \autocite{mehtaPotentialFactorsAffecting1997,millerComplianceTreatmentRegimens1997}, which can lead to poor treatment outcome as well as the emergence of multi-resistant HIV strains \autocite{chesneyAdherenceHIVCombination2000} and its spread within the population. To avoid this issue, increasingly more single pill regimens are being developed with a staggering 7 new drugs approved by the FDA in 2018. These single pill regimens greatly reduce the burden of adherence for patients leading to better therapeutic outcomes and reduced healthcare costs \autocite{aldirSingletabletRegimensHIV2014}.
 
-\begin{figure}[H]
+\begin{figure}
   \centering
-  \includegraphics[width=\textwidth]{./figures/HIV-Intro/timeline.pdf}
-  \extcaption{Timeline of ART single drug FDA approvals.}{Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INI), Fusion Inhibitors (FI), Entry Inhibitors (EI). COBI, shown in gray, is a pharmacokinetic enhancer, it enhances the effect of certain other drugs.\\
+  \includegraphics[width=\textwidth]{./figures/HIV-Intro/complete.pdf}
+  \extcaption{Timeline of ART single drug FDA approvals.}{Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INSTI), Entry Inhibitors (EI) and pharmacokinetic enhancers (PE). Fixed Dose Combination (FDC) single pill regimens are also shown.\\
 * RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.\\
 \dag These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.\\
 \textit{Information collected from \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
-\href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.}
+\href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.\\
+See also Table \ref{tab:tableDrugs}.
+}
 \label{fig:timeline}
 \end{figure}
 
@@ -2446,41 +2450,37 @@ Most recently, some studies explored using some of these single pill regimens (s
 
 All of these drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners \autocite{zolopaEvolutionHIVTreatment2010} and global organisms \autocite{worldhealthorganizationConsolidatedGuidelinesHIV2021} alike.
 
-\hypertarget{main-mechanisms-of-viral-proteins-and-antiretroviral-drugs}{%
-\subsection{Main mechanisms of viral proteins and antiretroviral drugs}\label{main-mechanisms-of-viral-proteins-and-antiretroviral-drugs}}
+\hypertarget{drug-mechanisms}{%
+\subsection{Main mechanisms of viral proteins, antiretroviral drugs and associated resistance.}\label{drug-mechanisms}}
 
-\begin{itemize}
-\item
-  RT: \autocite{sarafianosStructureFunctionHIV12009}, c.f. Figure \ref{fig:rtStruct}
+Each ART drug targets a specific protein, most of them target one of the three \emph{pol} proteins: RT, PR and IN. The structure of these proteins is inherently linked to their function, and as such is essential to take into account when developing ART. Similarly the structure of these proteins is very important when studying the resistance mechanisms developed by the virus \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistance2004}. In this section we will go over; for RT, IN and PR; the main structural elements and how they relate to treatment and resistance.
 
-  \begin{itemize}
-  \item
-    2 subunits: p66 and p51 (i.e.~same chain but 1 is cleaved). p66=functional, p51=structural mainly (except for NNIBP).
-  \item
-    Fold to form a canal -\textgreater{} fingers/palm/thumb with the polymerase active site in the palm
-  \item
-    RNA strand and DNA go through the canal and are synthesized in the palm
-  \item
-    RNase domain at the other end of p66 to cleave the RNA strand off of the DNA once it's RTed.
-  \item
-    Once the RNA has been RTed the RT does another pass to synthesize the complementary DNA brand, this time the RNase is not active.
-  \end{itemize}
-\item
-  RTI:
+The reverse transcriptase protein is the most targeted protein in number of ART drugs \emph{(c.f. Figure} \ref{fig:timeline} \emph{and Table} \ref{tab:tableDrugs}\emph{)}. The mature protein is formed of two subunits: p51 and p66. These two subunits are translated from the same section of the \emph{pol} gene, and such have the same amino acid sequence, but p51 is cleaved and as such is shorter than p66. The p66 subunit contains the active sites of RT whereas p51 plays a mainly structural role.
 
-  \begin{itemize}
-  \item
-    NRTI: nucleoside analogue RTI work by binding with the active site of RT blocking DNA polymerization -\textgreater{} chain terminating inhibitors
-  \item
-    NNRTI: non-nucleoside analogue RTI, bind to other a hydrophobic pocket behind the active site the RT, changing its flexibility and rendering it incative \autocite{esnoufUniqueFeaturesStructure1997}
-  \end{itemize}
-\end{itemize}
+The p66 sububit can be separated into 5 domains \autocite{sarafianosStructureFunctionHIV12009}. The ``fingers'', ``palm'', and ``thumb'' domains are linked together and folded to form a canal through which the RNA template and newly synthesized viral DNA can pass through. The polymerase active site, responsible for incorporating nucleotides to the viral DNA molecule, is situated in the ``palm'' domain at the bottom of the canal. The ``RNase'' domain of RT contains a secondary active site responsible for cleaving the viral RNA template from the viral DNA so that the RT can fill out the complementary strand of viral DNA before integration into the host genome. The final ``connection'' domain is simply a link between the ``RNase'' and the ``thumb'' domains. A three dimensional view of RT with these domains highlighted can be seen in Figure \ref{fig:rtStruct}.
 
-\begin{figure}[H] 
+\begin{figure} 
   \centering 
   \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}      \extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}       
   \label{fig:rtStruct} 
 \end{figure}
+
+Reverse Transcriptase inhibitors can be separated into two classes: Nucleoside RTIs (NRTIs) and Non-Nucleoside RTIs (NNRTIs), inhibiting the action of RT in two disctinct manners:
+
+\begin{itemize}
+\item
+  NRTIs are analogues of free nucleotides in the host cell. They competitively inhibit RT and can be used to elongate the viral DNA chain. Once an NRTI is incorporated, further elongation of the DNA molecule is impossible and the viral DNA cannot be synthesized anymore. This is similar to the chain terminating nucleotides introduced in Section \ref{obtaining-sequence-data}.
+\item
+  NNRTIs bind to a specific region of the p51 subunit: the Non Nucleoside Inhibitor Binding Pocket (NNIBP) \emph{(A view of RT with the NNIBP visible is shown in Figure} \ref{fig:figStructure}\emph{)}. This pocket, although it is on the p51 subunit is spatially situated very close to the polymerase active site. NNRTIs bind to the NNIBP to change the conformation of the active site, lowering its flexibility \autocite{esnoufUniqueFeaturesStructure1997}, and thusly non-competitively inhibiting the action of RT.
+\end{itemize}
+
+Research has been conducted into inhibition of the RNase active site of RT \autocite{hangActivityIsolatedHIV2004,klumppRecentProgressDesign2006} which could also inhibit the action of RT. There is however, to this day, no approved treatment that inhibits the RNase action of RT.
+
+Drug resistance mutations (DRMs) that arise in HIV from the selective pressures resulting from RTI exposure can similarly be grouped into two categories: NRTI and NNRTI resistance mutations.
+
+NRTI resistance mutations can further be subcategorized into two groups \autocite{menendez-ariasMechanismsResistanceNucleoside2008,sluis-cremerMolecularMechanismsHIV12000}. The first type of NRTI resistance mutations are mutations that prevent the incorporation of NRTIs into the viral DNA molecule. M184V and M184I, indicating the replacement, at site number 184, of a Methionine by a Valine or an Isoleucine respectively, are very common NRTI resistance mutations. These V and I amino acids have a different structure than the original M, interfering with the incorporation of lamiduvine (3TC) but not dNTP \autocite{sarafianosLamivudine3TCResistance1999}. The second type of mutation, allows RT to remove an incorporated NRTI from the viral DNA to resume synthesis. Thymidine Analog Mutations (TAMs), M41L, D67N, K70R, L210W, T215Y/F and K219Q/E confer resistance to azidothymidine (AZT) through this mechanism \autocite{meyerMechanismAZTResistance1999,boyerSelectiveExcisionAZTMP2001}.
+
+Similarly, NNRTI resistance mutations work via several different mechanisms \autocite{deeksNonnucleosideReverseTranscriptase2001,renStructuralBasisDrug2008}. Some NNRTI resistance mutations, like Y181C, lower the affinity of the NNIBP to NNRTIs preventing binding of drugs to RT. Others, like K103N change the conformation of the p51 subunit, making the NNIBP disappear. NNRTI resistance mutations are particularly dangerous because they often confer cross-resistance to multiple NNRTIs without affecting the polymerase action very much \autocite{ammaranondMechanismHIVAntiretroviral2012}, giving rise to viruses that are both fit and highly resistant. This is contrast to NRTI resistance mutations that generally incur a fitness cost for the virus, lowering its efficacy \autocite{lloydHighCostFidelity2014}.
 
 \begin{itemize}
 \item
@@ -2497,6 +2497,8 @@ All of these drugs are widely used and are by now very well studied, therefore d
     INI: prevent strand transfer where viral DNA is first linked to host DNA \autocite{pommierIntegraseInhibitorsTreat2005}
   \end{itemize}
 \item
+  INSTI resistance: reduce affinity to inhibitors \autocite{blancoHIV1IntegraseInhibitor2011}
+\item
   PR: cleaves gag and pol polyproteins to produce individual structural and regulatory proteins. Symetric dimer structure \autocite{pearlStructuralModelRetroviral1987,gulnikHIVProteaseEnzyme2000}, 2 identical chains.
 
   \begin{itemize}
@@ -2507,6 +2509,8 @@ All of these drugs are widely used and are by now very well studied, therefore d
   \item
     PI: bind to active site of protease to hinder action \autocite{robertsRationalDesignPeptideBased1990}
   \end{itemize}
+\item
+  PI resistance: make active site bigger reducing affinity to inhibitors but also to natural substrate \autocite{wensingFifteenYearsHIV2010}, also change flap conformation to deny access to active site to PI \autocite{kurtyilmazImprovingViralProtease2016}.
 \end{itemize}
 
 Other drug targets:
@@ -2519,32 +2523,8 @@ Other drug targets:
 
 However Drug resistance has emerged for most treatment types even PrEP \autocite{knoxMultidrugResistantHIV1Infection2017,hurtPreexposureProphylaxisAntiretroviral2011} but seem to be rare and due to pre-treatment but unknown HIV infection \autocite{gibasDrugResistanceHIV2019}
 
-\hypertarget{how-can-hiv-evade-art}{%
-\subsection{How can HIV evade ART ?}\label{how-can-hiv-evade-art}}
-
-review \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistance2004}
-
-\begin{itemize}
-\tightlist
-\item
-  NRTI \autocite{menendez-ariasMechanismsResistanceNucleoside2008,sluis-cremerMolecularMechanismsHIV12000}:
-
-  \begin{itemize}
-  \item
-    Prevent incorporation of NRTI, like M184V \autocite{sarafianosLamivudine3TCResistance1999}
-  \item
-    Remove incorporated NRTI: TAMs \autocite{meyerMechanismAZTResistance1999,boyerSelectiveExcisionAZTMP2001}
-  \end{itemize}
-\item
-  NNRTI: mutations limiting access to the binding pocket like Y181C or changing the shape of it like K103N \autocite{deeksNonnucleosideReverseTranscriptase2001}. dangerous because a single mutation produces viruses that are both fit and highly resistant \autocite{ammaranondMechanismHIVAntiretroviral2012} + cross-resistance
-\item
-  PI: make active site bigger reducing affinity to inhibitors but also to natural substrate \autocite{wensingFifteenYearsHIV2010}, also change flap conformation to deny access to active site to PI \autocite{kurtyilmazImprovingViralProtease2016}.
-\item
-  INI: reduce affinity to inhibitors \autocite{blancoHIV1IntegraseInhibitor2011}
-\end{itemize}
-
-\hypertarget{consequences-on-global-health}{%
-\subsection{Consequences on global health}\label{consequences-on-global-health}}
+\hypertarget{consequences-of-resistance-on-global-health}{%
+\subsection{Consequences of resistance on global health}\label{consequences-of-resistance-on-global-health}}
 
 \begin{itemize}
 \item
@@ -3842,7 +3822,7 @@ This dataset was obtained by taking a human X chromosome HOR sequence, concatena
 \hypertarget{msr-performance-comparison}{%
 \section{MSR performance comparison}\label{msr-performance-comparison}}
 
-\begin{table}[H]
+\begin{table}
 \extcaption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence.}{Results using  \minimap \autocite{liMinimap2PairwiseAlignment2018} and \winnowmap  \autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
 \label{tab:mapperComparison}
 {\centering
@@ -3915,7 +3895,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \hypertarget{origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome.}{%
 \section{Origin of incorrectly mapped reads of high mapping quality on whole human genome.}\label{origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome.}}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.9\textwidth]{figures/HPC-MSRs/ridgelines.new_selection.pdf}\\
     \extcaption{Histogram of the original simulated positions for the incorrectly mapped reads using \minimap at high mapping qualities across the whole human genome, for several transformation methods.}{For a given chromosome, each row represents the number of simulated reads starting at that particular region. The dark gray rectangle represents the position of the centromere for that chromosome, obtained from annotations provided by the T2T consortium (\href{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}). Similarly for chromosomes 13, 14, 15, 21 and 22, a lighter gray rectangle represents the position of the ``stalk'' satellites also containing repetitive regions. For HPC and raw reads only alignments of mapping quality 60 were considered. To provide a fair comparison, alignments with mapping qualities $\geq 50$ were considered for MSRs E, F and P.}
@@ -3925,7 +3905,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \hypertarget{analyzing-read-origin-on-whole-human-genome}{%
 \section{Analyzing read origin on whole human genome}\label{analyzing-read-origin-on-whole-human-genome}}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/raw_distrib.centro.rstart.pdf}\\
     \extcaption{Origin of correctly and incorrectly mapped raw reads}{
@@ -3933,28 +3913,28 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
     \label{fig:hist-raw}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/hpc_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with HPC}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-hpc}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_e_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{E}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-e}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_p_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{P}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-p}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_f2_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{F}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
@@ -3964,7 +3944,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \hypertarget{performance-of-msrs-on-the-drosophila-genome}{%
 \section{Performance of MSRs on the Drosophila genome}\label{performance-of-msrs-on-the-drosophila-genome}}
 
-\begin{figure}[H]
+\begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/droso_ecoli.pdf}
     \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \minimap.}
@@ -4209,7 +4189,7 @@ We used the relative risk to observe the relationship between one of our new mut
 \hypertarget{s1-fig.}{%
 \section{S1 Fig.}\label{s1-fig.}}
 
-\begin{figure}[H]
+\begin{figure}
 {
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S1_Fig.png}
@@ -4223,7 +4203,7 @@ We used the relative risk to observe the relationship between one of our new mut
 \hypertarget{s2-fig.}{%
 \section{S2 Fig.}\label{s2-fig.}}
 
-\begin{figure}[H]
+\begin{figure}
 {
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S2_Fig.png}
@@ -4237,7 +4217,7 @@ The p66 subunit is  colored in dark gray, the p51 subunit in light gray. The NNI
 \hypertarget{s3-fig.}{%
 \section{S3 Fig.}\label{s3-fig.}}
 
-\begin{figure}[H]
+\begin{figure}
 {
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S3_Fig.png}

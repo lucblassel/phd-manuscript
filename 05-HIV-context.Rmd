@@ -179,7 +179,7 @@ Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nu
 * RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.  
 ✝ These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.  
 *Information collected from <https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines>, <https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines> and <https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm>.*  
-See also Table \\@ref(tab:tableDrugs)"
+See also Table \\@ref(tab:tableDrugs)."
 ```
 
 ```{r, timeline, label="timeline", eval=knitr::is_html_output(), fig.cap=timelineCaption, out.width="100%", cache=FALSE}
@@ -194,7 +194,9 @@ knitr::include_graphics("./figures/HIV-Intro/complete.png")
 * RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.\\
 \dag These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.\\
 \textit{Information collected from \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
-\href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.}
+\href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.\\
+See also Table \ref{tab:tableDrugs}.
+}
 \label{fig:timeline}
 \end{figure}
 ```
@@ -206,7 +208,7 @@ All of these drugs are widely used and are by now very well studied, therefore d
 
 Each ART drug targets a specific protein, most of them target one of the three *pol* proteins: RT, PR and IN. The structure of these proteins is inherently linked to their function, and as such is essential to take into account when developing ART. Similarly the structure of these proteins is very important when studying the resistance mechanisms developed by the virus [@ammaranondMechanismHIVAntiretroviral2012; @clavelHIVDrugResistance2004]. In this section we will go over; for RT, IN and PR; the main structural elements and how they relate to treatment and resistance.
 
-The reverse transcriptase protein is the most targeted protein in number of ART drugs *(c.f. Figure* \@ref(fig:timeline) *and Table* \@ref(tableDrugs)*)*. The mature protein is formed of two subunits: p51 and p66. These two subunits are translated from the same section of the *pol* gene, and such have the same amino acid sequence, but p51 is cleaved and as such is shorter than p66. The p66 subunit contains the active sites of RT whereas p51 plays a mainly structural role.
+The reverse transcriptase protein is the most targeted protein in number of ART drugs *(c.f. Figure* \@ref(fig:timeline) *and Table* \@ref(tab:tableDrugs)*)*. The mature protein is formed of two subunits: p51 and p66. These two subunits are translated from the same section of the *pol* gene, and such have the same amino acid sequence, but p51 is cleaved and as such is shorter than p66. The p66 subunit contains the active sites of RT whereas p51 plays a mainly structural role.
 
 The p66 sububit can be separated into 5 domains [@sarafianosStructureFunctionHIV12009]. The "fingers", "palm", and "thumb" domains are linked together and folded to form a canal through which the RNA template and newly synthesized viral DNA can pass through. The polymerase active site, responsible for incorporating nucleotides to the viral DNA molecule, is situated in the "palm" domain at the bottom of the canal. The "RNase" domain of RT contains a secondary active site responsible for cleaving the viral RNA template from the viral DNA so that the RT can fill out the complementary strand of viral DNA before integration into the host genome. The final "connection" domain is simply a link between the "RNase" and the "thumb" domains. A three dimensional view of RT with these domains highlighted can be seen in Figure \@ref(fig:rtStruct).
 
