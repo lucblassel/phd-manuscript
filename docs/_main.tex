@@ -85,6 +85,9 @@
 \usepackage{uni-titlepage}
 \usepackage{lscape}
 
+% remove weird paragraph spacing
+\raggedbottom
+
 \excludecomment{htmlonly}
 
 \newcommand{\extcaption}[2]{
@@ -233,8 +236,6 @@
 \addbibresource{./references/Aligning-Sequences.bib}
 \addbibresource{./references/HIV-context.bib}
 
-\raggedbottom
-
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
 \date{2022-08-15}
@@ -369,7 +370,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 
 DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA \autocite{watson1953} shown in Figure \ref{fig:figDNA}. The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.pdf}
 \extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
@@ -447,7 +448,7 @@ In biological sequences (nucleic acids and proteins), mutations can result from 
 
 While these three types of errors occur both in nucleic acids and proteins there are some things to consider about the consequences of nucleic acid mutations on protein synthesis. Due to the redundant nature of the genetic code mentioned in Section \ref{proteins-their-structure-and-their-role}, some mutations in the nucleic acid sequence will result in the same protein sequence and therefore not have altered protein activity. Some mutations however will result in a substitution at the amino acid level which could potentially lead to a physicochemically altered or even non-functional protein. Finally, insertion and deletion errors (collectively called indels) can have big consequences on resulting proteins. Inserting or deleting nucleotides in multiples of three will result in the insertion/deletion of amino acids in the resulting protein, any other length of indel will result in what is called a frameshift mutation \autocite{rothFrameshiftMutations1974}. These mutations causes changes in the codons, potentially resulting in a completely different amino-acid sequence, including premature stop codon apparition as shown in Figure \ref{fig:frameshift}.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/Frameshift.pdf}
 \extcaption{Effect of frameshift mutations}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in grey, with corresponding amino acids, above the sequence) translate to the functional protein. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein. }
@@ -494,7 +495,7 @@ It is important to note that while dNTPs and ddNTPs refer to nucleotides with an
 
 This process allowed Sanger \emph{et al.} to sequence the first genome, of a \(\varphi X174\) bacteriophage, in 1977 \autocite{sangerNucleotideSequenceBacteriophage1977}. Although revolutionnary, this method was costly, time consuming and labor intensive. Adjustments to this method were made in order to make it faster and less expensive. An important step was to change the way ddNTPs were marked. By using fluorescent markers, each base having a distinct ``color'', we can eliminate the need to have 4 different environments and lanes in the gel \autocite{smithSynthesisOligonucleotidesContaining1985,smithFluorescenceDetectionAutomated1986}. This also paved the way for automating sequencing, each fluorescently marked band can be excited with a laser, and the resulting specific wavelength can be recorded by optical systems and the corresponding base automatically deduced \autocite{ansorgeAutomatedDNASequencing1987} (Also see Figure \ref{fig:sanger}). Other improvements were made such as using capillary electrophoresis instead of gel electrophoresis.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/sanger-sequencing.pdf}
 \extcaption{Caption}{(WIP)}
@@ -666,7 +667,7 @@ The idea is very simple, for any sequence replace a repeated run of any nucleoti
 
 HPC has been implemented in many sequence bioinformatics sowftware tools. The HiCanu \autocite{nurkHiCanuAccurateAssembly2020}, MDBG \autocite{ekimMinimizerspaceBruijnGraphs2021}, wtdbg2 \autocite{ruanFastAccurateLongread2020}, shasta \autocite{shafinNanoporeSequencingShasta2020} assemblers all use HPC under the hood to provide better assemblies, and it was used to assemble the complete human genome sequence \autocite{nurk2022}. The first published usage of HPC, was actually in the CABOG assembler \autocite{millerAggressiveAssemblyPyrosequencing2008} developed for pyrosequencing reads. HPC has also been implemented for other tasks, like clustering \autocite{sahlinNovoClusteringLongRead2020}, long read error correction with LSC \autocite{auImprovingPacBioLong2012} and LSCPlus \autocite{huLSCplusFastSolution2016}, alignment with minimap2 \autocite{liMinimap2PairwiseAlignment2018} and winnowmap2 \autocite{jainWeightedMinimizerSampling2020}, or specific analysis pipelines for satellite tandem repeats \autocite{vannesteForensicSTRAnalysis2012}.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
 \extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
@@ -783,7 +784,7 @@ Dynamic programming is a method to solve complex problems by breaking it into sm
   \end{itemize}
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/Nw-dp.pdf}
 \extcaption{Example global alignment with the Needleman-Wunsch algorithm}{The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments.}
@@ -950,7 +951,7 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
   \end{itemize}
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Align-Intro/optim-to-adapt.png}
 \extcaption{2 heuristic methods to speed up alignment:}{divide and conquer and bounded dynamic programming. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
@@ -1014,7 +1015,7 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
   Diamond \autocite{buchfinkFastSensitiveProtein2015,buchfinkSensitiveProteinAlignments2021} which indexes both the reference and query at the same time.
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
 \extcaption{Example of kmers sharing a minimizer}{}
@@ -1077,7 +1078,7 @@ guide tree, clustering of sequences then refine alignment. Good heuristic but wi
   Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).
 \end{enumerate}
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
 \extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
@@ -3822,7 +3823,7 @@ This dataset was obtained by taking a human X chromosome HOR sequence, concatena
 \hypertarget{msr-performance-comparison}{%
 \section{MSR performance comparison}\label{msr-performance-comparison}}
 
-\begin{table}
+\begin{table}[H]
 \extcaption{Comparing performance of MSRs on the whole human genome, whole \textit{Drosophila melanogaster} genome, repeated regions of the whole human genome and synthetic centromeric sequence.}{Results using  \minimap \autocite{liMinimap2PairwiseAlignment2018} and \winnowmap  \autocite{jainWeightedMinimizerSampling2020}. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold.}
 \label{tab:mapperComparison}
 {\centering
@@ -3895,7 +3896,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \hypertarget{origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome.}{%
 \section{Origin of incorrectly mapped reads of high mapping quality on whole human genome.}\label{origin-of-incorrectly-mapped-reads-of-high-mapping-quality-on-whole-human-genome.}}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{figures/HPC-MSRs/ridgelines.new_selection.pdf}\\
     \extcaption{Histogram of the original simulated positions for the incorrectly mapped reads using \minimap at high mapping qualities across the whole human genome, for several transformation methods.}{For a given chromosome, each row represents the number of simulated reads starting at that particular region. The dark gray rectangle represents the position of the centromere for that chromosome, obtained from annotations provided by the T2T consortium (\href{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}{http://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/}). Similarly for chromosomes 13, 14, 15, 21 and 22, a lighter gray rectangle represents the position of the ``stalk'' satellites also containing repetitive regions. For HPC and raw reads only alignments of mapping quality 60 were considered. To provide a fair comparison, alignments with mapping qualities $\geq 50$ were considered for MSRs E, F and P.}
@@ -3905,7 +3906,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \hypertarget{analyzing-read-origin-on-whole-human-genome}{%
 \section{Analyzing read origin on whole human genome}\label{analyzing-read-origin-on-whole-human-genome}}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/raw_distrib.centro.rstart.pdf}\\
     \extcaption{Origin of correctly and incorrectly mapped raw reads}{
@@ -3913,28 +3914,28 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
     \label{fig:hist-raw}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/hpc_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with HPC}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-hpc}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_e_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{E}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-e}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_p_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{P}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-p}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_f2_distrib.centro.pdf}
     \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{F}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
@@ -3944,7 +3945,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \hypertarget{performance-of-msrs-on-the-drosophila-genome}{%
 \section{Performance of MSRs on the Drosophila genome}\label{performance-of-msrs-on-the-drosophila-genome}}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/droso_ecoli.pdf}
     \extcaption{Results of the \texttt{paftools mapeval} evaluation on reads simulated and mapped to whole \textit{Drosophila melanogaster} and \textit{Escherichia coli} (Genbank ID \href{https://www.ncbi.nlm.nih.gov/nuccore/U00096.2}{U00096.2}) genomes.}{MSRs E, F and P are shown in different shades of blue to differentiate them from other MSRs. Reads were simulated with \texttt{nanosim}, and mapped with \minimap.}
@@ -4189,7 +4190,7 @@ We used the relative risk to observe the relationship between one of our new mut
 \hypertarget{s1-fig.}{%
 \section{S1 Fig.}\label{s1-fig.}}
 
-\begin{figure}
+\begin{figure}[H]
 {
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S1_Fig.png}
@@ -4203,7 +4204,7 @@ We used the relative risk to observe the relationship between one of our new mut
 \hypertarget{s2-fig.}{%
 \section{S2 Fig.}\label{s2-fig.}}
 
-\begin{figure}
+\begin{figure}[H]
 {
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S2_Fig.png}
@@ -4217,7 +4218,7 @@ The p66 subunit is  colored in dark gray, the p51 subunit in light gray. The NNI
 \hypertarget{s3-fig.}{%
 \section{S3 Fig.}\label{s3-fig.}}
 
-\begin{figure}
+\begin{figure}[H]
 {
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S3_Fig.png}

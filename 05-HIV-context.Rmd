@@ -93,7 +93,7 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 ```
 
 ```{=tex}
-\begin{figure}[h]
+\begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
 \extcaption{Main steps of HIV-1 replication cycle}{The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.}
@@ -151,7 +151,7 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-structure.png")
 ```
 
 ```{=tex}
-\begin{figure}[h]
+\begin{figure}
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/HIV-Intro/HIV-structure.png}
   \extcaption{Structure and main components of a mature HIV-1 virion.}{Structural proteins MA, CA, SU and TM are represented in Blue, functional enzymes RT, IN and PR in pink, RNA binding proteins Rev, Tat and NC in orange and accessory proteins Vif, Nef, Vpr and Vpu in green. Viral RNA is shown in yellow. The phospholipd membrane of the virion is shown in a light purple color. The p6 protein is not represented as it is largely unsctructured. Vpu is not believed to be present in the HIV virion. \\
@@ -187,7 +187,7 @@ knitr::include_graphics("./figures/HIV-Intro/complete.png")
 ```
 
 ```{=tex}
-\begin{figure}[H]
+\begin{figure}
   \centering
   \includegraphics[width=\textwidth]{./figures/HIV-Intro/complete.pdf}
   \extcaption{Timeline of ART single drug FDA approvals.}{Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INSTI), Entry Inhibitors (EI) and pharmacokinetic enhancers (PE). Fixed Dose Combination (FDC) single pill regimens are also shown.\\
@@ -221,7 +221,7 @@ knitr::include_graphics("./figures/HIV-Intro/rt.png")
 ```
 
 ```{=tex}
-\begin{figure}[H] 
+\begin{figure} 
   \centering 
   \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}      \extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}       
   \label{fig:rtStruct} 
