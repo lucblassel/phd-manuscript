@@ -238,7 +238,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-08-15}
+\date{2022-08-16}
 
 \begin{document}
 \maketitle
@@ -2456,13 +2456,16 @@ All of these drugs are widely used and are by now very well studied, therefore d
 
 Each ART drug targets a specific protein, most of them target one of the three \emph{pol} proteins: RT, PR and IN. The structure of these proteins is inherently linked to their function, and as such is essential to take into account when developing ART. Similarly the structure of these proteins is very important when studying the resistance mechanisms developed by the virus \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistance2004}. In this section we will go over; for RT, IN and PR; the main structural elements and how they relate to treatment and resistance.
 
+\hypertarget{reverse-transcriptase}{%
+\subsubsection{Reverse Transcriptase}\label{reverse-transcriptase}}
+
 The reverse transcriptase protein is the most targeted protein in number of ART drugs \emph{(c.f. Figure} \ref{fig:timeline} \emph{and Table} \ref{tab:tableDrugs}\emph{)}. The mature protein is formed of two subunits: p51 and p66. These two subunits are translated from the same section of the \emph{pol} gene, and such have the same amino acid sequence, but p51 is cleaved and as such is shorter than p66. The p66 subunit contains the active sites of RT whereas p51 plays a mainly structural role.
 
 The p66 sububit can be separated into 5 domains \autocite{sarafianosStructureFunctionHIV12009}. The ``fingers'', ``palm'', and ``thumb'' domains are linked together and folded to form a canal through which the RNA template and newly synthesized viral DNA can pass through. The polymerase active site, responsible for incorporating nucleotides to the viral DNA molecule, is situated in the ``palm'' domain at the bottom of the canal. The ``RNase'' domain of RT contains a secondary active site responsible for cleaving the viral RNA template from the viral DNA so that the RT can fill out the complementary strand of viral DNA before integration into the host genome. The final ``connection'' domain is simply a link between the ``RNase'' and the ``thumb'' domains. A three dimensional view of RT with these domains highlighted can be seen in Figure \ref{fig:rtStruct}.
 
 \begin{figure} 
   \centering 
-  \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}      \extcaption{3D structure of HIV-1 Reverse-transcriptase}{the different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}       
+  \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}      \extcaption{3D structure of HIV-1 Reverse-transcriptase.}{The different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}       
   \label{fig:rtStruct} 
 \end{figure}
 
@@ -2483,6 +2486,32 @@ NRTI resistance mutations can further be subcategorized into two groups \autocit
 
 Similarly, NNRTI resistance mutations work via several different mechanisms \autocite{deeksNonnucleosideReverseTranscriptase2001,renStructuralBasisDrug2008}. Some NNRTI resistance mutations, like Y181C, lower the affinity of the NNIBP to NNRTIs preventing binding of drugs to RT. Others, like K103N change the conformation of the p51 subunit, making the NNIBP disappear. NNRTI resistance mutations are particularly dangerous because they often confer cross-resistance to multiple NNRTIs without affecting the polymerase action very much \autocite{ammaranondMechanismHIVAntiretroviral2012}, giving rise to viruses that are both fit and highly resistant. This is contrast to NRTI resistance mutations that generally incur a fitness cost for the virus, lowering its efficacy \autocite{lloydHighCostFidelity2014}.
 
+\hypertarget{protease}{%
+\subsubsection{Protease}\label{protease}}
+
+The Protease protein, also a major drug target for ART, cleaves the \emph{gag} and \emph{pol} polyproteins in order to produce functional viral proteins, essential to replication. It has a symmetric dimeric structure, that is two say that it is composed of two identical chains of amino acids \autocite{pearlStructuralModelRetroviral1987,gulnikHIVProteaseEnzyme2000}. A structural view of PR is shown in Figure \ref{fig:prStruct}.
+
+These two chains are folded in order to create a ``tunnel'' through which the polyproteins enter. In the middle of this ``tunnel'', at the bottom, is the active site. The active site is composed of two Aspartate residues, one on each chain, with water they can participate in a chemical reaction that cleaves the polyprotein at a specific position \autocite{silvaInhibitionCatalyticMechanism1996}.
+
+The roof of the ``tunnel'' is formed by the flaps, a flexible region from each of the two chains that can open or close the ``tunnel'' \autocite{hornakHIV1ProteaseFlaps2006}. These flaps most likely control the access of polyproteins to the active site \autocite{freedbergRapidStructuralFluctuations2002,yuStructuralInsightsHIV12017}.
+
+\begin{figure} 
+  \centering 
+  \includegraphics[width=0.7\textwidth]{./figures/HIV-Intro/pr.png}      \extcaption{3D structure of HIV-1 Protease.}{The two identical chains are colored in orange and blue shades respectively. The flexible, flaps form the the "roof" of a tunnel, at the bottom of which is the active site: 2 Asp residues, one on each chain. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2P3B}{2p3b} PDB structure.}       
+  \label{fig:prStruct} 
+\end{figure}
+
+All the approve Protease Inhibitors (PIs) share a similar mode of action, each PI binds to the active site of the PR, denying access to the ``tunnel'' for polyproteins and stopping the catalytic action of PR \autocite{robertsRationalDesignPeptideBased1990,lvHIVProteaseInhibitors2015}. Tipranavir, one of the more recent PIs, also binds with the flaps \autocite{lvHIVProteaseInhibitors2015}.
+
+According to Prabu-Jeyabalan and colleagues, the Protease structure does not recognize the specific sequence of the polyprotein cleavage site but rather its shape \autocite{prabu-jeyabalanSubstrateShapeDetermines2002}. They proposed an inhibitor based on this shape for all polyproteins combined, which establishes more bonds with PR, making it suposedly more efficient \autocite{prabu-jeyabalanSubstrateEnvelopeDrug2006} than current approved PIs.
+
+As is the case with RTIs, when under selective pressure due to PIs, the virus tends to develop PI associated DRMs. Most PI resistance mutations result in an enlarged ``tunnel'', this tends to lower the affinity of the PIs to the active site, but also the affinity of polyproteins, lowering the fitness of the virus significantly \autocite{wensingFifteenYearsHIV2010}. In addition, some mutations on the \emph{gag} polyprotein seem to lower the efficacy of PIs, although the underlying mechanism is not well known \autocite{wensingFifteenYearsHIV2010}.
+
+Some mutations in the flaps of PR have also been shown to confer PI resistance. It seems likely that these mutations change conformation of the flaps, opening them leading to the release of inhibitors from the active site \autocite{kurtyilmazImprovingViralProtease2016}.
+
+\hypertarget{integrase}{%
+\subsubsection{Integrase}\label{integrase}}
+
 \begin{itemize}
 \item
   IN: It pre-processes the ends of the viral DNA, cleaves the host DNA and binds the viral DNA to the host DNA (i.e.~strand transfer). \autocite{chiuStructureFunctionHIV12004,espositoHIVIntegraseStructure1999,delelisIntegraseIntegrationBiochemical2008}. Multimer -\textgreater{} chains link up. Each chain has:
@@ -2499,27 +2528,6 @@ Similarly, NNRTI resistance mutations work via several different mechanisms \aut
   \end{itemize}
 \item
   INSTI resistance: reduce affinity to inhibitors \autocite{blancoHIV1IntegraseInhibitor2011}
-\item
-  PR: cleaves gag and pol polyproteins to produce individual structural and regulatory proteins. Symetric dimer structure \autocite{pearlStructuralModelRetroviral1987,gulnikHIVProteaseEnzyme2000}, 2 identical chains.
-
-  \begin{itemize}
-  \item
-    Ionization of an Aspartate residue in each active site produces acid-base reaction that cleaves precursor \autocite{silvaInhibitionCatalyticMechanism1996}. (active site)
-  \item
-    Flaps are flexible parts of PR that can open and close \autocite{hornakHIV1ProteaseFlaps2006}, probably controls access of substrates to active site \autocite{yuStructuralInsightsHIV12017}
-  \item
-    PI: bind to active site of protease to hinder action \autocite{robertsRationalDesignPeptideBased1990}
-  \end{itemize}
-\item
-  PI resistance: make active site bigger reducing affinity to inhibitors but also to natural substrate \autocite{wensingFifteenYearsHIV2010}, also change flap conformation to deny access to active site to PI \autocite{kurtyilmazImprovingViralProtease2016}.
-\end{itemize}
-
-Other drug targets:
-
-\begin{itemize}
-\tightlist
-\item
-  Entry inhibitors are being found \autocite{esteHIVEntryInhibitors2007,kilbyNovelTherapiesBased2003}. enfuvirtide binds to gp41 and prevents fusion \autocite{fletcherEnfuvirtideNewDrug2003}
 \end{itemize}
 
 However Drug resistance has emerged for most treatment types even PrEP \autocite{knoxMultidrugResistantHIV1Infection2017,hurtPreexposureProphylaxisAntiretroviral2011} but seem to be rare and due to pre-treatment but unknown HIV infection \autocite{gibasDrugResistanceHIV2019}
