@@ -277,7 +277,7 @@ per_base <- hps %>%
 
 hpFracCaptionShort <- "Homopolymer fraction of the whole human genome by homopolymer length."
 
-extend <- "The homopolymer counts were calculated from the T2T consortium full human genome assembly CHM13 v1.0. This figure was inspired by Figure 3b of reference"
+extend <- "The homopolymer counts were calculated from the T2T consortium full human genome assembly CHM13 v1.1. This figure was inspired by Figure 3b of reference"
 
 titlePre <- ""
 titlePost <- ""
@@ -324,7 +324,7 @@ In the human genome, homopolymers tend to occur more often in adenine and thymin
 
 hpDistribCaptionShort <- paste0("Distribution of homopolymer lengths per base in the human genome, for homopolymers of length $\\geq$ ", big_l, ".")
 
-extend <- "The homopolymer counts were calculated from the T2T consortium full human genome assembly CHM13 v1.0."
+extend <- "The homopolymer counts were calculated from the T2T consortium full human genome assembly CHM13 v1.1."
 
 titlePre <- ""
 titlePost <- ""
