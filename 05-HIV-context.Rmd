@@ -249,7 +249,7 @@ The Protease protein, also a major drug target for ART, cleaves the *gag* and *p
 
 These two chains are folded in order to create a "tunnel" through which the polyproteins enter. In the middle of this "tunnel", at the bottom, is the active site. The active site is composed of two Aspartate residues, one on each chain, with water they can participate in a chemical reaction that cleaves the polyprotein at a specific position [@silvaInhibitionCatalyticMechanism1996].
 
-The roof of the "tunnel" is formed by the flaps, a flexible region from each of the two chains that can open or close the "tunnel" [@hornakHIV1ProteaseFlaps2006]. These flaps most likely control the access of polyproteins to the active site [@freedbergRapidStructuralFluctuations2002;@yuStructuralInsightsHIV12017].
+The roof of the "tunnel" is formed by the flaps, a flexible region from each of the two chains that can open or close the "tunnel" [@hornakHIV1ProteaseFlaps2006]. These flaps most likely control the access of polyproteins to the active site [@freedbergRapidStructuralFluctuations2002; @yuStructuralInsightsHIV12017].
 
 ```{r, prCaption}
 prCaption <- "**3D structure of HIV-1 Protease.**\ The two identical chains are colored in orange and blue shades respectively. The flexible, flaps form the the \"roof\" of a tunnel, at the bottom of which is the active site: 2 Asp residues, one on each chain. The 3D visualization was produced with Illustrate [@goodsellIllustrateSoftwareBiomolecular2019] using the [2p3b](https://www.rcsb.org/structure/2P3B) PDB structure."
@@ -277,19 +277,36 @@ Some mutations in the flaps of PR have also been shown to confer PI resistance. 
 
 #### Integrase
 
--   IN: It pre-processes the ends of the viral DNA, cleaves the host DNA and binds the viral DNA to the host DNA (i.e. strand transfer). [@chiuStructureFunctionHIV12004; @espositoHIVIntegraseStructure1999; @delelisIntegraseIntegrationBiochemical2008]. Multimer -\> chains link up. Each chain has:
+The integrase protein is the third major anti-retroviral drug target, it is responsible for integrating the viral DNA into the host genome. It is a tetramer composed of four identical amino acid chains. [@chiuStructureFunctionHIV12004; @espositoHIVIntegraseStructure1999]. Each of these chains contain three domains linked together by flexible linker sequences: the N-terminal domain, the catalytic core and the C-terminal domain. In each tetramer, two chains provide the active site for the integration reaction while the other two have a mostly structural role. It is probable that the N-terminal domain which is very conserved is necessary for stable tetramerization of IN monomers [@delelisIntegraseIntegrationBiochemical2008], this tetrameric structure is shown in Figure \@ref(fig:inStruct).
 
-    -   Core catalytic domain: Binds with viral DNA and performs the integration
+```{r, inCaption}
+inCaption <- "**3D structure of an Integrase.**\ This Integrase tetramer is binded with viral (red) and host (orange) DNA, linked to the two light blue functional subunits via the C-terminal domain. The active site formed by the the catalytic cores of the two functional subunits *(not visible in this representation)*, is where the strand transfer reaction will take place. The two dark blue IN subunits have a structural role. 
+This figure was adapted from the PDB 101 molecule of the month Integrase entry by David S. Goodsell and the RCSB PDB ([pdb101.rcsb.org/motm/135](https://pdb101.rcsb.org/motm/135)) with a CC By 4.0 license. "
+```
 
-    -   C-terminal domain: Binds with any DNA, adding stability
+```{r,inStruct, label="inStruct", fig.cap=inCaption, out.width="95%", eval=knitr::is_html_output(), cache=FALSE}
+knitr::include_graphics("./figures/HIV-Intro/in.png")
+```
 
-    -   N-terminal domain: Binds with Zn^2+^ and helps multimerisation (i.e integrase stability)
+```{=tex}
+\begin{figure} 
+  \centering 
+  \includegraphics[width=0.7\textwidth]{./figures/HIV-Intro/in.png}      \extcaption{3D structure of an Integrase.}{This Integrase tetramer is binded with viral (red) and host (orange) DNA, linked to the two light blue functional subunits via the C-terminal domain. The active site formed by the the catalytic cores of the two functional subunits \textit{(not visible in this representation)}, is where the strand transfer reaction will take place. The two dark blue IN subunits have a structural role.
+  This figure was adapted from the PDB 101 molecule of the month Integrase entry by David S. Goodsell and the RCSB PDB (\href{https://pdb101.rcsb.org/motm/135}{pdb101.rcsb.org/motm/135}) with a CC By 4.0 license.}       
+  \label{fig:inStruct} 
+\end{figure}
+```
+Several steps are needed in order to integrate the viral DNA with the host genome [@maertensStructureFunctionRetroviral2022]. First, IN binds to the both ends of the viral DNA, using the C-terminal domains, forming a closed loop. Secondly, both ends of the viral DNA molecule are then prepared for integration by the catalytic core. Third, the host DNA is captured with C-terminal domains. Then, the strand-transfer is done within the catalytic core: the host DNA is cut in two places and a single strand from each end of the viral DNA are attached to these two breakpoints. Finally, the IN tetramer detaches from the linked molecules and the final steps necessary to create a single hybrid DNA molecule are done by the host cellular machinery. A graphical representation of this process can be found in Figure 1 of the 2022 article by Maertens et al. [@maertensStructureFunctionRetroviral2022].
 
-    -   INI: prevent strand transfer where viral DNA is first linked to host DNA [@pommierIntegraseInhibitorsTreat2005]
+Integrase Strand Transfer Inhibitors (INSTIs), as their name indicates, block the strand transfer reaction. They achieve this by strongly binding to the active site of the IN tetramer after it has formed a complex with the viral DNA [@pommierIntegraseInhibitorsTreat2005; @maertensStructureFunctionRetroviral2022]. In doing so, INSTIs prevent the IN / viral DNA complex from binding to the host DNA, effectively preventing strand transfer.
 
--   INSTI resistance: reduce affinity to inhibitors [@blancoHIV1IntegraseInhibitor2011]
+In the presence of INSTIs during therapy, once more the HIV virus develops resistance mutations over time. These mutations all lower affinity of IN to INSTIs, preventing bonding [@blancoHIV1IntegraseInhibitor2011; @maertensStructureFunctionRetroviral2022]. Since most INSTIs behave similarly, this means that cross-resistance to INSTIs is quite common for INSTI DRMs [@blancoHIV1IntegraseInhibitor2011; @gerettiEmergingPatternsImplications2012]. Once more, these mutations tend to lower the overall viral fitness necessitating secondary compensatory mutations to restore fitness [@gerettiEmergingPatternsImplications2012; @blancoHIV1IntegraseInhibitor2011].
 
-However Drug resistance has emerged for most treatment types even PrEP [@knoxMultidrugResistantHIV1Infection2017; @hurtPreexposureProphylaxisAntiretroviral2011] but seem to be rare and due to pre-treatment but unknown HIV infection [@gibasDrugResistanceHIV2019]
+#### Other drug targets
+
+For now, resistance has not been observed for novel drugs like entry inhibitors. This might be because the genetic barrier to resistance is higher and because not enough time has passed since their introduction for resistance to emerge.
+
+For all the other drug targets however, as stated earlier in this section, resistance is documented and problematic. Resistance has even been detected for PrEP which is prophylactic [@knoxMultidrugResistantHIV1Infection2017; @hurtPreexposureProphylaxisAntiretroviral2011]. This seems to be rare however and mostly due to an unknown pre-treatment HIV infection [@gibasDrugResistanceHIV2019].
 
 ### Consequences of resistance on global health
 
