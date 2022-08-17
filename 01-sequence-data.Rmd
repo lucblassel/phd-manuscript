@@ -8,7 +8,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 
 **D**esoxyribo**N**ucleic **A**cid (DNA) is one of the most important molecules there is, without it complex life as we know it is impossible. It contains all the genetic information of a given organism, that is to say all the information necessary for the organism to: 1) function as a living being and 2) make a perfect copy of itself. This is the case for the overwhelming majority of living organisms on planet earth, from elephants to potatoes, to micro-organisms like bacteria.
 
-DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allows two strands of DNA to form the double-helix structure of DNA [@watson1953] shown in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
+DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allow two strands of DNA to form the double-helix structure of DNA [@watson1953] shown in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
 ```{r}
 figDNACaption <- "**Double-helix structure of DNA**.\
@@ -105,7 +105,7 @@ In many fields, especially in computational biology, we need to know what geneti
 
 ### Sanger sequencing, a breakthrough
 
-The first sequencing method was developed in 1977 [@sangerDNASequencingChainterminating1977]. Sanger *et al.* devised a simple method to read the sequence of nucleotides that make up a DNA sequence known as "chain termination sequencing" or more commonly "Sanger sequencing" *(represented in Figure* \@ref(fig:sanger)*)*.
+The first sequencing method was developed in 1977 [@sangerDNASequencingChainterminating1977]. Sanger *et al.* devised a simple method to read the sequence of nucleotides that make up a DNA sequence known as "chain termination sequencing" or more commonly "Sanger sequencing" *(represented in Figure* \@ref(fig:sanger)*)*. Although this method is now mostly obsolete, it established some key concepts in sequencing, some of which are in action in the most modern sequencers.
 
 To understand Sanger sequencing, one must first understand how to synthesize DNA. As we stated in Section \@ref(what-is-dna), DNA is built up from building blocks that we called nucleotides, more specifically deoxynucleotidetriphosphates or dNTPs. these dNTPs are made up of a sugar (deoxyribose) a nucleobase (A, T, G or C) and 3 phosphate groups. By succesively adding these dNTPs at the end of an existing DNA molecule, we extend it, linking one of the phospates of the dNTP to an oxygen atom on the last nucleotide of the DNA molecule. Let us now consider a dideoxynucleotidestriphosphate (ddNTP), which is identical to a dNTP except we remove a specific oxygen atom. This ddNTP can be added to the growing molecule of DNA like regular dNTPS, but since it is missing that one oxygen atom no more dNTPs or ddNTPs can be added to the DNA molecule after this one. The elongation is terminated and we call these ddNTPs chain-terminators. This combination of DNA synthesis followed by termination are at the heart of Sanger sequencing.
 
@@ -145,7 +145,7 @@ Despite these improvements, for ambitious endeavours such as the human genome pr
 
 Through these large sequencing projects and the genomics field in general, the richness and usefulness of sequence data was made ever more apparent. This growing need of sequence data ushered in a new era of sequencing with the development of many new sequencing methods designed to have a higher throughput and a lower cost than Sanger sequencing. This second generation of sequencing technologies, also referred to as Next-Generation Sequencing (NGS) or Massively parallel sequencing. While there were different technologies, there are a few common key points [@metzkerSequencingTechnologiesNext2010]:
 
--   As with Sanger sequencing the we need to amplify and clone the DNA template, however since these technologies result in shorted reads than Sanger sequencing, the DNA we want to sequence must first be randomly broken up into small template fragments before being amplified.
+-   As with Sanger sequencing, we first need to amplify and clone the DNA template, however since these technologies result in shorted reads than Sanger sequencing, the DNA we want to sequence must first be randomly broken up into small template fragments before being amplified.
 
 -   The amplified template fragments are attached to some sort of solid support, resulting in a physical support with billions of template fragments attached to it.
 
@@ -153,7 +153,7 @@ Through these large sequencing projects and the genomics field in general, the r
 
 -   The addition of specific nucleotides to a chain are detected in real time, and there is no chain termination. There is no need for the long step of electrophoresis. These detections are simultaneous for all the molecules being elongated at once.
 
-The result of these steps is a very large number of short reads. With data analysis these short reads can be used to deduce longer sequences and eventually the orginal whole genome sequence through a process called *assembly*.
+The result of these steps is a very large number of short reads. With data analysis these short reads can be used to deduce longer sequences and eventually a fragemented approximation of the orginal whole genome sequence through a process called *assembly*.
 
 The main NGS method is called "sequencing by synthesis", developed by a company: Illumina. It is commonly referred to as *llumina sequencing*. This method is based on *reversible chain terminators*, developed at the Institut Pasteur in the 90's [@canardDNAPolymeraseFluorescent1994]. These are marked dNTPs that can be used to elongate DNA molecules, but that have an additional molecular group that makes them terminators by default. However this terminating group can be removed once the NTP is included in a DNA molecule allowing the elongation process to continue. These dNTPs are fluorescently marked and when excited with a laser they emit light with a distinctive color. During Illumina sequencing, these reversible chain terminators are included to millions of fragments at the same time, stopping elongation. At this point all the fragments are excited with a laser and an optical system takes a picture of the emitted colors for all the fragments as once. In this image, a pixel loosely corresponds to a sequenced fragment, and its color to the most recently added dNTP. The terminating groups are then cleaved and the process can start over by incorporating a new batch of reversible terminators. By observing the successive images we can deduce the sequence of added nucleotides for each sequenced fragment and obtain all of our reads.
 
@@ -226,7 +226,7 @@ This explains the discrepancy in error rates between short and long read sequenc
 
 The long read error-correction literature and toolset is rich and active [@limaComparativeAssessmentLongread2020; @fuComparativeEvaluationHybrid2019; @zhangComprehensiveEvaluationLong2020]. There are two main ways to correct errors: 1) hybrid methods where higher-accuracy shorter reads are used to correct errors and 2) non-hybrid methods where only the long-reads are used.
 
-In Non-hybrid methods [@limaComparativeAssessmentLongread2020; @amarasingheOpportunitiesChallengesLongread2020], by finding regions that overlap fairly well between reads and taking the consensus (i.e. the majority nucleotide at each position) of the overlapped regions some errors can be eliminated. In many analyses and sequencing data processing pipelines, the first step is to break up the reads into all possible overlapping subsequences of length $k$ called k-mers (e.g the 3-mers of the ATTGC are ATT, TTG and TGC). Rare k-mers in the read dataset, i.e. k-mers that appear only a handful of times in all the reads, are likely the result of an error and filtering them out can improve analysis. One or both of these procedures are implemented in several pieces of commonly used software like the wtdbg [@ruanFastAccurateLongread2020], and canu [@korenCanuScalableAccurate2017] assemblers or the standalone daccord long-read correcter [@tischlerNonHybridLong2017]. In some cases, errors are corrected not on the raw reads but after having assembled the long reads into long continuous sequences (contigs), this process is called polishing. The ntEdit polisher [@warrenNtEditScalableGenome2019] also filters out rare kmers to correct errors. The Arrow [@heplerImprovedCircularConsensus2016] and Nanopolish [@simpsonDetectingDNACytosine2017] polishers correct the assembly using the raw PacBio and ONT long reads respectively.
+In Non-hybrid methods [@limaComparativeAssessmentLongread2020; @amarasingheOpportunitiesChallengesLongread2020], by finding regions that overlap fairly well between reads and taking the consensus (i.e. the majority nucleotide at each position) of the overlapped regions some errors can be eliminated. In many analyses and sequencing data processing pipelines, the first step is to break up the reads into all possible overlapping subsequences of length $k$ called k-mers (e.g the 3-mers of the ATTGC are ATT, TTG and TGC). Rare k-mers in the read dataset, i.e. k-mers that appear only a handful of times in all the reads, are likely the result of an error and filtering them out can improve analysis. One or both of these procedures are implemented in several pieces of commonly used software such as assembler like wtdbg2 [@ruanFastAccurateLongread2020], and canu [@korenCanuScalableAccurate2017] or standalone long-read correctors like daccord [@tischlerNonHybridLong2017]. In some cases, errors are corrected not on the raw reads but after having assembled the long reads into long continuous sequences (contigs), this process is called polishing. The ntEdit polisher [@warrenNtEditScalableGenome2019] also filters out rare kmers to correct errors. The Arrow [@heplerImprovedCircularConsensus2016] and Nanopolish [@simpsonDetectingDNACytosine2017] polishers correct the assembly using the raw PacBio and ONT long reads respectively.
 
 Hybrid methods, as their name suggest, makes use of short reads to correct errors in long reads. By finding similar regions between the short and long reads we can use the higher accuracy of short reads to correct the long ones. This is implemented in many pieces of software proovread [@hacklProovreadLargescaleHighaccuracy2014], Jabba [@miclotteJabbaHybridError2016], PBcR [@korenHybridErrorCorrection2012] or LoRDEC [@salmelaLoRDECAccurateEfficient2014]. Short reads can also be used to polish long read assemblies with tools like Pilon [@walkerPilonIntegratedTool2014] or Racon [@vaserFastAccurateNovo2017]. The first complete human genome was assembled and polished using many different sequencing technologies including PacBIo, ONT and Illumina technologies [@nurk2022].
 
@@ -234,9 +234,11 @@ Hybrid methods, as their name suggest, makes use of short reads to correct error
 
 While a lot of effort is being put into error correction, another angle of attack to lower the error rate of long reads is to improve the sequencing technology.
 
-In 2019, PacBio introduced HiFi reads, based on a circular consensus (CCS) technique [@wenger2019]. During SRMT sequencing the 2 brands are linked together by ball adapters to form a circular DNA template (c.f. Section \@ref(long-read-sequencing)), the central idea of CCS is to sequence this molecule multiple time by going over the circle multiple times. In the resulting long sequence the, known bell adapter sequences can be removed, and a consensus sequence can be built from the multiple passes over the same DNA template. This results in long-read accuracies of 99.8% to 99.9% [@wenger2019; @logsdonLongreadHumanGenome2020]. This works because PacBio sequencing errors are mostly randomly distributed along the sequenced template (more on that in Section \@ref(homopolymers-and-long-reads)), therefore it is unlikely that the same error will appear in multiple passes over the same template portion.
+In 2019, PacBio introduced HiFi reads, based on a circular consensus (CCS) technique [@wenger2019]. During SRMT sequencing the 2 strands are linked together by ball adapters to form a circular DNA template (c.f. Section \@ref(long-read-sequencing)), the central idea of CCS is to sequence this molecule multiple time by going over the circle multiple times. In the resulting long sequence the known bell adapter sequences can be removed, and a consensus sequence can be built from the multiple passes over the same DNA template. This results in long-read accuracies of 99.8% to 99.9% [@wenger2019; @logsdonLongreadHumanGenome2020]. This works because PacBio sequencing errors are mostly randomly distributed along the sequenced template (more on that in Section \@ref(homopolymers-and-long-reads)), therefore it is unlikely that the same error will appear in multiple passes over the same template portion.
 
 For ONT sequencing, most improvement efforts have been focused on base-callers. These tools were originally based on Hidden Markov Models [@timpDNABaseCallingNanopore2012] (HMMs), but gradually they have been shifting over to neural network based deep learning methods [@peresiniNanoporeBaseCalling2021; @bozaDeepNanoDeepRecurrent2017; @wickPerformanceNeuralNetwork2019; @amarasingheOpportunitiesChallengesLongread2020] with faster inference times and better performance.
+
+Similarly to PacBio HiFi reads, ONT developed 2D, and 1D^2^ sequencing. In 2D sequencing both strands of the DNA molecule to sequence are linked with a hairpin adapter to form one long sequenced. Each strand is sequenced once and a consensus is built from these 2 passes [@tylerEvaluationOxfordNanopore2018]. 1D^2^ sequencing operates in a similar fashion but without the need for a hairpin adapter [@linNanoporeTechnologyIts2021]. 2D sequencing produces reads with 97% accuracy albeit much shorter than 1D sequencing [@tylerEvaluationOxfordNanopore2018]. Recently, Oxford Nanopore Technologies announced the release of a new chemistry they call duplex. Using new a chemistry, new basecaller and sequencing of both strands (similarly to 2D and 1D^2^) they announce raw read accuracies of 99.3% [@OxfordNanoporeTech]. Pre-printed research seems to confirm these numbers with one experiment yielding duplex reads with a 99.9% accuracy [@sandersonComparisonR9Kit102022].
 
 A technologically agnostic method using unique molecular identifiers added during the template preparation phase, and consensus sequencing has been shown, in specific contexts, to improve the accuracies of both ONT and PacBio CCS long reads to 99.59% and 99.93% respectively [@karstHighaccuracyLongreadAmplicon2021].
 
@@ -260,7 +262,9 @@ big_hp_size <- sum(big$length * big$count)
 
 freqs <- hps %>%
   group_by(length) %>%
-  summarize(prop = sum(count)/genome_size)
+  summarize(count = sum(count)) %>%
+  arrange(-row_number()) %>%
+  mutate(prop = cumsum(count)/genome_size)
 
 per_base <- hps %>%
   group_by(base) %>%
@@ -270,14 +274,32 @@ per_base <- hps %>%
 *Homopolymers* consist of a stretch of repeated nucleotides (i.e. $\geq 2$) occurring at some point in the genome. For example the sequence AAAA is a length 4 adenine homopolymer. In the complete human genome assembly (CHM13 v1.1 from the T2T consortium [@nurk2022]), `r format(100 * hp_size / genome_size, digits=1)`% of its three gigabases are in homopolymers of size `r min(hps$length)` or more, and `r format(100 * big_hp_size / genome_size, digits=1)`% are in homopolymers of size `r big_l` or more. As can be seen in Figure \@ref(fig:HPpercent), short and medium length homopolymers make up a significant part of the genome. In a previous GRCh38 human genome assembly, more than 1.9 megabases are in homopolymers of length 8 or higher [@booeshaghiPseudoalignmentFacilitatesAssignment2022], representing about 1‰ of that assembly. The longest homopolymer run in the CHM13 v1.1 assembly is `r max(hps$length)` *(90 in GRCh38 [@booeshaghiPseudoalignmentFacilitatesAssignment2022])*.
 
 ```{r, hpFracCaption}
-hpFracCaption <- "Homopolymer fraction of the whole human genome by homopolymer length."
+
+hpFracCaptionShort <- "Homopolymer fraction of the whole human genome by homopolymer length."
+
+extend <- "The homopolymer counts were calculated from the T2T consortium full human genome assembly CHM13 v1.0. This figure was inspired by Figure 3b of reference"
+
+titlePre <- ""
+titlePost <- ""
+extPre <- ""
+extPost <- ""
 
 if (knitr::is_html_output()) {
-  hpFracCaption <- paste0("**", hpFracCaption, "**")
+  titlePre <- "**"
+  titlePost <- "**\ "
+  extPre <- ""
+  extPost <- " [@booeshaghiPseudoalignmentFacilitatesAssignment2022]."
+} else if (knitr::is_latex_output()) {
+  titlePre <- "\\textbf{"
+  titlePost <- "}\\\\"
+  extPre <- ""
+  extPost <- " \\autocite{booeshaghiPseudoalignmentFacilitatesAssignment2022}."
 }
+  
+hpFracCaption <- paste0(titlePre, hpFracCaptionShort, titlePost, extPre, extend, extPost)
 ```
 
-```{r, HPpercent, fig.cap=hpFracCaption, label="HPpercent",out.width="70%"}
+```{r, HPpercent, fig.cap=hpFracCaption, fig.scap=hpFracCaptionShort, label="HPpercent",out.width="70%", cache=FALSE}
 labels <- c("", "", "", "", "", "", "", "", "", expression(10^1), "", "", "", "", "", "", "", "", expression(10^2))
 breaks <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100)
 
@@ -300,15 +322,31 @@ In the human genome, homopolymers tend to occur more often in adenine and thymin
 
 ```{r, hpCaption}
 
-hpDistribCaption <- paste0("Distribution of homopolymer lengths per base in the human genome (for homopolymers of length $\\geq$ ", big_l, ".)")
+hpDistribCaptionShort <- paste0("Distribution of homopolymer lengths per base in the human genome, for homopolymers of length $\\geq$ ", big_l, ".")
+
+extend <- "The homopolymer counts were calculated from the T2T consortium full human genome assembly CHM13 v1.0."
+
+titlePre <- ""
+titlePost <- ""
+extPre <- ""
+extPost <- ""
 
 if (knitr::is_html_output()) {
-  hpDistribCaption <- paste0("**", hpDistribCaption, "**")
+  titlePre <- "**"
+  titlePost <- "**\ "
+  extPre <- ""
+  extPost <- ""
+} else if (knitr::is_latex_output()) {
+  titlePre <- "\\textbf{"
+  titlePost <- "}\\\\"
+  extPre <- ""
+  extPost <- ""
 }
-
+  
+hpDistribCaption <- paste0(titlePre, hpDistribCaptionShort, titlePost, extPre, extend, extPost)
 ```
 
-```{r, HPdistrib, fig.cap=hpDistribCaption, label="HPdistrib", out.width="70%", cache=FALSE}
+```{r, HPdistrib, fig.cap=hpDistribCaption, fig.scap=hpDistribCaptionShort, label="HPdistrib", out.width="70%", cache=FALSE}
 
 ggplot(big, aes(x=length, y=count)) +
   geom_col() +
@@ -319,7 +357,7 @@ ggplot(big, aes(x=length, y=count)) +
 
 ### Homopolymers and long reads {#homopolymers-and-long-reads}
 
-Unfortunately homopolymers are a source of errors in sequencing, particularly for long-read technologies: while substitutions seem to be randomly distributed along the reads for PacBio and ONT, the main error mode seems to be indels in homopolymeric sections, *i.e.* reading the same nucleotide several times or skipping over one of the repeated nucleotides. Many study show that homopolymeric indels is the main type of error for PacBIO SMRT and ONT long-read sequencing [@delahaye2021; @goodwin2015;@dohmBenchmarkingLongreadCorrection2020; @weirather2017]. This is even the case for PacBio HiFi reads, while the ciruclar concensus approach eliminates the randomly distributed substitutions homopolymer indels remain [@wenger2019]. It seems that ONT reads are more prone to this type of error than PacBIo [@logsdonLongreadHumanGenome2020]. The rate of these errors is independent of the length of the homopolymer for ONT, but it rises with homopolymer length for short-read and PacBio technologies [@fooxPerformanceAssessmentDNA2021].
+Unfortunately homopolymers are a source of errors in sequencing, particularly for long-read technologies: while substitutions seem to be randomly distributed along the reads for PacBio and ONT, the main error mode seems to be indels in homopolymeric sections, *i.e.* reading the same nucleotide several times or skipping over one of the repeated nucleotides. Many study show that homopolymeric indels is the main type of error for PacBIO SMRT and ONT long-read sequencing [@delahaye2021; @goodwin2015; @dohmBenchmarkingLongreadCorrection2020; @weirather2017]. This is even the case for PacBio HiFi reads, while the circular concensus approach eliminates the randomly distributed substitutions homopolymer indels remain [@wenger2019]. It seems that ONT reads are more prone to this type of error than PacBIo [@logsdonLongreadHumanGenome2020]. The rate of these errors is independent of the length of the homopolymer for ONT, but it rises with homopolymer length for short-read and PacBio technologies [@fooxPerformanceAssessmentDNA2021].
 
 ### Accounting for homopolymers
 
@@ -333,17 +371,17 @@ Steps before sequencing can also be taken in order to reduce the effect of these
 
 Improving the sequencing technologies can also be a solution by reducing the number of homopolymer errors straight from the source. The latest ONT chemistry R.10 reportedly improves accuracy in homopolymer rich regions [@R10NewestNanopore; @amarasingheOpportunitiesChallengesLongread2020], non-biological solid-state nanopores also reduces errors in homopolymers [@zhouDetectionDNAHomopolymer2019; @gotoIdentificationFourSinglestranded2018].
 
-#### Homopolymer compression, a nifty trick  {#hpc-trick}
+#### Homopolymer compression, a nifty trick {#hpc-trick}
 
 In many cases, reads cannot be re-sequenced with newer technologies, or base-called with better base callers. Only the read sequences, potentially containing homopolymer errors, are available for usage. In order to account for this sort of error, a simple pre-processing trick was developed: *homopolymer compression* (HPC).
 
 The idea is very simple, for any sequence replace a repeated run of any nucleotide (i.e. homopolymers) by a single occurrence of that nucleotide. This means that after going through HPC the sequence AAACTGGG will yield the sequence ACTG. This simple pre-processing step, applied to all the reads and sequences to analyze removes all indels in homopolymers, and can resolve some ambiguities (c.f. Figure \@ref(fig:hpcSchema)). It can also remove legitimate information contained in homopolymers, however the trade-off with the reduced error rate has been deemed advantageous.
 
-HPC has been implemented in many sequence bioinformatics sowftware tools. The HiCanu [@nurkHiCanuAccurateAssembly2020], MDBG [@ekimMinimizerspaceBruijnGraphs2021], wtdbg2 [@ruanFastAccurateLongread2020], shasta [@shafinNanoporeSequencingShasta2020] assemblers all use HPC under the hood to provide better assemblies, and it was used to assemble the complete human genome sequence [@nurk2022]. The first published usage of HPC, was actually in the CABOG assembler [@millerAggressiveAssemblyPyrosequencing2008] developed for pyrosequencing reads. HPC has also been implemented for other tasks, like clustering [@sahlinNovoClusteringLongRead2020], long read error correction with LSC [@auImprovingPacBioLong2012] and LSCPlus [@huLSCplusFastSolution2016], alignment with minimap2 [@liMinimap2PairwiseAlignment2018] and winnowmap2 [@jainWeightedMinimizerSampling2020], or specific analysis pipelines for satellite tandem repeats [@vannesteForensicSTRAnalysis2012].
+HPC has been implemented in many sequence bioinformatics software tools. The HiCanu [@nurkHiCanuAccurateAssembly2020], MDBG [@ekimMinimizerspaceBruijnGraphs2021], wtdbg2 [@ruanFastAccurateLongread2020], shasta [@shafinNanoporeSequencingShasta2020] assemblers all use HPC under the hood to provide better assemblies, and it was used to assemble the complete human genome sequence [@nurk2022]. The first published usage of HPC, was actually in the CABOG assembler [@millerAggressiveAssemblyPyrosequencing2008] developed for pyrosequencing reads. HPC has also been implemented for other tasks, like clustering [@sahlinNovoClusteringLongRead2020], long read error correction with LSC [@auImprovingPacBioLong2012] and LSCPlus [@huLSCplusFastSolution2016], alignment with minimap2 [@liMinimap2PairwiseAlignment2018] and winnowmap2 [@jainWeightedMinimizerSampling2020], or specific analysis pipelines for satellite tandem repeats [@vannesteForensicSTRAnalysis2012].
 
 ```{r, hpcCaption}
 hpcCaption <- "**Homopolymer compression can help resolve ambiguities due to sequencing errors.** \
-A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is resolved and the read is homologous to only one region. 
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible.
 "
 ```
 
@@ -356,7 +394,7 @@ knitr::include_graphics("./figures/Sequence-Intro/hpc-helps.png")
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
 \extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
-A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is resolved and the read is homologous to only one region.
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible.
 }
 \label{fig:hpcSchema}
 \end{figure}
