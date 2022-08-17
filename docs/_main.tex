@@ -2512,39 +2512,38 @@ Some mutations in the flaps of PR have also been shown to confer PI resistance. 
 \hypertarget{integrase}{%
 \subsubsection{Integrase}\label{integrase}}
 
-\begin{itemize}
-\item
-  IN: It pre-processes the ends of the viral DNA, cleaves the host DNA and binds the viral DNA to the host DNA (i.e.~strand transfer). \autocite{chiuStructureFunctionHIV12004,espositoHIVIntegraseStructure1999,delelisIntegraseIntegrationBiochemical2008}. Multimer -\textgreater{} chains link up. Each chain has:
+The integrase protein is the third major anti-retroviral drug target, it is responsible for integrating the viral DNA into the host genome. It is a tetramer composed of four identical amino acid chains. \autocite{chiuStructureFunctionHIV12004,espositoHIVIntegraseStructure1999}. Each of these chains contain three domains linked together by flexible linker sequences: the N-terminal domain, the catalytic core and the C-terminal domain. In each tetramer, two chains provide the active site for the integration reaction while the other two have a mostly structural role. It is probable that the N-terminal domain which is very conserved is necessary for stable tetramerization of IN monomers \autocite{delelisIntegraseIntegrationBiochemical2008}, this tetrameric structure is shown in Figure \ref{fig:inStruct}.
 
-  \begin{itemize}
-  \item
-    Core catalytic domain: Binds with viral DNA and performs the integration
-  \item
-    C-terminal domain: Binds with any DNA, adding stability
-  \item
-    N-terminal domain: Binds with Zn\textsuperscript{2+} and helps multimerisation (i.e integrase stability)
-  \item
-    INI: prevent strand transfer where viral DNA is first linked to host DNA \autocite{pommierIntegraseInhibitorsTreat2005}
-  \end{itemize}
-\item
-  INSTI resistance: reduce affinity to inhibitors \autocite{blancoHIV1IntegraseInhibitor2011}
-\end{itemize}
+\begin{figure} 
+  \centering 
+  \includegraphics[width=0.7\textwidth]{./figures/HIV-Intro/in.png}      \extcaption{3D structure of an Integrase.}{This Integrase tetramer is binded with viral (red) and host (orange) DNA, linked to the two light blue functional subunits via the C-terminal domain. The active site formed by the the catalytic cores of the two functional subunits \textit{(not visible in this representation)}, is where the strand transfer reaction will take place. The two dark blue IN subunits have a structural role.
+  This figure was adapted from the PDB 101 molecule of the month Integrase entry by David S. Goodsell and the RCSB PDB (\href{https://pdb101.rcsb.org/motm/135}{pdb101.rcsb.org/motm/135}) with a CC By 4.0 license.}       
+  \label{fig:inStruct} 
+\end{figure}
 
-However Drug resistance has emerged for most treatment types even PrEP \autocite{knoxMultidrugResistantHIV1Infection2017,hurtPreexposureProphylaxisAntiretroviral2011} but seem to be rare and due to pre-treatment but unknown HIV infection \autocite{gibasDrugResistanceHIV2019}
+Several steps are needed in order to integrate the viral DNA with the host genome \autocite{maertensStructureFunctionRetroviral2022}. First, IN binds to the both ends of the viral DNA, using the C-terminal domains, forming a closed loop. Secondly, both ends of the viral DNA molecule are then prepared for integration by the catalytic core. Third, the host DNA is captured with C-terminal domains. Then, the strand-transfer is done within the catalytic core: the host DNA is cut in two places and a single strand from each end of the viral DNA are attached to these two breakpoints. Finally, the IN tetramer detaches from the linked molecules and the final steps necessary to create a single hybrid DNA molecule are done by the host cellular machinery. A graphical representation of this process can be found in Figure 1 of the 2022 article by Maertens et al. \autocite{maertensStructureFunctionRetroviral2022}.
+
+Integrase Strand Transfer Inhibitors (INSTIs), as their name indicates, block the strand transfer reaction. They achieve this by strongly binding to the active site of the IN tetramer after it has formed a complex with the viral DNA \autocite{pommierIntegraseInhibitorsTreat2005,maertensStructureFunctionRetroviral2022}. In doing so, INSTIs prevent the IN / viral DNA complex from binding to the host DNA, effectively preventing strand transfer.
+
+In the presence of INSTIs during therapy, once more the HIV virus develops resistance mutations over time. These mutations all lower affinity of IN to INSTIs, preventing bonding \autocite{blancoHIV1IntegraseInhibitor2011,maertensStructureFunctionRetroviral2022}. Since most INSTIs behave similarly, this means that cross-resistance to INSTIs is quite common for INSTI DRMs \autocite{blancoHIV1IntegraseInhibitor2011,gerettiEmergingPatternsImplications2012}. Once more, these mutations tend to lower the overall viral fitness necessitating secondary compensatory mutations to restore fitness \autocite{gerettiEmergingPatternsImplications2012,blancoHIV1IntegraseInhibitor2011}.
+
+\hypertarget{other-drug-targets}{%
+\subsubsection{Other drug targets}\label{other-drug-targets}}
+
+For now, resistance has not been observed for novel drugs like entry inhibitors. This might be because the genetic barrier to resistance is higher and because not enough time has passed since their introduction for resistance to emerge.
+
+For all the other drug targets however, as stated earlier in this section, resistance is documented and problematic. Resistance has even been detected for PrEP which is prophylactic \autocite{knoxMultidrugResistantHIV1Infection2017,hurtPreexposureProphylaxisAntiretroviral2011}. This seems to be rare however and mostly due to an unknown pre-treatment HIV infection \autocite{gibasDrugResistanceHIV2019}.
 
 \hypertarget{consequences-of-resistance-on-global-health}{%
 \subsection{Consequences of resistance on global health}\label{consequences-of-resistance-on-global-health}}
 
-\begin{itemize}
-\item
-  Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015,hueDemonstrationSustainedDrugResistant2009} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}, creating long lasting drug resistance reservoirs in naive population.
-\item
-  Dangerous because there can be therapeutic failure of first line regimen. \autocite{boermaHighLevelsPretreatment2016}
-\item
-  Fitness is lower for some DRMs \autocite{kuhnertQuantifyingFitnessCost2018,mespledeViralFitnessCost2013} which means there is evolutionary pressure for these mutations to disappear in the absence of treatment
-\item
-  the reversion to WT can last a long time with a wide range of median loss times from 1 to 13 years \autocite{castroPersistenceHIV1Transmitted2013}, depending on the type of mutation (NRTI \textgreater{} NNRTI).
-\end{itemize}
+HIV resistance to ART drugs is problematic from a global health perspective. Indeed circulation of resistant strains of HIV within populations can lead to treatment-naive individuals that will not respond well to treatment.
+
+More concerning is the fact that transmission of resistant strains of HIV between treatment-naive individuals is the main mode of resistance transmission in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015,hueDemonstrationSustainedDrugResistant2009} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}. This treatment-naive to treatment-naive transmission is particularly insidious since it can go undetected and creates long lasting drug resistant strain reservoirs in the treatment-naive population. This of course is dangerous since some infected individuals might experience poor therapeutic outcomes and even failure when administered first line regimens \autocite{boermaHighLevelsPretreatment2016}. To avoid this, genotypic resistance testing has become standard practice when choosing the therapeutic strategy in high-income countries, but more effort must be done to make resistance testing less expensive and more cost-efficient in lower and middle income countries \autocite{clutterHIV1DrugResistance2016}.
+
+Although the transmitted drug resistance described above is problematic, a large portion of DRMs incur a fitness cost for the resistant strain \autocite{kuhnertQuantifyingFitnessCost2018,mespledeViralFitnessCost2013}. This means that although they are selected when exposed to the evolutionary pressure of ART, when the treatment is interrupted there is another pressure leading these costly mutations to disappear. This reversion is commonly observed after interruption of treatment, however the median reversion times vary widely from 1 to 13 years \autocite{castroPersistenceHIV1Transmitted2013} depending on the severity of the fitness loss and type of mutation. This means that although reversion can possibly lead to loss of resistance this can potentially take a long time and possibly longer than the treatment interruption.
+
+In practice it is therefore very important to keep an eye on all drug resistance mutations, their population dynamics and spread as well as their presence or absence in a particular strain before starting treatment.
 
 \hypertarget{finding-drms}{%
 \subsection{Finding DRMS}\label{finding-drms}}
