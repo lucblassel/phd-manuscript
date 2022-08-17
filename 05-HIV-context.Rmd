@@ -310,13 +310,13 @@ For all the other drug targets however, as stated earlier in this section, resis
 
 ### Consequences of resistance on global health
 
--   Transmission of drug resistant viruses, particularly between treatment-naive individuals which is the main transmission mode in the UK [@mouradPhylotypebasedAnalysisHighlights2015; @hueDemonstrationSustainedDrugResistant2009] and Switzerland [@drescherTreatmentNaiveIndividualsAre2014], creating long lasting drug resistance reservoirs in naive population.
+HIV resistance to ART drugs is problematic from a global health perspective. Indeed circulation of resistant strains of HIV within populations can lead to treatment-naive individuals that will not respond well to treatment.
 
--   Dangerous because there can be therapeutic failure of first line regimen. [@boermaHighLevelsPretreatment2016]
+More concerning is the fact that transmission of resistant strains of HIV between treatment-naive individuals is the main mode of resistance transmission in the UK [@mouradPhylotypebasedAnalysisHighlights2015; @hueDemonstrationSustainedDrugResistant2009] and Switzerland [@drescherTreatmentNaiveIndividualsAre2014]. This treatment-naive to treatment-naive transmission is particularly insidious since it can go undetected and creates long lasting drug resistant strain reservoirs in the treatment-naive population. This of course is dangerous since some infected individuals might experience poor therapeutic outcomes and even failure when administered first line regimens [@boermaHighLevelsPretreatment2016]. To avoid this, genotypic resistance testing has become standard practice when choosing the therapeutic strategy in high-income countries, but more effort must be done to make resistance testing less expensive and more cost-efficient in lower and middle income countries [@clutterHIV1DrugResistance2016].
 
--   Fitness is lower for some DRMs [@kuhnertQuantifyingFitnessCost2018; @mespledeViralFitnessCost2013] which means there is evolutionary pressure for these mutations to disappear in the absence of treatment
+Although the transmitted drug resistance described above is problematic, a large portion of DRMs incur a fitness cost for the resistant strain [@kuhnertQuantifyingFitnessCost2018; @mespledeViralFitnessCost2013]. This means that although they are selected when exposed to the evolutionary pressure of ART, when the treatment is interrupted there is another pressure leading these costly mutations to disappear. This reversion is commonly observed after interruption of treatment, however the median reversion times vary widely from 1 to 13 years [@castroPersistenceHIV1Transmitted2013] depending on the severity of the fitness loss and type of mutation. This means that although reversion can possibly lead to loss of resistance this can potentially take a long time and possibly longer than the treatment interruption.
 
--   the reversion to WT can last a long time with a wide range of median loss times from 1 to 13 years [@castroPersistenceHIV1Transmitted2013], depending on the type of mutation (NRTI \> NNRTI).
+In practice it is therefore very important to keep an eye on all drug resistance mutations, their population dynamics and spread as well as their presence or absence in a particular strain before starting treatment.
 
 ### Finding DRMS
 
