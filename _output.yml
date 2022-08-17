@@ -20,6 +20,7 @@ bookdown::pdf_book:
     after_body: tex/postface.tex
   latex_engine: xelatex
   toc: yes
+  toc_depth: 3
   citation_package: biblatex
   keep_tex: yes
   extra_dependencies: ["upquote", "microtype", "pdfpages"]
