@@ -2,7 +2,7 @@
 
 ## Detailed list of HIV-1 protein structures used for figure generation.
 
-The images for HIV-1 structures used in Figure \@ref(fig:hivStructure) were obtained from: [https://cdn.rcsb.org/pdb101/learn/resources/structural-biology-of-hiv/](https://cdn.rcsb.org/pdb101/learn/resources/structural-biology-of-hiv/index.html#). They are licensed under a Creative Commons By 4.0 license which allows reuse and adaptation for non commercial use.
+The images for HIV-1 structures used in Figure \@ref(fig:hivStructure) were obtained from: <https://cdn.rcsb.org/pdb101/learn/resources/structural-biology-of-hiv/>. They are licensed under a Creative Commons By 4.0 license which allows reuse and adaptation for non commercial use.
 
 PDB structure IDs:
 
@@ -148,7 +148,7 @@ Zidovudine (ZDV) is also referred to as Azidothymidine (AZT) in litterature, Fix
 \textbf{AI}, \textbf{CA}, \textbf{FI} and \textbf{PAI} can be grouped in a class of Entry inhibitors.\\
 * Although Ritonavir is originally a PI it is now mainly used as a PE to boost the action of other drugs.\\
 \dag These drugs are no longer available or recommended in HIV treatment guidelines. They may still be used in FDC regimens.\\
-Adapted from \href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}
+Adapted from \url{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \url{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}
 }
 \label{tab:tableDrugs}
 \end{longtable}

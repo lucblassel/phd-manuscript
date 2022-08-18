@@ -1,0 +1,16 @@
+
+REAGENT or RESOURCE	SOURCE	IDENTIFIER
+**Deposited Data**	.	.	
+T2T CHM13 v1.1, whole human genome assembly	(Nurk et al., 2022)	Genbank accession number [GCA_009914755.3](https://www.ncbi.nlm.nih.gov/assembly/GCA_009914755.3/)
+Release 6 plus ISO1 MT, whole drosophila melanogaster genome assembly	(Adams et al., 2000)	Genbank accession number [GCA_000001215.4](https://www.ncbi.nlm.nih.gov/assembly/GCA_000001215.4/)
+Synthetic centrormeric sequence	(Mikheenko et al., 2020)	https://github.com/ablab/TandemTools/blob/master/test_data/simulated_del.fasta
+Escherichia coli str. K-12 substr. MG1655, complete genome	(Blattner et al., 1997)	Genbank accession number [U00096.2](https://www.ncbi.nlm.nih.gov/nuccore/U00096.2)
+Coordinates of repeated regions of the CHM13 whole genome assembly	Telomere to Telomere consortium	https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/rmsk/rmsk.bigBed
+**Software and Algorithms**	.	.
+minimap2 v2.22-r1101	(Li, 2018)	https://github.com/lh3/minimap2
+Winnowmap v2.0	(Jain et al., 2020)	https://github.com/marbl/Winnowmap
+NanoSim v3.0.0	(Yang et al., 2017)	https://github.com/bcgsc/NanoSim
+Bedtools v2.30.0	(Quinlan et al., 2010)	https://github.com/arq5x/bedtools2
+Meryl v1.0	(Rhie et al., 2020)	https://github.com/marbl/Winnowmap
+Analysis pipelines	This paper	https://doi.org/10.5281/zenodo.6859636
+

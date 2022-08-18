@@ -193,8 +193,8 @@ knitr::include_graphics("./figures/HIV-Intro/complete.png")
   \extcaption{Timeline of ART single drug FDA approvals.}{Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INSTI), Entry Inhibitors (EI) and pharmacokinetic enhancers (PE). Fixed Dose Combination (FDC) single pill regimens are also shown.\\
 * RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.\\
 \dag These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.\\
-\textit{Information collected from \href{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
-\href{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines}{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \href{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.\\
+\textit{Information collected from \url{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
+\url{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \url{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.\\
 See also Table \ref{tab:tableDrugs}.
 }
 \label{fig:timeline}
@@ -292,7 +292,7 @@ knitr::include_graphics("./figures/HIV-Intro/in.png")
 \begin{figure} 
   \centering 
   \includegraphics[width=0.7\textwidth]{./figures/HIV-Intro/in.png}      \extcaption{3D structure of an Integrase.}{This Integrase tetramer is binded with viral (red) and host (orange) DNA, linked to the two light blue functional subunits via the C-terminal domain. The active site formed by the the catalytic cores of the two functional subunits \textit{(not visible in this representation)}, is where the strand transfer reaction will take place. The two dark blue IN subunits have a structural role.
-  This figure was adapted from the PDB 101 molecule of the month Integrase entry by David S. Goodsell and the RCSB PDB (\href{https://pdb101.rcsb.org/motm/135}{pdb101.rcsb.org/motm/135}) with a CC By 4.0 license.}       
+  This figure was adapted from the PDB 101 molecule of the month Integrase entry by David S. Goodsell and the RCSB PDB (\url{https://pdb101.rcsb.org/motm/135}) with a CC By 4.0 license.}       
   \label{fig:inStruct} 
 \end{figure}
 ```
