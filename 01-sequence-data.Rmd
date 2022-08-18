@@ -381,7 +381,7 @@ HPC has been implemented in many sequence bioinformatics software tools. The HiC
 
 ```{r, hpcCaption}
 hpcCaption <- "**Homopolymer compression can help resolve ambiguities due to sequencing errors.** \
-A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible.
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible^[Homopolymer indels can be harmful in opposite circumstances as well.Let us consider, for example, a read that should map to several repetitions of a conserved motif. Homopolymer indels can artificially resolve an ambiguity by making the read unique and prefer a specific repetition of the motif or entirely misplace the read.].
 "
 ```
 
@@ -394,10 +394,11 @@ knitr::include_graphics("./figures/Sequence-Intro/hpc-helps.png")
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/hpc-helps.pdf}
 \extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
-A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible.
+A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible\footnotemark.
 }
 \label{fig:hpcSchema}
 \end{figure}
+\footnotetext{Homopolymer indels can be harmful in opposite circumstances as well.Let us consider, for example, a read that should map to several repetitions of a conserved motif. Homopolymer indels can artificially resolve an ambiguity by making the read unique and prefer a specific repetition of the motif or entirely misplace the read.}
 ```
 ## Conclusion
 
