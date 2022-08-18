@@ -344,22 +344,10 @@ By analyzing the important features used by trained models to predict resistance
 
 ## Conclusion
 
--   viruses are extremely diverse
+Viruses are surprisingly complex in light of their apparent simplicity. They are ubiquitous and present an extreme diversity. Whether they are pathogenic or not, the role of viruses in a myriad of processes and niches make them interesting and important to study. The sequences of these viruses, although small can be very useful for evolutionary as well as clinical analyses.
 
-    -   pathogenic or not
+Although the study of viruses as a whole can be very useful, HIV is particularly important to study. The impact of the HIV pandemic on global health has been severe, both in Lower and Higher income countries. It is therefore paramount to fully understand the underlying mechanisms and evolutionary adaptations of this virus. It's high mutation rate allow it to quickly explore evolutionary alternatives when exposed to drugs, making anti HIV therapy a complex endeavor.
 
-    -   important to study
-
--   HIV is particularly important for global health
-
-    -   its high mutation rate -\> diffcult treatment and constant surveillance
-
-    -   Clinical importance of DRMs
-
--   Finding new DRMs is important:
-
-    -   Especially for RT since RTIs are backbone
-
-    -   Leverage massive amounts of data with machine and statistical learning
+Fortunately, with large scale sequencing efforts it is possible to study and track these evolutionary adaptations to treatments. This allows us to adapt therapeutic strategies as well as developing new compounds and approaches. In this context, studying and finding the virus' mutational processes is paramount. This is especially important when studying resistance to RTIs as they form the backbone of first line regimen combination therapies, and are the most common type of anti-HIV drug. This process is made easier by the large scale sequence repositories now available, and the usage of machine and statistical learning to leverage that data.
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
