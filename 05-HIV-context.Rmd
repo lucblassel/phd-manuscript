@@ -38,7 +38,7 @@ Although there are a large number of viruses, and many of them are of great impo
 
 ## Getting to know HIV
 
-### Quick Presentation of HIV
+### Quick Presentation of HIV {#quick-presentation-of-hiv}
 
 HIV is a single-stranded RNA retrovirus that is responsible for the Acquired Immune Deficiency Syndrome (AIDS) pandemic that has been around for the last couple decades. This virus is transmitted through sexual contact or through blood. Sexual activity is the largest transmission factor followed by intravenous drug use [@hladikSettingStageHost2008; @shawHIVTransmission2012].
 
@@ -308,7 +308,7 @@ For now, resistance has not been observed for novel drugs like entry inhibitors.
 
 For all the other drug targets however, as stated earlier in this section, resistance is documented and problematic. Resistance has even been detected for PrEP which is prophylactic [@knoxMultidrugResistantHIV1Infection2017; @hurtPreexposureProphylaxisAntiretroviral2011]. This seems to be rare however and mostly due to an unknown pre-treatment HIV infection [@gibasDrugResistanceHIV2019].
 
-### Consequences of resistance on global health
+### Consequences of resistance on global health {#consequences-of-resistance-on-global-health}
 
 HIV resistance to ART drugs is problematic from a global health perspective. Indeed circulation of resistant strains of HIV within populations can lead to treatment-naive individuals that will not respond well to treatment.
 

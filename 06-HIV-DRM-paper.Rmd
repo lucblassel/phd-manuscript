@@ -1,6 +1,14 @@
 # Contribution 2: Inferring mutation roles from sequence alignments using machine learning {#HIV-paper}
 
-***Intro to this chapter within the context of the thesis to go here!***
+Recall that:
+
+-   HIV pandemic is very serious (cf. Sections \@ref(quick-presentation-of-hiv) and \@ref(consequences-of-resistance-on-global-health) )
+
+-   Finding drug resistance mutations is useful to manage this pandemic 
+
+-   These mutations can be found with machine learning and/or statistical testing (c.f. Section \@ref(finding-drms))
+
+-   Alignments are used as inputs for this testing procedure (c.f. Chapter 4)
 
 This chapter was written as an article titled:   
 **"Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV"**  

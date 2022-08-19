@@ -1,7 +1,5 @@
 # Contribution 1: Improving read alignment by exploring a sequence transformation space {#HPC-paper}
 
-***Intro to this chapter within the context of the thesis to go here!***
-
 Recall that:
 
 -   Homopolymers are a problem (c.f. \@ref(homopolymers-and-long-reads))
