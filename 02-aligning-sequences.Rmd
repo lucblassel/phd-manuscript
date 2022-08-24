@@ -2,55 +2,67 @@
 
 ## What is an alignment ?
 
-We want to compare individuals, species, whatever. To do this we need to compare what is comparable. Alignment to the rescue.
-
--   We want to find similarities in 2 sequences and put these similarities together, so we can compare sequences.
-
--   When we align 2 sequences together we talk about **pairwise** alignment as opposed to **multiple** alignment where we align more than 2 sequences all together. We will first focus on pairwise alignment.
-
-2 ways of going about for pairwise alignment [@sungAlgorithmsBioinformaticsPractical2011]:
-
--   **Global alignment**: we look at the entirety of the 2 sequences and take all that information into account when aligning
-
--   **Local alignment**: we look at the sequences portion by portion, trying to find the best place where they match up.
+In biology, comparison is at the heart of many studies: between individuals, between species, between sequencing runs, *etc*... In order to do this at a fine grained level and extract knowledge from it we need to compare what is comparable, this is where sequence alignment steps in. In broad terms, during sequence alignment, we aim to find regions similar to each other in two or more sequences and group them together. When this process is done with only two sequences it is called a *pairwise alignment*, when three or more sequences are used it is called *multiple alignment*. We will first focus on pairwise alignment as it was used as the basis for the more complex multiple alignment.
 
 ### Why align ?
 
--   hamming distance is an easy method [@hammingCodingInformationTheory1980]
+The first question we might ask ourselves is why align at all, if we want to compare two sequences there are plenty of distances and metrics out there to use. Something like the Hamming distance [@hammingCodingInformationTheory1980] is very quick and easy to compute by comparing characters two by two. It is however ill-suited to our needs in biology: first the two sequences to compare must be of the same length, second the differences between the sequences arise from biological processes. These processes (c.f. Section \@ref(what-kind-of-errors-are-possible)) can be substitutions which the Hamming distance can handle, however insertions and deletions shifts one of the sequences and introduce many character-to-character differences that could be explained by a single indel.
 
-    -   Although it is easy to compute -\> sequences must have same length
+For example, if we have the two following sequences ATGTGCAGTA and AGTGCAGTAC. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions *gaps* are inserted in the sequences as seen below:
 
-    -   When dealing with DNA/proteins we have to be able to deal with insertions/deletions and hamming cannot do that...
+<center>
 
--   This is very similar to other well known problems in computer science: the string-edit problem [@gusfieldAlgorithmsStringsTrees1997] and the Levenshtein distance [@levenshteinBinaryCodesCapable1966]
+> **`ATGTGCAGTA-`**\
+> **`A-GTGCAGTAC`**
 
--   Alignments are used in many cases so that:
+</center>
 
-    -   we can examine similarities/differences between them (i.e. comparative genomics ) [@hardisonComparativeGenomics2003]
+This problem of comparing two sequences with insertions or deletions is a fairly studied one in text algorithmics: the string-edit problem [@gusfieldAlgorithmsStringsTrees1997]. Some metrics like the Levenshtein distance [@levenshteinBinaryCodesCapable1966] and the more edit distance [@gusfieldAlgorithmsStringsTrees1997] exist and are closely related to the pairwise sequence alignment problem, finding the minimal number of substitution, insertion of deletion operations to go from one sequence to the other.
 
-    -   we can infer (usually with multiple alignment):
-
-        -   evolutionary relationships (phylogenetics), and most methods to reconstruct phylogenetic trees take as input a multiple alignment: [@felsensteinEvolutionaryTreesDNA1981; @kumarMEGAMolecularEvolutionary1994; @kozlovRAxMLNGFastScalable2019; @guindonNewAlgorithmsMethods2010; @priceFastTreeApproximatelyMaximumLikelihood2010]
-
-        -   protein:
-
-            -   structure [@jumperHighlyAccurateProtein2021; @karplusPredictingProteinStructure1999 ]
-
-            -   function [@watsonPredictingProteinFunction2005; @leePredictingProteinFunction2007]
-
-    -   we can correct sequencing errors [@hacklProovreadLargescaleHighaccuracy2014; @korenHybridErrorCorrection2012; @salmelaCorrectingErrorsShort2011].
-
-    -   Structural variant detection [@medvedevComputationalMethodsDiscovering2009; @mahmoudStructuralVariantCalling2019]
+Sequence alignments have many downstream use-cases. They are the basis of comparative genomics [@hardisonComparativeGenomics2003] and are used to infer evolutionary relationships and phylogenetic tree reconstruction methods usually take as input multiple alignments [@felsensteinEvolutionaryTreesDNA1981; @kumarMEGAMolecularEvolutionary1994; @kozlovRAxMLNGFastScalable2019; @guindonNewAlgorithmsMethods2010; @priceFastTreeApproximatelyMaximumLikelihood2010]. Sequence alignments have been used to study protein structure [@jumperHighlyAccurateProtein2021; @karplusPredictingProteinStructure1999 ] and function [@watsonPredictingProteinFunction2005; @leePredictingProteinFunction2007]. They can be used to correct sequencing errors [@hacklProovreadLargescaleHighaccuracy2014; @korenHybridErrorCorrection2012; @salmelaCorrectingErrorsShort2011] or detect structural variations in genomes [@medvedevComputationalMethodsDiscovering2009; @mahmoudStructuralVariantCalling2019]. All this to say that they are absolutely fundamental to the field of computational biology and errors in alignments can lead to errors somewhere down the line.
 
 ### How to align two sequences ?
 
-The seminal method for pairwise alignment was the Needleman-Wünsch algorithm [@needlemanGeneralMethodApplicable1970] based on a dynamic programming method. A decade later, the Smith-Waterman algorithm [@smithIdentificationCommonMolecular1981] was developed with similar ideas to perform local alignment. Both are still used today for pairwise alignment.
+There are two approaches for for pairwise alignment [@sungAlgorithmsBioinformaticsPractical2011]: *global alignment* where the entirety of both sequences is used when aligning them, and *local alignment* where we only seek to find regions in each sequence that are most similar to each other. Global alignment is used when the two sequences are expected to be quite similar (e.g. comparing two related proteins), whereas local alignment is mostly used when we expect the sequences to be fairly different but with highly similar regions, like genomes of two distantly related species that share a highly conserved region.
 
-Dynamic programming is a method to solve complex problems by breaking it into smaller sub-problems and solving each one optimally and separately [@bradleyAppliedMathematicalProgramming1977; @bellmanTheoryDynamicProgramming1954], it is widely used when we wish to have a precise alignment between 2 sequences.
+The seminal method for global pairwise alignment was the Needleman-Wünsch algorithm [@needlemanGeneralMethodApplicable1970] based on a dynamic programming method. A decade later, the Smith-Waterman algorithm [@smithIdentificationCommonMolecular1981] was developed with similar ideas to perform local alignment. Both are still used today for pairwise alignment.
+
+Dynamic programming is often used to solve complex problems by breaking it into smaller sub-problems and solving each one optimally and separately [@bradleyAppliedMathematicalProgramming1977; @bellmanTheoryDynamicProgramming1954], it is particularly useful when we wish to have a precise alignment between 2 sequences.
 
 #### Global alignment
 
--   We do global alignment when we expect two sequences to be related and of similar genes/proteins, etc...
+The fundamental algorithm for globally aligning two sequences was the Needleman-Wünsch (NW) algorithm, this can be conceptualized in one of two equivalent ways: finding the alignment with 1) the lowest edit-distance or 2) the highest alignment score. These two are equivalent so in this chapter we will maximize the alignment score.
+
+The first thing that is needed is, given an alignment, how to compute an alignment score. To do this we need to assign costs to each operation. Usually matches (i.e. aligning two identical characters) are given a positive cost and mismatches or indels a negative cost. If we assign a cost of +1 to a match and a cost of -1 to mismatches and indels then the alignment presented above in Section \@ref(why-align) would have an alignment score of 9 - 2 = 7 *(9 matches and two indels)*.
+
+The NW algorithm is based on a simple recurrence relation: the optimal alignment score of two sequences $S_1$ and $S_2$ of lengths $l_1$ and $l_2$ is the minimum of:
+
+1.  The optimal alignment score of $S_1[1,l_1-1]$ [^aligning-sequences-1] and $S_2[1,l_2-1]$ plus the cost of a match or mismatch between the $l_1^{th}$ character of $S_1$ and the $l_2^{th}$ character of $S_2$
+
+2.  The optimal alignment score of $S_1$ and $S_2[1,l_2-1]$ plus the cost of an indel
+
+3.  The optimal alignment score of $S_1[1,l_1-1]$ and $S_2$ plus the cost of an indel
+
+[^aligning-sequences-1]: Here I am using an index starting at 1 and inclusive, so $S_1[1,l_1-1]$ represents the first $l_1-1$ characters. If $S_1 = ABCD$ then $S_1[1;3]=ABC$
+
+This simple relation can be used to compute optimal global alignment score for two sequences, however if it is implemented naively it can be very inefficient as the number of scores to compute grows exponentially with sequence lengths, and many intermediary alignment scores need to be computed many times. This is where dynamic programming comes in: these intermediary costs are pre-computed in an efficient manner and one can then deduce the optimal alignment from these. This pre-computing step is usually represented as filling out a matrix whose rows and columns represent the characters in each sequence to be aligned.
+
+If $S_1$ represents the rows of the matrix, and $S_2$ the columns, a cell $(i,j)$ of this matrix represents the optimal alignment score between $S_1[1,i]$ and $S_2[1,j]$[^aligning-sequences-2]. In the recurrence relation described above the alignment score as dependant on the optimal alignment scores of subsequences, when filling out the dynamic programming matrix we proceed in the inverse fashion by using the scores of short subsequences to build up the scores of progressively longer sequences.
+
+[^aligning-sequences-2]: In practice we add a empty character at the beginning of $S_1$ and $S_2$ before filling out the matrix so a cell $(i+1,j+1)$ represents the optimal alignment score between $S_1[1,i]$ and $S_2[1,j]$
+
+We will go here through a short example showing how the NW algorithm is used to align two short sequences: `ACCTGA` and `ACGGA`. The first step is to represent the dynamic programming matrix, prefix each sequence with an empty character and label the rows of the matrix with one of the sequences and the columns with the other.
+
+|     |     | A   | C   | G   | G   | A   |
+|-----|-----|-----|-----|-----|-----|-----|
+|     |     |     |     |     |     |     |
+| A   |     |     |     |     |     |     |
+| C   |     |     |     |     |     |     |
+| C   |     |     |     |     |     |     |
+| T   |     |     |     |     |     |     |
+| G   |     |     |     |     |     |     |
+| A   |     |     |     |     |     |     |
+
 -   short presentation of NW algo (c.f. Figure \@ref(fig:nwAlign)):
     -   The score of an alignment can be defined recursively -\> dynamic programming
 
