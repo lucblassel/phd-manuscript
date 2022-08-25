@@ -8,7 +8,7 @@ In biology, comparison is at the heart of many studies: between individuals, bet
 
 The first question we might ask ourselves is why align at all, if we want to compare two sequences there are plenty of distances and metrics out there to use. Something like the Hamming distance [@hammingCodingInformationTheory1980] is very quick and easy to compute by comparing characters two by two. It is however ill-suited to our needs in biology: first the two sequences to compare must be of the same length, second the differences between the sequences arise from biological processes. These processes (c.f. Section \@ref(what-kind-of-errors-are-possible)) can be substitutions which the Hamming distance can handle, however insertions and deletions shifts one of the sequences and introduce many character-to-character differences that could be explained by a single indel.
 
-For example, if we have the two following sequences ATGTGCAGTA and AGTGCAGTAC. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions *gaps* are inserted in the sequences as seen below:
+For example, if we have the two following sequences `ATGTGCAGTA` and `AGTGCAGTAC`. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions *gaps* are inserted in the sequences as seen below:
 
 <center>
 
@@ -31,44 +31,61 @@ Dynamic programming is often used to solve complex problems by breaking it into 
 
 #### Global alignment
 
-The fundamental algorithm for globally aligning two sequences was the Needleman-Wünsch (NW) algorithm, this can be conceptualized in one of two equivalent ways: finding the alignment with 1) the lowest edit-distance or 2) the highest alignment score. These two are equivalent so in this chapter we will maximize the alignment score.
+The fundamental algorithm for globally aligning two sequences was the Needleman-Wünsch (NW) algorithm, this can be conceptualized in one of two equivalent ways: finding the alignment with 1) the lowest edit-distance or 2) the highest alignment score. These two are equivalent so in this section we will maximize the alignment score.
 
 The first thing that is needed is, given an alignment, how to compute an alignment score. To do this we need to assign costs to each operation. Usually matches (i.e. aligning two identical characters) are given a positive cost and mismatches or indels a negative cost. If we assign a cost of +1 to a match and a cost of -1 to mismatches and indels then the alignment presented above in Section \@ref(why-align) would have an alignment score of 9 - 2 = 7 *(9 matches and two indels)*.
 
-The NW algorithm is based on a simple recurrence relation: the optimal alignment score of two sequences $S_1$ and $S_2$ of lengths $l_1$ and $l_2$ is the minimum of:
+The NW algorithm is based on a simple recurrence relation: the optimal alignment score of two sequences $S_1$ and $S_2$ of lengths $n$ and $m$ respectively is the maximum of:
 
-1.  The optimal alignment score of $S_1[1,l_1-1]$ [^aligning-sequences-1] and $S_2[1,l_2-1]$ plus the cost of a match or mismatch between the $l_1^{th}$ character of $S_1$ and the $l_2^{th}$ character of $S_2$
+1.  The optimal alignment score of $S_1[1,n-1]$[^aligning-sequences-1] and $S_2[1,m-1]$ plus the cost of a match or mismatch between the $n^{th}$ character of $S_1$ and the $m^{th}$ character of $S_2$
 
-2.  The optimal alignment score of $S_1$ and $S_2[1,l_2-1]$ plus the cost of an indel
+2.  The optimal alignment score of $S_1$ and $S_2[1,m-1]$ plus the cost of an indel
 
-3.  The optimal alignment score of $S_1[1,l_1-1]$ and $S_2$ plus the cost of an indel
+3.  The optimal alignment score of $S_1[1,n-1]$ and $S_2$ plus the cost of an indel
 
-[^aligning-sequences-1]: Here I am using an index starting at 1 and inclusive, so $S_1[1,l_1-1]$ represents the first $l_1-1$ characters. If $S_1 = ABCD$ then $S_1[1;3]=ABC$
+[^aligning-sequences-1]: Here I am using an index starting at 1 and inclusive, so $S_1[1,n-1]$ represents the first $n-1$ characters. If $S_1 = ABCD$ then $S_1[1;3]=ABC$
 
 This simple relation can be used to compute optimal global alignment score for two sequences, however if it is implemented naively it can be very inefficient as the number of scores to compute grows exponentially with sequence lengths, and many intermediary alignment scores need to be computed many times. This is where dynamic programming comes in: these intermediary costs are pre-computed in an efficient manner and one can then deduce the optimal alignment from these. This pre-computing step is usually represented as filling out a matrix whose rows and columns represent the characters in each sequence to be aligned.
 
-If $S_1$ represents the rows of the matrix, and $S_2$ the columns, a cell $(i,j)$ of this matrix represents the optimal alignment score between $S_1[1,i]$ and $S_2[1,j]$[^aligning-sequences-2]. In the recurrence relation described above the alignment score as dependant on the optimal alignment scores of subsequences, when filling out the dynamic programming matrix we proceed in the inverse fashion by using the scores of short subsequences to build up the scores of progressively longer sequences.
+If $S_1$ represents the rows of the matrix, and $S_2$ the columns, the value $C(i,j)$ of a cell $(i,j)$ of this matrix represents the optimal alignment score between $S_1[1,i]$ and $S_2[1,j]$. In the recurrence relation described above the alignment score as dependant on the optimal alignment scores of subsequences, when filling out the dynamic programming matrix we proceed in the inverse fashion by using the scores of short subsequences to build up the scores of progressively longer sequences.
 
-[^aligning-sequences-2]: In practice we add a empty character at the beginning of $S_1$ and $S_2$ before filling out the matrix so a cell $(i+1,j+1)$ represents the optimal alignment score between $S_1[1,i]$ and $S_2[1,j]$
+We will go here through a short example showing how the NW algorithm is used to align two short sequences: $S_1=$`ACCTGA` and $S_2=$`ACGGA`. The first step is to represent the dynamic programming matrix, prefix each sequence with an empty character and label the rows of the matrix with one of the sequences and the columns with the other *(this extra row and column at the beginning of each sequence are indexed as column and row 0)*. In this matrix, due to the recurrence relation stated above, the score of a particular cell, $C(i,j)$ is the maximum of:
 
-We will go here through a short example showing how the NW algorithm is used to align two short sequences: `ACCTGA` and `ACGGA`. The first step is to represent the dynamic programming matrix, prefix each sequence with an empty character and label the rows of the matrix with one of the sequences and the columns with the other.
+1.  The score in the diagonally adjacent cell $C(i-1,j-1)$ plus the cost of a match or mismatch between $S_1[i]$ and $S_2[j]$.
+2.  The score of the cell to the left $C(i,j-1)$ plus the cost of an indel
+3.  The score of the cell on top $C(i-1,j)$ plus the cost of an indel
 
-|     |     | A   | C   | G   | G   | A   |
-|-----|-----|-----|-----|-----|-----|-----|
-|     |     |     |     |     |     |     |
-| A   |     |     |     |     |     |     |
-| C   |     |     |     |     |     |     |
-| C   |     |     |     |     |     |     |
-| T   |     |     |     |     |     |     |
-| G   |     |     |     |     |     |     |
-| A   |     |     |     |     |     |     |
+Therefore in order to compute $C(i,j)$ we need to know the three values of $C(i-1,j-1)$, $C(i-1,j)$ and $C(i,j-1)$. This is the reason why we start with an extra column and row at the beginning of each sequence that we can fill out with the increasing costs of indels. In our case since the cost of an indel is -1, this row and column are filled out with decreasing relative integers, as can be seen in the matrix below.
 
--   short presentation of NW algo (c.f. Figure \@ref(fig:nwAlign)):
-    -   The score of an alignment can be defined recursively -\> dynamic programming
+| $S_1$\\$S_2$ |     | A   | C   | G   | G   | A   |
+|--------------|-----|-----|-----|-----|-----|-----|
+|              | 0   | -1  | -2  | -3  | -4  | -5  |
+| A            | -1  |     |     |     |     |     |
+| C            | -2  |     |     |     |     |     |
+| C            | -3  |     |     |     |     |     |
+| T            | -4  |     |     |     |     |     |
+| G            | -5  |     |     |     |     |     |
+| A            | -6  |     |     |     |     |     |
 
-    -   Fill out DP matrix:
+From this starting point we can fill out the Dynamic programming matrix with all the alignment scores. To compute $C(1,1)$ we have three possible values:
 
-    -   Traceback to find optimal alignment: start in the bottom right and follow the arrows up to the upper left. Diagonal: Match/mismatch, vertical arrow: gap in "columns" sequence, horizontal arrow: gap in "rows" sequence.
+1.  $C(0,0)$ plus the cost of a match between $S_1[1]=A$ and $S_2[1]=A$: $0+1=1$
+2.  $C(0,1)$ plus the cost of an indel: $-1 -1 = -2$
+3.  $C(0,1)$ plus the cost of an indel: $-1-1=-2$
+
+By taling the maximum out of these three values we can fill out the matrix with $C(1,1)=1$. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between $S_1$ and $S_2$, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell $(i,j)$ we add an edge from this cell to the previous cell that was used to compute $C(i,j)$. In our example above, we obtained $C(1,1)$ from a match and $C(0,0)$, so we can add an edge in our graph going from cell $(1,1)$ to cell $(0,0)$. The filled out matrix with the graph edges represented as arrows can be seen in Figure \@ref(fig:nwAlign).
+
+| $S_1$\\$S_2$ |     | A   | C   | G   | G   | A   |
+|--------------|-----|-----|-----|-----|-----|-----|
+|              | 0   | -1  | -2  | -3  | -4  | -5  |
+| A            | -1  | 1   | 0   | -1  | -2  | -3  |
+| C            | -2  | 0   | 2   | 1   | 0   | -1  |
+| C            | -3  | -1  | 1   | 1   | 0   | -1  |
+| T            | -4  | -2  | 0   | 0   | 0   | -1  |
+| G            | -5  | -3  | -1  | 1   | 1   | 0   |
+| A            | -6  | -4  | -2  | 0   | 0   | 2   |
+
+Once this matrix *(and corresponding graph)* is filled out, we can deduce the alignment by following a path through the graph starting at cell $(n,m)$ to cell $(0,0)$. A diagonal edge starting at $(i,j)$ indicates a match or mismatch between $S_1[i]$ and $S_2[j]$, a vertical edge indicates a gap in $S_2$ and a horizontal edge a gap in $S_1$. This can lead to several optimal alignments if there are several such paths in the graph. In our case this algorithm yields three equally optimal global alignments shown in Figure \@ref(fig:nwAlign).
 
 ```{r, nwCaption}
 nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm**\ The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments."
@@ -86,11 +103,9 @@ knitr::include_graphics("./figures/Align-Intro/Nw-dp.png")
 \label{fig:nwAlign}
 \end{figure}
 ```
--   This algorithm although very precise, has a time complexity of $O(nm)$ where $n$ and $m$ are the lengths of the sequences to align [@sungAlgorithmsBioinformaticsPractical2011]. Some methods have been proposed to speed up [@masekFasterAlgorithmComputing1980], however the complexity is still $O(nm/\log(n))$. Lower bounds have been studied and there is not much optimization we can do if we want to keep an optimal exact alignment [@vinhInformationTheoreticMeasures2010; @ullmanBoundsComplexityLongest1976]. If we want to do better we have to rely on heuristics.
--   Another issue is space complexity since we need to store the matrix, we get $O(nm)$ as well for space, so if we wish to align 2 human genomes we would need to store $\approx 10^{19}$ matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers (meaning it would take an entire data center to store that).
-    -   However in practice we can do much better than that, and construct an optimal alignment in linear space complexity $O(n+m)$ [@hirschbergLinearSpaceAlgorithm1975] meaning we would only need a couple gigabytes to store the matrix for 2 human genomes.
+This algorithm although guaranteed to result in an optimal alignment, has a time complexity of $O(nm)$ where $n$ and $m$ are the lengths of the sequences to align [@sungAlgorithmsBioinformaticsPractical2011]. Some methods have been proposed to speed up [@masekFasterAlgorithmComputing1980], however the complexity is still $O(nm/\log(n))$. Lower bounds have been studied and there is not much optimization to be done if optimal exact alignment are needed [@vinhInformationTheoreticMeasures2010; @ullmanBoundsComplexityLongest1976]. If we want to do better we have to rely on heuristics.
 
-    -   Above idea resulting in Myers-miller algorithm [@myersOptimalAlignmentsLinear1988], implemented in the EMBOSS stretcher tool [@riceEMBOSSEuropeanMolecular2000]
+Another issue is space complexity since we need to store the matrix, the space complexity is also $O(nm)$. If we wish to align 2 human genomes we would need to store $\approx 10^{19}$ matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers *(i.e. the storage scale of a data-center)*. However, in practice, we can do much better than that, and construct an optimal alignment in linear space complexity $O(n+m)$ [@hirschbergLinearSpaceAlgorithm1975] meaning we would only need a couple gigabytes to store the matrix for 2 human genomes. This resulted in an improved global alignment algorithm, the Myers-Miller algorithm [@myersOptimalAlignmentsLinear1988], implemented in the EMBOSS stretcher alignment software [@riceEMBOSSEuropeanMolecular2000].
 
 #### Local alignment
 
