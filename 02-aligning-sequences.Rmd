@@ -12,8 +12,8 @@ For example, if we have the two following sequences `ATGTGCAGTA` and `AGTGCAGTAC
 
 <center>
 
-> **`ATGTGCAGTA-`**\
-> **`A-GTGCAGTAC`**
+| **`ATGTGCAGTA-`**
+| **`A-GTGCAGTAC`**
 
 </center>
 
@@ -161,15 +161,20 @@ This wealth of protein substitution matrices reflects the biological and evoluti
 
 ### Dealing with gaps
 
--   biologically longer deletions are more likely than plenty of shorter ones
+In the NW and SW examples of Section \@ref(how-to-align-two-sequences), as with the simplistic match/mismatch costs, we used a very simple cost of insertions and deletions: any indel has a cost of -1. However this, as was the case with substitutions, does not reflect the biological reality very well.
 
-    -   Here a short example of 2 alignments with different gap strategies
+In biology, when insertions or deletions occur it is more likely that the indel will span several nucleotides rather than just one [@cartwrightProblemsSolutionsEstimating2009]. This means that when inserting gaps into longer gap stretches are more likely than many individual gaps. For example the two alignments below have the same number of matches, mismatches and gaps. The second one is more likely since it is the result of a single insertion (or deletion) of `AGGT` rather than multiple independent indels.
 
--   Semi global alignment (i.e. gaps on the ends of the sequence are free...)
+<center>
 
--   Affine gap penalties, proposed by Gotoh [@gotohImprovedAlgorithmMatching1982]
+| **`AGGAGGTTCG`**        **`AGGAGGTTCG`**
+| **`A-G-G-T-CC`**        **`AGG----TCC`**
 
--   Non affine gap penalties [@bennerEmpiricalStructuralModels1993; @guSizeDistributionInsertions1995; @watermanEfficientSequenceAlignment1984]
+</center>
+
+The first approach was to try and optimize the gaps more generally [@fitchOptimalSequenceAlignments1983] over the whole aligned sequence, however even with dynamic programming this has at best a time complexity of $o(n^2m)$ [@watermanBiologicalSequenceMetrics1976]. In 1982, Gotoh proposed affine gap costs [@gotohImprovedAlgorithmMatching1982], with this model there are two separate costs associated to indels: 1) the gap open cost and 2) the gap extend cost. Usually the costs are set up so that opening a new gap is more costly than extending it, meaning that longer gap stretches are favored over many short indels. The other major advantage is that with Gotoh's algorithm time complexity is back down to $o(nm)$. The algorithm was further refined by Altschul *et al.* [@altschulOptimalSequenceAlignment1986].
+
+Over the years different types of gap costs were developed and tested like the logarithmic gap costs proposed by Waterman [@watermanEfficientSequenceAlignment1984] and improved by Miller and Myers [@millerSequenceComparisonConcave1988] turned out to be less accurate than affine gap costs [@cartwrightLogarithmicGapCosts2006]). A bi-linear gap cost was also proposed to replace the affine cost[@goonesekereFrequencyGapsObserved2004], with a breakpoint at gaps of length three, the size of a codon. As more and more sequence data became available, similarly to what happened with substitution matrices, empirical profile-based models derived from this data were developed [@bennerEmpiricalStructuralModels1993]. Some of these penalties leverage structural information and context for proteins [@wrablGapsStructurallySimilar2004; @zhangSP5ImprovingProtein2008]. A context dependent gap penalty depending on the hydrophobicity of aligned residues is inplemented in Clustal X [@jeanmouginMultipleSequenceAlignment1998] one of the most widely used sequence aligners. Although quite complex and empirically derived, these profile-based penalties show limited improvement over the affine and bi-linear penalties [@wangComparisonLinearGap2011].
 
 ## How do we speed up pairwise alignment ?
 
