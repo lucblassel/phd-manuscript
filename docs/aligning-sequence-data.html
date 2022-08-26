@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-08-23" />
+<meta name="date" content="2022-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -144,7 +144,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="2.1.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#why-align"><i class="fa fa-check"></i><b>2.1.1</b> Why align ?</a></li>
 <li class="chapter" data-level="2.1.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-to-align-two-sequences"><i class="fa fa-check"></i><b>2.1.2</b> How to align two sequences ?</a></li>
-<li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#substitution-models-scoring"><i class="fa fa-check"></i><b>2.1.3</b> Substitution models / scoring</a></li>
+<li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#scoring-and-substitution-models"><i class="fa fa-check"></i><b>2.1.3</b> Scoring and substitution models</a></li>
 <li class="chapter" data-level="2.1.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#dealing-with-gaps"><i class="fa fa-check"></i><b>2.1.4</b> Dealing with gaps</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-pairwise-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up pairwise alignment ?</a>
@@ -341,7 +341,7 @@ div.csl-indent {
 <div id="why-align" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Why align ?<a href="aligning-sequence-data.html#why-align" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first question we might ask ourselves is why align at all, if we want to compare two sequences there are plenty of distances and metrics out there to use. Something like the Hamming distance<span class="citation"><sup><a href="#ref-hammingCodingInformationTheory1980" role="doc-biblioref">127</a></sup></span> is very quick and easy to compute by comparing characters two by two. It is however ill-suited to our needs in biology: first the two sequences to compare must be of the same length, second the differences between the sequences arise from biological processes. These processes (c.f. Section <a href="what-is-sequence-data.html#what-kind-of-errors-are-possible">1.1.2.2.2</a>) can be substitutions which the Hamming distance can handle, however insertions and deletions shifts one of the sequences and introduce many character-to-character differences that could be explained by a single indel.</p>
-<p>For example, if we have the two following sequences ATGTGCAGTA and AGTGCAGTAC. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions <em>gaps</em> are inserted in the sequences as seen below:</p>
+<p>For example, if we have the two following sequences <code>ATGTGCAGTA</code> and <code>AGTGCAGTAC</code>. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions <em>gaps</em> are inserted in the sequences as seen below:</p>
 <center>
 <blockquote>
 <p><strong><code>ATGTGCAGTA-</code></strong><br />
@@ -358,155 +358,225 @@ div.csl-indent {
 <p>Dynamic programming is often used to solve complex problems by breaking it into smaller sub-problems and solving each one optimally and separately<span class="citation"><sup><a href="#ref-bradleyAppliedMathematicalProgramming1977" role="doc-biblioref">146</a>,<a href="#ref-bellmanTheoryDynamicProgramming1954" role="doc-biblioref">147</a></sup></span>, it is particularly useful when we wish to have a precise alignment between 2 sequences.</p>
 <div id="global-alignment" class="section level4 hasAnchor" number="2.1.2.1">
 <h4><span class="header-section-number">2.1.2.1</span> Global alignment<a href="aligning-sequence-data.html#global-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>The fundamental algorithm for globally aligning two sequences was the Needleman-Wünsch (NW) algorithm, this can be conceptualized in one of two equivalent ways: finding the alignment with 1) the lowest edit-distance or 2) the highest alignment score. These two are equivalent so in this chapter we will maximize the alignment score.</p>
+<p>The fundamental algorithm for globally aligning two sequences was the Needleman-Wünsch (NW) algorithm<span class="citation"><sup><a href="#ref-needlemanGeneralMethodApplicable1970" role="doc-biblioref">144</a></sup></span>, this can be conceptualized in one of two equivalent ways: finding the alignment with 1) the lowest edit-distance or 2) the highest alignment score. These two are equivalent so in this section we will maximize the alignment score.</p>
 <p>The first thing that is needed is, given an alignment, how to compute an alignment score. To do this we need to assign costs to each operation. Usually matches (i.e. aligning two identical characters) are given a positive cost and mismatches or indels a negative cost. If we assign a cost of +1 to a match and a cost of -1 to mismatches and indels then the alignment presented above in Section <a href="aligning-sequence-data.html#why-align">2.1.1</a> would have an alignment score of 9 - 2 = 7 <em>(9 matches and two indels)</em>.</p>
-<p>The NW algorithm is based on a simple recurrence relation: the optimal alignment score of two sequences <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> of lengths <span class="math inline">\(l_1\)</span> and <span class="math inline">\(l_2\)</span> is the minimum of:</p>
+<p>The NW algorithm is based on a simple recurrence relation: the optimal alignment score of two sequences <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> of lengths <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> respectively is the maximum of:</p>
 <ol style="list-style-type: decimal">
-<li><p>The optimal alignment score of <span class="math inline">\(S_1[1,l_1-1]\)</span> <a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> and <span class="math inline">\(S_2[1,l_2-1]\)</span> plus the cost of a match or mismatch between the <span class="math inline">\(l_1^{th}\)</span> character of <span class="math inline">\(S_1\)</span> and the <span class="math inline">\(l_2^{th}\)</span> character of <span class="math inline">\(S_2\)</span></p></li>
-<li><p>The optimal alignment score of <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2[1,l_2-1]\)</span> plus the cost of an indel</p></li>
-<li><p>The optimal alignment score of <span class="math inline">\(S_1[1,l_1-1]\)</span> and <span class="math inline">\(S_2\)</span> plus the cost of an indel</p></li>
+<li><p>The optimal alignment score of <span class="math inline">\(S_1[1,n-1]\)</span><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> and <span class="math inline">\(S_2[1,m-1]\)</span> plus the cost of a match or mismatch between the <span class="math inline">\(n^{th}\)</span> character of <span class="math inline">\(S_1\)</span> and the <span class="math inline">\(m^{th}\)</span> character of <span class="math inline">\(S_2\)</span></p></li>
+<li><p>The optimal alignment score of <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2[1,m-1]\)</span> plus the cost of an indel</p></li>
+<li><p>The optimal alignment score of <span class="math inline">\(S_1[1,n-1]\)</span> and <span class="math inline">\(S_2\)</span> plus the cost of an indel</p></li>
 </ol>
 <p>This simple relation can be used to compute optimal global alignment score for two sequences, however if it is implemented naively it can be very inefficient as the number of scores to compute grows exponentially with sequence lengths, and many intermediary alignment scores need to be computed many times. This is where dynamic programming comes in: these intermediary costs are pre-computed in an efficient manner and one can then deduce the optimal alignment from these. This pre-computing step is usually represented as filling out a matrix whose rows and columns represent the characters in each sequence to be aligned.</p>
-<p>If <span class="math inline">\(S_1\)</span> represents the rows of the matrix, and <span class="math inline">\(S_2\)</span> the columns, a cell <span class="math inline">\((i,j)\)</span> of this matrix represents the optimal alignment score between <span class="math inline">\(S_1[1,i]\)</span> and <span class="math inline">\(S_2[1,j]\)</span><a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>. In the recurrence relation described above the alignment score as dependant on the optimal alignment scores of subsequences, when filling out the dynamic programming matrix we proceed in the inverse fashion by using the scores of short subsequences to build up the scores of progressively longer sequences.</p>
-<p>We will go here through a short example showing how the NW algorithm is used to align two short sequences: <code>ACCTGA</code> and <code>ACGGA</code>. The first step is to represent the dynamic programming matrix, prefix each sequence with an empty character and label the rows of the matrix with one of the sequences and the columns with the other.</p>
+<p>If <span class="math inline">\(S_1\)</span> represents the rows of the matrix, and <span class="math inline">\(S_2\)</span> the columns, the value <span class="math inline">\(C(i,j)\)</span> of a cell <span class="math inline">\((i,j)\)</span> of this matrix represents the optimal alignment score between <span class="math inline">\(S_1[1,i]\)</span> and <span class="math inline">\(S_2[1,j]\)</span>. In the recurrence relation described above the alignment score as dependant on the optimal alignment scores of subsequences, when filling out the dynamic programming matrix we proceed in the inverse fashion by using the scores of short subsequences to build up the scores of progressively longer sequences.</p>
+<p>We will go here through a short example showing how the NW algorithm is used to align two short sequences: <span class="math inline">\(S_1=\)</span><code>ACCTGA</code> and <span class="math inline">\(S_2=\)</span><code>ACGGA</code>. The first step is to represent the dynamic programming matrix, prefix each sequence with an empty character and label the rows of the matrix with one of the sequences and the columns with the other <em>(this extra row and column at the beginning of each sequence are indexed as column and row 0)</em>. In this matrix, due to the recurrence relation stated above, the score of a particular cell, <span class="math inline">\(C(i,j)\)</span> is the maximum of:</p>
+<ol style="list-style-type: decimal">
+<li>The score in the diagonally adjacent cell <span class="math inline">\(C(i-1,j-1)\)</span> plus the cost of a match or mismatch between <span class="math inline">\(S_1[i]\)</span> and <span class="math inline">\(S_2[j]\)</span>.</li>
+<li>The score of the cell to the left <span class="math inline">\(C(i,j-1)\)</span> plus the cost of an indel</li>
+<li>The score of the cell on top <span class="math inline">\(C(i-1,j)\)</span> plus the cost of an indel</li>
+</ol>
+<p>Therefore in order to compute <span class="math inline">\(C(i,j)\)</span> we need to know the three values of <span class="math inline">\(C(i-1,j-1)\)</span>, <span class="math inline">\(C(i-1,j)\)</span> and <span class="math inline">\(C(i,j-1)\)</span>. This is the reason why we start with an extra column and row at the beginning of each sequence that we can fill out with the increasing costs of indels. In our case since the cost of an indel is -1, this row and column are filled out with decreasing relative integers, as can be seen in the matrix below.</p>
 <table>
 <thead>
 <tr class="header">
-<th></th>
-<th></th>
-<th>A</th>
-<th>C</th>
-<th>G</th>
-<th>G</th>
-<th>A</th>
+<th align="center"><span class="math inline">\(S_1\)</span>\<span class="math inline">\(S_2\)</span></th>
+<th align="center"></th>
+<th align="center">A</th>
+<th align="center">C</th>
+<th align="center">G</th>
+<th align="center">G</th>
+<th align="center">A</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center"></td>
+<td align="center">0</td>
+<td align="center">-1</td>
+<td align="center">-2</td>
+<td align="center">-3</td>
+<td align="center">-4</td>
+<td align="center">-5</td>
 </tr>
 <tr class="even">
-<td>A</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">A</td>
+<td align="center">-1</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td>C</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">C</td>
+<td align="center">-2</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td>C</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">C</td>
+<td align="center">-3</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td>T</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">T</td>
+<td align="center">-4</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="even">
-<td>G</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">G</td>
+<td align="center">-5</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 <tr class="odd">
-<td>A</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td align="center">A</td>
+<td align="center">-6</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
-<ul>
-<li>short presentation of NW algo (c.f. Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>):
-<ul>
-<li><p>The score of an alignment can be defined recursively -&gt; dynamic programming</p></li>
-<li><p>Fill out DP matrix:</p></li>
-<li><p>Traceback to find optimal alignment: start in the bottom right and follow the arrows up to the upper left. Diagonal: Match/mismatch, vertical arrow: gap in “columns” sequence, horizontal arrow: gap in “rows” sequence.</p></li>
-</ul></li>
-</ul>
+<p>From this starting point we can fill out the Dynamic programming matrix with all the alignment scores. To compute <span class="math inline">\(C(1,1)\)</span> we have three possible values:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(C(0,0)\)</span> plus the cost of a match between <span class="math inline">\(S_1[1]=A\)</span> and <span class="math inline">\(S_2[1]=A\)</span>: <span class="math inline">\(0+1=1\)</span></li>
+<li><span class="math inline">\(C(0,1)\)</span> plus the cost of an indel: <span class="math inline">\(-1 -1 = -2\)</span></li>
+<li><span class="math inline">\(C(0,1)\)</span> plus the cost of an indel: <span class="math inline">\(-1-1=-2\)</span></li>
+</ol>
+<p>By taling the maximum out of these three values we can fill out the matrix with <span class="math inline">\(C(1,1)=1\)</span>. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span>, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell <span class="math inline">\((i,j)\)</span> we add an edge from this cell to the previous cell that was used to compute <span class="math inline">\(C(i,j)\)</span>. In our example above, we obtained <span class="math inline">\(C(1,1)\)</span> from a match and <span class="math inline">\(C(0,0)\)</span>, so we can add an edge in our graph going from cell <span class="math inline">\((1,1)\)</span> to cell <span class="math inline">\((0,0)\)</span>. The filled out matrix with the graph edges represented as arrows can be seen in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(S_1\)</span>\<span class="math inline">\(S_2\)</span></th>
+<th align="center"></th>
+<th align="center">A</th>
+<th align="center">C</th>
+<th align="center">G</th>
+<th align="center">G</th>
+<th align="center">A</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="center">0</td>
+<td align="center">-1</td>
+<td align="center">-2</td>
+<td align="center">-3</td>
+<td align="center">-4</td>
+<td align="center">-5</td>
+</tr>
+<tr class="even">
+<td align="center">A</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+<td align="center">-2</td>
+<td align="center">-3</td>
+</tr>
+<tr class="odd">
+<td align="center">C</td>
+<td align="center">-2</td>
+<td align="center">0</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+</tr>
+<tr class="even">
+<td align="center">C</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+</tr>
+<tr class="odd">
+<td align="center">T</td>
+<td align="center">-4</td>
+<td align="center">-2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">-1</td>
+</tr>
+<tr class="even">
+<td align="center">G</td>
+<td align="center">-5</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">A</td>
+<td align="center">-6</td>
+<td align="center">-4</td>
+<td align="center">-2</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+<p>Once this matrix <em>(and corresponding graph)</em> is filled out, we can deduce the alignment by following a path through the graph starting at cell <span class="math inline">\((n,m)\)</span> to cell <span class="math inline">\((0,0)\)</span>. A diagonal edge starting at <span class="math inline">\((i,j)\)</span> indicates a match or mismatch between <span class="math inline">\(S_1[i]\)</span> and <span class="math inline">\(S_2[j]\)</span>, a vertical edge indicates a gap in <span class="math inline">\(S_2\)</span> and a horizontal edge a gap in <span class="math inline">\(S_1\)</span>. This can lead to several optimal alignments if there are several such paths in the graph. In our case this algorithm yields three equally optimal global alignments shown in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:nwAlign"></span>
 <img src="figures/Align-Intro/Nw-dp.png" alt="**Example global alignment with the Needleman-Wunsch algorithm**/ The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments." width="60%" />
 <p class="caption">
 Figure 2.1: <strong>Example global alignment with the Needleman-Wunsch algorithm</strong>/ The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments.
 </p>
 </div>
-<ul>
-<li>This algorithm although very precise, has a time complexity of <span class="math inline">\(O(nm)\)</span> where <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> are the lengths of the sequences to align<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>. Some methods have been proposed to speed up<span class="citation"><sup><a href="#ref-masekFasterAlgorithmComputing1980" role="doc-biblioref">148</a></sup></span>, however the complexity is still <span class="math inline">\(O(nm/\log(n))\)</span>. Lower bounds have been studied and there is not much optimization we can do if we want to keep an optimal exact alignment<span class="citation"><sup><a href="#ref-vinhInformationTheoreticMeasures2010" role="doc-biblioref">149</a>,<a href="#ref-ullmanBoundsComplexityLongest1976" role="doc-biblioref">150</a></sup></span>. If we want to do better we have to rely on heuristics.</li>
-<li>Another issue is space complexity since we need to store the matrix, we get <span class="math inline">\(O(nm)\)</span> as well for space, so if we wish to align 2 human genomes we would need to store <span class="math inline">\(\approx 10^{19}\)</span> matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers (meaning it would take an entire data center to store that).
-<ul>
-<li><p>However in practice we can do much better than that, and construct an optimal alignment in linear space complexity <span class="math inline">\(O(n+m)\)</span><span class="citation"><sup><a href="#ref-hirschbergLinearSpaceAlgorithm1975" role="doc-biblioref">151</a></sup></span> meaning we would only need a couple gigabytes to store the matrix for 2 human genomes.</p></li>
-<li><p>Above idea resulting in Myers-miller algorithm<span class="citation"><sup><a href="#ref-myersOptimalAlignmentsLinear1988" role="doc-biblioref">152</a></sup></span>, implemented in the EMBOSS stretcher tool<span class="citation"><sup><a href="#ref-riceEMBOSSEuropeanMolecular2000" role="doc-biblioref">153</a></sup></span></p></li>
-</ul></li>
-</ul>
+<p>This algorithm although guaranteed to result in an optimal alignment, has a time complexity of <span class="math inline">\(O(nm)\)</span> where <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> are the lengths of the sequences to align<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>. Some methods have been proposed to speed up<span class="citation"><sup><a href="#ref-masekFasterAlgorithmComputing1980" role="doc-biblioref">148</a></sup></span>, however the complexity is still <span class="math inline">\(O(nm/\log(n))\)</span>. Lower bounds have been studied and there is not much optimization to be done if optimal exact alignment are needed<span class="citation"><sup><a href="#ref-vinhInformationTheoreticMeasures2010" role="doc-biblioref">149</a>,<a href="#ref-ullmanBoundsComplexityLongest1976" role="doc-biblioref">150</a></sup></span>. If we want to do better we have to rely on heuristics.</p>
+<p>Another issue is space complexity since we need to store the matrix, the space complexity is also <span class="math inline">\(O(nm)\)</span>. If we wish to align 2 human genomes we would need to store <span class="math inline">\(\approx 10^{19}\)</span> matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers <em>(i.e. the storage scale of a data-center)</em>. However, in practice, we can do much better than that, and construct an optimal alignment in linear space complexity <span class="math inline">\(O(n+m)\)</span><span class="citation"><sup><a href="#ref-hirschbergLinearSpaceAlgorithm1975" role="doc-biblioref">151</a></sup></span> meaning we would only need a couple gigabytes to store the matrix for 2 human genomes. This resulted in an improved global alignment algorithm, the Myers-Miller algorithm<span class="citation"><sup><a href="#ref-myersOptimalAlignmentsLinear1988" role="doc-biblioref">152</a></sup></span>, implemented in the EMBOSS stretcher alignment software<span class="citation"><sup><a href="#ref-riceEMBOSSEuropeanMolecular2000" role="doc-biblioref">153</a></sup></span>.</p>
 </div>
 <div id="local-alignment" class="section level4 hasAnchor" number="2.1.2.2">
 <h4><span class="header-section-number">2.1.2.2</span> Local alignment<a href="aligning-sequence-data.html#local-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ul>
-<li><p>We want to align a subsequence to a subsequence.</p></li>
-<li><p>Similar ideas to NW, except we start the traceback at the maximally valued cell and stop when we hit a score of 0. i.e.</p></li>
-<li><p>In the example in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a> there are two possible starting cells with a score of 2. This will yield 2 optimal local alignments: AC to AC and GA to GA.</p></li>
-<li><p>In terms of complexity is the same as NW in quadratic in time and space<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span> but can be taken down to linear space with the same approach as NW.</p></li>
-<li><p>Optimizations were made and resulted in the Huang and Miller algorithm<span class="citation"><sup><a href="#ref-huangTimeefficientLinearspaceLocal1991" role="doc-biblioref">154</a></sup></span> which is implemented in the EMBOSS Lalign tool<span class="citation"><sup><a href="#ref-riceEMBOSSEuropeanMolecular2000" role="doc-biblioref">153</a></sup></span>, and the Waterman Eggert algorithm<span class="citation"><sup><a href="#ref-watermanNewAlgorithmBest1987" role="doc-biblioref">155</a></sup></span>.</p></li>
-</ul>
-<p>Both methods are implemented in many different software tools and are used when performing pairwise alignments of short sequences<span class="citation"><sup><a href="#ref-riceEMBOSSEuropeanMolecular2000" role="doc-biblioref">153</a>,<a href="#ref-stajichBioperlToolkitPerl2002" role="doc-biblioref">156</a>,<a href="#ref-gentlemanBioconductorOpenSoftware2004" role="doc-biblioref">157</a></sup></span> with version implemented for specific CPU instruction sets<span class="citation"><sup><a href="#ref-dailyParasailSIMDLibrary2016" role="doc-biblioref">158</a></sup></span> or GPUs<span class="citation"><sup><a href="#ref-frohmbergGPASImprovedVersion2012" role="doc-biblioref">159</a></sup></span> to speed up alignment.</p>
+<p>In global alignment two full sequences are aligned to each other. In local alignment the goal is to find the optimal alignment of two subsequences from these parent sequences. The main algorithm for locally aligning is the Smith-Waterman (SW) algorithm<span class="citation"><sup><a href="#ref-smithIdentificationCommonMolecular1981" role="doc-biblioref">145</a></sup></span> developed a decade later than NW.</p>
+<p>The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score &gt; 0. If we use the SW algorithm to locally align the two example sequences <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure <a href="aligning-sequence-data.html#fig:swAlign">2.2</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:swAlign"></span>
+<img src="figures/Align-Intro/SW-dp.png" alt="**Example local alignment with the Smith-Waterman algorithm** The match score is 1, the mismatch and indel scores are both set to -1. This results in 2 equally optimal local alignments." width="60%" />
+<p class="caption">
+Figure 2.2: <strong>Example local alignment with the Smith-Waterman algorithm</strong> The match score is 1, the mismatch and indel scores are both set to -1. This results in 2 equally optimal local alignments.
+</p>
+</div>
+<p>The traceback part to determine the optimal alignment is very similar to NW, however instead of starting at cell <span class="math inline">\((n,m)\)</span>, we start at the cell in with the maximal alignment score and follow the path back until we arrive at a cell with an alignment score of 0. In the example shown in Figure <a href="aligning-sequence-data.html#fig:swAlign">2.2</a>, two cells contain the maximal alignment score of 2. Tracing back from these cells gives two optimal local alignments between <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span>: <code>AC</code> to <code>AC</code> and <code>GA</code> to <code>GA</code>.</p>
+<p>Since the SW algorithm is so similar to NW it has the same quadratic time and space complexity, however the same optimization can be used to bring it down to a linear space complexity<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>. Optimizations were resulted in the Huang and Miller algorithm<span class="citation"><sup><a href="#ref-huangTimeefficientLinearspaceLocal1991" role="doc-biblioref">154</a></sup></span> which is implemented in the EMBOSS Lalign tool<span class="citation"><sup><a href="#ref-riceEMBOSSEuropeanMolecular2000" role="doc-biblioref">153</a></sup></span>, and the Waterman Eggert algorithm<span class="citation"><sup><a href="#ref-watermanNewAlgorithmBest1987" role="doc-biblioref">155</a></sup></span>.</p>
+<p>Both the NW and the SW algorithms are implemented in many different software tools and are used widely to perform pairwise alignments of short sequences<span class="citation"><sup><a href="#ref-riceEMBOSSEuropeanMolecular2000" role="doc-biblioref">153</a>,<a href="#ref-stajichBioperlToolkitPerl2002" role="doc-biblioref">156</a>,<a href="#ref-gentlemanBioconductorOpenSoftware2004" role="doc-biblioref">157</a></sup></span>. Some versions even benefit from hardware acceleration with version implemented for specific CPU instruction sets<span class="citation"><sup><a href="#ref-dailyParasailSIMDLibrary2016" role="doc-biblioref">158</a></sup></span> or GPUs<span class="citation"><sup><a href="#ref-frohmbergGPASImprovedVersion2012" role="doc-biblioref">159</a></sup></span> to substantially speed up alignment.</p>
 </div>
 </div>
-<div id="substitution-models-scoring" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Substitution models / scoring<a href="aligning-sequence-data.html#substitution-models-scoring" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>When scoring an alignment we can use different scoring models/substitution matrices<span class="citation"><sup><a href="#ref-altschulSubstitutionMatrices2013" role="doc-biblioref">160</a></sup></span>:</p>
-<ul>
-<li><p>A lot of work has been done on protein scoring matrices</p>
-<ul>
-<li><p>Log-Odds models, based on the fact that mutations are not equiprobable, and some mutations will be much more common (I <span class="math inline">\(\leftrightarrow\)</span> L in proteins)</p></li>
-<li><p>PAM (Point Accepted Mutations)<span class="citation"><sup><a href="#ref-dayhoffModelEvolutionaryChange1978" role="doc-biblioref">161</a></sup></span>, gotten from studying closely related protein sequences, estimate the probability of one amino acid changing to another one over time. With more data refinements have been made for PAM-like matrices<span class="citation"><sup><a href="#ref-mullerModelingAminoAcid2000" role="doc-biblioref">162</a></sup></span>.</p></li>
-<li><p>BLOSUM<span class="citation"><sup><a href="#ref-henikoffAminoAcidSubstitution1992" role="doc-biblioref">163</a></sup></span>, similar idea to PAM except they were constructed on several “blocks”. A block is a segment of a protein that is very well conserved within a family and computed the probabilities on these blocks.</p></li>
-<li><p>Some matrices estimated with ML instad of log-odds methods<span class="citation"><sup><a href="#ref-whelanGeneralEmpiricalModel2001" role="doc-biblioref">164</a>,<a href="#ref-leImprovedGeneralAmino2008" role="doc-biblioref">165</a></sup></span></p></li>
-<li><p>Model specific matrices:</p>
-<ul>
-<li><p>Transmembrane matrices<span class="citation"><sup><a href="#ref-mullerNonsymmetricScoreMatrices2001" role="doc-biblioref">166</a>,<a href="#ref-ngPHATTransmembranespecificSubstitution2000" role="doc-biblioref">167</a></sup></span></p></li>
-<li><p>Disordered regions in proteins:<span class="citation"><sup><a href="#ref-trivediAminoAcidSubstitution2019" role="doc-biblioref">168</a></sup></span></p></li>
-<li><p>context-specific matrices<span class="citation"><sup><a href="#ref-goonesekereContextspecificAminoAcid2008" role="doc-biblioref">169</a></sup></span></p></li>
-<li><p>Specific organisms like <em>P. falciparum</em> with pfSSM<span class="citation"><sup><a href="#ref-pailaGenomeBiasInfluences2008" role="doc-biblioref">170</a></sup></span> or HIV<span class="citation"><sup><a href="#ref-nickleHIVSpecificProbabilisticModels2007" role="doc-biblioref">171</a></sup></span></p></li>
-<li><p>specific to global alignment<span class="citation"><sup><a href="#ref-sardiuScoreStatisticsGlobal2005" role="doc-biblioref">172</a></sup></span></p></li>
-</ul></li>
-</ul></li>
-<li><p>Some on DNA alignment</p>
-<ul>
-<li>You can derive a matrix with methods similar to PAM<span class="citation"><sup><a href="#ref-chiaromonteScoringPairwiseGenomic2001" role="doc-biblioref">173</a></sup></span></li>
-<li>You can do codon substitution matrices<span class="citation"><sup><a href="#ref-schneiderEmpiricalCodonSubstitution2005" role="doc-biblioref">174</a></sup></span>, or combine codon matrices with AA matrices<span class="citation"><sup><a href="#ref-doron-faigenboimCombinedEmpiricalMechanistic2007" role="doc-biblioref">175</a></sup></span></li>
-</ul></li>
-</ul>
+<div id="scoring-and-substitution-models" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Scoring and substitution models<a href="aligning-sequence-data.html#scoring-and-substitution-models" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the examples used above to present the NW and SW algorithms, we used a very simple cost function: a match has a cost of +1 while mismatches and indels have a cost of -1. This is really the simplest cost function we can use but also the crudest. In many cases it may be interesting to infuse this cost function with biological knowledge. For example some substitutions might occur more rarely than others in nature so it would stand to reason to penalize those more than other, more common, substitutions.</p>
+<p>These biology-aware cost functions usually take the form of a matrix, called scoring or substitution matrix corresponding to an underlying evolutionary model. When using these matrices, matches and mismatches between specific characters are given. For example the cost of aligning an A and a T might be lower than aligning that same A with a G. A lot of different substitution matrices have been developed especially for protein alignments<span class="citation"><sup><a href="#ref-altschulSubstitutionMatrices2013" role="doc-biblioref">160</a></sup></span>, developed with different techniques and underlying models and with different use-cases.</p>
+<p>The earliest and simplest substitution matrices are match/mismatch matrices, they are effectively what we used above where all matches are given a fixed positive score and all mismatches a fixed negative score. In our examples above the corresponding substitution matrix would be a four by four matrix with ones on the diagonal indicating matches and -1 everywhere else. These are simple and useful however when dealing with proteins they have a severe limitation as they ignore the biology of amino acids and.</p>
+<p>In order to reflect this biological reality of proteins, new substitution matrices were developed using Log-odds models, based on the fact that substitutions in amino acids are not equiprobable, and some mutations between related amino acids <em>(e.g. I and L)</em> are much more common than others. Two of the most widely used substitution matrices, PAM and BLOSUM matrices, were built this way. The score for aligning residue <span class="math inline">\(i\)</span> with residue <span class="math inline">\(j\)</span> is given by the matrix entry <span class="math inline">\(s_{i,j}\)</span> by looking at the background frequencies <em>(i.e. how often one expects to see a particular residue in a sequence)</em> of <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> denoted <span class="math inline">\(p_i\)</span> and <span class="math inline">\(p_j\)</span> respectively and the frequency <span class="math inline">\(q_{i,j}\)</span> with which <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> are aligned in accurate biological alignments. from this we can compute the substitution score <span class="math inline">\(s_{i,j}\)</span> as a Log-odds<span class="citation"><sup><a href="#ref-altschulSubstitutionMatrices2013" role="doc-biblioref">160</a></sup></span>:</p>
+<p><span class="math display">\[
+S_{i,j}=\log\bigg(\frac{q_{i,j}}{p_ip_j}\bigg)
+\]</span></p>
+<p>Both <span class="math inline">\(p_i\)</span> and <span class="math inline">\(p_j\)</span> are easy to compute from available biological sequence data, the real work in developing a Log-odds based substitution matrix is to estimate <span class="math inline">\(q_{i,j}\)</span> values. To do this accurate biological alignments are needed, and how you obtain or choose these is determining of the substitution model. Finally this Log-odds formulation yields values with nice properties for local alignment, namely negative scores for unlikely substitutions and positive ones for likely substitutions and matches.</p>
+<p>The PAM matrix (Point Accepted Mutation), developed in 1978<span class="citation"><sup><a href="#ref-dayhoffModelEvolutionaryChange1978" role="doc-biblioref">161</a></sup></span>, is one such matrix. Using families of closely related proteins, and phylogenetic analysis, Dayhoff and colleagues estimated the probability of one amino acid replacing another over time to build an evolutionary model. Using this model they could estimate values for <span class="math inline">\(q_{i,j}\)</span> and obtain a substitution matrix: the PAM matrix. Using this model, several PAM matrices were actually built, optimized for aligning sequences of different similarities: the PAM<sub>250</sub> matrix is suited to alignments where we expect 20% of identical residues, the PAM<sub>180</sub> matrix however is suited to more closely related sequences where we expect 27% of identical residues<span class="citation"><sup><a href="#ref-altschulSubstitutionMatrices2013" role="doc-biblioref">160</a></sup></span>. With the growing amount of sequence data and curated alignments, further refinements have been made leading to the development of PAM-like matrices based on the same principles<span class="citation"><sup><a href="#ref-mullerModelingAminoAcid2000" role="doc-biblioref">162</a></sup></span> but some improvements to the underlying mathematical model.</p>
+<p>The other main type of substitution matrix are the BLOSUM matrices (Block Substitution matrix), developed in 1992<span class="citation"><sup><a href="#ref-henikoffAminoAcidSubstitution1992" role="doc-biblioref">163</a></sup></span>. Instead of using whole, closely-related protein sequences like the PAM matrices, the values of <span class="math inline">\(q_{i,j}\)</span> were estimated on highly conserved segments across whole protein families. Furthermore, to derive the BLOSUM scores, Henikoff and Henikoff did not estimate an underlying evolutionary model but only counted substitutions to estimate <span class="math inline">\(q_{i,j}\)</span> values. Similarly to PAM matrices there are several BLOSUM matrices adapted to different levels of similarity between the sequences to be aligned.</p>
+<p>PAM and BLOSUM matrices have fairly broad use-cases and are widely used in alignment, however there exist many other protein substitution models. Instead of using log-odds, some substitution models were developed by estimating scores with maximum-likelihood approaches<span class="citation"><sup><a href="#ref-whelanGeneralEmpiricalModel2001" role="doc-biblioref">164</a>,<a href="#ref-leImprovedGeneralAmino2008" role="doc-biblioref">165</a></sup></span>. Some matrices were developed with very specific usage conditions in mind. Some are tailored to specific types of proteins like Transmembrane<span class="citation"><sup><a href="#ref-mullerNonsymmetricScoreMatrices2001" role="doc-biblioref">166</a>,<a href="#ref-ngPHATTransmembranespecificSubstitution2000" role="doc-biblioref">167</a></sup></span>, disordered<span class="citation"><sup><a href="#ref-trivediAminoAcidSubstitution2019" role="doc-biblioref">168</a></sup></span> or polar/non-polar<span class="citation"><sup><a href="#ref-goonesekereContextspecificAminoAcid2008" role="doc-biblioref">169</a></sup></span> proteins. Some matrices were developed to align sequences from specific organisms like <em>P. falciparum</em><span class="citation"><sup><a href="#ref-pailaGenomeBiasInfluences2008" role="doc-biblioref">170</a></sup></span> <em>(responsible for malaria)</em> or HIV<span class="citation"><sup><a href="#ref-nickleHIVSpecificProbabilisticModels2007" role="doc-biblioref">171</a></sup></span>. A substitution matrix was even developed in 2005 specifically for global rather than local alignment<span class="citation"><sup><a href="#ref-sardiuScoreStatisticsGlobal2005" role="doc-biblioref">172</a></sup></span>.</p>
+<p>This wealth of protein substitution matrices reflects the biological and evolutionary diversity of proteins, however substitution matrices for aligning DNA sequences are much less frequent. Some work has been done to derive matrices similar to PAM matrices from DNA alignments<span class="citation"><sup><a href="#ref-chiaromonteScoringPairwiseGenomic2001" role="doc-biblioref">173</a></sup></span>. Codon substitution matrices<span class="citation"><sup><a href="#ref-schneiderEmpiricalCodonSubstitution2005" role="doc-biblioref">174</a>,<a href="#ref-doron-faigenboimCombinedEmpiricalMechanistic2007" role="doc-biblioref">175</a></sup></span> have been developed as well, although they are used in DNA sequence alignment, ultimately they use knowledge derived from protein alignments.</p>
 </div>
 <div id="dealing-with-gaps" class="section level3 hasAnchor" number="2.1.4">
 <h3><span class="header-section-number">2.1.4</span> Dealing with gaps<a href="aligning-sequence-data.html#dealing-with-gaps" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -527,7 +597,7 @@ Figure 2.1: <strong>Example global alignment with the Needleman-Wunsch algorithm
 <div id="change-the-method" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Change the method<a href="aligning-sequence-data.html#change-the-method" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p>Bounded DP<span class="citation"><sup><a href="#ref-spougeSpeedingDynamicProgramming1989a" role="doc-biblioref">182</a>,<a href="#ref-fickettFastOptimalAlignment1984" role="doc-biblioref">183</a></sup></span>, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. <a href="aligning-sequence-data.html#fig:optimMethods">2.2</a></p></li>
+<li><p>Bounded DP<span class="citation"><sup><a href="#ref-spougeSpeedingDynamicProgramming1989a" role="doc-biblioref">182</a>,<a href="#ref-fickettFastOptimalAlignment1984" role="doc-biblioref">183</a></sup></span>, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. <a href="aligning-sequence-data.html#fig:optimMethods">2.3</a></p></li>
 <li><p>New Algorithms like the wavefront algorithm<span class="citation"><sup><a href="#ref-marco-solaFastGapaffinePairwise2020" role="doc-biblioref">184</a></sup></span></p></li>
 <li><p>HMMs:</p>
 <ul>
@@ -544,7 +614,7 @@ Figure 2.1: <strong>Example global alignment with the Needleman-Wunsch algorithm
 <ul>
 <li><p>Seed + extend for local alignment</p></li>
 <li><p>Find anchors for global alignment</p></li>
-<li><p>In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. <a href="aligning-sequence-data.html#fig:optimMethods">2.2</a></p></li>
+<li><p>In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. <a href="aligning-sequence-data.html#fig:optimMethods">2.3</a></p></li>
 <li><p>Many ways of finding seeds<span class="citation"><sup><a href="#ref-sunChoosingBestHeuristic2006" role="doc-biblioref">190</a></sup></span> and to index them<span class="citation"><sup><a href="#ref-liSurveySequenceAlignment2010" role="doc-biblioref">191</a></sup></span></p></li>
 <li><p>2 use cases:</p>
 <ul>
@@ -561,7 +631,7 @@ Figure 2.1: <strong>Example global alignment with the Needleman-Wunsch algorithm
 <img src="figures/Align-Intro/optim-to-adapt.png" alt="**2 heuristic methods to speed up alignment:**
 divide and conquer and bounded dynamic programming. Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**" width="80%" />
 <p class="caption">
-Figure 2.2: <strong>2 heuristic methods to speed up alignment:</strong>
+Figure 2.3: <strong>2 heuristic methods to speed up alignment:</strong>
 divide and conquer and bounded dynamic programming. Adapted from<span class="citation"><sup><a href="#ref-chaoDevelopmentsAlgorithmsSequence2022" role="doc-biblioref">181</a></sup></span> <strong>(Original figure here as a placeholder, I will adapt it)</strong>
 </p>
 </div>
@@ -592,13 +662,13 @@ divide and conquer and bounded dynamic programming. Adapted from<span class="cit
 </ul></li>
 <li><p>Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences<span class="citation"><sup><a href="#ref-saripellaBenchmarkingNextGeneration2016" role="doc-biblioref">197</a></sup></span> in a database of over 80 million sequences<span class="citation"><sup><a href="#ref-finnPfamProteinFamilies2016" role="doc-biblioref">198</a></sup></span>, with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW<span class="citation"><sup><a href="#ref-essoussiComparisonFourPairwise2007" role="doc-biblioref">199</a></sup></span>.</p></li>
 <li><p>Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value)<span class="citation"><sup><a href="#ref-karlinMethodsAssessingStatistical1990a" role="doc-biblioref">200</a>,<a href="#ref-mottAlignmentStatisticalSignificance2005" role="doc-biblioref">201</a></sup></span></p></li>
-<li><p>Minimap2<span class="citation"><sup><a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">118</a></sup></span> minimizer (Figure <a href="aligning-sequence-data.html#fig:minimizers">2.3</a>) hash table</p></li>
+<li><p>Minimap2<span class="citation"><sup><a href="#ref-liMinimap2PairwiseAlignment2018" role="doc-biblioref">118</a></sup></span> minimizer (Figure <a href="aligning-sequence-data.html#fig:minimizers">2.4</a>) hash table</p></li>
 <li><p>Diamond<span class="citation"><sup><a href="#ref-buchfinkFastSensitiveProtein2015" role="doc-biblioref">202</a>,<a href="#ref-buchfinkSensitiveProteinAlignments2021" role="doc-biblioref">203</a></sup></span> which indexes both the reference and query at the same time.</p></li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:minimizers"></span>
 <img src="figures/Align-Intro/minimizers.png" alt="**Example of kmers sharing a minimizer**" width="70%" />
 <p class="caption">
-Figure 2.3: <strong>Example of kmers sharing a minimizer</strong>
+Figure 2.4: <strong>Example of kmers sharing a minimizer</strong>
 </p>
 </div>
 </div>
@@ -641,7 +711,7 @@ Figure 2.3: <strong>Example of kmers sharing a minimizer</strong>
 <img src="figures/Align-Intro/progressive-aln.png" alt="*Overview of the progressive alignment process.*
 A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]" width="70%" />
 <p class="caption">
-Figure 2.4: <em>Overview of the progressive alignment process.</em>
+Figure 2.5: <em>Overview of the progressive alignment process.</em>
 A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>
 </p>
 </div>
@@ -1137,8 +1207,7 @@ A) sequences to align B) guide tree constructed from distances C) Alignment step
 <div class="footnotes">
 <hr />
 <ol start="4">
-<li id="fn4"><p>Here I am using an index starting at 1 and inclusive, so <span class="math inline">\(S_1[1,l_1-1]\)</span> represents the first <span class="math inline">\(l_1-1\)</span> characters. If <span class="math inline">\(S_1 = ABCD\)</span> then <span class="math inline">\(S_1[1;3]=ABC\)</span><a href="aligning-sequence-data.html#fnref4" class="footnote-back">↩︎</a></p></li>
-<li id="fn5"><p>In practice we add a empty character at the beginning of <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> before filling out the matrix so a cell <span class="math inline">\((i+1,j+1)\)</span> represents the optimal alignment score between <span class="math inline">\(S_1[1,i]\)</span> and <span class="math inline">\(S_2[1,j]\)</span><a href="aligning-sequence-data.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Here I am using an index starting at 1 and inclusive, so <span class="math inline">\(S_1[1,n-1]\)</span> represents the first <span class="math inline">\(n-1\)</span> characters. If <span class="math inline">\(S_1 = ABCD\)</span> then <span class="math inline">\(S_1[1;3]=ABC\)</span><a href="aligning-sequence-data.html#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

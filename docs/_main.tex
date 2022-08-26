@@ -239,7 +239,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-08-23}
+\date{2022-08-25}
 
 \begin{document}
 \maketitle
@@ -706,7 +706,7 @@ In biology, comparison is at the heart of many studies: between individuals, bet
 
 The first question we might ask ourselves is why align at all, if we want to compare two sequences there are plenty of distances and metrics out there to use. Something like the Hamming distance \autocite{hammingCodingInformationTheory1980} is very quick and easy to compute by comparing characters two by two. It is however ill-suited to our needs in biology: first the two sequences to compare must be of the same length, second the differences between the sequences arise from biological processes. These processes (c.f. Section \ref{what-kind-of-errors-are-possible}) can be substitutions which the Hamming distance can handle, however insertions and deletions shifts one of the sequences and introduce many character-to-character differences that could be explained by a single indel.
 
-For example, if we have the two following sequences ATGTGCAGTA and AGTGCAGTAC. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions \emph{gaps} are inserted in the sequences as seen below:
+For example, if we have the two following sequences \texttt{ATGTGCAGTA} and \texttt{AGTGCAGTAC}. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions \emph{gaps} are inserted in the sequences as seen below:
 
 \begin{quote}
 \textbf{\texttt{ATGTGCAGTA-}}\strut \\
@@ -729,57 +729,87 @@ Dynamic programming is often used to solve complex problems by breaking it into 
 \hypertarget{global-alignment}{%
 \subsubsection{Global alignment}\label{global-alignment}}
 
-The fundamental algorithm for globally aligning two sequences was the Needleman-Wünsch (NW) algorithm, this can be conceptualized in one of two equivalent ways: finding the alignment with 1) the lowest edit-distance or 2) the highest alignment score. These two are equivalent so in this chapter we will maximize the alignment score.
+The fundamental algorithm for globally aligning two sequences was the Needleman-Wünsch (NW) algorithm \autocite{needlemanGeneralMethodApplicable1970}, this can be conceptualized in one of two equivalent ways: finding the alignment with 1) the lowest edit-distance or 2) the highest alignment score. These two are equivalent so in this section we will maximize the alignment score.
 
 The first thing that is needed is, given an alignment, how to compute an alignment score. To do this we need to assign costs to each operation. Usually matches (i.e.~aligning two identical characters) are given a positive cost and mismatches or indels a negative cost. If we assign a cost of +1 to a match and a cost of -1 to mismatches and indels then the alignment presented above in Section \ref{why-align} would have an alignment score of 9 - 2 = 7 \emph{(9 matches and two indels)}.
 
-The NW algorithm is based on a simple recurrence relation: the optimal alignment score of two sequences \(S_1\) and \(S_2\) of lengths \(l_1\) and \(l_2\) is the minimum of:
+The NW algorithm is based on a simple recurrence relation: the optimal alignment score of two sequences \(S_1\) and \(S_2\) of lengths \(n\) and \(m\) respectively is the maximum of:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  The optimal alignment score of \(S_1[1,l_1-1]\) \footnote{Here I am using an index starting at 1 and inclusive, so \(S_1[1,l_1-1]\) represents the first \(l_1-1\) characters. If \(S_1 = ABCD\) then \(S_1[1;3]=ABC\)} and \(S_2[1,l_2-1]\) plus the cost of a match or mismatch between the \(l_1^{th}\) character of \(S_1\) and the \(l_2^{th}\) character of \(S_2\)
+  The optimal alignment score of \(S_1[1,n-1]\)\footnote{Here I am using an index starting at 1 and inclusive, so \(S_1[1,n-1]\) represents the first \(n-1\) characters. If \(S_1 = ABCD\) then \(S_1[1;3]=ABC\)} and \(S_2[1,m-1]\) plus the cost of a match or mismatch between the \(n^{th}\) character of \(S_1\) and the \(m^{th}\) character of \(S_2\)
 \item
-  The optimal alignment score of \(S_1\) and \(S_2[1,l_2-1]\) plus the cost of an indel
+  The optimal alignment score of \(S_1\) and \(S_2[1,m-1]\) plus the cost of an indel
 \item
-  The optimal alignment score of \(S_1[1,l_1-1]\) and \(S_2\) plus the cost of an indel
+  The optimal alignment score of \(S_1[1,n-1]\) and \(S_2\) plus the cost of an indel
 \end{enumerate}
 
 This simple relation can be used to compute optimal global alignment score for two sequences, however if it is implemented naively it can be very inefficient as the number of scores to compute grows exponentially with sequence lengths, and many intermediary alignment scores need to be computed many times. This is where dynamic programming comes in: these intermediary costs are pre-computed in an efficient manner and one can then deduce the optimal alignment from these. This pre-computing step is usually represented as filling out a matrix whose rows and columns represent the characters in each sequence to be aligned.
 
-If \(S_1\) represents the rows of the matrix, and \(S_2\) the columns, a cell \((i,j)\) of this matrix represents the optimal alignment score between \(S_1[1,i]\) and \(S_2[1,j]\)\footnote{In practice we add a empty character at the beginning of \(S_1\) and \(S_2\) before filling out the matrix so a cell \((i+1,j+1)\) represents the optimal alignment score between \(S_1[1,i]\) and \(S_2[1,j]\)}. In the recurrence relation described above the alignment score as dependant on the optimal alignment scores of subsequences, when filling out the dynamic programming matrix we proceed in the inverse fashion by using the scores of short subsequences to build up the scores of progressively longer sequences.
+If \(S_1\) represents the rows of the matrix, and \(S_2\) the columns, the value \(C(i,j)\) of a cell \((i,j)\) of this matrix represents the optimal alignment score between \(S_1[1,i]\) and \(S_2[1,j]\). In the recurrence relation described above the alignment score as dependant on the optimal alignment scores of subsequences, when filling out the dynamic programming matrix we proceed in the inverse fashion by using the scores of short subsequences to build up the scores of progressively longer sequences.
 
-We will go here through a short example showing how the NW algorithm is used to align two short sequences: \texttt{ACCTGA} and \texttt{ACGGA}. The first step is to represent the dynamic programming matrix, prefix each sequence with an empty character and label the rows of the matrix with one of the sequences and the columns with the other.
+We will go here through a short example showing how the NW algorithm is used to align two short sequences: \(S_1=\)\texttt{ACCTGA} and \(S_2=\)\texttt{ACGGA}. The first step is to represent the dynamic programming matrix, prefix each sequence with an empty character and label the rows of the matrix with one of the sequences and the columns with the other \emph{(this extra row and column at the beginning of each sequence are indexed as column and row 0)}. In this matrix, due to the recurrence relation stated above, the score of a particular cell, \(C(i,j)\) is the maximum of:
 
-\begin{longtable}[]{@{}lllllll@{}}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The score in the diagonally adjacent cell \(C(i-1,j-1)\) plus the cost of a match or mismatch between \(S_1[i]\) and \(S_2[j]\).
+\item
+  The score of the cell to the left \(C(i,j-1)\) plus the cost of an indel
+\item
+  The score of the cell on top \(C(i-1,j)\) plus the cost of an indel
+\end{enumerate}
+
+Therefore in order to compute \(C(i,j)\) we need to know the three values of \(C(i-1,j-1)\), \(C(i-1,j)\) and \(C(i,j-1)\). This is the reason why we start with an extra column and row at the beginning of each sequence that we can fill out with the increasing costs of indels. In our case since the cost of an indel is -1, this row and column are filled out with decreasing relative integers, as can be seen in the matrix below.
+
+\begin{longtable}[]{@{}ccccccc@{}}
 \toprule
-& & A & C & G & G & A \\
+\(S_1\)\textbackslash{}\(S_2\) & & A & C & G & G & A \\
 \midrule
 \endhead
-& & & & & & \\
-A & & & & & & \\
-C & & & & & & \\
-C & & & & & & \\
-T & & & & & & \\
-G & & & & & & \\
-A & & & & & & \\
+& 0 & -1 & -2 & -3 & -4 & -5 \\
+A & -1 & & & & & \\
+C & -2 & & & & & \\
+C & -3 & & & & & \\
+T & -4 & & & & & \\
+G & -5 & & & & & \\
+A & -6 & & & & & \\
 \bottomrule
 \end{longtable}
 
-\begin{itemize}
+From this starting point we can fill out the Dynamic programming matrix with all the alignment scores. To compute \(C(1,1)\) we have three possible values:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  short presentation of NW algo (c.f. Figure \ref{fig:nwAlign}):
+  \(C(0,0)\) plus the cost of a match between \(S_1[1]=A\) and \(S_2[1]=A\): \(0+1=1\)
+\item
+  \(C(0,1)\) plus the cost of an indel: \(-1 -1 = -2\)
+\item
+  \(C(0,1)\) plus the cost of an indel: \(-1-1=-2\)
+\end{enumerate}
 
-  \begin{itemize}
-  \item
-    The score of an alignment can be defined recursively -\textgreater{} dynamic programming
-  \item
-    Fill out DP matrix:
-  \item
-    Traceback to find optimal alignment: start in the bottom right and follow the arrows up to the upper left. Diagonal: Match/mismatch, vertical arrow: gap in ``columns'' sequence, horizontal arrow: gap in ``rows'' sequence.
-  \end{itemize}
-\end{itemize}
+By taling the maximum out of these three values we can fill out the matrix with \(C(1,1)=1\). By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between \(S_1\) and \(S_2\), however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell \((i,j)\) we add an edge from this cell to the previous cell that was used to compute \(C(i,j)\). In our example above, we obtained \(C(1,1)\) from a match and \(C(0,0)\), so we can add an edge in our graph going from cell \((1,1)\) to cell \((0,0)\). The filled out matrix with the graph edges represented as arrows can be seen in Figure \ref{fig:nwAlign}.
+
+\begin{longtable}[]{@{}ccccccc@{}}
+\toprule
+\(S_1\)\textbackslash{}\(S_2\) & & A & C & G & G & A \\
+\midrule
+\endhead
+& 0 & -1 & -2 & -3 & -4 & -5 \\
+A & -1 & 1 & 0 & -1 & -2 & -3 \\
+C & -2 & 0 & 2 & 1 & 0 & -1 \\
+C & -3 & -1 & 1 & 1 & 0 & -1 \\
+T & -4 & -2 & 0 & 0 & 0 & -1 \\
+G & -5 & -3 & -1 & 1 & 1 & 0 \\
+A & -6 & -4 & -2 & 0 & 0 & 2 \\
+\bottomrule
+\end{longtable}
+
+Once this matrix \emph{(and corresponding graph)} is filled out, we can deduce the alignment by following a path through the graph starting at cell \((n,m)\) to cell \((0,0)\). A diagonal edge starting at \((i,j)\) indicates a match or mismatch between \(S_1[i]\) and \(S_2[j]\), a vertical edge indicates a gap in \(S_2\) and a horizontal edge a gap in \(S_1\). This can lead to several optimal alignments if there are several such paths in the graph. In our case this algorithm yields three equally optimal global alignments shown in Figure \ref{fig:nwAlign}.
 
 \begin{figure}[h]
 \centering
@@ -788,84 +818,54 @@ A & & & & & & \\
 \label{fig:nwAlign}
 \end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  This algorithm although very precise, has a time complexity of \(O(nm)\) where \(n\) and \(m\) are the lengths of the sequences to align \autocite{sungAlgorithmsBioinformaticsPractical2011}. Some methods have been proposed to speed up \autocite{masekFasterAlgorithmComputing1980}, however the complexity is still \(O(nm/\log(n))\). Lower bounds have been studied and there is not much optimization we can do if we want to keep an optimal exact alignment \autocite{vinhInformationTheoreticMeasures2010,ullmanBoundsComplexityLongest1976}. If we want to do better we have to rely on heuristics.
-\item
-  Another issue is space complexity since we need to store the matrix, we get \(O(nm)\) as well for space, so if we wish to align 2 human genomes we would need to store \(\approx 10^{19}\) matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers (meaning it would take an entire data center to store that).
+This algorithm although guaranteed to result in an optimal alignment, has a time complexity of \(O(nm)\) where \(n\) and \(m\) are the lengths of the sequences to align \autocite{sungAlgorithmsBioinformaticsPractical2011}. Some methods have been proposed to speed up \autocite{masekFasterAlgorithmComputing1980}, however the complexity is still \(O(nm/\log(n))\). Lower bounds have been studied and there is not much optimization to be done if optimal exact alignment are needed \autocite{vinhInformationTheoreticMeasures2010,ullmanBoundsComplexityLongest1976}. If we want to do better we have to rely on heuristics.
 
-  \begin{itemize}
-  \item
-    However in practice we can do much better than that, and construct an optimal alignment in linear space complexity \(O(n+m)\) \autocite{hirschbergLinearSpaceAlgorithm1975} meaning we would only need a couple gigabytes to store the matrix for 2 human genomes.
-  \item
-    Above idea resulting in Myers-miller algorithm \autocite{myersOptimalAlignmentsLinear1988}, implemented in the EMBOSS stretcher tool \autocite{riceEMBOSSEuropeanMolecular2000}
-  \end{itemize}
-\end{itemize}
+Another issue is space complexity since we need to store the matrix, the space complexity is also \(O(nm)\). If we wish to align 2 human genomes we would need to store \(\approx 10^{19}\) matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers \emph{(i.e.~the storage scale of a data-center)}. However, in practice, we can do much better than that, and construct an optimal alignment in linear space complexity \(O(n+m)\) \autocite{hirschbergLinearSpaceAlgorithm1975} meaning we would only need a couple gigabytes to store the matrix for 2 human genomes. This resulted in an improved global alignment algorithm, the Myers-Miller algorithm \autocite{myersOptimalAlignmentsLinear1988}, implemented in the EMBOSS stretcher alignment software \autocite{riceEMBOSSEuropeanMolecular2000}.
 
 \hypertarget{local-alignment}{%
 \subsubsection{Local alignment}\label{local-alignment}}
 
-\begin{itemize}
-\item
-  We want to align a subsequence to a subsequence.
-\item
-  Similar ideas to NW, except we start the traceback at the maximally valued cell and stop when we hit a score of 0. i.e.
-\item
-  In the example in Figure \ref{fig:nwAlign} there are two possible starting cells with a score of 2. This will yield 2 optimal local alignments: AC to AC and GA to GA.
-\item
-  In terms of complexity is the same as NW in quadratic in time and space \autocite{sungAlgorithmsBioinformaticsPractical2011} but can be taken down to linear space with the same approach as NW.
-\item
-  Optimizations were made and resulted in the Huang and Miller algorithm \autocite{huangTimeefficientLinearspaceLocal1991} which is implemented in the EMBOSS Lalign tool \autocite{riceEMBOSSEuropeanMolecular2000}, and the Waterman Eggert algorithm \autocite{watermanNewAlgorithmBest1987}.
-\end{itemize}
+In global alignment two full sequences are aligned to each other. In local alignment the goal is to find the optimal alignment of two subsequences from these parent sequences. The main algorithm for locally aligning is the Smith-Waterman (SW) algorithm \autocite{smithIdentificationCommonMolecular1981} developed a decade later than NW.
 
-Both methods are implemented in many different software tools and are used when performing pairwise alignments of short sequences \autocite{stajichBioperlToolkitPerl2002,gentlemanBioconductorOpenSoftware2004,riceEMBOSSEuropeanMolecular2000} with version implemented for specific CPU instruction sets \autocite{dailyParasailSIMDLibrary2016} or GPUs \autocite{frohmbergGPASImprovedVersion2012} to speed up alignment.
+The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score \textgreater{} 0. If we use the SW algorithm to locally align the two example sequences \(S_1\) and \(S_2\) and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure \ref{fig:swAlign}.
 
-\hypertarget{substitution-models-scoring}{%
-\subsection{Substitution models / scoring}\label{substitution-models-scoring}}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/SW-dp.pdf}
+\extcaption{Example local alignment with the Smith-Waterman algorith}{The match score is 1, the mismatch and indel scores are both set to -1. This results in 2 equally optimal local alignments.}
+\label{fig:swAlign}
+\end{figure}
 
-When scoring an alignment we can use different scoring models/substitution matrices \autocite{altschulSubstitutionMatrices2013}:
+The traceback part to determine the optimal alignment is very similar to NW, however instead of starting at cell \((n,m)\), we start at the cell in with the maximal alignment score and follow the path back until we arrive at a cell with an alignment score of 0. In the example shown in Figure \ref{fig:swAlign}, two cells contain the maximal alignment score of 2. Tracing back from these cells gives two optimal local alignments between \(S_1\) and \(S_2\): \texttt{AC} to \texttt{AC} and \texttt{GA} to \texttt{GA}.
 
-\begin{itemize}
-\item
-  A lot of work has been done on protein scoring matrices
+Since the SW algorithm is so similar to NW it has the same quadratic time and space complexity, however the same optimization can be used to bring it down to a linear space complexity \autocite{sungAlgorithmsBioinformaticsPractical2011}. Optimizations were resulted in the Huang and Miller algorithm \autocite{huangTimeefficientLinearspaceLocal1991} which is implemented in the EMBOSS Lalign tool \autocite{riceEMBOSSEuropeanMolecular2000}, and the Waterman Eggert algorithm \autocite{watermanNewAlgorithmBest1987}.
 
-  \begin{itemize}
-  \item
-    Log-Odds models, based on the fact that mutations are not equiprobable, and some mutations will be much more common (I \(\leftrightarrow\) L in proteins)
-  \item
-    PAM (Point Accepted Mutations) \autocite{dayhoffModelEvolutionaryChange1978}, gotten from studying closely related protein sequences, estimate the probability of one amino acid changing to another one over time. With more data refinements have been made for PAM-like matrices \autocite{mullerModelingAminoAcid2000}.
-  \item
-    BLOSUM \autocite{henikoffAminoAcidSubstitution1992}, similar idea to PAM except they were constructed on several ``blocks''. A block is a segment of a protein that is very well conserved within a family and computed the probabilities on these blocks.
-  \item
-    Some matrices estimated with ML instad of log-odds methods \autocite{whelanGeneralEmpiricalModel2001,leImprovedGeneralAmino2008}
-  \item
-    Model specific matrices:
+Both the NW and the SW algorithms are implemented in many different software tools and are used widely to perform pairwise alignments of short sequences \autocite{stajichBioperlToolkitPerl2002,gentlemanBioconductorOpenSoftware2004,riceEMBOSSEuropeanMolecular2000}. Some versions even benefit from hardware acceleration with version implemented for specific CPU instruction sets \autocite{dailyParasailSIMDLibrary2016} or GPUs \autocite{frohmbergGPASImprovedVersion2012} to substantially speed up alignment.
 
-    \begin{itemize}
-    \item
-      Transmembrane matrices \autocite{mullerNonsymmetricScoreMatrices2001,ngPHATTransmembranespecificSubstitution2000}
-    \item
-      Disordered regions in proteins: \autocite{trivediAminoAcidSubstitution2019}
-    \item
-      context-specific matrices \autocite{goonesekereContextspecificAminoAcid2008}
-    \item
-      Specific organisms like \emph{P. falciparum} with pfSSM \autocite{pailaGenomeBiasInfluences2008} or HIV \autocite{nickleHIVSpecificProbabilisticModels2007}
-    \item
-      specific to global alignment \autocite{sardiuScoreStatisticsGlobal2005}
-    \end{itemize}
-  \end{itemize}
-\item
-  Some on DNA alignment
+\hypertarget{scoring-and-substitution-models}{%
+\subsection{Scoring and substitution models}\label{scoring-and-substitution-models}}
 
-  \begin{itemize}
-  \tightlist
-  \item
-    You can derive a matrix with methods similar to PAM \autocite{chiaromonteScoringPairwiseGenomic2001}
-  \item
-    You can do codon substitution matrices \autocite{schneiderEmpiricalCodonSubstitution2005}, or combine codon matrices with AA matrices \autocite{doron-faigenboimCombinedEmpiricalMechanistic2007}
-  \end{itemize}
-\end{itemize}
+In the examples used above to present the NW and SW algorithms, we used a very simple cost function: a match has a cost of +1 while mismatches and indels have a cost of -1. This is really the simplest cost function we can use but also the crudest. In many cases it may be interesting to infuse this cost function with biological knowledge. For example some substitutions might occur more rarely than others in nature so it would stand to reason to penalize those more than other, more common, substitutions.
+
+These biology-aware cost functions usually take the form of a matrix, called scoring or substitution matrix corresponding to an underlying evolutionary model. When using these matrices, matches and mismatches between specific characters are given. For example the cost of aligning an A and a T might be lower than aligning that same A with a G. A lot of different substitution matrices have been developed especially for protein alignments \autocite{altschulSubstitutionMatrices2013}, developed with different techniques and underlying models and with different use-cases.
+
+The earliest and simplest substitution matrices are match/mismatch matrices, they are effectively what we used above where all matches are given a fixed positive score and all mismatches a fixed negative score. In our examples above the corresponding substitution matrix would be a four by four matrix with ones on the diagonal indicating matches and -1 everywhere else. These are simple and useful however when dealing with proteins they have a severe limitation as they ignore the biology of amino acids and.
+
+In order to reflect this biological reality of proteins, new substitution matrices were developed using Log-odds models, based on the fact that substitutions in amino acids are not equiprobable, and some mutations between related amino acids \emph{(e.g.~I and L)} are much more common than others. Two of the most widely used substitution matrices, PAM and BLOSUM matrices, were built this way. The score for aligning residue \(i\) with residue \(j\) is given by the matrix entry \(s_{i,j}\) by looking at the background frequencies \emph{(i.e.~how often one expects to see a particular residue in a sequence)} of \(i\) and \(j\) denoted \(p_i\) and \(p_j\) respectively and the frequency \(q_{i,j}\) with which \(i\) and \(j\) are aligned in accurate biological alignments. from this we can compute the substitution score \(s_{i,j}\) as a Log-odds \autocite{altschulSubstitutionMatrices2013}:
+
+\[
+S_{i,j}=\log\bigg(\frac{q_{i,j}}{p_ip_j}\bigg)
+\]
+
+Both \(p_i\) and \(p_j\) are easy to compute from available biological sequence data, the real work in developing a Log-odds based substitution matrix is to estimate \(q_{i,j}\) values. To do this accurate biological alignments are needed, and how you obtain or choose these is determining of the substitution model. Finally this Log-odds formulation yields values with nice properties for local alignment, namely negative scores for unlikely substitutions and positive ones for likely substitutions and matches.
+
+The PAM matrix (Point Accepted Mutation), developed in 1978 \autocite{dayhoffModelEvolutionaryChange1978}, is one such matrix. Using families of closely related proteins, and phylogenetic analysis, Dayhoff and colleagues estimated the probability of one amino acid replacing another over time to build an evolutionary model. Using this model they could estimate values for \(q_{i,j}\) and obtain a substitution matrix: the PAM matrix. Using this model, several PAM matrices were actually built, optimized for aligning sequences of different similarities: the PAM\textsubscript{250} matrix is suited to alignments where we expect 20\% of identical residues, the PAM\textsubscript{180} matrix however is suited to more closely related sequences where we expect 27\% of identical residues \autocite{altschulSubstitutionMatrices2013}. With the growing amount of sequence data and curated alignments, further refinements have been made leading to the development of PAM-like matrices based on the same principles \autocite{mullerModelingAminoAcid2000} but some improvements to the underlying mathematical model.
+
+The other main type of substitution matrix are the BLOSUM matrices (Block Substitution matrix), developed in 1992 \autocite{henikoffAminoAcidSubstitution1992}. Instead of using whole, closely-related protein sequences like the PAM matrices, the values of \(q_{i,j}\) were estimated on highly conserved segments across whole protein families. Furthermore, to derive the BLOSUM scores, Henikoff and Henikoff did not estimate an underlying evolutionary model but only counted substitutions to estimate \(q_{i,j}\) values. Similarly to PAM matrices there are several BLOSUM matrices adapted to different levels of similarity between the sequences to be aligned.
+
+PAM and BLOSUM matrices have fairly broad use-cases and are widely used in alignment, however there exist many other protein substitution models. Instead of using log-odds, some substitution models were developed by estimating scores with maximum-likelihood approaches \autocite{whelanGeneralEmpiricalModel2001,leImprovedGeneralAmino2008}. Some matrices were developed with very specific usage conditions in mind. Some are tailored to specific types of proteins like Transmembrane \autocite{mullerNonsymmetricScoreMatrices2001,ngPHATTransmembranespecificSubstitution2000}, disordered \autocite{trivediAminoAcidSubstitution2019} or polar/non-polar \autocite{goonesekereContextspecificAminoAcid2008} proteins. Some matrices were developed to align sequences from specific organisms like \emph{P. falciparum} \autocite{pailaGenomeBiasInfluences2008} \emph{(responsible for malaria)} or HIV \autocite{nickleHIVSpecificProbabilisticModels2007}. A substitution matrix was even developed in 2005 specifically for global rather than local alignment \autocite{sardiuScoreStatisticsGlobal2005}.
+
+This wealth of protein substitution matrices reflects the biological and evolutionary diversity of proteins, however substitution matrices for aligning DNA sequences are much less frequent. Some work has been done to derive matrices similar to PAM matrices from DNA alignments \autocite{chiaromonteScoringPairwiseGenomic2001}. Codon substitution matrices \autocite{schneiderEmpiricalCodonSubstitution2005,doron-faigenboimCombinedEmpiricalMechanistic2007} have been developed as well, although they are used in DNA sequence alignment, ultimately they use knowledge derived from protein alignments.
 
 \hypertarget{dealing-with-gaps}{%
 \subsection{Dealing with gaps}\label{dealing-with-gaps}}
