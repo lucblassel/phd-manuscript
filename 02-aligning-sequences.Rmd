@@ -178,63 +178,61 @@ Over the years different types of gap costs were developed and tested like the l
 
 ## How do we speed up pairwise alignment ?
 
-Although NW and SW give us optimal alignments [@pearson27DynamicProgramming1992] when dealing with large sequences they become impractical due to time and space complexity. We need heuristics, review [@chaoDevelopmentsAlgorithmsSequence2022], .
+The NW and SW algorithms, as well as their improvements, are proven to be optimal [@pearson27DynamicProgramming1992]. However when dealing with large sequences, which are more and more common, or when having to do many pairwise alignments they become limiting due to their time and space complexity. In many cases, to get around these limitations, optimality was left aside in favor of heuristics and approximate methods speeding up alignment.
 
-### Change the method
+### Changing the method
 
--   Bounded DP [@spougeSpeedingDynamicProgramming1989a; @fickettFastOptimalAlignment1984], we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. \@ref(fig:optimMethods)
-
--   New Algorithms like the wavefront algorithm [@marco-solaFastGapaffinePairwise2020]
-
--   HMMs:
-
-    -   PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW [@durbinBiologicalSequenceAnalysis1998].
-
-    -   Software: HHsearch [@sodingProteinHomologyDetection2005], HMMer [@finnHMMERWebServer2011], MCALIGN2 [@wangMCALIGN2FasterAccurate2006] is used to efficiently search for alignments in large databases
-
--   You can also align with Fast Fourier Transforms (FFT) as in MAFFT [@katohMAFFTNovelMethod2002] by quickly computing correlations with FFT to find homologous regions and then using these to align.
-
-### Seed and extend with data structures
-
--   General idea:
-
-    -   Seed + extend for local alignment
-
-    -   Find anchors for global alignment
-
-    -   In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. \@ref(fig:optimMethods)
-
-    -   Many ways of finding seeds [@sunChoosingBestHeuristic2006] and to index them [@liSurveySequenceAlignment2010]
-
-    -   2 use cases:
-
-        -   global alignment: align 2 large sequences that would overload computing resources.
-
-        -   local alignment:
-
-            -   to a database: ie. find hits in many sequences.
-
-            -   to a reference: ie find best hit in one sequence.
+One of the early approaches to speed up alignment was to focus on speeding up the dynamic programming which is the time and space consuming step of the NW and SW algorithms. Bounded dynamic programming [@spougeSpeedingDynamicProgramming1989a] is one such approach. By making the assumption that the majority of alignment operations are matches and mismatches instead of indels we can make the hypothesis about the alignment graph. Most probably, the path in the graph corresponding to the optimal alignment will be around the diagonal of the dynamic programming matrix, and scores far away from the diagonal are probably not needed. By making these assumptions a lot of the scores of the matrix do not need to be computed, speeding up the execution and leading to a sparse dynamic programming matrix (shown in Figure \@ref(fig:boundedDP)). This approach was used to speed up alignment early on in 1984 [@fickettFastOptimalAlignment1984]. The advantage of this method is that the optimal alignment can be found very efficiently, however if there are many indels in the optimal alignment, this algorithm is not guaranteed to run faster than NW.
 
 ```{r}
-optimCaption <- "**2 heuristic methods to speed up alignment:**\
-divide and conquer and bounded dynamic programming. Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**"
+boundedCaption <- "**Bounded dynamic programming to speed up alignment.**\ CAPTION TODO...
+Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**"
 ```
 
-```{r, optimMethods, label="optimMethods", fig.cap=optimCaption, out.width="80%", eval=knitr::is_html_output()}
-knitr::include_graphics("./figures/Align-Intro/optim-to-adapt.png")
+```{r, boundedDP, label="boundedDP", fig.cap=boundedCaption, out.width="50%", eval=knitr::is_html_output(), cache=FALSE}
+knitr::include_graphics("./figures/Align-Intro/boundedDP.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{./figures/Align-Intro/optim-to-adapt.png}
-\extcaption{2 heuristic methods to speed up alignment:}{divide and conquer and bounded dynamic programming. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/boundedDP.png}
+\extcaption{Bounded dynamic programming to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
 }
-\label{fig:optimMethods}
+\label{fig:boundedDP}
 \end{figure}
 ```
--   Building indices/databases (useful when you want to try aligning a query sequence to a bunch of possible targets, i.e. in order to search for homology, this does approximate local alignment):
+Another direction in order to speed up alignment was to leave dynamic programming to the side in favor of other methods and algorithms. One of these methods, fairly well studied in general, and in the context of alignment, are hidden markov models (HMMs). In certain circumstances PaiHMMs, HMMs used for pairwise alignment, can be mathematically equivalent to NW [@durbinBiologicalSequenceAnalysis1998]. HMMs have been used for sequence alignment in many software tools like HHsearch [@sodingProteinHomologyDetection2005], HMMer [@finnHMMERWebServer2011] or MCALIGN2 [@wangMCALIGN2FasterAccurate2006] which is used to efficiently search for alignments in large databases of sequences.
+
+More "exotic" methods have also been used successfully for sequence alignment. Fast Fourier Transform (FFT) are used in the MAFFT aligner [@katohMAFFTNovelMethod2002] in order to quickly find homologous segments between two sequences. These homologous regions can be used as the basis for alignment. MAFFT, primarily a multiple sequence aligner *(c.f. Section* \@ref(multiple-sequence-alignment) *below)*, can also be used for pairwise alignment.
+
+Finally, a new exact alignment algorithm has been developed recently: the WaveFront algorithm (WFA) for pairwise alignment [@marco-solaFastGapaffinePairwise2020]. WFA leverages homologous regions of both sequences to speed up the alignment. The complexity is now $o(ns)$, so proportional to the sequence length and optimal alignment score instead of quadratic w.r.t. $n$. This algorithm is also easily vectorizable and can take advantage of hardware acceleration, making its implementation run between 10 to 300 times faster than alternative methods depending on the testing context [@marco-solaFastGapaffinePairwise2020].
+
+### Seed and extend with data structures
+
+In parallel to the development of new alignment algorithms, another way of substantially speeding up pairwise alignment is the so-called "seed and extend" method. This is based on the observation that a pairwise alignment most likely has several short subsequences that are almost identical in both sequences to align. These homologous subsequences can be set as aligned and used as seeds or anchors from which to align the rest of the sequence.
+
+This method can be used for 1) local alignment, where seeds indicate possible local matches which can be extended in local alignments; or 2) for global alignment where thse anchors allow to limit the number of cells to fill out in the dynamic programming matrix as shown in Figure \@ref(fig:anchor). In both cases this approach follows the divide and conquer philosophy and extending seeds or filling out the matrix between anchors can be done independently and in parallel.
+
+```{r}
+anchorCaption <- "**Divide and conquer to speed up alignment.**\
+CAPTION TODO... Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**"
+```
+
+```{r, anchor, label="anchor", fig.cap=anchorCaption, out.width="50%", eval=knitr::is_html_output(), cache=FALSE}
+knitr::include_graphics("./figures/Align-Intro/anchors.png")
+```
+
+```{=tex}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/anchors.png}
+\extcaption{Divide and conquer to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+}
+\label{fig:anchor}
+\end{figure}
+```
+This type of approach can also be used for one-to-many local alignments: either trying to find homologies between a query sequence and a database of sequences, or find several local alignments in a large reference sequence like in read-mapping (see Section \@ref(what-is-read-mapping)). In these many-to-one scenarios it is useful to index seeds in data structures that allow rapid querying and compact storage. This general framework has proven to be quite flexible with many different ways to pick seeds [@sunChoosingBestHeuristic2006] and many different data structures to index them [@liSurveySequenceAlignment2010].
 
 #### Hash tables
 
@@ -308,6 +306,8 @@ knitr::include_graphics("./figures/Align-Intro/minimizers.png")
 
 -   Software: BWT-SW uses an FM-index to speed up local alignment [@lamCompressedIndexingLocal2008], Bowtie 2 uses an FM index to find seeds [@langmeadFastGappedreadAlignment2012], BWA and BWA-SW use a similar idea [@liFastAccurateShort2009; @liFastAccurateLongread2010], BWA-MEM [@liAligningSequenceReads2013] and CUSHAW [@liuLongReadAlignment2012] also uses FM indices to find exact matches to seed a local alignment .
 
+Some newer alignment algorithms like WFA were also used in seed and extend approached like the recent genome to genome aligner AnchorWave [@songAnchorWaveSensitiveAlignment2022].
+
 ## Multiple sequence alignment
 
 When we need to compare a lot of individuals together we can do MSA, essential task in many bioinformatics analyses [@russellMultipleSequenceAlignment2014].
@@ -361,7 +361,7 @@ Some of the most used MSA software uses these methods of progressive/iterative r
 
 -   MUSCLE [@edgarMUSCLEMultipleSequence2004a; @edgarMUSCLEMultipleSequence2004]
 
--   MAFFT [@katohMAFFTNovelMethod2002]
+-   MAFFT [@katohMAFFTNovelMethod2002], which uses Fast Fourier transforms to make the guide tree
 
 -   ProbCons [@doProbConsProbabilisticConsistencybased2005]
 
