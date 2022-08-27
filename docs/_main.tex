@@ -239,7 +239,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-08-25}
+\date{2022-08-26}
 
 \begin{document}
 \maketitle
@@ -708,10 +708,8 @@ The first question we might ask ourselves is why align at all, if we want to com
 
 For example, if we have the two following sequences \texttt{ATGTGCAGTA} and \texttt{AGTGCAGTAC}. if we count the differences character by character, except the first pair of A, all the characters are different (c.f. below). However if we consider that the first T was deleted and a C was inserted at the end of the second sequence then we can see that none of the characters are actually different. In order to represent insertions and deletions \emph{gaps} are inserted in the sequences as seen below:
 
-\begin{quote}
 \textbf{\texttt{ATGTGCAGTA-}}\strut \\
 \textbf{\texttt{A-GTGCAGTAC}}
-\end{quote}
 
 This problem of comparing two sequences with insertions or deletions is a fairly studied one in text algorithmics: the string-edit problem \autocite{gusfieldAlgorithmsStringsTrees1997}. Some metrics like the Levenshtein distance \autocite{levenshteinBinaryCodesCapable1966} and the more edit distance \autocite{gusfieldAlgorithmsStringsTrees1997} exist and are closely related to the pairwise sequence alignment problem, finding the minimal number of substitution, insertion of deletion operations to go from one sequence to the other.
 
@@ -870,97 +868,57 @@ This wealth of protein substitution matrices reflects the biological and evoluti
 \hypertarget{dealing-with-gaps}{%
 \subsection{Dealing with gaps}\label{dealing-with-gaps}}
 
-\begin{itemize}
-\item
-  biologically longer deletions are more likely than plenty of shorter ones
+In the NW and SW examples of Section \ref{how-to-align-two-sequences}, as with the simplistic match/mismatch costs, we used a very simple cost of insertions and deletions: any indel has a cost of -1. However this, as was the case with substitutions, does not reflect the biological reality very well.
 
-  \begin{itemize}
-  \tightlist
-  \item
-    Here a short example of 2 alignments with different gap strategies
-  \end{itemize}
-\item
-  Semi global alignment (i.e.~gaps on the ends of the sequence are free\ldots)
-\item
-  Affine gap penalties, proposed by Gotoh \autocite{gotohImprovedAlgorithmMatching1982}
-\item
-  Non affine gap penalties \autocite{bennerEmpiricalStructuralModels1993,guSizeDistributionInsertions1995,watermanEfficientSequenceAlignment1984}
-\end{itemize}
+In biology, when insertions or deletions occur it is more likely that the indel will span several nucleotides rather than just one \autocite{cartwrightProblemsSolutionsEstimating2009}. This means that when inserting gaps into longer gap stretches are more likely than many individual gaps. For example the two alignments below have the same number of matches, mismatches and gaps. The second one is more likely since it is the result of a single insertion (or deletion) of \texttt{AGGT} rather than multiple independent indels.
+
+\textbf{\texttt{AGGAGGTTCG}} ~~~~~~ \textbf{\texttt{AGGAGGTTCG}}\\
+\textbf{\texttt{A-G-G-T-CC}} ~~~~~~ \textbf{\texttt{AGG-\/-\/-\/-TCC}}
+
+The first approach was to try and optimize the gaps more generally \autocite{fitchOptimalSequenceAlignments1983} over the whole aligned sequence, however even with dynamic programming this has at best a time complexity of \(o(n^2m)\) \autocite{watermanBiologicalSequenceMetrics1976}. In 1982, Gotoh proposed affine gap costs \autocite{gotohImprovedAlgorithmMatching1982}, with this model there are two separate costs associated to indels: 1) the gap open cost and 2) the gap extend cost. Usually the costs are set up so that opening a new gap is more costly than extending it, meaning that longer gap stretches are favored over many short indels. The other major advantage is that with Gotoh's algorithm time complexity is back down to \(o(nm)\). The algorithm was further refined by Altschul \emph{et al.} \autocite{altschulOptimalSequenceAlignment1986}.
+
+Over the years different types of gap costs were developed and tested like the logarithmic gap costs proposed by Waterman \autocite{watermanEfficientSequenceAlignment1984} and improved by Miller and Myers \autocite{millerSequenceComparisonConcave1988} turned out to be less accurate than affine gap costs \autocite{cartwrightLogarithmicGapCosts2006}). A bi-linear gap cost was also proposed to replace the affine cost\autocite{goonesekereFrequencyGapsObserved2004}, with a breakpoint at gaps of length three, the size of a codon. As more and more sequence data became available, similarly to what happened with substitution matrices, empirical profile-based models derived from this data were developed \autocite{bennerEmpiricalStructuralModels1993}. Some of these penalties leverage structural information and context for proteins \autocite{wrablGapsStructurallySimilar2004,zhangSP5ImprovingProtein2008}. A context dependent gap penalty depending on the hydrophobicity of aligned residues is inplemented in Clustal X \autocite{jeanmouginMultipleSequenceAlignment1998} one of the most widely used sequence aligners. Although quite complex and empirically derived, these profile-based penalties show limited improvement over the affine and bi-linear penalties \autocite{wangComparisonLinearGap2011}.
 
 \hypertarget{how-do-we-speed-up-pairwise-alignment}{%
 \section{How do we speed up pairwise alignment ?}\label{how-do-we-speed-up-pairwise-alignment}}
 
-Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramming1992} when dealing with large sequences they become impractical due to time and space complexity. We need heuristics, review \autocite{chaoDevelopmentsAlgorithmsSequence2022}, .
+The NW and SW algorithms, as well as their improvements, are proven to be optimal \autocite{pearson27DynamicProgramming1992}. However when dealing with large sequences, which are more and more common, or when having to do many pairwise alignments they become limiting due to their time and space complexity. In many cases, to get around these limitations, optimality was left aside in favor of heuristics and approximate methods speeding up alignment.
 
-\hypertarget{change-the-method}{%
-\subsection{Change the method}\label{change-the-method}}
+\hypertarget{changing-the-method}{%
+\subsection{Changing the method}\label{changing-the-method}}
 
-\begin{itemize}
-\item
-  Bounded DP \autocite{spougeSpeedingDynamicProgramming1989a,fickettFastOptimalAlignment1984}, we can make an assumption about the relationship between the sequences, there will probably not be many gaps, therefore the scores we will used will be concentrated around the diagonal of the DP matrix c.f. \ref{fig:optimMethods}
-\item
-  New Algorithms like the wavefront algorithm \autocite{marco-solaFastGapaffinePairwise2020}
-\item
-  HMMs:
+One of the early approaches to speed up alignment was to focus on speeding up the dynamic programming which is the time and space consuming step of the NW and SW algorithms. Bounded dynamic programming \autocite{spougeSpeedingDynamicProgramming1989a} is one such approach. By making the assumption that the majority of alignment operations are matches and mismatches instead of indels we can make the hypothesis about the alignment graph. Most probably, the path in the graph corresponding to the optimal alignment will be around the diagonal of the dynamic programming matrix, and scores far away from the diagonal are probably not needed. By making these assumptions a lot of the scores of the matrix do not need to be computed, speeding up the execution and leading to a sparse dynamic programming matrix (shown in Figure \ref{fig:boundedDP}). This approach was used to speed up alignment early on in 1984 \autocite{fickettFastOptimalAlignment1984}. The advantage of this method is that the optimal alignment can be found very efficiently, however if there are many indels in the optimal alignment, this algorithm is not guaranteed to run faster than NW.
 
-  \begin{itemize}
-  \item
-    PairHMMs can be used to align 2 sequences, in some cases it is mathematically equivalent to NW \autocite{durbinBiologicalSequenceAnalysis1998}.
-  \item
-    Software: HHsearch \autocite{sodingProteinHomologyDetection2005}, HMMer \autocite{finnHMMERWebServer2011}, MCALIGN2 \autocite{wangMCALIGN2FasterAccurate2006} is used to efficiently search for alignments in large databases
-  \end{itemize}
-\item
-  You can also align with Fast Fourier Transforms (FFT) as in MAFFT \autocite{katohMAFFTNovelMethod2002} by quickly computing correlations with FFT to find homologous regions and then using these to align.
-\end{itemize}
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/boundedDP.png}
+\extcaption{Bounded dynamic programming to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+}
+\label{fig:boundedDP}
+\end{figure}
+
+Another direction in order to speed up alignment was to leave dynamic programming to the side in favor of other methods and algorithms. One of these methods, fairly well studied in general, and in the context of alignment, are hidden markov models (HMMs). In certain circumstances PaiHMMs, HMMs used for pairwise alignment, can be mathematically equivalent to NW \autocite{durbinBiologicalSequenceAnalysis1998}. HMMs have been used for sequence alignment in many software tools like HHsearch \autocite{sodingProteinHomologyDetection2005}, HMMer \autocite{finnHMMERWebServer2011} or MCALIGN2 \autocite{wangMCALIGN2FasterAccurate2006} which is used to efficiently search for alignments in large databases of sequences.
+
+More ``exotic'' methods have also been used successfully for sequence alignment. Fast Fourier Transform (FFT) are used in the MAFFT aligner \autocite{katohMAFFTNovelMethod2002} in order to quickly find homologous segments between two sequences. These homologous regions can be used as the basis for alignment. MAFFT, primarily a multiple sequence aligner \emph{(c.f. Section} \ref{multiple-sequence-alignment} \emph{below)}, can also be used for pairwise alignment.
+
+Finally, a new exact alignment algorithm has been developed recently: the WaveFront algorithm (WFA) for pairwise alignment \autocite{marco-solaFastGapaffinePairwise2020}. WFA leverages homologous regions of both sequences to speed up the alignment. The complexity is now \(o(ns)\), so proportional to the sequence length and optimal alignment score instead of quadratic w.r.t. \(n\). This algorithm is also easily vectorizable and can take advantage of hardware acceleration, making its implementation run between 10 to 300 times faster than alternative methods depending on the testing context \autocite{marco-solaFastGapaffinePairwise2020}.
 
 \hypertarget{seed-and-extend-with-data-structures}{%
 \subsection{Seed and extend with data structures}\label{seed-and-extend-with-data-structures}}
 
-\begin{itemize}
-\item
-  General idea:
+In parallel to the development of new alignment algorithms, another way of substantially speeding up pairwise alignment is the so-called ``seed and extend'' method. This is based on the observation that a pairwise alignment most likely has several short subsequences that are almost identical in both sequences to align. These homologous subsequences can be set as aligned and used as seeds or anchors from which to align the rest of the sequence.
 
-  \begin{itemize}
-  \item
-    Seed + extend for local alignment
-  \item
-    Find anchors for global alignment
-  \item
-    In both cases: divide and conquer approach: as you can restrict the DP matrix by blocks defined by the anchors/seeds c.f. \ref{fig:optimMethods}
-  \item
-    Many ways of finding seeds \autocite{sunChoosingBestHeuristic2006} and to index them \autocite{liSurveySequenceAlignment2010}
-  \item
-    2 use cases:
-
-    \begin{itemize}
-    \item
-      global alignment: align 2 large sequences that would overload computing resources.
-    \item
-      local alignment:
-
-      \begin{itemize}
-      \item
-        to a database: ie. find hits in many sequences.
-      \item
-        to a reference: ie find best hit in one sequence.
-      \end{itemize}
-    \end{itemize}
-  \end{itemize}
-\end{itemize}
+This method can be used for 1) local alignment, where seeds indicate possible local matches which can be extended in local alignments; or 2) for global alignment where thse anchors allow to limit the number of cells to fill out in the dynamic programming matrix as shown in Figure \ref{fig:anchor}. In both cases this approach follows the divide and conquer philosophy and extending seeds or filling out the matrix between anchors can be done independently and in parallel.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{./figures/Align-Intro/optim-to-adapt.png}
-\extcaption{2 heuristic methods to speed up alignment:}{divide and conquer and bounded dynamic programming. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/anchors.png}
+\extcaption{Divide and conquer to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
 }
-\label{fig:optimMethods}
+\label{fig:anchor}
 \end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  Building indices/databases (useful when you want to try aligning a query sequence to a bunch of possible targets, i.e.~in order to search for homology, this does approximate local alignment):
-\end{itemize}
+This type of approach can also be used for one-to-many local alignments: either trying to find homologies between a query sequence and a database of sequences, or find several local alignments in a large reference sequence like in read-mapping (see Section \ref{what-is-read-mapping}). In these many-to-one scenarios it is useful to index seeds in data structures that allow rapid querying and compact storage. This general framework has proven to be quite flexible with many different ways to pick seeds \autocite{sunChoosingBestHeuristic2006} and many different data structures to index them \autocite{liSurveySequenceAlignment2010}.
 
 \hypertarget{hash-tables}{%
 \subsubsection{Hash tables}\label{hash-tables}}
@@ -1043,6 +1001,8 @@ Although NW and SW give us optimal alignments \autocite{pearson27DynamicProgramm
   Software: BWT-SW uses an FM-index to speed up local alignment \autocite{lamCompressedIndexingLocal2008}, Bowtie 2 uses an FM index to find seeds \autocite{langmeadFastGappedreadAlignment2012}, BWA and BWA-SW use a similar idea \autocite{liFastAccurateShort2009,liFastAccurateLongread2010}, BWA-MEM \autocite{liAligningSequenceReads2013} and CUSHAW \autocite{liuLongReadAlignment2012} also uses FM indices to find exact matches to seed a local alignment .
 \end{itemize}
 
+Some newer alignment algorithms like WFA were also used in seed and extend approached like the recent genome to genome aligner AnchorWave \autocite{songAnchorWaveSensitiveAlignment2022}.
+
 \hypertarget{multiple-sequence-alignment}{%
 \section{Multiple sequence alignment}\label{multiple-sequence-alignment}}
 
@@ -1109,7 +1069,7 @@ Some of the most used MSA software uses these methods of progressive/iterative r
 \item
   MUSCLE \autocite{edgarMUSCLEMultipleSequence2004a,edgarMUSCLEMultipleSequence2004}
 \item
-  MAFFT \autocite{katohMAFFTNovelMethod2002}
+  MAFFT \autocite{katohMAFFTNovelMethod2002}, which uses Fast Fourier transforms to make the guide tree
 \item
   ProbCons \autocite{doProbConsProbabilisticConsistencybased2005}
 \end{itemize}
