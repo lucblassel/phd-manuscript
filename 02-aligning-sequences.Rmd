@@ -55,17 +55,7 @@ We will go here through a short example showing how the NW algorithm is used to 
 2.  The score of the cell to the left $C(i,j-1)$ plus the cost of an indel
 3.  The score of the cell on top $C(i-1,j)$ plus the cost of an indel
 
-Therefore in order to compute $C(i,j)$ we need to know the three values of $C(i-1,j-1)$, $C(i-1,j)$ and $C(i,j-1)$. This is the reason why we start with an extra column and row at the beginning of each sequence that we can fill out with the increasing costs of indels. In our case since the cost of an indel is -1, this row and column are filled out with decreasing relative integers, as can be seen in the matrix below.
-
-| $S_1$\\$S_2$ |     |  A  |  C  |  G  |  G  |  A  |
-|:------------:|:---:|:---:|:---:|:---:|:---:|:---:|
-|              |  0  | -1  | -2  | -3  | -4  | -5  |
-|      A       | -1  |     |     |     |     |     |
-|      C       | -2  |     |     |     |     |     |
-|      C       | -3  |     |     |     |     |     |
-|      T       | -4  |     |     |     |     |     |
-|      G       | -5  |     |     |     |     |     |
-|      A       | -6  |     |     |     |     |     |
+Therefore in order to compute $C(i,j)$ we need to know the three values of $C(i-1,j-1)$, $C(i-1,j)$ and $C(i,j-1)$. This is the reason why we start with an extra column and row at the beginning of each sequence that we can fill out with the increasing costs of indels. In our case since the cost of an indel is -1, this row and column are filled out with decreasing relative integers, as can be seen in Figure \@ref(fig:nwAlign)A.
 
 From this starting point we can fill out the Dynamic programming matrix with all the alignment scores. To compute $C(1,1)$ we have three possible values:
 
@@ -73,36 +63,26 @@ From this starting point we can fill out the Dynamic programming matrix with all
 2.  $C(0,1)$ plus the cost of an indel: $-1 -1 = -2$
 3.  $C(0,1)$ plus the cost of an indel: $-1-1=-2$
 
-By taling the maximum out of these three values we can fill out the matrix with $C(1,1)=1$. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between $S_1$ and $S_2$, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell $(i,j)$ we add an edge from this cell to the previous cell that was used to compute $C(i,j)$. In our example above, we obtained $C(1,1)$ from a match and $C(0,0)$, so we can add an edge in our graph going from cell $(1,1)$ to cell $(0,0)$. The filled out matrix with the graph edges represented as arrows can be seen in Figure \@ref(fig:nwAlign).
-
-| $S_1$\\$S_2$ |     |  A  |  C  |  G  |  G  |  A  |
-|:------------:|:---:|:---:|:---:|:---:|:---:|:---:|
-|              |  0  | -1  | -2  | -3  | -4  | -5  |
-|      A       | -1  |  1  |  0  | -1  | -2  | -3  |
-|      C       | -2  |  0  |  2  |  1  |  0  | -1  |
-|      C       | -3  | -1  |  1  |  1  |  0  | -1  |
-|      T       | -4  | -2  |  0  |  0  |  0  | -1  |
-|      G       | -5  | -3  | -1  |  1  |  1  |  0  |
-|      A       | -6  | -4  | -2  |  0  |  0  |  2  |
-
-Once this matrix *(and corresponding graph)* is filled out, we can deduce the alignment by following a path through the graph starting at cell $(n,m)$ to cell $(0,0)$. A diagonal edge starting at $(i,j)$ indicates a match or mismatch between $S_1[i]$ and $S_2[j]$, a vertical edge indicates a gap in $S_2$ and a horizontal edge a gap in $S_1$. This can lead to several optimal alignments if there are several such paths in the graph. In our case this algorithm yields three equally optimal global alignments shown in Figure \@ref(fig:nwAlign).
+By taling the maximum out of these three values we can fill out the matrix with $C(1,1)=1$. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between $S_1$ and $S_2$, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell $(i,j)$ we add an edge from this cell to the previous cell that was used to compute $C(i,j)$. In our example above, we obtained $C(1,1)$ from a match and $C(0,0)$, so we can add an edge in our graph going from cell $(1,1)$ to cell $(0,0)$. The filled out matrix with the graph edges represented as arrows can be seen in Figure \@ref(fig:nwAlign)B.
 
 ```{r, nwCaption}
-nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm**\ The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments."
+nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm**\ This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. **A)** the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. **B)** The dynamic programming matrix is filled out, and the alignment graph is constructed. **C)** The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right."
 ```
 
-```{r, nwAlign, label="nwAlign", fig.cap=nwCaption, eval=knitr::is_html_output(), out.width="60%"}
-knitr::include_graphics("./figures/Align-Intro/Nw-dp.png")
+```{r, nwAlign, label="nwAlign", fig.cap=nwCaption, eval=knitr::is_html_output(), out.width="100%", cache=FALSE}
+knitr::include_graphics("./figures/Align-Intro/NW-total.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/Nw-dp.pdf}
-\extcaption{Example global alignment with the Needleman-Wunsch algorithm}{The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments.}
+\includegraphics[width=\linewidth]{./figures/Align-Intro/NW-total.png}
+\extcaption{Example global alignment with the Needleman-Wunsch algorithm}{This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. \textbf{A)} the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. \textbf{B)} The dynamic programming matrix is filled out, and the alignment graph is constructed. \textbf{C)} The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right.}
 \label{fig:nwAlign}
 \end{figure}
 ```
+Once this matrix *(and corresponding graph)* is filled out, we can deduce the alignment by following a path through the graph starting at cell $(n,m)$ to cell $(0,0)$. A diagonal edge starting at $(i,j)$ indicates a match or mismatch between $S_1[i]$ and $S_2[j]$, a vertical edge indicates a gap in $S_2$ and a horizontal edge a gap in $S_1$. This can lead to several optimal alignments if there are several such paths in the graph. In our case this algorithm yields three equally optimal global alignments shown in Figure \@ref(fig:nwAlign)C.
+
 This algorithm although guaranteed to result in an optimal alignment, has a time complexity of $O(nm)$ where $n$ and $m$ are the lengths of the sequences to align [@sungAlgorithmsBioinformaticsPractical2011]. Some methods have been proposed to speed up [@masekFasterAlgorithmComputing1980], however the complexity is still $O(nm/\log(n))$. Lower bounds have been studied and there is not much optimization to be done if optimal exact alignment are needed [@vinhInformationTheoreticMeasures2010; @ullmanBoundsComplexityLongest1976]. If we want to do better we have to rely on heuristics.
 
 Another issue is space complexity since we need to store the matrix, the space complexity is also $O(nm)$. If we wish to align 2 human genomes we would need to store $\approx 10^{19}$ matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers *(i.e. the storage scale of a data-center)*. However, in practice, we can do much better than that, and construct an optimal alignment in linear space complexity $O(n+m)$ [@hirschbergLinearSpaceAlgorithm1975] meaning we would only need a couple gigabytes to store the matrix for 2 human genomes. This resulted in an improved global alignment algorithm, the Myers-Miller algorithm [@myersOptimalAlignmentsLinear1988], implemented in the EMBOSS stretcher alignment software [@riceEMBOSSEuropeanMolecular2000].
@@ -114,18 +94,18 @@ In global alignment two full sequences are aligned to each other. In local align
 The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score \> 0. If we use the SW algorithm to locally align the two example sequences $S_1$ and $S_2$ and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure \@ref(fig:swAlign).
 
 ```{r, swCaption}
-swCaption <- "**Example local alignment with the Smith-Waterman algorithm**\ The match score is 1, the mismatch and indel scores are both set to -1. This results in 2 equally optimal local alignments."
+swCaption <- "**Example local alignment with the Smith-Waterman algorithm**\ Two sequences $S_1$ and $S_2$ (the same as in Figure @ref(fig:swAlign) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. **A)** The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. **B)** We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. "
 ```
 
 ```{r, swAlign, label="swAlign", fig.cap=swCaption, eval=knitr::is_html_output(), out.width="60%", cache=FALSE}
-knitr::include_graphics("./figures/Align-Intro/SW-dp.png")
+knitr::include_graphics("./figures/Align-Intro/SW-total.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/SW-dp.pdf}
-\extcaption{Example local alignment with the Smith-Waterman algorith}{The match score is 1, the mismatch and indel scores are both set to -1. This results in 2 equally optimal local alignments.}
+\includegraphics[width=0.6\linewidth]{./figures/Align-Intro/SW-total.png}
+\extcaption{Example local alignment with the Smith-Waterman algorith}{Two sequences $S_1$ and $S_2$ (the same as in Figure \ref{fig:swAlign} are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. \textbf{A)} The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. \textbf{B)} We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. }
 \label{fig:swAlign}
 \end{figure}
 ```
