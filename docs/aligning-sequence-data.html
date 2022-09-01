@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-08-26" />
+<meta name="date" content="2022-09-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -372,177 +372,21 @@ div.csl-indent {
 <li>The score of the cell to the left <span class="math inline">\(C(i,j-1)\)</span> plus the cost of an indel</li>
 <li>The score of the cell on top <span class="math inline">\(C(i-1,j)\)</span> plus the cost of an indel</li>
 </ol>
-<p>Therefore in order to compute <span class="math inline">\(C(i,j)\)</span> we need to know the three values of <span class="math inline">\(C(i-1,j-1)\)</span>, <span class="math inline">\(C(i-1,j)\)</span> and <span class="math inline">\(C(i,j-1)\)</span>. This is the reason why we start with an extra column and row at the beginning of each sequence that we can fill out with the increasing costs of indels. In our case since the cost of an indel is -1, this row and column are filled out with decreasing relative integers, as can be seen in the matrix below.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(S_1\)</span>\<span class="math inline">\(S_2\)</span></th>
-<th align="center"></th>
-<th align="center">A</th>
-<th align="center">C</th>
-<th align="center">G</th>
-<th align="center">G</th>
-<th align="center">A</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"></td>
-<td align="center">0</td>
-<td align="center">-1</td>
-<td align="center">-2</td>
-<td align="center">-3</td>
-<td align="center">-4</td>
-<td align="center">-5</td>
-</tr>
-<tr class="even">
-<td align="center">A</td>
-<td align="center">-1</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="center">C</td>
-<td align="center">-2</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">C</td>
-<td align="center">-3</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="center">T</td>
-<td align="center">-4</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="even">
-<td align="center">G</td>
-<td align="center">-5</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr class="odd">
-<td align="center">A</td>
-<td align="center">-6</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody>
-</table>
+<p>Therefore in order to compute <span class="math inline">\(C(i,j)\)</span> we need to know the three values of <span class="math inline">\(C(i-1,j-1)\)</span>, <span class="math inline">\(C(i-1,j)\)</span> and <span class="math inline">\(C(i,j-1)\)</span>. This is the reason why we start with an extra column and row at the beginning of each sequence that we can fill out with the increasing costs of indels. In our case since the cost of an indel is -1, this row and column are filled out with decreasing relative integers, as can be seen in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>A.</p>
 <p>From this starting point we can fill out the Dynamic programming matrix with all the alignment scores. To compute <span class="math inline">\(C(1,1)\)</span> we have three possible values:</p>
 <ol style="list-style-type: decimal">
 <li><span class="math inline">\(C(0,0)\)</span> plus the cost of a match between <span class="math inline">\(S_1[1]=A\)</span> and <span class="math inline">\(S_2[1]=A\)</span>: <span class="math inline">\(0+1=1\)</span></li>
 <li><span class="math inline">\(C(0,1)\)</span> plus the cost of an indel: <span class="math inline">\(-1 -1 = -2\)</span></li>
 <li><span class="math inline">\(C(0,1)\)</span> plus the cost of an indel: <span class="math inline">\(-1-1=-2\)</span></li>
 </ol>
-<p>By taling the maximum out of these three values we can fill out the matrix with <span class="math inline">\(C(1,1)=1\)</span>. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span>, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell <span class="math inline">\((i,j)\)</span> we add an edge from this cell to the previous cell that was used to compute <span class="math inline">\(C(i,j)\)</span>. In our example above, we obtained <span class="math inline">\(C(1,1)\)</span> from a match and <span class="math inline">\(C(0,0)\)</span>, so we can add an edge in our graph going from cell <span class="math inline">\((1,1)\)</span> to cell <span class="math inline">\((0,0)\)</span>. The filled out matrix with the graph edges represented as arrows can be seen in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>.</p>
-<table>
-<thead>
-<tr class="header">
-<th align="center"><span class="math inline">\(S_1\)</span>\<span class="math inline">\(S_2\)</span></th>
-<th align="center"></th>
-<th align="center">A</th>
-<th align="center">C</th>
-<th align="center">G</th>
-<th align="center">G</th>
-<th align="center">A</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center"></td>
-<td align="center">0</td>
-<td align="center">-1</td>
-<td align="center">-2</td>
-<td align="center">-3</td>
-<td align="center">-4</td>
-<td align="center">-5</td>
-</tr>
-<tr class="even">
-<td align="center">A</td>
-<td align="center">-1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">-1</td>
-<td align="center">-2</td>
-<td align="center">-3</td>
-</tr>
-<tr class="odd">
-<td align="center">C</td>
-<td align="center">-2</td>
-<td align="center">0</td>
-<td align="center">2</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">-1</td>
-</tr>
-<tr class="even">
-<td align="center">C</td>
-<td align="center">-3</td>
-<td align="center">-1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-<td align="center">-1</td>
-</tr>
-<tr class="odd">
-<td align="center">T</td>
-<td align="center">-4</td>
-<td align="center">-2</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">-1</td>
-</tr>
-<tr class="even">
-<td align="center">G</td>
-<td align="center">-5</td>
-<td align="center">-3</td>
-<td align="center">-1</td>
-<td align="center">1</td>
-<td align="center">1</td>
-<td align="center">0</td>
-</tr>
-<tr class="odd">
-<td align="center">A</td>
-<td align="center">-6</td>
-<td align="center">-4</td>
-<td align="center">-2</td>
-<td align="center">0</td>
-<td align="center">0</td>
-<td align="center">2</td>
-</tr>
-</tbody>
-</table>
-<p>Once this matrix <em>(and corresponding graph)</em> is filled out, we can deduce the alignment by following a path through the graph starting at cell <span class="math inline">\((n,m)\)</span> to cell <span class="math inline">\((0,0)\)</span>. A diagonal edge starting at <span class="math inline">\((i,j)\)</span> indicates a match or mismatch between <span class="math inline">\(S_1[i]\)</span> and <span class="math inline">\(S_2[j]\)</span>, a vertical edge indicates a gap in <span class="math inline">\(S_2\)</span> and a horizontal edge a gap in <span class="math inline">\(S_1\)</span>. This can lead to several optimal alignments if there are several such paths in the graph. In our case this algorithm yields three equally optimal global alignments shown in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>.</p>
+<p>By taling the maximum out of these three values we can fill out the matrix with <span class="math inline">\(C(1,1)=1\)</span>. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span>, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell <span class="math inline">\((i,j)\)</span> we add an edge from this cell to the previous cell that was used to compute <span class="math inline">\(C(i,j)\)</span>. In our example above, we obtained <span class="math inline">\(C(1,1)\)</span> from a match and <span class="math inline">\(C(0,0)\)</span>, so we can add an edge in our graph going from cell <span class="math inline">\((1,1)\)</span> to cell <span class="math inline">\((0,0)\)</span>. The filled out matrix with the graph edges represented as arrows can be seen in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>B.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:nwAlign"></span>
-<img src="figures/Align-Intro/Nw-dp.png" alt="**Example global alignment with the Needleman-Wunsch algorithm**/ The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments." width="60%" />
+<img src="figures/Align-Intro/NW-total.png" alt="**Example global alignment with the Needleman-Wunsch algorithm** This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. **A)** the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. **B)** The dynamic programming matrix is filled out, and the alignment graph is constructed. **C)** The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right." width="100%" />
 <p class="caption">
-Figure 2.1: <strong>Example global alignment with the Needleman-Wunsch algorithm</strong>/ The match score is 1, the mismatch and indel scores are both set to -1. This results in 3 equally optimal global alignments.
+Figure 2.1: <strong>Example global alignment with the Needleman-Wunsch algorithm</strong> This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. <strong>A)</strong> the matrix is initialized with <span class="math inline">\(S_1\)</span> as the columns and <span class="math inline">\(S_2\)</span> as the rows. Column and row 0 are filled out. <strong>B)</strong> The dynamic programming matrix is filled out, and the alignment graph is constructed. <strong>C)</strong> The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right.
 </p>
 </div>
+<p>Once this matrix <em>(and corresponding graph)</em> is filled out, we can deduce the alignment by following a path through the graph starting at cell <span class="math inline">\((n,m)\)</span> to cell <span class="math inline">\((0,0)\)</span>. A diagonal edge starting at <span class="math inline">\((i,j)\)</span> indicates a match or mismatch between <span class="math inline">\(S_1[i]\)</span> and <span class="math inline">\(S_2[j]\)</span>, a vertical edge indicates a gap in <span class="math inline">\(S_2\)</span> and a horizontal edge a gap in <span class="math inline">\(S_1\)</span>. This can lead to several optimal alignments if there are several such paths in the graph. In our case this algorithm yields three equally optimal global alignments shown in Figure <a href="aligning-sequence-data.html#fig:nwAlign">2.1</a>C.</p>
 <p>This algorithm although guaranteed to result in an optimal alignment, has a time complexity of <span class="math inline">\(O(nm)\)</span> where <span class="math inline">\(n\)</span> and <span class="math inline">\(m\)</span> are the lengths of the sequences to align<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>. Some methods have been proposed to speed up<span class="citation"><sup><a href="#ref-masekFasterAlgorithmComputing1980" role="doc-biblioref">148</a></sup></span>, however the complexity is still <span class="math inline">\(O(nm/\log(n))\)</span>. Lower bounds have been studied and there is not much optimization to be done if optimal exact alignment are needed<span class="citation"><sup><a href="#ref-vinhInformationTheoreticMeasures2010" role="doc-biblioref">149</a>,<a href="#ref-ullmanBoundsComplexityLongest1976" role="doc-biblioref">150</a></sup></span>. If we want to do better we have to rely on heuristics.</p>
 <p>Another issue is space complexity since we need to store the matrix, the space complexity is also <span class="math inline">\(O(nm)\)</span>. If we wish to align 2 human genomes we would need to store <span class="math inline">\(\approx 10^{19}\)</span> matrix cells, which would amount to 10 Exabytes of storage if we use 8bit integers <em>(i.e. the storage scale of a data-center)</em>. However, in practice, we can do much better than that, and construct an optimal alignment in linear space complexity <span class="math inline">\(O(n+m)\)</span><span class="citation"><sup><a href="#ref-hirschbergLinearSpaceAlgorithm1975" role="doc-biblioref">151</a></sup></span> meaning we would only need a couple gigabytes to store the matrix for 2 human genomes. This resulted in an improved global alignment algorithm, the Myers-Miller algorithm<span class="citation"><sup><a href="#ref-myersOptimalAlignmentsLinear1988" role="doc-biblioref">152</a></sup></span>, implemented in the EMBOSS stretcher alignment software<span class="citation"><sup><a href="#ref-riceEMBOSSEuropeanMolecular2000" role="doc-biblioref">153</a></sup></span>.</p>
 </div>
@@ -551,9 +395,9 @@ Figure 2.1: <strong>Example global alignment with the Needleman-Wunsch algorithm
 <p>In global alignment two full sequences are aligned to each other. In local alignment the goal is to find the optimal alignment of two subsequences from these parent sequences. The main algorithm for locally aligning is the Smith-Waterman (SW) algorithm<span class="citation"><sup><a href="#ref-smithIdentificationCommonMolecular1981" role="doc-biblioref">145</a></sup></span> developed a decade later than NW.</p>
 <p>The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score &gt; 0. If we use the SW algorithm to locally align the two example sequences <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure <a href="aligning-sequence-data.html#fig:swAlign">2.2</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:swAlign"></span>
-<img src="figures/Align-Intro/SW-dp.png" alt="**Example local alignment with the Smith-Waterman algorithm** The match score is 1, the mismatch and indel scores are both set to -1. This results in 2 equally optimal local alignments." width="60%" />
+<img src="figures/Align-Intro/SW-total.png" alt="**Example local alignment with the Smith-Waterman algorithm** Two sequences $S_1$ and $S_2$ (the same as in Figure 2.2 are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. **A)** The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. **B)** We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. " width="60%" />
 <p class="caption">
-Figure 2.2: <strong>Example local alignment with the Smith-Waterman algorithm</strong> The match score is 1, the mismatch and indel scores are both set to -1. This results in 2 equally optimal local alignments.
+Figure 2.2: <strong>Example local alignment with the Smith-Waterman algorithm</strong> Two sequences <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span> (the same as in Figure<span class="citation"><sup><a href="#ref-ref" role="doc-biblioref"><strong>ref?</strong></a></sup></span>(fig:swAlign) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. <strong>A)</strong> The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. <strong>B)</strong> We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right.
 </p>
 </div>
 <p>The traceback part to determine the optimal alignment is very similar to NW, however instead of starting at cell <span class="math inline">\((n,m)\)</span>, we start at the cell in with the maximal alignment score and follow the path back until we arrive at a cell with an alignment score of 0. In the example shown in Figure <a href="aligning-sequence-data.html#fig:swAlign">2.2</a>, two cells contain the maximal alignment score of 2. Tracing back from these cells gives two optimal local alignments between <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_2\)</span>: <code>AC</code> to <code>AC</code> and <code>GA</code> to <code>GA</code>.</p>
