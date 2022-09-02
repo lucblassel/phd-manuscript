@@ -239,7 +239,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
-\date{2022-09-01}
+\date{2022-09-02}
 
 \begin{document}
 \maketitle
@@ -800,7 +800,7 @@ The two algorithms are very similar, SW also relies on first building the dynami
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/SW-total.png}
-\extcaption{Example local alignment with the Smith-Waterman algorith}{Two sequences $S_1$ and $S_2$ (the same as in Figure \ref{fig:swAlign} are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. \textbf{A)} The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. \textbf{B)} We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. }
+\extcaption{Example local alignment with the Smith-Waterman algorithm}{Two sequences $S_1$ and $S_2$ (the same as in Figure \ref{fig:nwAlign}) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. \textbf{A)} The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. \textbf{B)} We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. }
 \label{fig:swAlign}
 \end{figure}
 
@@ -876,9 +876,9 @@ Finally, a new exact alignment algorithm has been developed recently: the WaveFr
 \hypertarget{seed-and-extend-with-data-structures}{%
 \subsection{Seed and extend with data structures}\label{seed-and-extend-with-data-structures}}
 
-In parallel to the development of new alignment algorithms, another way of substantially speeding up pairwise alignment is the so-called ``seed and extend'' method. This is based on the observation that a pairwise alignment most likely has several short subsequences that are almost identical in both sequences to align. These homologous subsequences can be set as aligned and used as seeds or anchors from which to align the rest of the sequence.
+In parallel to the development of new alignment algorithms, another way of substantially speeding up pairwise alignment is the so-called ``seed and extend'' method. This is based on the observation that a pairwise alignment most likely has several short subsequences that are almost identical in both sequences to align. These homologous subsequences, the seeds, can be used to initialize an alignment that can be extended in both directions with dynamic programming until we have a suitable alignment.
 
-This method can be used for 1) local alignment, where seeds indicate possible local matches which can be extended in local alignments; or 2) for global alignment where thse anchors allow to limit the number of cells to fill out in the dynamic programming matrix as shown in Figure \ref{fig:anchor}. In both cases this approach follows the divide and conquer philosophy and extending seeds or filling out the matrix between anchors can be done independently and in parallel.
+This method can be used for 1) local alignment, where seeds indicate possible local matches which can be extended in local alignments; or 2) for global alignment where the seeds anchor the dynamic programming matrix, limiting the number of cells to fill out as shown in Figure \ref{fig:anchor}. In both cases this approach follows the divide and conquer philosophy and extending seeds or filling out the matrix between anchors can be done independently and in parallel.
 
 \begin{figure}[h]
 \centering
@@ -888,52 +888,39 @@ This method can be used for 1) local alignment, where seeds indicate possible lo
 \label{fig:anchor}
 \end{figure}
 
-This type of approach can also be used for one-to-many local alignments: either trying to find homologies between a query sequence and a database of sequences, or find several local alignments in a large reference sequence like in read-mapping (see Section \ref{what-is-read-mapping}). In these many-to-one scenarios it is useful to index seeds in data structures that allow rapid querying and compact storage. This general framework has proven to be quite flexible with many different ways to pick seeds \autocite{sunChoosingBestHeuristic2006} and many different data structures to index them \autocite{liSurveySequenceAlignment2010}.
+This type of approach can also be used for many-to-one local alignments: either trying to find homologies between a query sequence and a database of sequences, or find several local alignments in a large reference sequence like in read-mapping (see Section \ref{what-is-read-mapping}). In these many-to-one scenarios it is useful to index seeds in data structures that allow rapid querying and compact storage. This general framework has proven to be quite flexible with many different ways to pick seeds \autocite{sunChoosingBestHeuristic2006} and many different data structures to index them \autocite{liSurveySequenceAlignment2010}.
 
-\hypertarget{hash-tables}{%
-\subsubsection{Hash tables}\label{hash-tables}}
+\hypertarget{blast-and-hash-tables}{%
+\subsubsection{BLAST and hash tables}\label{blast-and-hash-tables}}
+
+One of the early methods for very quick heuristic alignment is the Basic Local Alignment Search Tool, BLAST \autocite{altschulBasicLocalAlignment1990}. It is widely used to this day to find homologous sequences in large databases and as such is one of the most cited papers of all time with over 100,000 citations, and is available as a web service hosted by the NCBI (\url{https://blast.ncbi.nlm.nih.gov/Blast.cgi}). Over the year many different versions for different use cases have been developed like BLASTP for protein sequences or BLASTN and MEGABLAST for nucleic acid sequences.
+
+In our description of the BLAST algorithm we will have a target sequence and a query sequence that we wish to align.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  For each sequence we build a hash table that uses subsequences of length \(k\), called \(k\)\emph{-mers}, as keys and their position in the whole sequence as values.
+\item
+  The hash tables are then scanned to check for exact matches between \(k\)-mers in the target and query sequences, called \emph{hits.}
+\item
+  The positions of the hits in the target and query sequences are used to seed a candidate local alignment
+\item
+  The candidate local alignment are extended in both directions from the seed with the SW algorithm. If the alignment score reaches a value under a specified threshold, the alignment stop and the candidate is discarded
+\end{enumerate}
+
+By selecting the right size \(k\) of the seeds (by default 11 when aligning nucleotides, 3 when aligning amino acids) as well as the alignment score threshold, one can adjust the sensitivity of the method at the cost of runtime. In purpose
+
+It might not seem very useful to precompute the target hash-table for a single target. However, in practice BLAST is used to find local alignments between a query sequence and a very large number of target sequences; databases hosted by NCBI have hundreds of millions of target sequences (\url{https://ftp.ncbi.nlm.nih.gov/blast/db/}), at these scales pre-computing the target database saves an enormous amount of time.
+
+Over time, several improvements have been developed for BLAST, PSI-BLAST \autocite{altschulGappedBLASTPSIBLAST1997} iteratively refines the alignments, Gapped BLAST \autocite{altschulGappedBLASTPSIBLAST1997}and BLASTZ \autocite{schwartzHumanMouseAlignments2003} use spaced seeds, introduced in the PatternHunter method \autocite{maPatternHunterFasterMore2002}, corresponding to seeds where not all characters match, increasing sensitivity. By sorting the target sequences it is possible to stop earlier and gain some speed as well \autocite{edgarSearchClusteringOrders2010}.
+
+FASTA \autocite{pearsonImprovedToolsBiological1988}, an improvement on FASTP \autocite{lipmanRapidSensitiveProtein1985}, is another method for local alignment. Similarly to BLAST, \(k\)-mers for the target and query sequence are indexed in a hash table and hits are found between the two sequences. The \(k\)-mers used in the FASTA tool are usually shorter than for BLAST, so instead of initializing an alignment at a single hit, FASTA identifies regions in both sequences that have a high density of hits, keeping the best 10. These regions are then scored using matrices discussed in Section \ref{scoring-and-substitution-models} and high scoring regions are combined to build an approximate alignment. An optimal version of this alignment is then computed using the SW algorithm and banded dynamic programming.
+
+Both FASTA and BLAST are very fast, it takes only a couple of seconds to find approximate local alignments between 100 query sequences \autocite{saripellaBenchmarkingNextGeneration2016} in a database of over 80 million target sequences \autocite{finnPfamProteinFamilies2016}. Trying this task with standard SW or NW algorithms would be much slower \autocite{essoussiComparisonFourPairwise2007} but would yield more sensitive, optimal alignments \autocite{shpaerSensitivitySelectivityProtein1996}.
 
 \begin{itemize}
-\item
-  BLAST \autocite{altschulBasicLocalAlignment1990}
-
-  \begin{itemize}
-  \item
-    We break up our sequences into overlapping ``words'' i.e.~all possible short sub-sequences.
-  \item
-    Construct a database of words with positions in the reference sequence(s)
-  \item
-    Get list of words for your query sequence and generate possible ``hits'', i.e.~words that align with your query words with a score higher than a threshold.
-  \item
-    Scan the database for these generated words, if you find one it is a hit and these 2 words are a candidate position for a local alignment.
-  \item
-    extend the local alignment with SW in both directions from the hit to get a local alignment, stop extending if the alignment score gets too low.
-  \item
-    Plenty of variants: BLASTP for proteins, BLASTN or MEGABLAST for DNA, BLASTX for comparing DNA query to a protein database, PSI-BLAST that iteratively refines the alignment by building multiple alignments from the statistically significant alignments, learns a specific scoring matrix from this and starts over, other people have refined the heuristic for even faster seed prediction as in UBLAST \autocite{edgarSearchClusteringOrders2010}.
-  \item
-    It is important to note that it is a heuristic method, it has a decreased sensitivity to the SW algorithm which is optimal \autocite{shpaerSensitivitySelectivityProtein1996}, it is however much faster and can allow users to search for similarities among millions of sequences at once
-  \item
-    Particularly useful, one of the most cited papers in the world: quickly search for homologs of unknown sequences, \ldots{} available as a web service hosted by NCBI (\url{https://blast.ncbi.nlm.nih.gov/Blast.cgi}).
-  \end{itemize}
-\item
-  FASTA \autocite{pearsonImprovedToolsBiological1988}, derived from FASTP \autocite{lipmanRapidSensitiveProtein1985} which could not deal with gaps, preceded BLAST.
-
-  \begin{itemize}
-  \item
-    Similarly to BLAST, break query up into overlapping words
-  \item
-    Scan the library for exact-matching words to build up regions with high similarity (save 10 best regions)
-  \item
-    Score regions with a substitution matrix
-  \item
-    High scoring regions are combined to build an approximate alignment
-  \item
-    Highest scoring ungapped alignment is realigned with banded SW.
-  \end{itemize}
-\item
-  Both methods are very Fast, taking only a couple seconds to find approximate local alignments for 100 sequences \autocite{saripellaBenchmarkingNextGeneration2016} in a database of over 80 million sequences \autocite{finnPfamProteinFamilies2016}, with HMMs being quite slow. It is much faster to use these than to try to do the same task with SW or NW \autocite{essoussiComparisonFourPairwise2007}.
-\item
-  Both BLAST and FASTA compute a statistical p-value for a pairwise alignment and an expected number of random hits when scanning the database (E-value) \autocite{karlinMethodsAssessingStatistical1990a,mottAlignmentStatisticalSignificance2005}
 \item
   Minimap2 \autocite{liMinimap2PairwiseAlignment2018} minimizer (Figure \ref{fig:minimizers}) hash table
 \item
