@@ -23,7 +23,7 @@ Sequence alignments have many downstream use-cases. They are the basis of compar
 
 ### How to align two sequences ?
 
-There are two approaches for for pairwise alignment [@sungAlgorithmsBioinformaticsPractical2011]: *global alignment* where the entirety of both sequences is used when aligning them, and *local alignment* where we only seek to find regions in each sequence that are most similar to each other. Global alignment is used when the two sequences are expected to be quite similar (e.g. comparing two related proteins), whereas local alignment is mostly used when we expect the sequences to be fairly different but with highly similar regions, like genomes of two distantly related species that share a highly conserved region.
+There are two approaches for for pairwise alignment [@sungAlgorithmsBioinformaticsPractical2011]: *global alignment* where the entirety of both sequences is used when aligning them, and *local alignment* where we only seek to find regions in each sequence that are most similar to each other. Global alignment is used when the two sequences are expected to be quite similar (e.g. comparing two related proteins), whereas local alignment is mostly used when we expect the sequences to be fairly different but with highly similar regions, like genomes of two distantly related species that share a highly conserved region. Sometimes people refer to a *semi-global alignment*, where two sequences are globally aligned but indels at the end and beginning of each sequence are not penalized, this can be useful to detect overlap between tow sequences or align two sequences of very different sizes.
 
 The seminal method for global pairwise alignment was the Needleman-Wünsch algorithm [@needlemanGeneralMethodApplicable1970] based on a dynamic programming method. A decade later, the Smith-Waterman algorithm [@smithIdentificationCommonMolecular1981] was developed with similar ideas to perform local alignment. Both are still used today for pairwise alignment.
 
@@ -271,6 +271,32 @@ Finally another data structure that is widely used is the so-called FM index pro
 
 The seed and extend paradigm has been very useful in the field of genomics to deal with the scale of data and keep up with sequencing technologies, and some newer alignment algorithms like the WFA algorithm mentioned above, have even been used in such a context [@songAnchorWaveSensitiveAlignment2022].
 
+## The specificities of read-mapping {#the-specificities-of-read-mapping}
+
+Since read-mapping is special case of pairwise alignment and the focus of Chapter \@ref(HPC-paper), it stands to reason that we use this section to explain the stakes and challenges of mapping.
+
+### What is read-mapping ?
+
+Read-mapping, or sometimes read-alignment is the process of comparing a sequencing read to a reference sequence and finding the region in the reference homologous to the read. Sometimes, mappers only output the position where this region starts in the reference but more often than not, they output local or semi-global alignments between the reads and the reference.
+
+Read-mapping is often the first step of many bioinformatics analysis pipelines, and as such is often crucial. Therefore it makes sense that this is a very active field with many reviews [@ruffaloComparativeAnalysisAlgorithms2011; @schbathMappingReadsGenomic2012; @hatemBenchmarkingShortSequence2013; @canzarShortReadMapping2017; @alserTechnologyDictatesAlgorithms2021] and some benchmarking procedures [@brindaRNFGeneralFramework2016] to compare tools.
+
+From a technical and algorithmic standpoint, the task of mapping many sequencing reads to a single reference lends itself very well to the "divide and conquer" approach presented in Section \@ref(seed-and-extend-with-data-structures). Indexing the reference beforehand and using this index as a database to align can lead to substantial execution speed gains. As a matter of fact, many of the aligners presented in Section \@ref(seed-and-extend-with-data-structures) are actually read-mappers that can also do pairwise alignment. As such most implement the seed-and-extend paradigm with hash-tables like minimap2 [@liMinimap2PairwiseAlignment2018]; FM-indices like BWT-SW [@lamCompressedIndexingLocal2008], Bowtie2 [@langmeadFastGappedreadAlignment2012], BWA [@liFastAccurateShort2009], BWA-SW [@liFastAccurateLongread2010], BWA-MEM [@liAligningSequenceReads2013] and CUSHAW [@liuLongReadAlignment2012]; or even other divide and conquer approaches like Kart [@linKartDivideandconquerAlgorithm2017]. As sequencing technologies yield longer and more numerous reads, these heuristics become more important if we wish to be able to analyze this data, however this can be partly mitigated through hardware acceleration [@olsonHardwareAccelerationShort2012; @chenAcceleratingNextGeneration2014; @suzukiIntroducingDifferenceRecurrence2018; @zeniLOGANHighPerformanceGPUBased2020].
+
+### Challenges of read-mapping
+
+Read-mapping, as one might expect, is no easy task. The length of recent sequencing reads and their number are of course challenging, but algorithmic tricks described above can help. There are other aspects of sequencing data that make read-mapping as hard as it is.
+
+Sequencing technologies, although have improved over time can still make errors, and these errors can lower the homology between reads and reference making mapping harder [@gusfieldAlgorithmsStringsTrees1997]. This is particularly true of long reads where the error rate is higher, to mitigate that some specific long-read mappers take these errors into account when aligning a read to the reference. Some mappers are tied to a specific sequencing technology like BLASR [@chaissonMappingSingleMolecule2012] or lordFAST [@haghshenasLordFASTSensitiveFast2019] for PacBIO reads, and GraphMap [@sovicFastSensitiveMapping2016] for ONT. Some however, like NGMLR [@sedlazeckAccurateDetectionComplex2018], MashMap [@jainFastApproximateAlgorithm2018] or DuploMap [@prodanovSensitiveAlignmentUsing2020], are technology agnostic and can work with any type of long-read. This might not be needed forever though as sequencing accuracy is growing with every new generation of sequencers. Since homoplymer-linked indels are still common in long-read sequencing (cf. Section \@ref(homopolymers-and-long-reads)) ,many modern read-mappers, designed to work with long reads, include some option to use homopolymer compression (c.f. Section \@ref(hpc-trick)).
+
+While the technology producing reads can complicate the read-mapping tasks, some regions of the genome are intrinsically harder to map to. This is particularly true of repetitive regions like telomeres or centromeres [@alserTechnologyDictatesAlgorithms2021]. Repetitive regions mean a lot of potential homologous regions between a read and the reference, producing a lot of seed hits, increasing the runtime of the aligners and lowering the overall confidence in read-placement. Some tools have been developed specifically to deal with such regions. Winnowmap [@jainWeightedMinimizerSampling2020] and winnowmap2 [@jainLongreadMappingRepetitive2022], assign a weight to $k$-mers that might be sampled as minimizers. By under-weighting frequently appearing $k$-mers they can improve performance in repetitive regions. TandemMapper [@mikheenkoTandemToolsMappingLong2020] was designed to map long reads to the extra-long tandem repeats (ETRs) present in centromeric regions. It does not use minimzers, however like winnowmap it selects less frequent $k$-mers as potential seeds to deal with the repetitiveness and improve the mapping accuracy. Long reads are also much easier to map to repetitive regions since they can span over them, or overlap with more complex regions [@pollardLongReadsTheir2018; @logsdonLongreadHumanGenome2020].
+
+Some challenges however are linked to implementation rather than sequencing data. Since producing an base-per-base alignment of reads to reference is not always needed in the mapping step, some efforts have been done to provide quality scores to given mappings that do not rely on computing an alignment. This score, called mapping quality, corresponds to $-10\log_{10}(p)$, usually rounded to the nearest integer, where $p$ corresponds to the probability of the read being mismapped. It was introduced in the MAQ software [@liMappingShortDNA2008] but has been implemented in many read-mappers like BWA , bowtie2 [@langmeadFastGappedreadAlignment2012] or minimap2 [@liMinimap2PairwiseAlignment2018] since it was added as part of the widely-used SAM file format specification [@liSequenceAlignmentMap2009a].
+
+While the mapping quality score is standardized each read-mapper has a different way of estimating $p$ the mismap probability. This creates differences in the reported qualities: *e.g.* the maximum quality that bowtie2 can assign is 42, BWA's is 37 and minimap's is 60 [@UnderstandingMAPQScores]. This of course means that comparing mapping quality values between read-mappers is not necessarily meaningful. Furthermore in some cases this mapping quality is not very reflective of the alignment accuracy [@ruffaloComparativeAnalysisAlgorithms2011], as such alternative approaches have been explored: through a new genome mappability score [@leeGenomicDarkMatter2012], simulations [@langmeadTandemSimulationFramework2017] or even machine learning [@ruffaloAccurateEstimationShort2012].
+
+In conclusion, as a crucial step in many bioinformatics pipelines, read-mapping is a markedly active field with a lot of work in increasing mapping accuracy and speeding up alignment. However, despite all this work, some challenges remain. Further improving mapping is possible and doing so could result in more accurate downstream analyses and avoid drawing some erroneous conclusions.
+
 ## Multiple sequence alignment
 
 When we need to compare a lot of individuals together we can do MSA, essential task in many bioinformatics analyses [@russellMultipleSequenceAlignment2014].
@@ -345,45 +371,5 @@ Example of COVID where homology is high so we can get away with aligning pairwis
     -   SAGA [@notredameSAGASequenceAlignment1996], VGDA [@nazninVerticalDecompositionGenetic2011], GAPAM [@nazninProgressiveAlignmentMethod2012]
 
 -   recently: regressive method [@garrigaLargeMultipleSequence2019] root to leaf allows to align a very large number of sequences: 1.4 million!
-
-## The specificities of read-mapping {#the-specificities-of-read-mapping}
-
-Huge review of mapping in [@alserTechnologyDictatesAlgorithms2021]
-
-### What is read-mapping ?
-
-Task: locally/semi-globally align independent sequencing reads to a reference genome.
-
-Plenty of aligners both for short reads (reviews [@schbathMappingReadsGenomic2012; @hatemBenchmarkingShortSequence2013; @canzarShortReadMapping2017]) and long-reads ([@liMinimap2PairwiseAlignment2018]. Active field and there are benchmarks [@brindaRNFGeneralFramework2016] and reviews [@alserTechnologyDictatesAlgorithms2021; @ruffaloComparativeAnalysisAlgorithms2011].
-
--   Mapping quality:
-    -   Intro and definition, quite a loosely defined term.
-
-        -   Different definitions/implementations ?
-
-    -   Mapping quality from tandem simulation [@langmeadTandemSimulationFramework2017]
--   Technical aspects to speed up, since we usually have a couple refs and and many many query reads, the index strategy described earlier is particularly well suited:
-    -   hash tables: [@liMinimap2PairwiseAlignment2018]
-
-    -   FM index / BWT: BWT-SW [@lamCompressedIndexingLocal2008], Bowtie 2 [@langmeadFastGappedreadAlignment2012], BWA, BWA-SW [@liFastAccurateShort2009; @liFastAccurateLongread2010], BWA-MEM [@liAligningSequenceReads2013] and CUSHAW [@liuLongReadAlignment2012].
--   Divide and conquer as well: [@linKartDivideandconquerAlgorithm2017]
--   These heuristics also become more and more needed as sequencing technologies yield longer and longer reads.
--   Also hardware acceleration for short [@olsonHardwareAccelerationShort2012] and long [@chenAcceleratingNextGeneration2014; @suzukiIntroducingDifferenceRecurrence2018; @zeniLOGANHighPerformanceGPUBased2020] reads.
-
-### Challenges of read-mapping
-
--   low homology / sequencing errors... make mapping and other tasks hard [@gusfieldAlgorithmsStringsTrees1997]
-    -   Particularly with long reads since sequencing error rate is higher: specific long read mappers that take this into account:
-
-        -   PB: BLASR [@chaissonMappingSingleMolecule2012], lordFAST [@haghshenasLordFASTSensitiveFast2019]
-
-        -   ONT: GraphMap [@sovicFastSensitiveMapping2016]
-
-        -   Both: NGMLR [@sedlazeckAccurateDetectionComplex2018], MashMap [@jainFastApproximateAlgorithm2018], DuploMap [@prodanovSensitiveAlignmentUsing2020]
--   Repetitive regions (centromeres, telomeres) make it hard to map [@alserTechnologyDictatesAlgorithms2021]. Specific tools have been developed for this:
-    -   winnowmap [@jainWeightedMinimizerSampling2020], winnowmap2 [@jainLongreadMappingRepetitive2022]
-
-    -   tandemtools [@mikheenkoTandemToolsMappingLong2020] for tandem repeats.
--   homopolymers can also be a problem, so HPC is implemented in mappers *(c.f.* \@ref(hpc-trick)*)*
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
