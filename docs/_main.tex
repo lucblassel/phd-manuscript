@@ -998,71 +998,33 @@ One of the most widely used multiple sequence alignment approach is progressive 
 \label{fig:progAlign}
 \end{figure}
 
-This method is a good heuristic as the guide tree can capture complex relationships between sequences. However in many cases a matrix of pairwise distances is needed to compute the tree, if we choose to compute the edit distance we need to do \(n(n-1)/2\) pairwise alignments to get this matrix, with a large number of long sequences this is not possible. Therefore, computing of distance matrices through alignment-free methods, usually based on \(k\)-mers, is often used as input to the tree building method \autocite{jonesRapidGenerationMutation1992,blaisdellMeasureSimilaritySets1986}.
+In many cases a matrix of pairwise distances is needed to construct the guide tree, if we choose the edit distance, \(n(n-1)/2\) pairwise alignments are needed to get this matrix. With a large number of sequences, or long sequences this is not possible in a reasonable amount of time. Therefore, computing of distance matrices through alignment-free methods, usually based on \(k\)-mers, is often used as input to the tree building method \autocite{jonesRapidGenerationMutation1992,blaisdellMeasureSimilaritySets1986}.
 
-guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. \autocite{fengProgressiveSequenceAlignment1987} Main MSA method.
+Tree reconstruction methods from the distance matrix like UPGMA \autocite{gronauOptimalImplementationsUPGMA2007} or neighbor-joining \autocite{saitouNeighborjoiningMethodNew1987} can be quite time consuming when dealing with a large set of sequences. To counteract this, some multiple sequence aligners also use heuristic methods to approximate a guide tree. MAFFT \autocite{katohMAFFTNovelMethod2002} for example uses PartTree \autocite{katohPartTreeAlgorithmBuild2007} method to approximate the tree, and clustal Omega \autocite{sieversFastScalableGeneration2011} uses an embedding method \autocite{blackshieldsSequenceEmbeddingFast2010} to do so.
 
-Problems -\textgreater{} keeps gaps and if bad alignment at first steps error propagates (``once a gap, always a gap'' \autocite{fengProgressiveSequenceAlignment1987}).
+Although this method is a good heuristic as the guide tree can capture complex relationships between sequences, progressive alignment can still suffer from problems similar to center start alignment: mainly gap propagation. If an early alignment is erroneous and introduces spurious gaps, then these are propagated throughout the MSA. As it is said in the seminal progressive alignment paper: ``once a gap, always a gap'' \autocite{fengProgressiveSequenceAlignment1987}. Iterative refinement of the MSA \autocite{russellMultipleSequenceAlignment2014} was proposed as a solution to this problem. A possible approach is to recompute a guide tree from the alignment and run the whole progressive alignment procedure on the new guide tree, however this is very time consuming and not practical with the large sequence sets available today. Therefore the iterative procedure consists of taking an MSA obtained through progressive alignment and splitting it horizontally in two alignments of \(n/2\) sequences each. In each half, the sites composed exclusively of gaps are removed and the two alignments merged through profile alignment. After the realignment of both halves, a scoring metric is computed and while this metric improves, repeat the previous steps. There are several of these metrics, the most commonly used is the probably the sum of pairs score \autocite{altschulGapCostsMultiple1989} or its weighted variant \autocite{altschulWeightsDataRelated1989}, however there exist other scores like log-odds and correlation \autocite{edgarComparisonScoringFunctions2004} or a consistency based score \autocite{notredameCOFFEEObjectiveFunction1998}.
 
-In order to curtail this problem we have iterative refinement \autocite{russellMultipleSequenceAlignment2014}:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  create MSA (e.g.~progressive)
-\item
-  divide MSA into 2 groups + remove columns with only gaps
-\item
-  realign with profile alignment
-\item
-  Redo 2+3 until no improvement is made, according to some scoring function (Weighted sum-of-pair \autocite{altschulWeightsDataRelated1989}, or others like log-odds, correlation \autocite{edgarComparisonScoringFunctions2004} or consistency \autocite{notredameCOFFEEObjectiveFunction1998})
-\end{enumerate}
-
-Some of the most used MSA software uses these methods of progressive/iterative refinement:
-
-\begin{itemize}
-\item
-  CLUSTAL-W \autocite{thompsonCLUSTALImprovingSensitivity1994} and CLUSTAL-X \autocite{thompsonCLUSTALWindowsInterface1997}
-\item
-  T-Coffee \autocite{notredameTcoffeeNovelMethod2000}
-\item
-  MUSCLE \autocite{edgarMUSCLEMultipleSequence2004a,edgarMUSCLEMultipleSequence2004}
-\item
-  MAFFT \autocite{katohMAFFTNovelMethod2002}, which uses Fast Fourier transforms to make the guide tree
-\item
-  ProbCons \autocite{doProbConsProbabilisticConsistencybased2005}
-\end{itemize}
-
-Different strenghts/weaknesses so many reviews and benchmarks to make a choice \autocite{notredameRecentEvolutionsMultiple2007,notredameRecentProgressMultiple2002,edgarMultipleSequenceAlignment2006,paisAssessingEfficiencyMultiple2014,thompsonBAliBASEBenchmarkAlignment1999}
+Most of the widely used multiple sequence aligners some form of progressive alignment with iterative refinement: T-Coffee \autocite{notredameTcoffeeNovelMethod2000} which uses a consistency score for refinement, MUSCLE \autocite{edgarMUSCLEMultipleSequence2004a,edgarMUSCLEMultipleSequence2004}, MAFFT \autocite{katohMAFFTNovelMethod2002}, ProbCons \autocite{doProbConsProbabilisticConsistencybased2005} which uses a formal HMM to compute consistency and the various CLUSTAL incarnations \autocite{thompsonCLUSTALImprovingSensitivity1994,thompsonCLUSTALWindowsInterface1997,sieversFastScalableGeneration2011} which are some of the most cited papers of all times.
 
 \hypertarget{other-methods}{%
 \subsection{Other methods}\label{other-methods}}
 
-\begin{itemize}
-\tightlist
-\item
-  HMMs: profile-profile, seq-profile
-\end{itemize}
+While the progressive alignment algorithm has been at the root of some of the most widely used alignment software, other methods to produce MSAs have been explored over the years.
 
-HMM method similar performance to clustal-w \autocite{eddyMultipleAlignmentUsing}, HHMer \autocite{finnHMMERWebServer2011}, MSAProbs \autocite{liuMSAProbsMultipleSequence2010} and COVID-align \autocite{lemoineCOVIDAlignAccurateOnline2020}
+One common other method for creating multiple alignment, wither through profile-profile alignment or sequence-profile alignments are HMMs. Several tools HMMs to generate an alignment such as HHMer \autocite{finnHMMERWebServer2011}, MSAProbs \autocite{liuMSAProbsMultipleSequence2010} or COVID-align \autocite{lemoineCOVIDAlignAccurateOnline2020}. In some cases, the HMM based approach has similar performance to clustalW \autocite{eddyMultipleAlignmentUsing}.
 
-Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign \autocite{aksamentovNextcladeCladeAssignment2021}
+Other methods have focused on speeding up the dynamic programming part of aligning multiple sequences. This can be done using simulated annealing \autocite{kimMultipleSequenceAlignment1994,ishikawaMultipleSequenceAlignment1993,huoSimulatedAnnealingAlgorithm2007}, which can also be used to speed up HMM training \autocite{eddyMultipleAlignmentUsing}. Genetic algorithms have also been used to construct MSAs \autocite{chowdhuryReviewMultipleSequence2017}, increasing the speed at which this is possible \autocite{zhangGeneticAlgorithmMultiple1997}. Several tools use genetic algorithms like VGDA \autocite{nazninVerticalDecompositionGenetic2011}, GAPAM \autocite{nazninProgressiveAlignmentMethod2012} and SAGA \autocite{notredameSAGASequenceAlignment1996}.
 
-\begin{itemize}
-\item
-  Simulated annealing to speed up DP \autocite{kimMultipleSequenceAlignment1994,ishikawaMultipleSequenceAlignment1993,huoSimulatedAnnealingAlgorithm2007}
-\item
-  Genetic algorithm, review \autocite{chowdhuryReviewMultipleSequence2017}, can speed things up \autocite{zhangGeneticAlgorithmMultiple1997}
+WIth the recent focus on SARS-CoV 2, some specific multiple sequence aligners have been developed to create very large multiple sequence alignments. They often take advantage of the fact that this virus mutates quite slowly meaning that most of the available sequences have a high homology. Furthermore as the epidemic was tracked in near real time since it's beginning, we know the original sequence at the root of the pandemic. Leveraging this knowledge it is possible to build a profile from aligning new sequences to the ancestral sequence and aligning new sequences to this profile using HMMs like what is done in COVID-align \autocite{lemoineCOVIDAlignAccurateOnline2020}. The NextAlign \autocite{aksamentovNextcladeCladeAssignment2021} software even forgoes aligning to a profile and creates massive MSAs (millions of sequences) by aligning new sequences to the ancestral sequence using banded SW alignment, the gap penalties are enriched with biological knowledge and dependent on the position within the sequence.
 
-  \begin{itemize}
-  \tightlist
-  \item
-    SAGA \autocite{notredameSAGASequenceAlignment1996}, VGDA \autocite{nazninVerticalDecompositionGenetic2011}, GAPAM \autocite{nazninProgressiveAlignmentMethod2012}
-  \end{itemize}
-\item
-  recently: regressive method \autocite{garrigaLargeMultipleSequence2019} root to leaf allows to align a very large number of sequences: 1.4 million!
-\end{itemize}
+Recently, Garriga \emph{et al.} introduced the regressive alignment method \autocite{garrigaLargeMultipleSequence2019}, where instead of traversing a guide tree from leaf to root, it goes the other way, aligning the more distant sequences first before merging MSAs. Using this approach they managed to create an MSA of 1.4 million sequences with improved accuracy over progressive methods.
+
+Since multiple sequence alignments are so useful in comparative biology, and that there is such a vast array of methods to construct them it stands to reason that are many resources to help practitioners make their choice. There are many reviews and benchmarking datasets and procedures to do so \autocite{notredameRecentEvolutionsMultiple2007,notredameRecentProgressMultiple2002,edgarMultipleSequenceAlignment2006,paisAssessingEfficiencyMultiple2014,thompsonBAliBASEBenchmarkAlignment1999}.
+
+\hypertarget{conclusion-1}{%
+\section{Conclusion}\label{conclusion-1}}
+
+?
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
@@ -2037,8 +1999,8 @@ Initially these approaches were based on models like decision trees \autocite{be
 
 By analyzing the important features used by trained models to predict resistance, it is possible to find features, corresponding to mutations, that are useful for predicting, and therefore likely associated with, drug resistance (see Chapter \ref{HIV-paper}). With the improvement in methods to interpret and extract features from complex models such as deep neural networks, this approach has been used with deep learning models \autocite{steinerDrugResistancePrediction2020a}. This novel way of finding resistance associated mutations has the potential to uncover complex mutational effects that simple association testing cannot.
 
-\hypertarget{conclusion-1}{%
-\section{Conclusion}\label{conclusion-1}}
+\hypertarget{conclusion-2}{%
+\section{Conclusion}\label{conclusion-2}}
 
 Viruses are surprisingly complex in light of their apparent simplicity. They are ubiquitous and present an extreme diversity. Whether they are pathogenic or not, the role of viruses in a myriad of processes and niches make them interesting and important to study. The sequences of these viruses, although small can be very useful for evolutionary as well as clinical analyses.
 

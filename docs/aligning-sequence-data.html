@@ -162,6 +162,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.4.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#progressive-alignment"><i class="fa fa-check"></i><b>2.4.1</b> Progressive alignment</a></li>
 <li class="chapter" data-level="2.4.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#other-methods"><i class="fa fa-check"></i><b>2.4.2</b> Other methods</a></li>
 </ul></li>
+<li class="chapter" data-level="2.5" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#conclusion-1"><i class="fa fa-check"></i><b>2.5</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="HPC-paper.html"><a href="HPC-paper.html"><i class="fa fa-check"></i><b>3</b> Contribution 1: Improving read alignment by exploring a sequence transformation space</a>
 <ul>
@@ -237,7 +238,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.3" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#consequences-of-resistance-on-global-health"><i class="fa fa-check"></i><b>5.3.3</b> Consequences of resistance on global health</a></li>
 <li class="chapter" data-level="5.3.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#finding-drms"><i class="fa fa-check"></i><b>5.3.4</b> Finding DRMS </a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#conclusion-1"><i class="fa fa-check"></i><b>5.4</b> Conclusion</a></li>
+<li class="chapter" data-level="5.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#conclusion-2"><i class="fa fa-check"></i><b>5.4</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="HIV-paper.html"><a href="HIV-paper.html"><i class="fa fa-check"></i><b>6</b> Contribution 2: Inferring mutation roles from sequence alignments using machine learning</a>
 <ul>
@@ -533,43 +534,25 @@ Figure 2.6: <em>Overview of the progressive alignment process.</em>
 A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>
 </p>
 </div>
-<p>This method is a good heuristic as the guide tree can capture complex relationships between sequences. However in many cases a matrix of pairwise distances is needed to compute the tree, if we choose to compute the edit distance we need to do <span class="math inline">\(n(n-1)/2\)</span> pairwise alignments to get this matrix, with a large number of long sequences this is not possible. Therefore, computing of distance matrices through alignment-free methods, usually based on <span class="math inline">\(k\)</span>-mers, is often used as input to the tree building method<span class="citation"><sup><a href="#ref-jonesRapidGenerationMutation1992" role="doc-biblioref">272</a>,<a href="#ref-blaisdellMeasureSimilaritySets1986" role="doc-biblioref">273</a></sup></span>.</p>
-<p>guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder.<span class="citation"><sup><a href="#ref-fengProgressiveSequenceAlignment1987" role="doc-biblioref">271</a></sup></span> Main MSA method.</p>
-<p>Problems -&gt; keeps gaps and if bad alignment at first steps error propagates (“once a gap, always a gap”<span class="citation"><sup><a href="#ref-fengProgressiveSequenceAlignment1987" role="doc-biblioref">271</a></sup></span>).</p>
-<p>In order to curtail this problem we have iterative refinement<span class="citation"><sup><a href="#ref-russellMultipleSequenceAlignment2014" role="doc-biblioref">267</a></sup></span>:</p>
-<ol style="list-style-type: decimal">
-<li>create MSA (e.g. progressive)</li>
-<li>divide MSA into 2 groups + remove columns with only gaps</li>
-<li>realign with profile alignment</li>
-<li>Redo 2+3 until no improvement is made, according to some scoring function (Weighted sum-of-pair<span class="citation"><sup><a href="#ref-altschulWeightsDataRelated1989" role="doc-biblioref">274</a></sup></span>, or others like log-odds, correlation<span class="citation"><sup><a href="#ref-edgarComparisonScoringFunctions2004" role="doc-biblioref">275</a></sup></span> or consistency<span class="citation"><sup><a href="#ref-notredameCOFFEEObjectiveFunction1998" role="doc-biblioref">276</a></sup></span>)</li>
-</ol>
-<p>Some of the most used MSA software uses these methods of progressive/iterative refinement:</p>
-<ul>
-<li><p>CLUSTAL-W<span class="citation"><sup><a href="#ref-thompsonCLUSTALImprovingSensitivity1994" role="doc-biblioref">277</a></sup></span> and CLUSTAL-X<span class="citation"><sup><a href="#ref-thompsonCLUSTALWindowsInterface1997" role="doc-biblioref">278</a></sup></span></p></li>
-<li><p>T-Coffee<span class="citation"><sup><a href="#ref-notredameTcoffeeNovelMethod2000" role="doc-biblioref">279</a></sup></span></p></li>
-<li><p>MUSCLE<span class="citation"><sup><a href="#ref-edgarMUSCLEMultipleSequence2004a" role="doc-biblioref">280</a>,<a href="#ref-edgarMUSCLEMultipleSequence2004" role="doc-biblioref">281</a></sup></span></p></li>
-<li><p>MAFFT<span class="citation"><sup><a href="#ref-katohMAFFTNovelMethod2002" role="doc-biblioref">198</a></sup></span>, which uses Fast Fourier transforms to make the guide tree</p></li>
-<li><p>ProbCons<span class="citation"><sup><a href="#ref-doProbConsProbabilisticConsistencybased2005" role="doc-biblioref">282</a></sup></span></p></li>
-</ul>
-<p>Different strenghts/weaknesses so many reviews and benchmarks to make a choice<span class="citation"><sup><a href="#ref-notredameRecentEvolutionsMultiple2007" role="doc-biblioref">283</a>–<a href="#ref-thompsonBAliBASEBenchmarkAlignment1999" role="doc-biblioref">287</a></sup></span></p>
+<p>In many cases a matrix of pairwise distances is needed to construct the guide tree, if we choose the edit distance, <span class="math inline">\(n(n-1)/2\)</span> pairwise alignments are needed to get this matrix. With a large number of sequences, or long sequences this is not possible in a reasonable amount of time. Therefore, computing of distance matrices through alignment-free methods, usually based on <span class="math inline">\(k\)</span>-mers, is often used as input to the tree building method<span class="citation"><sup><a href="#ref-jonesRapidGenerationMutation1992" role="doc-biblioref">272</a>,<a href="#ref-blaisdellMeasureSimilaritySets1986" role="doc-biblioref">273</a></sup></span>.</p>
+<p>Tree reconstruction methods from the distance matrix like UPGMA<span class="citation"><sup><a href="#ref-gronauOptimalImplementationsUPGMA2007" role="doc-biblioref">274</a></sup></span> or neighbor-joining<span class="citation"><sup><a href="#ref-saitouNeighborjoiningMethodNew1987" role="doc-biblioref">275</a></sup></span> can be quite time consuming when dealing with a large set of sequences. To counteract this, some multiple sequence aligners also use heuristic methods to approximate a guide tree. MAFFT<span class="citation"><sup><a href="#ref-katohMAFFTNovelMethod2002" role="doc-biblioref">198</a></sup></span> for example uses PartTree<span class="citation"><sup><a href="#ref-katohPartTreeAlgorithmBuild2007" role="doc-biblioref">276</a></sup></span> method to approximate the tree, and clustal Omega<span class="citation"><sup><a href="#ref-sieversFastScalableGeneration2011" role="doc-biblioref">277</a></sup></span> uses an embedding method<span class="citation"><sup><a href="#ref-blackshieldsSequenceEmbeddingFast2010" role="doc-biblioref">278</a></sup></span> to do so.</p>
+<p>Although this method is a good heuristic as the guide tree can capture complex relationships between sequences, progressive alignment can still suffer from problems similar to center start alignment: mainly gap propagation. If an early alignment is erroneous and introduces spurious gaps, then these are propagated throughout the MSA. As it is said in the seminal progressive alignment paper: “once a gap, always a gap”<span class="citation"><sup><a href="#ref-fengProgressiveSequenceAlignment1987" role="doc-biblioref">271</a></sup></span>. Iterative refinement of the MSA<span class="citation"><sup><a href="#ref-russellMultipleSequenceAlignment2014" role="doc-biblioref">267</a></sup></span> was proposed as a solution to this problem. A possible approach is to recompute a guide tree from the alignment and run the whole progressive alignment procedure on the new guide tree, however this is very time consuming and not practical with the large sequence sets available today. Therefore the iterative procedure consists of taking an MSA obtained through progressive alignment and splitting it horizontally in two alignments of <span class="math inline">\(n/2\)</span> sequences each. In each half, the sites composed exclusively of gaps are removed and the two alignments merged through profile alignment. After the realignment of both halves, a scoring metric is computed and while this metric improves, repeat the previous steps. There are several of these metrics, the most commonly used is the probably the sum of pairs score<span class="citation"><sup><a href="#ref-altschulGapCostsMultiple1989" role="doc-biblioref">279</a></sup></span> or its weighted variant<span class="citation"><sup><a href="#ref-altschulWeightsDataRelated1989" role="doc-biblioref">280</a></sup></span>, however there exist other scores like log-odds and correlation<span class="citation"><sup><a href="#ref-edgarComparisonScoringFunctions2004" role="doc-biblioref">281</a></sup></span> or a consistency based score<span class="citation"><sup><a href="#ref-notredameCOFFEEObjectiveFunction1998" role="doc-biblioref">282</a></sup></span>.</p>
+<p>Most of the widely used multiple sequence aligners some form of progressive alignment with iterative refinement: T-Coffee<span class="citation"><sup><a href="#ref-notredameTcoffeeNovelMethod2000" role="doc-biblioref">283</a></sup></span> which uses a consistency score for refinement, MUSCLE<span class="citation"><sup><a href="#ref-edgarMUSCLEMultipleSequence2004a" role="doc-biblioref">284</a>,<a href="#ref-edgarMUSCLEMultipleSequence2004" role="doc-biblioref">285</a></sup></span>, MAFFT<span class="citation"><sup><a href="#ref-katohMAFFTNovelMethod2002" role="doc-biblioref">198</a></sup></span>, ProbCons<span class="citation"><sup><a href="#ref-doProbConsProbabilisticConsistencybased2005" role="doc-biblioref">286</a></sup></span> which uses a formal HMM to compute consistency and the various CLUSTAL incarnations<span class="citation"><sup><a href="#ref-sieversFastScalableGeneration2011" role="doc-biblioref">277</a>,<a href="#ref-thompsonCLUSTALImprovingSensitivity1994" role="doc-biblioref">287</a>,<a href="#ref-thompsonCLUSTALWindowsInterface1997" role="doc-biblioref">288</a></sup></span> which are some of the most cited papers of all times.</p>
 </div>
 <div id="other-methods" class="section level3 hasAnchor" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Other methods<a href="aligning-sequence-data.html#other-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>HMMs: profile-profile, seq-profile</li>
-</ul>
-<p>HMM method similar performance to clustal-w<span class="citation"><sup><a href="#ref-eddyMultipleAlignmentUsing" role="doc-biblioref">288</a></sup></span>, HHMer<span class="citation"><sup><a href="#ref-finnHMMERWebServer2011" role="doc-biblioref">196</a></sup></span>, MSAProbs<span class="citation"><sup><a href="#ref-liuMSAProbsMultipleSequence2010" role="doc-biblioref">289</a></sup></span> and COVID-align<span class="citation"><sup><a href="#ref-lemoineCOVIDAlignAccurateOnline2020" role="doc-biblioref">290</a></sup></span></p>
-<p>Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign<span class="citation"><sup><a href="#ref-aksamentovNextcladeCladeAssignment2021" role="doc-biblioref">291</a></sup></span></p>
-<ul>
-<li><p>Simulated annealing to speed up DP<span class="citation"><sup><a href="#ref-kimMultipleSequenceAlignment1994" role="doc-biblioref">292</a>–<a href="#ref-huoSimulatedAnnealingAlgorithm2007" role="doc-biblioref">294</a></sup></span></p></li>
-<li><p>Genetic algorithm, review<span class="citation"><sup><a href="#ref-chowdhuryReviewMultipleSequence2017" role="doc-biblioref">295</a></sup></span>, can speed things up<span class="citation"><sup><a href="#ref-zhangGeneticAlgorithmMultiple1997" role="doc-biblioref">296</a></sup></span></p>
-<ul>
-<li>SAGA<span class="citation"><sup><a href="#ref-notredameSAGASequenceAlignment1996" role="doc-biblioref">297</a></sup></span>, VGDA<span class="citation"><sup><a href="#ref-nazninVerticalDecompositionGenetic2011" role="doc-biblioref">298</a></sup></span>, GAPAM<span class="citation"><sup><a href="#ref-nazninProgressiveAlignmentMethod2012" role="doc-biblioref">299</a></sup></span></li>
-</ul></li>
-<li><p>recently: regressive method<span class="citation"><sup><a href="#ref-garrigaLargeMultipleSequence2019" role="doc-biblioref">300</a></sup></span> root to leaf allows to align a very large number of sequences: 1.4 million!</p></li>
-</ul>
-
+<p>While the progressive alignment algorithm has been at the root of some of the most widely used alignment software, other methods to produce MSAs have been explored over the years.</p>
+<p>One common other method for creating multiple alignment, wither through profile-profile alignment or sequence-profile alignments are HMMs. Several tools HMMs to generate an alignment such as HHMer<span class="citation"><sup><a href="#ref-finnHMMERWebServer2011" role="doc-biblioref">196</a></sup></span>, MSAProbs<span class="citation"><sup><a href="#ref-liuMSAProbsMultipleSequence2010" role="doc-biblioref">289</a></sup></span> or COVID-align<span class="citation"><sup><a href="#ref-lemoineCOVIDAlignAccurateOnline2020" role="doc-biblioref">290</a></sup></span>. In some cases, the HMM based approach has similar performance to clustalW<span class="citation"><sup><a href="#ref-eddyMultipleAlignmentUsing" role="doc-biblioref">291</a></sup></span>.</p>
+<p>Other methods have focused on speeding up the dynamic programming part of aligning multiple sequences. This can be done using simulated annealing<span class="citation"><sup><a href="#ref-kimMultipleSequenceAlignment1994" role="doc-biblioref">292</a>–<a href="#ref-huoSimulatedAnnealingAlgorithm2007" role="doc-biblioref">294</a></sup></span>, which can also be used to speed up HMM training<span class="citation"><sup><a href="#ref-eddyMultipleAlignmentUsing" role="doc-biblioref">291</a></sup></span>. Genetic algorithms have also been used to construct MSAs<span class="citation"><sup><a href="#ref-chowdhuryReviewMultipleSequence2017" role="doc-biblioref">295</a></sup></span>, increasing the speed at which this is possible<span class="citation"><sup><a href="#ref-zhangGeneticAlgorithmMultiple1997" role="doc-biblioref">296</a></sup></span>. Several tools use genetic algorithms like VGDA<span class="citation"><sup><a href="#ref-nazninVerticalDecompositionGenetic2011" role="doc-biblioref">297</a></sup></span>, GAPAM<span class="citation"><sup><a href="#ref-nazninProgressiveAlignmentMethod2012" role="doc-biblioref">298</a></sup></span> and SAGA<span class="citation"><sup><a href="#ref-notredameSAGASequenceAlignment1996" role="doc-biblioref">299</a></sup></span>.</p>
+<p>WIth the recent focus on SARS-CoV 2, some specific multiple sequence aligners have been developed to create very large multiple sequence alignments. They often take advantage of the fact that this virus mutates quite slowly meaning that most of the available sequences have a high homology. Furthermore as the epidemic was tracked in near real time since it’s beginning, we know the original sequence at the root of the pandemic. Leveraging this knowledge it is possible to build a profile from aligning new sequences to the ancestral sequence and aligning new sequences to this profile using HMMs like what is done in COVID-align<span class="citation"><sup><a href="#ref-lemoineCOVIDAlignAccurateOnline2020" role="doc-biblioref">290</a></sup></span>. The NextAlign<span class="citation"><sup><a href="#ref-aksamentovNextcladeCladeAssignment2021" role="doc-biblioref">300</a></sup></span> software even forgoes aligning to a profile and creates massive MSAs (millions of sequences) by aligning new sequences to the ancestral sequence using banded SW alignment, the gap penalties are enriched with biological knowledge and dependent on the position within the sequence.</p>
+<p>Recently, Garriga <em>et al.</em> introduced the regressive alignment method<span class="citation"><sup><a href="#ref-garrigaLargeMultipleSequence2019" role="doc-biblioref">301</a></sup></span>, where instead of traversing a guide tree from leaf to root, it goes the other way, aligning the more distant sequences first before merging MSAs. Using this approach they managed to create an MSA of 1.4 million sequences with improved accuracy over progressive methods.</p>
+<p>Since multiple sequence alignments are so useful in comparative biology, and that there is such a vast array of methods to construct them it stands to reason that are many resources to help practitioners make their choice. There are many reviews and benchmarking datasets and procedures to do so<span class="citation"><sup><a href="#ref-notredameRecentEvolutionsMultiple2007" role="doc-biblioref">302</a>–<a href="#ref-thompsonBAliBASEBenchmarkAlignment1999" role="doc-biblioref">306</a></sup></span>.</p>
 </div>
+</div>
+<div id="conclusion-1" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Conclusion<a href="aligning-sequence-data.html#conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>?</p>
+
 </div>
 </div>
 <h3>References</h3>
@@ -1009,41 +992,50 @@ A) sequences to align B) guide tree constructed from distances C) Alignment step
 <div id="ref-blaisdellMeasureSimilaritySets1986" class="csl-entry">
 <div class="csl-left-margin">273. </div><div class="csl-right-inline">Blaisdell, B. E. <a href="https://doi.org/10.1073/pnas.83.14.5155">A measure of the similarity of sets of sequences not requiring sequence alignment.</a> <em>Proceedings of the National Academy of Sciences</em> <strong>83</strong>, 5155–5159 (1986).</div>
 </div>
+<div id="ref-gronauOptimalImplementationsUPGMA2007" class="csl-entry">
+<div class="csl-left-margin">274. </div><div class="csl-right-inline">Gronau, I. &amp; Moran, S. <a href="https://doi.org/10.1016/j.ipl.2007.07.002">Optimal implementations of UPGMA and other common clustering algorithms</a>. <em>Information Processing Letters</em> <strong>104</strong>, 205–210 (2007).</div>
+</div>
+<div id="ref-saitouNeighborjoiningMethodNew1987" class="csl-entry">
+<div class="csl-left-margin">275. </div><div class="csl-right-inline">Saitou, N. &amp; Nei, M. <a href="https://doi.org/10.1093/oxfordjournals.molbev.a040454">The neighbor-joining method: A new method for reconstructing phylogenetic trees.</a> <em>Molecular Biology and Evolution</em> <strong>4</strong>, 406–425 (1987).</div>
+</div>
+<div id="ref-katohPartTreeAlgorithmBuild2007" class="csl-entry">
+<div class="csl-left-margin">276. </div><div class="csl-right-inline">Katoh, K. &amp; Toh, H. <a href="https://doi.org/10.1093/bioinformatics/btl592">PartTree: An algorithm to build an approximate tree from a large number of unaligned sequences</a>. <em>Bioinformatics</em> <strong>23</strong>, 372–374 (2007).</div>
+</div>
+<div id="ref-sieversFastScalableGeneration2011" class="csl-entry">
+<div class="csl-left-margin">277. </div><div class="csl-right-inline">Sievers, F. <em>et al.</em> <a href="https://doi.org/10.1038/msb.2011.75">Fast, scalable generation of high<span>-</span>quality protein multiple sequence alignments using Clustal Omega</a>. <em>Molecular Systems Biology</em> <strong>7</strong>, 539 (2011).</div>
+</div>
+<div id="ref-blackshieldsSequenceEmbeddingFast2010" class="csl-entry">
+<div class="csl-left-margin">278. </div><div class="csl-right-inline">Blackshields, G., Sievers, F., Shi, W., Wilm, A. &amp; Higgins, D. G. <a href="https://doi.org/10.1186/1748-7188-5-21">Sequence embedding for fast construction of guide trees for multiple sequence alignment</a>. <em>Algorithms for Molecular Biology</em> <strong>5</strong>, 21 (2010).</div>
+</div>
+<div id="ref-altschulGapCostsMultiple1989" class="csl-entry">
+<div class="csl-left-margin">279. </div><div class="csl-right-inline">Altschul, S. F. <a href="https://doi.org/10.1016/S0022-5193(89)80196-1">Gap costs for multiple sequence alignment</a>. <em>Journal of Theoretical Biology</em> <strong>138</strong>, 297–309 (1989).</div>
+</div>
 <div id="ref-altschulWeightsDataRelated1989" class="csl-entry">
-<div class="csl-left-margin">274. </div><div class="csl-right-inline">Altschul, S. F., Carroll, R. J. &amp; Lipman, D. J. <a href="https://doi.org/10.1016/0022-2836(89)90234-9">Weights for data related by a tree</a>. <em>Journal of Molecular Biology</em> <strong>207</strong>, 647–653 (1989).</div>
+<div class="csl-left-margin">280. </div><div class="csl-right-inline">Altschul, S. F., Carroll, R. J. &amp; Lipman, D. J. <a href="https://doi.org/10.1016/0022-2836(89)90234-9">Weights for data related by a tree</a>. <em>Journal of Molecular Biology</em> <strong>207</strong>, 647–653 (1989).</div>
 </div>
 <div id="ref-edgarComparisonScoringFunctions2004" class="csl-entry">
-<div class="csl-left-margin">275. </div><div class="csl-right-inline">Edgar, R. C. &amp; Sjölander, K. <a href="https://doi.org/10.1093/bioinformatics/bth090">A comparison of scoring functions for protein sequence profile alignment</a>. <em>Bioinformatics</em> <strong>20</strong>, 1301–1308 (2004).</div>
+<div class="csl-left-margin">281. </div><div class="csl-right-inline">Edgar, R. C. &amp; Sjölander, K. <a href="https://doi.org/10.1093/bioinformatics/bth090">A comparison of scoring functions for protein sequence profile alignment</a>. <em>Bioinformatics</em> <strong>20</strong>, 1301–1308 (2004).</div>
 </div>
 <div id="ref-notredameCOFFEEObjectiveFunction1998" class="csl-entry">
-<div class="csl-left-margin">276. </div><div class="csl-right-inline">Notredame, C., Holm, L. &amp; Higgins, D. G. <a href="https://doi.org/10.1093/bioinformatics/14.5.407">COFFEE: An objective function for multiple sequence alignments.</a> <em>Bioinformatics</em> <strong>14</strong>, 407–422 (1998).</div>
-</div>
-<div id="ref-thompsonCLUSTALImprovingSensitivity1994" class="csl-entry">
-<div class="csl-left-margin">277. </div><div class="csl-right-inline">Thompson, J. D., Higgins, D. G. &amp; Gibson, T. J. <a href="https://doi.org/10.1093/nar/22.22.4673">CLUSTAL W: improving the sensitivity of progressive multiple sequence alignment through sequence weighting, position-specific gap penalties and weight matrix choice</a>. <em>Nucleic Acids Research</em> <strong>22</strong>, 4673–4680 (1994).</div>
-</div>
-<div id="ref-thompsonCLUSTALWindowsInterface1997" class="csl-entry">
-<div class="csl-left-margin">278. </div><div class="csl-right-inline">Thompson, J. D., Gibson, T. J., Plewniak, F., Jeanmougin, F. &amp; Higgins, D. G. <a href="https://doi.org/10.1093/nar/25.24.4876">The CLUSTAL<span>_</span>x windows interface: Flexible strategies for multiple sequence alignment aided by quality analysis tools</a>. <em>Nucleic Acids Research</em> <strong>25</strong>, 4876–4882 (1997).</div>
+<div class="csl-left-margin">282. </div><div class="csl-right-inline">Notredame, C., Holm, L. &amp; Higgins, D. G. <a href="https://doi.org/10.1093/bioinformatics/14.5.407">COFFEE: An objective function for multiple sequence alignments.</a> <em>Bioinformatics</em> <strong>14</strong>, 407–422 (1998).</div>
 </div>
 <div id="ref-notredameTcoffeeNovelMethod2000" class="csl-entry">
-<div class="csl-left-margin">279. </div><div class="csl-right-inline">Notredame, C., Higgins, D. G. &amp; Heringa, J. <a href="https://doi.org/10.1006/jmbi.2000.4042">T-coffee: a novel method for fast and accurate multiple sequence alignment11Edited by J. Thornton</a>. <em>Journal of Molecular Biology</em> <strong>302</strong>, 205–217 (2000).</div>
+<div class="csl-left-margin">283. </div><div class="csl-right-inline">Notredame, C., Higgins, D. G. &amp; Heringa, J. <a href="https://doi.org/10.1006/jmbi.2000.4042">T-coffee: a novel method for fast and accurate multiple sequence alignment11Edited by J. Thornton</a>. <em>Journal of Molecular Biology</em> <strong>302</strong>, 205–217 (2000).</div>
 </div>
 <div id="ref-edgarMUSCLEMultipleSequence2004a" class="csl-entry">
-<div class="csl-left-margin">280. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1186/1471-2105-5-113">MUSCLE: A multiple sequence alignment method with reduced time and space complexity</a>. <em>BMC Bioinformatics</em> <strong>5</strong>, 113 (2004).</div>
+<div class="csl-left-margin">284. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1186/1471-2105-5-113">MUSCLE: A multiple sequence alignment method with reduced time and space complexity</a>. <em>BMC Bioinformatics</em> <strong>5</strong>, 113 (2004).</div>
 </div>
 <div id="ref-edgarMUSCLEMultipleSequence2004" class="csl-entry">
-<div class="csl-left-margin">281. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1093/nar/gkh340">MUSCLE: Multiple sequence alignment with high accuracy and high throughput</a>. <em>Nucleic Acids Research</em> <strong>32</strong>, 1792–1797 (2004).</div>
+<div class="csl-left-margin">285. </div><div class="csl-right-inline">Edgar, R. C. <a href="https://doi.org/10.1093/nar/gkh340">MUSCLE: Multiple sequence alignment with high accuracy and high throughput</a>. <em>Nucleic Acids Research</em> <strong>32</strong>, 1792–1797 (2004).</div>
 </div>
 <div id="ref-doProbConsProbabilisticConsistencybased2005" class="csl-entry">
-<div class="csl-left-margin">282. </div><div class="csl-right-inline">Do, C. B., Mahabhashyam, M. S. P., Brudno, M. &amp; Batzoglou, S. <a href="https://doi.org/10.1101/gr.2821705">ProbCons: Probabilistic consistency-based multiple sequence alignment</a>. <em>Genome Research</em> <strong>15</strong>, 330–340 (2005).</div>
+<div class="csl-left-margin">286. </div><div class="csl-right-inline">Do, C. B., Mahabhashyam, M. S. P., Brudno, M. &amp; Batzoglou, S. <a href="https://doi.org/10.1101/gr.2821705">ProbCons: Probabilistic consistency-based multiple sequence alignment</a>. <em>Genome Research</em> <strong>15</strong>, 330–340 (2005).</div>
 </div>
-<div id="ref-notredameRecentEvolutionsMultiple2007" class="csl-entry">
-<div class="csl-left-margin">283. </div><div class="csl-right-inline">Notredame, C. <a href="https://doi.org/10.1371/journal.pcbi.0030123">Recent Evolutions of Multiple Sequence Alignment Algorithms</a>. <em>PLOS Computational Biology</em> <strong>3</strong>, e123 (2007).</div>
+<div id="ref-thompsonCLUSTALImprovingSensitivity1994" class="csl-entry">
+<div class="csl-left-margin">287. </div><div class="csl-right-inline">Thompson, J. D., Higgins, D. G. &amp; Gibson, T. J. <a href="https://doi.org/10.1093/nar/22.22.4673">CLUSTAL W: improving the sensitivity of progressive multiple sequence alignment through sequence weighting, position-specific gap penalties and weight matrix choice</a>. <em>Nucleic Acids Research</em> <strong>22</strong>, 4673–4680 (1994).</div>
 </div>
-<div id="ref-thompsonBAliBASEBenchmarkAlignment1999" class="csl-entry">
-<div class="csl-left-margin">287. </div><div class="csl-right-inline">Thompson, J. D., Plewniak, F. &amp; Poch, O. <a href="https://doi.org/10.1093/bioinformatics/15.1.87">BAliBASE: a benchmark alignment database for the evaluation of multiple alignment programs.</a> <em>Bioinformatics</em> <strong>15</strong>, 87–88 (1999).</div>
-</div>
-<div id="ref-eddyMultipleAlignmentUsing" class="csl-entry">
-<div class="csl-left-margin">288. </div><div class="csl-right-inline">Eddy, S. R. Multiple Alignment Using Hidden Markov Models. 7.</div>
+<div id="ref-thompsonCLUSTALWindowsInterface1997" class="csl-entry">
+<div class="csl-left-margin">288. </div><div class="csl-right-inline">Thompson, J. D., Gibson, T. J., Plewniak, F., Jeanmougin, F. &amp; Higgins, D. G. <a href="https://doi.org/10.1093/nar/25.24.4876">The CLUSTAL<span>_</span>x windows interface: Flexible strategies for multiple sequence alignment aided by quality analysis tools</a>. <em>Nucleic Acids Research</em> <strong>25</strong>, 4876–4882 (1997).</div>
 </div>
 <div id="ref-liuMSAProbsMultipleSequence2010" class="csl-entry">
 <div class="csl-left-margin">289. </div><div class="csl-right-inline">Liu, Y., Schmidt, B. &amp; Maskell, D. L. <a href="https://doi.org/10.1093/bioinformatics/btq338">MSAProbs: Multiple sequence alignment based on pair hidden markov models and partition function posterior probabilities</a>. <em>Bioinformatics</em> <strong>26</strong>, 1958–1964 (2010).</div>
@@ -1051,8 +1043,8 @@ A) sequences to align B) guide tree constructed from distances C) Alignment step
 <div id="ref-lemoineCOVIDAlignAccurateOnline2020" class="csl-entry">
 <div class="csl-left-margin">290. </div><div class="csl-right-inline">Lemoine, F., Blassel, L., Voznica, J. &amp; Gascuel, O. COVID-align: Accurate online alignment of hCoV-19 genomes using a profile HMM. <em>Bioinformatics</em> (2020) doi:<a href="https://doi.org/10.1093/bioinformatics/btaa871">10.1093/bioinformatics/btaa871</a>.</div>
 </div>
-<div id="ref-aksamentovNextcladeCladeAssignment2021" class="csl-entry">
-<div class="csl-left-margin">291. </div><div class="csl-right-inline">Aksamentov, I., Roemer, C., Hodcroft, E. &amp; Neher, R. <a href="https://doi.org/10.21105/joss.03773">Nextclade: clade assignment, mutation calling and quality control for viral genomes</a>. <em>Journal of Open Source Software</em> <strong>6</strong>, 3773 (2021).</div>
+<div id="ref-eddyMultipleAlignmentUsing" class="csl-entry">
+<div class="csl-left-margin">291. </div><div class="csl-right-inline">Eddy, S. R. Multiple Alignment Using Hidden Markov Models. 7.</div>
 </div>
 <div id="ref-kimMultipleSequenceAlignment1994" class="csl-entry">
 <div class="csl-left-margin">292. </div><div class="csl-right-inline">Kim, J., Pramanik, S. &amp; Chung, M. J. <a href="https://doi.org/10.1093/bioinformatics/10.4.419">Multiple sequence alignment using simulated annealing</a>. <em>Bioinformatics</em> <strong>10</strong>, 419–426 (1994).</div>
@@ -1066,17 +1058,26 @@ A) sequences to align B) guide tree constructed from distances C) Alignment step
 <div id="ref-zhangGeneticAlgorithmMultiple1997" class="csl-entry">
 <div class="csl-left-margin">296. </div><div class="csl-right-inline">Zhang, C. &amp; Wong, A. K. C. <a href="https://doi.org/10.1093/bioinformatics/13.6.565">A genetic algorithm for multiple molecular sequence alignment</a>. <em>Bioinformatics</em> <strong>13</strong>, 565–581 (1997).</div>
 </div>
-<div id="ref-notredameSAGASequenceAlignment1996" class="csl-entry">
-<div class="csl-left-margin">297. </div><div class="csl-right-inline">Notredame, C. &amp; Higgins, D. G. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC145823/">SAGA: Sequence alignment by genetic algorithm.</a> <em>Nucleic Acids Research</em> <strong>24</strong>, 1515–1524 (1996).</div>
-</div>
 <div id="ref-nazninVerticalDecompositionGenetic2011" class="csl-entry">
-<div class="csl-left-margin">298. </div><div class="csl-right-inline">Naznin, F., Sarker, R. &amp; Essam, D. <a href="https://doi.org/10.1186/1471-2105-12-353">Vertical decomposition with genetic algorithm for multiple sequence alignment</a>. <em>BMC Bioinformatics</em> <strong>12</strong>, 353 (2011).</div>
+<div class="csl-left-margin">297. </div><div class="csl-right-inline">Naznin, F., Sarker, R. &amp; Essam, D. <a href="https://doi.org/10.1186/1471-2105-12-353">Vertical decomposition with genetic algorithm for multiple sequence alignment</a>. <em>BMC Bioinformatics</em> <strong>12</strong>, 353 (2011).</div>
 </div>
 <div id="ref-nazninProgressiveAlignmentMethod2012" class="csl-entry">
-<div class="csl-left-margin">299. </div><div class="csl-right-inline">Naznin, F., Sarker, R. &amp; Essam, D. <a href="https://doi.org/10.1109/TEVC.2011.2162849">Progressive alignment method using genetic algorithm for multiple sequence alignment</a>. <em>IEEE Transactions on Evolutionary Computation</em> <strong>16</strong>, 615–631 (2012).</div>
+<div class="csl-left-margin">298. </div><div class="csl-right-inline">Naznin, F., Sarker, R. &amp; Essam, D. <a href="https://doi.org/10.1109/TEVC.2011.2162849">Progressive alignment method using genetic algorithm for multiple sequence alignment</a>. <em>IEEE Transactions on Evolutionary Computation</em> <strong>16</strong>, 615–631 (2012).</div>
+</div>
+<div id="ref-notredameSAGASequenceAlignment1996" class="csl-entry">
+<div class="csl-left-margin">299. </div><div class="csl-right-inline">Notredame, C. &amp; Higgins, D. G. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC145823/">SAGA: Sequence alignment by genetic algorithm.</a> <em>Nucleic Acids Research</em> <strong>24</strong>, 1515–1524 (1996).</div>
+</div>
+<div id="ref-aksamentovNextcladeCladeAssignment2021" class="csl-entry">
+<div class="csl-left-margin">300. </div><div class="csl-right-inline">Aksamentov, I., Roemer, C., Hodcroft, E. &amp; Neher, R. <a href="https://doi.org/10.21105/joss.03773">Nextclade: clade assignment, mutation calling and quality control for viral genomes</a>. <em>Journal of Open Source Software</em> <strong>6</strong>, 3773 (2021).</div>
 </div>
 <div id="ref-garrigaLargeMultipleSequence2019" class="csl-entry">
-<div class="csl-left-margin">300. </div><div class="csl-right-inline">Garriga, E. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-019-0333-6">Large multiple sequence alignments with a root-to-leaf regressive method</a>. <em>Nature Biotechnology</em> <strong>37</strong>, 1466–1470 (2019).</div>
+<div class="csl-left-margin">301. </div><div class="csl-right-inline">Garriga, E. <em>et al.</em> <a href="https://doi.org/10.1038/s41587-019-0333-6">Large multiple sequence alignments with a root-to-leaf regressive method</a>. <em>Nature Biotechnology</em> <strong>37</strong>, 1466–1470 (2019).</div>
+</div>
+<div id="ref-notredameRecentEvolutionsMultiple2007" class="csl-entry">
+<div class="csl-left-margin">302. </div><div class="csl-right-inline">Notredame, C. <a href="https://doi.org/10.1371/journal.pcbi.0030123">Recent Evolutions of Multiple Sequence Alignment Algorithms</a>. <em>PLOS Computational Biology</em> <strong>3</strong>, e123 (2007).</div>
+</div>
+<div id="ref-thompsonBAliBASEBenchmarkAlignment1999" class="csl-entry">
+<div class="csl-left-margin">306. </div><div class="csl-right-inline">Thompson, J. D., Plewniak, F. &amp; Poch, O. <a href="https://doi.org/10.1093/bioinformatics/15.1.87">BAliBASE: a benchmark alignment database for the evaluation of multiple alignment programs.</a> <em>Bioinformatics</em> <strong>15</strong>, 87–88 (1999).</div>
 </div>
 </div>
 <div class="footnotes">
