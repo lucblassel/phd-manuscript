@@ -299,22 +299,15 @@ In conclusion, as a crucial step in many bioinformatics pipelines, read-mapping 
 
 ## Multiple sequence alignment
 
-When we need to compare a lot of individuals together we can do MSA, essential task in many bioinformatics analyses [@russellMultipleSequenceAlignment2014].
+Up until now we have only considered pairwise alignment where we want to find homologies between a pair of sequences. In many cases though it is helpful to compare more than two sequences together, this is where multiple sequence alignment (MSA) steps-in. It is an essential task in many bioinformatics and comparative biology analyses [@russellMultipleSequenceAlignment2014].
 
-NP-hard [@wangComplexityMultipleSequence1994; @justComputationalComplexityMultiple2001] problem if you do it with DP so we need heuristics or tricks
+We saw earlier that with dynamic programming and algorithms like NW or SW it is possible to compute an optimal pairwise alignment, for MSA however the task of computing the optimal alignment if unfortunately NP-hard [@wangComplexityMultipleSequence1994; @justComputationalComplexityMultiple2001], with an exponentially growing time and space complexity in the number of sequences to align. Therefore, heuristics and approximations are needed from the get go in order to get anything meaningful.
 
-Even if we align all sequences pairwise we need to then combine all gaps and stuff -\> complicated.
+An early method, and easy to conceptualize, is the so-called star alignment method [@chaoDevelopmentsAlgorithmsSequence2022]. In this approach, a single sequence is chosen to be the center sequence. After this each other sequence is aligned to the center sequence and the pairwise alignments are merged, conserving gaps that were inserted. The center sequence is often chosen to be as similar to the other sequences as possible so in, however all pairqise distances between sequences are needed implying a quadratic distance computation step. The pairwise alignments are independent so this approach is easy to parallelize. Some software, like HAlign [@tangHAlignFastMultiple2022] use center star alignment to produce MSAs. This method however is quite sensitive to the choice of the center sequence. And bad pairwise alignments can lower the accuracy of the overall MSA by conserving gaps.
 
 ### Progressive alignment
 
-guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. [@fengProgressiveSequenceAlignment1987] Main MSA method.
-
-1.  Compute pairwise distance matrix for sequence set:
-    -   either by doing N(N-1)/2 pairwise alignments
-
-    -   Or alignment free methods to speed things up [@jonesRapidGenerationMutation1992; @blaisdellMeasureSimilaritySets1986]
-2.  Build guide tree from distances (neighbor joining, UPGMA, ...)
-3.  Align sequences one by one according to the tree, from the leafs (i.e sequences) to the root (full MSA).
+One of the most widely used multiple sequence alignment approach is progressive alignment [@fengProgressiveSequenceAlignment1987]. Similarly to the center star algorithm, the progressive algorithm reduces the MSA problem to independent pairwise alignments. The first step is to build a phylogenetic tree from the sequences to align, representing the evolutionary relationship between sequences, called the *guide tree*. Starting from the leaves, that correspond to single sequences, pairwise align the sequences and store the alignment (or *profile*), at the parent node. going up from the leaves to the roots align sequences together, then sequences to profiles if needed and finally profiles together, merging alignments as we progress up the tree. The final multiple sequence alignment is obtained when this process reaches the root. Profiles at inner nodes of the tree are aligned to each other to conserve gaps. A representation of this process is shown in Figure \@ref(fig:progAlign).
 
 ```{r, progcaption}
 progCaption <- "**Overview of the progressive alignment process.**\
@@ -333,6 +326,10 @@ knitr::include_graphics("./figures/Align-Intro/progressive-aln.png")
 \label{fig:progAlign}
 \end{figure}
 ```
+This method is a good heuristic as the guide tree can capture complex relationships between sequences. However in many cases a matrix of pairwise distances is needed to compute the tree, if we choose to compute the edit distance we need to do $n(n-1)/2$ pairwise alignments to get this matrix, with a large number of long sequences this is not possible. Therefore, computing of distance matrices through alignment-free methods, usually based on $k$-mers, is often used as input to the tree building method [@jonesRapidGenerationMutation1992; @blaisdellMeasureSimilaritySets1986].
+
+guide tree, clustering of sequences then refine alignment. Good heuristic but with larger datasets, becomes harder. [@fengProgressiveSequenceAlignment1987] Main MSA method.
+
 Problems -\> keeps gaps and if bad alignment at first steps error propagates ("once a gap, always a gap" [@fengProgressiveSequenceAlignment1987]).
 
 In order to curtail this problem we have iterative refinement [@russellMultipleSequenceAlignment2014]:
@@ -356,13 +353,13 @@ Some of the most used MSA software uses these methods of progressive/iterative r
 
 Different strenghts/weaknesses so many reviews and benchmarks to make a choice [@notredameRecentEvolutionsMultiple2007; @notredameRecentProgressMultiple2002; @edgarMultipleSequenceAlignment2006; @paisAssessingEfficiencyMultiple2014; @thompsonBAliBASEBenchmarkAlignment1999]
 
-### HMMs in profile-profile or seq-profile alignments
+### Other methods
+
+-   HMMs: profile-profile, seq-profile
 
 HMM method similar performance to clustal-w [@eddyMultipleAlignmentUsing], HHMer [@finnHMMERWebServer2011], MSAProbs [@liuMSAProbsMultipleSequence2010] and COVID-align [@lemoineCOVIDAlignAccurateOnline2020]
 
 Example of COVID where homology is high so we can get away with aligning pairwise to ancestral-sequence NextClade/NextAlign [@aksamentovNextcladeCladeAssignment2021]
-
-### Other methods (short)
 
 -   Simulated annealing to speed up DP [@kimMultipleSequenceAlignment1994; @ishikawaMultipleSequenceAlignment1993; @huoSimulatedAnnealingAlgorithm2007]
 
