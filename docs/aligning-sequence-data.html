@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-09-06" />
+<meta name="date" content="2022-09-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -551,7 +551,9 @@ A) sequences to align B) guide tree constructed from distances C) Alignment step
 </div>
 <div id="conclusion-1" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> Conclusion<a href="aligning-sequence-data.html#conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>?</p>
+<p>Sequence alignment, multiple or pairwise, is a fundamental tool in the bioinformatician’s toolkit. Comparing sequences and finding homologies being at the root of many fields, because of the wealth of evolutionary information contained in alignments. As such it is paramount to have the best possible sequence alignments in any situation.</p>
+<p>As we have seen now, although we have methods guaranteed to give us optimal pairwise and multiple sequence alignments, they are not practically useful for dealing with sequences at today’s scale. Therefore, most sequence aligners rely on, sometimes many, heuristics and approximations. From substitution models to seeding techniques, all these are not necessarily reflective of the biological reality contained within the sequences to align. Each of these heuristics or models is a step where biases and approximations can happen, building up along and over sequences. Therefore there must be room for improvement.</p>
+<p>Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the “age of pandemics”, accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.</p>
 
 </div>
 </div>
