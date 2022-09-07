@@ -1,68 +1,87 @@
 # Learning from alignments
 
-## Alignments are a rich source of information
+As in the previous chapter, sequence alignments are rich source of information.\
+Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc...
 
-### Pairwise alns
+More recently focus on machine learning: to predict drug resistance (cf. Chapter \@ref(HIV-paper)), predict protein structure and function, annotate genes, predict protein location, GWAS...
 
-we can compare sequences and say if an organism, or in the case of mapping get an idea of where on the genome we are sequencing
-
-### MSA
-
-Here we have richer
-
-#### Clustering
-
--   Phylogenetic trees
-
--   Evolutionary inference
-
--   Protein structure prediction
-
-#### ML
-
--   Alphafold
--   Predict location / function
--   predict characteristics i.e. resistance, ...
+For ML and DL, we need to transform sequences and alignments into numerical vectors.
 
 ## Preprocessing the alignment for machine learning
 
 In order to do some learning we need to have the data in digestible form
 
-### Embedding the alignment
-
 We need a way to represent, the position and the character in a sequence
 
-#### Physico-chemical embeddings
+### Physico-chemical embeddings
 
 AAIndex, or other embeddings, we add extra info, but we also make a string choice when deciding what features to add
 
-#### Generalistic categorical embeddings
+### Generalistic categorical embeddings
 
 One-Hot, etc..., easily interpretable...
 
-#### Learned embeddings
+### Learned embeddings
 
 language models, transformers, etc...
 
 Powerful but hard to interpret what the model actually learns. i.e. "black box"
 
-### Choosing a learning target
+## What to learn ?
 
 Of course one we have the data in digestible form we need an objective, a goal and once again a multitude
 
+### Supervized
+
+Here we have extra knowledge -\> labels and we can use his information to train the model.
+
 #### Regression
 
-Either resistance level, IC50, ...
+Here the goal is to predict some type of meaningful continuous numerical value: like a size or a weight. Useful in lots of different fields/
+
+-   predict a quantified resistance level of a virus to a drug (fold change) [@steinerDrugResistancePrediction2020a]
+
+-   predict drug response in cancer (i.e. IC~50~) [@ammad-ud-dinSystematicIdentificationFeature2017], they use genome-wide features pre-extracted from sequences and not sequence directly.
+
+-   predict angles or contact maps in protein structure -\> very active field [@noeMachineLearningProtein2020; @pearceSolutionProteinStructure2021; @tunyasuvunakoolHighlyAccurateProtein2021; @chengMachineLearningMethods2008; @alquraishiMachineLearningProtein2021] either directly from MSAs [@jumperHighlyAccurateProtein2021] or from derived features like contact maps [@wangAccurateNovoPrediction2017]
+
+-   Score MSAs [@ortunoComparingDifferentMachine2015]
+
+-   predicting protein fitness for *in silico* protein engineering [@wittmannAdvancesMachineLearning2021; @yangMachinelearningguidedDirectedEvolution2019; @liCanMachineLearning2019]
+
+-   predicting gene expression levels from SNPs (meaning we need alignments... to a reference) [@xieDeepAutoencoderModel2017]
 
 #### Classification
 
-Resistant or not, compartments in the cell, ...
+Here we predict discrete categorical values numerically encoded
 
-#### Task-based...
+-   resistant virus or not [@hagaMachineLearningbasedTreatment2020; @zazziPredictingResponseAntiretroviral2012] (also Chapter \@ref(HIV-paper)) also many studies on antimicrobial resistance [@renPredictionAntimicrobialResistance2022; @kimMachineLearningAntimicrobial2022]
 
-end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+-   Cellular localization of protein [@weiPredictionHumanProtein2018]
 
-## How to learn from ALNs
+-   Secondary structure of amino acid in protein sequence [@jonesProteinSecondaryStructure1999] ($\alpha$, $\beta$ or other)
+
+-   localized gene expression in cells [@kelleyBassetLearningRegulatory2016]
+
+-   splice site detection [@ratschLearningInterpretableSVMs2006]
+
+-   Methylation site prediction [@wangPredictingDNAMethylation2016]
+
+### Unsupervized
+
+-   clustering
+
+-   dimensionality reduction -\> PCA ICA LCA to build features
+
+### Others
+
+-   task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+
+-   self-supervized
+
+-   semi-supervized
+
+## How to learn ?
 
 ### Tests and statistical learning
 
@@ -70,15 +89,16 @@ end-to-end training like aligning sequences, this is harder because it requires 
 -   Fisher
 -   Multiple testing ?
 
-### Taking interactions into account
+### More complex methods, machine learning
 
 -   Regressions w/ regularization
 -   RF
--   ...
+-   SVM
+-   ABC
 
 ### Deep Learning
 
 -   Steiner et al...
 -   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+\% \\printbibliography[segment=\\therefsegment,heading=subbibintoc,title={References for chapter \\thechapter}]

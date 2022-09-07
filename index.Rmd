@@ -15,6 +15,7 @@ bibliography:
   - ./references/Sequence-Data.bib
   - ./references/Aligning-Sequences.bib
   - ./references/HIV-context.bib
+  - ./references/Learning-from-alignments.bib
 biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=none,citestyle=numeric,bibstyle=numeric,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false,backend=biber]
 link-citations: yes
 github-repo: lucblassel/phd-manuscript
