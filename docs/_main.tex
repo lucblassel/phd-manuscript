@@ -236,6 +236,7 @@
 \addbibresource{./references/Sequence-Data.bib}
 \addbibresource{./references/Aligning-Sequences.bib}
 \addbibresource{./references/HIV-context.bib}
+\addbibresource{./references/Learning-from-alignments.bib}
 
 \title{From sequences to knowledge, improving and learning from sequence alignments.}
 \author{Luc Blassel}
@@ -1558,93 +1559,111 @@ Supporting Information can be found in Appendix \ref{HPC-appendix}
 \hypertarget{learning-from-alignments}{%
 \chapter{Learning from alignments}\label{learning-from-alignments}}
 
-\hypertarget{alignments-are-a-rich-source-of-information}{%
-\section{Alignments are a rich source of information}\label{alignments-are-a-rich-source-of-information}}
+As in the previous chapter, sequence alignments are rich source of information.\\
+Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc\ldots{}
 
-\hypertarget{pairwise-alns}{%
-\subsection{Pairwise alns}\label{pairwise-alns}}
+More recently focus on machine learning: to predict drug resistance (cf.~Chapter \ref{HIV-paper}), predict protein structure and function, annotate genes, predict protein location, GWAS\ldots{}
 
-we can compare sequences and say if an organism, or in the case of mapping get an idea of where on the genome we are sequencing
-
-\hypertarget{msa}{%
-\subsection{MSA}\label{msa}}
-
-Here we have richer
-
-\hypertarget{clustering}{%
-\subsubsection{Clustering}\label{clustering}}
-
-\begin{itemize}
-\item
-  Phylogenetic trees
-\item
-  Evolutionary inference
-\item
-  Protein structure prediction
-\end{itemize}
-
-\hypertarget{ml}{%
-\subsubsection{ML}\label{ml}}
-
-\begin{itemize}
-\tightlist
-\item
-  Alphafold
-\item
-  Predict location / function
-\item
-  predict characteristics i.e.~resistance, \ldots{}
-\end{itemize}
+For ML and DL, we need to transform sequences and alignments into numerical vectors.
 
 \hypertarget{preprocessing-the-alignment-for-machine-learning}{%
 \section{Preprocessing the alignment for machine learning}\label{preprocessing-the-alignment-for-machine-learning}}
 
 In order to do some learning we need to have the data in digestible form
 
-\hypertarget{embedding-the-alignment}{%
-\subsection{Embedding the alignment}\label{embedding-the-alignment}}
-
 We need a way to represent, the position and the character in a sequence
 
 \hypertarget{physico-chemical-embeddings}{%
-\subsubsection{Physico-chemical embeddings}\label{physico-chemical-embeddings}}
+\subsection{Physico-chemical embeddings}\label{physico-chemical-embeddings}}
 
 AAIndex, or other embeddings, we add extra info, but we also make a string choice when deciding what features to add
 
 \hypertarget{generalistic-categorical-embeddings}{%
-\subsubsection{Generalistic categorical embeddings}\label{generalistic-categorical-embeddings}}
+\subsection{Generalistic categorical embeddings}\label{generalistic-categorical-embeddings}}
 
 One-Hot, etc\ldots, easily interpretable\ldots{}
 
 \hypertarget{learned-embeddings}{%
-\subsubsection{Learned embeddings}\label{learned-embeddings}}
+\subsection{Learned embeddings}\label{learned-embeddings}}
 
 language models, transformers, etc\ldots{}
 
 Powerful but hard to interpret what the model actually learns. i.e.~``black box''
 
-\hypertarget{choosing-a-learning-target}{%
-\subsection{Choosing a learning target}\label{choosing-a-learning-target}}
+\hypertarget{what-to-learn}{%
+\section{What to learn ?}\label{what-to-learn}}
 
 Of course one we have the data in digestible form we need an objective, a goal and once again a multitude
+
+\hypertarget{supervized}{%
+\subsection{Supervized}\label{supervized}}
+
+Here we have extra knowledge -\textgreater{} labels and we can use his information to train the model.
 
 \hypertarget{regression}{%
 \subsubsection{Regression}\label{regression}}
 
-Either resistance level, IC50, \ldots{}
+Here the goal is to predict some type of meaningful continuous numerical value: like a size or a weight. Useful in lots of different fields/
+
+\begin{itemize}
+\item
+  predict a quantified resistance level of a virus to a drug (fold change) \autocite{steinerDrugResistancePrediction2020a}
+\item
+  predict drug response in cancer (i.e.~IC\textsubscript{50}) \autocite{ammad-ud-dinSystematicIdentificationFeature2017}, they use genome-wide features pre-extracted from sequences and not sequence directly.
+\item
+  predict angles or contact maps in protein structure -\textgreater{} very active field \autocite{noeMachineLearningProtein2020,pearceSolutionProteinStructure2021,tunyasuvunakoolHighlyAccurateProtein2021,chengMachineLearningMethods2008,alquraishiMachineLearningProtein2021} either directly from MSAs \autocite{jumperHighlyAccurateProtein2021} or from derived features like contact maps \autocite{wangAccurateNovoPrediction2017}
+\item
+  Score MSAs \autocite{ortunoComparingDifferentMachine2015}
+\item
+  predicting protein fitness for \emph{in silico} protein engineering \autocite{wittmannAdvancesMachineLearning2021,yangMachinelearningguidedDirectedEvolution2019,liCanMachineLearning2019}
+\item
+  predicting gene expression levels from SNPs (meaning we need alignments\ldots{} to a reference) \autocite{xieDeepAutoencoderModel2017}
+\end{itemize}
 
 \hypertarget{classification}{%
 \subsubsection{Classification}\label{classification}}
 
-Resistant or not, compartments in the cell, \ldots{}
+Here we predict discrete categorical values numerically encoded
 
-\hypertarget{task-based}{%
-\subsubsection{Task-based\ldots{}}\label{task-based}}
+\begin{itemize}
+\item
+  resistant virus or not \autocite{hagaMachineLearningbasedTreatment2020,zazziPredictingResponseAntiretroviral2012} (also Chapter \ref{HIV-paper}) also many studies on antimicrobial resistance \autocite{renPredictionAntimicrobialResistance2022,kimMachineLearningAntimicrobial2022}
+\item
+  Cellular localization of protein \autocite{weiPredictionHumanProtein2018}
+\item
+  Secondary structure of amino acid in protein sequence \autocite{jonesProteinSecondaryStructure1999} (\(\alpha\), \(\beta\) or other)
+\item
+  localized gene expression in cells \autocite{kelleyBassetLearningRegulatory2016}
+\item
+  splice site detection \autocite{ratschLearningInterpretableSVMs2006}
+\item
+  Methylation site prediction \autocite{wangPredictingDNAMethylation2016}
+\end{itemize}
 
-end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+\hypertarget{unsupervized}{%
+\subsection{Unsupervized}\label{unsupervized}}
 
-\hypertarget{how-to-learn-from-alns}{%
-\section{How to learn from ALNs}\label{how-to-learn-from-alns}}
+\begin{itemize}
+\item
+  clustering
+\item
+  dimensionality reduction -\textgreater{} PCA ICA LCA to build features
+\end{itemize}
+
+\hypertarget{others}{%
+\subsection{Others}\label{others}}
+
+\begin{itemize}
+\item
+  task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+\item
+  self-supervized
+\item
+  semi-supervized
+\end{itemize}
+
+\hypertarget{how-to-learn}{%
+\section{How to learn ?}\label{how-to-learn}}
 
 \hypertarget{tests-and-statistical-learning}{%
 \subsection{Tests and statistical learning}\label{tests-and-statistical-learning}}
@@ -1659,8 +1678,8 @@ end-to-end training like aligning sequences, this is harder because it requires 
   Multiple testing ?
 \end{itemize}
 
-\hypertarget{taking-interactions-into-account}{%
-\subsection{Taking interactions into account}\label{taking-interactions-into-account}}
+\hypertarget{more-complex-methods-machine-learning}{%
+\subsection{More complex methods, machine learning}\label{more-complex-methods-machine-learning}}
 
 \begin{itemize}
 \tightlist
@@ -1669,7 +1688,9 @@ end-to-end training like aligning sequences, this is harder because it requires 
 \item
   RF
 \item
-  \ldots{}
+  SVM
+\item
+  ABC
 \end{itemize}
 
 \hypertarget{deep-learning}{%
@@ -1683,7 +1704,7 @@ end-to-end training like aligning sequences, this is harder because it requires 
   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
 \end{itemize}
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+\% \textbackslash printbibliography{[}segment=\textbackslash therefsegment,heading=subbibintoc,title=\{References for chapter \textbackslash thechapter\}{]}
 
 \hypertarget{viruses-hiv-and-drug-resistance}{%
 \chapter{Viruses, HIV and drug resistance}\label{viruses-hiv-and-drug-resistance}}
@@ -2076,7 +2097,8 @@ mutations between treated and naive patients. However, we then consider
 each mutation individually and cannot hope to study interactions between
 several mutations. Here, we aim to leverage the ever-growing quantity of
 high-quality sequence data and machine learning methods to study such
-interactions (i.e.~epistasis), as well as try to find new DRMs.\\
+interactions (i.e.~epistasis), as well as try to find new DRMs.
+
 We trained classifiers to discriminate between Reverse Transcriptase
 Inhibitor (RTI)-experienced and RTI-naive samples on a large HIV-1
 reverse transcriptase (RT) sequence dataset from the UK
@@ -2086,7 +2108,8 @@ classifiers were evaluated on independent data sets, both from the UK
 and Africa. Important representation features for each classifier were
 then extracted as potential DRMs. To find novel DRMs, we repeated this
 process by removing either features or samples associated to known
-DRMs.\\
+DRMs.
+
 When keeping all known resistance signal, we detected sufficiently
 prevalent known DRMs, thus validating the approach. When removing
 features corresponding to known DRMs, our classifiers retained some
@@ -2117,7 +2140,8 @@ individually and we cannot hope to reveal any interaction (epistasis)
 between them. Here, we used machine learning to discover new DRMs and
 study potential epistasis effects. We applied this approach to a very
 large UK dataset comprising \(\approx 55,000\) RT sequences. Results
-robustness was checked on different UK and African datasets.\\
+robustness was checked on different UK and African datasets.
+
 Six new mutations associated to resistance were found. All six have a
 low genetic barrier and show high correlations with known DRMs.
 Moreover, all these mutations are close to either the active site or the
@@ -2151,7 +2175,8 @@ RT but also other regions of the \emph{pol} gene like protease or integrase,
 and the use of anti-retrovirals in high risk populations by pre-exposure
 prophylaxis (PREP), it is important to further our understanding of HIV
 polymorphisms and notably the interactions between mutations and
-epistatic effects.\\
+epistatic effects.
+
 Among known DRMs, some mutations, such as M184V, directly confer
 resistance to antiretrovirals, more precisely the commonly used NRTI,
 3TC (lamivudine) and FTC (emtricitabine), and are called primary or
@@ -2165,7 +2190,8 @@ be associated with drug resistance phenomena. Therefore, during the rest
 of this article we will refer to all of these known mutations as
 resistance associated mutations (RAMs), rather than DRMs which is too
 specific, and our goal will be to search for new RAMs and study the
-interactions between known RAMs and the new ones.\\
+interactions between known RAMs and the new ones.
+
 Classically, new RAMs have been found using statistical testing and
 large multiple sequence alignments (MSA) of the studied protein
 \autocite{dudoitMultipleTestingProcedures2007,villabona-arenasIndepthAnalysisHIV12016}.
@@ -2188,7 +2214,8 @@ to test all couples or triplets of mutations, we quickly lose
 statistical power when correcting for multiple testing
 \autocite{shamStatisticalPowerSignificance2014}, due to the large number of
 tests to perform. Moreover, phylogenetic correlation is again a critical
-issue with such an approach.\\
+issue with such an approach.
+
 Machine learning has been extensively used to predict resistance to
 antiretrovirals from sequence data. There are two main approaches to
 predicting resistance from sequence data. Regression, where machine
@@ -2227,7 +2254,8 @@ not aim to find new potential RAMs. Although Steiner \emph{et al.}
 \autocite{steinerDrugResistancePrediction2020a} have checked that known DRM
 positions are captured by their models and found several positions
 potentially associated to resistance, it is not the main goal of their
-method.\\
+method.
+
 It is accepted in machine learning that there is a trade-off between
 model accuracy and model interpretability. In these previous studies the
 goal was to make the most accurate predictions possible, using complex
@@ -2289,14 +2317,16 @@ subtypes and CRFs compared to the 2 subtypes (B and C) that we retained
 for this study from the UK cohort. The majority of the sequences from
 the African dataset were samples from Cameroon (27\%), Democratic
 Republic of Congo (17\%), Burundi (15\%), Burkina Faso (13\%) and Togo
-(11\%).\\
+(11\%).
+
 It is important to note that RTI-experienced sequences in both of these
 datasets can be considered as resistant to treatment. Since the viral
 load was sufficiently high to allow for sequencing of the virus, we can
 consider that the ART has failed. However, in some cases this resistance
 might be caused by non adherence to ART, rather than by the presence of
 RAMs, therefore adding some noise to the relationship between treatment
-status and resistance.\\
+status and resistance.
+
 In addition to differences in size, balance between RTI-naive and
 experienced classes, and the genetic difference between the UK and
 African datasets, there are also significant differences resulting from
@@ -2324,7 +2354,7 @@ African sequences, while it is 1 in UK sequences
 (Table~\ref{tab:tableData}).
 Thus, we can say that African sequences are highly resistant, with
 possibly different mutations and epistatic effects, compared to their UK
-counterparts.\\
+counterparts.
 
 \begin{table}
 \centering
@@ -2359,7 +2389,8 @@ generalizability of our method and the robustness of the results. That
 is to say, if signal extracted from the UK dataset was still relevant on
 such a different dataset as the African one, we could be fairly
 reassured in regard to the biological and epidemiological relevance of
-the observed signal.\\
+the observed signal.
+
 Sequences in both African and UK datasets were already aligned. In order
 to avoid overly gappy regions of our alignment we selected only
 positions 41 to 235 of RT for our analysis. We used the Sierra web
@@ -2371,7 +2402,8 @@ acids'' for each position, corresponding to the B and C subtype reference
 sequences obtained from the Los Alamos sequence database
 (\url{http://www.hiv.lanl.gov/}). All the other, non-reference amino acids
 are named ``mutations'' in the following, and the set of mutations was
-explored to reveal new potential RAMs.\\
+explored to reveal new potential RAMs.
+
 To train our supervised classification methods
 \autocite{tibshiraniRegressionShrinkageSelection1996,brierVERIFICATIONFORECASTSEXPRESSED1950,gascuelTwelveNumericalSymbolic1998},
 the sequence data needed to be encoded to numerical vectors. A common
@@ -2407,7 +2439,8 @@ resulting p-values were then corrected for multiple testing using the
 Bonferroni correction \autocite{goemanMultipleHypothesisTesting2014}. Those for
 which the corrected p-value was \(≤ 0.05\) were then considered as
 significantly associated with treatment and potentially implicated in
-resistance.\\
+resistance.
+
 This method was complemented by our parallel, machine learning based
 approach. In order to extract potential RAMs, we trained several
 classifiers to discriminate between RTI-experienced and RTI-naive
@@ -2455,13 +2488,15 @@ to detect cumulative effects resulting from a large number of mutations,
 which individually have no discrimination power. Naive Bayes is a very
 simple approach, generally fairly accurate, and in between the two
 others in terms of explanatory power
-\autocite{gascuelTwelveNumericalSymbolic1998}.\\
+\autocite{gascuelTwelveNumericalSymbolic1998}.
+
 In order to be able to compare all these approaches in a common
 framework, we devised a very simple classifier out of the results of the
 Fisher exact tests. This "Fisher classifier" (FC) predicts a sequence
 as RTI-experienced if it has at least one of the mutations significantly
 associated to treatment. In this way, we were able to compute metrics
-for all classification methods and compare their performance.\\
+for all classification methods and compare their performance.
+
 It is important to note that in all of these approaches we chose to
 discriminate RTI-naive from RTI-experienced sequences, regardless of the
 type of RTI received. One of the reasons is that we did not have
@@ -2475,7 +2510,8 @@ extracted features and comparing them to known RAMs. Furthermore, since
 the treatment strategies are so different between the UK and African
 sequences, training on sequences having received different treatments
 should increase the robustness of our classifiers and the relevance of
-the mutations selected as potentially associated to resistance.\\
+the mutations selected as potentially associated to resistance.
+
 To avoid phylogenetic confounding factors (e.g.~transmitted mutations
 within a specific country or region), and avoid finding mutations
 potentially specific to a given subtype, we split the training and
@@ -2596,7 +2632,8 @@ suggests that the mutations that are found in the RAM removed experiment
 (see list below) are most likely accessory mutations that accompany
 known RAMs. This also suggests that all primary DRMs (i.e., that
 directly confer antiretroviral resistance) have been identified, which
-is reassuring from a public health perspective.\\
+is reassuring from a public health perspective.
+
 The performance discrepancy between the UK and African test sets can be
 explained by several factors. Firstly, African sequences that have known
 RAMs are more likely to have multiple RAMs, and thus more (known and
@@ -2622,7 +2659,8 @@ for, combining several mutations that do not induce any resistance when
 taken separately, do not come into play here. We are in a classical
 scheme where primary DRMs confer resistance and associated mutations
 reinforce the strength of the resistance and/or compensate for the
-fitness cost induced by primary DRMs.\\
+fitness cost induced by primary DRMs.
+
 It is important to remember that in the previous section we were trying
 (as usual, e.g.~see \autocite{villabona-arenasIndepthAnalysisHIV12016}) to find
 novel mutations associated with resistance by discriminating RTI-naive
@@ -2634,7 +2672,8 @@ RTI-experienced sequence may not be resistant to treatment, due to poor
 ART adherence for example. We must therefore keep in mind that the noisy
 nature of the relationship between resistance and treatment status is
 partly responsible for the lower performance of classifiers trained on
-the UK sequences with reduced signal.\\
+the UK sequences with reduced signal.
+
 Moreover, as all the additional resistance signal we detected is
 associated to the sequences having at least one known RAM (see above),
 we performed another analysis trying to discriminate between the
@@ -2690,7 +2729,8 @@ both of the classification tasks were considered of interest. Based on
 these criteria we selected the following potentially
 resistance-associated mutations (w.r.t. the HXB2 reference genome):
 L228R, L228H, E203K, D218E, I135L and H208Y. These mutations are
-referred to as ``new mutations'' in the rest of this study.\\
+referred to as ``new mutations'' in the rest of this study.
+
 To check the epistatic nature of these selected mutations we computed
 the relative risk \(RR(new, X)\) between a new mutation and a binary
 character \(X\). \(RR(new,X)\) was computed from the contingency table
@@ -2720,7 +2760,8 @@ RR(new,X) = \frac{A}{A+C} \div \frac{B}{B+D}
 
 The RR gives us a measure for how over-represented each of our new
 mutations is in sequences that have the \(X\) character compared to those
-that don't.\\
+that don't.
+
 To get a general idea of this over-representation, for each new mutation
 we computed \(RR(new, treatment)\) comparing the prevalence of the new
 mutation in RTI-experienced and RTI-naive sequences. We also computed
@@ -2728,7 +2769,8 @@ mutation in RTI-experienced and RTI-naive sequences. We also computed
 sequences having at least one known RAM and sequences that have none.
 Both of these RRs are shown in
 Table~\ref{tab:tabMutations}
-for each new mutation.\\
+for each new mutation.
+
 We then computed \(RR(new, RAM)\) for each known RAM present in more than
 0.1\% of UK sequences and the new mutations. In
 Fig~\ref{fig:figUkRatios} we
@@ -2750,7 +2792,7 @@ have a given known RAM, with 95\% RR lower CI bounds sometimes greater
 than 80 (H208Y/L210W and D218E/D67N), and most of the time greater than 10. with the noticeable exception of I135L where only 2 known RAMs give
 RRs with lower CI bounds greater than 4. The RRs computed on the African
 dataset (\ref{fig:s1}) tell a similar story albeit with smaller RR values due to a
-smaller number of occurrences of both new mutations and known RAMs.\\
+smaller number of occurrences of both new mutations and known RAMs.
 
 \begin{table}
 % \begin{adjustwidth}{-2.25in}{0in}
@@ -2862,7 +2904,8 @@ observe that L228R presents high RR values with mainly NRTI RAMs, but
 also with NNRTI RAMs such as Y181C and L100I, and this is even more so h
 for RRs computed on the African dataset (\ref{fig:s1}). L228H is very similar in all
 regards to L228R, however its highest RRs are exclusively with NRTI
-RAMs.\\
+RAMs.
+
 Site 228 of the p66 subunit is located very close to the active site of
 RT, where NRTIs operate (Figs~\ref{fig:figStructure} and \ref{fig:s3}) which could explain the role that L228R
 and L228H seem to have in NRTI resistance. However, site 228 of the p66
@@ -2886,13 +2929,15 @@ sequences and sequences with known RAMs. They both have high RR values
 for NRTI RAMs. Furthermore the most highly valued RAM RRs in
 Fig~\ref{fig:figUkRatios}, are
 very similar for E203K and H208Y. Structurally they are close to each
-other on an alpha helix which is close to the active site.\\
+other on an alpha helix which is close to the active site.
+
 Both E203K and H208Y have positive, albeit not maximal, BLOSUM62 scores,
 meaning they are fairly common substitutions. However, these mutations
 induce some change in physicochemical properties with Tyrosine (Y) being
 less polar than Histidine (H), and the change from Glutamic Acid (E) to
 Lysine (K) corresponding to a change from a negatively charged side
-chain to a positively charged one.\\
+chain to a positively charged one.
+
 All this, combined with their structural proximity and the shared high
 RR values for single RAMs, suggests a similar role in NRTI resistance.
 
@@ -2909,12 +2954,14 @@ see that I135L is significantly over-represented in sequences with NNRTI
 RAMs, specifically A98G and P225H. Structurally this makes sense: On the
 p66 subunit, site 135 is on the outside, far from both the active site
 and the NNIBP. However, site 135 on the p51 subunit is located very
-close to the NNIBP (Figs~\ref{fig:figUkRatios} and \ref{fig:s2}).\\
+close to the NNIBP (Figs~\ref{fig:figUkRatios} and \ref{fig:s2}).
+
 The BLOSUM62 score for this substitution is quite high
 (Table~\ref{tab:tabMutations}), which is expected since both residues are
 very similar to one another, differing only by the positioning of one
 methyl group. However, Leucine (L) is less hydrophobic than Isoleucine
-(I), despite they are still both classified as hydrophobic residues (Table \ref{S1-Table}).\\
+(I), despite they are still both classified as hydrophobic residues (Table \ref{S1-Table}).
+
 The proximity between site 135 and the pocket in which NNRTI RAMs bind,
 as well as the high RR values for these NNRTI RAMs leads us to believe
 that I135L could play a subtle accessory role in NNRTI resistance,
@@ -2951,7 +2998,8 @@ one strongly suggests that the learned classifier models have acquired
 generalized knowledge on resistance. For all of these new mutations
 their spatial positioning on HIV-1 RT is consistent with our
 conclusions, as all were either close to the active site or the
-regulatory binding pocket.\\
+regulatory binding pocket.
+
 Some of the mutations we have identified as potentially associated with
 resistance have been mentioned in previous studies. L228R/H have been
 observed before \autocite{rheeHIV1SubtypeProtease2007} and were suggested to be
@@ -2963,7 +3011,8 @@ with NNRTI and NRTI resistance \autocite{clarkReverseTranscriptaseMutations2006}
 and it has been suggested that it has an accessory role in NRTI
 resistance \autocite{nebbiaEmergenceH208YMutation2007}. E203K, D218E, L228RH and
 H208Y have all been mentioned in \autocite{saracinoImpactUnreportedHIV12006} as
-probably linked to phenotypic resistance to NRTI and NNRTI.\\
+probably linked to phenotypic resistance to NRTI and NNRTI.
+
 However, none of these mutations has been experimentally confirmed as
 conferring or helping with drug resistance to the best of our knowledge.
 The fact that we find them again with a big data analysis of highly
@@ -2973,7 +3022,8 @@ high significance, clearly indicates their potential role in resistance.
 Therefore, we believe they are sufficiently linked to drug resistance
 that they garner a closer inspection either in-vitro or in-vivo to
 determine the mechanisms that could allow them to play a role in
-resistance.\\
+resistance.
+
 With our machine classifiers we seem to have found some RAMs of an
 accessory nature, over-represented in sequences already containing known
 RAMs. This is a form of epistasis, where the interaction between the
@@ -3006,11 +3056,13 @@ significantly associated individually. Moreover, we only found 3
 significantly associated pairs of mutations that did not include at
 least one known RAM, and they all included one of our newly found
 potential RAM: L228R + I142V, L228R + F214L and L228H + F214L (see appendix \ref{S2-Appendix} for
-details).\\
+details).
+
 With therapeutic strategies targeting multiple proteins that are now
 used, there might be some epistatic effects with other regions of the
 HIV genome that are targeted by some of the drugs. These potential
-effects however, lie outside the scope of this study.\\
+effects however, lie outside the scope of this study.
+
 Because of the lack of detailed treatment history metadata, we did not
 distinguish mutations arising from NRTIs or NNRTIs. We believe that a
 large amount of high quality sequence data, along with a sufficiently
@@ -3025,12 +3077,12 @@ patients.
 \addcontentsline{toc}{section}{Acknowledgments}
 
 We thank Anna Zhukova, Frédéric Lemoine and Marie Morel for their help
-and suggestions.\\
-We also thank the UK HIV Drug Resistance Database and the UK
-Collaborative HIV Cohort:\\
+and suggestions.
 
-\begin{description}
-\item[Steering committee:]
+We also thank the UK HIV Drug Resistance Database and the UK
+Collaborative HIV Cohort:
+
+\textbf{Steering committee:}
 David Asboe, Anton Pozniak (Chelsea \& Westminster Hospital, London);
 Patricia Cane (Public Health England, Porton Down); David Chadwick
 (South Tees Hospitals NHS Trust, Middlesbrough); Duncan Churchill
@@ -3054,10 +3106,12 @@ Eleni Nastouli, Deenan Pillay, Andrew Phillips, Caroline Sabin
 of Edinburgh); Peter Tilston (Manchester Royal Infirmary); Erik Volz
 (Imperial College London, London); Ian Williams (Mortimer Market
 Centre, London); Hongyi Zhang (Addenbrooke's Hospital, Cambridge).
-\item[Coordinating Center:]
+
+\textbf{Coordinating Center:}
 Institute for Global Health, UCL (David Dunn, Keith Fairbrother,
 Anna Tostevin, Oliver Stirrup)
-\item[Centers contributing data:]
+
+\textbf{Centers contributing data:}
 Clinical Microbiology and Public Health Laboratory, Addenbrooke's
 Hospital, Cambridge (Justine Dawkins); Guy's and St Thomas' NHS
 Foundation Trust, London (Emma Cunningham, Jane Mullen); PHE --
@@ -3079,7 +3133,6 @@ Hopkins); Molecular Diagnostic Unit, Imperial College, London (Simon
 Dustan); University College London Hospitals (Stuart Kirk); West of
 Scotland Specialist Virology Laboratory, Gartnavel, Glasgow (Rory
 Gunson, Amanda Bradley-Stewart).
-\end{description}
 
 \hypertarget{supporting-information}{%
 \section*{Supporting Information}\label{supporting-information}}

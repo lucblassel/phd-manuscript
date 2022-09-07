@@ -205,20 +205,22 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html"><i class="fa fa-check"></i><b>4</b> Learning from alignments</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#alignments-are-a-rich-source-of-information"><i class="fa fa-check"></i><b>4.1</b> Alignments are a rich source of information</a>
+<li class="chapter" data-level="4.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.1</b> Preprocessing the alignment for machine learning</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#pairwise-alns"><i class="fa fa-check"></i><b>4.1.1</b> Pairwise alns</a></li>
-<li class="chapter" data-level="4.1.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#msa"><i class="fa fa-check"></i><b>4.1.2</b> MSA</a></li>
+<li class="chapter" data-level="4.1.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#physico-chemical-embeddings"><i class="fa fa-check"></i><b>4.1.1</b> Physico-chemical embeddings</a></li>
+<li class="chapter" data-level="4.1.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#generalistic-categorical-embeddings"><i class="fa fa-check"></i><b>4.1.2</b> Generalistic categorical embeddings</a></li>
+<li class="chapter" data-level="4.1.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#learned-embeddings"><i class="fa fa-check"></i><b>4.1.3</b> Learned embeddings</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.2</b> Preprocessing the alignment for machine learning</a>
+<li class="chapter" data-level="4.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#what-to-learn"><i class="fa fa-check"></i><b>4.2</b> What to learn ?</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#embedding-the-alignment"><i class="fa fa-check"></i><b>4.2.1</b> Embedding the alignment</a></li>
-<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#choosing-a-learning-target"><i class="fa fa-check"></i><b>4.2.2</b> Choosing a learning target</a></li>
+<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#supervized"><i class="fa fa-check"></i><b>4.2.1</b> Supervized</a></li>
+<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#unsupervized"><i class="fa fa-check"></i><b>4.2.2</b> Unsupervized</a></li>
+<li class="chapter" data-level="4.2.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#others"><i class="fa fa-check"></i><b>4.2.3</b> Others</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#how-to-learn-from-alns"><i class="fa fa-check"></i><b>4.3</b> How to learn from ALNs</a>
+<li class="chapter" data-level="4.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#how-to-learn"><i class="fa fa-check"></i><b>4.3</b> How to learn ?</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#tests-and-statistical-learning"><i class="fa fa-check"></i><b>4.3.1</b> Tests and statistical learning</a></li>
-<li class="chapter" data-level="4.3.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#taking-interactions-into-account"><i class="fa fa-check"></i><b>4.3.2</b> Taking interactions into account</a></li>
+<li class="chapter" data-level="4.3.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#more-complex-methods-machine-learning"><i class="fa fa-check"></i><b>4.3.2</b> More complex methods, machine learning</a></li>
 <li class="chapter" data-level="4.3.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#deep-learning"><i class="fa fa-check"></i><b>4.3.3</b> Deep Learning</a></li>
 </ul></li>
 </ul></li>
@@ -383,8 +385,8 @@ mutations between treated and naive patients. However, we then consider
 each mutation individually and cannot hope to study interactions between
 several mutations. Here, we aim to leverage the ever-growing quantity of
 high-quality sequence data and machine learning methods to study such
-interactions (i.e. epistasis), as well as try to find new DRMs.<br />
-We trained classifiers to discriminate between Reverse Transcriptase
+interactions (i.e. epistasis), as well as try to find new DRMs.</p>
+<p>We trained classifiers to discriminate between Reverse Transcriptase
 Inhibitor (RTI)-experienced and RTI-naive samples on a large HIV-1
 reverse transcriptase (RT) sequence dataset from the UK
 (<span class="math inline">\(n\approx 55,000\)</span>), using all observed mutations as binary
@@ -393,8 +395,8 @@ classifiers were evaluated on independent data sets, both from the UK
 and Africa. Important representation features for each classifier were
 then extracted as potential DRMs. To find novel DRMs, we repeated this
 process by removing either features or samples associated to known
-DRMs.<br />
-When keeping all known resistance signal, we detected sufficiently
+DRMs.</p>
+<p>When keeping all known resistance signal, we detected sufficiently
 prevalent known DRMs, thus validating the approach. When removing
 features corresponding to known DRMs, our classifiers retained some
 prediction accuracy, and six new mutations significantly associated with
@@ -422,8 +424,8 @@ individually and we cannot hope to reveal any interaction (epistasis)
 between them. Here, we used machine learning to discover new DRMs and
 study potential epistasis effects. We applied this approach to a very
 large UK dataset comprising <span class="math inline">\(\approx 55,000\)</span> RT sequences. Results
-robustness was checked on different UK and African datasets.<br />
-Six new mutations associated to resistance were found. All six have a
+robustness was checked on different UK and African datasets.</p>
+<p>Six new mutations associated to resistance were found. All six have a
 low genetic barrier and show high correlations with known DRMs.
 Moreover, all these mutations are close to either the active site or the
 regulatory binding pocket of RT. Thus, they are good candidates for
@@ -437,23 +439,23 @@ the fitness cost induced by DRMs.</p>
 <h2><span class="header-section-number">6.1</span> Introduction<a href="HIV-paper.html#hiv-introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Drug resistance mutations (DRMs) arise in Human Immunodeficiency Virus-1
 (HIV-1) due to antiretroviral treatment pressure, leading to viral
-rebound and treatment failure<span class="citation"><sup><a href="#ref-lepriResistanceProfilesPatients2000" role="doc-biblioref">533</a>,<a href="#ref-verhofstedeDetectionDrugResistance2007" role="doc-biblioref">534</a></sup></span>.
+rebound and treatment failure<span class="citation"><sup><a href="#ref-lepriResistanceProfilesPatients2000" role="doc-biblioref">554</a>,<a href="#ref-verhofstedeDetectionDrugResistance2007" role="doc-biblioref">555</a></sup></span>.
 Furthermore, drug-resistant HIV strains can be transmitted to
 treatment-naive individuals and further spread throughout the population
-over time<span class="citation"><sup><a href="#ref-mouradPhylotypebasedAnalysisHighlights2015" role="doc-biblioref">487</a>,<a href="#ref-hueDemonstrationSustainedDrugResistant2009" role="doc-biblioref">488</a>,<a href="#ref-zhukovaRolePhylogeneticsTool2017" role="doc-biblioref">535</a></sup></span>.
+over time<span class="citation"><sup><a href="#ref-mouradPhylotypebasedAnalysisHighlights2015" role="doc-biblioref">509</a>,<a href="#ref-hueDemonstrationSustainedDrugResistant2009" role="doc-biblioref">510</a>,<a href="#ref-zhukovaRolePhylogeneticsTool2017" role="doc-biblioref">556</a></sup></span>.
 These transmitted resistant variants limit baseline treatment options
 and have clinical and public health implications worldwide. Almost all
 drugs to treat HIV target the reverse transcriptase (RT), encoded by the
 <em>pol</em> gene. Lists of DRMs are regularly compiled and updated by experts
 in the field, based on genotype analyses and phenotypic resistance tests
-or clinical outcome in patients on ART<span class="citation"><sup><a href="#ref-bennettDrugResistanceMutations2009" role="doc-biblioref">536</a>–<a href="#ref-wensing2017UpdateDrug2016" role="doc-biblioref">538</a></sup></span>.
+or clinical outcome in patients on ART<span class="citation"><sup><a href="#ref-bennettDrugResistanceMutations2009" role="doc-biblioref">557</a>–<a href="#ref-wensing2017UpdateDrug2016" role="doc-biblioref">559</a></sup></span>.
 However, with the developement of new antiretroviral drugs that target
 RT but also other regions of the <em>pol</em> gene like protease or integrase,
 and the use of anti-retrovirals in high risk populations by pre-exposure
 prophylaxis (PREP), it is important to further our understanding of HIV
 polymorphisms and notably the interactions between mutations and
-epistatic effects.<br />
-Among known DRMs, some mutations, such as M184V, directly confer
+epistatic effects.</p>
+<p>Among known DRMs, some mutations, such as M184V, directly confer
 resistance to antiretrovirals, more precisely the commonly used NRTI,
 3TC (lamivudine) and FTC (emtricitabine), and are called primary or
 major drug resistance mutations, while some mutations like E40F have an
@@ -466,9 +468,9 @@ be associated with drug resistance phenomena. Therefore, during the rest
 of this article we will refer to all of these known mutations as
 resistance associated mutations (RAMs), rather than DRMs which is too
 specific, and our goal will be to search for new RAMs and study the
-interactions between known RAMs and the new ones.<br />
-Classically, new RAMs have been found using statistical testing and
-large multiple sequence alignments (MSA) of the studied protein<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a>,<a href="#ref-dudoitMultipleTestingProcedures2007" role="doc-biblioref">539</a></sup></span>.
+interactions between known RAMs and the new ones.</p>
+<p>Classically, new RAMs have been found using statistical testing and
+large multiple sequence alignments (MSA) of the studied protein<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a>,<a href="#ref-dudoitMultipleTestingProcedures2007" role="doc-biblioref">560</a></sup></span>.
 Tests are performed for mutations of interest on a given MSA to check if
 they are associated with the treatment status and outcome of the
 individual the viral sequences were sampled from. The test significance
@@ -477,33 +479,33 @@ MSA position is virtually a resistance mutation and tested. After this
 preliminary statistical search, the selected mutations are scrutinized
 to remove the effects of phylogenetic correlation (i.e. typically
 counting two sequences which are identical or closely related due to
-transmission rather than independent acquisition twice<span class="citation"><sup><a href="#ref-maddisonUnsolvedChallengePhylogenetic2015" role="doc-biblioref">540</a></sup></span>) and check that the same
+transmission rather than independent acquisition twice<span class="citation"><sup><a href="#ref-maddisonUnsolvedChallengePhylogenetic2015" role="doc-biblioref">561</a></sup></span>) and check that the same
 mutation occurred several times in different subtypes and populations
 being treated with the same drug. Then, these mutations can be further
 experimentally tested in vitro or in vivo to validate phenotypic
 resistance. This method has worked well, but by design it is not ideal
 for studying the effect of several mutations at once, since if we have
 to test all couples or triplets of mutations, we quickly lose
-statistical power when correcting for multiple testing<span class="citation"><sup><a href="#ref-shamStatisticalPowerSignificance2014" role="doc-biblioref">513</a></sup></span>, due to the large number of
+statistical power when correcting for multiple testing<span class="citation"><sup><a href="#ref-shamStatisticalPowerSignificance2014" role="doc-biblioref">535</a></sup></span>, due to the large number of
 tests to perform. Moreover, phylogenetic correlation is again a critical
-issue with such an approach.<br />
-Machine learning has been extensively used to predict resistance to
+issue with such an approach.</p>
+<p>Machine learning has been extensively used to predict resistance to
 antiretrovirals from sequence data. There are two main approaches to
 predicting resistance from sequence data. Regression, where machine
 learning models are trained to predict the value of a drug resistance
-indicator, typically <span class="math inline">\(IC_{50}\)</span> fold change in response to a given drug<span class="citation"><sup><a href="#ref-lengauerBioinformaticsassistedAntiHIVTherapy2006" role="doc-biblioref">541</a></sup></span> or other indicators
-from phenotypic resistance assays such as PhenoSense<span class="citation"><sup><a href="#ref-zhangComparisonPrecisionSensitivity2005a" role="doc-biblioref">542</a></sup></span>. Many methods have been used
-to predict a resistance level: Support Vector Machines (SVMs)<span class="citation"><sup><a href="#ref-beerenwinkelGeno2phenoEstimatingPhenotypic2003b" role="doc-biblioref">543</a></sup></span>, k-Nearest Neighbors
-(KNN) and Random Forests (RFs)<span class="citation"><sup><a href="#ref-shenAutomatedPredictionHIV2016a" role="doc-biblioref">544</a></sup></span>, and
-more recently Artificial Neural Networks (ANNs)<span class="citation"><sup><a href="#ref-sheikamamuddyImprovingFoldResistance2017b" role="doc-biblioref">528</a>,<a href="#ref-yuPredictionHIVDrug2014a" role="doc-biblioref">545</a></sup></span>.
+indicator, typically <span class="math inline">\(IC_{50}\)</span> fold change in response to a given drug<span class="citation"><sup><a href="#ref-lengauerBioinformaticsassistedAntiHIVTherapy2006" role="doc-biblioref">562</a></sup></span> or other indicators
+from phenotypic resistance assays such as PhenoSense<span class="citation"><sup><a href="#ref-zhangComparisonPrecisionSensitivity2005a" role="doc-biblioref">563</a></sup></span>. Many methods have been used
+to predict a resistance level: Support Vector Machines (SVMs)<span class="citation"><sup><a href="#ref-beerenwinkelGeno2phenoEstimatingPhenotypic2003b" role="doc-biblioref">564</a></sup></span>, k-Nearest Neighbors
+(KNN) and Random Forests (RFs)<span class="citation"><sup><a href="#ref-shenAutomatedPredictionHIV2016a" role="doc-biblioref">565</a></sup></span>, and
+more recently Artificial Neural Networks (ANNs)<span class="citation"><sup><a href="#ref-sheikamamuddyImprovingFoldResistance2017b" role="doc-biblioref">549</a>,<a href="#ref-yuPredictionHIVDrug2014a" role="doc-biblioref">566</a></sup></span>.
 Alternatively, this task has also been approached as a classification
 problem. Given a certain threshold on a phenotypic resistance measure,
 sequences are given a label of "resistant" or "susceptible" to a
 certain drug. Machine learning classifiers are then trained to predict
-that label. For this task, SVMs and decision trees have been used<span class="citation"><sup><a href="#ref-beerenwinkelGeno2phenoInterpretingGenotypic2001" role="doc-biblioref">529</a>,<a href="#ref-arayaSupportVectorMachine2009" role="doc-biblioref">546</a></sup></span>,
-ensemble classifier chains<span class="citation"><sup><a href="#ref-heiderMultilabelClassificationExploiting2013b" role="doc-biblioref">532</a>,<a href="#ref-riemenschneiderExploitingHIV1Protease2016a" role="doc-biblioref">547</a></sup></span>
-and also ANNs<span class="citation"><sup><a href="#ref-draghiciPredictingHIVDrug2003" role="doc-biblioref">548</a></sup></span>. Most recently Steiner
-<em>et al.</em><span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">527</a></sup></span> have used Deep Learning
+that label. For this task, SVMs and decision trees have been used<span class="citation"><sup><a href="#ref-beerenwinkelGeno2phenoInterpretingGenotypic2001" role="doc-biblioref">550</a>,<a href="#ref-arayaSupportVectorMachine2009" role="doc-biblioref">567</a></sup></span>,
+ensemble classifier chains<span class="citation"><sup><a href="#ref-heiderMultilabelClassificationExploiting2013b" role="doc-biblioref">553</a>,<a href="#ref-riemenschneiderExploitingHIV1Protease2016a" role="doc-biblioref">568</a></sup></span>
+and also ANNs<span class="citation"><sup><a href="#ref-draghiciPredictingHIVDrug2003" role="doc-biblioref">569</a></sup></span>. Most recently Steiner
+<em>et al.</em><span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">316</a></sup></span> have used Deep Learning
 Architectures to predict resistance status (i.e. classification) from
 sequence data. Since phenotypic assays are more complicated and costly
 to perform than simple genotyping, there is a limited number of
@@ -515,11 +517,11 @@ certain tasks and architectures. However, despite this limitation,
 approaches proposed in these studies seem to have fairly good predictive
 accuracy. It is important to note that all of these studies aim to
 predict if a given sequence is resistant or not to a given drug, they do
-not aim to find new potential RAMs. Although Steiner <em>et al.</em><span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">527</a></sup></span> have checked that known DRM
+not aim to find new potential RAMs. Although Steiner <em>et al.</em><span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">316</a></sup></span> have checked that known DRM
 positions are captured by their models and found several positions
 potentially associated to resistance, it is not the main goal of their
-method.<br />
-It is accepted in machine learning that there is a trade-off between
+method.</p>
+<p>It is accepted in machine learning that there is a trade-off between
 model accuracy and model interpretability. In these previous studies the
 goal was to make the most accurate predictions possible, using complex
 models such as SVMs and ANNs, therefore sacrificing interpretability.
@@ -528,7 +530,7 @@ less accurate but whose predictions we can understand and interpret. We
 train these models to discriminate RTI-naive from RTI-experienced
 sequences. Without the need for phenotypic data, we are able to use much
 larger HIV-1 RT sequence datasets from the UK (<span class="math inline">\(n\approx55,000\)</span>)
-(<a href="http://www.hivrdb.org.uk/" class="uri">http://www.hivrdb.org.uk/</a>) and Africa (<span class="math inline">\(n\approx4,000\)</span>)<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a></sup></span>. By using interpretable
+(<a href="http://www.hivrdb.org.uk/" class="uri">http://www.hivrdb.org.uk/</a>) and Africa (<span class="math inline">\(n\approx4,000\)</span>)<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a></sup></span>. By using interpretable
 models, we can extract mutations that are important for determining if a
 sequence is treated or not and potentially find new mutations
 potentially associated to resistance. Furthermore, we aim to detect
@@ -561,7 +563,7 @@ significance and study potential epistatic effects, we used two datasets
 of HIV-1 RT sequences. A large one (<span class="math inline">\(n=55,539\)</span>) from the UK HIV Drug
 Resistance Database (<a href="http://www.hivrdb.org.uk/" class="uri">http://www.hivrdb.org.uk/</a>) and a smaller
 (<span class="math inline">\(n=3,990\)</span>) one from 10 different western, eastern and central African
-countries<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a></sup></span>. In the UK dataset,
+countries<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a></sup></span>. In the UK dataset,
 sequences from RTI-naive individuals formed the majority class with
 41,921 sequences (75%). In the African dataset, both classes were more
 balanced with 2,316 RTI-naive sequences (58%). In the UK dataset,
@@ -577,15 +579,15 @@ subtypes and CRFs compared to the 2 subtypes (B and C) that we retained
 for this study from the UK cohort. The majority of the sequences from
 the African dataset were samples from Cameroon (27%), Democratic
 Republic of Congo (17%), Burundi (15%), Burkina Faso (13%) and Togo
-(11%).<br />
-It is important to note that RTI-experienced sequences in both of these
+(11%).</p>
+<p>It is important to note that RTI-experienced sequences in both of these
 datasets can be considered as resistant to treatment. Since the viral
 load was sufficiently high to allow for sequencing of the virus, we can
 consider that the ART has failed. However, in some cases this resistance
 might be caused by non adherence to ART, rather than by the presence of
 RAMs, therefore adding some noise to the relationship between treatment
-status and resistance.<br />
-In addition to differences in size, balance between RTI-naive and
+status and resistance.</p>
+<p>In addition to differences in size, balance between RTI-naive and
 experienced classes, and the genetic difference between the UK and
 African datasets, there are also significant differences resulting from
 differing treatment strategies. In the UK and other higher income
@@ -593,24 +595,23 @@ countries, the treatment is often tailored to the individual with
 genotype testing, which result in specific treatment as well as thorough
 follow-ups and high treatment adherence. In the African countries of the
 dataset that we used, the treatment is ZDV/ d4T (NRTI) + 3TC (NRTI) +
-NVP/EFV (NNRTI) in most cases<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a></sup></span>, and this treatment is
+NVP/EFV (NNRTI) in most cases<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a></sup></span>, and this treatment is
 generalized to the affected population, with poorer follow-up and
 adherence than in the UK. This discrepancy could lead to different
 mutations arising in both datasets, however since the treatment strategy
 is a combination of both NRTI and NNRTI drug classes, as in many
-countries, similar RAMs arise<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a></sup></span>. Furthermore, there is
+countries, similar RAMs arise<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a></sup></span>. Furthermore, there is
 potentially more uncertainty in the African dataset than in the UK. For
 example some individuals may have unofficially taken antiretroviral
 drugs, but still identify themselves as RTI-naive, or report having some
-form of ART while not having been treated for HIV<span class="citation"><sup><a href="#ref-mooneySocialDesirabilityBias2018" role="doc-biblioref">549</a></sup></span>. All of this explains the high
+form of ART while not having been treated for HIV<span class="citation"><sup><a href="#ref-mooneySocialDesirabilityBias2018" role="doc-biblioref">570</a></sup></span>. All of this explains the high
 prevalence of multiple resistance in the African data set: the median
 number of RAMs in sequences containing at least one RAM is 3 in the
 African sequences, while it is 1 in UK sequences
 (Table <a href="HIV-paper.html#tab:tableData">6.1</a>).
 Thus, we can say that African sequences are highly resistant, with
 possibly different mutations and epistatic effects, compared to their UK
-counterparts.<br />
-</p>
+counterparts.</p>
 <template id="43e76caa-29f4-4eeb-bd58-89b1636e8655"><style>
 .tabwid table{
   border-spacing:0px !important;
@@ -672,8 +673,8 @@ generalizability of our method and the robustness of the results. That
 is to say, if signal extracted from the UK dataset was still relevant on
 such a different dataset as the African one, we could be fairly
 reassured in regard to the biological and epidemiological relevance of
-the observed signal.<br />
-Sequences in both African and UK datasets were already aligned. In order
+the observed signal.</p>
+<p>Sequences in both African and UK datasets were already aligned. In order
 to avoid overly gappy regions of our alignment we selected only
 positions 41 to 235 of RT for our analysis. We used the Sierra web
 service (<a href="https://hivdb.stanford.edu/page/webservice/" class="uri">https://hivdb.stanford.edu/page/webservice/</a>) to get amino
@@ -684,8 +685,8 @@ acids” for each position, corresponding to the B and C subtype reference
 sequences obtained from the Los Alamos sequence database
 (<a href="http://www.hiv.lanl.gov/" class="uri">http://www.hiv.lanl.gov/</a>). All the other, non-reference amino acids
 are named “mutations” in the following, and the set of mutations was
-explored to reveal new potential RAMs.<br />
-To train our supervised classification methods<span class="citation"><sup><a href="#ref-tibshiraniRegressionShrinkageSelection1996" role="doc-biblioref">550</a>–<a href="#ref-gascuelTwelveNumericalSymbolic1998" role="doc-biblioref">552</a></sup></span>,
+explored to reveal new potential RAMs.</p>
+<p>To train our supervised classification methods<span class="citation"><sup><a href="#ref-tibshiraniRegressionShrinkageSelection1996" role="doc-biblioref">571</a>–<a href="#ref-gascuelTwelveNumericalSymbolic1998" role="doc-biblioref">573</a></sup></span>,
 the sequence data needed to be encoded to numerical vectors. A common
 and intuitive way to do so is to create a single feature in the dataset
 for each position of the sequence to encode. Each amino acid is then
@@ -711,15 +712,15 @@ mutations and potentially link them to resistance.</p>
 <div id="classifier-training" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Classifier training<a href="HIV-paper.html#classifier-training" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In order to find new potential RAMs, we first followed the conventional
-multiple testing approach<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a></sup></span>. We
+multiple testing approach<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a></sup></span>. We
 first used Fisher exact tests to identify which of these mutations were
 significantly associated with anti-retroviral treatment. All the
 resulting p-values were then corrected for multiple testing using the
-Bonferroni correction<span class="citation"><sup><a href="#ref-goemanMultipleHypothesisTesting2014" role="doc-biblioref">553</a></sup></span>. Those for
+Bonferroni correction<span class="citation"><sup><a href="#ref-goemanMultipleHypothesisTesting2014" role="doc-biblioref">574</a></sup></span>. Those for
 which the corrected p-value was <span class="math inline">\(≤ 0.05\)</span> were then considered as
 significantly associated with treatment and potentially implicated in
-resistance.<br />
-This method was complemented by our parallel, machine learning based
+resistance.</p>
+<p>This method was complemented by our parallel, machine learning based
 approach. In order to extract potential RAMs, we trained several
 classifiers to discriminate between RTI-experienced and RTI-naive
 sequences represented by the binary vectors described above. This
@@ -734,22 +735,22 @@ those features:</p>
 <ol style="list-style-type: decimal">
 <li><p>Multinomial naive Bayes (NB), which estimates conditional
 probabilities of being in the RTI-experienced class given a set of
-representation features<span class="citation"><sup><a href="#ref-rennie2003tackling" role="doc-biblioref">554</a></sup></span>; the higher
+representation features<span class="citation"><sup><a href="#ref-rennie2003tackling" role="doc-biblioref">575</a></sup></span>; the higher
 (<span class="math inline">\(\approx 1.0\)</span>) and the lower (<span class="math inline">\(\approx0\)</span>) conditional probabilities
 correspond to the most important features.</p></li>
-<li><p>Logistic regression (LR) with L1 regularization (LASSO)<span class="citation"><sup><a href="#ref-tibshiraniRegressionShrinkageSelection1996" role="doc-biblioref">550</a></sup></span> which assigns weights
+<li><p>Logistic regression (LR) with L1 regularization (LASSO)<span class="citation"><sup><a href="#ref-tibshiraniRegressionShrinkageSelection1996" role="doc-biblioref">571</a></sup></span> which assigns weights
 to each of the features, whose sign denotes the importance to one of
 the 2 classes, and whose absolute value denotes the weight of this
 importance.</p></li>
 <li><p>Random Forest (RF) , which has feature importance measures based on
-the Gini impurity in the decision trees<span class="citation"><sup><a href="#ref-breimanRandomForests2001" role="doc-biblioref">555</a></sup></span>.</p></li>
+the Gini impurity in the decision trees<span class="citation"><sup><a href="#ref-breimanRandomForests2001" role="doc-biblioref">576</a></sup></span>.</p></li>
 </ol>
 <p>Interpretability was the main driver behind our classification method
 choice, with the conditional probabilities of NB, the weight or LR and
 the importance values of RF, we can easily extract which mutations are
 driving the discrimination of RT sequences. This is why we did not
 choose to use ANNs which could have led to an increase in accuracy at
-the cost of interpretability<span class="citation"><sup><a href="#ref-alvarezmelisRobustInterpretabilitySelfExplaining2018" role="doc-biblioref">556</a>–<a href="#ref-zhangInterpretableConvolutionalNeural2018" role="doc-biblioref">558</a></sup></span>.
+the cost of interpretability<span class="citation"><sup><a href="#ref-alvarezmelisRobustInterpretabilitySelfExplaining2018" role="doc-biblioref">577</a>–<a href="#ref-zhangInterpretableConvolutionalNeural2018" role="doc-biblioref">579</a></sup></span>.
 Moreover, these three classification methods have the potential to
 detect epistatic effects. With RF, the discrimination is based on the
 combination of a few features (i.e. mutations), while with LR the
@@ -757,14 +758,14 @@ features are weighted positively or negatively, thus making it possible
 to detect cumulative effects resulting from a large number of mutations,
 which individually have no discrimination power. Naive Bayes is a very
 simple approach, generally fairly accurate, and in between the two
-others in terms of explanatory power<span class="citation"><sup><a href="#ref-gascuelTwelveNumericalSymbolic1998" role="doc-biblioref">552</a></sup></span>.<br />
-In order to be able to compare all these approaches in a common
+others in terms of explanatory power<span class="citation"><sup><a href="#ref-gascuelTwelveNumericalSymbolic1998" role="doc-biblioref">573</a></sup></span>.</p>
+<p>In order to be able to compare all these approaches in a common
 framework, we devised a very simple classifier out of the results of the
 Fisher exact tests. This "Fisher classifier" (FC) predicts a sequence
 as RTI-experienced if it has at least one of the mutations significantly
 associated to treatment. In this way, we were able to compute metrics
-for all classification methods and compare their performance.<br />
-It is important to note that in all of these approaches we chose to
+for all classification methods and compare their performance.</p>
+<p>It is important to note that in all of these approaches we chose to
 discriminate RTI-naive from RTI-experienced sequences, regardless of the
 type of RTI received. One of the reasons is that we did not have
 detailed enough treatment history for sequences in the UK and African
@@ -777,8 +778,8 @@ extracted features and comparing them to known RAMs. Furthermore, since
 the treatment strategies are so different between the UK and African
 sequences, training on sequences having received different treatments
 should increase the robustness of our classifiers and the relevance of
-the mutations selected as potentially associated to resistance.<br />
-To avoid phylogenetic confounding factors (e.g. transmitted mutations
+the mutations selected as potentially associated to resistance.</p>
+<p>To avoid phylogenetic confounding factors (e.g. transmitted mutations
 within a specific country or region), and avoid finding mutations
 potentially specific to a given subtype, we split the training and
 testing sets by HIV-1 M subtype. This resulted in training a set of
@@ -788,7 +789,7 @@ classifiers on the subtype C sequences of the UK dataset and testing on
 the subtype B sequences from the UK dataset, as well as training a final
 set of classifiers on the whole UK dataset, but testing it on the
 smaller African dataset with a completely different phylogenetic makeup
-and treatment context<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a></sup></span>.
+and treatment context<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a></sup></span>.
 Furthermore, in order to identify novel RAMs and study the behavior of
 the classifiers, we repeated this training scheme on both datasets, each
 time removing resistance-associated signal incrementally: first by
@@ -857,7 +858,7 @@ fantome.appendChild(templateContent);
 </div>
 <div id="measuring-classifier-performance" class="section level3 hasAnchor" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Measuring classifier performance<a href="HIV-paper.html#measuring-classifier-performance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To compare the performance of our classifiers we used balanced accuracy<span class="citation"><sup><a href="#ref-brodersenBalancedAccuracyIts2010" role="doc-biblioref">559</a></sup></span>, which is the average of accuracies
+<p>To compare the performance of our classifiers we used balanced accuracy<span class="citation"><sup><a href="#ref-brodersenBalancedAccuracyIts2010" role="doc-biblioref">580</a></sup></span>, which is the average of accuracies
 (i.e. percentages of well-classified sequences) computed separately on
 each class of the test set. This score takes into account, and corrects
 for, the imbalance between RTI-naive and RTI-experienced samples, which
@@ -870,7 +871,7 @@ differently sized test sets<span class="citation"><sup><a href="#ref-vinhInforma
 Additionally, mutual information (MI) was used to compute p-values and
 assess the significance of the classifiers’ predictive power. The
 probabilistic performance of the classifiers was evaluated using an
-adapted Brier score<span class="citation"><sup><a href="#ref-brierVERIFICATIONFORECASTSEXPRESSED1950" role="doc-biblioref">551</a></sup></span> more
+adapted Brier score<span class="citation"><sup><a href="#ref-brierVERIFICATIONFORECASTSEXPRESSED1950" role="doc-biblioref">572</a></sup></span> more
 suited to binary classification, which is the mean squared difference
 between the actual class (coded by 1 and 0 for the RTI-experienced and
 RTI-naive samples respectively) and the predicted probability of being
@@ -967,8 +968,8 @@ suggests that the mutations that are found in the RAM removed experiment
 (see list below) are most likely accessory mutations that accompany
 known RAMs. This also suggests that all primary DRMs (i.e., that
 directly confer antiretroviral resistance) have been identified, which
-is reassuring from a public health perspective.<br />
-The performance discrepancy between the UK and African test sets can be
+is reassuring from a public health perspective.</p>
+<p>The performance discrepancy between the UK and African test sets can be
 explained by several factors. Firstly, African sequences that have known
 RAMs are more likely to have multiple RAMs, and thus more (known and
 unknown) resistance-associated features than their UK counterparts (c.f.
@@ -992,9 +993,9 @@ for, combining several mutations that do not induce any resistance when
 taken separately, do not come into play here. We are in a classical
 scheme where primary DRMs confer resistance and associated mutations
 reinforce the strength of the resistance and/or compensate for the
-fitness cost induced by primary DRMs.<br />
-It is important to remember that in the previous section we were trying
-(as usual, e.g. see<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">504</a></sup></span>) to find
+fitness cost induced by primary DRMs.</p>
+<p>It is important to remember that in the previous section we were trying
+(as usual, e.g. see<span class="citation"><sup><a href="#ref-villabona-arenasIndepthAnalysisHIV12016" role="doc-biblioref">526</a></sup></span>) to find
 novel mutations associated with resistance by discriminating RTI-naive
 from RTI-experienced sequences, both with the statistical tests and the
 classifiers. However, this is intrinsically biased and noisy. Indeed, a
@@ -1004,8 +1005,8 @@ RTI-experienced sequence may not be resistant to treatment, due to poor
 ART adherence for example. We must therefore keep in mind that the noisy
 nature of the relationship between resistance and treatment status is
 partly responsible for the lower performance of classifiers trained on
-the UK sequences with reduced signal.<br />
-Moreover, as all the additional resistance signal we detected is
+the UK sequences with reduced signal.</p>
+<p>Moreover, as all the additional resistance signal we detected is
 associated to the sequences having at least one known RAM (see above),
 we performed another analysis trying to discriminate between the
 sequences having at least one known RAM and those having none. The goal
@@ -1083,8 +1084,8 @@ both of the classification tasks were considered of interest. Based on
 these criteria we selected the following potentially
 resistance-associated mutations (w.r.t. the HXB2 reference genome):
 L228R, L228H, E203K, D218E, I135L and H208Y. These mutations are
-referred to as “new mutations” in the rest of this study.<br />
-To check the epistatic nature of these selected mutations we computed
+referred to as “new mutations” in the rest of this study.</p>
+<p>To check the epistatic nature of these selected mutations we computed
 the relative risk <span class="math inline">\(RR(new, X)\)</span> between a new mutation and a binary
 character <span class="math inline">\(X\)</span>. <span class="math inline">\(RR(new,X)\)</span> was computed from the contingency table
 between <span class="math inline">\(new\)</span> and <span class="math inline">\(X\)</span> as follows:</p>
@@ -1147,16 +1148,16 @@ RR(new,X) = \frac{A}{A+C} \div \frac{B}{B+D}
 </div>
 <p>The RR gives us a measure for how over-represented each of our new
 mutations is in sequences that have the <span class="math inline">\(X\)</span> character compared to those
-that don’t.<br />
-To get a general idea of this over-representation, for each new mutation
+that don’t.</p>
+<p>To get a general idea of this over-representation, for each new mutation
 we computed <span class="math inline">\(RR(new, treatment)\)</span> comparing the prevalence of the new
 mutation in RTI-experienced and RTI-naive sequences. We also computed
 <span class="math inline">\(RR(new, with RAM)\)</span> comparing the prevalence the new mutation in
 sequences having at least one known RAM and sequences that have none.
 Both of these RRs are shown in
 Table <a href="HIV-paper.html#tab:tabMutations">6.3</a>
-for each new mutation.<br />
-We then computed <span class="math inline">\(RR(new, RAM)\)</span> for each known RAM present in more than
+for each new mutation.</p>
+<p>We then computed <span class="math inline">\(RR(new, RAM)\)</span> for each known RAM present in more than
 0.1% of UK sequences and the new mutations. In
 Fig <a href="HIV-paper.html#fig:figUkRatios">6.3</a> we
 see the RRs for which the lower bound of the 95% confidence interval,
@@ -1176,8 +1177,7 @@ have a given known RAM, with 95% RR lower CI bounds sometimes greater
 than 80 (H208Y/L210W and D218E/D67N), and most of the time greater than 10. with the noticeable exception of I135L where only 2 known RAMs give
 RRs with lower CI bounds greater than 4. The RRs computed on the African
 dataset (<a href="HIV-appendix.html#fig:s1">C.1</a>) tell a similar story albeit with smaller RR values due to a
-smaller number of occurrences of both new mutations and known RAMs.<br />
-</p>
+smaller number of occurrences of both new mutations and known RAMs.</p>
 <template id="7def50d3-ac68-4a4b-ab6f-3b1c60c8066d"><style>
 .tabwid table{
   border-spacing:0px !important;
@@ -1290,7 +1290,7 @@ potential RAMs, values are contained between the 5<sup>th</sup> and 95<sup>th</s
 percentiles computed on known RAMs, except for the BLOSUM score of L228H
 that corresponds to a drastic physicochemical change.<br />
 To gain more insight on these new mutations we also observed their
-spatial location on the 3-D HIV-1 RT structure using PyMol<span class="citation"><sup><a href="#ref-PyMOL" role="doc-biblioref">560</a></sup></span>.
+spatial location on the 3-D HIV-1 RT structure using PyMol<span class="citation"><sup><a href="#ref-PyMOL" role="doc-biblioref">581</a></sup></span>.
 HIV-1 RT is a heterodimer with two subunits translated from the same
 sequence with different lengths and 3-D structures. The smaller p51
 subunit (440 AAs) has a mainly structural role, while the larger p66
@@ -1302,7 +1302,7 @@ Inhibitors (NRTI) are nucleotide analogs and bind in the active site,
 blocking reverse transcription. Non-Nucleoside RT Inhibitors (NNRTI)
 bind in the NNIBP, changing the protein conformation and blocking
 reverse transcription. More details on the structure and function of
-HIV-1 RT can be found in<span class="citation"><sup><a href="#ref-sarafianosStructureFunctionHIV12009" role="doc-biblioref">453</a></sup></span>. A
+HIV-1 RT can be found in<span class="citation"><sup><a href="#ref-sarafianosStructureFunctionHIV12009" role="doc-biblioref">475</a></sup></span>. A
 general view of where the new mutations are situated with regards to the
 other important sites of HIV-1 RT is shown in
 Fig <a href="HIV-paper.html#fig:figStructure">6.4</a>,
@@ -1333,8 +1333,8 @@ observe that L228R presents high RR values with mainly NRTI RAMs, but
 also with NNRTI RAMs such as Y181C and L100I, and this is even more so h
 for RRs computed on the African dataset (<a href="HIV-appendix.html#fig:s1">C.1</a>). L228H is very similar in all
 regards to L228R, however its highest RRs are exclusively with NRTI
-RAMs.<br />
-Site 228 of the p66 subunit is located very close to the active site of
+RAMs.</p>
+<p>Site 228 of the p66 subunit is located very close to the active site of
 RT, where NRTIs operate (Figs <a href="HIV-paper.html#fig:figStructure">6.4</a> and <a href="HIV-appendix.html#fig:s3">C.3</a>) which could explain the role that L228R
 and L228H seem to have in NRTI resistance. However, site 228 of the p66
 subunit is also between sites 227 and 229 which are both part of the
@@ -1356,14 +1356,14 @@ sequences and sequences with known RAMs. They both have high RR values
 for NRTI RAMs. Furthermore the most highly valued RAM RRs in
 Fig <a href="HIV-paper.html#fig:figUkRatios">6.3</a>, are
 very similar for E203K and H208Y. Structurally they are close to each
-other on an alpha helix which is close to the active site.<br />
-Both E203K and H208Y have positive, albeit not maximal, BLOSUM62 scores,
+other on an alpha helix which is close to the active site.</p>
+<p>Both E203K and H208Y have positive, albeit not maximal, BLOSUM62 scores,
 meaning they are fairly common substitutions. However, these mutations
 induce some change in physicochemical properties with Tyrosine (Y) being
 less polar than Histidine (H), and the change from Glutamic Acid (E) to
 Lysine (K) corresponding to a change from a negatively charged side
-chain to a positively charged one.<br />
-All this, combined with their structural proximity and the shared high
+chain to a positively charged one.</p>
+<p>All this, combined with their structural proximity and the shared high
 RR values for single RAMs, suggests a similar role in NRTI resistance.</p>
 </div>
 <div id="i135l" class="section level4 hasAnchor" number="6.3.4.3">
@@ -1378,13 +1378,13 @@ see that I135L is significantly over-represented in sequences with NNRTI
 RAMs, specifically A98G and P225H. Structurally this makes sense: On the
 p66 subunit, site 135 is on the outside, far from both the active site
 and the NNIBP. However, site 135 on the p51 subunit is located very
-close to the NNIBP (Figs <a href="HIV-paper.html#fig:figUkRatios">6.3</a> and <a href="HIV-appendix.html#fig:s2">C.2</a>).<br />
-The BLOSUM62 score for this substitution is quite high
+close to the NNIBP (Figs <a href="HIV-paper.html#fig:figUkRatios">6.3</a> and <a href="HIV-appendix.html#fig:s2">C.2</a>).</p>
+<p>The BLOSUM62 score for this substitution is quite high
 (Table <a href="HIV-paper.html#tab:tabMutations">6.3</a>), which is expected since both residues are
 very similar to one another, differing only by the positioning of one
 methyl group. However, Leucine (L) is less hydrophobic than Isoleucine
-(I), despite they are still both classified as hydrophobic residues (Table <a href="HIV-appendix.html#S1-Table">C.5</a>).<br />
-The proximity between site 135 and the pocket in which NNRTI RAMs bind,
+(I), despite they are still both classified as hydrophobic residues (Table <a href="HIV-appendix.html#S1-Table">C.5</a>).</p>
+<p>The proximity between site 135 and the pocket in which NNRTI RAMs bind,
 as well as the high RR values for these NNRTI RAMs leads us to believe
 that I135L could play a subtle accessory role in NNRTI resistance,
 either by enhancing the effect of some NNRTI RAMs (typically, A98G and
@@ -1420,19 +1420,19 @@ one strongly suggests that the learned classifier models have acquired
 generalized knowledge on resistance. For all of these new mutations
 their spatial positioning on HIV-1 RT is consistent with our
 conclusions, as all were either close to the active site or the
-regulatory binding pocket.<br />
-Some of the mutations we have identified as potentially associated with
+regulatory binding pocket.</p>
+<p>Some of the mutations we have identified as potentially associated with
 resistance have been mentioned in previous studies. L228R/H have been
-observed before<span class="citation"><sup><a href="#ref-rheeHIV1SubtypeProtease2007" role="doc-biblioref">561</a></sup></span> and were suggested to be
-associated with reduced susceptibility to didanosine<span class="citation"><sup><a href="#ref-delucaImprovedInterpretationGenotypic2007" role="doc-biblioref">562</a>,<a href="#ref-marcelinImpactHIV1Reverse2006" role="doc-biblioref">563</a></sup></span>.
+observed before<span class="citation"><sup><a href="#ref-rheeHIV1SubtypeProtease2007" role="doc-biblioref">582</a></sup></span> and were suggested to be
+associated with reduced susceptibility to didanosine<span class="citation"><sup><a href="#ref-delucaImprovedInterpretationGenotypic2007" role="doc-biblioref">583</a>,<a href="#ref-marcelinImpactHIV1Reverse2006" role="doc-biblioref">584</a></sup></span>.
 I135L has been observed in sequences with reduced susceptibility to
-NNRTIs<span class="citation"><sup><a href="#ref-brownReducedSusceptibilityHuman2000" role="doc-biblioref">564</a></sup></span>. H208Y has been associated
-with NNRTI and NRTI resistance<span class="citation"><sup><a href="#ref-clarkReverseTranscriptaseMutations2006" role="doc-biblioref">565</a></sup></span>
+NNRTIs<span class="citation"><sup><a href="#ref-brownReducedSusceptibilityHuman2000" role="doc-biblioref">585</a></sup></span>. H208Y has been associated
+with NNRTI and NRTI resistance<span class="citation"><sup><a href="#ref-clarkReverseTranscriptaseMutations2006" role="doc-biblioref">586</a></sup></span>
 and it has been suggested that it has an accessory role in NRTI
-resistance<span class="citation"><sup><a href="#ref-nebbiaEmergenceH208YMutation2007" role="doc-biblioref">566</a></sup></span>. E203K, D218E, L228RH and
-H208Y have all been mentioned in<span class="citation"><sup><a href="#ref-saracinoImpactUnreportedHIV12006" role="doc-biblioref">567</a></sup></span> as
-probably linked to phenotypic resistance to NRTI and NNRTI.<br />
-However, none of these mutations has been experimentally confirmed as
+resistance<span class="citation"><sup><a href="#ref-nebbiaEmergenceH208YMutation2007" role="doc-biblioref">587</a></sup></span>. E203K, D218E, L228RH and
+H208Y have all been mentioned in<span class="citation"><sup><a href="#ref-saracinoImpactUnreportedHIV12006" role="doc-biblioref">588</a></sup></span> as
+probably linked to phenotypic resistance to NRTI and NNRTI.</p>
+<p>However, none of these mutations has been experimentally confirmed as
 conferring or helping with drug resistance to the best of our knowledge.
 The fact that we find them again with a big data analysis of highly
 different sequences and involved statistical selection procedure
@@ -1441,8 +1441,8 @@ high significance, clearly indicates their potential role in resistance.
 Therefore, we believe they are sufficiently linked to drug resistance
 that they garner a closer inspection either in-vitro or in-vivo to
 determine the mechanisms that could allow them to play a role in
-resistance.<br />
-With our machine classifiers we seem to have found some RAMs of an
+resistance.</p>
+<p>With our machine classifiers we seem to have found some RAMs of an
 accessory nature, over-represented in sequences already containing known
 RAMs. This is a form of epistasis, where the interaction between the
 main RAM and the accessory RAM is important. However, we did not manage
@@ -1460,7 +1460,7 @@ choice, showing similar or better performance than other classifiers,
 and an easy interpretation that is facilitated by the lasso
 regularization which performs a simple feature selection and retains the
 most important ones. Similar results were already observed on other
-sequence analysis tasks<span class="citation"><sup><a href="#ref-wuGenomewideAssociationAnalysis2009" role="doc-biblioref">568</a></sup></span>. In order
+sequence analysis tasks<span class="citation"><sup><a href="#ref-wuGenomewideAssociationAnalysis2009" role="doc-biblioref">589</a></sup></span>. In order
 to investigate the second form of epistasis further we tested each pair
 of mutations in the UK dataset (<span class="math inline">\(n=867,903\)</span>) with Fisher exact tests to
 see if they were linked to treatment status. In order to mitigate the
@@ -1474,12 +1474,12 @@ significantly associated individually. Moreover, we only found 3
 significantly associated pairs of mutations that did not include at
 least one known RAM, and they all included one of our newly found
 potential RAM: L228R + I142V, L228R + F214L and L228H + F214L (see appendix <a href="HIV-appendix.html#S2-Appendix">C.6</a> for
-details).<br />
-With therapeutic strategies targeting multiple proteins that are now
+details).</p>
+<p>With therapeutic strategies targeting multiple proteins that are now
 used, there might be some epistatic effects with other regions of the
 HIV genome that are targeted by some of the drugs. These potential
-effects however, lie outside the scope of this study.<br />
-Because of the lack of detailed treatment history metadata, we did not
+effects however, lie outside the scope of this study.</p>
+<p>Because of the lack of detailed treatment history metadata, we did not
 distinguish mutations arising from NRTIs or NNRTIs. We believe that a
 large amount of high quality sequence data, along with a sufficiently
 detailed log of treatments and drugs the sequences were exposed to,
@@ -1491,14 +1491,11 @@ patients.</p>
 <div id="hiv-acknowledgments" class="section level2 unnumbered hasAnchor">
 <h2>Acknowledgments<a href="HIV-paper.html#hiv-acknowledgments" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We thank Anna Zhukova, Frédéric Lemoine and Marie Morel for their help
-and suggestions.<br />
-We also thank the UK HIV Drug Resistance Database and the UK
-Collaborative HIV Cohort:<br />
-</p>
-<dl>
-<dt>Steering committee:</dt>
-<dd>
-<p>David Asboe, Anton Pozniak (Chelsea &amp; Westminster Hospital, London);
+and suggestions.</p>
+<p>We also thank the UK HIV Drug Resistance Database and the UK
+Collaborative HIV Cohort:</p>
+<p><strong>Steering committee:</strong>
+David Asboe, Anton Pozniak (Chelsea &amp; Westminster Hospital, London);
 Patricia Cane (Public Health England, Porton Down); David Chadwick
 (South Tees Hospitals NHS Trust, Middlesbrough); Duncan Churchill
 (Brighton and Sussex University Hospitals NHS Trust); Simon Collins
@@ -1521,15 +1518,11 @@ Eleni Nastouli, Deenan Pillay, Andrew Phillips, Caroline Sabin
 of Edinburgh); Peter Tilston (Manchester Royal Infirmary); Erik Volz
 (Imperial College London, London); Ian Williams (Mortimer Market
 Centre, London); Hongyi Zhang (Addenbrooke’s Hospital, Cambridge).</p>
-</dd>
-<dt>Coordinating Center:</dt>
-<dd>
-<p>Institute for Global Health, UCL (David Dunn, Keith Fairbrother,
+<p><strong>Coordinating Center:</strong>
+Institute for Global Health, UCL (David Dunn, Keith Fairbrother,
 Anna Tostevin, Oliver Stirrup)</p>
-</dd>
-<dt>Centers contributing data:</dt>
-<dd>
-<p>Clinical Microbiology and Public Health Laboratory, Addenbrooke’s
+<p><strong>Centers contributing data:</strong>
+Clinical Microbiology and Public Health Laboratory, Addenbrooke’s
 Hospital, Cambridge (Justine Dawkins); Guy’s and St Thomas’ NHS
 Foundation Trust, London (Emma Cunningham, Jane Mullen); PHE –
 Public Health Laboratory, Birmingham Heartlands Hospital, Birmingham
@@ -1550,8 +1543,6 @@ Hopkins); Molecular Diagnostic Unit, Imperial College, London (Simon
 Dustan); University College London Hospitals (Stuart Kirk); West of
 Scotland Specialist Virology Laboratory, Gartnavel, Glasgow (Rory
 Gunson, Amanda Bradley-Stewart).</p>
-</dd>
-</dl>
 </div>
 <div id="supporting-information" class="section level2 unnumbered hasAnchor">
 <h2>Supporting Information<a href="HIV-paper.html#supporting-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1564,134 +1555,134 @@ Gunson, Amanda Bradley-Stewart).</p>
 <div id="ref-vinhInformationTheoreticMeasures2010" class="csl-entry">
 <div class="csl-left-margin">149. </div><div class="csl-right-inline">Vinh, N. X., Epps, J. &amp; Bailey, J. Information <span>Theoretic Measures</span> for <span>Clusterings Comparison</span>: <span>Variants</span>, <span>Properties</span>, <span>Normalization</span> and <span>Correction</span> for <span>Chance</span>. <em>Journal of Machine Learning Research</em> <strong>11</strong>, 18 (2010).</div>
 </div>
+<div id="ref-steinerDrugResistancePrediction2020a" class="csl-entry">
+<div class="csl-left-margin">316. </div><div class="csl-right-inline">Steiner, M. C., Gibson, K. M. &amp; Crandall, K. A. <a href="https://doi.org/10.3390/v12050560">Drug <span>Resistance Prediction Using Deep Learning Techniques</span> on <span>HIV</span>-1 <span>Sequence Data</span></a>. <em>Viruses</em> <strong>12</strong>, 560 (2020).</div>
+</div>
 <div id="ref-sarafianosStructureFunctionHIV12009" class="csl-entry">
-<div class="csl-left-margin">453. </div><div class="csl-right-inline">Sarafianos, S. G. <em>et al.</em> <a href="https://doi.org/10.1016/j.jmb.2008.10.071">Structure and function of <span>HIV</span>-1 reverse transcriptase: Molecular mechanisms of polymerization and inhibition</a>. <em>Journal of molecular biology</em> <strong>385</strong>, 693–713 (2009).</div>
+<div class="csl-left-margin">475. </div><div class="csl-right-inline">Sarafianos, S. G. <em>et al.</em> <a href="https://doi.org/10.1016/j.jmb.2008.10.071">Structure and function of <span>HIV</span>-1 reverse transcriptase: Molecular mechanisms of polymerization and inhibition</a>. <em>Journal of molecular biology</em> <strong>385</strong>, 693–713 (2009).</div>
 </div>
 <div id="ref-mouradPhylotypebasedAnalysisHighlights2015" class="csl-entry">
-<div class="csl-left-margin">487. </div><div class="csl-right-inline">Mourad, R. <em>et al.</em> <a href="https://doi.org/10.1097/QAD.0000000000000768">A phylotype-based analysis highlights the role of drug-naive <span>HIV</span>-positive individuals in the transmission of antiretroviral resistance in the <span>UK</span></a>. <em>Aids</em> <strong>29</strong>, 1917–1925 (2015).</div>
+<div class="csl-left-margin">509. </div><div class="csl-right-inline">Mourad, R. <em>et al.</em> <a href="https://doi.org/10.1097/QAD.0000000000000768">A phylotype-based analysis highlights the role of drug-naive <span>HIV</span>-positive individuals in the transmission of antiretroviral resistance in the <span>UK</span></a>. <em>Aids</em> <strong>29</strong>, 1917–1925 (2015).</div>
 </div>
 <div id="ref-hueDemonstrationSustainedDrugResistant2009" class="csl-entry">
-<div class="csl-left-margin">488. </div><div class="csl-right-inline">Hué, S. <em>et al.</em> <a href="https://doi.org/10.1128/JVI.01556-08">Demonstration of <span>Sustained Drug</span>-<span>Resistant Human Immunodeficiency Virus Type</span> 1 <span>Lineages Circulating</span> among <span>Treatment</span>-<span>Naïve Individuals</span></a>. <em>Journal of Virology</em> <strong>83</strong>, 2645–2654 (2009).</div>
+<div class="csl-left-margin">510. </div><div class="csl-right-inline">Hué, S. <em>et al.</em> <a href="https://doi.org/10.1128/JVI.01556-08">Demonstration of <span>Sustained Drug</span>-<span>Resistant Human Immunodeficiency Virus Type</span> 1 <span>Lineages Circulating</span> among <span>Treatment</span>-<span>Naïve Individuals</span></a>. <em>Journal of Virology</em> <strong>83</strong>, 2645–2654 (2009).</div>
 </div>
 <div id="ref-villabona-arenasIndepthAnalysisHIV12016" class="csl-entry">
-<div class="csl-left-margin">504. </div><div class="csl-right-inline">Villabona-Arenas, C. J. <em>et al.</em> <a href="https://doi.org/10.1097/QAD.0000000000001233">In-depth analysis of <span>HIV</span>-1 drug resistance mutations in <span>HIV</span>-infected individuals failing first-line regimens in <span>West</span> and <span>Central Africa</span></a>. <em>AIDS</em> <strong>30</strong>, 2577 (2016).</div>
+<div class="csl-left-margin">526. </div><div class="csl-right-inline">Villabona-Arenas, C. J. <em>et al.</em> <a href="https://doi.org/10.1097/QAD.0000000000001233">In-depth analysis of <span>HIV</span>-1 drug resistance mutations in <span>HIV</span>-infected individuals failing first-line regimens in <span>West</span> and <span>Central Africa</span></a>. <em>AIDS</em> <strong>30</strong>, 2577 (2016).</div>
 </div>
 <div id="ref-shamStatisticalPowerSignificance2014" class="csl-entry">
-<div class="csl-left-margin">513. </div><div class="csl-right-inline">Sham, P. C. &amp; Purcell, S. M. <a href="https://doi.org/10.1038/nrg3706">Statistical power and significance testing in large-scale genetic studies</a>. <em>Nature Reviews Genetics</em> <strong>15</strong>, 335–346 (2014).</div>
-</div>
-<div id="ref-steinerDrugResistancePrediction2020a" class="csl-entry">
-<div class="csl-left-margin">527. </div><div class="csl-right-inline">Steiner, M. C., Gibson, K. M. &amp; Crandall, K. A. <a href="https://doi.org/10.3390/v12050560">Drug <span>Resistance Prediction Using Deep Learning Techniques</span> on <span>HIV</span>-1 <span>Sequence Data</span></a>. <em>Viruses</em> <strong>12</strong>, 560 (2020).</div>
+<div class="csl-left-margin">535. </div><div class="csl-right-inline">Sham, P. C. &amp; Purcell, S. M. <a href="https://doi.org/10.1038/nrg3706">Statistical power and significance testing in large-scale genetic studies</a>. <em>Nature Reviews Genetics</em> <strong>15</strong>, 335–346 (2014).</div>
 </div>
 <div id="ref-sheikamamuddyImprovingFoldResistance2017b" class="csl-entry">
-<div class="csl-left-margin">528. </div><div class="csl-right-inline">Sheik Amamuddy, O., Bishop, N. T. &amp; Tastan Bishop, Ö. <a href="https://doi.org/10.1186/s12859-017-1782-x">Improving fold resistance prediction of <span>HIV</span>-1 against protease and reverse transcriptase inhibitors using artificial neural networks</a>. <em>BMC Bioinformatics</em> <strong>18</strong>, 369 (2017).</div>
+<div class="csl-left-margin">549. </div><div class="csl-right-inline">Sheik Amamuddy, O., Bishop, N. T. &amp; Tastan Bishop, Ö. <a href="https://doi.org/10.1186/s12859-017-1782-x">Improving fold resistance prediction of <span>HIV</span>-1 against protease and reverse transcriptase inhibitors using artificial neural networks</a>. <em>BMC Bioinformatics</em> <strong>18</strong>, 369 (2017).</div>
 </div>
 <div id="ref-beerenwinkelGeno2phenoInterpretingGenotypic2001" class="csl-entry">
-<div class="csl-left-margin">529. </div><div class="csl-right-inline">Beerenwinkel, N. <em>et al.</em> <a href="https://doi.org/10.1109/5254.972080">Geno2pheno: Interpreting genotypic <span>HIV</span> drug resistance tests</a>. <em>IEEE Intelligent Systems</em> <strong>16</strong>, 35–41 (2001).</div>
+<div class="csl-left-margin">550. </div><div class="csl-right-inline">Beerenwinkel, N. <em>et al.</em> <a href="https://doi.org/10.1109/5254.972080">Geno2pheno: Interpreting genotypic <span>HIV</span> drug resistance tests</a>. <em>IEEE Intelligent Systems</em> <strong>16</strong>, 35–41 (2001).</div>
 </div>
 <div id="ref-heiderMultilabelClassificationExploiting2013b" class="csl-entry">
-<div class="csl-left-margin">532. </div><div class="csl-right-inline">Heider, D., Senge, R., Cheng, W. &amp; Hüllermeier, E. <a href="https://doi.org/10.1093/bioinformatics/btt331">Multilabel classification for exploiting cross-resistance information in <span>HIV</span>-1 drug resistance prediction</a>. <em>Bioinformatics</em> <strong>29</strong>, 1946–1952 (2013).</div>
+<div class="csl-left-margin">553. </div><div class="csl-right-inline">Heider, D., Senge, R., Cheng, W. &amp; Hüllermeier, E. <a href="https://doi.org/10.1093/bioinformatics/btt331">Multilabel classification for exploiting cross-resistance information in <span>HIV</span>-1 drug resistance prediction</a>. <em>Bioinformatics</em> <strong>29</strong>, 1946–1952 (2013).</div>
 </div>
 <div id="ref-lepriResistanceProfilesPatients2000" class="csl-entry">
-<div class="csl-left-margin">533. </div><div class="csl-right-inline">Lepri, A. C. <em>et al.</em> <a href="https://doi.org/10.1086/315301">Resistance <span>Profiles</span> in <span>Patients</span> with <span>Viral Rebound</span> on <span>Potent Antiretroviral Therapy</span></a>. <em>The Journal of Infectious Diseases</em> <strong>181</strong>, 1143–1147 (2000).</div>
+<div class="csl-left-margin">554. </div><div class="csl-right-inline">Lepri, A. C. <em>et al.</em> <a href="https://doi.org/10.1086/315301">Resistance <span>Profiles</span> in <span>Patients</span> with <span>Viral Rebound</span> on <span>Potent Antiretroviral Therapy</span></a>. <em>The Journal of Infectious Diseases</em> <strong>181</strong>, 1143–1147 (2000).</div>
 </div>
 <div id="ref-verhofstedeDetectionDrugResistance2007" class="csl-entry">
-<div class="csl-left-margin">534. </div><div class="csl-right-inline">Verhofstede, C. <em>et al.</em> <a href="https://doi.org/10.1002/jmv.20950">Detection of drug resistance mutations as a predictor of subsequent virological failure in patients with <span>HIV</span>-1 viral rebounds of less than 1,000 <span>RNA</span> copies/ml</a>. <em>Journal of Medical Virology</em> <strong>79</strong>, 1254–1260 (2007).</div>
+<div class="csl-left-margin">555. </div><div class="csl-right-inline">Verhofstede, C. <em>et al.</em> <a href="https://doi.org/10.1002/jmv.20950">Detection of drug resistance mutations as a predictor of subsequent virological failure in patients with <span>HIV</span>-1 viral rebounds of less than 1,000 <span>RNA</span> copies/ml</a>. <em>Journal of Medical Virology</em> <strong>79</strong>, 1254–1260 (2007).</div>
 </div>
 <div id="ref-zhukovaRolePhylogeneticsTool2017" class="csl-entry">
-<div class="csl-left-margin">535. </div><div class="csl-right-inline">Zhukova, A., Cutino-Moguel, T., Gascuel, O. &amp; Pillay, D. <a href="https://doi.org/10.1093/infdis/jix411">The <span>Role</span> of <span>Phylogenetics</span> as a <span>Tool</span> to <span>Predict</span> the <span>Spread</span> of <span>Resistance</span></a>. <em>The Journal of Infectious Diseases</em> <strong>216</strong>, S820–S823 (2017).</div>
+<div class="csl-left-margin">556. </div><div class="csl-right-inline">Zhukova, A., Cutino-Moguel, T., Gascuel, O. &amp; Pillay, D. <a href="https://doi.org/10.1093/infdis/jix411">The <span>Role</span> of <span>Phylogenetics</span> as a <span>Tool</span> to <span>Predict</span> the <span>Spread</span> of <span>Resistance</span></a>. <em>The Journal of Infectious Diseases</em> <strong>216</strong>, S820–S823 (2017).</div>
 </div>
 <div id="ref-bennettDrugResistanceMutations2009" class="csl-entry">
-<div class="csl-left-margin">536. </div><div class="csl-right-inline">Bennett, D. E. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0004724">Drug <span>Resistance Mutations</span> for <span>Surveillance</span> of <span>Transmitted HIV</span>-1 <span>Drug</span>-<span>Resistance</span>: 2009 <span>Update</span></a>. <em>PLOS ONE</em> <strong>4</strong>, e4724 (2009).</div>
+<div class="csl-left-margin">557. </div><div class="csl-right-inline">Bennett, D. E. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0004724">Drug <span>Resistance Mutations</span> for <span>Surveillance</span> of <span>Transmitted HIV</span>-1 <span>Drug</span>-<span>Resistance</span>: 2009 <span>Update</span></a>. <em>PLOS ONE</em> <strong>4</strong>, e4724 (2009).</div>
 </div>
 <div id="ref-wensing2017UpdateDrug2016" class="csl-entry">
-<div class="csl-left-margin">538. </div><div class="csl-right-inline">Wensing, A. M. <em>et al.</em> <a href="https://www.ncbi.nlm.nih.gov/pubmed/28208121">2017 <span>Update</span> of the <span>Drug Resistance Mutations</span> in <span>HIV</span>-1., 2017 <span>Update</span> of the <span>Drug Resistance Mutations</span> in <span>HIV</span>-1</a>. <em>Topics in antiviral medicine, Topics in Antiviral Medicine</em> <strong>24, 24</strong>, 132, 132–133 (2016).</div>
+<div class="csl-left-margin">559. </div><div class="csl-right-inline">Wensing, A. M. <em>et al.</em> <a href="https://www.ncbi.nlm.nih.gov/pubmed/28208121">2017 <span>Update</span> of the <span>Drug Resistance Mutations</span> in <span>HIV</span>-1., 2017 <span>Update</span> of the <span>Drug Resistance Mutations</span> in <span>HIV</span>-1</a>. <em>Topics in antiviral medicine, Topics in Antiviral Medicine</em> <strong>24, 24</strong>, 132, 132–133 (2016).</div>
 </div>
 <div id="ref-dudoitMultipleTestingProcedures2007" class="csl-entry">
-<div class="csl-left-margin">539. </div><div class="csl-right-inline">Dudoit, S. &amp; Laan, M. J. van der. <em>Multiple <span>Testing Procedures</span> with <span>Applications</span> to <span>Genomics</span></em>. (<span>Springer Science &amp; Business Media</span>, 2007).</div>
+<div class="csl-left-margin">560. </div><div class="csl-right-inline">Dudoit, S. &amp; Laan, M. J. van der. <em>Multiple <span>Testing Procedures</span> with <span>Applications</span> to <span>Genomics</span></em>. (<span>Springer Science &amp; Business Media</span>, 2007).</div>
 </div>
 <div id="ref-maddisonUnsolvedChallengePhylogenetic2015" class="csl-entry">
-<div class="csl-left-margin">540. </div><div class="csl-right-inline">Maddison, W. P. &amp; FitzJohn, R. G. <a href="https://doi.org/10.1093/sysbio/syu070">The <span>Unsolved Challenge</span> to <span>Phylogenetic Correlation Tests</span> for <span>Categorical Characters</span></a>. <em>Systematic Biology</em> <strong>64</strong>, 127–136 (2015).</div>
+<div class="csl-left-margin">561. </div><div class="csl-right-inline">Maddison, W. P. &amp; FitzJohn, R. G. <a href="https://doi.org/10.1093/sysbio/syu070">The <span>Unsolved Challenge</span> to <span>Phylogenetic Correlation Tests</span> for <span>Categorical Characters</span></a>. <em>Systematic Biology</em> <strong>64</strong>, 127–136 (2015).</div>
 </div>
 <div id="ref-lengauerBioinformaticsassistedAntiHIVTherapy2006" class="csl-entry">
-<div class="csl-left-margin">541. </div><div class="csl-right-inline">Lengauer, T. &amp; Sing, T. <a href="https://doi.org/10.1038/nrmicro1477">Bioinformatics-assisted anti-<span>HIV</span> therapy</a>. <em>Nature Reviews Microbiology</em> <strong>4</strong>, 790–797 (2006).</div>
+<div class="csl-left-margin">562. </div><div class="csl-right-inline">Lengauer, T. &amp; Sing, T. <a href="https://doi.org/10.1038/nrmicro1477">Bioinformatics-assisted anti-<span>HIV</span> therapy</a>. <em>Nature Reviews Microbiology</em> <strong>4</strong>, 790–797 (2006).</div>
 </div>
 <div id="ref-zhangComparisonPrecisionSensitivity2005a" class="csl-entry">
-<div class="csl-left-margin">542. </div><div class="csl-right-inline">Zhang, J., Rhee, S.-Y., Taylor, J. &amp; Shafer, R. W. <a href="https://doi.org/10.1097/01.qai.0000147526.64863.53">Comparison of the <span>Precision</span> and <span>Sensitivity</span> of the <span>Antivirogram</span> and <span>PhenoSense HIV Drug Susceptibility Assays</span></a>. <em>JAIDS Journal of Acquired Immune Deficiency Syndromes</em> <strong>38</strong>, 439–444 (2005).</div>
+<div class="csl-left-margin">563. </div><div class="csl-right-inline">Zhang, J., Rhee, S.-Y., Taylor, J. &amp; Shafer, R. W. <a href="https://doi.org/10.1097/01.qai.0000147526.64863.53">Comparison of the <span>Precision</span> and <span>Sensitivity</span> of the <span>Antivirogram</span> and <span>PhenoSense HIV Drug Susceptibility Assays</span></a>. <em>JAIDS Journal of Acquired Immune Deficiency Syndromes</em> <strong>38</strong>, 439–444 (2005).</div>
 </div>
 <div id="ref-beerenwinkelGeno2phenoEstimatingPhenotypic2003b" class="csl-entry">
-<div class="csl-left-margin">543. </div><div class="csl-right-inline">Beerenwinkel, N. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkg575">Geno2pheno: Estimating phenotypic drug resistance from <span>HIV</span>-1 genotypes</a>. <em>Nucleic Acids Research</em> <strong>31</strong>, 3850–3855 (2003).</div>
+<div class="csl-left-margin">564. </div><div class="csl-right-inline">Beerenwinkel, N. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkg575">Geno2pheno: Estimating phenotypic drug resistance from <span>HIV</span>-1 genotypes</a>. <em>Nucleic Acids Research</em> <strong>31</strong>, 3850–3855 (2003).</div>
 </div>
 <div id="ref-shenAutomatedPredictionHIV2016a" class="csl-entry">
-<div class="csl-left-margin">544. </div><div class="csl-right-inline">Shen, C., Yu, X., Harrison, R. W. &amp; Weber, I. T. <a href="https://doi.org/10.1186/s12859-016-1114-6">Automated prediction of <span>HIV</span> drug resistance from genotype data</a>. <em>BMC Bioinformatics</em> <strong>17</strong>, 278 (2016).</div>
+<div class="csl-left-margin">565. </div><div class="csl-right-inline">Shen, C., Yu, X., Harrison, R. W. &amp; Weber, I. T. <a href="https://doi.org/10.1186/s12859-016-1114-6">Automated prediction of <span>HIV</span> drug resistance from genotype data</a>. <em>BMC Bioinformatics</em> <strong>17</strong>, 278 (2016).</div>
 </div>
 <div id="ref-yuPredictionHIVDrug2014a" class="csl-entry">
-<div class="csl-left-margin">545. </div><div class="csl-right-inline">Yu, X., Weber, I. T. &amp; Harrison, R. W. <a href="https://doi.org/10.1186/1471-2164-15-S5-S1">Prediction of <span>HIV</span> drug resistance from genotype with encoded three-dimensional protein structure</a>. <em>BMC Genomics</em> <strong>15</strong>, S1 (2014).</div>
+<div class="csl-left-margin">566. </div><div class="csl-right-inline">Yu, X., Weber, I. T. &amp; Harrison, R. W. <a href="https://doi.org/10.1186/1471-2164-15-S5-S1">Prediction of <span>HIV</span> drug resistance from genotype with encoded three-dimensional protein structure</a>. <em>BMC Genomics</em> <strong>15</strong>, S1 (2014).</div>
 </div>
 <div id="ref-arayaSupportVectorMachine2009" class="csl-entry">
-<div class="csl-left-margin">546. </div><div class="csl-right-inline">Araya, S. T. &amp; Hazelhurst, S. <a href="https://doi.org/10.1080/00359190909519238">Support vector machine prediction of <span>HIV</span>-1 drug resistance using the viral nucleotide patterns</a>. <em>Transactions of the Royal Society of South Africa</em> <strong>64</strong>, 62–72 (2009).</div>
+<div class="csl-left-margin">567. </div><div class="csl-right-inline">Araya, S. T. &amp; Hazelhurst, S. <a href="https://doi.org/10.1080/00359190909519238">Support vector machine prediction of <span>HIV</span>-1 drug resistance using the viral nucleotide patterns</a>. <em>Transactions of the Royal Society of South Africa</em> <strong>64</strong>, 62–72 (2009).</div>
 </div>
 <div id="ref-riemenschneiderExploitingHIV1Protease2016a" class="csl-entry">
-<div class="csl-left-margin">547. </div><div class="csl-right-inline">Riemenschneider, M., Senge, R., Neumann, U., Hüllermeier, E. &amp; Heider, D. <a href="https://doi.org/10.1186/s13040-016-0089-1">Exploiting <span>HIV</span>-1 protease and reverse transcriptase cross-resistance information for improved drug resistance prediction by means of multi-label classification</a>. <em>BioData Mining</em> <strong>9</strong>, 10 (2016).</div>
+<div class="csl-left-margin">568. </div><div class="csl-right-inline">Riemenschneider, M., Senge, R., Neumann, U., Hüllermeier, E. &amp; Heider, D. <a href="https://doi.org/10.1186/s13040-016-0089-1">Exploiting <span>HIV</span>-1 protease and reverse transcriptase cross-resistance information for improved drug resistance prediction by means of multi-label classification</a>. <em>BioData Mining</em> <strong>9</strong>, 10 (2016).</div>
 </div>
 <div id="ref-draghiciPredictingHIVDrug2003" class="csl-entry">
-<div class="csl-left-margin">548. </div><div class="csl-right-inline">Drăghici, S. &amp; Potter, R. B. <a href="https://doi.org/10.1093/bioinformatics/19.1.98">Predicting <span>HIV</span> drug resistance with neural networks</a>. <em>Bioinformatics</em> <strong>19</strong>, 98–107 (2003).</div>
+<div class="csl-left-margin">569. </div><div class="csl-right-inline">Drăghici, S. &amp; Potter, R. B. <a href="https://doi.org/10.1093/bioinformatics/19.1.98">Predicting <span>HIV</span> drug resistance with neural networks</a>. <em>Bioinformatics</em> <strong>19</strong>, 98–107 (2003).</div>
 </div>
 <div id="ref-mooneySocialDesirabilityBias2018" class="csl-entry">
-<div class="csl-left-margin">549. </div><div class="csl-right-inline">Mooney, A. C. <em>et al.</em> <a href="https://doi.org/10.1007/s10461-018-2155-9">Beyond <span>Social Desirability Bias</span>: <span>Investigating Inconsistencies</span> in <span>Self</span>-<span>Reported HIV Testing</span> and <span>Treatment Behaviors Among HIV</span>-<span>Positive Adults</span> in <span>North West Province</span>, <span>South Africa</span></a>. <em>AIDS and Behavior</em> <strong>22</strong>, 2368–2379 (2018).</div>
+<div class="csl-left-margin">570. </div><div class="csl-right-inline">Mooney, A. C. <em>et al.</em> <a href="https://doi.org/10.1007/s10461-018-2155-9">Beyond <span>Social Desirability Bias</span>: <span>Investigating Inconsistencies</span> in <span>Self</span>-<span>Reported HIV Testing</span> and <span>Treatment Behaviors Among HIV</span>-<span>Positive Adults</span> in <span>North West Province</span>, <span>South Africa</span></a>. <em>AIDS and Behavior</em> <strong>22</strong>, 2368–2379 (2018).</div>
 </div>
 <div id="ref-tibshiraniRegressionShrinkageSelection1996" class="csl-entry">
-<div class="csl-left-margin">550. </div><div class="csl-right-inline">Tibshirani, R. <a href="https://doi.org/10.1111/j.2517-6161.1996.tb02080.x">Regression <span>Shrinkage</span> and <span>Selection Via</span> the <span>Lasso</span></a>. <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> <strong>58</strong>, 267–288 (1996).</div>
+<div class="csl-left-margin">571. </div><div class="csl-right-inline">Tibshirani, R. <a href="https://doi.org/10.1111/j.2517-6161.1996.tb02080.x">Regression <span>Shrinkage</span> and <span>Selection Via</span> the <span>Lasso</span></a>. <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> <strong>58</strong>, 267–288 (1996).</div>
 </div>
 <div id="ref-brierVERIFICATIONFORECASTSEXPRESSED1950" class="csl-entry">
-<div class="csl-left-margin">551. </div><div class="csl-right-inline">Brier, G. W. Verification of <span>Forecasts</span> <span>Expressed</span> in <span>Terms</span> of <span>Probability</span>. <em>Monthly Weather Review</em> <strong>78</strong>, 1–3 (1950).</div>
+<div class="csl-left-margin">572. </div><div class="csl-right-inline">Brier, G. W. Verification of <span>Forecasts</span> <span>Expressed</span> in <span>Terms</span> of <span>Probability</span>. <em>Monthly Weather Review</em> <strong>78</strong>, 1–3 (1950).</div>
 </div>
 <div id="ref-gascuelTwelveNumericalSymbolic1998" class="csl-entry">
-<div class="csl-left-margin">552. </div><div class="csl-right-inline">Gascuel, O. <em>et al.</em> <a href="https://doi.org/10.1142/S0218001498000336">Twelve <span>Numerical</span>, <span>Symbolic</span> and <span>Hybrid Supervised Classification Methods</span></a>. <em>International Journal of Pattern Recognition and Artificial Intelligence</em> <strong>12</strong>, 517–571 (1998).</div>
+<div class="csl-left-margin">573. </div><div class="csl-right-inline">Gascuel, O. <em>et al.</em> <a href="https://doi.org/10.1142/S0218001498000336">Twelve <span>Numerical</span>, <span>Symbolic</span> and <span>Hybrid Supervised Classification Methods</span></a>. <em>International Journal of Pattern Recognition and Artificial Intelligence</em> <strong>12</strong>, 517–571 (1998).</div>
 </div>
 <div id="ref-goemanMultipleHypothesisTesting2014" class="csl-entry">
-<div class="csl-left-margin">553. </div><div class="csl-right-inline">Goeman, J. J. &amp; Solari, A. <a href="https://doi.org/10.1002/sim.6082">Multiple hypothesis testing in genomics</a>. <em>Statistics in Medicine</em> <strong>33</strong>, 1946–1978 (2014).</div>
+<div class="csl-left-margin">574. </div><div class="csl-right-inline">Goeman, J. J. &amp; Solari, A. <a href="https://doi.org/10.1002/sim.6082">Multiple hypothesis testing in genomics</a>. <em>Statistics in Medicine</em> <strong>33</strong>, 1946–1978 (2014).</div>
 </div>
 <div id="ref-rennie2003tackling" class="csl-entry">
-<div class="csl-left-margin">554. </div><div class="csl-right-inline">Rennie, J. D., Shih, L., Teevan, J. &amp; Karger, D. R. Tackling the <span>Poor Assumptions</span> of <span>Naive Bayes Text Classifiers</span>. in <em>Proceedings of the 20th international conference on machine learning (<span>ICML</span>-03)</em> 616–623 (2003).</div>
+<div class="csl-left-margin">575. </div><div class="csl-right-inline">Rennie, J. D., Shih, L., Teevan, J. &amp; Karger, D. R. Tackling the <span>Poor Assumptions</span> of <span>Naive Bayes Text Classifiers</span>. in <em>Proceedings of the 20th international conference on machine learning (<span>ICML</span>-03)</em> 616–623 (2003).</div>
 </div>
 <div id="ref-breimanRandomForests2001" class="csl-entry">
-<div class="csl-left-margin">555. </div><div class="csl-right-inline">Breiman, L. <a href="https://doi.org/10.1023/A:1010933404324">Random <span>Forests</span></a>. <em>Machine Learning</em> <strong>45</strong>, 5–32 (2001).</div>
+<div class="csl-left-margin">576. </div><div class="csl-right-inline">Breiman, L. <a href="https://doi.org/10.1023/A:1010933404324">Random <span>Forests</span></a>. <em>Machine Learning</em> <strong>45</strong>, 5–32 (2001).</div>
 </div>
 <div id="ref-alvarezmelisRobustInterpretabilitySelfExplaining2018" class="csl-entry">
-<div class="csl-left-margin">556. </div><div class="csl-right-inline">Alvarez Melis, D. &amp; Jaakkola, T. Towards <span>Robust Interpretability</span> with <span>Self</span>-<span>Explaining Neural Networks</span>. in <em>Advances in <span>Neural Information Processing Systems</span> 31</em> (eds. Bengio, S. et al.) 7775–7784 (<span>Curran Associates, Inc.</span>, 2018).</div>
+<div class="csl-left-margin">577. </div><div class="csl-right-inline">Alvarez Melis, D. &amp; Jaakkola, T. Towards <span>Robust Interpretability</span> with <span>Self</span>-<span>Explaining Neural Networks</span>. in <em>Advances in <span>Neural Information Processing Systems</span> 31</em> (eds. Bengio, S. et al.) 7775–7784 (<span>Curran Associates, Inc.</span>, 2018).</div>
 </div>
 <div id="ref-zhangInterpretableConvolutionalNeural2018" class="csl-entry">
-<div class="csl-left-margin">558. </div><div class="csl-right-inline">Zhang, Q., Wu, Y. N. &amp; Zhu, S.-C. Interpretable <span>Convolutional Neural Networks</span>. in <em>Proceedings of the <span>IEEE Conference</span> on <span>Computer Vision</span> and <span>Pattern Recognition</span></em> 8827–8836 (2018).</div>
+<div class="csl-left-margin">579. </div><div class="csl-right-inline">Zhang, Q., Wu, Y. N. &amp; Zhu, S.-C. Interpretable <span>Convolutional Neural Networks</span>. in <em>Proceedings of the <span>IEEE Conference</span> on <span>Computer Vision</span> and <span>Pattern Recognition</span></em> 8827–8836 (2018).</div>
 </div>
 <div id="ref-brodersenBalancedAccuracyIts2010" class="csl-entry">
-<div class="csl-left-margin">559. </div><div class="csl-right-inline">Brodersen, K. H., Ong, C. S., Stephan, K. E. &amp; Buhmann, J. M. The <span>Balanced Accuracy</span> and <span>Its Posterior Distribution</span>. in <em>2010 20th <span>International Conference</span> on <span>Pattern Recognition</span></em> 3121–3124 (2010). doi:<a href="https://doi.org/10.1109/ICPR.2010.764">10.1109/ICPR.2010.764</a>.</div>
+<div class="csl-left-margin">580. </div><div class="csl-right-inline">Brodersen, K. H., Ong, C. S., Stephan, K. E. &amp; Buhmann, J. M. The <span>Balanced Accuracy</span> and <span>Its Posterior Distribution</span>. in <em>2010 20th <span>International Conference</span> on <span>Pattern Recognition</span></em> 3121–3124 (2010). doi:<a href="https://doi.org/10.1109/ICPR.2010.764">10.1109/ICPR.2010.764</a>.</div>
 </div>
 <div id="ref-PyMOL" class="csl-entry">
-<div class="csl-left-margin">560. </div><div class="csl-right-inline">Schrödinger, LLC. The <span>PyMOL</span> molecular graphics system, version 1.8. (2015).</div>
+<div class="csl-left-margin">581. </div><div class="csl-right-inline">Schrödinger, LLC. The <span>PyMOL</span> molecular graphics system, version 1.8. (2015).</div>
 </div>
 <div id="ref-rheeHIV1SubtypeProtease2007" class="csl-entry">
-<div class="csl-left-margin">561. </div><div class="csl-right-inline">Rhee, S.-Y., Liu, T. F., Holmes, S. P. &amp; Shafer, R. W. <a href="https://doi.org/10.1371/journal.pcbi.0030087"><span>HIV</span>-1 <span>Subtype B Protease</span> and <span>Reverse Transcriptase Amino Acid Covariation</span></a>. <em>PLOS Computational Biology</em> <strong>3</strong>, e87 (2007).</div>
+<div class="csl-left-margin">582. </div><div class="csl-right-inline">Rhee, S.-Y., Liu, T. F., Holmes, S. P. &amp; Shafer, R. W. <a href="https://doi.org/10.1371/journal.pcbi.0030087"><span>HIV</span>-1 <span>Subtype B Protease</span> and <span>Reverse Transcriptase Amino Acid Covariation</span></a>. <em>PLOS Computational Biology</em> <strong>3</strong>, e87 (2007).</div>
 </div>
 <div id="ref-delucaImprovedInterpretationGenotypic2007" class="csl-entry">
-<div class="csl-left-margin">562. </div><div class="csl-right-inline">De Luca, A. <em>et al.</em> <a href="https://doi.org/10.1086/522231">Improved <span>Interpretation</span> of <span>Genotypic Changes</span> in the <span>HIV</span>-1 <span>Reverse Transcriptase Coding Region That Determine</span> the <span>Virological Response</span> to <span>Didanosine</span></a>. <em>The Journal of Infectious Diseases</em> <strong>196</strong>, 1645–1653 (2007).</div>
+<div class="csl-left-margin">583. </div><div class="csl-right-inline">De Luca, A. <em>et al.</em> <a href="https://doi.org/10.1086/522231">Improved <span>Interpretation</span> of <span>Genotypic Changes</span> in the <span>HIV</span>-1 <span>Reverse Transcriptase Coding Region That Determine</span> the <span>Virological Response</span> to <span>Didanosine</span></a>. <em>The Journal of Infectious Diseases</em> <strong>196</strong>, 1645–1653 (2007).</div>
 </div>
 <div id="ref-marcelinImpactHIV1Reverse2006" class="csl-entry">
-<div class="csl-left-margin">563. </div><div class="csl-right-inline">Marcelin, A.-G. <em>et al.</em> Impact of <span>HIV</span>-1 reverse transcriptase polymorphism at codons 211 and 228 on virological response to didanosine. <em>Antiviral Therapy</em> 8 (2006).</div>
+<div class="csl-left-margin">584. </div><div class="csl-right-inline">Marcelin, A.-G. <em>et al.</em> Impact of <span>HIV</span>-1 reverse transcriptase polymorphism at codons 211 and 228 on virological response to didanosine. <em>Antiviral Therapy</em> 8 (2006).</div>
 </div>
 <div id="ref-brownReducedSusceptibilityHuman2000" class="csl-entry">
-<div class="csl-left-margin">564. </div><div class="csl-right-inline">Brown, A. J. L. <em>et al.</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC110900">Reduced <span>Susceptibility</span> of <span>Human Immunodeficiency Virus Type</span> 1 (<span>HIV</span>-1) from <span>Patients</span> with <span>Primary HIV Infection</span> to <span>Nonnucleoside Reverse Transcriptase Inhibitors</span> <span>Is Associated</span> with <span>Variation</span> at <span>Novel Amino Acid Sites</span></a>. <em>Journal of Virology</em> <strong>74</strong>, 10269–10273 (2000).</div>
+<div class="csl-left-margin">585. </div><div class="csl-right-inline">Brown, A. J. L. <em>et al.</em> <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC110900">Reduced <span>Susceptibility</span> of <span>Human Immunodeficiency Virus Type</span> 1 (<span>HIV</span>-1) from <span>Patients</span> with <span>Primary HIV Infection</span> to <span>Nonnucleoside Reverse Transcriptase Inhibitors</span> <span>Is Associated</span> with <span>Variation</span> at <span>Novel Amino Acid Sites</span></a>. <em>Journal of Virology</em> <strong>74</strong>, 10269–10273 (2000).</div>
 </div>
 <div id="ref-clarkReverseTranscriptaseMutations2006" class="csl-entry">
-<div class="csl-left-margin">565. </div><div class="csl-right-inline">Clark, S. A., Shulman, N. S., Bosch, R. J. &amp; Mellors, J. W. <a href="https://doi.org/10.1097/01.aids.0000222069.14878.44">Reverse transcriptase mutations <span>118I</span>, <span>208Y</span>, and <span>215Y</span> cause <span>HIV</span>-1 hypersusceptibility to non-nucleoside reverse transcriptase inhibitors</a>. <em>AIDS</em> <strong>20</strong>, 981–984 (2006).</div>
+<div class="csl-left-margin">586. </div><div class="csl-right-inline">Clark, S. A., Shulman, N. S., Bosch, R. J. &amp; Mellors, J. W. <a href="https://doi.org/10.1097/01.aids.0000222069.14878.44">Reverse transcriptase mutations <span>118I</span>, <span>208Y</span>, and <span>215Y</span> cause <span>HIV</span>-1 hypersusceptibility to non-nucleoside reverse transcriptase inhibitors</a>. <em>AIDS</em> <strong>20</strong>, 981–984 (2006).</div>
 </div>
 <div id="ref-nebbiaEmergenceH208YMutation2007" class="csl-entry">
-<div class="csl-left-margin">566. </div><div class="csl-right-inline">Nebbia, G., Sabin, C. A., Dunn, D. T. &amp; Geretti, A. M. <a href="https://doi.org/10.1093/jac/dkm067">Emergence of the <span>H208Y</span> mutation in the reverse transcriptase (<span>RT</span>) of <span>HIV</span>-1 in association with nucleoside <span>RT</span> inhibitor therapy</a>. <em>Journal of Antimicrobial Chemotherapy</em> <strong>59</strong>, 1013–1016 (2007).</div>
+<div class="csl-left-margin">587. </div><div class="csl-right-inline">Nebbia, G., Sabin, C. A., Dunn, D. T. &amp; Geretti, A. M. <a href="https://doi.org/10.1093/jac/dkm067">Emergence of the <span>H208Y</span> mutation in the reverse transcriptase (<span>RT</span>) of <span>HIV</span>-1 in association with nucleoside <span>RT</span> inhibitor therapy</a>. <em>Journal of Antimicrobial Chemotherapy</em> <strong>59</strong>, 1013–1016 (2007).</div>
 </div>
 <div id="ref-saracinoImpactUnreportedHIV12006" class="csl-entry">
-<div class="csl-left-margin">567. </div><div class="csl-right-inline">Saracino, A. <em>et al.</em> <a href="https://doi.org/10.1002/jmv.20500">Impact of unreported <span>HIV</span>-1 reverse transcriptase mutations on phenotypic resistance to nucleoside and non-nucleoside inhibitors</a>. <em>Journal of Medical Virology</em> <strong>78</strong>, 9–17 (2006).</div>
+<div class="csl-left-margin">588. </div><div class="csl-right-inline">Saracino, A. <em>et al.</em> <a href="https://doi.org/10.1002/jmv.20500">Impact of unreported <span>HIV</span>-1 reverse transcriptase mutations on phenotypic resistance to nucleoside and non-nucleoside inhibitors</a>. <em>Journal of Medical Virology</em> <strong>78</strong>, 9–17 (2006).</div>
 </div>
 <div id="ref-wuGenomewideAssociationAnalysis2009" class="csl-entry">
-<div class="csl-left-margin">568. </div><div class="csl-right-inline">Wu, T. T., Chen, Y. F., Hastie, T., Sobel, E. &amp; Lange, K. <a href="https://doi.org/10.1093/bioinformatics/btp041">Genome-wide association analysis by lasso penalized logistic regression</a>. <em>Bioinformatics</em> <strong>25</strong>, 714–721 (2009).</div>
+<div class="csl-left-margin">589. </div><div class="csl-right-inline">Wu, T. T., Chen, Y. F., Hastie, T., Sobel, E. &amp; Lange, K. <a href="https://doi.org/10.1093/bioinformatics/btp041">Genome-wide association analysis by lasso penalized logistic regression</a>. <em>Bioinformatics</em> <strong>25</strong>, 714–721 (2009).</div>
 </div>
 </div>
             </section>

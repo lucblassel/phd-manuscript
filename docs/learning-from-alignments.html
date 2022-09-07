@@ -205,20 +205,22 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html"><i class="fa fa-check"></i><b>4</b> Learning from alignments</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#alignments-are-a-rich-source-of-information"><i class="fa fa-check"></i><b>4.1</b> Alignments are a rich source of information</a>
+<li class="chapter" data-level="4.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.1</b> Preprocessing the alignment for machine learning</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#pairwise-alns"><i class="fa fa-check"></i><b>4.1.1</b> Pairwise alns</a></li>
-<li class="chapter" data-level="4.1.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#msa"><i class="fa fa-check"></i><b>4.1.2</b> MSA</a></li>
+<li class="chapter" data-level="4.1.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#physico-chemical-embeddings"><i class="fa fa-check"></i><b>4.1.1</b> Physico-chemical embeddings</a></li>
+<li class="chapter" data-level="4.1.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#generalistic-categorical-embeddings"><i class="fa fa-check"></i><b>4.1.2</b> Generalistic categorical embeddings</a></li>
+<li class="chapter" data-level="4.1.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#learned-embeddings"><i class="fa fa-check"></i><b>4.1.3</b> Learned embeddings</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.2</b> Preprocessing the alignment for machine learning</a>
+<li class="chapter" data-level="4.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#what-to-learn"><i class="fa fa-check"></i><b>4.2</b> What to learn ?</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#embedding-the-alignment"><i class="fa fa-check"></i><b>4.2.1</b> Embedding the alignment</a></li>
-<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#choosing-a-learning-target"><i class="fa fa-check"></i><b>4.2.2</b> Choosing a learning target</a></li>
+<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#supervized"><i class="fa fa-check"></i><b>4.2.1</b> Supervized</a></li>
+<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#unsupervized"><i class="fa fa-check"></i><b>4.2.2</b> Unsupervized</a></li>
+<li class="chapter" data-level="4.2.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#others"><i class="fa fa-check"></i><b>4.2.3</b> Others</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#how-to-learn-from-alns"><i class="fa fa-check"></i><b>4.3</b> How to learn from ALNs</a>
+<li class="chapter" data-level="4.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#how-to-learn"><i class="fa fa-check"></i><b>4.3</b> How to learn ?</a>
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#tests-and-statistical-learning"><i class="fa fa-check"></i><b>4.3.1</b> Tests and statistical learning</a></li>
-<li class="chapter" data-level="4.3.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#taking-interactions-into-account"><i class="fa fa-check"></i><b>4.3.2</b> Taking interactions into account</a></li>
+<li class="chapter" data-level="4.3.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#more-complex-methods-machine-learning"><i class="fa fa-check"></i><b>4.3.2</b> More complex methods, machine learning</a></li>
 <li class="chapter" data-level="4.3.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#deep-learning"><i class="fa fa-check"></i><b>4.3.3</b> Deep Learning</a></li>
 </ul></li>
 </ul></li>
@@ -335,72 +337,77 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="learning-from-alignments" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Learning from alignments<a href="learning-from-alignments.html#learning-from-alignments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="alignments-are-a-rich-source-of-information" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Alignments are a rich source of information<a href="learning-from-alignments.html#alignments-are-a-rich-source-of-information" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="pairwise-alns" class="section level3 hasAnchor" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Pairwise alns<a href="learning-from-alignments.html#pairwise-alns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>we can compare sequences and say if an organism, or in the case of mapping get an idea of where on the genome we are sequencing</p>
-</div>
-<div id="msa" class="section level3 hasAnchor" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> MSA<a href="learning-from-alignments.html#msa" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Here we have richer</p>
-<div id="clustering" class="section level4 hasAnchor" number="4.1.2.1">
-<h4><span class="header-section-number">4.1.2.1</span> Clustering<a href="learning-from-alignments.html#clustering" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ul>
-<li><p>Phylogenetic trees</p></li>
-<li><p>Evolutionary inference</p></li>
-<li><p>Protein structure prediction</p></li>
-</ul>
-</div>
-<div id="ml" class="section level4 hasAnchor" number="4.1.2.2">
-<h4><span class="header-section-number">4.1.2.2</span> ML<a href="learning-from-alignments.html#ml" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<ul>
-<li>Alphafold</li>
-<li>Predict location / function</li>
-<li>predict characteristics i.e. resistance, …</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="preprocessing-the-alignment-for-machine-learning" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Preprocessing the alignment for machine learning<a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As in the previous chapter, sequence alignments are rich source of information.<br />
+Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc…</p>
+<p>More recently focus on machine learning: to predict drug resistance (cf. Chapter <a href="HIV-paper.html#HIV-paper">6</a>), predict protein structure and function, annotate genes, predict protein location, GWAS…</p>
+<p>For ML and DL, we need to transform sequences and alignments into numerical vectors.</p>
+<div id="preprocessing-the-alignment-for-machine-learning" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Preprocessing the alignment for machine learning<a href="learning-from-alignments.html#preprocessing-the-alignment-for-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to do some learning we need to have the data in digestible form</p>
-<div id="embedding-the-alignment" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Embedding the alignment<a href="learning-from-alignments.html#embedding-the-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We need a way to represent, the position and the character in a sequence</p>
-<div id="physico-chemical-embeddings" class="section level4 hasAnchor" number="4.2.1.1">
-<h4><span class="header-section-number">4.2.1.1</span> Physico-chemical embeddings<a href="learning-from-alignments.html#physico-chemical-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="physico-chemical-embeddings" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Physico-chemical embeddings<a href="learning-from-alignments.html#physico-chemical-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>AAIndex, or other embeddings, we add extra info, but we also make a string choice when deciding what features to add</p>
 </div>
-<div id="generalistic-categorical-embeddings" class="section level4 hasAnchor" number="4.2.1.2">
-<h4><span class="header-section-number">4.2.1.2</span> Generalistic categorical embeddings<a href="learning-from-alignments.html#generalistic-categorical-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="generalistic-categorical-embeddings" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Generalistic categorical embeddings<a href="learning-from-alignments.html#generalistic-categorical-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One-Hot, etc…, easily interpretable…</p>
 </div>
-<div id="learned-embeddings" class="section level4 hasAnchor" number="4.2.1.3">
-<h4><span class="header-section-number">4.2.1.3</span> Learned embeddings<a href="learning-from-alignments.html#learned-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="learned-embeddings" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Learned embeddings<a href="learning-from-alignments.html#learned-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>language models, transformers, etc…</p>
 <p>Powerful but hard to interpret what the model actually learns. i.e. “black box”</p>
 </div>
 </div>
-<div id="choosing-a-learning-target" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Choosing a learning target<a href="learning-from-alignments.html#choosing-a-learning-target" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="what-to-learn" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> What to learn ?<a href="learning-from-alignments.html#what-to-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Of course one we have the data in digestible form we need an objective, a goal and once again a multitude</p>
-<div id="regression" class="section level4 hasAnchor" number="4.2.2.1">
-<h4><span class="header-section-number">4.2.2.1</span> Regression<a href="learning-from-alignments.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Either resistance level, IC50, …</p>
+<div id="supervized" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Supervized<a href="learning-from-alignments.html#supervized" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here we have extra knowledge -&gt; labels and we can use his information to train the model.</p>
+<div id="regression" class="section level4 hasAnchor" number="4.2.1.1">
+<h4><span class="header-section-number">4.2.1.1</span> Regression<a href="learning-from-alignments.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here the goal is to predict some type of meaningful continuous numerical value: like a size or a weight. Useful in lots of different fields/</p>
+<ul>
+<li><p>predict a quantified resistance level of a virus to a drug (fold change)<span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">316</a></sup></span></p></li>
+<li><p>predict drug response in cancer (i.e. IC<sub>50</sub>)<span class="citation"><sup><a href="#ref-ammad-ud-dinSystematicIdentificationFeature2017" role="doc-biblioref">317</a></sup></span>, they use genome-wide features pre-extracted from sequences and not sequence directly.</p></li>
+<li><p>predict angles or contact maps in protein structure -&gt; very active field<span class="citation"><sup><a href="#ref-noeMachineLearningProtein2020" role="doc-biblioref">318</a>–<a href="#ref-alquraishiMachineLearningProtein2021" role="doc-biblioref">322</a></sup></span> either directly from MSAs<span class="citation"><sup><a href="#ref-jumperHighlyAccurateProtein2021" role="doc-biblioref">136</a></sup></span> or from derived features like contact maps<span class="citation"><sup><a href="#ref-wangAccurateNovoPrediction2017" role="doc-biblioref">323</a></sup></span></p></li>
+<li><p>Score MSAs<span class="citation"><sup><a href="#ref-ortunoComparingDifferentMachine2015" role="doc-biblioref">324</a></sup></span></p></li>
+<li><p>predicting protein fitness for <em>in silico</em> protein engineering<span class="citation"><sup><a href="#ref-wittmannAdvancesMachineLearning2021" role="doc-biblioref">325</a>–<a href="#ref-liCanMachineLearning2019" role="doc-biblioref">327</a></sup></span></p></li>
+<li><p>predicting gene expression levels from SNPs (meaning we need alignments… to a reference)<span class="citation"><sup><a href="#ref-xieDeepAutoencoderModel2017" role="doc-biblioref">328</a></sup></span></p></li>
+</ul>
 </div>
-<div id="classification" class="section level4 hasAnchor" number="4.2.2.2">
-<h4><span class="header-section-number">4.2.2.2</span> Classification<a href="learning-from-alignments.html#classification" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Resistant or not, compartments in the cell, …</p>
+<div id="classification" class="section level4 hasAnchor" number="4.2.1.2">
+<h4><span class="header-section-number">4.2.1.2</span> Classification<a href="learning-from-alignments.html#classification" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here we predict discrete categorical values numerically encoded</p>
+<ul>
+<li><p>resistant virus or not<span class="citation"><sup><a href="#ref-hagaMachineLearningbasedTreatment2020" role="doc-biblioref">329</a>,<a href="#ref-zazziPredictingResponseAntiretroviral2012" role="doc-biblioref">330</a></sup></span> (also Chapter <a href="HIV-paper.html#HIV-paper">6</a>) also many studies on antimicrobial resistance<span class="citation"><sup><a href="#ref-renPredictionAntimicrobialResistance2022" role="doc-biblioref">331</a>,<a href="#ref-kimMachineLearningAntimicrobial2022" role="doc-biblioref">332</a></sup></span></p></li>
+<li><p>Cellular localization of protein<span class="citation"><sup><a href="#ref-weiPredictionHumanProtein2018" role="doc-biblioref">333</a></sup></span></p></li>
+<li><p>Secondary structure of amino acid in protein sequence<span class="citation"><sup><a href="#ref-jonesProteinSecondaryStructure1999" role="doc-biblioref">334</a></sup></span> (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> or other)</p></li>
+<li><p>localized gene expression in cells<span class="citation"><sup><a href="#ref-kelleyBassetLearningRegulatory2016" role="doc-biblioref">335</a></sup></span></p></li>
+<li><p>splice site detection<span class="citation"><sup><a href="#ref-ratschLearningInterpretableSVMs2006" role="doc-biblioref">336</a></sup></span></p></li>
+<li><p>Methylation site prediction<span class="citation"><sup><a href="#ref-wangPredictingDNAMethylation2016" role="doc-biblioref">337</a></sup></span></p></li>
+</ul>
 </div>
-<div id="task-based" class="section level4 hasAnchor" number="4.2.2.3">
-<h4><span class="header-section-number">4.2.2.3</span> Task-based…<a href="learning-from-alignments.html#task-based" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.</p>
+</div>
+<div id="unsupervized" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Unsupervized<a href="learning-from-alignments.html#unsupervized" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>clustering</p></li>
+<li><p>dimensionality reduction -&gt; PCA ICA LCA to build features</p></li>
+</ul>
+</div>
+<div id="others" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Others<a href="learning-from-alignments.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.</p></li>
+<li><p>self-supervized</p></li>
+<li><p>semi-supervized</p></li>
+</ul>
 </div>
 </div>
-</div>
-<div id="how-to-learn-from-alns" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> How to learn from ALNs<a href="learning-from-alignments.html#how-to-learn-from-alns" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="how-to-learn" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> How to learn ?<a href="learning-from-alignments.html#how-to-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="tests-and-statistical-learning" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Tests and statistical learning<a href="learning-from-alignments.html#tests-and-statistical-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
@@ -409,12 +416,13 @@ div.csl-indent {
 <li>Multiple testing ?</li>
 </ul>
 </div>
-<div id="taking-interactions-into-account" class="section level3 hasAnchor" number="4.3.2">
-<h3><span class="header-section-number">4.3.2</span> Taking interactions into account<a href="learning-from-alignments.html#taking-interactions-into-account" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="more-complex-methods-machine-learning" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> More complex methods, machine learning<a href="learning-from-alignments.html#more-complex-methods-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Regressions w/ regularization</li>
 <li>RF</li>
-<li>…</li>
+<li>SVM</li>
+<li>ABC</li>
 </ul>
 </div>
 <div id="deep-learning" class="section level3 hasAnchor" number="4.3.3">
@@ -423,8 +431,69 @@ div.csl-indent {
 <li>Steiner et al…</li>
 <li>plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)</li>
 </ul>
+<p>% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]</p>
 
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-jumperHighlyAccurateProtein2021" class="csl-entry">
+<div class="csl-left-margin">136. </div><div class="csl-right-inline">Jumper, J. <em>et al.</em> <a href="https://doi.org/10.1038/s41586-021-03819-2">Highly accurate protein structure prediction with AlphaFold</a>. <em>Nature</em> <strong>596</strong>, 583–589 (2021).</div>
+</div>
+<div id="ref-steinerDrugResistancePrediction2020a" class="csl-entry">
+<div class="csl-left-margin">316. </div><div class="csl-right-inline">Steiner, M. C., Gibson, K. M. &amp; Crandall, K. A. <a href="https://doi.org/10.3390/v12050560">Drug <span>Resistance Prediction Using Deep Learning Techniques</span> on <span>HIV</span>-1 <span>Sequence Data</span></a>. <em>Viruses</em> <strong>12</strong>, 560 (2020).</div>
+</div>
+<div id="ref-ammad-ud-dinSystematicIdentificationFeature2017" class="csl-entry">
+<div class="csl-left-margin">317. </div><div class="csl-right-inline">Ammad-ud-din, M., Khan, S. A., Wennerberg, K. &amp; Aittokallio, T. <a href="https://doi.org/10.1093/bioinformatics/btx266">Systematic identification of feature combinations for predicting drug response with bayesian multi-view multi-task linear regression</a>. <em>Bioinformatics</em> <strong>33</strong>, i359–i368 (2017).</div>
+</div>
+<div id="ref-noeMachineLearningProtein2020" class="csl-entry">
+<div class="csl-left-margin">318. </div><div class="csl-right-inline">Noé, F., De Fabritiis, G. &amp; Clementi, C. <a href="https://doi.org/10.1016/j.sbi.2019.12.005">Machine learning for protein folding and dynamics</a>. <em>Current Opinion in Structural Biology</em> <strong>60</strong>, 77–84 (2020).</div>
+</div>
+<div id="ref-alquraishiMachineLearningProtein2021" class="csl-entry">
+<div class="csl-left-margin">322. </div><div class="csl-right-inline">AlQuraishi, M. <a href="https://doi.org/10.1016/j.cbpa.2021.04.005">Machine learning in protein structure prediction</a>. <em>Current Opinion in Chemical Biology</em> <strong>65</strong>, 1–8 (2021).</div>
+</div>
+<div id="ref-wangAccurateNovoPrediction2017" class="csl-entry">
+<div class="csl-left-margin">323. </div><div class="csl-right-inline">Wang, S., Sun, S., Li, Z., Zhang, R. &amp; Xu, J. <a href="https://doi.org/10.1371/journal.pcbi.1005324">Accurate De Novo Prediction of Protein Contact Map by Ultra-Deep Learning Model</a>. <em>PLOS Computational Biology</em> <strong>13</strong>, e1005324 (2017).</div>
+</div>
+<div id="ref-ortunoComparingDifferentMachine2015" class="csl-entry">
+<div class="csl-left-margin">324. </div><div class="csl-right-inline">Ortuño, F. M. <em>et al.</em> <a href="https://doi.org/10.1016/j.neucom.2015.01.080">Comparing different machine learning and mathematical regression models to evaluate multiple sequence alignments</a>. <em>Neurocomputing</em> <strong>164</strong>, 123–136 (2015).</div>
+</div>
+<div id="ref-wittmannAdvancesMachineLearning2021" class="csl-entry">
+<div class="csl-left-margin">325. </div><div class="csl-right-inline">Wittmann, B. J., Johnston, K. E., Wu, Z. &amp; Arnold, F. H. <a href="https://doi.org/10.1016/j.sbi.2021.01.008">Advances in machine learning for directed evolution</a>. <em>Current Opinion in Structural Biology</em> <strong>69</strong>, 11–18 (2021).</div>
+</div>
+<div id="ref-liCanMachineLearning2019" class="csl-entry">
+<div class="csl-left-margin">327. </div><div class="csl-right-inline">Li, G., Dong, Y. &amp; Reetz, M. T. <a href="https://doi.org/10.1002/adsc.201900149">Can Machine Learning Revolutionize Directed Evolution of Selective Enzymes?</a> <em>Advanced Synthesis &amp; Catalysis</em> <strong>361</strong>, 2377–2386 (2019).</div>
+</div>
+<div id="ref-xieDeepAutoencoderModel2017" class="csl-entry">
+<div class="csl-left-margin">328. </div><div class="csl-right-inline">Xie, R., Wen, J., Quitadamo, A., Cheng, J. &amp; Shi, X. <a href="https://doi.org/10.1186/s12864-017-4226-0">A deep auto-encoder model for gene expression prediction</a>. <em>BMC Genomics</em> <strong>18</strong>, 845 (2017).</div>
+</div>
+<div id="ref-hagaMachineLearningbasedTreatment2020" class="csl-entry">
+<div class="csl-left-margin">329. </div><div class="csl-right-inline">Haga, H. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0242028">A machine learning-based treatment prediction model using whole genome variants of hepatitis C virus</a>. <em>PLOS ONE</em> <strong>15</strong>, e0242028 (2020).</div>
+</div>
+<div id="ref-zazziPredictingResponseAntiretroviral2012" class="csl-entry">
+<div class="csl-left-margin">330. </div><div class="csl-right-inline">Zazzi, M. <em>et al.</em> <a href="https://doi.org/10.1159/000332008">Predicting response to antiretroviral treatment by machine learning: The EuResist project</a>. <em>Intervirology</em> <strong>55</strong>, 123–127 (2012).</div>
+</div>
+<div id="ref-renPredictionAntimicrobialResistance2022" class="csl-entry">
+<div class="csl-left-margin">331. </div><div class="csl-right-inline">Ren, Y. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btab681">Prediction of antimicrobial resistance based on whole-genome sequencing and machine learning</a>. <em>Bioinformatics</em> <strong>38</strong>, 325–334 (2022).</div>
+</div>
+<div id="ref-kimMachineLearningAntimicrobial2022" class="csl-entry">
+<div class="csl-left-margin">332. </div><div class="csl-right-inline">Kim, J. I. <em>et al.</em> <a href="https://doi.org/10.1128/cmr.00179-21">Machine learning for antimicrobial resistance prediction: Current practice, limitations, and clinical perspective</a>. <em>Clinical Microbiology Reviews</em> <strong>0</strong>, e00179–21 (2022).</div>
+</div>
+<div id="ref-weiPredictionHumanProtein2018" class="csl-entry">
+<div class="csl-left-margin">333. </div><div class="csl-right-inline">Wei, L., Ding, Y., Su, R., Tang, J. &amp; Zou, Q. <a href="https://doi.org/10.1016/j.jpdc.2017.08.009">Prediction of human protein subcellular localization using deep learning</a>. <em>Journal of Parallel and Distributed Computing</em> <strong>117</strong>, 212–217 (2018).</div>
+</div>
+<div id="ref-jonesProteinSecondaryStructure1999" class="csl-entry">
+<div class="csl-left-margin">334. </div><div class="csl-right-inline">Jones, D. T. <a href="https://doi.org/10.1006/jmbi.1999.3091">Protein secondary structure prediction based on position-specific scoring matrices</a>. <em>Journal of Molecular Biology</em> <strong>292</strong>, 195–202 (1999).</div>
+</div>
+<div id="ref-kelleyBassetLearningRegulatory2016" class="csl-entry">
+<div class="csl-left-margin">335. </div><div class="csl-right-inline">Kelley, D. R., Snoek, J. &amp; Rinn, J. L. <a href="https://doi.org/10.1101/gr.200535.115">Basset: Learning the regulatory code of the accessible genome with deep convolutional neural networks</a>. <em>Genome Research</em> <strong>26</strong>, 990–999 (2016).</div>
+</div>
+<div id="ref-ratschLearningInterpretableSVMs2006" class="csl-entry">
+<div class="csl-left-margin">336. </div><div class="csl-right-inline">Rätsch, G., Sonnenburg, S. &amp; Schäfer, C. <a href="https://doi.org/10.1186/1471-2105-7-S1-S9">Learning Interpretable SVMs for Biological Sequence Classification</a>. <em>BMC Bioinformatics</em> <strong>7</strong>, S9 (2006).</div>
+</div>
+<div id="ref-wangPredictingDNAMethylation2016" class="csl-entry">
+<div class="csl-left-margin">337. </div><div class="csl-right-inline">Wang, Y. <em>et al.</em> <a href="https://doi.org/10.1038/srep19598">Predicting DNA Methylation State of CpG Dinucleotide Using Genome Topological Features and Deep Networks</a>. <em>Scientific Reports</em> <strong>6</strong>, 19598 (2016).</div>
 </div>
 </div>
             </section>
