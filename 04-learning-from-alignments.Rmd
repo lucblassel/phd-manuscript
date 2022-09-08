@@ -27,11 +27,13 @@ language models, transformers, etc...
 
 Powerful but hard to interpret what the model actually learns. i.e. "black box"
 
+Other weirder embeddings: chaos game theory
+
 ## What to learn ?
 
 Of course one we have the data in digestible form we need an objective, a goal and once again a multitude
 
-### Supervized
+### Supervised
 
 Here we have extra knowledge -\> labels and we can use his information to train the model.
 
@@ -67,19 +69,45 @@ Here we predict discrete categorical values numerically encoded
 
 -   Methylation site prediction [@wangPredictingDNAMethylation2016]
 
-### Unsupervized
+-   Protein function prediction [@wangProteinSequenceProtein2017]
 
--   clustering
+### Unsupervised
 
--   dimensionality reduction -\> PCA ICA LCA to build features
+-   clustering, align all pairs of sequences for clustering [@zoritaStarcodeSequenceClustering2015], phylogenetics could be considered as a specific type of clustering [@balabanTreeClusterClusteringBiological2019].
+
+-   predict mutational effects [@hopfMutationEffectsPredicted2017]
+
+-   Predict recombination hotspots in humans with a MaxLik approach [@castroModelSelectionApproach2018]
+
+-   Approximating the edit distance and bypassing the need for alignment [@corsoNeuralDistanceEmbeddings2021]
+
+-   dimensionality reduction:
+
+    -   traditionally apply PCA to some type of matrix, like distance matrix obtained from aln [@haschkaMNHNTreeToolsToolboxTree2021] or other matrices like gene expression
+
+    -   Also can be used for clustering [@ben-hurDetectingStableClusters2003; @KmeansClusteringPrincipal; @casariSequencespaceToolFamily1995; @clampJalviewJavaAlignment2004]
+
+    -   Work done to compute PCA directly on alignment [@konishiPrincipalComponentAnalysis2019]
 
 ### Others
 
 -   task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
 
--   self-supervized
+    -   Predict P/P interactions [@townshendEndtoEndLearning3D2019]
 
--   semi-supervized
+    -   microRNA target prediction [@leeDeepTargetEndtoendLearning2016]
+
+-   self-supervised, i.e. train on a proxy task and hope the model learns important features and useful stuff to continue on fully-unsupervised.
+
+    -   Used to find useful info in disordered protein regions [@luDiscoveringMolecularFeatures2022]
+
+    -   Protein language models: [@elnaggarProtTransCrackingLanguage2021]
+
+-   semi-supervised, combined a small amount of labelled data with large amount of unlabeled data that the models can leverage.
+
+    -   used to predict drug-protein interactions [@xiaSemisupervisedDrugproteinInteraction2010]
+
+    -   and transmembrane protein topology [@tamposisSemisupervisedLearningHidden2019]
 
 ## How to learn ?
 
@@ -101,4 +129,4 @@ Here we predict discrete categorical values numerically encoded
 -   Steiner et al...
 -   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
 
-\% \\printbibliography[segment=\\therefsegment,heading=subbibintoc,title={References for chapter \\thechapter}]
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
