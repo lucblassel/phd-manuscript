@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments.</title>
-  <meta name="description" content="Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments." />
+  <title>Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments</title>
+  <meta name="description" content="Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments" />
   <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments." />
+  <meta property="og:title" content="Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="lucblassel/phd-manuscript" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments." />
+  <meta name="twitter:title" content="Chapter 4 Learning from alignments | From sequences to knowledge, improving and learning from sequence alignments" />
   
   
   
@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-09-07" />
+<meta name="date" content="2022-09-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -100,9 +100,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#résumé"><i class="fa fa-check"></i>Résumé</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#glossary"><i class="fa fa-check"></i>Glossary</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="list-of-acronyms-and-abbreviations.html"><a href="list-of-acronyms-and-abbreviations.html"><i class="fa fa-check"></i>List of Acronyms and abbreviations</a></li>
 <li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html"><i class="fa fa-check"></i>General Introduction</a>
 <ul>
 <li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#organization-of-this-manuscript"><i class="fa fa-check"></i>Organization of this manuscript</a></li>
@@ -213,8 +213,8 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#what-to-learn"><i class="fa fa-check"></i><b>4.2</b> What to learn ?</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#supervized"><i class="fa fa-check"></i><b>4.2.1</b> Supervized</a></li>
-<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#unsupervized"><i class="fa fa-check"></i><b>4.2.2</b> Unsupervized</a></li>
+<li class="chapter" data-level="4.2.1" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#supervised"><i class="fa fa-check"></i><b>4.2.1</b> Supervised</a></li>
+<li class="chapter" data-level="4.2.2" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#unsupervised"><i class="fa fa-check"></i><b>4.2.2</b> Unsupervised</a></li>
 <li class="chapter" data-level="4.2.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#others"><i class="fa fa-check"></i><b>4.2.3</b> Others</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="learning-from-alignments.html"><a href="learning-from-alignments.html#how-to-learn"><i class="fa fa-check"></i><b>4.3</b> How to learn ?</a>
@@ -327,7 +327,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From sequences to knowledge, improving and learning from sequence alignments.</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From sequences to knowledge, improving and learning from sequence alignments</a>
           </h1>
         </div>
 
@@ -357,13 +357,14 @@ Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc
 <h3><span class="header-section-number">4.1.3</span> Learned embeddings<a href="learning-from-alignments.html#learned-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>language models, transformers, etc…</p>
 <p>Powerful but hard to interpret what the model actually learns. i.e. “black box”</p>
+<p>Other weirder embeddings: chaos game theory</p>
 </div>
 </div>
 <div id="what-to-learn" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> What to learn ?<a href="learning-from-alignments.html#what-to-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Of course one we have the data in digestible form we need an objective, a goal and once again a multitude</p>
-<div id="supervized" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Supervized<a href="learning-from-alignments.html#supervized" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="supervised" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Supervised<a href="learning-from-alignments.html#supervised" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here we have extra knowledge -&gt; labels and we can use his information to train the model.</p>
 <div id="regression" class="section level4 hasAnchor" number="4.2.1.1">
 <h4><span class="header-section-number">4.2.1.1</span> Regression<a href="learning-from-alignments.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -387,22 +388,43 @@ Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc
 <li><p>localized gene expression in cells<span class="citation"><sup><a href="#ref-kelleyBassetLearningRegulatory2016" role="doc-biblioref">335</a></sup></span></p></li>
 <li><p>splice site detection<span class="citation"><sup><a href="#ref-ratschLearningInterpretableSVMs2006" role="doc-biblioref">336</a></sup></span></p></li>
 <li><p>Methylation site prediction<span class="citation"><sup><a href="#ref-wangPredictingDNAMethylation2016" role="doc-biblioref">337</a></sup></span></p></li>
+<li><p>Protein function prediction<span class="citation"><sup><a href="#ref-wangProteinSequenceProtein2017" role="doc-biblioref">338</a></sup></span></p></li>
 </ul>
 </div>
 </div>
-<div id="unsupervized" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Unsupervized<a href="learning-from-alignments.html#unsupervized" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="unsupervised" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Unsupervised<a href="learning-from-alignments.html#unsupervised" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p>clustering</p></li>
-<li><p>dimensionality reduction -&gt; PCA ICA LCA to build features</p></li>
+<li><p>clustering, align all pairs of sequences for clustering<span class="citation"><sup><a href="#ref-zoritaStarcodeSequenceClustering2015" role="doc-biblioref">339</a></sup></span>, phylogenetics could be considered as a specific type of clustering<span class="citation"><sup><a href="#ref-balabanTreeClusterClusteringBiological2019" role="doc-biblioref">340</a></sup></span>.</p></li>
+<li><p>predict mutational effects<span class="citation"><sup><a href="#ref-hopfMutationEffectsPredicted2017" role="doc-biblioref">341</a></sup></span></p></li>
+<li><p>Predict recombination hotspots in humans with a MaxLik approach<span class="citation"><sup><a href="#ref-castroModelSelectionApproach2018" role="doc-biblioref">342</a></sup></span></p></li>
+<li><p>Approximating the edit distance and bypassing the need for alignment<span class="citation"><sup><a href="#ref-corsoNeuralDistanceEmbeddings2021" role="doc-biblioref">343</a></sup></span></p></li>
+<li><p>dimensionality reduction:</p>
+<ul>
+<li><p>traditionally apply PCA to some type of matrix, like distance matrix obtained from aln<span class="citation"><sup><a href="#ref-haschkaMNHNTreeToolsToolboxTree2021" role="doc-biblioref">344</a></sup></span> or other matrices like gene expression</p></li>
+<li><p>Also can be used for clustering<span class="citation"><sup><a href="#ref-ben-hurDetectingStableClusters2003" role="doc-biblioref">345</a>–<a href="#ref-clampJalviewJavaAlignment2004" role="doc-biblioref">348</a></sup></span></p></li>
+<li><p>Work done to compute PCA directly on alignment<span class="citation"><sup><a href="#ref-konishiPrincipalComponentAnalysis2019" role="doc-biblioref">349</a></sup></span></p></li>
+</ul></li>
 </ul>
 </div>
 <div id="others" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Others<a href="learning-from-alignments.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><p>task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.</p></li>
-<li><p>self-supervized</p></li>
-<li><p>semi-supervized</p></li>
+<li><p>task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.</p>
+<ul>
+<li><p>Predict P/P interactions<span class="citation"><sup><a href="#ref-townshendEndtoEndLearning3D2019" role="doc-biblioref">350</a></sup></span></p></li>
+<li><p>microRNA target prediction<span class="citation"><sup><a href="#ref-leeDeepTargetEndtoendLearning2016" role="doc-biblioref">351</a></sup></span></p></li>
+</ul></li>
+<li><p>self-supervised, i.e. train on a proxy task and hope the model learns important features and useful stuff to continue on fully-unsupervised.</p>
+<ul>
+<li><p>Used to find useful info in disordered protein regions<span class="citation"><sup><a href="#ref-luDiscoveringMolecularFeatures2022" role="doc-biblioref">352</a></sup></span></p></li>
+<li><p>Protein language models:<span class="citation"><sup><a href="#ref-elnaggarProtTransCrackingLanguage2021" role="doc-biblioref">353</a></sup></span></p></li>
+</ul></li>
+<li><p>semi-supervised, combined a small amount of labelled data with large amount of unlabeled data that the models can leverage.</p>
+<ul>
+<li><p>used to predict drug-protein interactions<span class="citation"><sup><a href="#ref-xiaSemisupervisedDrugproteinInteraction2010" role="doc-biblioref">354</a></sup></span></p></li>
+<li><p>and transmembrane protein topology<span class="citation"><sup><a href="#ref-tamposisSemisupervisedLearningHidden2019" role="doc-biblioref">355</a></sup></span></p></li>
+</ul></li>
 </ul>
 </div>
 </div>
@@ -431,7 +453,6 @@ Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc
 <li>Steiner et al…</li>
 <li>plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)</li>
 </ul>
-<p>% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]</p>
 
 </div>
 </div>
@@ -494,6 +515,54 @@ Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc
 </div>
 <div id="ref-wangPredictingDNAMethylation2016" class="csl-entry">
 <div class="csl-left-margin">337. </div><div class="csl-right-inline">Wang, Y. <em>et al.</em> <a href="https://doi.org/10.1038/srep19598">Predicting DNA Methylation State of CpG Dinucleotide Using Genome Topological Features and Deep Networks</a>. <em>Scientific Reports</em> <strong>6</strong>, 19598 (2016).</div>
+</div>
+<div id="ref-wangProteinSequenceProtein2017" class="csl-entry">
+<div class="csl-left-margin">338. </div><div class="csl-right-inline">Wang, H., Yan, L., Huang, H. &amp; Ding, C. <a href="https://doi.org/10.1109/TCBB.2016.2591529">From protein sequence to protein function via multi-label linear discriminant analysis</a>. <em>IEEE/ACM Transactions on Computational Biology and Bioinformatics</em> <strong>14</strong>, 503–513 (2017).</div>
+</div>
+<div id="ref-zoritaStarcodeSequenceClustering2015" class="csl-entry">
+<div class="csl-left-margin">339. </div><div class="csl-right-inline">Zorita, E., Cuscó, P. &amp; Filion, G. J. <a href="https://doi.org/10.1093/bioinformatics/btv053">Starcode: Sequence clustering based on all-pairs search</a>. <em>Bioinformatics</em> <strong>31</strong>, 1913–1919 (2015).</div>
+</div>
+<div id="ref-balabanTreeClusterClusteringBiological2019" class="csl-entry">
+<div class="csl-left-margin">340. </div><div class="csl-right-inline">Balaban, M., Moshiri, N., Mai, U., Jia, X. &amp; Mirarab, S. <a href="https://doi.org/10.1371/journal.pone.0221068">TreeCluster: Clustering biological sequences using phylogenetic trees</a>. <em>PLOS ONE</em> <strong>14</strong>, e0221068 (2019).</div>
+</div>
+<div id="ref-hopfMutationEffectsPredicted2017" class="csl-entry">
+<div class="csl-left-margin">341. </div><div class="csl-right-inline">Hopf, T. A. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.3769">Mutation effects predicted from sequence co-variation</a>. <em>Nature Biotechnology</em> <strong>35</strong>, 128–135 (2017).</div>
+</div>
+<div id="ref-castroModelSelectionApproach2018" class="csl-entry">
+<div class="csl-left-margin">342. </div><div class="csl-right-inline">Castro, B. M., Lemes, R. B., Cesar, J., Hünemeier, T. &amp; Leonardi, F. <a href="https://doi.org/10.1016/j.jmva.2018.05.006">A model selection approach for multiple sequence segmentation and dimensionality reduction</a>. <em>Journal of Multivariate Analysis</em> <strong>167</strong>, 319–330 (2018).</div>
+</div>
+<div id="ref-corsoNeuralDistanceEmbeddings2021" class="csl-entry">
+<div class="csl-left-margin">343. </div><div class="csl-right-inline">Corso, G. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2021/hash/9a1de01f893e0d2551ecbb7ce4dc963e-Abstract.html">Neural distance embeddings for biological sequences</a>. in vol. 34 1853918551 (Curran Associates, Inc., 2021).</div>
+</div>
+<div id="ref-haschkaMNHNTreeToolsToolboxTree2021" class="csl-entry">
+<div class="csl-left-margin">344. </div><div class="csl-right-inline">Haschka, T., Ponger, L., Escudé, C. &amp; Mozziconacci, J. <a href="https://doi.org/10.1093/bioinformatics/btab430">MNHN-tree-tools: A toolbox for tree inference using multi-scale clustering of a set of sequences</a>. <em>Bioinformatics</em> <strong>37</strong>, 3947–3949 (2021).</div>
+</div>
+<div id="ref-ben-hurDetectingStableClusters2003" class="csl-entry">
+<div class="csl-left-margin">345. </div><div class="csl-right-inline">Ben-Hur, A. &amp; Guyon, I. Detecting Stable Clusters Using Principal Component Analysis. in (eds. Brownstein, M. J. &amp; Khodursky, A. B.) 159–182 (Humana Press, 2003). doi:<a href="https://doi.org/10.1385/1-59259-364-X:159">10.1385/1-59259-364-X:159</a>.</div>
+</div>
+<div id="ref-clampJalviewJavaAlignment2004" class="csl-entry">
+<div class="csl-left-margin">348. </div><div class="csl-right-inline">Clamp, M., Cuff, J., Searle, S. M. &amp; Barton, G. J. <a href="https://doi.org/10.1093/bioinformatics/btg430">The jalview java alignment editor</a>. <em>Bioinformatics</em> <strong>20</strong>, 426–427 (2004).</div>
+</div>
+<div id="ref-konishiPrincipalComponentAnalysis2019" class="csl-entry">
+<div class="csl-left-margin">349. </div><div class="csl-right-inline">Konishi, T. <em>et al.</em> <a href="https://doi.org/10.1038/s41598-019-55253-0">Principal Component Analysis applied directly to Sequence Matrix</a>. <em>Scientific Reports</em> <strong>9</strong>, 19297 (2019).</div>
+</div>
+<div id="ref-townshendEndtoEndLearning3D2019" class="csl-entry">
+<div class="csl-left-margin">350. </div><div class="csl-right-inline">Townshend, R., Bedi, R., Suriana, P. &amp; Dror, R. <a href="https://proceedings.neurips.cc/paper/2019/hash/6c7de1f27f7de61a6daddfffbe05c058-Abstract.html">End-to-end learning on 3D protein structure for interface prediction</a>. in vol. 32 (Curran Associates, Inc., 2019).</div>
+</div>
+<div id="ref-leeDeepTargetEndtoendLearning2016" class="csl-entry">
+<div class="csl-left-margin">351. </div><div class="csl-right-inline">Lee, B., Baek, J., Park, S. &amp; Yoon, S. deepTarget: End-to-end learning framework for microRNA target prediction using deep recurrent neural networks. in 434442 (Association for Computing Machinery, 2016). doi:<a href="https://doi.org/10.1145/2975167.2975212">10.1145/2975167.2975212</a>.</div>
+</div>
+<div id="ref-luDiscoveringMolecularFeatures2022" class="csl-entry">
+<div class="csl-left-margin">352. </div><div class="csl-right-inline">Lu, A. X. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pcbi.1010238">Discovering molecular features of intrinsically disordered regions by using evolution for contrastive learning</a>. <em>PLOS Computational Biology</em> <strong>18</strong>, e1010238 (2022).</div>
+</div>
+<div id="ref-elnaggarProtTransCrackingLanguage2021" class="csl-entry">
+<div class="csl-left-margin">353. </div><div class="csl-right-inline">Elnaggar, A. <em>et al.</em> ProtTrans: Towards cracking the language of life’s code through self-supervised deep learning and high performance computing. doi:<a href="https://doi.org/10.48550/arXiv.2007.06225">10.48550/arXiv.2007.06225</a>.</div>
+</div>
+<div id="ref-xiaSemisupervisedDrugproteinInteraction2010" class="csl-entry">
+<div class="csl-left-margin">354. </div><div class="csl-right-inline">Xia, Z., Wu, L.-Y., Zhou, X. &amp; Wong, S. T. <a href="https://doi.org/10.1186/1752-0509-4-S2-S6">Semi-supervised drug-protein interaction prediction from heterogeneous biological spaces</a>. <em>BMC Systems Biology</em> <strong>4</strong>, S6 (2010).</div>
+</div>
+<div id="ref-tamposisSemisupervisedLearningHidden2019" class="csl-entry">
+<div class="csl-left-margin">355. </div><div class="csl-right-inline">Tamposis, I. A., Tsirigos, K. D., Theodoropoulou, M. C., Kontou, P. I. &amp; Bagos, P. G. <a href="https://doi.org/10.1093/bioinformatics/bty910">Semi-supervised learning of hidden markov models for biological sequence analysis</a>. <em>Bioinformatics</em> <strong>35</strong>, 2208–2215 (2019).</div>
 </div>
 </div>
             </section>

@@ -4,7 +4,8 @@
 %
 \documentclass[
   11pt,
-  twoside]{scrbook}
+  twoside,
+  listof=totoc]{scrbook}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
 \usepackage{iftex}
@@ -37,7 +38,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={From sequences to knowledge, improving and learning from sequence alignments.},
+  pdftitle={From sequences to knowledge, improving and learning from sequence alignments},
   pdfauthor={Luc Blassel},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
@@ -118,66 +119,74 @@
   \begin{fullsizetitle}
     
     \vskip 2em
-    \hskip 2em \includegraphics[height=20mm]{figures/logos/SU.pdf}
+    \begin{center}
+        \begin{minipage}[c]{0.3\textwidth}
+            \includegraphics[height=15mm]{figures/logos/SU.pdf}
+        \end{minipage}
+        \hspace{0.3\textwidth}
+        \begin{minipage}[c]{0.3\textwidth}
+            \hspace{2.5em}
+            \includegraphics[height=14mm]{figures/logos/IP.pdf}
+        \end{minipage}
+    \end{center}
+    
     \begin{center}
     {%
       
+        \vskip 2em
+      
         \usekomafont{title}{%
-            \Large THÈSE DE DOCTORAT \\
-            DE SORBONNE UNIVERSITÉ
+            \huge SORBONNE UNIVERSITÉ \\
         }%
       
-        \vskip 2em
-      
-        {%
-            \sffamily
-            \mdseries
-            \Large Spécialité: Bioinformatique
-        }%
-        
-        \vskip 0.1em
-        
-        {%
-            \sffamily
-            \mdseries
-            \large École doctorale n. 515: Complexité du vivant \\
-        }%
-        \vskip 2em
-        \usekomafont{subtitle}{
-        \mdseries
-        \Large
-        réalisée sous la direction de Rayan Chikhi
-        }
         \vskip 0.5em
+        
+        {%
+            \sffamily
+            \mdseries
+            \Large École doctorale Complexité du vivant, n. 515 \\
+        }%
+        
+        \vskip 0.5em
+        
         \usekomafont{subtitle}{%
-            \Large Sequence Bioinformatics\\
+            \large Sequence Bioinformatics\\
             Institut Pasteur/CNRS – USR3756 
         }%
-        
-        \vskip 2em
-        
-        {%
+
+        \vskip 4em
+      
+        \usekomafont{subtitle}{%
             \sffamily
             \mdseries
-            \large présentée par
-        }%
-        \vskip 0.5em
-        \usekomafont{author}{%
-            \huge
-            #2
-        }%
-
+            \Large Thèse de doctorat en Génétique et génomique
+        }
+        
         \vskip 3em
-      
+        
         \usekomafont{title}{%
             \Huge #1
         }%
         
         \vskip 3em
         
+        \usekomafont{author}{%
+            \huge
+            #2
+        }%
+        
+        \vskip 1em
+        
+        \usekomafont{subtitle}{
+            \mdseries
+            \Large Dirigée par \textbf{\huge Rayan Chikhi}
+        }
+        
+        \vskip 10em
+        
         \usekomafont{subtitle}{%
             \mdseries
-            \huge Soutenue le #3
+            \Large Présentée et soutenue publiquement le #3
         }%
         
         \vskip 0.5em
@@ -187,19 +196,21 @@
             \Large
             devant le jury composé de: \\
             \vskip1em
-            \begin{tabular}{lllr}
-                TOPOLINO Alfredo & Professeur & Univ. Genève & Rapporteur \\
-                SE-YENG Fang     & Professeur & Univ. Shanghai & Rapporteur \\
-                CASTAFIORE Bianca & Cantatrice & Scala di Milano & Examinatrice \\
-                LAMPION Serafon & Assureur & & Invité \\
-                CHIKHI Rayan & PhD & Institue Pasteur & Directeur de Thèse
+            \begin{tabular}{llr}
+                \textbf{Brona BREJOVA}      & Associate Professor    & Rapporteur \\
+                \textbf{Macha NIKOLSKI}     & Group Leader           & Rapporteur \\
+                \textbf{Élodie LAINE}       & Associate Professor    & Examinateur \\
+                \textbf{Olivier GASCUEL}    & Directeur de recherche & Examinateur \\
+                \textbf{Jean-Philippe VERT} & Directeur de recherche & Examinateur \\
+                \textbf{Paul MEDVEDEV}      & Associate Professor    & Membre invité \\
+                \textbf{Rayan CHIKHI}       & Group Leader           & Directeur de Thèse \\
             \end{tabular}
         }%
     
     }%
     
     
-    \vskip 10em
+    \vskip 5em
     
     {%
         \includegraphics[height=10mm]{figures/logos/CC-BY-NC-ND.pdf}
@@ -238,9 +249,9 @@
 \addbibresource{./references/HIV-context.bib}
 \addbibresource{./references/Learning-from-alignments.bib}
 
-\title{From sequences to knowledge, improving and learning from sequence alignments.}
+\title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-07}
+\date{2022-09-08}
 
 \begin{document}
 \maketitle
@@ -255,11 +266,6 @@
 \chapter{Aknowledgments}
 Here will go my aknowledgments
 \lipsum[7-9]
-
-\chapter{Glossary}
-This is the glossary
-
-\mainmatter
 
 {
 \setcounter{tocdepth}{2}
@@ -281,16 +287,245 @@ This is the Abstract
 
 Ceci est le résumé
 
-## Acknowledgments {.unnumbered}
+# Acknowledgments {.unnumbered}
 
 Thanks everybody
 
-## Glossary {.unnumbered}
+# List of Acronyms and abbreviations {.unnumbered}
 
-What are these terms ?
+**DNA**: Desoxy Ribonucleic Acid
+
+**RNA**: Ribonucleic Acid
+
+**PCR**: Polymerase Chain Reaction
+
+**NGS**: Next Generation Sequencing
+
+**NTP**: Nucleotide Triphosphate
+
+**dNTP**: deoxyNucleotide Triphosphate
+
+**SMRT**: Single Molecule Real-Time Sequencing
+
+**PacBio**: Pacific Biosciences
+
+**ONT**: Oxford Nanopore Technologies
+
+**ZMW**: Zero-Mode Waveguide
+
+**ORF**: Open Reading Frame
+
+**HiFi**: High-Fidelity
+
+**CCS**: Circular Consensus Sequencing
+
+**HMM**: Hidden Markov Model
+
+**T2T**: Telomere to Telomere Consortium
+
+**HPC**: Homopolymer Compression
+
+**NW**: Needleman Wunsch algorithm
+
+**SW**: Smith Waterman algorithm
+
+**PAM**: Point Accepted Mutation
+
+**BLOSUM**: Block Substitution
+
+**FFT**: Fast Fourier Transform
+
+**WFA**: WaveFront algorithm
+
+**BLAST**: Basic Local Alignment Search Tool
+
+**MEM**: Maximal Exact Match
+
+**MUM**: Maximal Unique Match
+
+**BWT**: Burrows Wheeler Transform
+
+**ETR**: Extra-long Tandem Repeat
+
+**MSA**: Multiple Sequence Alignment
+
+**mapq**: mapping quality
+
+**MSR**: Mapping-friendly sequence reduction
+
+**SSR**: Streaming sequence reduction
+
+**RC**: reverse complement
+
+**HIV**: Human Immunodeficiency Virus
+
+**DRM**: Drug Resistance Mutation
+
+**AIDS**: Acquired Immunodeficience Syndrome
+
+**SIV**: Human Immunodeficiency Virus
+
+**CRF**: Circulating Recombinant Form
+
+**URF**: Unique Recombinant Form
+
+**RT**: Reverse Transcriptase
+
+**NRTI**: Nucleoside Reverse Transcriptase Inhibitor
+
+**NNRTI**: Non-Nucleoside Reverse Transcriptase Inhibitor
+
+**NNIBP**: Non-Nucleoside Reverse Transcriptase Inhibitor Binding Pocket
+
+**HAART**: Highly Active Antiretroviral therapy
+
+**RTI**: Reverse Transcriptase Inhibitor
+
+**IN**: Integrase
+
+**FI**: Fusion Inhibitor
+
+**EI**: Entry Inhipitor
+
+**PE**: Pharmacokinetic Enhancer
+
+**INSTI**: Integrase Strand Transfer Inhibitor
+
+**PR**: Protease
+
+**MA**: Matrix
+
+**CA**: Capsid
+
+**NC**: Nucleocapsid
+
+**SU**: Surface
+
+**TM**: Transmembrane
+
+**ART**: Antiretroviral therapy
+
+**PI**: Protease Inhibitor
+
+**FDC**: Fixed-Dose Combination
+
+**TAM**: Thymidine analog mutation
+
+**FWER**: Family-wise Error Rate
+
+**FDR**: Flase Discovery Rate
+
+**RAM**: Resistance Associated Mutation
+
+**SVM**: Support Vector Machine
+
+**KNN**: k-Nearest Neighbors
+
+**RF**: Random Forest
+
+**ANN**: Artificial Neural Network
+
+**PRAM**: Potentially Resistance Associated Mutation
+
+**NB**: Naive Bayes
+
+**LR**: Logisitic Regression
+
+**FC**: Fischer Classifier
+
+**AMI**: Adjusted Mutual Information
+
+**MI**: Mutual Information
+
+**ML**: Machine Learning
+
+**RR**: Risk Ratio
+
+**AA**: Amino Acid
 
 
 \end{comment}
+
+\chapter{List of Acronyms and Abbreviations}
+\begin{tabular}{ll}
+\textbf{DNA}:& Desoxy Ribonucleic Acid \\
+\textbf{RNA}:& Ribonucleic Acid \\
+\textbf{PCR}:& Polymerase Chain Reaction \\
+\textbf{NGS}:& Next Generation Sequencing \\
+\textbf{NTP}:& Nucleotide Triphosphate \\
+\textbf{dNTP}:& deoxyNucleotide Triphosphate \\
+\textbf{SMRT}:& Single Molecule Real-Time Sequencing \\
+\textbf{PacBio}:& Pacific Biosciences \\
+\textbf{ONT}:& Oxford Nanopore Technologies \\
+\textbf{ZMW}:& Zero-Mode Waveguide \\
+\textbf{ORF}:& Open Reading Frame \\
+\textbf{HiFi}:& High-Fidelity \\
+\textbf{CCS}:& Circular Consensus Sequencing\\
+\textbf{HMM}:& Hidden Markov Model\\
+\textbf{T2T}:& Telomere to Telomere Consortium \\
+\textbf{HPC}:& Homopolymer Compression\\
+\textbf{NW}:& Needleman Wunsch algorithm \\
+\textbf{SW}:& Smith Waterman algorithm \\
+\textbf{PAM}:& Point Accepted Mutation \\
+\textbf{BLOSUM}:& Block Substitution \\
+\textbf{FFT}:& Fast Fourier Transform \\
+\textbf{WFA}:& WaveFront algorithm \\
+\textbf{BLAST}:& Basic Local Alignment Search Tool \\
+\textbf{MEM}:& Maximal Exact Match \\
+\textbf{MUM}:& Maximal Unique Match \\
+\textbf{BWT}:& Burrows Wheeler Transform \\
+\textbf{ETR}:& Extra-long Tandem Repeat \\
+\textbf{MSA}:& Multiple Sequence Alignment \\
+\textbf{mapq}:& mapping quality \\
+\textbf{MSR}:& Mapping-friendly sequence reduction \\
+\textbf{SSR}:& Streaming sequence reduction \\
+\textbf{RC}:& reverse complement \\
+\textbf{HIV}:& Human Immunodeficiency Virus  \\
+\textbf{DRM}:& Drug Resistance Mutation  \\
+\textbf{AIDS}:& Acquired Immunodeficience Syndrome  \\
+\textbf{SIV}:& Human Immunodeficiency Virus  \\
+\textbf{CRF}:& Circulating Recombinant Form  \\
+\textbf{URF}:& Unique Recombinant Form  \\
+\textbf{RT}:& Reverse Transcriptase  \\
+\textbf{NRTI}:& Nucleoside Reverse Transcriptase Inhibitor  \\
+\textbf{NNRTI}:& Non-Nucleoside Reverse Transcriptase Inhibitor  \\
+\textbf{NNIBP}:& Non-Nucleoside Reverse Transcriptase Inhibitor Binding Pocket  \\
+\textbf{HAART}:& Highly Active Antiretroviral therapy  \\
+\textbf{RTI}:& Reverse Transcriptase Inhibitor  \\
+\textbf{IN}:& Integrase  \\
+\textbf{FI}:& Fusion Inhibitor  \\
+\textbf{EI}:& Entry Inhipitor  \\
+\textbf{PE}:& Pharmacokinetic Enhancer  \\
+\textbf{INSTI}:& Integrase Strand Transfer Inhibitor  \\
+\textbf{PR}:& Protease  \\
+\textbf{MA}:& Matrix  \\
+\textbf{CA}:& Capsid  \\
+\textbf{NC}:& Nucleocapsid  \\
+\textbf{SU}:& Surface  \\
+\textbf{TM}:& Transmembrane  \\
+\textbf{ART}:& Antiretroviral therapy  \\
+\textbf{PI}:& Protease Inhibitor  \\
+\textbf{FDC}:& Fixed-Dose Combination  \\
+\textbf{TAM}:& Thymidine analog mutation  \\
+\textbf{FWER}:& Family-wise Error Rate  \\
+\textbf{FDR}:& Flase Discovery Rate  \\
+\textbf{RAM}:& Resistance Associated Mutation \\
+\textbf{SVM}:& Support Vector Machine \\
+\textbf{KNN}:& k-Nearest Neighbors \\
+\textbf{RF}:& Random Forest \\
+\textbf{ANN}:& Artificial Neural Network \\
+\textbf{PRAM}:& Potentially Resistance Associated Mutation \\
+\textbf{NB}:& Naive Bayes \\
+\textbf{LR}:& Logisitic Regression \\
+\textbf{FC}:& Fischer Classifier \\
+\textbf{AMI}:& Adjusted Mutual Information \\
+\textbf{MI}:& Mutual Information \\
+\textbf{ML}:& Machine Learning \\
+\textbf{RR}:& Risk Ratio \\
+\textbf{AA}:& Amino Acid \\
+\end{tabular}
+
+\mainmatter
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -322,14 +557,20 @@ What are these terms ?
 \section*{Research output}\label{research-output}}
 \addcontentsline{toc}{section}{Research output}
 
+During this thesis, my work on finding drug resistance mutations with machine learning resulted in two publications: a first author article describing our method published in \emph{PLOS Computational Biology} as well as a co-first author review article published in \emph{Current Opinion in Virology}.
+
+The second half of my PhD work, on improving read-mapping resulted in a first-author paper, presented at the RECOMB-SEQ 2022 conference and to be published in the \emph{iScience} proceedings of that conference.
+
+In 2020, during the early stages of the COVID-19 pandemic and the lockdowns, I participated in some work resulting in the COVID-Align web-service and a middle-authorship in the corresponding \emph{Bioinformatics} publication. This work also led to middle-authorship on the origins of SARS-CoV-2 in the \emph{Comptes Rendus. Biologies} journal of the French Science Academy.
+
 \hypertarget{journal-publications}{%
 \subsection*{Journal publications}\label{journal-publications}}
 \addcontentsline{toc}{subsection}{Journal publications}
 
 \begin{itemize}
 \item
-  \textbf{Blassel, Luc}, Paul Medvedev and Rayan Chikhi. 2022. \textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''}. \emph{iScience}\\
-  \href{https://google.com}{DOI goes here} \emph{(Adapted as Chapter} \ref{HPC-paper}\emph{)}
+  \textbf{Blassel, Luc}, Paul Medvedev and Rayan Chikhi. 2022. \textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''}. accepted as part of the \href{https://recomb2022.net/recomb-seq/}{RECOMB-SEQ 2022} proceedings in \emph{iScience},\\
+  To be published \emph{(Adapted as Chapter} \ref{HPC-paper}\emph{)}
 \item
   \textbf{Blassel, Luc}\footnote{Co-first authors: Luc Blassel and Anna Zhukova}, Anna Zhukova\textsuperscript{1}, Christian J Villabona-Arenas, Katherine E Atkins, Stéphane Hué, and Olivier Gascuel. 2021. \textbf{``Drug Resistance Mutations in HIV: New Bioinformatics Approaches and Challenges.''} \emph{Current Opinion in Virology} 51 (December): 56--64.\\
   \href{https://doi.org/10.1016/j.coviro.2021.09.009}{10.1016/j.coviro.2021.09.009} \emph{(Used as the basis for Section} \ref{finding-drms}\emph{)}
@@ -1590,13 +1831,15 @@ language models, transformers, etc\ldots{}
 
 Powerful but hard to interpret what the model actually learns. i.e.~``black box''
 
+Other weirder embeddings: chaos game theory
+
 \hypertarget{what-to-learn}{%
 \section{What to learn ?}\label{what-to-learn}}
 
 Of course one we have the data in digestible form we need an objective, a goal and once again a multitude
 
-\hypertarget{supervized}{%
-\subsection{Supervized}\label{supervized}}
+\hypertarget{supervised}{%
+\subsection{Supervised}\label{supervised}}
 
 Here we have extra knowledge -\textgreater{} labels and we can use his information to train the model.
 
@@ -1638,16 +1881,33 @@ Here we predict discrete categorical values numerically encoded
   splice site detection \autocite{ratschLearningInterpretableSVMs2006}
 \item
   Methylation site prediction \autocite{wangPredictingDNAMethylation2016}
+\item
+  Protein function prediction \autocite{wangProteinSequenceProtein2017}
 \end{itemize}
 
-\hypertarget{unsupervized}{%
-\subsection{Unsupervized}\label{unsupervized}}
+\hypertarget{unsupervised}{%
+\subsection{Unsupervised}\label{unsupervised}}
 
 \begin{itemize}
 \item
-  clustering
+  clustering, align all pairs of sequences for clustering \autocite{zoritaStarcodeSequenceClustering2015}, phylogenetics could be considered as a specific type of clustering \autocite{balabanTreeClusterClusteringBiological2019}.
 \item
-  dimensionality reduction -\textgreater{} PCA ICA LCA to build features
+  predict mutational effects \autocite{hopfMutationEffectsPredicted2017}
+\item
+  Predict recombination hotspots in humans with a MaxLik approach \autocite{castroModelSelectionApproach2018}
+\item
+  Approximating the edit distance and bypassing the need for alignment \autocite{corsoNeuralDistanceEmbeddings2021}
+\item
+  dimensionality reduction:
+
+  \begin{itemize}
+  \item
+    traditionally apply PCA to some type of matrix, like distance matrix obtained from aln \autocite{haschkaMNHNTreeToolsToolboxTree2021} or other matrices like gene expression
+  \item
+    Also can be used for clustering \autocite{ben-hurDetectingStableClusters2003,KmeansClusteringPrincipal,casariSequencespaceToolFamily1995,clampJalviewJavaAlignment2004}
+  \item
+    Work done to compute PCA directly on alignment \autocite{konishiPrincipalComponentAnalysis2019}
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{others}{%
@@ -1656,10 +1916,31 @@ Here we predict discrete categorical values numerically encoded
 \begin{itemize}
 \item
   task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+
+  \begin{itemize}
+  \item
+    Predict P/P interactions \autocite{townshendEndtoEndLearning3D2019}
+  \item
+    microRNA target prediction \autocite{leeDeepTargetEndtoendLearning2016}
+  \end{itemize}
 \item
-  self-supervized
+  self-supervised, i.e.~train on a proxy task and hope the model learns important features and useful stuff to continue on fully-unsupervised.
+
+  \begin{itemize}
+  \item
+    Used to find useful info in disordered protein regions \autocite{luDiscoveringMolecularFeatures2022}
+  \item
+    Protein language models: \autocite{elnaggarProtTransCrackingLanguage2021}
+  \end{itemize}
 \item
-  semi-supervized
+  semi-supervised, combined a small amount of labelled data with large amount of unlabeled data that the models can leverage.
+
+  \begin{itemize}
+  \item
+    used to predict drug-protein interactions \autocite{xiaSemisupervisedDrugproteinInteraction2010}
+  \item
+    and transmembrane protein topology \autocite{tamposisSemisupervisedLearningHidden2019}
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{how-to-learn}{%
@@ -1704,7 +1985,7 @@ Here we predict discrete categorical values numerically encoded
   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
 \end{itemize}
 
-\% \textbackslash printbibliography{[}segment=\textbackslash therefsegment,heading=subbibintoc,title=\{References for chapter \textbackslash thechapter\}{]}
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{viruses-hiv-and-drug-resistance}{%
 \chapter{Viruses, HIV and drug resistance}\label{viruses-hiv-and-drug-resistance}}
