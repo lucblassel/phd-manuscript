@@ -47,66 +47,74 @@
   \begin{fullsizetitle}
     
     \vskip 2em
-    \hskip 2em \includegraphics[height=20mm]{figures/logos/SU.pdf}
+    \begin{center}
+        \begin{minipage}[c]{0.3\textwidth}
+            \includegraphics[height=15mm]{figures/logos/SU.pdf}
+        \end{minipage}
+        \hspace{0.3\textwidth}
+        \begin{minipage}[c]{0.3\textwidth}
+            \hspace{2.5em}
+            \includegraphics[height=14mm]{figures/logos/IP.pdf}
+        \end{minipage}
+    \end{center}
+    
     \begin{center}
     {%
       
+        \vskip 2em
+      
         \usekomafont{title}{%
-            \Large THÈSE DE DOCTORAT \\
-            DE SORBONNE UNIVERSITÉ
+            \huge SORBONNE UNIVERSITÉ \\
         }%
       
-        \vskip 2em
-      
-        {%
-            \sffamily
-            \mdseries
-            \Large Spécialité: Bioinformatique
-        }%
-        
-        \vskip 0.1em
-        
-        {%
-            \sffamily
-            \mdseries
-            \large École doctorale n. 515: Complexité du vivant \\
-        }%
-        \vskip 2em
-        \usekomafont{subtitle}{
-        \mdseries
-        \Large
-        réalisée sous la direction de Rayan Chikhi
-        }
         \vskip 0.5em
+        
+        {%
+            \sffamily
+            \mdseries
+            \Large École doctorale Complexité du vivant, n. 515 \\
+        }%
+        
+        \vskip 0.5em
+        
         \usekomafont{subtitle}{%
-            \Large Sequence Bioinformatics\\
+            \large Sequence Bioinformatics\\
             Institut Pasteur/CNRS – USR3756 
         }%
-        
-        \vskip 2em
-        
-        {%
+
+        \vskip 4em
+      
+        \usekomafont{subtitle}{%
             \sffamily
             \mdseries
-            \large présentée par
-        }%
-        \vskip 0.5em
-        \usekomafont{author}{%
-            \huge
-            #2
-        }%
-
+            \Large Thèse de doctorat en Génétique et génomique
+        }
+        
         \vskip 3em
-      
+        
         \usekomafont{title}{%
             \Huge #1
         }%
         
         \vskip 3em
         
+        \usekomafont{author}{%
+            \huge
+            #2
+        }%
+        
+        \vskip 1em
+        
+        \usekomafont{subtitle}{
+            \mdseries
+            \Large Dirigée par \textbf{\huge Rayan Chikhi}
+        }
+        
+        \vskip 10em
+        
         \usekomafont{subtitle}{%
             \mdseries
-            \huge Soutenue le #3
+            \Large Présentée et soutenue publiquement le #3
         }%
         
         \vskip 0.5em
@@ -116,19 +124,21 @@
             \Large
             devant le jury composé de: \\
             \vskip1em
-            \begin{tabular}{lllr}
-                TOPOLINO Alfredo & Professeur & Univ. Genève & Rapporteur \\
-                SE-YENG Fang     & Professeur & Univ. Shanghai & Rapporteur \\
-                CASTAFIORE Bianca & Cantatrice & Scala di Milano & Examinatrice \\
-                LAMPION Serafon & Assureur & & Invité \\
-                CHIKHI Rayan & PhD & Institue Pasteur & Directeur de Thèse
+            \begin{tabular}{llr}
+                \textbf{Brona BREJOVA}      & Associate Professor    & Rapporteur \\
+                \textbf{Macha NIKOLSKI}     & Group Leader           & Rapporteur \\
+                \textbf{Élodie LAINE}       & Associate Professor    & Examinateur \\
+                \textbf{Olivier GASCUEL}    & Directeur de recherche & Examinateur \\
+                \textbf{Jean-Philippe VERT} & Directeur de recherche & Examinateur \\
+                \textbf{Paul MEDVEDEV}      & Associate Professor    & Membre invité \\
+                \textbf{Rayan CHIKHI}       & Group Leader           & Directeur de Thèse \\
             \end{tabular}
         }%
     
     }%
     
     
-    \vskip 10em
+    \vskip 5em
     
     {%
         \includegraphics[height=10mm]{figures/logos/CC-BY-NC-ND.pdf}
