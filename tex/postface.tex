@@ -1,16 +1,52 @@
-
 \cleardoubleevenpage
 {
 
   \KOMAoptions{twoside = false}
+
   \pagestyle{empty}
+  \begin{fullsizetitle}
 
-  \section*{Abstract}
-  This will be the abstract of my PhD. 
-  \lipsum[1-2]
+    \centering
 
-  \section*{Résumé}
-  Ceci sera le résumé de la thèse. 
-  \lipsum[4-5]
-  
+    \vskip 10em
+    \begin{minipage}{0.8\paperwidth}
+
+
+      \section*{Abstract}
+
+      \usekomafont{title}{%
+        From sequences to knowledge, improving and learning from sequence alignments.\\
+      }
+
+      \usekomafont{subtitle}{%
+        \sffamily
+        \mdseries
+        \small
+        Sequence alignment is one of the most powerful and important tools in the field of computational biology. Read alignment is often the first step in many analyses like structural variant detection, genome assembly or variant calling. Long read  sequencing technologies have brought unprecedented insight in some of these tasks. They are, however, plagued by sequencing errors and pose algorithmic challenges to alignment. A prevalent technique to reduce the detrimental effects of these errors is homopolymer compression, which targets the most prevalent type of long-read sequencing error. We present a more general framework than homopolymer compression, which we call mapping-friendly sequence reductions (MSR). We then show that some of these MSRs improve the accuracy of read alignments across whole human, drosophila and E. coli genomes. Improving sequence alignments is so important because they can contain a large quantity of information useful for downstream analyses. Multiple sequence alignments are indispensable when studying resistance in viruses. With the ever growing quantity of annotated, high quality multiple sequence alignments it has become possible and useful to study resistance in viruses with machine learning methods. We used a very large multiple sequence alignment of British HIV sequences and trained multiple classifiers to discriminate between treatment-naive and treatment-experienced sequences. By studying important classifier features we identified drug resistance mutations. We then removed known drug resistance associated signal from the data before training, kept classifying power, and identified 6 novel resistance associated mutations. Further study indicated that these were most likely accessory in nature and linked to known resistance mutations.
+
+        \medskip
+        \underline{Keywords:} Alignment, Genomics, Machine Learning, Biological sequences
+      }
+
+      \section*{Résumé}
+      \usekomafont{title}{%
+        Des séquences au savoir, améliorer et apprendre des alignements de séquences.\\
+      }
+
+      \usekomafont{subtitle}{%
+        \sffamily
+        \mdseries
+        \small
+        L'alignement de séquences est l'un des outils les plus puissants et les plus importants dans le domaine de la biologie computationnelle. L'alignement de lectures de séquencage est souvent la première étape de nombreuses analyses telles que la détection de variations de structure, ou l'assemblage de génomes. Les technologies de séquençage à longue lectures ont apporté un éclairage sans précédent sur certaines de ces tâches. Elles sont toutefois entachées d'erreurs de séquençage et posent des défis algorithmiques pour l'alignement. Une technique répandue pour réduire les effets néfastes de ces erreurs est la compression d'homopolymères. Cette techniue cible le type d'erreur de séquençage à  longue lectures le plus répandu. Nous présentons une technique plus générale que la compression d'homopolymères, que nous appelons les "mapping-friendly sequence reductions" (MSR). Nous montrons ensuite que certaines de ces MSRs améliorent la précision des alignements de lecture sur des génomes entiers d'humains, de drosophiles et d'E. coli. L'amélioration des alignements de séquences est très importante car ils peuvent contenir une grande quantité d'informations utiles pour des analyses en aval. Les alignements de séquences multiples sont indispensables pour étudier la résistance des virus. Grâce à la quantité toujours croissante d'alignements de séquences multiples annotés et de haute qualité, il est aujourd'hui devenu possible et utile d'étudier la résistance des virus à l'aide de méthodes d'apprentissage automatique. Nous avons utilisé un très grand alignement de séquences multiples de séquences de VIH britanniques et entraîné plusieurs classificateurs pour distinguer les séquences non-traitées des séquences traitées. En étudiant les variables importantes aux classificateurs, nous avons identifié des mutations de résistance aux médicaments. Nous avons ensuite, avant l'entraînement,  supprimé  le signal connu et associé à la pharmacoressitance des données. Nous conservons le pouvoir discriminant des classificateurs, et avons identifié 6 nouvelles mutations associées à la résistance. Une étude plus approfondie a indiqué que celles-ci étaient très probablement de nature accessoire et liées à des mutations de résistance connues. 
+
+        \medskip
+        \underline{Mots clés:} Alignement, Génomique, Machine Learning, Séquence biologiques
+      }
+
+
+    \end{minipage}
+
+  \vfill
+
+  \end{fullsizetitle}
 }
