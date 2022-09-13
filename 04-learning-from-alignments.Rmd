@@ -1,7 +1,7 @@
 # Learning from alignments
 
 As in the previous chapter, sequence alignments are rich source of information.\
-Pairwise: assembly, protein function prediction, MSA: clustering, phylogeny, etc...
+Pairwise: reference-based [@martinNextgenerationTranscriptomeAssembly2011; @kyriakidouCurrentStrategiesPolyploid2018] and *de novo* [@paszkiewiczNovoAssemblyShort2010; @sohnPresentFutureNovo2018] assembly, protein function prediction [@sleatorOverviewSilicoProtein2010], variant calling [@koboldtBestPracticesVariant2020] and structural variant detection [@alkanGenomeStructuralVariation2011; @hoStructuralVariationSequencing2020], clustering [@sahlinNovoClusteringLongRead2020] MSA: phylogeny [@morrisonPhylogeneticTreebuilding1996; @kapliPhylogeneticTreeBuilding2020], protein structure prediction [@kuhlmanAdvancesProteinStructure2019] etc...
 
 More recently focus on machine learning: to predict drug resistance (cf. Chapter \@ref(HIV-paper)), predict protein structure and function, annotate genes, predict protein location, GWAS...
 
@@ -13,21 +13,84 @@ In order to do some learning we need to have the data in digestible form
 
 We need a way to represent, the position and the character in a sequence
 
-### Physico-chemical embeddings
+### General purpose embeddings
 
-AAIndex, or other embeddings, we add extra info, but we also make a string choice when deciding what features to add
+review [@potdarComparativeStudyCategorical2017]
 
-### Generalistic categorical embeddings
+-   Simple labeling / ordinal coding, i.e. assigning an integer to each character (A=1, C=2, G=3, T=4)
 
-One-Hot, etc..., easily interpretable...
+    -   pb -\> assigning artificial order to a purely categorical variable, used in [@steinerDrugResistancePrediction2020a]
+
+-   BItwise labeling -\> encode each character with $n$ bits, for nucleotides 2bits if no gaps (A=00, C=01, G=10, T=11) [@dufresneKmerFileFormat2022; @wrightUsingDECIPHERV22016] for AAs 5 bits necessary explored in [@zamaniAminoAcidEncoding2011]
+
+    -   still a problem of order, for aas used in hashing and bloom filters ...
+
+    -   Often used for hashing/indexing a sequence or compressing, but is also a used scheme in categorical variable encoding in machine learning.
+
+-   One-Hot encoding, widely used: a variable with $d$ levels (for DNA $d=4$) is transformed to a length $d$ sparse binary vector, when the variable is equal to the $i^{th}$ level then the resulting vector has a 1 set in the $i^{th}$ position. (also called orthonormal)
+
+    -   Used in Chapter \@ref(HIV-paper) and other papers [@budachPyssterClassificationBiological2018],
+
+    -   one of the problems is the "curse of dimensionality" since the for a sequence of length $n$ we get $n\times d$ features, which can be quite large.
+
+    -   Performance between OH and Ordinal can be quite similar [@choongEvaluationConvolutionaryNeural2017] but easily interpretable (important in Bio)
+
+    -   Has been used for encoding protein sequences as early as 1988 [@qianPredictingSecondaryStructure1988]
+
+```{r, generalEncodingCaption}
+generalEncodingCaption <- "**Example of 3 general categorical encoding schemes**\
+"
+```
+
+```{r, generalEncoding, label="generalEncoding", cache=FALSE, eval=knitr::is_html_output(), fig.cap=generalEncodingCaption, out.width="70%"}
+knitr::include_graphics("figures/Encode-seqs/general_purpose.png")
+```
+
+```{=tex}
+\begin{figure}
+\centering
+\includegraphics[with=0.7\textwidth]{figures/Encode-seqs/general_purpose.pdf}
+\extcaption{Example of 3 general categorical encoding schemes}{TODO}
+\label{fig:generalEncoding}
+\end{figure}
+```
+-   Many general purpose categorical encodings, library in Python [@mcginnisScikitLearnContribCategoricalEncodingRelease2018]
+
+### Biological sequence-specific embeddings
+
+These embeddings were inspired by physico-chemical properties, many encodings in [@zamaniAminoAcidEncoding2011]:
+
+-   AAIndex embedding, based on the the AAIndex database [@kawashima2008],
+
+    -   each amino acid has a number real-valued physico-chemical properties so you can select a subset of them.
+
+    -   A subset of properties identified as informative [@liPredictionProteinStructural2008]
+
+    -    Available in the iFeature python package [@chenIFeaturePythonPackage2018]
+
+-   BLOMAP [@maetschkeBlomapEncodingAmino2005]:
+
+    -   Non-linear projection of the BLOSUM62 substitution matrix to encode an amino acid in 5 dimensions
+
+    -   Used to predict cleavage sites of HIV-1 protease [@singhEvolutionaryBasedOptimal2018]
+
+-   Groups
+
+-   Others:
+
+    -   frequencies of amino acids -\> very coarse (but low dimensional)
+
+    -   2grams -\>
 
 ### Learned embeddings
+
+dna2vec [@ngDna2vecConsistentVector2017]
 
 language models, transformers, etc...
 
 Powerful but hard to interpret what the model actually learns. i.e. "black box"
 
-Other weirder embeddings: chaos game theory
+Other weirder embeddings: chaos game theory [@lochelChaosGameRepresentation2021]
 
 ## What to learn ?
 
@@ -116,17 +179,20 @@ Here we predict discrete categorical values numerically encoded
 -   correlation
 -   Fisher
 -   Multiple testing ?
+-   linear regression / logistic regression
 
 ### More complex methods, machine learning
 
--   Regressions w/ regularization
+-   regularization
 -   RF
 -   SVM
 -   ABC
+-   KNN
 
 ### Deep Learning
 
 -   Steiner et al...
 -   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
+-   Complex architectures
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
