@@ -1,96 +1,9 @@
-# Learning from alignments
+# Learning from sequences and alignments
 
 As in the previous chapter, sequence alignments are rich source of information.\
 Pairwise: reference-based [@martinNextgenerationTranscriptomeAssembly2011; @kyriakidouCurrentStrategiesPolyploid2018] and *de novo* [@paszkiewiczNovoAssemblyShort2010; @sohnPresentFutureNovo2018] assembly, protein function prediction [@sleatorOverviewSilicoProtein2010], variant calling [@koboldtBestPracticesVariant2020] and structural variant detection [@alkanGenomeStructuralVariation2011; @hoStructuralVariationSequencing2020], clustering [@sahlinNovoClusteringLongRead2020] MSA: phylogeny [@morrisonPhylogeneticTreebuilding1996; @kapliPhylogeneticTreeBuilding2020], protein structure prediction [@kuhlmanAdvancesProteinStructure2019] etc...
 
 More recently focus on machine learning: to predict drug resistance (cf. Chapter \@ref(HIV-paper)), predict protein structure and function, annotate genes, predict protein location, GWAS...
-
-For ML and DL, we need to transform sequences and alignments into numerical vectors.
-
-## Preprocessing the alignment for machine learning
-
-In order to do some learning we need to have the data in digestible form
-
-We need a way to represent, the position and the character in a sequence
-
-### General purpose embeddings
-
-review [@potdarComparativeStudyCategorical2017]
-
--   Simple labeling / ordinal coding, i.e. assigning an integer to each character (A=1, C=2, G=3, T=4)
-
-    -   pb -\> assigning artificial order to a purely categorical variable, used in [@steinerDrugResistancePrediction2020a]
-
--   BItwise labeling -\> encode each character with $n$ bits, for nucleotides 2bits if no gaps (A=00, C=01, G=10, T=11) [@dufresneKmerFileFormat2022; @wrightUsingDECIPHERV22016] for AAs 5 bits necessary explored in [@zamaniAminoAcidEncoding2011]
-
-    -   still a problem of order, for aas used in hashing and bloom filters ...
-
-    -   Often used for hashing/indexing a sequence or compressing, but is also a used scheme in categorical variable encoding in machine learning.
-
--   One-Hot encoding, widely used: a variable with $d$ levels (for DNA $d=4$) is transformed to a length $d$ sparse binary vector, when the variable is equal to the $i^{th}$ level then the resulting vector has a 1 set in the $i^{th}$ position. (also called orthonormal)
-
-    -   Used in Chapter \@ref(HIV-paper) and other papers [@budachPyssterClassificationBiological2018],
-
-    -   one of the problems is the "curse of dimensionality" since the for a sequence of length $n$ we get $n\times d$ features, which can be quite large.
-
-    -   Performance between OH and Ordinal can be quite similar [@choongEvaluationConvolutionaryNeural2017] but easily interpretable (important in Bio)
-
-    -   Has been used for encoding protein sequences as early as 1988 [@qianPredictingSecondaryStructure1988]
-
-```{r, generalEncodingCaption}
-generalEncodingCaption <- "**Example of 3 general categorical encoding schemes**\
-"
-```
-
-```{r, generalEncoding, label="generalEncoding", cache=FALSE, eval=knitr::is_html_output(), fig.cap=generalEncodingCaption, out.width="70%"}
-knitr::include_graphics("figures/Encode-seqs/general_purpose.png")
-```
-
-```{=tex}
-\begin{figure}
-\centering
-\includegraphics[with=0.7\textwidth]{figures/Encode-seqs/general_purpose.pdf}
-\extcaption{Example of 3 general categorical encoding schemes}{TODO}
-\label{fig:generalEncoding}
-\end{figure}
-```
--   Many general purpose categorical encodings, library in Python [@mcginnisScikitLearnContribCategoricalEncodingRelease2018]
-
-### Biological sequence-specific embeddings
-
-These embeddings were inspired by physico-chemical properties, many encodings in [@zamaniAminoAcidEncoding2011]:
-
--   AAIndex embedding, based on the the AAIndex database [@kawashima2008],
-
-    -   each amino acid has a number real-valued physico-chemical properties so you can select a subset of them.
-
-    -   A subset of properties identified as informative [@liPredictionProteinStructural2008]
-
-    -    Available in the iFeature python package [@chenIFeaturePythonPackage2018]
-
--   BLOMAP [@maetschkeBlomapEncodingAmino2005]:
-
-    -   Non-linear projection of the BLOSUM62 substitution matrix to encode an amino acid in 5 dimensions
-
-    -   Used to predict cleavage sites of HIV-1 protease [@singhEvolutionaryBasedOptimal2018]
-
--   Groups
-
--   Others:
-
-    -   frequencies of amino acids -\> very coarse (but low dimensional)
-
-    -   2grams -\>
-
-### Learned embeddings
-
-dna2vec [@ngDna2vecConsistentVector2017]
-
-language models, transformers, etc...
-
-Powerful but hard to interpret what the model actually learns. i.e. "black box"
-
-Other weirder embeddings: chaos game theory [@lochelChaosGameRepresentation2021]
 
 ## What to learn ?
 
@@ -194,5 +107,128 @@ Here we predict discrete categorical values numerically encoded
 -   Steiner et al...
 -   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
 -   Complex architectures
+
+## Preprocessing the alignment for machine learning
+
+In order to do some learning we need to have the data in digestible form
+
+We need a way to represent, the position and the character in a sequence
+
+### General purpose embeddings
+
+review [@potdarComparativeStudyCategorical2017]
+
+-   Simple labeling / ordinal coding, i.e. assigning an integer to each character (A=1, C=2, G=3, T=4)
+
+    -   pb -\> assigning artificial order to a purely categorical variable, used in [@steinerDrugResistancePrediction2020a]
+
+-   BItwise labeling -\> encode each character with $n$ bits, for nucleotides 2bits if no gaps (A=00, C=01, G=10, T=11) [@dufresneKmerFileFormat2022; @wrightUsingDECIPHERV22016] for AAs 5 bits necessary explored in [@zamaniAminoAcidEncoding2011]
+
+    -   still a problem of order, for aas used in hashing and bloom filters ...
+
+    -   Often used for hashing/indexing a sequence or compressing, but is also a used scheme in categorical variable encoding in machine learning.
+
+-   One-Hot encoding, widely used: a variable with $d$ levels (for DNA $d=4$) is transformed to a length $d$ sparse binary vector, when the variable is equal to the $i^{th}$ level then the resulting vector has a 1 set in the $i^{th}$ position. (also called orthonormal [@singhEvolutionaryBasedOptimal2018])
+
+    -   Used in Chapter \@ref(HIV-paper) and other papers [@budachPyssterClassificationBiological2018],
+
+    -   one of the problems is the "curse of dimensionality" since the for a sequence of length $n$ we get $n\times d$ features, which can be quite large.
+
+    -   Performance between OH and Ordinal can be quite similar [@choongEvaluationConvolutionaryNeural2017] but easily interpretable (important in Bio)
+
+    -   Has been used for encoding protein sequences as early as 1988 [@qianPredictingSecondaryStructure1988]
+
+```{r, generalEncodingCaption}
+generalEncodingCaption <- "**Example of 3 general categorical encoding schemes**\
+"
+```
+
+```{r, generalEncoding, label="generalEncoding", cache=FALSE, eval=knitr::is_html_output(), fig.cap=generalEncodingCaption, out.width="70%"}
+knitr::include_graphics("figures/Encode-seqs/general_purpose.png")
+```
+
+```{=tex}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/general_purpose.pdf}
+\extcaption{Example of 3 general categorical encoding schemes}{TODO}
+\label{fig:generalEncoding}
+\end{figure}
+```
+-   Many general purpose categorical encodings, library in Python [@mcginnisScikitLearnContribCategoricalEncodingRelease2018]
+
+### Biological sequence-specific embeddings
+
+These embeddings were inspired by physico-chemical properties, many encodings in [@zamaniAminoAcidEncoding2011]:
+
+-   AAIndex embedding, based on the the AAIndex database [@kawashima2008],
+
+    -   each amino acid has a number real-valued physico-chemical properties so you can select a subset of them.
+
+    -   A subset of properties identified as informative [@liPredictionProteinStructural2008]
+
+    -   Available in the iFeature python package [@chenIFeaturePythonPackage2018]
+
+    -   Also, combine features from AAIndex with PCA to get ensemble features and use top components [@nanniNewEncodingTechnique2011]
+
+-   Groups:
+
+    -   Based on the Venn diagram defined by Taylor [@taylorClassificationAminoAcid1986], grouping AAs by 9 properties (hydrophobic, polar, small, ...)
+
+    -   We can get a 9-D vector for each residue
+
+    -   An encoding based on that was used as early as 1987 to predict protein secondary structure [@zvelebilPredictionProteinSecondary1987]
+
+    -   Later 5 more groups defined [@kremerMethodSystemComputer2009]
+
+-   BLOMAP [@maetschkeBlomapEncodingAmino2005]:
+
+    -   Non-linear projection of the BLOSUM62 substitution matrix to encode an amino acid in 5 dimensions
+
+    -   Used to predict cleavage sites of HIV-1 protease [@singhEvolutionaryBasedOptimal2018]
+
+-   Others:
+
+    -   frequencies of amino acids -\> very coarse (but low dimensional)
+
+    -   $k$-mer frequencies, often reffered to as $n$-gram encoding [@sahaNovelApproachFind2019], often $n=2$ since as $k$/$n$ grow the dimensions grow exponentially -\> with 20 AAs and $20^n$ dimensions per sequence.
+
+    -   OETMAP, extension of BLOMAP [@gokNewFeatureEncoding2013]
+
+    -   Codon graph encoding proposed in [@zamaniAminoAcidEncoding2011], where an AA is represented by a directed graph of all the codons that make up the AA. The 4x4 adjacency matrix is converted into a length 16 vector representing a single AA.
+
+### Learned embeddings
+
+-   (Variational) Auto-encoders:
+
+    -   Bottlneck in deep neural neck, task is to predict input. Add noise in the hidden layers -\> remove noise or regularize to have smooth latent space and get embeddings
+    -   Used for ancestral sequence reconstruction [@moretaAncestralProteinSequence2022] and estimating evolutionary distances [@corsoNeuralDistanceEmbeddings2021]
+    -   VAEs used for sequence design as well [@wuProteinSequenceDesign2021; @stantonAcceleratingBayesianOptimization2022]
+
+-   NLP:
+
+    -   From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary [@HowManyWords], so naive one hot is out of the question), we need other ways to transform words into sequences.
+
+    -   Word2Vec derivatives:
+
+        -   word2Vec [@mikolovEfficientEstimationWord2013; @mikolovDistributedRepresentationsWords2013], take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e. low distance in the vector space). And that the embeddings make sense grammatically (e.g. of the Paper $vec(Madrid) - vec(Spain)$ should be close to $vec(Paris)$ in the learned space.
+
+        -   Context of a word = window of $k$ words centered around it
+
+        -   2 ways to train it [@goldbergWord2vecExplainedDeriving2014]:
+
+            -   CBOW (continuous bag of words) = predict word from context
+
+            -   skip-gram = predict context from word
+
+            -   The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
+
+        -   dna2vec [@ngDna2vecConsistentVector2017]
+
+    -   Transformers / language models
+
+-   Powerful but hard to interpret what the model actually learns. i.e. "black box"
+
+Other weirder embeddings: chaos game theory [@lochelChaosGameRepresentation2021]
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
