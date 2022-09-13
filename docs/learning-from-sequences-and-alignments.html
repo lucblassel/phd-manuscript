@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Learning from sequences and alignments | From sequences to knowledge, improving and learning from sequence alignments</title>
+  <meta name="description" content="Chapter 4 Learning from sequences and alignments | From sequences to knowledge, improving and learning from sequence alignments" />
+  <meta name="generator" content="bookdown 0.26 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Learning from sequences and alignments | From sequences to knowledge, improving and learning from sequence alignments" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="lucblassel/phd-manuscript" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Learning from sequences and alignments | From sequences to knowledge, improving and learning from sequence alignments" />
+  
+  
+  
+
+<meta name="author" content="Luc Blassel" />
+
+
+<meta name="date" content="2022-09-13" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="HPC-paper.html"/>
+<link rel="next" href="viruses-hiv-and-drug-resistance.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<link href="libs/tabwid-1.0.0/scrool.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">From sequences to knowledge,</br> improving and learning from sequence alignments.</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#résumé"><i class="fa fa-check"></i>Résumé</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="acknowledgments.html"><a href="acknowledgments.html"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="list-of-acronyms-and-abbreviations.html"><a href="list-of-acronyms-and-abbreviations.html"><i class="fa fa-check"></i>List of Acronyms and abbreviations</a></li>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html"><i class="fa fa-check"></i>General Introduction</a>
+<ul>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#organization-of-this-manuscript"><i class="fa fa-check"></i>Organization of this manuscript</a></li>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#research-output"><i class="fa fa-check"></i>Research output</a>
+<ul>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#journal-publications"><i class="fa fa-check"></i>Journal publications</a></li>
+<li class="chapter" data-level="" data-path="general-introduction.html"><a href="general-introduction.html#presentations-and-posters"><i class="fa fa-check"></i>Presentations and posters</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html"><i class="fa fa-check"></i><b>1</b> What is Sequence data ?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#biological-sequences-a-primer"><i class="fa fa-check"></i><b>1.1</b> Biological sequences, a primer</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#what-is-dna"><i class="fa fa-check"></i><b>1.1.1</b> What is DNA ?</a></li>
+<li class="chapter" data-level="1.1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#from-information-to-action"><i class="fa fa-check"></i><b>1.1.2</b> From Information to action</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#obtaining-sequence-data"><i class="fa fa-check"></i><b>1.2</b> Obtaining sequence data</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#sanger-sequencing-a-breakthrough"><i class="fa fa-check"></i><b>1.2.1</b> Sanger sequencing, a breakthrough</a></li>
+<li class="chapter" data-level="1.2.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#next-generation-sequencing"><i class="fa fa-check"></i><b>1.2.2</b> Next-generation sequencing</a></li>
+<li class="chapter" data-level="1.2.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#long-read-sequencing"><i class="fa fa-check"></i><b>1.2.3</b> Long read sequencing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#sequencing-errors-how-to-account-for-them"><i class="fa fa-check"></i><b>1.3</b> Sequencing errors, how to account for them ?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#error-correction-methods"><i class="fa fa-check"></i><b>1.3.1</b> Error correction methods</a></li>
+<li class="chapter" data-level="1.3.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#more-accurate-sequencing-methods"><i class="fa fa-check"></i><b>1.3.2</b> More accurate sequencing methods</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#the-special-case-of-homopolymers"><i class="fa fa-check"></i><b>1.4</b> The special case of homopolymers</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#homopolymers-and-the-human-genome"><i class="fa fa-check"></i><b>1.4.1</b> Homopolymers and the human genome</a></li>
+<li class="chapter" data-level="1.4.2" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#homopolymers-and-long-reads"><i class="fa fa-check"></i><b>1.4.2</b> Homopolymers and long reads</a></li>
+<li class="chapter" data-level="1.4.3" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#accounting-for-homopolymers"><i class="fa fa-check"></i><b>1.4.3</b> Accounting for homopolymers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="what-is-sequence-data.html"><a href="what-is-sequence-data.html#conclusion"><i class="fa fa-check"></i><b>1.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html"><i class="fa fa-check"></i><b>2</b> Aligning sequence data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#what-is-an-alignment"><i class="fa fa-check"></i><b>2.1</b> What is an alignment ?</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#why-align"><i class="fa fa-check"></i><b>2.1.1</b> Why align ?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-to-align-two-sequences"><i class="fa fa-check"></i><b>2.1.2</b> How to align two sequences ?</a></li>
+<li class="chapter" data-level="2.1.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#scoring-and-substitution-models"><i class="fa fa-check"></i><b>2.1.3</b> Scoring and substitution models</a></li>
+<li class="chapter" data-level="2.1.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#dealing-with-gaps"><i class="fa fa-check"></i><b>2.1.4</b> Dealing with gaps</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#how-do-we-speed-up-pairwise-alignment"><i class="fa fa-check"></i><b>2.2</b> How do we speed up pairwise alignment ?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#changing-the-method"><i class="fa fa-check"></i><b>2.2.1</b> Changing the method</a></li>
+<li class="chapter" data-level="2.2.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#seed-and-extend-with-data-structures"><i class="fa fa-check"></i><b>2.2.2</b> Seed and extend with data structures</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#the-specificities-of-read-mapping"><i class="fa fa-check"></i><b>2.3</b> The specificities of read-mapping</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#what-is-read-mapping"><i class="fa fa-check"></i><b>2.3.1</b> What is read-mapping ?</a></li>
+<li class="chapter" data-level="2.3.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#challenges-of-read-mapping"><i class="fa fa-check"></i><b>2.3.2</b> Challenges of read-mapping</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#multiple-sequence-alignment"><i class="fa fa-check"></i><b>2.4</b> Multiple sequence alignment</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#progressive-alignment"><i class="fa fa-check"></i><b>2.4.1</b> Progressive alignment</a></li>
+<li class="chapter" data-level="2.4.2" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#other-methods"><i class="fa fa-check"></i><b>2.4.2</b> Other methods</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="aligning-sequence-data.html"><a href="aligning-sequence-data.html#conclusion-1"><i class="fa fa-check"></i><b>2.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="HPC-paper.html"><a href="HPC-paper.html"><i class="fa fa-check"></i><b>3</b> Contribution 1: Improving read alignment by exploring a sequence transformation space</a>
+<ul>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#highlights"><i class="fa fa-check"></i>Highlights</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#graphical-abstract"><i class="fa fa-check"></i>Graphical Abstract</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#hpc-abstract"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="3.1" data-path="HPC-paper.html"><a href="HPC-paper.html#hpc-introduction"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="HPC-paper.html"><a href="HPC-paper.html#methods"><i class="fa fa-check"></i><b>3.2</b> Methods</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="HPC-paper.html"><a href="HPC-paper.html#sec:msr-def"><i class="fa fa-check"></i><b>3.2.1</b> Streaming sequence reductions</a></li>
+<li class="chapter" data-level="3.2.2" data-path="HPC-paper.html"><a href="HPC-paper.html#sec:enum"><i class="fa fa-check"></i><b>3.2.2</b> Restricting the space of streaming sequence reductions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="HPC-paper.html"><a href="HPC-paper.html#datasets-and-pipelines"><i class="fa fa-check"></i><b>3.3</b> Datasets and Pipelines</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="HPC-paper.html"><a href="HPC-paper.html#datasets"><i class="fa fa-check"></i><b>3.3.1</b> Datasets</a></li>
+<li class="chapter" data-level="3.3.2" data-path="HPC-paper.html"><a href="HPC-paper.html#simulation-pipeline"><i class="fa fa-check"></i><b>3.3.2</b> Simulation pipeline</a></li>
+<li class="chapter" data-level="3.3.3" data-path="HPC-paper.html"><a href="HPC-paper.html#evaluation-pipeline"><i class="fa fa-check"></i><b>3.3.3</b> Evaluation pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="HPC-paper.html"><a href="HPC-paper.html#hpc-results"><i class="fa fa-check"></i><b>3.4</b> Results</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="HPC-paper.html"><a href="HPC-paper.html#selection-of-mapping-friendly-sequence-reductions"><i class="fa fa-check"></i><b>3.4.1</b> Selection of mapping-friendly sequence reductions</a></li>
+<li class="chapter" data-level="3.4.2" data-path="HPC-paper.html"><a href="HPC-paper.html#mapping-friendly-sequence-reductions-lead-to-lower-mapping-errors-on-whole-genomes"><i class="fa fa-check"></i><b>3.4.2</b> Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes</a></li>
+<li class="chapter" data-level="3.4.3" data-path="HPC-paper.html"><a href="HPC-paper.html#mapping-friendly-sequence-reductions-increase-mapping-quality-on-repeated-regions-of-the-human-genome"><i class="fa fa-check"></i><b>3.4.3</b> Mapping-friendly sequence reductions increase mapping quality on repeated regions of the human genome</a></li>
+<li class="chapter" data-level="3.4.4" data-path="HPC-paper.html"><a href="HPC-paper.html#raw-mapping-improves-upon-hpc-on-centromeric-regions"><i class="fa fa-check"></i><b>3.4.4</b> Raw mapping improves upon HPC on centromeric regions</a></li>
+<li class="chapter" data-level="3.4.5" data-path="HPC-paper.html"><a href="HPC-paper.html#positions-of-incorrectly-mapped-reads-across-the-entire-human-genome"><i class="fa fa-check"></i><b>3.4.5</b> Positions of incorrectly mapped reads across the entire human genome</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="HPC-paper.html"><a href="HPC-paper.html#discussion"><i class="fa fa-check"></i><b>3.5</b> Discussion</a></li>
+<li class="chapter" data-level="3.6" data-path="HPC-paper.html"><a href="HPC-paper.html#limitations-of-this-study"><i class="fa fa-check"></i><b>3.6</b> Limitations of this study</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#author-contributions"><i class="fa fa-check"></i>Author contributions</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#declaration-of-interests"><i class="fa fa-check"></i>Declaration of interests</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#star-methods"><i class="fa fa-check"></i>STAR Methods</a>
+<ul>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#lead-contact"><i class="fa fa-check"></i>Lead contact</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#materials-availability"><i class="fa fa-check"></i>Materials availability</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#data-and-code-availability"><i class="fa fa-check"></i>Data and code availability</a></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#method-details"><i class="fa fa-check"></i>Method details</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="HPC-paper.html"><a href="HPC-paper.html#supplementary-information"><i class="fa fa-check"></i>Supplementary information</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html"><i class="fa fa-check"></i><b>4</b> Learning from sequences and alignments</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#what-to-learn"><i class="fa fa-check"></i><b>4.1</b> What to learn ?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#supervised"><i class="fa fa-check"></i><b>4.1.1</b> Supervised</a></li>
+<li class="chapter" data-level="4.1.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#unsupervised"><i class="fa fa-check"></i><b>4.1.2</b> Unsupervised</a></li>
+<li class="chapter" data-level="4.1.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#others"><i class="fa fa-check"></i><b>4.1.3</b> Others</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#how-to-learn"><i class="fa fa-check"></i><b>4.2</b> How to learn ?</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#tests-and-statistical-learning"><i class="fa fa-check"></i><b>4.2.1</b> Tests and statistical learning</a></li>
+<li class="chapter" data-level="4.2.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#more-complex-methods-machine-learning"><i class="fa fa-check"></i><b>4.2.2</b> More complex methods, machine learning</a></li>
+<li class="chapter" data-level="4.2.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#deep-learning"><i class="fa fa-check"></i><b>4.2.3</b> Deep Learning</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.3</b> Preprocessing the alignment for machine learning</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#general-purpose-embeddings"><i class="fa fa-check"></i><b>4.3.1</b> General purpose embeddings</a></li>
+<li class="chapter" data-level="4.3.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#biological-sequence-specific-embeddings"><i class="fa fa-check"></i><b>4.3.2</b> Biological sequence-specific embeddings</a></li>
+<li class="chapter" data-level="4.3.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#learned-embeddings"><i class="fa fa-check"></i><b>4.3.3</b> Learned embeddings</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html"><i class="fa fa-check"></i><b>5</b> Viruses, HIV and drug resistance</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#what-are-viruses"><i class="fa fa-check"></i><b>5.1</b> What are viruses ?</a></li>
+<li class="chapter" data-level="5.2" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#getting-to-know-hiv"><i class="fa fa-check"></i><b>5.2</b> Getting to know HIV</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#quick-presentation-of-hiv"><i class="fa fa-check"></i><b>5.2.1</b> Quick Presentation of HIV</a></li>
+<li class="chapter" data-level="5.2.2" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#the-replication-cycle-of-hiv"><i class="fa fa-check"></i><b>5.2.2</b> The replication cycle of HIV</a></li>
+<li class="chapter" data-level="5.2.3" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#genetics-of-hiv"><i class="fa fa-check"></i><b>5.2.3</b> Genetics of HIV</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#drug-resistance-in-hiv"><i class="fa fa-check"></i><b>5.3</b> Drug resistance in HIV</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#a-quick-history-of-art"><i class="fa fa-check"></i><b>5.3.1</b> A quick history of ART</a></li>
+<li class="chapter" data-level="5.3.2" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#drug-mechanisms"><i class="fa fa-check"></i><b>5.3.2</b> Main mechanisms of viral proteins, antiretroviral drugs and associated resistance.</a></li>
+<li class="chapter" data-level="5.3.3" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#consequences-of-resistance-on-global-health"><i class="fa fa-check"></i><b>5.3.3</b> Consequences of resistance on global health</a></li>
+<li class="chapter" data-level="5.3.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#finding-drms"><i class="fa fa-check"></i><b>5.3.4</b> Finding DRMS </a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#conclusion-2"><i class="fa fa-check"></i><b>5.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="HIV-paper.html"><a href="HIV-paper.html"><i class="fa fa-check"></i><b>6</b> Contribution 2: Inferring mutation roles from sequence alignments using machine learning</a>
+<ul>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#abstract-paper"><i class="fa fa-check"></i>Abstract</a></li>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#author-summary"><i class="fa fa-check"></i>Author summary</a></li>
+<li class="chapter" data-level="6.1" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="HIV-paper.html"><a href="HIV-paper.html#materials-and-methods"><i class="fa fa-check"></i><b>6.2</b> Materials and methods</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="HIV-paper.html"><a href="HIV-paper.html#data"><i class="fa fa-check"></i><b>6.2.1</b> Data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="HIV-paper.html"><a href="HIV-paper.html#classifier-training"><i class="fa fa-check"></i><b>6.2.2</b> Classifier training</a></li>
+<li class="chapter" data-level="6.2.3" data-path="HIV-paper.html"><a href="HIV-paper.html#measuring-classifier-performance"><i class="fa fa-check"></i><b>6.2.3</b> Measuring classifier performance</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-results"><i class="fa fa-check"></i><b>6.3</b> Results</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="HIV-paper.html"><a href="HIV-paper.html#classifier-performance-interpretation"><i class="fa fa-check"></i><b>6.3.1</b> Classifier performance &amp; interpretation</a></li>
+<li class="chapter" data-level="6.3.2" data-path="HIV-paper.html"><a href="HIV-paper.html#additional-classification-results"><i class="fa fa-check"></i><b>6.3.2</b> Additional classification results</a></li>
+<li class="chapter" data-level="6.3.3" data-path="HIV-paper.html"><a href="HIV-paper.html#identifying-new-mutations-from-classifiers"><i class="fa fa-check"></i><b>6.3.3</b> Identifying new mutations from classifiers</a></li>
+<li class="chapter" data-level="6.3.4" data-path="HIV-paper.html"><a href="HIV-paper.html#detailed-analysis-of-potentially-resistance-associated-mutations"><i class="fa fa-check"></i><b>6.3.4</b> Detailed analysis of potentially resistance-associated mutations</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="HIV-paper.html"><a href="HIV-paper.html#discussion-and-perspectives"><i class="fa fa-check"></i><b>6.4</b> Discussion and perspectives</a></li>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#hiv-acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+<li class="chapter" data-level="" data-path="HIV-paper.html"><a href="HIV-paper.html#supporting-information"><i class="fa fa-check"></i>Supporting Information</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html"><i class="fa fa-check"></i><b>7</b> Learning alignments, an interesting perspective</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learning-pairwise-alignment"><i class="fa fa-check"></i><b>7.1</b> Learning pairwise alignment</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#dedal"><i class="fa fa-check"></i><b>7.1.1</b> DEDAL</a></li>
+<li class="chapter" data-level="7.1.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#predicting-an-alignment"><i class="fa fa-check"></i><b>7.1.2</b> predicting an alignment</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#what-else-could-we-learn"><i class="fa fa-check"></i><b>7.2</b> What else could we learn ?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learn-to-predict-seeds-or-starting-positions"><i class="fa fa-check"></i><b>7.2.1</b> Learn to predict seeds or starting positions</a></li>
+<li class="chapter" data-level="7.2.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learn-pre-processing-functions"><i class="fa fa-check"></i><b>7.2.2</b> Learn pre-processing functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="global-conclusion.html"><a href="global-conclusion.html"><i class="fa fa-check"></i>Global conclusion</a>
+<ul>
+<li class="chapter" data-level="" data-path="global-conclusion.html"><a href="global-conclusion.html#hpc-part"><i class="fa fa-check"></i>HPC part</a></li>
+<li class="chapter" data-level="" data-path="global-conclusion.html"><a href="global-conclusion.html#hiv-part"><i class="fa fa-check"></i>HIV part</a></li>
+<li class="chapter" data-level="" data-path="global-conclusion.html"><a href="global-conclusion.html#final-words"><i class="fa fa-check"></i>Final words</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="global-references.html"><a href="global-references.html"><i class="fa fa-check"></i>Global References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="HPC-appendix.html"><a href="HPC-appendix.html"><i class="fa fa-check"></i><b>A</b> Supporting Information for “Mapping-friendly sequence reductions: going beyond homopolymer compression”</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="HPC-appendix.html"><a href="HPC-appendix.html#appendix:tandemtools"><i class="fa fa-check"></i><b>A.1</b> “TandemTools” dataset generation</a></li>
+<li class="chapter" data-level="A.2" data-path="HPC-appendix.html"><a href="HPC-appendix.html#msr-performance-comparison"><i class="fa fa-check"></i><b>A.2</b> MSR performance comparison</a></li>
+<li class="chapter" data-level="A.3" data-path="HPC-appendix.html"><a href="HPC-appendix.html#analyzing-read-origin-on-whole-human-genome"><i class="fa fa-check"></i><b>A.3</b> Analyzing read origin on whole human genome</a></li>
+<li class="chapter" data-level="A.4" data-path="HPC-appendix.html"><a href="HPC-appendix.html#performance-of-msrs-on-the-drosophila-genome"><i class="fa fa-check"></i><b>A.4</b> Performance of MSRs on the Drosophila genome</a></li>
+<li class="chapter" data-level="A.5" data-path="HPC-appendix.html"><a href="HPC-appendix.html#key-resource-table"><i class="fa fa-check"></i><b>A.5</b> Key Resource Table</a></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="HIV-intro-appendix.html"><a href="HIV-intro-appendix.html"><i class="fa fa-check"></i><b>B</b> Supporting Information for “HIV and DRMs”</a>
+<ul>
+<li class="chapter" data-level="B.1" data-path="HIV-intro-appendix.html"><a href="HIV-intro-appendix.html#detailed-list-of-hiv-1-protein-structures-used-for-figure-generation."><i class="fa fa-check"></i><b>B.1</b> Detailed list of HIV-1 protein structures used for figure generation.</a></li>
+<li class="chapter" data-level="B.2" data-path="HIV-intro-appendix.html"><a href="HIV-intro-appendix.html#list-of-all-antiretroviral-drugs"><i class="fa fa-check"></i><b>B.2</b> List of all antiretroviral drugs</a></li>
+</ul></li>
+<li class="chapter" data-level="C" data-path="HIV-appendix.html"><a href="HIV-appendix.html"><i class="fa fa-check"></i><b>C</b> Supporting Information for “Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV”</a>
+<ul>
+<li class="chapter" data-level="C.1" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S1-Appendix"><i class="fa fa-check"></i><b>C.1</b> S1 Appendix (Technical appendix).</a>
+<ul>
+<li class="chapter" data-level="C.1.1" data-path="HIV-appendix.html"><a href="HIV-appendix.html#data-appendix"><i class="fa fa-check"></i><b>C.1.1</b> Data</a></li>
+<li class="chapter" data-level="C.1.2" data-path="HIV-appendix.html"><a href="HIV-appendix.html#classifiers"><i class="fa fa-check"></i><b>C.1.2</b> Classifiers</a></li>
+<li class="chapter" data-level="C.1.3" data-path="HIV-appendix.html"><a href="HIV-appendix.html#scoring"><i class="fa fa-check"></i><b>C.1.3</b> Scoring</a></li>
+</ul></li>
+<li class="chapter" data-level="C.2" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s1-fig."><i class="fa fa-check"></i><b>C.2</b> S1 Fig.</a></li>
+<li class="chapter" data-level="C.3" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s2-fig."><i class="fa fa-check"></i><b>C.3</b> S2 Fig.</a></li>
+<li class="chapter" data-level="C.4" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s3-fig."><i class="fa fa-check"></i><b>C.4</b> S3 Fig.</a></li>
+<li class="chapter" data-level="C.5" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S1-Table"><i class="fa fa-check"></i><b>C.5</b> S1 Table.</a></li>
+<li class="chapter" data-level="C.6" data-path="HIV-appendix.html"><a href="HIV-appendix.html#S2-Appendix"><i class="fa fa-check"></i><b>C.6</b> S2 Appendix. (Fisher exact tests)</a></li>
+<li class="chapter" data-level="C.7" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s1-data."><i class="fa fa-check"></i><b>C.7</b> S1 Data.</a></li>
+<li class="chapter" data-level="C.8" data-path="HIV-appendix.html"><a href="HIV-appendix.html#s2-data."><i class="fa fa-check"></i><b>C.8</b> S2 Data.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://lucblassel.com" target="blank">Back to main website</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">From sequences to knowledge, improving and learning from sequence alignments</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="learning-from-sequences-and-alignments" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Learning from sequences and alignments<a href="learning-from-sequences-and-alignments.html#learning-from-sequences-and-alignments" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As in the previous chapter, sequence alignments are rich source of information.<br />
+Pairwise: reference-based<span class="citation"><sup><a href="#ref-martinNextgenerationTranscriptomeAssembly2011" role="doc-biblioref">316</a>,<a href="#ref-kyriakidouCurrentStrategiesPolyploid2018" role="doc-biblioref">317</a></sup></span> and <em>de novo</em><span class="citation"><sup><a href="#ref-paszkiewiczNovoAssemblyShort2010" role="doc-biblioref">318</a>,<a href="#ref-sohnPresentFutureNovo2018" role="doc-biblioref">319</a></sup></span> assembly, protein function prediction<span class="citation"><sup><a href="#ref-sleatorOverviewSilicoProtein2010" role="doc-biblioref">320</a></sup></span>, variant calling<span class="citation"><sup><a href="#ref-koboldtBestPracticesVariant2020" role="doc-biblioref">321</a></sup></span> and structural variant detection<span class="citation"><sup><a href="#ref-alkanGenomeStructuralVariation2011" role="doc-biblioref">322</a>,<a href="#ref-hoStructuralVariationSequencing2020" role="doc-biblioref">323</a></sup></span>, clustering<span class="citation"><sup><a href="#ref-sahlinNovoClusteringLongRead2020" role="doc-biblioref">115</a></sup></span> MSA: phylogeny<span class="citation"><sup><a href="#ref-morrisonPhylogeneticTreebuilding1996" role="doc-biblioref">324</a>,<a href="#ref-kapliPhylogeneticTreeBuilding2020" role="doc-biblioref">325</a></sup></span>, protein structure prediction<span class="citation"><sup><a href="#ref-kuhlmanAdvancesProteinStructure2019" role="doc-biblioref">326</a></sup></span> etc…</p>
+<p>More recently focus on machine learning: to predict drug resistance (cf. Chapter <a href="HIV-paper.html#HIV-paper">6</a>), predict protein structure and function, annotate genes, predict protein location, GWAS…</p>
+<div id="what-to-learn" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> What to learn ?<a href="learning-from-sequences-and-alignments.html#what-to-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Of course one we have the data in digestible form we need an objective, a goal and once again a multitude</p>
+<div id="supervised" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Supervised<a href="learning-from-sequences-and-alignments.html#supervised" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Here we have extra knowledge -&gt; labels and we can use his information to train the model.</p>
+<div id="regression" class="section level4 hasAnchor" number="4.1.1.1">
+<h4><span class="header-section-number">4.1.1.1</span> Regression<a href="learning-from-sequences-and-alignments.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here the goal is to predict some type of meaningful continuous numerical value: like a size or a weight. Useful in lots of different fields/</p>
+<ul>
+<li><p>predict a quantified resistance level of a virus to a drug (fold change)<span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">327</a></sup></span></p></li>
+<li><p>predict drug response in cancer (i.e. IC<sub>50</sub>)<span class="citation"><sup><a href="#ref-ammad-ud-dinSystematicIdentificationFeature2017" role="doc-biblioref">328</a></sup></span>, they use genome-wide features pre-extracted from sequences and not sequence directly.</p></li>
+<li><p>predict angles or contact maps in protein structure -&gt; very active field<span class="citation"><sup><a href="#ref-noeMachineLearningProtein2020" role="doc-biblioref">329</a>–<a href="#ref-alquraishiMachineLearningProtein2021" role="doc-biblioref">333</a></sup></span> either directly from MSAs<span class="citation"><sup><a href="#ref-jumperHighlyAccurateProtein2021" role="doc-biblioref">136</a></sup></span> or from derived features like contact maps<span class="citation"><sup><a href="#ref-wangAccurateNovoPrediction2017" role="doc-biblioref">334</a></sup></span></p></li>
+<li><p>Score MSAs<span class="citation"><sup><a href="#ref-ortunoComparingDifferentMachine2015" role="doc-biblioref">335</a></sup></span></p></li>
+<li><p>predicting protein fitness for <em>in silico</em> protein engineering<span class="citation"><sup><a href="#ref-wittmannAdvancesMachineLearning2021" role="doc-biblioref">336</a>–<a href="#ref-liCanMachineLearning2019" role="doc-biblioref">338</a></sup></span></p></li>
+<li><p>predicting gene expression levels from SNPs (meaning we need alignments… to a reference)<span class="citation"><sup><a href="#ref-xieDeepAutoencoderModel2017" role="doc-biblioref">339</a></sup></span></p></li>
+</ul>
+</div>
+<div id="classification" class="section level4 hasAnchor" number="4.1.1.2">
+<h4><span class="header-section-number">4.1.1.2</span> Classification<a href="learning-from-sequences-and-alignments.html#classification" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Here we predict discrete categorical values numerically encoded</p>
+<ul>
+<li><p>resistant virus or not<span class="citation"><sup><a href="#ref-hagaMachineLearningbasedTreatment2020" role="doc-biblioref">340</a>,<a href="#ref-zazziPredictingResponseAntiretroviral2012" role="doc-biblioref">341</a></sup></span> (also Chapter <a href="HIV-paper.html#HIV-paper">6</a>) also many studies on antimicrobial resistance<span class="citation"><sup><a href="#ref-renPredictionAntimicrobialResistance2022" role="doc-biblioref">342</a>,<a href="#ref-kimMachineLearningAntimicrobial2022" role="doc-biblioref">343</a></sup></span></p></li>
+<li><p>Cellular localization of protein<span class="citation"><sup><a href="#ref-weiPredictionHumanProtein2018" role="doc-biblioref">344</a></sup></span></p></li>
+<li><p>Secondary structure of amino acid in protein sequence<span class="citation"><sup><a href="#ref-jonesProteinSecondaryStructure1999" role="doc-biblioref">345</a></sup></span> (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span> or other)</p></li>
+<li><p>localized gene expression in cells<span class="citation"><sup><a href="#ref-kelleyBassetLearningRegulatory2016" role="doc-biblioref">346</a></sup></span></p></li>
+<li><p>splice site detection<span class="citation"><sup><a href="#ref-ratschLearningInterpretableSVMs2006" role="doc-biblioref">347</a></sup></span></p></li>
+<li><p>Methylation site prediction<span class="citation"><sup><a href="#ref-wangPredictingDNAMethylation2016" role="doc-biblioref">348</a></sup></span></p></li>
+<li><p>Protein function prediction<span class="citation"><sup><a href="#ref-wangProteinSequenceProtein2017" role="doc-biblioref">349</a></sup></span></p></li>
+</ul>
+</div>
+</div>
+<div id="unsupervised" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Unsupervised<a href="learning-from-sequences-and-alignments.html#unsupervised" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>clustering, align all pairs of sequences for clustering<span class="citation"><sup><a href="#ref-zoritaStarcodeSequenceClustering2015" role="doc-biblioref">350</a></sup></span>, phylogenetics could be considered as a specific type of clustering<span class="citation"><sup><a href="#ref-balabanTreeClusterClusteringBiological2019" role="doc-biblioref">351</a></sup></span>.</p></li>
+<li><p>predict mutational effects<span class="citation"><sup><a href="#ref-hopfMutationEffectsPredicted2017" role="doc-biblioref">352</a></sup></span></p></li>
+<li><p>Predict recombination hotspots in humans with a MaxLik approach<span class="citation"><sup><a href="#ref-castroModelSelectionApproach2018" role="doc-biblioref">353</a></sup></span></p></li>
+<li><p>Approximating the edit distance and bypassing the need for alignment<span class="citation"><sup><a href="#ref-corsoNeuralDistanceEmbeddings2021" role="doc-biblioref">354</a></sup></span></p></li>
+<li><p>dimensionality reduction:</p>
+<ul>
+<li><p>traditionally apply PCA to some type of matrix, like distance matrix obtained from aln<span class="citation"><sup><a href="#ref-haschkaMNHNTreeToolsToolboxTree2021" role="doc-biblioref">355</a></sup></span> or other matrices like gene expression</p></li>
+<li><p>Also can be used for clustering<span class="citation"><sup><a href="#ref-ben-hurDetectingStableClusters2003" role="doc-biblioref">356</a>–<a href="#ref-clampJalviewJavaAlignment2004" role="doc-biblioref">359</a></sup></span></p></li>
+<li><p>Work done to compute PCA directly on alignment<span class="citation"><sup><a href="#ref-konishiPrincipalComponentAnalysis2019" role="doc-biblioref">360</a></sup></span></p></li>
+</ul></li>
+</ul>
+</div>
+<div id="others" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Others<a href="learning-from-sequences-and-alignments.html#others" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.</p>
+<ul>
+<li><p>Predict P/P interactions<span class="citation"><sup><a href="#ref-townshendEndtoEndLearning3D2019" role="doc-biblioref">361</a></sup></span></p></li>
+<li><p>microRNA target prediction<span class="citation"><sup><a href="#ref-leeDeepTargetEndtoendLearning2016" role="doc-biblioref">362</a></sup></span></p></li>
+</ul></li>
+<li><p>self-supervised, i.e. train on a proxy task and hope the model learns important features and useful stuff to continue on fully-unsupervised.</p>
+<ul>
+<li><p>Used to find useful info in disordered protein regions<span class="citation"><sup><a href="#ref-luDiscoveringMolecularFeatures2022" role="doc-biblioref">363</a></sup></span></p></li>
+<li><p>Protein language models:<span class="citation"><sup><a href="#ref-elnaggarProtTransCrackingLanguage2021" role="doc-biblioref">364</a></sup></span></p></li>
+</ul></li>
+<li><p>semi-supervised, combined a small amount of labelled data with large amount of unlabeled data that the models can leverage.</p>
+<ul>
+<li><p>used to predict drug-protein interactions<span class="citation"><sup><a href="#ref-xiaSemisupervisedDrugproteinInteraction2010" role="doc-biblioref">365</a></sup></span></p></li>
+<li><p>and transmembrane protein topology<span class="citation"><sup><a href="#ref-tamposisSemisupervisedLearningHidden2019" role="doc-biblioref">366</a></sup></span></p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="how-to-learn" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> How to learn ?<a href="learning-from-sequences-and-alignments.html#how-to-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tests-and-statistical-learning" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Tests and statistical learning<a href="learning-from-sequences-and-alignments.html#tests-and-statistical-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>correlation</li>
+<li>Fisher</li>
+<li>Multiple testing ?</li>
+<li>linear regression / logistic regression</li>
+</ul>
+</div>
+<div id="more-complex-methods-machine-learning" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> More complex methods, machine learning<a href="learning-from-sequences-and-alignments.html#more-complex-methods-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>regularization</li>
+<li>RF</li>
+<li>SVM</li>
+<li>ABC</li>
+<li>KNN</li>
+</ul>
+</div>
+<div id="deep-learning" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Deep Learning<a href="learning-from-sequences-and-alignments.html#deep-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Steiner et al…</li>
+<li>plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)</li>
+<li>Complex architectures</li>
+</ul>
+</div>
+</div>
+<div id="preprocessing-the-alignment-for-machine-learning" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Preprocessing the alignment for machine learning<a href="learning-from-sequences-and-alignments.html#preprocessing-the-alignment-for-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to do some learning we need to have the data in digestible form</p>
+<p>We need a way to represent, the position and the character in a sequence</p>
+<div id="general-purpose-embeddings" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> General purpose embeddings<a href="learning-from-sequences-and-alignments.html#general-purpose-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>review<span class="citation"><sup><a href="#ref-potdarComparativeStudyCategorical2017" role="doc-biblioref">367</a></sup></span></p>
+<ul>
+<li><p>Simple labeling / ordinal coding, i.e. assigning an integer to each character (A=1, C=2, G=3, T=4)</p>
+<ul>
+<li>pb -&gt; assigning artificial order to a purely categorical variable, used in<span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">327</a></sup></span></li>
+</ul></li>
+<li><p>BItwise labeling -&gt; encode each character with <span class="math inline">\(n\)</span> bits, for nucleotides 2bits if no gaps (A=00, C=01, G=10, T=11)<span class="citation"><sup><a href="#ref-dufresneKmerFileFormat2022" role="doc-biblioref">368</a>,<a href="#ref-wrightUsingDECIPHERV22016" role="doc-biblioref">369</a></sup></span> for AAs 5 bits necessary explored in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">370</a></sup></span></p>
+<ul>
+<li><p>still a problem of order, for aas used in hashing and bloom filters …</p></li>
+<li><p>Often used for hashing/indexing a sequence or compressing, but is also a used scheme in categorical variable encoding in machine learning.</p></li>
+</ul></li>
+<li><p>One-Hot encoding, widely used: a variable with <span class="math inline">\(d\)</span> levels (for DNA <span class="math inline">\(d=4\)</span>) is transformed to a length <span class="math inline">\(d\)</span> sparse binary vector, when the variable is equal to the <span class="math inline">\(i^{th}\)</span> level then the resulting vector has a 1 set in the <span class="math inline">\(i^{th}\)</span> position. (also called orthonormal<span class="citation"><sup><a href="#ref-singhEvolutionaryBasedOptimal2018" role="doc-biblioref">371</a></sup></span>)</p>
+<ul>
+<li><p>Used in Chapter <a href="HIV-paper.html#HIV-paper">6</a> and other papers<span class="citation"><sup><a href="#ref-budachPyssterClassificationBiological2018" role="doc-biblioref">372</a></sup></span>,</p></li>
+<li><p>one of the problems is the “curse of dimensionality” since the for a sequence of length <span class="math inline">\(n\)</span> we get <span class="math inline">\(n\times d\)</span> features, which can be quite large.</p></li>
+<li><p>Performance between OH and Ordinal can be quite similar<span class="citation"><sup><a href="#ref-choongEvaluationConvolutionaryNeural2017" role="doc-biblioref">373</a></sup></span> but easily interpretable (important in Bio)</p></li>
+<li><p>Has been used for encoding protein sequences as early as 1988<span class="citation"><sup><a href="#ref-qianPredictingSecondaryStructure1988" role="doc-biblioref">374</a></sup></span></p></li>
+</ul></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:generalEncoding"></span>
+<img src="figures/Encode-seqs/general_purpose.png" alt="**Example of 3 general categorical encoding schemes**
+" width="70%" />
+<p class="caption">
+Figure 4.1: <strong>Example of 3 general categorical encoding schemes</strong>
+</p>
+</div>
+<ul>
+<li>Many general purpose categorical encodings, library in Python<span class="citation"><sup><a href="#ref-mcginnisScikitLearnContribCategoricalEncodingRelease2018" role="doc-biblioref">375</a></sup></span></li>
+</ul>
+</div>
+<div id="biological-sequence-specific-embeddings" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Biological sequence-specific embeddings<a href="learning-from-sequences-and-alignments.html#biological-sequence-specific-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>These embeddings were inspired by physico-chemical properties, many encodings in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">370</a></sup></span>:</p>
+<ul>
+<li><p>AAIndex embedding, based on the the AAIndex database<span class="citation"><sup><a href="#ref-kawashima2008" role="doc-biblioref">376</a></sup></span>,</p>
+<ul>
+<li><p>each amino acid has a number real-valued physico-chemical properties so you can select a subset of them.</p></li>
+<li><p>A subset of properties identified as informative<span class="citation"><sup><a href="#ref-liPredictionProteinStructural2008" role="doc-biblioref">377</a></sup></span></p></li>
+<li><p>Available in the iFeature python package<span class="citation"><sup><a href="#ref-chenIFeaturePythonPackage2018" role="doc-biblioref">378</a></sup></span></p></li>
+<li><p>Also, combine features from AAIndex with PCA to get ensemble features and use top components<span class="citation"><sup><a href="#ref-nanniNewEncodingTechnique2011" role="doc-biblioref">379</a></sup></span></p></li>
+</ul></li>
+<li><p>Groups:</p>
+<ul>
+<li><p>Based on the Venn diagram defined by Taylor<span class="citation"><sup><a href="#ref-taylorClassificationAminoAcid1986" role="doc-biblioref">380</a></sup></span>, grouping AAs by 9 properties (hydrophobic, polar, small, …)</p></li>
+<li><p>We can get a 9-D vector for each residue</p></li>
+<li><p>An encoding based on that was used as early as 1987 to predict protein secondary structure<span class="citation"><sup><a href="#ref-zvelebilPredictionProteinSecondary1987" role="doc-biblioref">381</a></sup></span></p></li>
+<li><p>Later 5 more groups defined<span class="citation"><sup><a href="#ref-kremerMethodSystemComputer2009" role="doc-biblioref">382</a></sup></span></p></li>
+</ul></li>
+<li><p>BLOMAP<span class="citation"><sup><a href="#ref-maetschkeBlomapEncodingAmino2005" role="doc-biblioref">383</a></sup></span>:</p>
+<ul>
+<li><p>Non-linear projection of the BLOSUM62 substitution matrix to encode an amino acid in 5 dimensions</p></li>
+<li><p>Used to predict cleavage sites of HIV-1 protease<span class="citation"><sup><a href="#ref-singhEvolutionaryBasedOptimal2018" role="doc-biblioref">371</a></sup></span></p></li>
+</ul></li>
+<li><p>Others:</p>
+<ul>
+<li><p>frequencies of amino acids -&gt; very coarse (but low dimensional)</p></li>
+<li><p><span class="math inline">\(k\)</span>-mer frequencies, often reffered to as <span class="math inline">\(n\)</span>-gram encoding<span class="citation"><sup><a href="#ref-sahaNovelApproachFind2019" role="doc-biblioref">384</a></sup></span>, often <span class="math inline">\(n=2\)</span> since as <span class="math inline">\(k\)</span>/<span class="math inline">\(n\)</span> grow the dimensions grow exponentially -&gt; with 20 AAs and <span class="math inline">\(20^n\)</span> dimensions per sequence.</p></li>
+<li><p>OETMAP, extension of BLOMAP<span class="citation"><sup><a href="#ref-gokNewFeatureEncoding2013" role="doc-biblioref">385</a></sup></span></p></li>
+<li><p>Codon graph encoding proposed in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">370</a></sup></span>, where an AA is represented by a directed graph of all the codons that make up the AA. The 4x4 adjacency matrix is converted into a length 16 vector representing a single AA.</p></li>
+</ul></li>
+</ul>
+</div>
+<div id="learned-embeddings" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Learned embeddings<a href="learning-from-sequences-and-alignments.html#learned-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><p>(Variational) Auto-encoders:</p>
+<ul>
+<li>Bottlneck in deep neural neck, task is to predict input. Add noise in the hidden layers -&gt; remove noise or regularize to have smooth latent space and get embeddings</li>
+<li>Used for ancestral sequence reconstruction<span class="citation"><sup><a href="#ref-moretaAncestralProteinSequence2022" role="doc-biblioref">386</a></sup></span> and estimating evolutionary distances<span class="citation"><sup><a href="#ref-corsoNeuralDistanceEmbeddings2021" role="doc-biblioref">354</a></sup></span></li>
+<li>VAEs used for sequence design as well<span class="citation"><sup><a href="#ref-wuProteinSequenceDesign2021" role="doc-biblioref">387</a>,<a href="#ref-stantonAcceleratingBayesianOptimization2022" role="doc-biblioref">388</a></sup></span></li>
+</ul></li>
+<li><p>NLP:</p>
+<ul>
+<li><p>From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary<span class="citation"><sup><a href="#ref-HowManyWords" role="doc-biblioref">389</a></sup></span>, so naive one hot is out of the question), we need other ways to transform words into sequences.</p></li>
+<li><p>Word2Vec derivatives:</p>
+<ul>
+<li><p>word2Vec<span class="citation"><sup><a href="#ref-mikolovEfficientEstimationWord2013" role="doc-biblioref">390</a>,<a href="#ref-mikolovDistributedRepresentationsWords2013" role="doc-biblioref">391</a></sup></span>, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e. low distance in the vector space). And that the embeddings make sense grammatically (e.g. of the Paper <span class="math inline">\(vec(Madrid) - vec(Spain)\)</span> should be close to <span class="math inline">\(vec(Paris)\)</span> in the learned space.</p></li>
+<li><p>Context of a word = window of <span class="math inline">\(k\)</span> words centered around it</p></li>
+<li><p>2 ways to train it<span class="citation"><sup><a href="#ref-goldbergWord2vecExplainedDeriving2014" role="doc-biblioref">392</a></sup></span>:</p>
+<ul>
+<li><p>CBOW (continuous bag of words) = predict word from context</p></li>
+<li><p>skip-gram = predict context from word</p></li>
+<li><p>The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)</p></li>
+</ul></li>
+<li><p>dna2vec<span class="citation"><sup><a href="#ref-ngDna2vecConsistentVector2017" role="doc-biblioref">393</a></sup></span></p></li>
+</ul></li>
+<li><p>Transformers / language models</p></li>
+</ul></li>
+<li><p>Powerful but hard to interpret what the model actually learns. i.e. “black box”</p></li>
+</ul>
+<p>Other weirder embeddings: chaos game theory<span class="citation"><sup><a href="#ref-lochelChaosGameRepresentation2021" role="doc-biblioref">394</a></sup></span></p>
+
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body" line-spacing="2">
+<div id="ref-sahlinNovoClusteringLongRead2020" class="csl-entry">
+<div class="csl-left-margin">115. </div><div class="csl-right-inline">Sahlin, K. &amp; Medvedev, P. <a href="https://doi.org/10.1089/cmb.2019.0299">De <span>Novo Clustering</span> of <span>Long-Read Transcriptome Data Using</span> a <span>Greedy</span>, <span>Quality Value-Based Algorithm</span></a>. <em>Journal of Computational Biology</em> <strong>27</strong>, 472–484 (2020).</div>
+</div>
+<div id="ref-jumperHighlyAccurateProtein2021" class="csl-entry">
+<div class="csl-left-margin">136. </div><div class="csl-right-inline">Jumper, J. <em>et al.</em> <a href="https://doi.org/10.1038/s41586-021-03819-2">Highly accurate protein structure prediction with AlphaFold</a>. <em>Nature</em> <strong>596</strong>, 583–589 (2021).</div>
+</div>
+<div id="ref-martinNextgenerationTranscriptomeAssembly2011" class="csl-entry">
+<div class="csl-left-margin">316. </div><div class="csl-right-inline">Martin, J. A. &amp; Wang, Z. <a href="https://doi.org/10.1038/nrg3068">Next-generation transcriptome assembly</a>. <em>Nature Reviews Genetics</em> <strong>12</strong>, 671–682 (2011).</div>
+</div>
+<div id="ref-kyriakidouCurrentStrategiesPolyploid2018" class="csl-entry">
+<div class="csl-left-margin">317. </div><div class="csl-right-inline">Kyriakidou, M., Tai, H. H., Anglin, N. L., Ellis, D. &amp; Strömvik, M. V. <a href="https://www.frontiersin.org/articles/10.3389/fpls.2018.01660">Current strategies of polyploid plant genome sequence assembly</a>. <em>Frontiers in Plant Science</em> <strong>9</strong>, (2018).</div>
+</div>
+<div id="ref-paszkiewiczNovoAssemblyShort2010" class="csl-entry">
+<div class="csl-left-margin">318. </div><div class="csl-right-inline">Paszkiewicz, K. &amp; Studholme, D. J. <a href="https://doi.org/10.1093/bib/bbq020">De novo assembly of short sequence reads</a>. <em>Briefings in Bioinformatics</em> <strong>11</strong>, 457–472 (2010).</div>
+</div>
+<div id="ref-sohnPresentFutureNovo2018" class="csl-entry">
+<div class="csl-left-margin">319. </div><div class="csl-right-inline">Sohn, J. &amp; Nam, J.-W. <a href="https://doi.org/10.1093/bib/bbw096">The present and future of de novo whole-genome assembly</a>. <em>Briefings in Bioinformatics</em> <strong>19</strong>, 23–40 (2018).</div>
+</div>
+<div id="ref-sleatorOverviewSilicoProtein2010" class="csl-entry">
+<div class="csl-left-margin">320. </div><div class="csl-right-inline">Sleator, R. D. &amp; Walsh, P. <a href="https://doi.org/10.1007/s00203-010-0549-9">An overview of in silico protein function prediction</a>. <em>Archives of Microbiology</em> <strong>192</strong>, 151–155 (2010).</div>
+</div>
+<div id="ref-koboldtBestPracticesVariant2020" class="csl-entry">
+<div class="csl-left-margin">321. </div><div class="csl-right-inline">Koboldt, D. C. <a href="https://doi.org/10.1186/s13073-020-00791-w">Best practices for variant calling in clinical sequencing</a>. <em>Genome Medicine</em> <strong>12</strong>, 91 (2020).</div>
+</div>
+<div id="ref-alkanGenomeStructuralVariation2011" class="csl-entry">
+<div class="csl-left-margin">322. </div><div class="csl-right-inline">Alkan, C., Coe, B. P. &amp; Eichler, E. E. <a href="https://doi.org/10.1038/nrg2958">Genome structural variation discovery and genotyping</a>. <em>Nature Reviews Genetics</em> <strong>12</strong>, 363–376 (2011).</div>
+</div>
+<div id="ref-hoStructuralVariationSequencing2020" class="csl-entry">
+<div class="csl-left-margin">323. </div><div class="csl-right-inline">Ho, S. S., Urban, A. E. &amp; Mills, R. E. <a href="https://doi.org/10.1038/s41576-019-0180-9">Structural variation in the sequencing era</a>. <em>Nature Reviews Genetics</em> <strong>21</strong>, 171–189 (2020).</div>
+</div>
+<div id="ref-morrisonPhylogeneticTreebuilding1996" class="csl-entry">
+<div class="csl-left-margin">324. </div><div class="csl-right-inline">Morrison, D. A. <a href="https://doi.org/10.1016/0020-7519(96)00044-6">Phylogenetic tree-building</a>. <em>International Journal for Parasitology</em> <strong>26</strong>, 589–617 (1996).</div>
+</div>
+<div id="ref-kapliPhylogeneticTreeBuilding2020" class="csl-entry">
+<div class="csl-left-margin">325. </div><div class="csl-right-inline">Kapli, P., Yang, Z. &amp; Telford, M. J. <a href="https://doi.org/10.1038/s41576-020-0233-0">Phylogenetic tree building in the genomic age</a>. <em>Nature Reviews Genetics</em> <strong>21</strong>, 428–444 (2020).</div>
+</div>
+<div id="ref-kuhlmanAdvancesProteinStructure2019" class="csl-entry">
+<div class="csl-left-margin">326. </div><div class="csl-right-inline">Kuhlman, B. &amp; Bradley, P. <a href="https://doi.org/10.1038/s41580-019-0163-x">Advances in protein structure prediction and design</a>. <em>Nature Reviews Molecular Cell Biology</em> <strong>20</strong>, 681–697 (2019).</div>
+</div>
+<div id="ref-steinerDrugResistancePrediction2020a" class="csl-entry">
+<div class="csl-left-margin">327. </div><div class="csl-right-inline">Steiner, M. C., Gibson, K. M. &amp; Crandall, K. A. <a href="https://doi.org/10.3390/v12050560">Drug <span>Resistance Prediction Using Deep Learning Techniques</span> on <span>HIV</span>-1 <span>Sequence Data</span></a>. <em>Viruses</em> <strong>12</strong>, 560 (2020).</div>
+</div>
+<div id="ref-ammad-ud-dinSystematicIdentificationFeature2017" class="csl-entry">
+<div class="csl-left-margin">328. </div><div class="csl-right-inline">Ammad-ud-din, M., Khan, S. A., Wennerberg, K. &amp; Aittokallio, T. <a href="https://doi.org/10.1093/bioinformatics/btx266">Systematic identification of feature combinations for predicting drug response with bayesian multi-view multi-task linear regression</a>. <em>Bioinformatics</em> <strong>33</strong>, i359–i368 (2017).</div>
+</div>
+<div id="ref-noeMachineLearningProtein2020" class="csl-entry">
+<div class="csl-left-margin">329. </div><div class="csl-right-inline">Noé, F., De Fabritiis, G. &amp; Clementi, C. <a href="https://doi.org/10.1016/j.sbi.2019.12.005">Machine learning for protein folding and dynamics</a>. <em>Current Opinion in Structural Biology</em> <strong>60</strong>, 77–84 (2020).</div>
+</div>
+<div id="ref-alquraishiMachineLearningProtein2021" class="csl-entry">
+<div class="csl-left-margin">333. </div><div class="csl-right-inline">AlQuraishi, M. <a href="https://doi.org/10.1016/j.cbpa.2021.04.005">Machine learning in protein structure prediction</a>. <em>Current Opinion in Chemical Biology</em> <strong>65</strong>, 1–8 (2021).</div>
+</div>
+<div id="ref-wangAccurateNovoPrediction2017" class="csl-entry">
+<div class="csl-left-margin">334. </div><div class="csl-right-inline">Wang, S., Sun, S., Li, Z., Zhang, R. &amp; Xu, J. <a href="https://doi.org/10.1371/journal.pcbi.1005324">Accurate De Novo Prediction of Protein Contact Map by Ultra-Deep Learning Model</a>. <em>PLOS Computational Biology</em> <strong>13</strong>, e1005324 (2017).</div>
+</div>
+<div id="ref-ortunoComparingDifferentMachine2015" class="csl-entry">
+<div class="csl-left-margin">335. </div><div class="csl-right-inline">Ortuño, F. M. <em>et al.</em> <a href="https://doi.org/10.1016/j.neucom.2015.01.080">Comparing different machine learning and mathematical regression models to evaluate multiple sequence alignments</a>. <em>Neurocomputing</em> <strong>164</strong>, 123–136 (2015).</div>
+</div>
+<div id="ref-wittmannAdvancesMachineLearning2021" class="csl-entry">
+<div class="csl-left-margin">336. </div><div class="csl-right-inline">Wittmann, B. J., Johnston, K. E., Wu, Z. &amp; Arnold, F. H. <a href="https://doi.org/10.1016/j.sbi.2021.01.008">Advances in machine learning for directed evolution</a>. <em>Current Opinion in Structural Biology</em> <strong>69</strong>, 11–18 (2021).</div>
+</div>
+<div id="ref-liCanMachineLearning2019" class="csl-entry">
+<div class="csl-left-margin">338. </div><div class="csl-right-inline">Li, G., Dong, Y. &amp; Reetz, M. T. <a href="https://doi.org/10.1002/adsc.201900149">Can Machine Learning Revolutionize Directed Evolution of Selective Enzymes?</a> <em>Advanced Synthesis &amp; Catalysis</em> <strong>361</strong>, 2377–2386 (2019).</div>
+</div>
+<div id="ref-xieDeepAutoencoderModel2017" class="csl-entry">
+<div class="csl-left-margin">339. </div><div class="csl-right-inline">Xie, R., Wen, J., Quitadamo, A., Cheng, J. &amp; Shi, X. <a href="https://doi.org/10.1186/s12864-017-4226-0">A deep auto-encoder model for gene expression prediction</a>. <em>BMC Genomics</em> <strong>18</strong>, 845 (2017).</div>
+</div>
+<div id="ref-hagaMachineLearningbasedTreatment2020" class="csl-entry">
+<div class="csl-left-margin">340. </div><div class="csl-right-inline">Haga, H. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pone.0242028">A machine learning-based treatment prediction model using whole genome variants of hepatitis C virus</a>. <em>PLOS ONE</em> <strong>15</strong>, e0242028 (2020).</div>
+</div>
+<div id="ref-zazziPredictingResponseAntiretroviral2012" class="csl-entry">
+<div class="csl-left-margin">341. </div><div class="csl-right-inline">Zazzi, M. <em>et al.</em> <a href="https://doi.org/10.1159/000332008">Predicting response to antiretroviral treatment by machine learning: The EuResist project</a>. <em>Intervirology</em> <strong>55</strong>, 123–127 (2012).</div>
+</div>
+<div id="ref-renPredictionAntimicrobialResistance2022" class="csl-entry">
+<div class="csl-left-margin">342. </div><div class="csl-right-inline">Ren, Y. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btab681">Prediction of antimicrobial resistance based on whole-genome sequencing and machine learning</a>. <em>Bioinformatics</em> <strong>38</strong>, 325–334 (2022).</div>
+</div>
+<div id="ref-kimMachineLearningAntimicrobial2022" class="csl-entry">
+<div class="csl-left-margin">343. </div><div class="csl-right-inline">Kim, J. I. <em>et al.</em> <a href="https://doi.org/10.1128/cmr.00179-21">Machine learning for antimicrobial resistance prediction: Current practice, limitations, and clinical perspective</a>. <em>Clinical Microbiology Reviews</em> <strong>0</strong>, e00179–21 (2022).</div>
+</div>
+<div id="ref-weiPredictionHumanProtein2018" class="csl-entry">
+<div class="csl-left-margin">344. </div><div class="csl-right-inline">Wei, L., Ding, Y., Su, R., Tang, J. &amp; Zou, Q. <a href="https://doi.org/10.1016/j.jpdc.2017.08.009">Prediction of human protein subcellular localization using deep learning</a>. <em>Journal of Parallel and Distributed Computing</em> <strong>117</strong>, 212–217 (2018).</div>
+</div>
+<div id="ref-jonesProteinSecondaryStructure1999" class="csl-entry">
+<div class="csl-left-margin">345. </div><div class="csl-right-inline">Jones, D. T. <a href="https://doi.org/10.1006/jmbi.1999.3091">Protein secondary structure prediction based on position-specific scoring matrices</a>. <em>Journal of Molecular Biology</em> <strong>292</strong>, 195–202 (1999).</div>
+</div>
+<div id="ref-kelleyBassetLearningRegulatory2016" class="csl-entry">
+<div class="csl-left-margin">346. </div><div class="csl-right-inline">Kelley, D. R., Snoek, J. &amp; Rinn, J. L. <a href="https://doi.org/10.1101/gr.200535.115">Basset: Learning the regulatory code of the accessible genome with deep convolutional neural networks</a>. <em>Genome Research</em> <strong>26</strong>, 990–999 (2016).</div>
+</div>
+<div id="ref-ratschLearningInterpretableSVMs2006" class="csl-entry">
+<div class="csl-left-margin">347. </div><div class="csl-right-inline">Rätsch, G., Sonnenburg, S. &amp; Schäfer, C. <a href="https://doi.org/10.1186/1471-2105-7-S1-S9">Learning Interpretable SVMs for Biological Sequence Classification</a>. <em>BMC Bioinformatics</em> <strong>7</strong>, S9 (2006).</div>
+</div>
+<div id="ref-wangPredictingDNAMethylation2016" class="csl-entry">
+<div class="csl-left-margin">348. </div><div class="csl-right-inline">Wang, Y. <em>et al.</em> <a href="https://doi.org/10.1038/srep19598">Predicting DNA Methylation State of CpG Dinucleotide Using Genome Topological Features and Deep Networks</a>. <em>Scientific Reports</em> <strong>6</strong>, 19598 (2016).</div>
+</div>
+<div id="ref-wangProteinSequenceProtein2017" class="csl-entry">
+<div class="csl-left-margin">349. </div><div class="csl-right-inline">Wang, H., Yan, L., Huang, H. &amp; Ding, C. <a href="https://doi.org/10.1109/TCBB.2016.2591529">From protein sequence to protein function via multi-label linear discriminant analysis</a>. <em>IEEE/ACM Transactions on Computational Biology and Bioinformatics</em> <strong>14</strong>, 503–513 (2017).</div>
+</div>
+<div id="ref-zoritaStarcodeSequenceClustering2015" class="csl-entry">
+<div class="csl-left-margin">350. </div><div class="csl-right-inline">Zorita, E., Cuscó, P. &amp; Filion, G. J. <a href="https://doi.org/10.1093/bioinformatics/btv053">Starcode: Sequence clustering based on all-pairs search</a>. <em>Bioinformatics</em> <strong>31</strong>, 1913–1919 (2015).</div>
+</div>
+<div id="ref-balabanTreeClusterClusteringBiological2019" class="csl-entry">
+<div class="csl-left-margin">351. </div><div class="csl-right-inline">Balaban, M., Moshiri, N., Mai, U., Jia, X. &amp; Mirarab, S. <a href="https://doi.org/10.1371/journal.pone.0221068">TreeCluster: Clustering biological sequences using phylogenetic trees</a>. <em>PLOS ONE</em> <strong>14</strong>, e0221068 (2019).</div>
+</div>
+<div id="ref-hopfMutationEffectsPredicted2017" class="csl-entry">
+<div class="csl-left-margin">352. </div><div class="csl-right-inline">Hopf, T. A. <em>et al.</em> <a href="https://doi.org/10.1038/nbt.3769">Mutation effects predicted from sequence co-variation</a>. <em>Nature Biotechnology</em> <strong>35</strong>, 128–135 (2017).</div>
+</div>
+<div id="ref-castroModelSelectionApproach2018" class="csl-entry">
+<div class="csl-left-margin">353. </div><div class="csl-right-inline">Castro, B. M., Lemes, R. B., Cesar, J., Hünemeier, T. &amp; Leonardi, F. <a href="https://doi.org/10.1016/j.jmva.2018.05.006">A model selection approach for multiple sequence segmentation and dimensionality reduction</a>. <em>Journal of Multivariate Analysis</em> <strong>167</strong>, 319–330 (2018).</div>
+</div>
+<div id="ref-corsoNeuralDistanceEmbeddings2021" class="csl-entry">
+<div class="csl-left-margin">354. </div><div class="csl-right-inline">Corso, G. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2021/hash/9a1de01f893e0d2551ecbb7ce4dc963e-Abstract.html">Neural distance embeddings for biological sequences</a>. in vol. 34 1853918551 (Curran Associates, Inc., 2021).</div>
+</div>
+<div id="ref-haschkaMNHNTreeToolsToolboxTree2021" class="csl-entry">
+<div class="csl-left-margin">355. </div><div class="csl-right-inline">Haschka, T., Ponger, L., Escudé, C. &amp; Mozziconacci, J. <a href="https://doi.org/10.1093/bioinformatics/btab430">MNHN-tree-tools: A toolbox for tree inference using multi-scale clustering of a set of sequences</a>. <em>Bioinformatics</em> <strong>37</strong>, 3947–3949 (2021).</div>
+</div>
+<div id="ref-ben-hurDetectingStableClusters2003" class="csl-entry">
+<div class="csl-left-margin">356. </div><div class="csl-right-inline">Ben-Hur, A. &amp; Guyon, I. Detecting Stable Clusters Using Principal Component Analysis. in (eds. Brownstein, M. J. &amp; Khodursky, A. B.) 159–182 (Humana Press, 2003). doi:<a href="https://doi.org/10.1385/1-59259-364-X:159">10.1385/1-59259-364-X:159</a>.</div>
+</div>
+<div id="ref-clampJalviewJavaAlignment2004" class="csl-entry">
+<div class="csl-left-margin">359. </div><div class="csl-right-inline">Clamp, M., Cuff, J., Searle, S. M. &amp; Barton, G. J. <a href="https://doi.org/10.1093/bioinformatics/btg430">The jalview java alignment editor</a>. <em>Bioinformatics</em> <strong>20</strong>, 426–427 (2004).</div>
+</div>
+<div id="ref-konishiPrincipalComponentAnalysis2019" class="csl-entry">
+<div class="csl-left-margin">360. </div><div class="csl-right-inline">Konishi, T. <em>et al.</em> <a href="https://doi.org/10.1038/s41598-019-55253-0">Principal Component Analysis applied directly to Sequence Matrix</a>. <em>Scientific Reports</em> <strong>9</strong>, 19297 (2019).</div>
+</div>
+<div id="ref-townshendEndtoEndLearning3D2019" class="csl-entry">
+<div class="csl-left-margin">361. </div><div class="csl-right-inline">Townshend, R., Bedi, R., Suriana, P. &amp; Dror, R. <a href="https://proceedings.neurips.cc/paper/2019/hash/6c7de1f27f7de61a6daddfffbe05c058-Abstract.html">End-to-end learning on 3D protein structure for interface prediction</a>. in vol. 32 (Curran Associates, Inc., 2019).</div>
+</div>
+<div id="ref-leeDeepTargetEndtoendLearning2016" class="csl-entry">
+<div class="csl-left-margin">362. </div><div class="csl-right-inline">Lee, B., Baek, J., Park, S. &amp; Yoon, S. deepTarget: End-to-end learning framework for microRNA target prediction using deep recurrent neural networks. in 434442 (Association for Computing Machinery, 2016). doi:<a href="https://doi.org/10.1145/2975167.2975212">10.1145/2975167.2975212</a>.</div>
+</div>
+<div id="ref-luDiscoveringMolecularFeatures2022" class="csl-entry">
+<div class="csl-left-margin">363. </div><div class="csl-right-inline">Lu, A. X. <em>et al.</em> <a href="https://doi.org/10.1371/journal.pcbi.1010238">Discovering molecular features of intrinsically disordered regions by using evolution for contrastive learning</a>. <em>PLOS Computational Biology</em> <strong>18</strong>, e1010238 (2022).</div>
+</div>
+<div id="ref-elnaggarProtTransCrackingLanguage2021" class="csl-entry">
+<div class="csl-left-margin">364. </div><div class="csl-right-inline">Elnaggar, A. <em>et al.</em> ProtTrans: Towards cracking the language of life’s code through self-supervised deep learning and high performance computing. doi:<a href="https://doi.org/10.48550/arXiv.2007.06225">10.48550/arXiv.2007.06225</a>.</div>
+</div>
+<div id="ref-xiaSemisupervisedDrugproteinInteraction2010" class="csl-entry">
+<div class="csl-left-margin">365. </div><div class="csl-right-inline">Xia, Z., Wu, L.-Y., Zhou, X. &amp; Wong, S. T. <a href="https://doi.org/10.1186/1752-0509-4-S2-S6">Semi-supervised drug-protein interaction prediction from heterogeneous biological spaces</a>. <em>BMC Systems Biology</em> <strong>4</strong>, S6 (2010).</div>
+</div>
+<div id="ref-tamposisSemisupervisedLearningHidden2019" class="csl-entry">
+<div class="csl-left-margin">366. </div><div class="csl-right-inline">Tamposis, I. A., Tsirigos, K. D., Theodoropoulou, M. C., Kontou, P. I. &amp; Bagos, P. G. <a href="https://doi.org/10.1093/bioinformatics/bty910">Semi-supervised learning of hidden markov models for biological sequence analysis</a>. <em>Bioinformatics</em> <strong>35</strong>, 2208–2215 (2019).</div>
+</div>
+<div id="ref-potdarComparativeStudyCategorical2017" class="csl-entry">
+<div class="csl-left-margin">367. </div><div class="csl-right-inline">Potdar, K., S., T. &amp; D., C. <a href="https://doi.org/10.5120/ijca2017915495">A Comparative Study of Categorical Variable Encoding Techniques for Neural Network Classifiers</a>. <em>International Journal of Computer Applications</em> <strong>175</strong>, 7–9 (2017).</div>
+</div>
+<div id="ref-dufresneKmerFileFormat2022" class="csl-entry">
+<div class="csl-left-margin">368. </div><div class="csl-right-inline">Dufresne, Y. <em>et al.</em> The k-mer file format: A standardized and compact disk representation of sets of k-mers. <em>Bioinformatics</em> btac528 (2022) doi:<a href="https://doi.org/10.1093/bioinformatics/btac528">10.1093/bioinformatics/btac528</a>.</div>
+</div>
+<div id="ref-wrightUsingDECIPHERV22016" class="csl-entry">
+<div class="csl-left-margin">369. </div><div class="csl-right-inline">Wright, E. S. <a href="https://doi.org/10.32614/RJ-2016-025">Using DECIPHER v2.0 to analyze big biological sequence data in r</a>. <em>The R Journal</em> <strong>8</strong>, 352–359 (2016).</div>
+</div>
+<div id="ref-zamaniAminoAcidEncoding2011" class="csl-entry">
+<div class="csl-left-margin">370. </div><div class="csl-right-inline">Zamani, M. &amp; Kremer, S. C. 2011 IEEE international conference on bioinformatics and biomedicine workshops (BIBMW). in 327–333 (2011). doi:<a href="https://doi.org/10.1109/BIBMW.2011.6112394">10.1109/BIBMW.2011.6112394</a>.</div>
+</div>
+<div id="ref-singhEvolutionaryBasedOptimal2018" class="csl-entry">
+<div class="csl-left-margin">371. </div><div class="csl-right-inline">Singh, D., Singh, P. &amp; Sisodia, D. S. <a href="https://doi.org/10.1016/j.eswa.2018.05.003">Evolutionary based optimal ensemble classifiers for HIV-1 protease cleavage sites prediction</a>. <em>Expert Systems with Applications</em> <strong>109</strong>, 86–99 (2018).</div>
+</div>
+<div id="ref-budachPyssterClassificationBiological2018" class="csl-entry">
+<div class="csl-left-margin">372. </div><div class="csl-right-inline">Budach, S. &amp; Marsico, A. <a href="https://doi.org/10.1093/bioinformatics/bty222">Pysster: Classification of biological sequences by learning sequence and structure motifs with convolutional neural networks</a>. <em>Bioinformatics</em> <strong>34</strong>, 3035–3037 (2018).</div>
+</div>
+<div id="ref-choongEvaluationConvolutionaryNeural2017" class="csl-entry">
+<div class="csl-left-margin">373. </div><div class="csl-right-inline">Choong, A. C. H. &amp; Lee, N. K. 2017 international conference on computer and drone applications (IConDA). in 60–65 (2017). doi:<a href="https://doi.org/10.1109/ICONDA.2017.8270400">10.1109/ICONDA.2017.8270400</a>.</div>
+</div>
+<div id="ref-qianPredictingSecondaryStructure1988" class="csl-entry">
+<div class="csl-left-margin">374. </div><div class="csl-right-inline">Qian, N. &amp; Sejnowski, T. J. <a href="https://doi.org/10.1016/0022-2836(88)90564-5">Predicting the secondary structure of globular proteins using neural network models</a>. <em>Journal of Molecular Biology</em> <strong>202</strong>, 865–884 (1988).</div>
+</div>
+<div id="ref-mcginnisScikitLearnContribCategoricalEncodingRelease2018" class="csl-entry">
+<div class="csl-left-margin">375. </div><div class="csl-right-inline">McGinnis, W. <em>et al.</em> Scikit-<span>Learn</span>-<span>Contrib</span>/<span>Categorical</span>-<span>Encoding</span>: <span>Release For Zenodo</span>. (2018) doi:<a href="https://doi.org/10.5281/ZENODO.1157110">10.5281/ZENODO.1157110</a>.</div>
+</div>
+<div id="ref-kawashima2008" class="csl-entry">
+<div class="csl-left-margin">376. </div><div class="csl-right-inline">Kawashima, S. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkm998">AAindex: amino acid index database, progress report 2008</a>. <em>Nucleic Acids Research</em> <strong>36</strong>, D202–D205 (2008).</div>
+</div>
+<div id="ref-liPredictionProteinStructural2008" class="csl-entry">
+<div class="csl-left-margin">377. </div><div class="csl-right-inline">Li, Z.-C., Zhou, X.-B., Dai, Z. &amp; Zou, X.-Y. <a href="https://doi.org/10.1007/s00726-008-0170-2">Prediction of protein structural classes by Chou<span>’</span>s pseudo amino acid composition: approached using continuous wavelet transform and principal component analysis</a>. <em>Amino Acids</em> <strong>37</strong>, 415 (2008).</div>
+</div>
+<div id="ref-chenIFeaturePythonPackage2018" class="csl-entry">
+<div class="csl-left-margin">378. </div><div class="csl-right-inline">Chen, Z. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/bty140">iFeature: A python package and web server for features extraction and selection from protein and peptide sequences</a>. <em>Bioinformatics</em> <strong>34</strong>, 2499–2502 (2018).</div>
+</div>
+<div id="ref-nanniNewEncodingTechnique2011" class="csl-entry">
+<div class="csl-left-margin">379. </div><div class="csl-right-inline">Nanni, L. &amp; Lumini, A. <a href="https://doi.org/10.1016/j.eswa.2010.09.005">A new encoding technique for peptide classification</a>. <em>Expert Systems with Applications</em> <strong>38</strong>, 3185–3191 (2011).</div>
+</div>
+<div id="ref-taylorClassificationAminoAcid1986" class="csl-entry">
+<div class="csl-left-margin">380. </div><div class="csl-right-inline">Taylor, W. R. <a href="https://doi.org/10.1016/S0022-5193(86)80075-3">The classification of amino acid conservation</a>. <em>Journal of Theoretical Biology</em> <strong>119</strong>, 205–218 (1986).</div>
+</div>
+<div id="ref-zvelebilPredictionProteinSecondary1987" class="csl-entry">
+<div class="csl-left-margin">381. </div><div class="csl-right-inline">Zvelebil, M. J., Barton, G. J., Taylor, W. R. &amp; Sternberg, M. J. E. <a href="https://doi.org/10.1016/0022-2836(87)90501-8">Prediction of protein secondary structure and active sites using the alignment of homologous sequences</a>. <em>Journal of Molecular Biology</em> <strong>195</strong>, 957–961 (1987).</div>
+</div>
+<div id="ref-kremerMethodSystemComputer2009" class="csl-entry">
+<div class="csl-left-margin">382. </div><div class="csl-right-inline">Kremer, S. &amp; Lac, H. <a href="https://patents.google.com/patent/US20090024375A1/en">Method, system and computer program product for levinthal process induction from known structure using machine learning</a>. (2009).</div>
+</div>
+<div id="ref-maetschkeBlomapEncodingAmino2005" class="csl-entry">
+<div class="csl-left-margin">383. </div><div class="csl-right-inline">Maetschke, S., Towsey, M. &amp; Bodén, M. <a href="https://doi.org/10.1142/9781860947322_0014">Blomap: An encoding of amino acids which improves signal peptide cleavage site prediction</a>. in vols Volume 1 141–150 (PUBLISHED BY IMPERIAL COLLEGE PRESS AND DISTRIBUTED BY WORLD SCIENTIFIC PUBLISHING CO., 2005).</div>
+</div>
+<div id="ref-sahaNovelApproachFind2019" class="csl-entry">
+<div class="csl-left-margin">384. </div><div class="csl-right-inline">Saha, S. &amp; Bhattacharya, T. A Novel Approach to Find the Saturation Point of n-Gram Encoding Method for Protein Sequence Classification Involving Data Mining. in (eds. Bhattacharyya, S., Hassanien, A. E., Gupta, D., Khanna, A. &amp; Pan, I.) 101–108 (Springer, 2019). doi:<a href="https://doi.org/10.1007/978-981-13-2354-6_12">10.1007/978-981-13-2354-6_12</a>.</div>
+</div>
+<div id="ref-gokNewFeatureEncoding2013" class="csl-entry">
+<div class="csl-left-margin">385. </div><div class="csl-right-inline">Gök, M. &amp; Özcerit, A. T. <a href="https://doi.org/10.1007/s00521-012-0967-5">A new feature encoding scheme for HIV-1 protease cleavage site prediction</a>. <em>Neural Computing and Applications</em> <strong>22</strong>, 1757–1761 (2013).</div>
+</div>
+<div id="ref-moretaAncestralProteinSequence2022" class="csl-entry">
+<div class="csl-left-margin">386. </div><div class="csl-right-inline">Moreta, L. S. <em>et al.</em> <a href="https://openreview.net/forum?id=FZoZ7a31GCW">International Conference on Learning Representations</a>. in (2022).</div>
+</div>
+<div id="ref-wuProteinSequenceDesign2021" class="csl-entry">
+<div class="csl-left-margin">387. </div><div class="csl-right-inline">Wu, Z., Johnston, K. E., Arnold, F. H. &amp; Yang, K. K. <a href="https://doi.org/10.1016/j.cbpa.2021.04.004">Protein sequence design with deep generative models</a>. <em>Current Opinion in Chemical Biology</em> <strong>65</strong>, 18–27 (2021).</div>
+</div>
+<div id="ref-stantonAcceleratingBayesianOptimization2022" class="csl-entry">
+<div class="csl-left-margin">388. </div><div class="csl-right-inline">Stanton, S. <em>et al.</em> Accelerating bayesian optimization for biological sequence design with denoising autoencoders. doi:<a href="https://doi.org/10.48550/arXiv.2203.12742">10.48550/arXiv.2203.12742</a>.</div>
+</div>
+<div id="ref-HowManyWords" class="csl-entry">
+<div class="csl-left-margin">389. </div><div class="csl-right-inline"><a href="https://www.merriam-webster.com/help/faq-how-many-english-words">How many words are there in english? | merriam-webster</a>.</div>
+</div>
+<div id="ref-mikolovEfficientEstimationWord2013" class="csl-entry">
+<div class="csl-left-margin">390. </div><div class="csl-right-inline">Mikolov, T., Chen, K., Corrado, G. &amp; Dean, J. Efficient estimation of word representations in vector space. doi:<a href="https://doi.org/10.48550/arXiv.1301.3781">10.48550/arXiv.1301.3781</a>.</div>
+</div>
+<div id="ref-mikolovDistributedRepresentationsWords2013" class="csl-entry">
+<div class="csl-left-margin">391. </div><div class="csl-right-inline">Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S. &amp; Dean, J. <a href="https://proceedings.neurips.cc/paper/2013/hash/9aa42b31882ec039965f3c4923ce901b-Abstract.html">Distributed representations of words and phrases and their compositionality</a>. in vol. 26 (Curran Associates, Inc., 2013).</div>
+</div>
+<div id="ref-goldbergWord2vecExplainedDeriving2014" class="csl-entry">
+<div class="csl-left-margin">392. </div><div class="csl-right-inline">Goldberg, Y. &amp; Levy, O. word2vec explained: Deriving mikolov et al.’s negative-sampling word-embedding method. doi:<a href="https://doi.org/10.48550/arXiv.1402.3722">10.48550/arXiv.1402.3722</a>.</div>
+</div>
+<div id="ref-ngDna2vecConsistentVector2017" class="csl-entry">
+<div class="csl-left-margin">393. </div><div class="csl-right-inline">Ng, P. dna2vec: Consistent vector representations of variable-length k-mers. doi:<a href="https://doi.org/10.48550/arXiv.1701.06279">10.48550/arXiv.1701.06279</a>.</div>
+</div>
+<div id="ref-lochelChaosGameRepresentation2021" class="csl-entry">
+<div class="csl-left-margin">394. </div><div class="csl-right-inline">Löchel, H. F. &amp; Heider, D. <a href="https://doi.org/10.1016/j.csbj.2021.11.008">Chaos game representation and its applications in bioinformatics</a>. <em>Computational and Structural Biotechnology Journal</em> <strong>19</strong>, 6263–6271 (2021).</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="HPC-paper.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="viruses-hiv-and-drug-resistance.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/lucblassel/phd-manuscript/edit/main/04-learning-from-alignments.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "none"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
