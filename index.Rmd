@@ -41,6 +41,18 @@ knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE, out.width="90%",
 
 # embed files in html output
 xfun::pkg_load2(c("htmltools", "mime"))
+
+# simple tex abstract to md
+tex2md <- function(file) {
+
+  return (
+    stringr::str_replace_all(
+      readLines(file), "\\\\textit\\{([^\\}]+)\\}", "*\\1*"
+    ) %>%
+      stringr::str_replace_all("\\\\textbf\\{([^\\}]+)\\}", "**\\1**")
+  )
+  
+}
 ```
 
 \pagestyle{empty}
@@ -54,13 +66,13 @@ knitr::asis_output('\n\n\\begin{comment}')
 ## Abstract {.unnumbered}
 
 ```{r, results='asis'}
-cat(readLines('abstract/abstract_en.txt'), sep='\n')
+cat(tex2md("abstract/abstract_en.tex"), sep='\n')
 ```
 
 ## Résumé {.unnumbered}
 
 ```{r, results='asis'}
-cat(readLines('abstract/abstract_fr.txt'), sep='\n')
+cat(tex2md("abstract/abstract_fr.tex"), sep='\n')
 ```
 
 # Acknowledgments {.unnumbered}
