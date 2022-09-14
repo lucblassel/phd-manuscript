@@ -7,7 +7,9 @@ More recently focus on machine learning: to predict drug resistance (cf. Chapter
 
 ## What to learn ?
 
-Of course one we have the data in digestible form we need an objective, a goal and once again a multitude
+-   The first question one might have is what and how can we learn with ML ?
+
+-   There are different learning paradigms that inform what you can learn and predict with your ML method
 
 ### Supervised
 
@@ -102,7 +104,7 @@ Here we predict discrete categorical values numerically encoded
 -   ABC
 -   KNN
 
-### Deep Learning
+### mediaDeep Learning
 
 -   Steiner et al...
 -   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
@@ -112,7 +114,9 @@ Here we predict discrete categorical values numerically encoded
 
 In order to do some learning we need to have the data in digestible form
 
-We need a way to represent, the position and the character in a sequence
+Most of the methods will transform an aligned sequence into a vector, and therefore the alignment as an input matrix.
+
+Some methods are designed to not required alignment, but I will present some anyway
 
 ### General purpose embeddings
 
@@ -225,10 +229,40 @@ These embeddings were inspired by physico-chemical properties, many encodings in
 
         -   dna2vec [@ngDna2vecConsistentVector2017]
 
-    -   Transformers / language models
+            -   Used to predict methylation sites [@liangHyb4mCHybridDNA2vecbased2022]
+
+        -   seq2vec [@kimothiDistributedRepresentationsBiological2016]
+
+        -   BioVec/ProtVec/GeneVec [@asgariContinuousDistributedRepresentation2015]
+
+            -   Seq2vec and ProtVec both used in classification [@kimothiMetricLearningBiological2017]
+
+    -   Transformers / NN-based language models:
+
+        -   Also from NLP, more recent development,
+
+            -   Some have seen a lot of success like BERT [@devlinBERTPretrainingDeep2019] and GPT-3 [@brownLanguageModelsAre2020]
+
+        -   BERT / transformers
+
+        -   protein language models
+
+        -   Used to embed sequences from MSAs and find homologies [@caiGenomewidePredictionSmall2020]
+
+        -   MSA Transformer
 
 -   Powerful but hard to interpret what the model actually learns. i.e. "black box"
 
 Other weirder embeddings: chaos game theory [@lochelChaosGameRepresentation2021]
+
+## Conclusion
+
+-   Alignment rich in info
+
+-   plenty to learn with ML
+
+-   the choice of embedding / vector representation of sequences in the alignment is not a simple task
+
+-   Guides what you are able to learn
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
