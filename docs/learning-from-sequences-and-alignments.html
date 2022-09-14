@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-09-13" />
+<meta name="date" content="2022-09-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -215,7 +215,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#tests-and-statistical-learning"><i class="fa fa-check"></i><b>4.2.1</b> Tests and statistical learning</a></li>
 <li class="chapter" data-level="4.2.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#more-complex-methods-machine-learning"><i class="fa fa-check"></i><b>4.2.2</b> More complex methods, machine learning</a></li>
-<li class="chapter" data-level="4.2.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#deep-learning"><i class="fa fa-check"></i><b>4.2.3</b> Deep Learning</a></li>
+<li class="chapter" data-level="4.2.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#mediadeep-learning"><i class="fa fa-check"></i><b>4.2.3</b> mediaDeep Learning</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.3</b> Preprocessing the alignment for machine learning</a>
 <ul>
@@ -223,6 +223,7 @@ div.csl-indent {
 <li class="chapter" data-level="4.3.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#biological-sequence-specific-embeddings"><i class="fa fa-check"></i><b>4.3.2</b> Biological sequence-specific embeddings</a></li>
 <li class="chapter" data-level="4.3.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#learned-embeddings"><i class="fa fa-check"></i><b>4.3.3</b> Learned embeddings</a></li>
 </ul></li>
+<li class="chapter" data-level="4.4" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#conclusion-2"><i class="fa fa-check"></i><b>4.4</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html"><i class="fa fa-check"></i><b>5</b> Viruses, HIV and drug resistance</a>
 <ul>
@@ -240,7 +241,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.3.3" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#consequences-of-resistance-on-global-health"><i class="fa fa-check"></i><b>5.3.3</b> Consequences of resistance on global health</a></li>
 <li class="chapter" data-level="5.3.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#finding-drms"><i class="fa fa-check"></i><b>5.3.4</b> Finding DRMS </a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#conclusion-2"><i class="fa fa-check"></i><b>5.4</b> Conclusion</a></li>
+<li class="chapter" data-level="5.4" data-path="viruses-hiv-and-drug-resistance.html"><a href="viruses-hiv-and-drug-resistance.html#conclusion-3"><i class="fa fa-check"></i><b>5.4</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="HIV-paper.html"><a href="HIV-paper.html"><i class="fa fa-check"></i><b>6</b> Contribution 2: Inferring mutation roles from sequence alignments using machine learning</a>
 <ul>
@@ -342,7 +343,10 @@ Pairwise: reference-based<span class="citation"><sup><a href="#ref-martinNextgen
 <p>More recently focus on machine learning: to predict drug resistance (cf. Chapter <a href="HIV-paper.html#HIV-paper">6</a>), predict protein structure and function, annotate genes, predict protein location, GWAS…</p>
 <div id="what-to-learn" class="section level2 hasAnchor" number="4.1">
 <h2><span class="header-section-number">4.1</span> What to learn ?<a href="learning-from-sequences-and-alignments.html#what-to-learn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Of course one we have the data in digestible form we need an objective, a goal and once again a multitude</p>
+<ul>
+<li><p>The first question one might have is what and how can we learn with ML ?</p></li>
+<li><p>There are different learning paradigms that inform what you can learn and predict with your ML method</p></li>
+</ul>
 <div id="supervised" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Supervised<a href="learning-from-sequences-and-alignments.html#supervised" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here we have extra knowledge -&gt; labels and we can use his information to train the model.</p>
@@ -429,8 +433,8 @@ Pairwise: reference-based<span class="citation"><sup><a href="#ref-martinNextgen
 <li>KNN</li>
 </ul>
 </div>
-<div id="deep-learning" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Deep Learning<a href="learning-from-sequences-and-alignments.html#deep-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="mediadeep-learning" class="section level3 hasAnchor" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> mediaDeep Learning<a href="learning-from-sequences-and-alignments.html#mediadeep-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Steiner et al…</li>
 <li>plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)</li>
@@ -441,7 +445,8 @@ Pairwise: reference-based<span class="citation"><sup><a href="#ref-martinNextgen
 <div id="preprocessing-the-alignment-for-machine-learning" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Preprocessing the alignment for machine learning<a href="learning-from-sequences-and-alignments.html#preprocessing-the-alignment-for-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to do some learning we need to have the data in digestible form</p>
-<p>We need a way to represent, the position and the character in a sequence</p>
+<p>Most of the methods will transform an aligned sequence into a vector, and therefore the alignment as an input matrix.</p>
+<p>Some methods are designed to not required alignment, but I will present some anyway</p>
 <div id="general-purpose-embeddings" class="section level3 hasAnchor" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> General purpose embeddings<a href="learning-from-sequences-and-alignments.html#general-purpose-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>review<span class="citation"><sup><a href="#ref-potdarComparativeStudyCategorical2017" role="doc-biblioref">367</a></sup></span></p>
@@ -528,15 +533,42 @@ Figure 4.1: <strong>Example of 3 general categorical encoding schemes</strong>
 <li><p>skip-gram = predict context from word</p></li>
 <li><p>The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)</p></li>
 </ul></li>
-<li><p>dna2vec<span class="citation"><sup><a href="#ref-ngDna2vecConsistentVector2017" role="doc-biblioref">393</a></sup></span></p></li>
+<li><p>dna2vec<span class="citation"><sup><a href="#ref-ngDna2vecConsistentVector2017" role="doc-biblioref">393</a></sup></span></p>
+<ul>
+<li>Used to predict methylation sites<span class="citation"><sup><a href="#ref-liangHyb4mCHybridDNA2vecbased2022" role="doc-biblioref">394</a></sup></span></li>
 </ul></li>
-<li><p>Transformers / language models</p></li>
+<li><p>seq2vec<span class="citation"><sup><a href="#ref-kimothiDistributedRepresentationsBiological2016" role="doc-biblioref">395</a></sup></span></p></li>
+<li><p>BioVec/ProtVec/GeneVec<span class="citation"><sup><a href="#ref-asgariContinuousDistributedRepresentation2015" role="doc-biblioref">396</a></sup></span></p>
+<ul>
+<li>Seq2vec and ProtVec both used in classification<span class="citation"><sup><a href="#ref-kimothiMetricLearningBiological2017" role="doc-biblioref">397</a></sup></span></li>
+</ul></li>
+</ul></li>
+<li><p>Transformers / NN-based language models:</p>
+<ul>
+<li><p>Also from NLP, more recent development,</p>
+<ul>
+<li>Some have seen a lot of success like BERT<span class="citation"><sup><a href="#ref-devlinBERTPretrainingDeep2019" role="doc-biblioref">398</a></sup></span> and GPT-3<span class="citation"><sup><a href="#ref-brownLanguageModelsAre2020" role="doc-biblioref">399</a></sup></span></li>
+</ul></li>
+<li><p>BERT / transformers</p></li>
+<li><p>protein language models</p></li>
+<li><p>Used to embed sequences from MSAs and find homologies<span class="citation"><sup><a href="#ref-caiGenomewidePredictionSmall2020" role="doc-biblioref">400</a></sup></span></p></li>
+<li><p>MSA Transformer</p></li>
+</ul></li>
 </ul></li>
 <li><p>Powerful but hard to interpret what the model actually learns. i.e. “black box”</p></li>
 </ul>
-<p>Other weirder embeddings: chaos game theory<span class="citation"><sup><a href="#ref-lochelChaosGameRepresentation2021" role="doc-biblioref">394</a></sup></span></p>
-
+<p>Other weirder embeddings: chaos game theory<span class="citation"><sup><a href="#ref-lochelChaosGameRepresentation2021" role="doc-biblioref">401</a></sup></span></p>
 </div>
+</div>
+<div id="conclusion-2" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Conclusion<a href="learning-from-sequences-and-alignments.html#conclusion-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><p>Alignment rich in info</p></li>
+<li><p>plenty to learn with ML</p></li>
+<li><p>the choice of embedding / vector representation of sequences in the alignment is not a simple task</p></li>
+<li><p>Guides what you are able to learn</p></li>
+</ul>
+
 </div>
 </div>
 <h3>References</h3>
@@ -763,8 +795,29 @@ Figure 4.1: <strong>Example of 3 general categorical encoding schemes</strong>
 <div id="ref-ngDna2vecConsistentVector2017" class="csl-entry">
 <div class="csl-left-margin">393. </div><div class="csl-right-inline">Ng, P. dna2vec: Consistent vector representations of variable-length k-mers. doi:<a href="https://doi.org/10.48550/arXiv.1701.06279">10.48550/arXiv.1701.06279</a>.</div>
 </div>
+<div id="ref-liangHyb4mCHybridDNA2vecbased2022" class="csl-entry">
+<div class="csl-left-margin">394. </div><div class="csl-right-inline">Liang, Y. <em>et al.</em> <a href="https://doi.org/10.1186/s12859-022-04789-6">Hyb4mC: a hybrid DNA2vec-based model for DNA N4-methylcytosine sites prediction</a>. <em>BMC Bioinformatics</em> <strong>23</strong>, 258 (2022).</div>
+</div>
+<div id="ref-kimothiDistributedRepresentationsBiological2016" class="csl-entry">
+<div class="csl-left-margin">395. </div><div class="csl-right-inline">Kimothi, D., Soni, A., Biyani, P. &amp; Hogan, J. M. Distributed representations for biological sequence analysis. doi:<a href="https://doi.org/10.48550/arXiv.1608.05949">10.48550/arXiv.1608.05949</a>.</div>
+</div>
+<div id="ref-asgariContinuousDistributedRepresentation2015" class="csl-entry">
+<div class="csl-left-margin">396. </div><div class="csl-right-inline">Asgari, E. &amp; Mofrad, M. R. K. <a href="https://doi.org/10.1371/journal.pone.0141287">Continuous distributed representation of biological sequences for deep proteomics and genomics</a>. <em>PLoS ONE</em> <strong>10</strong>, e0141287 (2015).</div>
+</div>
+<div id="ref-kimothiMetricLearningBiological2017" class="csl-entry">
+<div class="csl-left-margin">397. </div><div class="csl-right-inline">Kimothi, D., Shukla, A., Biyani, P., Anand, S. &amp; Hogan, J. M. 2017 IEEE 18th international workshop on signal processing advances in wireless communications (SPAWC). in 1–5 (2017). doi:<a href="https://doi.org/10.1109/SPAWC.2017.8227769">10.1109/SPAWC.2017.8227769</a>.</div>
+</div>
+<div id="ref-devlinBERTPretrainingDeep2019" class="csl-entry">
+<div class="csl-left-margin">398. </div><div class="csl-right-inline">Devlin, J., Chang, M.-W., Lee, K. &amp; Toutanova, K. BERT: Pre-training of deep bidirectional transformers for language understanding. doi:<a href="https://doi.org/10.48550/arXiv.1810.04805">10.48550/arXiv.1810.04805</a>.</div>
+</div>
+<div id="ref-brownLanguageModelsAre2020" class="csl-entry">
+<div class="csl-left-margin">399. </div><div class="csl-right-inline">Brown, T. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html">Language models are few-shot learners</a>. in vol. 33 18771901 (Curran Associates, Inc., 2020).</div>
+</div>
+<div id="ref-caiGenomewidePredictionSmall2020" class="csl-entry">
+<div class="csl-left-margin">400. </div><div class="csl-right-inline">Cai, T. <em>et al.</em> Genome-wide Prediction of Small Molecule Binding to Remote Orphan Proteins Using Distilled Sequence Alignment Embedding. doi:<a href="https://doi.org/10.1101/2020.08.04.236729">10.1101/2020.08.04.236729</a>.</div>
+</div>
 <div id="ref-lochelChaosGameRepresentation2021" class="csl-entry">
-<div class="csl-left-margin">394. </div><div class="csl-right-inline">Löchel, H. F. &amp; Heider, D. <a href="https://doi.org/10.1016/j.csbj.2021.11.008">Chaos game representation and its applications in bioinformatics</a>. <em>Computational and Structural Biotechnology Journal</em> <strong>19</strong>, 6263–6271 (2021).</div>
+<div class="csl-left-margin">401. </div><div class="csl-right-inline">Löchel, H. F. &amp; Heider, D. <a href="https://doi.org/10.1016/j.csbj.2021.11.008">Chaos game representation and its applications in bioinformatics</a>. <em>Computational and Structural Biotechnology Journal</em> <strong>19</strong>, 6263–6271 (2021).</div>
 </div>
 </div>
             </section>
