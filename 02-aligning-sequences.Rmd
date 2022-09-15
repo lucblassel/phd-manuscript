@@ -1,4 +1,4 @@
-# Aligning sequence data
+# includeAligning sequence data
 
 ## What is an alignment ?
 
@@ -315,13 +315,13 @@ A) sequences to align B) guide tree constructed from distances C) Alignment step
 ```
 
 ```{r, progAlign, label="progAlign", eval=knitr::is_html_output(), fig.cap=progCaption, out.width="70%"}
-knitr::include_graphics("./figures/Align-Intro/progressive-aln.png")
+knitr::include_graphics("./figures/Align-Intro/progressive.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive-aln.pdf}
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive.png}
 \extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
 \label{fig:progAlign}
 \end{figure}
