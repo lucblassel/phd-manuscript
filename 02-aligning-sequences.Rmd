@@ -1,4 +1,4 @@
-# includeAligning sequence data
+# Aligning sequence data
 
 ## What is an alignment ?
 
@@ -311,18 +311,18 @@ One of the most widely used multiple sequence alignment approach is progressive 
 
 ```{r, progcaption}
 progCaption <- "**Overview of the progressive alignment process.**\
-A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]"
+**A)** sequences to align, **B)** guide tree constructed from distances between sequences in panel A, **C)** Alignment steps along the guide tree and resulting MSA at the root of the tree. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]"
 ```
 
-```{r, progAlign, label="progAlign", eval=knitr::is_html_output(), fig.cap=progCaption, out.width="70%"}
+```{r, progAlign, label="progAlign", eval=knitr::is_html_output(), fig.cap=progCaption, out.width="80%"}
 knitr::include_graphics("./figures/Align-Intro/progressive.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/progressive.png}
-\extcaption{Overview of the progressive alignment process.}{A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
+\includegraphics[width=0.8\textwidth]{./figures/Align-Intro/progressive.png}
+\extcaption{Overview of the progressive alignment process.}{\textbf{A)} sequences to align, \textbf{B)} guide tree constructed from distances between sequences in panel A, \textbf{C)} Alignment steps along the guide tree and resulting MSA at the root of the tree. Adapted from \autocite{sungAlgorithmsBioinformaticsPractical2011}}
 \label{fig:progAlign}
 \end{figure}
 ```

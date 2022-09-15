@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-09-14" />
+<meta name="date" content="2022-09-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -530,11 +530,11 @@ Figure 2.5: <strong>Example of kmers sharing a minimizer</strong>
 <h3><span class="header-section-number">2.4.1</span> Progressive alignment<a href="aligning-sequence-data.html#progressive-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the most widely used multiple sequence alignment approach is progressive alignment<span class="citation"><sup><a href="#ref-fengProgressiveSequenceAlignment1987" role="doc-biblioref">271</a></sup></span>. Similarly to the center star algorithm, the progressive algorithm reduces the MSA problem to independent pairwise alignments. The first step is to build a phylogenetic tree from the sequences to align, representing the evolutionary relationship between sequences, called the <em>guide tree</em>. Starting from the leaves, that correspond to single sequences, pairwise align the sequences and store the alignment (or <em>profile</em>), at the parent node. going up from the leaves to the roots align sequences together, then sequences to profiles if needed and finally profiles together, merging alignments as we progress up the tree. The final multiple sequence alignment is obtained when this process reaches the root. Profiles at inner nodes of the tree are aligned to each other to conserve gaps. A representation of this process is shown in Figure <a href="aligning-sequence-data.html#fig:progAlign">2.6</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:progAlign"></span>
-<img src="figures/Align-Intro/progressive-aln.png" alt="**Overview of the progressive alignment process.**
-A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]" width="70%" />
+<img src="figures/Align-Intro/progressive.png" alt="**Overview of the progressive alignment process.**
+**A)** sequences to align, **B)** guide tree constructed from distances between sequences in panel A, **C)** Alignment steps along the guide tree and resulting MSA at the root of the tree. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]" width="80%" />
 <p class="caption">
 Figure 2.6: <strong>Overview of the progressive alignment process.</strong>
-A) sequences to align B) guide tree constructed from distances C) Alignment steps along the guide tree and resulting MSA. Adapted from<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>
+<strong>A)</strong> sequences to align, <strong>B)</strong> guide tree constructed from distances between sequences in panel A, <strong>C)</strong> Alignment steps along the guide tree and resulting MSA at the root of the tree. Adapted from<span class="citation"><sup><a href="#ref-sungAlgorithmsBioinformaticsPractical2011" role="doc-biblioref">143</a></sup></span>
 </p>
 </div>
 <p>In many cases a matrix of pairwise distances is needed to construct the guide tree, if we choose the edit distance, <span class="math inline">\(n(n-1)/2\)</span> pairwise alignments are needed to get this matrix. With a large number of sequences, or long sequences this is not possible in a reasonable amount of time. Therefore, computing of distance matrices through alignment-free methods, usually based on <span class="math inline">\(k\)</span>-mers, is often used as input to the tree building method<span class="citation"><sup><a href="#ref-jonesRapidGenerationMutation1992" role="doc-biblioref">272</a>,<a href="#ref-blaisdellMeasureSimilaritySets1986" role="doc-biblioref">273</a></sup></span>.</p>

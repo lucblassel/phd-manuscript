@@ -77,19 +77,19 @@ While these three types of errors occur both in nucleic acids and proteins there
 
 ```{r, frameshiftCaption}
 frameshiftCaption <- "**Effect of frameshift mutations**\
-The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in grey, with corresponding amino acids, above the sequence) translate to the functional protein. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein. 
+The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in green, with corresponding amino acids, above the sequence) translate to a functional protein `MLIRG...`. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein `M`. The Serine and Valine codons are not translated due to the STOP codon. 
 "
 ```
 
-```{r, frameshift, label="frameshift", fig.cap=frameshiftCaption, eval=knitr::is_html_output(), out.width="60%", cache=FALSE}
+```{r, frameshift, label="frameshift", fig.cap=frameshiftCaption, eval=knitr::is_html_output(), out.width="50%", cache=FALSE}
 knitr::include_graphics("./figures/Sequence-Intro/Frameshift.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/Frameshift.png}
-\extcaption{Effect of frameshift mutations}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in grey, with corresponding amino acids, above the sequence) translate to the functional protein. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein. }
+\includegraphics[width=0.5\linewidth]{./figures/Sequence-Intro/Frameshift.png}
+\extcaption{Effect of frameshift mutations}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in green, with corresponding amino acids, above the sequence) translate to the functional protein \texttt{MLIRG...}. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein \texttt{M}. The Serine and Valine codons are not translated due to the STOP codon.}
 \label{fig:frameshift}
 \end{figure}
 ```
@@ -385,14 +385,14 @@ A read with homopolymer related sequencing errors can be homologous to two diffe
 "
 ```
 
-```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output(),out.width="60%", cache=FALSE}
+```{r, hpcSchema, label="hpcSchema", fig.cap=hpcCaption, eval=knitr::is_html_output(),out.width="70%", cache=FALSE}
 knitr::include_graphics("./figures/Sequence-Intro/Hpc.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.6\linewidth]{./figures/Sequence-Intro/Hpc.png}
+\includegraphics[width=0.7\linewidth]{./figures/Sequence-Intro/Hpc.png}
 \extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
 A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible\footnotemark.
 }
