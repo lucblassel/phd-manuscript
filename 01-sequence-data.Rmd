@@ -11,7 +11,7 @@ To fully understand the work that was done during this thesis, as well as the ch
 DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotide is composed of ribose (a five carbon sugar) on which are attached a phosphate group as well as one of four nucleobases: Adenine (A), Cytosine (C), Guanine (G) of Thymine (T). These four types of nucleotide monomers link up with one-another, through phosphate-sugar bonds, creating a single strand of DNA. The ordered sequence of these four types of nucleotides in strand encodes all the genetic information necessary for the organism to function. Nucleotides in a strand form strong complementary bonds with nucleotides from another strand, A with T and C with G. These bonds allow two strands of DNA to form the double-helix structure of DNA [@watson1953] shown in Figure \@ref(fig:figDNA). The specificity of nucleotide bonds ensure that the two strands of the double helix are complementary and that the information contained in one strand can be recovered from the other. This ensures a certain structural stability to the DNA molecule and a way to recover the important information that could be lost due to a damaged strand.
 
 ```{r}
-figDNACaption <- "**Double-helix structure of DNA**.  
+figDNACaption <- "**Double-helix structure of DNA.**  
 Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G)."
 ```
 
@@ -23,7 +23,7 @@ knitr::include_graphics("./figures/Sequence-Intro/DNA.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.pdf}
-\extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
+\extcaption{Double-helix structure of DNA.}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
 \label{fig:figDNA}
 \end{figure}
 ```
@@ -76,7 +76,7 @@ In biological sequences (nucleic acids and proteins), mutations can result from 
 While these three types of errors occur both in nucleic acids and proteins there are some things to consider about the consequences of nucleic acid mutations on protein synthesis. Due to the redundant nature of the genetic code mentioned in Section \@ref(proteins-their-structure-and-their-role), some mutations in the nucleic acid sequence will result in the same protein sequence and therefore not have altered protein activity. Some mutations however will result in a substitution at the amino acid level which could potentially lead to a physicochemically altered or even non-functional protein. Finally, insertion and deletion errors (collectively called indels) can have big consequences on resulting proteins. Inserting or deleting nucleotides in multiples of three will result in the insertion/deletion of amino acids in the resulting protein, any other length of indel will result in what is called a frameshift mutation [@rothFrameshiftMutations1974]. These mutations causes changes in the codons, potentially resulting in a completely different amino-acid sequence, including premature stop codon apparition as shown in Figure \@ref(fig:frameshift).
 
 ```{r, frameshiftCaption}
-frameshiftCaption <- "**Effect of frameshift mutations**  
+frameshiftCaption <- "**Effect of frameshift mutations.**  
 The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in green, with corresponding amino acids, above the sequence) translate to a functional protein `MLIRG...`. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein `M`. The Serine and Valine codons are not translated due to the STOP codon. 
 "
 ```
@@ -89,7 +89,7 @@ knitr::include_graphics("./figures/Sequence-Intro/Frameshift.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\linewidth]{./figures/Sequence-Intro/Frameshift.png}
-\extcaption{Effect of frameshift mutations}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in green, with corresponding amino acids, above the sequence) translate to the functional protein \texttt{MLIRG...}. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein \texttt{M}. The Serine and Valine codons are not translated due to the STOP codon.}
+\extcaption{Effect of frameshift mutations.}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in green, with corresponding amino acids, above the sequence) translate to the functional protein \texttt{MLIRG...}. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein \texttt{M}. The Serine and Valine codons are not translated due to the STOP codon.}
 \label{fig:frameshift}
 \end{figure}
 ```
@@ -394,7 +394,7 @@ knitr::include_graphics("./figures/Sequence-Intro/Hpc.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{./figures/Sequence-Intro/Hpc.png}
-\extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
+\extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors.}{
 A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible\footnotemark.
 }
 \label{fig:hpcSchema}

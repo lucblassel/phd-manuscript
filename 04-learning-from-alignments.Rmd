@@ -1,9 +1,12 @@
 # Learning from sequences and alignments
 
-As in the previous chapter, sequence alignments are rich source of information.\
-Pairwise: reference-based [@martinNextgenerationTranscriptomeAssembly2011; @kyriakidouCurrentStrategiesPolyploid2018] and *de novo* [@paszkiewiczNovoAssemblyShort2010; @sohnPresentFutureNovo2018] assembly, protein function prediction [@sleatorOverviewSilicoProtein2010], variant calling [@koboldtBestPracticesVariant2020] and structural variant detection [@alkanGenomeStructuralVariation2011; @hoStructuralVariationSequencing2020], clustering [@sahlinNovoClusteringLongRead2020] MSA: phylogeny [@morrisonPhylogeneticTreebuilding1996; @kapliPhylogeneticTreeBuilding2020], protein structure prediction [@kuhlmanAdvancesProteinStructure2019] etc...
+## Why learn from alignments ? 
 
-More recently focus on machine learning: to predict drug resistance (cf. Chapter \@ref(HIV-paper)), predict protein structure and function, annotate genes, predict protein location, GWAS...
+Sequences and sequence alignments are a very rich source of information. As was sated in Chapters \@ref(aligning-sequence-data) and \@ref(HPC-paper), many downstream analyses rely on sequence alignments.
+
+In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly [@martinNextgenerationTranscriptomeAssembly2011; @kyriakidouCurrentStrategiesPolyploid2018] as well as de novo [@paszkiewiczNovoAssemblyShort2010; @sohnPresentFutureNovo2018] assembly. It has also been used to deduce protein function [@sleatorOverviewSilicoProtein2010], and structure **[REF]**. It has been used for sequence clustering [@sahlinNovoClusteringLongRead2020] as well as detecting genetic [@koboldtBestPracticesVariant2020] and structural variants [@alkanGenomeStructuralVariation2011; @hoStructuralVariationSequencing2020]. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees [@morrisonPhylogeneticTreebuilding1996; @kapliPhylogeneticTreeBuilding2020], but they have also been used extensively in protein structure prediction [@kuhlmanAdvancesProteinStructure2019].
+
+More recently, as computational power and datasets have grown, more and more machine learning methods are being used on sequence alignments in order to gain biological insight. In this chapter, we will explore how this can be done as an introduction to Chapter \@ref(HIV-paper) where we present an application: predicting HIV drug resistance mutations.
 
 ## What to learn ?
 
@@ -89,22 +92,80 @@ Here we predict discrete categorical values numerically encoded
 
 ## How to learn ?
 
+Machine learning regroups a multitude of techniques and methods to extract knowledge and make data-driven predictions. In this section we will quickly go over some of these supervised-learning methods, and go into more detail for techniques used in Chapter \@ref(HIV-paper).
+
+### The general supervized learning paradigm
+
+-   All these methods rely on data (here sequences and alignments)
+
+    -   Usually we split available data into training data (on which the learning is done) and testing data (which we can use to asses the model performance). Sometimes we also have validation data used to evaluate the learning process.
+
+    -   Important that each of these datasets are completely separate -\> avoid data leaks.
+
+-   Learning -\> optimization process:
+
+    -   A method has an associated cost, i.e. a performance measure that translates how bad the method is doing at predicting the target on the training data (or a score that measure the good)
+
+    -   We minimize the cost (maximize the score) iteratively over the training data.
+
+    -   The cost function is also called loss function
+
 ### Tests and statistical learning
 
--   correlation
--   Fisher
--   Multiple testing ?
--   linear regression / logistic regression
+-   Simple statistical methods have been used for a long time
+-   Simplest possible method:
+    -   Statistical testing (e.g. Fisher or Student test)
+
+    -   You use 1 feature and see if if informative of the target, or build ensembles (c.f. Chapter \@ref(HIV-paper))
+
+    -   Relatively poor predictive power.
+-   More sophisticated is linear and logistic regression, for regression and classification respectively.
+    -   Model: prediction is weighted sum of numerical features + intercept.
+
+    -   In logistic regression this sum is run through logistic function to get threshold for classification
+
+    -   The loss function is RMSE
+
+    -   Gradient descent is used to optimize the cost, Also exact analytical solution in the simplest case
+-   Naive Bayes classifier [@hastieElementsStatisticalLearning2009]
+    -   Conditional probabilities
+
+    -   Plug in whatever distribution to compute probabilities
+
+    -   Train with maximum likelihood
+
+    -   Violation of principle (i.e. features are rarely independent)
+
+    -   Pretty good predictive power [@zhangOptimalityNaiveBayes]
+-   KNN: simple but effective
+    -   main method
+
+    -   dependent on k and the distance metric
+
+    -   Quadratic so data structures (e.g. kd-trees) for efficient querying or approximation methods like LSH.
 
 ### More complex methods, machine learning
 
--   regularization
--   RF
--   SVM
--   ABC
--   KNN
+-   SVM: mainly for classification
+    -   Optimal separation hyperplane -\> linear separation [@vapnikEstimationDependencesBased1982]
 
-### mediaDeep Learning
+    -   Can perform non-linear classification with the kernel trick in the early 90's [@boserTrainingAlgorithmOptimal1992; @cortesSupportvectorNetworks1995]
+
+    -   adapted to regression [@druckerSupportVectorRegression1996]
+-   RF:
+    -   Introduced by Leo Breiman [@breimanRandomForests2001]
+
+    -   Based on the CART decision tree method
+
+    -   Based on the Gini index / purity index
+
+    -   Select random features when building a tree
+
+    -   Make the trees vote to get prediction
+
+    -   More complex variants with boosting as well
+
+### Deep Learning
 
 -   Steiner et al...
 -   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
@@ -210,15 +271,19 @@ These embeddings were inspired by physico-chemical properties, many encodings in
     -   Used for ancestral sequence reconstruction [@moretaAncestralProteinSequence2022] and estimating evolutionary distances [@corsoNeuralDistanceEmbeddings2021]
     -   VAEs used for sequence design as well [@wuProteinSequenceDesign2021; @stantonAcceleratingBayesianOptimization2022]
 
--   NLP:
+NLP:
 
-    -   From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary [@HowManyWords], so naive one hot is out of the question), we need other ways to transform words into sequences.
+-   From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary [@HowManyWords], so naive one hot is out of the question), we need other ways to transform words into sequences.
 
-    -   Word2Vec derivatives:
+-   Method of pre-training embedding methods
 
-        -   word2Vec [@mikolovEfficientEstimationWord2013; @mikolovDistributedRepresentationsWords2013], take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e. low distance in the vector space). And that the embeddings make sense grammatically (e.g. of the Paper $vec(Madrid) - vec(Spain)$ should be close to $vec(Paris)$ in the learned space.
+-   Word2Vec derivatives:
+
+    -   word2Vec [@mikolovEfficientEstimationWord2013; @mikolovDistributedRepresentationsWords2013], take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e. low distance in the vector space). And that the embeddings make sense grammatically (e.g. of the Paper $vec(Madrid) - vec(Spain)$ should be close to $vec(Paris)$ in the learned space.
 
         -   Context of a word = window of $k$ words centered around it
+
+        -   The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
 
         -   2 ways to train it [@goldbergWord2vecExplainedDeriving2014]:
 
@@ -226,33 +291,49 @@ These embeddings were inspired by physico-chemical properties, many encodings in
 
             -   skip-gram = predict context from word
 
-            -   The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
+    -   dna2vec [@ngDna2vecConsistentVector2017]
 
-        -   dna2vec [@ngDna2vecConsistentVector2017]
+        -   Used to predict methylation sites [@liangHyb4mCHybridDNA2vecbased2022]
 
-            -   Used to predict methylation sites [@liangHyb4mCHybridDNA2vecbased2022]
+    -   seq2vec [@kimothiDistributedRepresentationsBiological2016]
 
-        -   seq2vec [@kimothiDistributedRepresentationsBiological2016]
+    -   BioVec/ProtVec/GeneVec [@asgariContinuousDistributedRepresentation2015]
 
-        -   BioVec/ProtVec/GeneVec [@asgariContinuousDistributedRepresentation2015]
+        -   Seq2vec and ProtVec both used in classification [@kimothiMetricLearningBiological2017]
 
-            -   Seq2vec and ProtVec both used in classification [@kimothiMetricLearningBiological2017]
+-   Transformers / NN-based language models:
 
-    -   Transformers / NN-based language models:
+    -   Also from NLP, more recent development,
 
-        -   Also from NLP, more recent development,
+        -   Some have seen a lot of success like BERT [@devlinBERTPretrainingDeep2019] and GPT-3 [@brownLanguageModelsAre2020]
+        -   Based on the very popular Transformer architecture [@vaswaniAttentionAllYou2017], with attention maps. Embed features as a linear weighted sum of other features (learn weights).
+        -   Allows for long range dependencies to be captured efficiently
+        -   LLMs trained with MLM
+        -   Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies [@songPretrainingModelBiological2021].
 
-            -   Some have seen a lot of success like BERT [@devlinBERTPretrainingDeep2019] and GPT-3 [@brownLanguageModelsAre2020]
+    -   protein language models have been developed from this with the same idea.
 
-        -   BERT / transformers
+        -   ProGen [@madaniProGenLanguageModeling2020] and ProGen2 [@eriknijkampProGen2ExploringBoundaries2022]
 
-        -   protein language models
+        -   ProtBERT [@elnaggarProtTransCrackingLanguage2021]
 
-        -   Used to embed sequences from MSAs and find homologies [@caiGenomewidePredictionSmall2020]
+        -   DNABert [@jiDNABERTPretrainedBidirectional2021]
 
-        -   MSA Transformer
+        -   They have interesting properties [@beplerLearningProteinLanguage2021]:
 
--   Powerful but hard to interpret what the model actually learns. i.e. "black box"
+            -   Intuitively learn structure of proteins [@raoTransformerProteinLanguage2020; @rivesBiologicalStructureFunction2019]
+
+            -   Learn mutational effects [@meierLanguageModelsEnable2021]
+
+            -   Evolutionary characteristics [@hieEvolutionaryVelocityProtein2022]
+
+        -   To counter the space limitations (i.e. sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic [@choromanskiMaskedLanguageModeling2020]
+
+    -   Used to embed sequences from MSAs and find homologies [@caiGenomewidePredictionSmall2020]
+
+    -   MSA Transformer
+
+-   Powerful but hard to interpret what the model actually learns. i.e. "black box" but some work is being done to interpret attention maps [@vigBERTologyMeetsBiology2021]
 
 Other weirder embeddings: chaos game theory [@lochelChaosGameRepresentation2021]
 
