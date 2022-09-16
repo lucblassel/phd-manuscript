@@ -133,7 +133,7 @@ knitr::include_graphics("./figures/Sequence-Intro/Sanger.png")
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.8\linewidth]{./figures/Sequence-Intro/Sanger.png.pdf}
+\includegraphics[width=0.8\linewidth]{./figures/Sequence-Intro/Sanger.png}
 \extcaption{Overview of the sanger sequencing protocol.}{\textbf{A)} The sequence to read and all the generated fragments, with highlighted ddNTP chain terminators, ordered by molecular weight (i.e. length). \textbf{B)} Classical Sanger sequencing. The fragments are separated by electrophoresis and the lighter fragments travel further from the wells at the botom of the gel. Each lane in the gel correpsonds to a specific ddNTP. The radioactivly marked ddNTPs appear as black band in the gel and we can reconstruct the sequence by reading the bands from top to bottom, the column in wich the band appears indicating which base is at each position. \textbf{C)} Automated Sanger sequencing. The fragments are also separated by electrophoresis as in panel B. Chain terminators are marked with fluorescent markers, when excited by a laser each ddNTP emits a specific wavelength. This is read by an optical sensor and the corresponding ddNTP is recorded. By exciting each band we can deduce the sequence. }
 \label{fig:sanger}
 \end{figure}
