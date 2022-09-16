@@ -624,7 +624,7 @@ DNA is a polymer, composed of monomeric units called nucleotides. Each nucleotid
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.pdf}
-\extcaption{Double-helix structure of DNA}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
+\extcaption{Double-helix structure of DNA.}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
 \label{fig:figDNA}
 \end{figure}
 
@@ -702,7 +702,7 @@ While these three types of errors occur both in nucleic acids and proteins there
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.5\linewidth]{./figures/Sequence-Intro/Frameshift.png}
-\extcaption{Effect of frameshift mutations}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in green, with corresponding amino acids, above the sequence) translate to the functional protein \texttt{MLIRG...}. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein \texttt{M}. The Serine and Valine codons are not translated due to the STOP codon.}
+\extcaption{Effect of frameshift mutations.}{The deletion of a single C (highlighted in red) in the original DNA sequence leads to a change in the codons read during translation. The original codons (shown in green, with corresponding amino acids, above the sequence) translate to the functional protein \texttt{MLIRG...}. The new codons caused by the deletion (shown in blue, with corresponding amino acids, below the sequence), induce a premature STOP codon leading to a non-functional protein \texttt{M}. The Serine and Valine codons are not translated due to the STOP codon.}
 \label{fig:frameshift}
 \end{figure}
 
@@ -923,7 +923,7 @@ HPC has been implemented in many sequence bioinformatics software tools. The HiC
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\linewidth]{./figures/Sequence-Intro/Hpc.png}
-\extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors}{
+\extcaption{Homopolymer compression can help resolve ambiguities due to sequencing errors.}{
 A read with homopolymer related sequencing errors can be homologous to two different regions of the reference genome, with one discrepancy for each region. After applying HPC, this ambiguity is properly accounted for and the read is homologous to only one region. This figure, however, only shows one way homopolymers can be detrimental to mapping and others are possible\footnotemark.
 }
 \label{fig:hpcSchema}
@@ -1802,10 +1802,14 @@ Supporting Information can be found in Appendix \ref{HPC-appendix}
 \hypertarget{learning-from-sequences-and-alignments}{%
 \chapter{Learning from sequences and alignments}\label{learning-from-sequences-and-alignments}}
 
-As in the previous chapter, sequence alignments are rich source of information.\\
-Pairwise: reference-based \autocite{martinNextgenerationTranscriptomeAssembly2011,kyriakidouCurrentStrategiesPolyploid2018} and \emph{de novo} \autocite{paszkiewiczNovoAssemblyShort2010,sohnPresentFutureNovo2018} assembly, protein function prediction \autocite{sleatorOverviewSilicoProtein2010}, variant calling \autocite{koboldtBestPracticesVariant2020} and structural variant detection \autocite{alkanGenomeStructuralVariation2011,hoStructuralVariationSequencing2020}, clustering \autocite{sahlinNovoClusteringLongRead2020} MSA: phylogeny \autocite{morrisonPhylogeneticTreebuilding1996,kapliPhylogeneticTreeBuilding2020}, protein structure prediction \autocite{kuhlmanAdvancesProteinStructure2019} etc\ldots{}
+\hypertarget{why-learn-from-alignments}{%
+\section{Why learn from alignments ?}\label{why-learn-from-alignments}}
 
-More recently focus on machine learning: to predict drug resistance (cf.~Chapter \ref{HIV-paper}), predict protein structure and function, annotate genes, predict protein location, GWAS\ldots{}
+Sequences and sequence alignments are a very rich source of information. As was sated in Chapters \ref{aligning-sequence-data} and \ref{HPC-paper}, many downstream analyses rely on sequence alignments.
+
+In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly \autocite{martinNextgenerationTranscriptomeAssembly2011,kyriakidouCurrentStrategiesPolyploid2018} as well as de novo \autocite{paszkiewiczNovoAssemblyShort2010,sohnPresentFutureNovo2018} assembly. It has also been used to deduce protein function \autocite{sleatorOverviewSilicoProtein2010}, and structure \textbf{{[}REF{]}}. It has been used for sequence clustering \autocite{sahlinNovoClusteringLongRead2020} as well as detecting genetic \autocite{koboldtBestPracticesVariant2020} and structural variants \autocite{alkanGenomeStructuralVariation2011,hoStructuralVariationSequencing2020}. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees \autocite{morrisonPhylogeneticTreebuilding1996,kapliPhylogeneticTreeBuilding2020}, but they have also been used extensively in protein structure prediction \autocite{kuhlmanAdvancesProteinStructure2019}.
+
+More recently, as computational power and datasets have grown, more and more machine learning methods are being used on sequence alignments in order to gain biological insight. In this chapter, we will explore how this can be done as an introduction to Chapter \ref{HIV-paper} where we present an application: predicting HIV drug resistance mutations.
 
 \hypertarget{what-to-learn}{%
 \section{What to learn ?}\label{what-to-learn}}
@@ -1925,19 +1929,91 @@ Here we predict discrete categorical values numerically encoded
 \hypertarget{how-to-learn}{%
 \section{How to learn ?}\label{how-to-learn}}
 
+Machine learning regroups a multitude of techniques and methods to extract knowledge and make data-driven predictions. In this section we will quickly go over some of these supervised-learning methods, and go into more detail for techniques used in Chapter \ref{HIV-paper}.
+
+\hypertarget{the-general-supervized-learning-paradigm}{%
+\subsection{The general supervized learning paradigm}\label{the-general-supervized-learning-paradigm}}
+
+\begin{itemize}
+\item
+  All these methods rely on data (here sequences and alignments)
+
+  \begin{itemize}
+  \item
+    Usually we split available data into training data (on which the learning is done) and testing data (which we can use to asses the model performance). Sometimes we also have validation data used to evaluate the learning process.
+  \item
+    Important that each of these datasets are completely separate -\textgreater{} avoid data leaks.
+  \end{itemize}
+\item
+  Learning -\textgreater{} optimization process:
+
+  \begin{itemize}
+  \item
+    A method has an associated cost, i.e.~a performance measure that translates how bad the method is doing at predicting the target on the training data (or a score that measure the good)
+  \item
+    We minimize the cost (maximize the score) iteratively over the training data.
+  \item
+    The cost function is also called loss function
+  \end{itemize}
+\end{itemize}
+
 \hypertarget{tests-and-statistical-learning}{%
 \subsection{Tests and statistical learning}\label{tests-and-statistical-learning}}
 
 \begin{itemize}
 \tightlist
 \item
-  correlation
+  Simple statistical methods have been used for a long time
 \item
-  Fisher
+  Simplest possible method:
+
+  \begin{itemize}
+  \item
+    Statistical testing (e.g.~Fisher or Student test)
+  \item
+    You use 1 feature and see if if informative of the target, or build ensembles (c.f. Chapter \ref{HIV-paper})
+  \item
+    Relatively poor predictive power.
+  \end{itemize}
 \item
-  Multiple testing ?
+  More sophisticated is linear and logistic regression, for regression and classification respectively.
+
+  \begin{itemize}
+  \item
+    Model: prediction is weighted sum of numerical features + intercept.
+  \item
+    In logistic regression this sum is run through logistic function to get threshold for classification
+  \item
+    The loss function is RMSE
+  \item
+    Gradient descent is used to optimize the cost, Also exact analytical solution in the simplest case
+  \end{itemize}
 \item
-  linear regression / logistic regression
+  Naive Bayes classifier \autocite{hastieElementsStatisticalLearning2009}
+
+  \begin{itemize}
+  \item
+    Conditional probabilities
+  \item
+    Plug in whatever distribution to compute probabilities
+  \item
+    Train with maximum likelihood
+  \item
+    Violation of principle (i.e.~features are rarely independent)
+  \item
+    Pretty good predictive power \autocite{zhangOptimalityNaiveBayes}
+  \end{itemize}
+\item
+  KNN: simple but effective
+
+  \begin{itemize}
+  \item
+    main method
+  \item
+    dependent on k and the distance metric
+  \item
+    Quadratic so data structures (e.g.~kd-trees) for efficient querying or approximation methods like LSH.
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{more-complex-methods-machine-learning}{%
@@ -1946,19 +2022,37 @@ Here we predict discrete categorical values numerically encoded
 \begin{itemize}
 \tightlist
 \item
-  regularization
+  SVM: mainly for classification
+
+  \begin{itemize}
+  \item
+    Optimal separation hyperplane -\textgreater{} linear separation \autocite{vapnikEstimationDependencesBased1982}
+  \item
+    Can perform non-linear classification with the kernel trick in the early 90's \autocite{boserTrainingAlgorithmOptimal1992,cortesSupportvectorNetworks1995}
+  \item
+    adapted to regression \autocite{druckerSupportVectorRegression1996}
+  \end{itemize}
 \item
-  RF
-\item
-  SVM
-\item
-  ABC
-\item
-  KNN
+  RF:
+
+  \begin{itemize}
+  \item
+    Introduced by Leo Breiman \autocite{breimanRandomForests2001}
+  \item
+    Based on the CART decision tree method
+  \item
+    Based on the Gini index / purity index
+  \item
+    Select random features when building a tree
+  \item
+    Make the trees vote to get prediction
+  \item
+    More complex variants with boosting as well
+  \end{itemize}
 \end{itemize}
 
-\hypertarget{mediadeep-learning}{%
-\subsection{mediaDeep Learning}\label{mediadeep-learning}}
+\hypertarget{deep-learning}{%
+\subsection{Deep Learning}\label{deep-learning}}
 
 \begin{itemize}
 \tightlist
@@ -2102,20 +2196,27 @@ These embeddings were inspired by physico-chemical properties, many encodings in
   \item
     VAEs used for sequence design as well \autocite{wuProteinSequenceDesign2021,stantonAcceleratingBayesianOptimization2022}
   \end{itemize}
+\end{itemize}
+
+NLP:
+
+\begin{itemize}
 \item
-  NLP:
+  From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary \autocite{HowManyWords}, so naive one hot is out of the question), we need other ways to transform words into sequences.
+\item
+  Method of pre-training embedding methods
+\item
+  Word2Vec derivatives:
 
   \begin{itemize}
   \item
-    From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary \autocite{HowManyWords}, so naive one hot is out of the question), we need other ways to transform words into sequences.
-  \item
-    Word2Vec derivatives:
+    word2Vec \autocite{mikolovEfficientEstimationWord2013,mikolovDistributedRepresentationsWords2013}, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e.~low distance in the vector space). And that the embeddings make sense grammatically (e.g.~of the Paper \(vec(Madrid) - vec(Spain)\) should be close to \(vec(Paris)\) in the learned space.
 
     \begin{itemize}
     \item
-      word2Vec \autocite{mikolovEfficientEstimationWord2013,mikolovDistributedRepresentationsWords2013}, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e.~low distance in the vector space). And that the embeddings make sense grammatically (e.g.~of the Paper \(vec(Madrid) - vec(Spain)\) should be close to \(vec(Paris)\) in the learned space.
-    \item
       Context of a word = window of \(k\) words centered around it
+    \item
+      The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
     \item
       2 ways to train it \autocite{goldbergWord2vecExplainedDeriving2014}:
 
@@ -2124,52 +2225,78 @@ These embeddings were inspired by physico-chemical properties, many encodings in
         CBOW (continuous bag of words) = predict word from context
       \item
         skip-gram = predict context from word
-      \item
-        The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
-      \end{itemize}
-    \item
-      dna2vec \autocite{ngDna2vecConsistentVector2017}
-
-      \begin{itemize}
-      \tightlist
-      \item
-        Used to predict methylation sites \autocite{liangHyb4mCHybridDNA2vecbased2022}
-      \end{itemize}
-    \item
-      seq2vec \autocite{kimothiDistributedRepresentationsBiological2016}
-    \item
-      BioVec/ProtVec/GeneVec \autocite{asgariContinuousDistributedRepresentation2015}
-
-      \begin{itemize}
-      \tightlist
-      \item
-        Seq2vec and ProtVec both used in classification \autocite{kimothiMetricLearningBiological2017}
       \end{itemize}
     \end{itemize}
   \item
-    Transformers / NN-based language models:
+    dna2vec \autocite{ngDna2vecConsistentVector2017}
 
     \begin{itemize}
+    \tightlist
     \item
-      Also from NLP, more recent development,
+      Used to predict methylation sites \autocite{liangHyb4mCHybridDNA2vecbased2022}
+    \end{itemize}
+  \item
+    seq2vec \autocite{kimothiDistributedRepresentationsBiological2016}
+  \item
+    BioVec/ProtVec/GeneVec \autocite{asgariContinuousDistributedRepresentation2015}
 
-      \begin{itemize}
-      \tightlist
-      \item
-        Some have seen a lot of success like BERT \autocite{devlinBERTPretrainingDeep2019} and GPT-3 \autocite{brownLanguageModelsAre2020}
-      \end{itemize}
+    \begin{itemize}
+    \tightlist
     \item
-      BERT / transformers
-    \item
-      protein language models
-    \item
-      Used to embed sequences from MSAs and find homologies \autocite{caiGenomewidePredictionSmall2020}
-    \item
-      MSA Transformer
+      Seq2vec and ProtVec both used in classification \autocite{kimothiMetricLearningBiological2017}
     \end{itemize}
   \end{itemize}
 \item
-  Powerful but hard to interpret what the model actually learns. i.e.~``black box''
+  Transformers / NN-based language models:
+
+  \begin{itemize}
+  \item
+    Also from NLP, more recent development,
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Some have seen a lot of success like BERT \autocite{devlinBERTPretrainingDeep2019} and GPT-3 \autocite{brownLanguageModelsAre2020}
+    \item
+      Based on the very popular Transformer architecture \autocite{vaswaniAttentionAllYou2017}, with attention maps. Embed features as a linear weighted sum of other features (learn weights).
+    \item
+      Allows for long range dependencies to be captured efficiently
+    \item
+      LLMs trained with MLM
+    \item
+      Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies \autocite{songPretrainingModelBiological2021}.
+    \end{itemize}
+  \item
+    protein language models have been developed from this with the same idea.
+
+    \begin{itemize}
+    \item
+      ProGen \autocite{madaniProGenLanguageModeling2020} and ProGen2 \autocite{eriknijkampProGen2ExploringBoundaries2022}
+    \item
+      ProtBERT \autocite{elnaggarProtTransCrackingLanguage2021}
+    \item
+      DNABert \autocite{jiDNABERTPretrainedBidirectional2021}
+    \item
+      They have interesting properties \autocite{beplerLearningProteinLanguage2021}:
+
+      \begin{itemize}
+      \item
+        Intuitively learn structure of proteins \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019}
+      \item
+        Learn mutational effects \autocite{meierLanguageModelsEnable2021}
+      \item
+        Evolutionary characteristics \autocite{hieEvolutionaryVelocityProtein2022}
+      \end{itemize}
+    \item
+      To counter the space limitations (i.e.~sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic \autocite{choromanskiMaskedLanguageModeling2020}
+    \end{itemize}
+  \item
+    Used to embed sequences from MSAs and find homologies \autocite{caiGenomewidePredictionSmall2020}
+  \item
+    MSA Transformer
+  \end{itemize}
+\item
+  Powerful but hard to interpret what the model actually learns. i.e.~``black box'' but some work is being done to interpret attention maps \autocite{vigBERTologyMeetsBiology2021}
 \end{itemize}
 
 Other weirder embeddings: chaos game theory \autocite{lochelChaosGameRepresentation2021}
