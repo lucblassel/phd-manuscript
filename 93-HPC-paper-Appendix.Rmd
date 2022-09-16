@@ -9,7 +9,7 @@ This dataset was obtained by taking a human X chromosome HOR sequence, concatena
 ## MSR performance comparison
 
 ```{r, mapperComparisonCaption}
-mapperComparisonCaption <- "**Comparing performance of MSRs on the whole human genome, whole *Drosophila melanogaster* genome, repeated regions of the whole human genome and synthetic centromeric sequence.**\
+mapperComparisonCaption <- "**Comparing performance of MSRs on the whole human genome, whole *Drosophila melanogaster* genome, repeated regions of the whole human genome and synthetic centromeric sequence.**  
 Results using  `minimap2` [@liMinimap2PairwiseAlignment2018] and winnowmap2  [@jainWeightedMinimizerSampling2020]. The number of simulated reads for each reference sequence is given in parentheses and called $n$. Results are reported for mapq thresholds of 60, 50 and 0. The best performance for each category is highlighted in bold. The percentage difference are computed w.r.t HPC at each given threshold."
 ```
 
@@ -116,7 +116,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 ## Analyzing read origin on whole human genome
 
 ```{r, raw_distrib_caption}
-raw_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped raw reads.**\
+raw_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped raw reads.**  
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -140,7 +140,7 @@ knitr::include_graphics("./figures/HPC-MSRs/raw_distrib.centro.rstart.png")
 ```
 ```{r, hpc_distrib_caption}
 hpc_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with HPC.**\
+transformed with HPC.**  
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -163,7 +163,7 @@ knitr::include_graphics("./figures/HPC-MSRs/hpc_distrib.centro.png")
 ```
 ```{r, msr_e_distrib_caption, cache=FALSE}
 msr_e_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR~E~.**\
+transformed with MSR~E~.**  
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -186,7 +186,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_e_distrib.centro.png")
 ```
 ```{r, msr_p_distrib_caption, cache=FALSE}
 msr_p_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR~P~.**\
+transformed with MSR~P~.**  
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -209,7 +209,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_p_distrib.centro.png")
 ```
 ```{r, msr_f_distrib_caption, cache=FALSE}
 msr_f_distrib_caption <- "**Origin of correctly (teal) and incorrectly (red) mapped reads,
-transformed with MSR~F~.**\
+transformed with MSR~F~.**  
 Distribution of the origin of correctly and incorrectly mapped simulated
 reads (in teal and red respectively) on the different chromosomes of the
 whole human genome. The dark grey rectangle for each chromosome
@@ -234,7 +234,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_f2_distrib.centro.png")
 
 ```{r, figDrosoResults_caption}
 figDrosoResults_caption <- "**Results of the `paftools mapeval` evaluation on reads simulated and
-mapped to whole *Drosophila melanogaster* and *Escherichia coli* genomes.**\
+mapped to whole *Drosophila melanogaster* and *Escherichia coli* genomes.**  
 MSRs E, F and P are shown in different shades of blue to
 differentiate them from other MSRs. Reads were simulated with `nanosim`,
 and mapped with `minimap2`. The *E. coli* genome was obtained from Genbank ID [U00096.2](https://www.ncbi.nlm.nih.gov/nuccore/U00096.2)"

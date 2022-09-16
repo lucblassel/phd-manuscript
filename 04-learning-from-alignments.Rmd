@@ -143,7 +143,8 @@ review [@potdarComparativeStudyCategorical2017]
     -   Has been used for encoding protein sequences as early as 1988 [@qianPredictingSecondaryStructure1988]
 
 ```{r, generalEncodingCaption}
-generalEncodingCaption <- "**Example of 3 general categorical encoding schemes**\
+generalEncodingCaption <- "**Example of 3 general categorical encoding schemes**  
+TODO
 "
 ```
 

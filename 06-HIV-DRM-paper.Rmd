@@ -597,7 +597,8 @@ removed. The ability of machine learning classifiers to quantify the
 resistance status should be an asset for many applications.
 
 ```{r}
-figClassificationPerfCaption <- "**Classifier Performance on UK and African datasets.** **NB**: naive Bayes, **LR**: Logistic Regression with Lasso regularization, **RF**:
+figClassificationPerfCaption <- "**Classifier Performance on UK and African datasets.**  
+**NB**: naive Bayes, **LR**: Logistic Regression with Lasso regularization, **RF**:
 Random Forest, **FC**: Fisher Classifier, **RD**: Agnostic random
 probabilistic classifier (this classifier predicts, as the probability
 of a sample belonging to a class, the frequency of that class in the
@@ -716,7 +717,8 @@ Fig \@ref(fig:figClassificationPerf).
 ```{r}
 figMultiTasksCaption <- "**Discrimination between sequences having at least one RAM, and those
 having none on sequences with training features corresponding to known
-RAMs removed.** **NB**: naive Bayes, **LR**: Logistic Regression with
+RAMs removed.**  
+**NB**: naive Bayes, **LR**: Logistic Regression with
 Lasso regularization, **RF**: Random Forest, **FC**: Fisher Classifier.
 **A)** Adjusted mutual information (higher is better) for classifiers
 trained without features corresponding to known RAMs. The classifiers
@@ -841,7 +843,8 @@ dataset (\@ref(fig:s1)) tell a similar story albeit with smaller RR values due t
 smaller number of occurrences of both new mutations and known RAMs.
 
 ```{r}
-tabMutationsCaption <- "**Analysis of new potential RAMs.** **Codon distance:** For each new mutation we computed the minimum number of nucleotide mutations to go from the wild amino acid codons to those of the mutated amino acid, as well as the average codon distance between both amino acids, weighted by the prevalence of each wild and mutated codon at the given position in the UK  dataset.
+tabMutationsCaption <- "**Analysis of new potential RAMs.**  
+**Codon distance:** For each new mutation we computed the minimum number of nucleotide mutations to go from the wild amino acid codons to those of the mutated amino acid, as well as the average codon distance between both amino acids, weighted by the prevalence of each wild and mutated codon at the given position in the UK  dataset.
 **B62:** BLOSUM62 similarity values (e.g. D218E = 2, reflecting that E and D are both negatively charged and highly similar).
 **Count:** We looked at the number of occurrences of each new potential RAM in the UK dataset and the corresponding prevalence in parentheses.
 **Relative risks:** We computed $RR(new, treatment)$ (e.g. L228R is 18.1 times more prevalent in RTI-experienced sequences compared to RTI-naive sequences in the UK dataset). We also computed $RR(new, any~RAM)$ (e.g. L228R is 115.7 times more prevalent in sequences that have at least one known RAM than in sequences that have none in the UK dataset). The 95% confidence intervals shown under each RR were computed with 1000 bootstrap samples of size $n=55,000$ drawn with replacement from the whole UK dataset.
@@ -900,7 +903,8 @@ set_header_labels(ft, `...1`="", `...2`="", `...4`="", `...6`="")
 
 ```{r}
 figUkRatiosCaption <- "**Relative risk of the new mutations with regards to known RAMs on the
-UK dataset** (i.e. the prevalence of the new mutation in sequences with
+UK dataset**  
+(i.e. the prevalence of the new mutation in sequences with
 a given known RAM divided by the prevalence of the new mutation in
 sequences without this RAM). RRs were only computed for mutations (new
 and RAMs) that appeared in at least 0.1% (=55) sequences. 95% confidence
@@ -972,8 +976,8 @@ Fig \@ref(fig:figStructure),
 and is detailed below.
 
 ```{r}
-figStructureCaption <- "**Structure of HIV-1 RT with highlighted important sites.** The p66
-subunit is colored dark gray and the p51 subunit white. The active site
+figStructureCaption <- "**Structure of HIV-1 RT with highlighted important sites.**  
+The p66 subunit is colored dark gray and the p51 subunit white. The active site
 is highlighted in blue, and the NNIBP is highlighted in yellow. The
 sites of new mutations are colored in
 red."

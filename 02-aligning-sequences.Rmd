@@ -66,7 +66,8 @@ From this starting point we can fill out the Dynamic programming matrix with all
 By taling the maximum out of these three values we can fill out the matrix with $C(1,1)=1$. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between $S_1$ and $S_2$, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell $(i,j)$ we add an edge from this cell to the previous cell that was used to compute $C(i,j)$. In our example above, we obtained $C(1,1)$ from a match and $C(0,0)$, so we can add an edge in our graph going from cell $(1,1)$ to cell $(0,0)$. The filled out matrix with the graph edges represented as arrows can be seen in Figure \@ref(fig:nwAlign)B.
 
 ```{r, nwCaption}
-nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm**\ This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. **A)** the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. **B)** The dynamic programming matrix is filled out, and the alignment graph is constructed. **C)** The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right."
+nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm**  
+This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. **A)** the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. **B)** The dynamic programming matrix is filled out, and the alignment graph is constructed. **C)** The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right."
 ```
 
 ```{r, nwAlign, label="nwAlign", fig.cap=nwCaption, eval=knitr::is_html_output(), out.width="100%", cache=FALSE}
@@ -94,7 +95,8 @@ In global alignment two full sequences are aligned to each other. In local align
 The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score \> 0. If we use the SW algorithm to locally align the two example sequences $S_1$ and $S_2$ and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure \@ref(fig:swAlign).
 
 ```{r, swCaption}
-swCaption <- "**Example local alignment with the Smith-Waterman algorithm**\ Two sequences $S_1$ and $S_2$ (the same as in Figure \\@ref(fig:nwAlign)) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. **A)** The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. **B)** We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. "
+swCaption <- "**Example local alignment with the Smith-Waterman algorithm**  
+Two sequences $S_1$ and $S_2$ (the same as in Figure \\@ref(fig:nwAlign)) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. **A)** The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. **B)** We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. "
 ```
 
 ```{r, swAlign, label="swAlign", fig.cap=swCaption, eval=knitr::is_html_output(), out.width="60%", cache=FALSE}
@@ -165,7 +167,8 @@ The NW and SW algorithms, as well as their improvements, are proven to be optima
 One of the early approaches to speed up alignment was to focus on speeding up the dynamic programming which is the time and space consuming step of the NW and SW algorithms. Bounded dynamic programming [@spougeSpeedingDynamicProgramming1989a] is one such approach. By making the assumption that the majority of alignment operations are matches and mismatches instead of indels we can make the hypothesis about the alignment graph. Most probably, the path in the graph corresponding to the optimal alignment will be around the diagonal of the dynamic programming matrix, and scores far away from the diagonal are probably not needed. By making these assumptions a lot of the scores of the matrix do not need to be computed, speeding up the execution and leading to a sparse dynamic programming matrix (shown in Figure \@ref(fig:boundedDP)). This approach was used to speed up alignment early on in 1984 [@fickettFastOptimalAlignment1984]. The advantage of this method is that the optimal alignment can be found very efficiently, however if there are many indels in the optimal alignment, this algorithm is not guaranteed to run faster than NW.
 
 ```{r}
-boundedCaption <- "**Bounded dynamic programming to speed up alignment.**\ CAPTION TODO...
+boundedCaption <- "**Bounded dynamic programming to speed up alignment.**  
+CAPTION TODO...
 Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**"
 ```
 
@@ -195,7 +198,7 @@ In parallel to the development of new alignment algorithms, another way of subst
 This method can be used for 1) local alignment, where seeds indicate possible local matches which can be extended in local alignments; or 2) for global alignment where the seeds anchor the dynamic programming matrix, limiting the number of cells to fill out as shown in Figure \@ref(fig:anchor). In both cases this approach follows the divide and conquer philosophy and extending seeds or filling out the matrix between anchors can be done independently and in parallel.
 
 ```{r}
-anchorCaption <- "**Divide and conquer to speed up alignment.**\
+anchorCaption <- "**Divide and conquer to speed up alignment.**  
 CAPTION TODO... Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**"
 ```
 
@@ -240,18 +243,19 @@ One of the problems with such an approach is the size of the index, indeed stori
 One of the ways to make everything fit in memory is to not store all $k$-mers, one way is through the use of so-called minimizers, introduced independently in 2003 [@schleimerWinnowingLocalAlgorithms2003] and 2004 [@robertsReducingStorageRequirements2004]. Given a window of $w$ consecutive $k$-mers and an ordering, a $(w,k)$ minimizer is the "smallest" k-mer in the window w.r.t. the chosen ordering. Let us consider the following window of $3$-mers with $w=4$: `TGACAT`, yielding the following $3$-mers: `TGA`, `GAC`, `ACA`, `CAT`. Following a simple ordering, such as lexigographical ordering (i.e. alphabetical order), then the "smallest" $3$-mer and our $(4,3)$ minimizer would be `ACA`, and only this one would be sampled and added to our hash table. Minimizers have interesting properties, adjacent windows often share a minimizer (see Figure \@ref(fig:minimizers)) and if two strings have a $w-k+1$ sequence in common then they are guaranteed to share a $(w,k)$ minimizer [@robertsReducingStorageRequirements2004]. These properties make minimizers very useful for the seed and extend alignment strategy and they are used in several aligners such as Minimap [@liMinimapMiniasmFast2016] and Minimap2 [@liMinimap2PairwiseAlignment2018], MashMap2 [@jainFastAdaptiveAlgorithm2018] and Winnowmap [@jainWeightedMinimizerSampling2020].
 
 ```{r, minimizercaption}
-progCaption <- "**Example of kmers sharing a minimizer**"
+progCaption <- "**$k$-mer minimizers in action.**  
+**A**) The $3$-mers are shown under a window of size $w=4$ $k$-mers. The $(4,3)$ minimizer according to the lexicographical ordering is highlighted in red. **B)** All the $w=4$ windows of $3$-mers are shown underneath the sequence. $(4,3)$ minimizers of each window are highlighted in red. Here both $3$-mer minimizer is shared by 4 windows. Adapted from [@robertsReducingStorageRequirements2004]."
 ```
 
 ```{r, minimizers, label="minimizers", eval=knitr::is_html_output(), fig.cap=progCaption, out.width="70%"}
-knitr::include_graphics("./figures/Align-Intro/minimizers.png")
+knitr::include_graphics("./figures/Align-Intro/Minimizers.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.pdf}
-\extcaption{Example of kmers sharing a minimizer}{}
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/Minimizers.png}
+\extcaption{$k$-mer minimizers in action}{\textbf{A)} The $3$-mers are shown under a window of size $w=4$ $k$-mers. The $(4,3)$ minimizer according to the lexicographical ordering is highlighted in red. \textbf{B)} All the $w=4$ windows of $3$-mers are shown underneath the sequence. $(4,3)$ minimizers of each window are highlighted in red. Here both $3$-mer minimizer is shared by 4 windows. Adapted from \autocite{robertsReducingStorageRequirements2004}.}
 \label{fig:minimizers}
 \end{figure}
 ```
@@ -310,7 +314,7 @@ An early method, and easy to conceptualize, is the so-called star alignment meth
 One of the most widely used multiple sequence alignment approach is progressive alignment [@fengProgressiveSequenceAlignment1987]. Similarly to the center star algorithm, the progressive algorithm reduces the MSA problem to independent pairwise alignments. The first step is to build a phylogenetic tree from the sequences to align, representing the evolutionary relationship between sequences, called the *guide tree*. Starting from the leaves, that correspond to single sequences, pairwise align the sequences and store the alignment (or *profile*), at the parent node. going up from the leaves to the roots align sequences together, then sequences to profiles if needed and finally profiles together, merging alignments as we progress up the tree. The final multiple sequence alignment is obtained when this process reaches the root. Profiles at inner nodes of the tree are aligned to each other to conserve gaps. A representation of this process is shown in Figure \@ref(fig:progAlign).
 
 ```{r, progcaption}
-progCaption <- "**Overview of the progressive alignment process.**\
+progCaption <- "**Overview of the progressive alignment process.**  
 **A)** sequences to align, **B)** guide tree constructed from distances between sequences in panel A, **C)** Alignment steps along the guide tree and resulting MSA at the root of the tree. Adapted from [@sungAlgorithmsBioinformaticsPractical2011]"
 ```
 

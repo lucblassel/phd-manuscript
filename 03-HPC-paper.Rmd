@@ -110,7 +110,7 @@ With this view in mind, we can generalize HPC while keeping its simplicity by 1)
 Figure \@ref(fig:countingMSRs)A shows how an SSR can be visualized as a directed graph. Observe that an order-$\ell$ SSR is defined by a mapping between $|\Sigma|^\ell$ inputs and $|\Sigma| + 1$ outputs. For example, for $\ell=2$, there are $n=16$ inputs and $k=5$ outputs. Figure \@ref(fig:countingMSRs)B visualizes HPC in this way.
 
 ```{r, figCountingMSRsCaption}
-countingMSRsCaption <- "**Representing and counting Streaming sequence reductions.**\
+countingMSRsCaption <- "**Representing and counting Streaming sequence reductions.**  
 **A**: General representation of an order-2 Streaming sequence
 reduction as a mapping of 16 input dinucleotides, to the 4 nucleotide
 outputs and the empty character $\\varepsilon$. **B**: Homopolymer
@@ -197,7 +197,7 @@ One can verify that this definition is indeed an equivalence relation, i.e. it i
 Figure \@ref(fig:figMSRConfigs) shows the equivalence classes for $\ell=2$, for a fixed partition. An equivalence class can be defined by which pair of classes $S_i$ and $S_j$ have complementary outputs under $t$ and $t'$. Let us define $o(k)$ as the number of equivalence classes for a given partition and a given $k$. Then Figure \@ref(fig:figMSRConfigs) shows that $o(1)=1$, $o(2)=2$ and $o(3) = o(4) = 3$. There are thus only 9 equivalence classes for a given partition.
 
 ```{r}
-figMSR_configs_caption <- "**SSR equivalence classes for a fixed partition of the inputs.**\
+figMSR_configs_caption <- "**SSR equivalence classes for a fixed partition of the inputs.**  
 $S_0$ is always assigned $\\varepsilon$, so it is represented by a gray
 node. A blue link between $S_i$ and an $S_j$ denotes that
 $\\textsc{IsComp}(t(i), t(j))=\\text{true}$. The equivalence classes are
@@ -285,7 +285,7 @@ We selected a set of "promising" SSRs starting from all of the SSRs enumerated i
 
 ```{r, thresholdCaption}
 thresholdCaption <- "**Illustration of how a respective mapq threshold is chosen for each
-of our evaluated MSRs.**\
+of our evaluated MSRs.**  
 The orange dot shows the error rate and
 fraction of reads mapped for HPC at mapq threshold 60. Anything below
 and to the right of this point is strictly better than HPC 60, i.e. it
@@ -331,7 +331,7 @@ Figure \@ref(fig:topMSRs) shows the actual functions MSR~F~, MSR~E~, MSR~P~. An 
 
 ```{r}
 figtopMSRsCaption <- "**Graph representations of our highlighted MSRs: MSR~E~,
-MSR~F~, and MSR~P~.**\
+MSR~F~, and MSR~P~.**  
 MSR~E~ has the lowest error rate of among MSRs at the highest
 mapq threshold for which it performs better than HPC at mapq 60,
 MSR~F~ has the highest fraction of reads mapped at mapq 60 and
@@ -363,7 +363,7 @@ Across the entire human genome, at high mapping quality thresholds (above 50), o
 
 ```{r, figMapevalCaption}
 figMapevalCaption <- " **Performance of our 58 selected mapping-friendly sequence reductions
-across genomes on reads simulated by `nanosim`**\
+across genomes on reads simulated by `nanosim`**  
 Panel **A)** shows the whole human genome assembly, **B)** the subset of
 mapped reads from panel B that originate from repetitive regions, and
 **C)** the \"TandemTools\" synthetic centromeric reference sequence. We
@@ -411,7 +411,7 @@ To evaluate the robustness of MSRs E, F and P we investigated the impact of mapp
 MSRs E, F and P behave very similarly in both of these contexts compared to HPC/raw: by selecting mapped reads with mapq$\geq$ 50 for the three MSRs we obtain a similar fraction of mapped reads with much lower error rates (Table \@ref(tab:table-subset)). A noticeable exception is the `winnowmap2` experiment, where a larger fraction of raw reads are mapped than any other MSR and even HPC. A more detailed results table can be found in Table \@ref(tab:mapperComparison), and a graph of MSR performance on the whole Drosophila genome in Figure \@ref(fig:drosophila-results). As Figure \@ref(fig:drosophila-results) shows, we also evaluated these MSRs on a whole *Escherichia coli* (Genbank ID [U00096.2](https://www.ncbi.nlm.nih.gov/nuccore/U00096.2)) genome, where we observed similar results, albeit the best MSRs do not seem to be one of our three candidates. This might mean that specific MSRs are more suited to particular types of genomes.
 
 ```{r, tableSubsetCaption}
-tabtableSubsetCaption <- "**Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.**\
+tabtableSubsetCaption <- "**Performance of MSRs, HPC, and raw mappings across different mappers and reference sequences.**  
 For each reference sequence and mapper pair, we report the fraction of reads mapped (\"fraction\" columns), the `paftools mapeval` mapping error rate (\"error\" columns). The percentage differences are computed w.r.t to the respective HPC value. For HPC and the raw these metrics were obtained for alignments of mapping quality of 60. For MSRs E, F and P these metrics were obtained for alignments of mapping quality $\\geq 50$."
 ```
 
@@ -477,7 +477,7 @@ To study how MSRs E, F, and P improve over HPC and raw mapping in terms of mappi
 ```{r, ridgelines_caption}
 ridgeline_caption <- "**Histogram of the original simulated positions for the incorrectly
 mapped reads using `minimap2` at high mapping qualities across the whole
-human genome, for several transformation methods.**\
+human genome, for several transformation methods.**  
 For a given chromosome, each row represents the number of simulated
 reads starting at that particular region. The dark gray rectangle
 represents the position of the centromere for that chromosome, obtained
