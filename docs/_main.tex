@@ -251,7 +251,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-16}
+\date{2022-09-19}
 
 \begin{document}
 \maketitle
@@ -905,7 +905,7 @@ The fact that they make up a significant part of the human genome, and that they
 \hypertarget{specific-error-correction}{%
 \subsubsection{Specific error correction}\label{specific-error-correction}}
 
-Homopolymer errors are taken under special consideration during assembly polishing when using certain tools like HomoPolish \autocite{huangHomopolishMethodRemoval2021} or NanoPolish \autocite{simpsonDetectingDNACytosine2017}. Methods to improve base calling of homopolymer stretches have been developed for nanopore sequencing \autocite{rangSquiggleBasepairComputational2018,sarkozyCallingHomopolymerStretches2018}, and implemented in state of the art base-callers such as guppy or scrappie \autocite{wickPerformanceNeuralNetwork2019}.
+Homopolymer errors are taken under special consideration during assembly polishing when using certain tools like HomoPolish \autocite{huangHomopolishMethodRemoval2021}, NanoPolish \autocite{simpsonDetectingDNACytosine2017} or Pilon \autocite{walkerPilonIntegratedTool2014}. Methods to improve base calling of homopolymer stretches have been developed for nanopore sequencing \autocite{rangSquiggleBasepairComputational2018,sarkozyCallingHomopolymerStretches2018}, and implemented in state of the art base-callers such as guppy or scrappie \autocite{wickPerformanceNeuralNetwork2019}.
 
 Steps before sequencing can also be taken in order to reduce the effect of these errors, like avoiding homopolymers in barcode sequences \autocite{hawkinsIndelcorrectingDNABarcodes2018,srivathsanMinIONBasedPipeline2018}. or during the development of DNA based storage systems \autocite{wangConstructionBioConstrainedCode2019}.
 
@@ -1030,7 +1030,7 @@ By taling the maximum out of these three values we can fill out the matrix with 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Align-Intro/NW-total.png}
-\extcaption{Example global alignment with the Needleman-Wunsch algorithm}{This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. \textbf{A)} the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. \textbf{B)} The dynamic programming matrix is filled out, and the alignment graph is constructed. \textbf{C)} The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right.}
+\extcaption{Example global alignment with the Needleman-Wunsch algorithm.}{This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. \textbf{A)} the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. \textbf{B)} The dynamic programming matrix is filled out, and the alignment graph is constructed. \textbf{C)} The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right.}
 \label{fig:nwAlign}
 \end{figure}
 
@@ -1050,7 +1050,7 @@ The two algorithms are very similar, SW also relies on first building the dynami
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/SW-total.png}
-\extcaption{Example local alignment with the Smith-Waterman algorithm}{Two sequences $S_1$ and $S_2$ (the same as in Figure \ref{fig:nwAlign}) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. \textbf{A)} The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. \textbf{B)} We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. }
+\extcaption{Example local alignment with the Smith-Waterman algorithm.}{Two sequences $S_1$ and $S_2$ (the same as in Figure \ref{fig:nwAlign}) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. \textbf{A)} The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. \textbf{B)} We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. }
 \label{fig:swAlign}
 \end{figure}
 
@@ -1112,12 +1112,12 @@ One of the early approaches to speed up alignment was to focus on speeding up th
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/boundedDP.png}
-\extcaption{Bounded dynamic programming to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+\extcaption{Bounded dynamic programming to speed up alignment.}{The dynamic programming matrix is shown here, only values in the blue section are computed, speeding up the process. Here the optimal path in the alignment graph, shown in red, is included entirely in the bounds. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022}.
 }
 \label{fig:boundedDP}
 \end{figure}
 
-Another direction in order to speed up alignment was to leave dynamic programming to the side in favor of other methods and algorithms. One of these methods, fairly well studied in general, and in the context of alignment, are hidden markov models (HMMs). In certain circumstances PaiHMMs, HMMs used for pairwise alignment, can be mathematically equivalent to NW \autocite{durbinBiologicalSequenceAnalysis1998}. HMMs have been used for sequence alignment in many software tools like HHsearch \autocite{sodingProteinHomologyDetection2005}, HMMer \autocite{finnHMMERWebServer2011} or MCALIGN2 \autocite{wangMCALIGN2FasterAccurate2006} which is used to efficiently search for alignments in large databases of sequences.
+Another direction in order to speed up alignment was to leave dynamic programming to the side in favor of other methods and algorithms. One of these methods, fairly well studied in general, and in the context of alignment, are hidden markov models (HMMs). In certain circumstances PairHMMs, HMMs used for pairwise alignment, can be mathematically equivalent to NW \autocite{durbinBiologicalSequenceAnalysis1998}. HMMs have been used for sequence alignment in many software tools like HHsearch \autocite{sodingProteinHomologyDetection2005}, HMMer \autocite{finnHMMERWebServer2011} or MCALIGN2 \autocite{wangMCALIGN2FasterAccurate2006} which is used to efficiently search for alignments in large databases of sequences.
 
 More ``exotic'' methods have also been used successfully for sequence alignment. Fast Fourier Transform (FFT) are used in the MAFFT aligner \autocite{katohMAFFTNovelMethod2002} in order to quickly find homologous segments between two sequences. These homologous regions can be used as the basis for alignment. MAFFT, primarily a multiple sequence aligner \emph{(c.f. Section} \ref{multiple-sequence-alignment} \emph{below)}, can also be used for pairwise alignment.
 
@@ -1133,7 +1133,7 @@ This method can be used for 1) local alignment, where seeds indicate possible lo
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/anchors.png}
-\extcaption{Divide and conquer to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+\extcaption{Divide and conquer to speed up alignment.}{Here anchors are used to speed up alignment. Anchors are shown as dark blue dots in the dynamic programing matrix. Only values in blocks between anchors, shown in blue, need to be computed. The majority of the matrix can be left empty. The optimal path in the resulting alignment graph must go through each anchor and is shown in red. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022}.
 }
 \label{fig:anchor}
 \end{figure}
@@ -1176,7 +1176,7 @@ One of the ways to make everything fit in memory is to not store all \(k\)-mers,
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/Minimizers.png}
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.png}
 \extcaption{$k$-mer minimizers in action}{\textbf{A)} The $3$-mers are shown under a window of size $w=4$ $k$-mers. The $(4,3)$ minimizer according to the lexicographical ordering is highlighted in red. \textbf{B)} All the $w=4$ windows of $3$-mers are shown underneath the sequence. $(4,3)$ minimizers of each window are highlighted in red. Here both $3$-mer minimizer is shared by 4 windows. Adapted from \autocite{robertsReducingStorageRequirements2004}.}
 \label{fig:minimizers}
 \end{figure}
@@ -1643,7 +1643,7 @@ Across the entire human genome, at high mapping quality thresholds (above 50), o
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/MSR_mapeval_new_selection.reordered.pdf}
-    \extcaption{Performance of our 58 selected mapping-friendly sequence reductions across genomes on reads simulated by \texttt{nanosim}}{
+    \extcaption{Performance of our 58 selected mapping-friendly sequence reductions across genomes on reads simulated by \texttt{nanosim}.}{
         Panel \textbf{A)} shows the whole human genome assembly, \textbf{B)} the subset of mapped reads from panel B that originate from repetitive regions, and \textbf{C)} the ``TandemTools'' synthetic centromeric reference sequence.
         We highlighted the best-performing mapping-friendly sequence reductions as MSR E, F and P, respectively in terms of cumulative \texttt{mapeval} error rate, fraction of reads mapped, and percentage of better thresholds than HPC.
         Each point on a line represents, from left to right, the mapping quality thresholds 60, 50, 40, 30, 20, 10 and 0. For the first point of each line, only reads of mapping quality 60 are considered, and the y value represents the rate of these reads that are not correctly mapped, the x value represents the fraction of simulated reads that are mapped at this threshold. The next point is computed for all reads of mapping quality $\geq50$, etc. The rightmost point on any curve represents the mapping error rate and the fraction of mapped reads for all primary alignments. The x-axes are clipped for lower mapped read fractions to better differentiate HPC, raw and MSRs E, F and P.
@@ -1807,7 +1807,7 @@ Supporting Information can be found in Appendix \ref{HPC-appendix}
 
 Sequences and sequence alignments are a very rich source of information. As was sated in Chapters \ref{aligning-sequence-data} and \ref{HPC-paper}, many downstream analyses rely on sequence alignments.
 
-In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly \autocite{martinNextgenerationTranscriptomeAssembly2011,kyriakidouCurrentStrategiesPolyploid2018} as well as de novo \autocite{paszkiewiczNovoAssemblyShort2010,sohnPresentFutureNovo2018} assembly. It has also been used to deduce protein function \autocite{sleatorOverviewSilicoProtein2010}, and structure \textbf{{[}REF{]}}. It has been used for sequence clustering \autocite{sahlinNovoClusteringLongRead2020} as well as detecting genetic \autocite{koboldtBestPracticesVariant2020} and structural variants \autocite{alkanGenomeStructuralVariation2011,hoStructuralVariationSequencing2020}. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees \autocite{morrisonPhylogeneticTreebuilding1996,kapliPhylogeneticTreeBuilding2020}, but they have also been used extensively in protein structure prediction \autocite{kuhlmanAdvancesProteinStructure2019}.
+In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly \autocite{martinNextgenerationTranscriptomeAssembly2011,kyriakidouCurrentStrategiesPolyploid2018} as well as de novo \autocite{paszkiewiczNovoAssemblyShort2010,sohnPresentFutureNovo2018} assembly. It has also been used to deduce protein function \autocite{sleatorOverviewSilicoProtein2010}. It has been used for sequence clustering \autocite{sahlinNovoClusteringLongRead2020} as well as detecting genetic \autocite{koboldtBestPracticesVariant2020} and structural variants \autocite{alkanGenomeStructuralVariation2011,hoStructuralVariationSequencing2020}. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees \autocite{morrisonPhylogeneticTreebuilding1996,kapliPhylogeneticTreeBuilding2020}, but they have also been used extensively in protein structure prediction \autocite{kuhlmanAdvancesProteinStructure2019}.
 
 More recently, as computational power and datasets have grown, more and more machine learning methods are being used on sequence alignments in order to gain biological insight. In this chapter, we will explore how this can be done as an introduction to Chapter \ref{HIV-paper} where we present an application: predicting HIV drug resistance mutations.
 
@@ -1931,8 +1931,8 @@ Here we predict discrete categorical values numerically encoded
 
 Machine learning regroups a multitude of techniques and methods to extract knowledge and make data-driven predictions. In this section we will quickly go over some of these supervised-learning methods, and go into more detail for techniques used in Chapter \ref{HIV-paper}.
 
-\hypertarget{the-general-supervized-learning-paradigm}{%
-\subsection{The general supervized learning paradigm}\label{the-general-supervized-learning-paradigm}}
+\hypertarget{the-general-supervised-learning-paradigm}{%
+\subsection{The general supervised learning paradigm}\label{the-general-supervised-learning-paradigm}}
 
 \begin{itemize}
 \item
@@ -1942,7 +1942,7 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
   \item
     Usually we split available data into training data (on which the learning is done) and testing data (which we can use to asses the model performance). Sometimes we also have validation data used to evaluate the learning process.
   \item
-    Important that each of these datasets are completely separate -\textgreater{} avoid data leaks.
+    Important that each of these datasets are completely separate -\textgreater{} avoid data leaks \autocite{kaufmanLeakageDataMining2011}.
   \end{itemize}
 \item
   Learning -\textgreater{} optimization process:
@@ -1954,6 +1954,78 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
     We minimize the cost (maximize the score) iteratively over the training data.
   \item
     The cost function is also called loss function
+  \end{itemize}
+\item
+  Some semantics (however in a lot of literature cost = loss, e.g. \autocite{Goodfellow-et-al-2016}).
+
+  \begin{itemize}
+  \item
+    Loss = error we give to a single prediction
+  \item
+    Cost = sum of losses over the whole training set/batch
+  \item
+    Objective function = what we actually optimize, e.g.~cost + regularization
+  \end{itemize}
+\item
+  Example of a classical cost function, many loss functions in ML \autocite{wangComprehensiveSurveyLoss2022}:
+
+  \begin{itemize}
+  \item
+    \(y_i\) = i\textsuperscript{th}real value of the target, \(\hat{y}_i\) = i\textsuperscript{th}predicted value, for binary classification, \(p_i\) = probability that i\textsuperscript{th} observation is in positive class.
+  \item
+    regression: \(RMSE = \sqrt{\frac{\Sigma^{N}_{i=1} (y_i - \hat{y}_i)^2 }{N}}\)\\
+  \item
+    classification: Cross-Entropy for binary classification: \(\frac{1}{N}\sum_{i=1}^N-(y\cdot \log(p) + (1-y)\cdot\log(1-p))\)
+  \end{itemize}
+\item
+  Some performance measures many performance measures (especially in classification \autocite{jiaoPerformanceMeasuresEvaluating2016}) :
+
+  \begin{itemize}
+  \item
+    Regression:
+
+    \begin{itemize}
+    \item
+      RMSE see above
+    \item
+      \(MAE=\frac{\Sigma_{i=1}^N \vert y_i - \hat{y}_i \vert}{N}\)
+    \end{itemize}
+  \item
+    Classification:
+
+    \begin{itemize}
+    \item
+      Accuracy \(\frac{TP + TN}{P + N}\)
+    \item
+      Balanced accuracy \(\frac{TPR + TNR}{2}\)
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/Overfitting.png}
+\extcaption{Overfitting behaviour in loss functions.}{The two curves show how the loss calculated on the training set (blue) and the testing set (red) evolve as training time increases. At first both decrease showing that the model learns informative and generalizable features. At some point, training loss keeps decreasing and testing loss increases, meaning that the model is learning over-specific features on the training set and is no longer generalizable: it is overfitting.}
+\label{fig:overfitting}
+\end{figure}
+
+\begin{itemize}
+\item
+  Overfitting \autocite{hastieElementsStatisticalLearning2009} :
+
+  \begin{itemize}
+  \item
+    What is it ?
+  \item
+    How to detect it -\textgreater{} schematic here of training and testing loss ref to Figure \ref{fig:overfitting}
+  \end{itemize}
+\item
+  Cross validation, example of cross validation and schematic ?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Figure to show cross validation
   \end{itemize}
 \end{itemize}
 
@@ -1976,7 +2048,7 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
     Relatively poor predictive power.
   \end{itemize}
 \item
-  More sophisticated is linear and logistic regression, for regression and classification respectively.
+  More sophisticated is linear and logistic regression, for regression and classification respectively. \autocite{hastieElementsStatisticalLearning2009}
 
   \begin{itemize}
   \item
@@ -1987,6 +2059,8 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
     The loss function is RMSE
   \item
     Gradient descent is used to optimize the cost, Also exact analytical solution in the simplest case
+  \item
+    To avoid overfitting- \textgreater{} regularization where the either ridge \autocite{hoerlRidgeRegressionBiased1970} or lasso \autocite{tibshiraniRegressionShrinkageSelection1996} .
   \end{itemize}
 \item
   Naive Bayes classifier \autocite{hastieElementsStatisticalLearning2009}
@@ -2001,19 +2075,10 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
   \item
     Violation of principle (i.e.~features are rarely independent)
   \item
-    Pretty good predictive power \autocite{zhangOptimalityNaiveBayes}
+    Retains pretty good predictive power \autocite{zhangOptimalityNaiveBayes,rishEmpiricalStudyNaive} despite the assumptions being violated
   \end{itemize}
 \item
-  KNN: simple but effective
-
-  \begin{itemize}
-  \item
-    main method
-  \item
-    dependent on k and the distance metric
-  \item
-    Quadratic so data structures (e.g.~kd-trees) for efficient querying or approximation methods like LSH.
-  \end{itemize}
+  Other simple methods like KNN are also often used.
 \end{itemize}
 
 \hypertarget{more-complex-methods-machine-learning}{%
@@ -2022,7 +2087,7 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
 \begin{itemize}
 \tightlist
 \item
-  SVM: mainly for classification
+  One of the first that was widely used and achieved good results in many problems: SVM for classification
 
   \begin{itemize}
   \item
@@ -2033,13 +2098,13 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
     adapted to regression \autocite{druckerSupportVectorRegression1996}
   \end{itemize}
 \item
-  RF:
+  A very important algorithm RF:
 
   \begin{itemize}
   \item
     Introduced by Leo Breiman \autocite{breimanRandomForests2001}
   \item
-    Based on the CART decision tree method
+    Based on the CART decision tree method \autocite{breimanClassificationRegressionTrees1983}
   \item
     Based on the Gini index / purity index
   \item
@@ -2047,22 +2112,13 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
   \item
     Make the trees vote to get prediction
   \item
-    More complex variants with boosting as well
+    Good performance compared to other methods presented before \autocite{caruanaEmpiricalComparisonSupervised2006a}
   \end{itemize}
+\item
+  More complex variants of RF with boosting where features and input examples are weighted before sampling
 \end{itemize}
 
-\hypertarget{deep-learning}{%
-\subsection{Deep Learning}\label{deep-learning}}
-
-\begin{itemize}
-\tightlist
-\item
-  Steiner et al\ldots{}
-\item
-  plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
-\item
-  Complex architectures
-\end{itemize}
+Deep learning has been use more frequently and more broadly to get good results across a large number of tasks. This is also true in biological contexts, a short introduction to deep learning will be presented in Chapter \ref{learning-alignments-an-interesting-perspective}.
 
 \hypertarget{preprocessing-the-alignment-for-machine-learning}{%
 \section{Preprocessing the alignment for machine learning}\label{preprocessing-the-alignment-for-machine-learning}}
@@ -2071,7 +2127,7 @@ In order to do some learning we need to have the data in digestible form
 
 Most of the methods will transform an aligned sequence into a vector, and therefore the alignment as an input matrix.
 
-Some methods are designed to not required alignment, but I will present some anyway
+Some methods do not use the info of alignment in the embedding directly but use in the training process.
 
 \hypertarget{general-purpose-embeddings}{%
 \subsection{General purpose embeddings}\label{general-purpose-embeddings}}
@@ -2180,139 +2236,40 @@ These embeddings were inspired by physico-chemical properties, many encodings in
   \end{itemize}
 \end{itemize}
 
-\hypertarget{learned-embeddings}{%
-\subsection{Learned embeddings}\label{learned-embeddings}}
+Other weirder embeddings: chaos game theory used to embed sequences:
 
 \begin{itemize}
 \item
-  (Variational) Auto-encoders:
+  Applications in BIoinfo \autocite{lochelChaosGameRepresentation2021}
+\item
+  Applied for phylogenetics:
 
   \begin{itemize}
-  \tightlist
   \item
-    Bottlneck in deep neural neck, task is to predict input. Add noise in the hidden layers -\textgreater{} remove noise or regularize to have smooth latent space and get embeddings
+    classify SARS-CoV 2 sequences \autocite{cartesAccurateFastClade2022} w/ DL
   \item
-    Used for ancestral sequence reconstruction \autocite{moretaAncestralProteinSequence2022} and estimating evolutionary distances \autocite{corsoNeuralDistanceEmbeddings2021}
-  \item
-    VAEs used for sequence design as well \autocite{wuProteinSequenceDesign2021,stantonAcceleratingBayesianOptimization2022}
+    \autocite{niApplyingFrequencyChaos2021}
   \end{itemize}
+\item
+  Predict AMR \autocite{renPredictionAntimicrobialResistance2022}
 \end{itemize}
 
-NLP:
-
-\begin{itemize}
-\item
-  From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary \autocite{HowManyWords}, so naive one hot is out of the question), we need other ways to transform words into sequences.
-\item
-  Method of pre-training embedding methods
-\item
-  Word2Vec derivatives:
-
-  \begin{itemize}
-  \item
-    word2Vec \autocite{mikolovEfficientEstimationWord2013,mikolovDistributedRepresentationsWords2013}, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e.~low distance in the vector space). And that the embeddings make sense grammatically (e.g.~of the Paper \(vec(Madrid) - vec(Spain)\) should be close to \(vec(Paris)\) in the learned space.
-
-    \begin{itemize}
-    \item
-      Context of a word = window of \(k\) words centered around it
-    \item
-      The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
-    \item
-      2 ways to train it \autocite{goldbergWord2vecExplainedDeriving2014}:
-
-      \begin{itemize}
-      \item
-        CBOW (continuous bag of words) = predict word from context
-      \item
-        skip-gram = predict context from word
-      \end{itemize}
-    \end{itemize}
-  \item
-    dna2vec \autocite{ngDna2vecConsistentVector2017}
-
-    \begin{itemize}
-    \tightlist
-    \item
-      Used to predict methylation sites \autocite{liangHyb4mCHybridDNA2vecbased2022}
-    \end{itemize}
-  \item
-    seq2vec \autocite{kimothiDistributedRepresentationsBiological2016}
-  \item
-    BioVec/ProtVec/GeneVec \autocite{asgariContinuousDistributedRepresentation2015}
-
-    \begin{itemize}
-    \tightlist
-    \item
-      Seq2vec and ProtVec both used in classification \autocite{kimothiMetricLearningBiological2017}
-    \end{itemize}
-  \end{itemize}
-\item
-  Transformers / NN-based language models:
-
-  \begin{itemize}
-  \item
-    Also from NLP, more recent development,
-
-    \begin{itemize}
-    \tightlist
-    \item
-      Some have seen a lot of success like BERT \autocite{devlinBERTPretrainingDeep2019} and GPT-3 \autocite{brownLanguageModelsAre2020}
-    \item
-      Based on the very popular Transformer architecture \autocite{vaswaniAttentionAllYou2017}, with attention maps. Embed features as a linear weighted sum of other features (learn weights).
-    \item
-      Allows for long range dependencies to be captured efficiently
-    \item
-      LLMs trained with MLM
-    \item
-      Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies \autocite{songPretrainingModelBiological2021}.
-    \end{itemize}
-  \item
-    protein language models have been developed from this with the same idea.
-
-    \begin{itemize}
-    \item
-      ProGen \autocite{madaniProGenLanguageModeling2020} and ProGen2 \autocite{eriknijkampProGen2ExploringBoundaries2022}
-    \item
-      ProtBERT \autocite{elnaggarProtTransCrackingLanguage2021}
-    \item
-      DNABert \autocite{jiDNABERTPretrainedBidirectional2021}
-    \item
-      They have interesting properties \autocite{beplerLearningProteinLanguage2021}:
-
-      \begin{itemize}
-      \item
-        Intuitively learn structure of proteins \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019}
-      \item
-        Learn mutational effects \autocite{meierLanguageModelsEnable2021}
-      \item
-        Evolutionary characteristics \autocite{hieEvolutionaryVelocityProtein2022}
-      \end{itemize}
-    \item
-      To counter the space limitations (i.e.~sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic \autocite{choromanskiMaskedLanguageModeling2020}
-    \end{itemize}
-  \item
-    Used to embed sequences from MSAs and find homologies \autocite{caiGenomewidePredictionSmall2020}
-  \item
-    MSA Transformer
-  \end{itemize}
-\item
-  Powerful but hard to interpret what the model actually learns. i.e.~``black box'' but some work is being done to interpret attention maps \autocite{vigBERTologyMeetsBiology2021}
-\end{itemize}
-
-Other weirder embeddings: chaos game theory \autocite{lochelChaosGameRepresentation2021}
+In recent years there has been an explosion of learned embeddings, we will not be talking about it here since it is not useful for Chapter \ref{HIV-paper}, I will go over them shortly in Chapter \ref{learning-alignments-an-interesting-perspective} however.
 
 \hypertarget{conclusion-2}{%
 \section{Conclusion}\label{conclusion-2}}
 
 \begin{itemize}
 \item
-  Alignment rich in info
+  Alignments and sequences rich in info
 \item
   plenty to learn with ML
 \item
   the choice of embedding / vector representation of sequences in the alignment is not a simple task
 \item
   Guides what you are able to learn
+\item
+  Haven't gone over DL -\textgreater{} chapter 7
 \end{itemize}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
@@ -2423,7 +2380,7 @@ The successive infection of CD4 cells by HIV virions leads to cellular death due
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
-\extcaption{Main steps of HIV-1 replication cycle}{The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.}
+\extcaption{Main steps of HIV-1 replication cycle.}{The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.}
 \label{fig:hivCycle}
 \end{figure}
 
@@ -3444,7 +3401,7 @@ smaller number of occurrences of both new mutations and known RAMs.
 \centering
 \includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig3.eps}
 }
-\extcaption{Relative risk of the new mutations with regards to known RAMs on the UK dataset}{
+\extcaption{Relative risk of the new mutations with regards to known RAMs on the UK dataset.}{
 (i.e. the prevalence of the new mutation in sequences with a given known RAM divided by the prevalence of the new mutation in sequences without this RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 0.1\% (=55) sequences. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of UK sequences. Only RRs with a lower CI boundary greater than 4 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
 \label{fig:figUkRatios}
 \end{figure}
@@ -3755,6 +3712,132 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 
 \hypertarget{learning-alignments-an-interesting-perspective}{%
 \chapter{Learning alignments, an interesting perspective}\label{learning-alignments-an-interesting-perspective}}
+
+\hypertarget{learning-sequence-embeddings}{%
+\section{Learning sequence embeddings}\label{learning-sequence-embeddings}}
+
+\begin{itemize}
+\item
+  (Variational) Auto-encoders:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Bottlneck in deep neural neck, task is to predict input. Add noise in the hidden layers -\textgreater{} remove noise or regularize to have smooth latent space and get embeddings
+  \item
+    Used for ancestral sequence reconstruction \autocite{moretaAncestralProteinSequence2022} and estimating evolutionary distances \autocite{corsoNeuralDistanceEmbeddings2021}
+  \item
+    VAEs used for sequence design as well \autocite{wuProteinSequenceDesign2021,stantonAcceleratingBayesianOptimization2022}
+  \end{itemize}
+\end{itemize}
+
+NLP:
+
+\begin{itemize}
+\item
+  From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary \autocite{HowManyWords}, so naive one hot is out of the question), we need other ways to transform words into sequences.
+\item
+  Method of pre-training embedding methods
+\item
+  Word2Vec derivatives:
+
+  \begin{itemize}
+  \item
+    word2Vec \autocite{mikolovEfficientEstimationWord2013,mikolovDistributedRepresentationsWords2013}, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e.~low distance in the vector space). And that the embeddings make sense grammatically (e.g.~of the Paper \(vec(Madrid) - vec(Spain)\) should be close to \(vec(Paris)\) in the learned space.
+
+    \begin{itemize}
+    \item
+      Context of a word = window of \(k\) words centered around it
+    \item
+      The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
+    \item
+      2 ways to train it \autocite{goldbergWord2vecExplainedDeriving2014}:
+
+      \begin{itemize}
+      \item
+        CBOW (continuous bag of words) = predict word from context
+      \item
+        skip-gram = predict context from word
+      \end{itemize}
+    \end{itemize}
+  \item
+    dna2vec \autocite{ngDna2vecConsistentVector2017}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Used to predict methylation sites \autocite{liangHyb4mCHybridDNA2vecbased2022}
+    \end{itemize}
+  \item
+    seq2vec \autocite{kimothiDistributedRepresentationsBiological2016}
+  \item
+    BioVec/ProtVec/GeneVec \autocite{asgariContinuousDistributedRepresentation2015}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Seq2vec and ProtVec both used in classification \autocite{kimothiMetricLearningBiological2017}
+    \end{itemize}
+  \end{itemize}
+\item
+  Transformers / NN-based language models:
+
+  \begin{itemize}
+  \item
+    Also from NLP, more recent development,
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Some have seen a lot of success like BERT \autocite{devlinBERTPretrainingDeep2019} and GPT-3 \autocite{brownLanguageModelsAre2020}
+    \item
+      Based on the very popular Transformer architecture \autocite{vaswaniAttentionAllYou2017}, with attention maps. Embed features as a linear weighted sum of other features (learn weights).
+    \item
+      Allows for long range dependencies to be captured efficiently
+    \item
+      LLMs trained with MLM
+    \item
+      Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies \autocite{songPretrainingModelBiological2021}.
+    \end{itemize}
+  \item
+    protein language models have been developed from this with the same idea.
+
+    \begin{itemize}
+    \item
+      ProGen \autocite{madaniProGenLanguageModeling2020} and ProGen2 \autocite{eriknijkampProGen2ExploringBoundaries2022}
+    \item
+      ProtBERT \autocite{elnaggarProtTransCrackingLanguage2021}
+    \item
+      DNABert \autocite{jiDNABERTPretrainedBidirectional2021}
+    \item
+      They have interesting properties \autocite{beplerLearningProteinLanguage2021}:
+
+      \begin{itemize}
+      \item
+        Intuitively learn structure of proteins \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019}
+      \item
+        Learn mutational effects \autocite{meierLanguageModelsEnable2021}
+      \item
+        Evolutionary characteristics \autocite{hieEvolutionaryVelocityProtein2022}
+      \end{itemize}
+    \item
+      To counter the space limitations (i.e.~sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic \autocite{choromanskiMaskedLanguageModeling2020}
+    \end{itemize}
+  \item
+    Include information from MSA directly in embedding\autocite{caiGenomewidePredictionSmall2020}: transform aligned sequence in to tokens -\textgreater{} use ALBERT to embed tokens
+  \item
+    MSA Transformer \autocite{raoMSATransformer2021} that extends attention to include aligned residues from an input MSA as well.
+
+    \begin{itemize}
+    \item
+      Similarly: learn on profiles derived from MSAs \autocite{sturmfelsProfilePredictionAlignmentBased2020} as a pre-training task for protein language models
+    \item
+      Learn a protein structure model (potts model) directly on the MSA with a mechanism similar to attention \autocite{sercuNeuralPottsModel2021}
+    \end{itemize}
+  \end{itemize}
+\item
+  Powerful but hard to interpret what the model actually learns. i.e.~``black box'' but some work is being done to interpret attention maps \autocite{vigBERTologyMeetsBiology2021}
+\end{itemize}
 
 \hypertarget{learning-pairwise-alignment}{%
 \section{Learning pairwise alignment}\label{learning-pairwise-alignment}}
