@@ -208,8 +208,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#why-learn-from-alignments"><i class="fa fa-check"></i><b>4.1</b> Why learn from alignments ?</a></li>
 <li class="chapter" data-level="4.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#what-to-learn"><i class="fa fa-check"></i><b>4.2</b> What to learn ?</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#supervised"><i class="fa fa-check"></i><b>4.2.1</b> Supervised</a></li>
-<li class="chapter" data-level="4.2.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#unsupervised"><i class="fa fa-check"></i><b>4.2.2</b> Unsupervised</a></li>
+<li class="chapter" data-level="4.2.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#supervised-learning"><i class="fa fa-check"></i><b>4.2.1</b> Supervised learning</a></li>
+<li class="chapter" data-level="4.2.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#unsupervised-learning"><i class="fa fa-check"></i><b>4.2.2</b> Unsupervised learning</a></li>
 <li class="chapter" data-level="4.2.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#others"><i class="fa fa-check"></i><b>4.2.3</b> Others</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#how-to-learn"><i class="fa fa-check"></i><b>4.3</b> How to learn ?</a>
@@ -345,67 +345,67 @@ div.csl-indent {
 <li><p>(Variational) Auto-encoders:</p>
 <ul>
 <li>Bottlneck in deep neural neck, task is to predict input. Add noise in the hidden layers -&gt; remove noise or regularize to have smooth latent space and get embeddings</li>
-<li>Used for ancestral sequence reconstruction<span class="citation"><sup><a href="#ref-moretaAncestralProteinSequence2022" role="doc-biblioref">657</a></sup></span> and estimating evolutionary distances<span class="citation"><sup><a href="#ref-corsoNeuralDistanceEmbeddings2021" role="doc-biblioref">354</a></sup></span></li>
-<li>VAEs used for sequence design as well<span class="citation"><sup><a href="#ref-wuProteinSequenceDesign2021" role="doc-biblioref">658</a>,<a href="#ref-stantonAcceleratingBayesianOptimization2022" role="doc-biblioref">659</a></sup></span></li>
+<li>Used for ancestral sequence reconstruction<span class="citation"><sup><a href="#ref-moretaAncestralProteinSequence2022" role="doc-biblioref">661</a></sup></span> and estimating evolutionary distances<span class="citation"><sup><a href="#ref-corsoNeuralDistanceEmbeddings2021" role="doc-biblioref">357</a></sup></span></li>
+<li>VAEs used for sequence design as well<span class="citation"><sup><a href="#ref-wuProteinSequenceDesign2021" role="doc-biblioref">662</a>,<a href="#ref-stantonAcceleratingBayesianOptimization2022" role="doc-biblioref">663</a></sup></span></li>
 </ul></li>
 </ul>
 <p>NLP:</p>
 <ul>
-<li><p>From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary<span class="citation"><sup><a href="#ref-HowManyWords" role="doc-biblioref">660</a></sup></span>, so naive one hot is out of the question), we need other ways to transform words into sequences.</p></li>
+<li><p>From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary<span class="citation"><sup><a href="#ref-HowManyWords" role="doc-biblioref">664</a></sup></span>, so naive one hot is out of the question), we need other ways to transform words into sequences.</p></li>
 <li><p>Method of pre-training embedding methods</p></li>
 <li><p>Word2Vec derivatives:</p>
 <ul>
-<li><p>word2Vec<span class="citation"><sup><a href="#ref-mikolovEfficientEstimationWord2013" role="doc-biblioref">661</a>,<a href="#ref-mikolovDistributedRepresentationsWords2013" role="doc-biblioref">662</a></sup></span>, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e. low distance in the vector space). And that the embeddings make sense grammatically (e.g. of the Paper <span class="math inline">\(vec(Madrid) - vec(Spain)\)</span> should be close to <span class="math inline">\(vec(Paris)\)</span> in the learned space.</p>
+<li><p>word2Vec<span class="citation"><sup><a href="#ref-mikolovEfficientEstimationWord2013" role="doc-biblioref">665</a>,<a href="#ref-mikolovDistributedRepresentationsWords2013" role="doc-biblioref">666</a></sup></span>, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e. low distance in the vector space). And that the embeddings make sense grammatically (e.g. of the Paper <span class="math inline">\(vec(Madrid) - vec(Spain)\)</span> should be close to <span class="math inline">\(vec(Paris)\)</span> in the learned space.</p>
 <ul>
 <li><p>Context of a word = window of <span class="math inline">\(k\)</span> words centered around it</p></li>
 <li><p>The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)</p></li>
-<li><p>2 ways to train it<span class="citation"><sup><a href="#ref-goldbergWord2vecExplainedDeriving2014" role="doc-biblioref">663</a></sup></span>:</p>
+<li><p>2 ways to train it<span class="citation"><sup><a href="#ref-goldbergWord2vecExplainedDeriving2014" role="doc-biblioref">667</a></sup></span>:</p>
 <ul>
 <li><p>CBOW (continuous bag of words) = predict word from context</p></li>
 <li><p>skip-gram = predict context from word</p></li>
 </ul></li>
 </ul></li>
-<li><p>dna2vec<span class="citation"><sup><a href="#ref-ngDna2vecConsistentVector2017" role="doc-biblioref">664</a></sup></span></p>
+<li><p>dna2vec<span class="citation"><sup><a href="#ref-ngDna2vecConsistentVector2017" role="doc-biblioref">668</a></sup></span></p>
 <ul>
-<li>Used to predict methylation sites<span class="citation"><sup><a href="#ref-liangHyb4mCHybridDNA2vecbased2022" role="doc-biblioref">665</a></sup></span></li>
+<li>Used to predict methylation sites<span class="citation"><sup><a href="#ref-liangHyb4mCHybridDNA2vecbased2022" role="doc-biblioref">669</a></sup></span></li>
 </ul></li>
-<li><p>seq2vec<span class="citation"><sup><a href="#ref-kimothiDistributedRepresentationsBiological2016" role="doc-biblioref">666</a></sup></span></p></li>
-<li><p>BioVec/ProtVec/GeneVec<span class="citation"><sup><a href="#ref-asgariContinuousDistributedRepresentation2015" role="doc-biblioref">667</a></sup></span></p>
+<li><p>seq2vec<span class="citation"><sup><a href="#ref-kimothiDistributedRepresentationsBiological2016" role="doc-biblioref">670</a></sup></span></p></li>
+<li><p>BioVec/ProtVec/GeneVec<span class="citation"><sup><a href="#ref-asgariContinuousDistributedRepresentation2015" role="doc-biblioref">671</a></sup></span></p>
 <ul>
-<li>Seq2vec and ProtVec both used in classification<span class="citation"><sup><a href="#ref-kimothiMetricLearningBiological2017" role="doc-biblioref">668</a></sup></span></li>
+<li>Seq2vec and ProtVec both used in classification<span class="citation"><sup><a href="#ref-kimothiMetricLearningBiological2017" role="doc-biblioref">672</a></sup></span></li>
 </ul></li>
 </ul></li>
 <li><p>Transformers / NN-based language models:</p>
 <ul>
 <li><p>Also from NLP, more recent development,</p>
 <ul>
-<li>Some have seen a lot of success like BERT<span class="citation"><sup><a href="#ref-devlinBERTPretrainingDeep2019" role="doc-biblioref">669</a></sup></span> and GPT-3<span class="citation"><sup><a href="#ref-brownLanguageModelsAre2020" role="doc-biblioref">670</a></sup></span></li>
-<li>Based on the very popular Transformer architecture<span class="citation"><sup><a href="#ref-vaswaniAttentionAllYou2017" role="doc-biblioref">671</a></sup></span>, with attention maps. Embed features as a linear weighted sum of other features (learn weights).</li>
+<li>Some have seen a lot of success like BERT<span class="citation"><sup><a href="#ref-devlinBERTPretrainingDeep2019" role="doc-biblioref">673</a></sup></span> and GPT-3<span class="citation"><sup><a href="#ref-brownLanguageModelsAre2020" role="doc-biblioref">674</a></sup></span></li>
+<li>Based on the very popular Transformer architecture<span class="citation"><sup><a href="#ref-vaswaniAttentionAllYou2017" role="doc-biblioref">675</a></sup></span>, with attention maps. Embed features as a linear weighted sum of other features (learn weights).</li>
 <li>Allows for long range dependencies to be captured efficiently</li>
 <li>LLMs trained with MLM</li>
-<li>Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies<span class="citation"><sup><a href="#ref-songPretrainingModelBiological2021" role="doc-biblioref">672</a></sup></span>.</li>
+<li>Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies<span class="citation"><sup><a href="#ref-songPretrainingModelBiological2021" role="doc-biblioref">676</a></sup></span>.</li>
 </ul></li>
 <li><p>protein language models have been developed from this with the same idea.</p>
 <ul>
-<li><p>ProGen<span class="citation"><sup><a href="#ref-madaniProGenLanguageModeling2020" role="doc-biblioref">673</a></sup></span> and ProGen2<span class="citation"><sup><a href="#ref-eriknijkampProGen2ExploringBoundaries2022" role="doc-biblioref">674</a></sup></span></p></li>
-<li><p>ProtBERT<span class="citation"><sup><a href="#ref-elnaggarProtTransCrackingLanguage2021" role="doc-biblioref">364</a></sup></span></p></li>
-<li><p>DNABert<span class="citation"><sup><a href="#ref-jiDNABERTPretrainedBidirectional2021" role="doc-biblioref">675</a></sup></span></p></li>
-<li><p>They have interesting properties<span class="citation"><sup><a href="#ref-beplerLearningProteinLanguage2021" role="doc-biblioref">676</a></sup></span>:</p>
+<li><p>ProGen<span class="citation"><sup><a href="#ref-madaniProGenLanguageModeling2020" role="doc-biblioref">677</a></sup></span> and ProGen2<span class="citation"><sup><a href="#ref-eriknijkampProGen2ExploringBoundaries2022" role="doc-biblioref">678</a></sup></span></p></li>
+<li><p>ProtBERT<span class="citation"><sup><a href="#ref-elnaggarProtTransCrackingLanguage2021" role="doc-biblioref">369</a></sup></span></p></li>
+<li><p>DNABert<span class="citation"><sup><a href="#ref-jiDNABERTPretrainedBidirectional2021" role="doc-biblioref">679</a></sup></span></p></li>
+<li><p>They have interesting properties<span class="citation"><sup><a href="#ref-beplerLearningProteinLanguage2021" role="doc-biblioref">680</a></sup></span>:</p>
 <ul>
-<li><p>Intuitively learn structure of proteins<span class="citation"><sup><a href="#ref-raoTransformerProteinLanguage2020" role="doc-biblioref">677</a>,<a href="#ref-rivesBiologicalStructureFunction2019" role="doc-biblioref">678</a></sup></span></p></li>
-<li><p>Learn mutational effects<span class="citation"><sup><a href="#ref-meierLanguageModelsEnable2021" role="doc-biblioref">679</a></sup></span></p></li>
-<li><p>Evolutionary characteristics<span class="citation"><sup><a href="#ref-hieEvolutionaryVelocityProtein2022" role="doc-biblioref">680</a></sup></span></p></li>
+<li><p>Intuitively learn structure of proteins<span class="citation"><sup><a href="#ref-raoTransformerProteinLanguage2020" role="doc-biblioref">681</a>,<a href="#ref-rivesBiologicalStructureFunction2019" role="doc-biblioref">682</a></sup></span></p></li>
+<li><p>Learn mutational effects<span class="citation"><sup><a href="#ref-meierLanguageModelsEnable2021" role="doc-biblioref">683</a></sup></span></p></li>
+<li><p>Evolutionary characteristics<span class="citation"><sup><a href="#ref-hieEvolutionaryVelocityProtein2022" role="doc-biblioref">684</a></sup></span></p></li>
 </ul></li>
-<li><p>To counter the space limitations (i.e. sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic<span class="citation"><sup><a href="#ref-choromanskiMaskedLanguageModeling2020" role="doc-biblioref">681</a></sup></span></p></li>
+<li><p>To counter the space limitations (i.e. sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic<span class="citation"><sup><a href="#ref-choromanskiMaskedLanguageModeling2020" role="doc-biblioref">685</a></sup></span></p></li>
 </ul></li>
-<li><p>Include information from MSA directly in embedding<span class="citation"><sup><a href="#ref-caiGenomewidePredictionSmall2020" role="doc-biblioref">682</a></sup></span>: transform aligned sequence in to tokens -&gt; use ALBERT to embed tokens</p></li>
-<li><p>MSA Transformer<span class="citation"><sup><a href="#ref-raoMSATransformer2021" role="doc-biblioref">683</a></sup></span> that extends attention to include aligned residues from an input MSA as well.</p>
+<li><p>Include information from MSA directly in embedding<span class="citation"><sup><a href="#ref-caiGenomewidePredictionSmall2020" role="doc-biblioref">686</a></sup></span>: transform aligned sequence in to tokens -&gt; use ALBERT to embed tokens</p></li>
+<li><p>MSA Transformer<span class="citation"><sup><a href="#ref-raoMSATransformer2021" role="doc-biblioref">687</a></sup></span> that extends attention to include aligned residues from an input MSA as well.</p>
 <ul>
-<li><p>Similarly: learn on profiles derived from MSAs<span class="citation"><sup><a href="#ref-sturmfelsProfilePredictionAlignmentBased2020" role="doc-biblioref">684</a></sup></span> as a pre-training task for protein language models</p></li>
-<li><p>Learn a protein structure model (potts model) directly on the MSA with a mechanism similar to attention<span class="citation"><sup><a href="#ref-sercuNeuralPottsModel2021" role="doc-biblioref">685</a></sup></span></p></li>
+<li><p>Similarly: learn on profiles derived from MSAs<span class="citation"><sup><a href="#ref-sturmfelsProfilePredictionAlignmentBased2020" role="doc-biblioref">688</a></sup></span> as a pre-training task for protein language models</p></li>
+<li><p>Learn a protein structure model (potts model) directly on the MSA with a mechanism similar to attention<span class="citation"><sup><a href="#ref-sercuNeuralPottsModel2021" role="doc-biblioref">689</a></sup></span></p></li>
 </ul></li>
 </ul></li>
-<li><p>Powerful but hard to interpret what the model actually learns. i.e. “black box” but some work is being done to interpret attention maps<span class="citation"><sup><a href="#ref-vigBERTologyMeetsBiology2021" role="doc-biblioref">686</a></sup></span></p></li>
+<li><p>Powerful but hard to interpret what the model actually learns. i.e. “black box” but some work is being done to interpret attention maps<span class="citation"><sup><a href="#ref-vigBERTologyMeetsBiology2021" role="doc-biblioref">690</a></sup></span></p></li>
 </ul>
 </div>
 <div id="learning-pairwise-alignment" class="section level2 hasAnchor" number="7.2">
@@ -451,100 +451,100 @@ div.csl-indent {
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
 <div id="ref-corsoNeuralDistanceEmbeddings2021" class="csl-entry">
-<div class="csl-left-margin">354. </div><div class="csl-right-inline">Corso, G. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2021/hash/9a1de01f893e0d2551ecbb7ce4dc963e-Abstract.html">Neural distance embeddings for biological sequences</a>. in vol. 34 1853918551 (Curran Associates, Inc., 2021).</div>
+<div class="csl-left-margin">357. </div><div class="csl-right-inline">Corso, G. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2021/hash/9a1de01f893e0d2551ecbb7ce4dc963e-Abstract.html">Neural distance embeddings for biological sequences</a>. in vol. 34 1853918551 (Curran Associates, Inc., 2021).</div>
 </div>
 <div id="ref-elnaggarProtTransCrackingLanguage2021" class="csl-entry">
-<div class="csl-left-margin">364. </div><div class="csl-right-inline">Elnaggar, A. <em>et al.</em> ProtTrans: Towards cracking the language of life’s code through self-supervised deep learning and high performance computing. doi:<a href="https://doi.org/10.48550/arXiv.2007.06225">10.48550/arXiv.2007.06225</a>.</div>
+<div class="csl-left-margin">369. </div><div class="csl-right-inline">Elnaggar, A. <em>et al.</em> ProtTrans: Towards cracking the language of life’s code through self-supervised deep learning and high performance computing. doi:<a href="https://doi.org/10.48550/arXiv.2007.06225">10.48550/arXiv.2007.06225</a>.</div>
 </div>
 <div id="ref-moretaAncestralProteinSequence2022" class="csl-entry">
-<div class="csl-left-margin">657. </div><div class="csl-right-inline">Moreta, L. S. <em>et al.</em> <a href="https://openreview.net/forum?id=FZoZ7a31GCW">International Conference on Learning Representations</a>. in (2022).</div>
+<div class="csl-left-margin">661. </div><div class="csl-right-inline">Moreta, L. S. <em>et al.</em> <a href="https://openreview.net/forum?id=FZoZ7a31GCW">International Conference on Learning Representations</a>. in (2022).</div>
 </div>
 <div id="ref-wuProteinSequenceDesign2021" class="csl-entry">
-<div class="csl-left-margin">658. </div><div class="csl-right-inline">Wu, Z., Johnston, K. E., Arnold, F. H. &amp; Yang, K. K. <a href="https://doi.org/10.1016/j.cbpa.2021.04.004">Protein sequence design with deep generative models</a>. <em>Current Opinion in Chemical Biology</em> <strong>65</strong>, 18–27 (2021).</div>
+<div class="csl-left-margin">662. </div><div class="csl-right-inline">Wu, Z., Johnston, K. E., Arnold, F. H. &amp; Yang, K. K. <a href="https://doi.org/10.1016/j.cbpa.2021.04.004">Protein sequence design with deep generative models</a>. <em>Current Opinion in Chemical Biology</em> <strong>65</strong>, 18–27 (2021).</div>
 </div>
 <div id="ref-stantonAcceleratingBayesianOptimization2022" class="csl-entry">
-<div class="csl-left-margin">659. </div><div class="csl-right-inline">Stanton, S. <em>et al.</em> Accelerating bayesian optimization for biological sequence design with denoising autoencoders. doi:<a href="https://doi.org/10.48550/arXiv.2203.12742">10.48550/arXiv.2203.12742</a>.</div>
+<div class="csl-left-margin">663. </div><div class="csl-right-inline">Stanton, S. <em>et al.</em> Accelerating bayesian optimization for biological sequence design with denoising autoencoders. doi:<a href="https://doi.org/10.48550/arXiv.2203.12742">10.48550/arXiv.2203.12742</a>.</div>
 </div>
 <div id="ref-HowManyWords" class="csl-entry">
-<div class="csl-left-margin">660. </div><div class="csl-right-inline"><a href="https://www.merriam-webster.com/help/faq-how-many-english-words">How many words are there in english? | merriam-webster</a>.</div>
+<div class="csl-left-margin">664. </div><div class="csl-right-inline"><a href="https://www.merriam-webster.com/help/faq-how-many-english-words">How many words are there in english? | merriam-webster</a>.</div>
 </div>
 <div id="ref-mikolovEfficientEstimationWord2013" class="csl-entry">
-<div class="csl-left-margin">661. </div><div class="csl-right-inline">Mikolov, T., Chen, K., Corrado, G. &amp; Dean, J. Efficient estimation of word representations in vector space. doi:<a href="https://doi.org/10.48550/arXiv.1301.3781">10.48550/arXiv.1301.3781</a>.</div>
+<div class="csl-left-margin">665. </div><div class="csl-right-inline">Mikolov, T., Chen, K., Corrado, G. &amp; Dean, J. Efficient estimation of word representations in vector space. doi:<a href="https://doi.org/10.48550/arXiv.1301.3781">10.48550/arXiv.1301.3781</a>.</div>
 </div>
 <div id="ref-mikolovDistributedRepresentationsWords2013" class="csl-entry">
-<div class="csl-left-margin">662. </div><div class="csl-right-inline">Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S. &amp; Dean, J. <a href="https://proceedings.neurips.cc/paper/2013/hash/9aa42b31882ec039965f3c4923ce901b-Abstract.html">Distributed representations of words and phrases and their compositionality</a>. in vol. 26 (Curran Associates, Inc., 2013).</div>
+<div class="csl-left-margin">666. </div><div class="csl-right-inline">Mikolov, T., Sutskever, I., Chen, K., Corrado, G. S. &amp; Dean, J. <a href="https://proceedings.neurips.cc/paper/2013/hash/9aa42b31882ec039965f3c4923ce901b-Abstract.html">Distributed representations of words and phrases and their compositionality</a>. in vol. 26 (Curran Associates, Inc., 2013).</div>
 </div>
 <div id="ref-goldbergWord2vecExplainedDeriving2014" class="csl-entry">
-<div class="csl-left-margin">663. </div><div class="csl-right-inline">Goldberg, Y. &amp; Levy, O. word2vec explained: Deriving mikolov et al.’s negative-sampling word-embedding method. doi:<a href="https://doi.org/10.48550/arXiv.1402.3722">10.48550/arXiv.1402.3722</a>.</div>
+<div class="csl-left-margin">667. </div><div class="csl-right-inline">Goldberg, Y. &amp; Levy, O. word2vec explained: Deriving mikolov et al.’s negative-sampling word-embedding method. doi:<a href="https://doi.org/10.48550/arXiv.1402.3722">10.48550/arXiv.1402.3722</a>.</div>
 </div>
 <div id="ref-ngDna2vecConsistentVector2017" class="csl-entry">
-<div class="csl-left-margin">664. </div><div class="csl-right-inline">Ng, P. dna2vec: Consistent vector representations of variable-length k-mers. doi:<a href="https://doi.org/10.48550/arXiv.1701.06279">10.48550/arXiv.1701.06279</a>.</div>
+<div class="csl-left-margin">668. </div><div class="csl-right-inline">Ng, P. dna2vec: Consistent vector representations of variable-length k-mers. doi:<a href="https://doi.org/10.48550/arXiv.1701.06279">10.48550/arXiv.1701.06279</a>.</div>
 </div>
 <div id="ref-liangHyb4mCHybridDNA2vecbased2022" class="csl-entry">
-<div class="csl-left-margin">665. </div><div class="csl-right-inline">Liang, Y. <em>et al.</em> <a href="https://doi.org/10.1186/s12859-022-04789-6">Hyb4mC: a hybrid DNA2vec-based model for DNA N4-methylcytosine sites prediction</a>. <em>BMC Bioinformatics</em> <strong>23</strong>, 258 (2022).</div>
+<div class="csl-left-margin">669. </div><div class="csl-right-inline">Liang, Y. <em>et al.</em> <a href="https://doi.org/10.1186/s12859-022-04789-6">Hyb4mC: a hybrid DNA2vec-based model for DNA N4-methylcytosine sites prediction</a>. <em>BMC Bioinformatics</em> <strong>23</strong>, 258 (2022).</div>
 </div>
 <div id="ref-kimothiDistributedRepresentationsBiological2016" class="csl-entry">
-<div class="csl-left-margin">666. </div><div class="csl-right-inline">Kimothi, D., Soni, A., Biyani, P. &amp; Hogan, J. M. Distributed representations for biological sequence analysis. doi:<a href="https://doi.org/10.48550/arXiv.1608.05949">10.48550/arXiv.1608.05949</a>.</div>
+<div class="csl-left-margin">670. </div><div class="csl-right-inline">Kimothi, D., Soni, A., Biyani, P. &amp; Hogan, J. M. Distributed representations for biological sequence analysis. doi:<a href="https://doi.org/10.48550/arXiv.1608.05949">10.48550/arXiv.1608.05949</a>.</div>
 </div>
 <div id="ref-asgariContinuousDistributedRepresentation2015" class="csl-entry">
-<div class="csl-left-margin">667. </div><div class="csl-right-inline">Asgari, E. &amp; Mofrad, M. R. K. <a href="https://doi.org/10.1371/journal.pone.0141287">Continuous distributed representation of biological sequences for deep proteomics and genomics</a>. <em>PLoS ONE</em> <strong>10</strong>, e0141287 (2015).</div>
+<div class="csl-left-margin">671. </div><div class="csl-right-inline">Asgari, E. &amp; Mofrad, M. R. K. <a href="https://doi.org/10.1371/journal.pone.0141287">Continuous distributed representation of biological sequences for deep proteomics and genomics</a>. <em>PLoS ONE</em> <strong>10</strong>, e0141287 (2015).</div>
 </div>
 <div id="ref-kimothiMetricLearningBiological2017" class="csl-entry">
-<div class="csl-left-margin">668. </div><div class="csl-right-inline">Kimothi, D., Shukla, A., Biyani, P., Anand, S. &amp; Hogan, J. M. 2017 IEEE 18th international workshop on signal processing advances in wireless communications (SPAWC). in 1–5 (2017). doi:<a href="https://doi.org/10.1109/SPAWC.2017.8227769">10.1109/SPAWC.2017.8227769</a>.</div>
+<div class="csl-left-margin">672. </div><div class="csl-right-inline">Kimothi, D., Shukla, A., Biyani, P., Anand, S. &amp; Hogan, J. M. 2017 IEEE 18th international workshop on signal processing advances in wireless communications (SPAWC). in 1–5 (2017). doi:<a href="https://doi.org/10.1109/SPAWC.2017.8227769">10.1109/SPAWC.2017.8227769</a>.</div>
 </div>
 <div id="ref-devlinBERTPretrainingDeep2019" class="csl-entry">
-<div class="csl-left-margin">669. </div><div class="csl-right-inline">Devlin, J., Chang, M.-W., Lee, K. &amp; Toutanova, K. BERT: Pre-training of deep bidirectional transformers for language understanding. doi:<a href="https://doi.org/10.48550/arXiv.1810.04805">10.48550/arXiv.1810.04805</a>.</div>
+<div class="csl-left-margin">673. </div><div class="csl-right-inline">Devlin, J., Chang, M.-W., Lee, K. &amp; Toutanova, K. BERT: Pre-training of deep bidirectional transformers for language understanding. doi:<a href="https://doi.org/10.48550/arXiv.1810.04805">10.48550/arXiv.1810.04805</a>.</div>
 </div>
 <div id="ref-brownLanguageModelsAre2020" class="csl-entry">
-<div class="csl-left-margin">670. </div><div class="csl-right-inline">Brown, T. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html">Language models are few-shot learners</a>. in vol. 33 18771901 (Curran Associates, Inc., 2020).</div>
+<div class="csl-left-margin">674. </div><div class="csl-right-inline">Brown, T. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html">Language models are few-shot learners</a>. in vol. 33 18771901 (Curran Associates, Inc., 2020).</div>
 </div>
 <div id="ref-vaswaniAttentionAllYou2017" class="csl-entry">
-<div class="csl-left-margin">671. </div><div class="csl-right-inline">Vaswani, A. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">Attention is all you need</a>. in vol. 30 (Curran Associates, Inc., 2017).</div>
+<div class="csl-left-margin">675. </div><div class="csl-right-inline">Vaswani, A. <em>et al.</em> <a href="https://proceedings.neurips.cc/paper/2017/hash/3f5ee243547dee91fbd053c1c4a845aa-Abstract.html">Attention is all you need</a>. in vol. 30 (Curran Associates, Inc., 2017).</div>
 </div>
 <div id="ref-songPretrainingModelBiological2021" class="csl-entry">
-<div class="csl-left-margin">672. </div><div class="csl-right-inline">Song, B. <em>et al.</em> <a href="https://doi.org/10.1093/bfgp/elab025">Pretraining model for biological sequence data.</a> <em>Briefings in Functional Genomics</em> <strong>20</strong>, 181–195 (2021).</div>
+<div class="csl-left-margin">676. </div><div class="csl-right-inline">Song, B. <em>et al.</em> <a href="https://doi.org/10.1093/bfgp/elab025">Pretraining model for biological sequence data.</a> <em>Briefings in Functional Genomics</em> <strong>20</strong>, 181–195 (2021).</div>
 </div>
 <div id="ref-madaniProGenLanguageModeling2020" class="csl-entry">
-<div class="csl-left-margin">673. </div><div class="csl-right-inline">Madani, A. <em>et al.</em> ProGen: Language modeling for protein generation. <em>bioRxiv</em> (2020) doi:<a href="https://doi.org/10.1101/2020.03.07.982272">10.1101/2020.03.07.982272</a>.</div>
+<div class="csl-left-margin">677. </div><div class="csl-right-inline">Madani, A. <em>et al.</em> ProGen: Language modeling for protein generation. <em>bioRxiv</em> (2020) doi:<a href="https://doi.org/10.1101/2020.03.07.982272">10.1101/2020.03.07.982272</a>.</div>
 </div>
 <div id="ref-eriknijkampProGen2ExploringBoundaries2022" class="csl-entry">
-<div class="csl-left-margin">674. </div><div class="csl-right-inline">Erik Nijkamp, Jeffrey A. Ruffolo, Eli N. Weinstein, Nikhil Naik &amp; Ali Madani. ProGen2: Exploring the boundaries of protein language models. <em>ArXiv</em> (2022) doi:<a href="https://doi.org/10.48550/arxiv.2206.13517">10.48550/arxiv.2206.13517</a>.</div>
+<div class="csl-left-margin">678. </div><div class="csl-right-inline">Erik Nijkamp, Jeffrey A. Ruffolo, Eli N. Weinstein, Nikhil Naik &amp; Ali Madani. ProGen2: Exploring the boundaries of protein language models. <em>ArXiv</em> (2022) doi:<a href="https://doi.org/10.48550/arxiv.2206.13517">10.48550/arxiv.2206.13517</a>.</div>
 </div>
 <div id="ref-jiDNABERTPretrainedBidirectional2021" class="csl-entry">
-<div class="csl-left-margin">675. </div><div class="csl-right-inline">Ji, Y., Zhou, Z., Liu, H. &amp; Davuluri, R. V. <a href="https://doi.org/10.1093/bioinformatics/btab083">DNABERT: Pre-trained bidirectional encoder representations from transformers model for DNA-language in genome</a>. <em>Bioinformatics</em> <strong>37</strong>, 2112–2120 (2021).</div>
+<div class="csl-left-margin">679. </div><div class="csl-right-inline">Ji, Y., Zhou, Z., Liu, H. &amp; Davuluri, R. V. <a href="https://doi.org/10.1093/bioinformatics/btab083">DNABERT: Pre-trained bidirectional encoder representations from transformers model for DNA-language in genome</a>. <em>Bioinformatics</em> <strong>37</strong>, 2112–2120 (2021).</div>
 </div>
 <div id="ref-beplerLearningProteinLanguage2021" class="csl-entry">
-<div class="csl-left-margin">676. </div><div class="csl-right-inline">Bepler, T. &amp; Berger, B. <a href="https://doi.org/10.1016/j.cels.2021.05.017">Learning the protein language: Evolution, structure, and function.</a> <em>Cell systems</em> <strong>12</strong>, (2021).</div>
+<div class="csl-left-margin">680. </div><div class="csl-right-inline">Bepler, T. &amp; Berger, B. <a href="https://doi.org/10.1016/j.cels.2021.05.017">Learning the protein language: Evolution, structure, and function.</a> <em>Cell systems</em> <strong>12</strong>, (2021).</div>
 </div>
 <div id="ref-raoTransformerProteinLanguage2020" class="csl-entry">
-<div class="csl-left-margin">677. </div><div class="csl-right-inline">Rao, R., Meier, J., Sercu, T., Ovchinnikov, S. &amp; Rives, A. Transformer protein language models are unsupervised structure learners. doi:<a href="https://doi.org/10.1101/2020.12.15.422761">10.1101/2020.12.15.422761</a>.</div>
+<div class="csl-left-margin">681. </div><div class="csl-right-inline">Rao, R., Meier, J., Sercu, T., Ovchinnikov, S. &amp; Rives, A. Transformer protein language models are unsupervised structure learners. doi:<a href="https://doi.org/10.1101/2020.12.15.422761">10.1101/2020.12.15.422761</a>.</div>
 </div>
 <div id="ref-rivesBiologicalStructureFunction2019" class="csl-entry">
-<div class="csl-left-margin">678. </div><div class="csl-right-inline">Rives, A. <em>et al.</em> Biological Structure and Function Emerge from Scaling Unsupervised Learning to 250 Million Protein Sequences. <em>bioRxiv</em> 622803 (2019) doi:<a href="https://doi.org/10.1101/622803">10.1101/622803</a>.</div>
+<div class="csl-left-margin">682. </div><div class="csl-right-inline">Rives, A. <em>et al.</em> Biological Structure and Function Emerge from Scaling Unsupervised Learning to 250 Million Protein Sequences. <em>bioRxiv</em> 622803 (2019) doi:<a href="https://doi.org/10.1101/622803">10.1101/622803</a>.</div>
 </div>
 <div id="ref-meierLanguageModelsEnable2021" class="csl-entry">
-<div class="csl-left-margin">679. </div><div class="csl-right-inline">Meier, J. <em>et al.</em> <a href="https://doi.org/10.1101/2021.07.09.450648">Language models enable zero-shot prediction of the effects of mutations on protein function</a>. <em>bioRxiv</em> <strong>34</strong>, (2021).</div>
+<div class="csl-left-margin">683. </div><div class="csl-right-inline">Meier, J. <em>et al.</em> <a href="https://doi.org/10.1101/2021.07.09.450648">Language models enable zero-shot prediction of the effects of mutations on protein function</a>. <em>bioRxiv</em> <strong>34</strong>, (2021).</div>
 </div>
 <div id="ref-hieEvolutionaryVelocityProtein2022" class="csl-entry">
-<div class="csl-left-margin">680. </div><div class="csl-right-inline">Hie, B., Kevin K Yang &amp; Kim, S. K. Evolutionary velocity with protein language models predicts evolutionary dynamics of diverse proteins. <em>Cell systems</em> (2022) doi:<a href="https://doi.org/10.1016/j.cels.2022.01.003">10.1016/j.cels.2022.01.003</a>.</div>
+<div class="csl-left-margin">684. </div><div class="csl-right-inline">Hie, B., Kevin K Yang &amp; Kim, S. K. Evolutionary velocity with protein language models predicts evolutionary dynamics of diverse proteins. <em>Cell systems</em> (2022) doi:<a href="https://doi.org/10.1016/j.cels.2022.01.003">10.1016/j.cels.2022.01.003</a>.</div>
 </div>
 <div id="ref-choromanskiMaskedLanguageModeling2020" class="csl-entry">
-<div class="csl-left-margin">681. </div><div class="csl-right-inline">Choromanski, K. <em>et al.</em> Masked language modeling for proteins via linearly scalable long-context transformers. doi:<a href="https://doi.org/10.48550/arXiv.2006.03555">10.48550/arXiv.2006.03555</a>.</div>
+<div class="csl-left-margin">685. </div><div class="csl-right-inline">Choromanski, K. <em>et al.</em> Masked language modeling for proteins via linearly scalable long-context transformers. doi:<a href="https://doi.org/10.48550/arXiv.2006.03555">10.48550/arXiv.2006.03555</a>.</div>
 </div>
 <div id="ref-caiGenomewidePredictionSmall2020" class="csl-entry">
-<div class="csl-left-margin">682. </div><div class="csl-right-inline">Cai, T. <em>et al.</em> Genome-wide Prediction of Small Molecule Binding to Remote Orphan Proteins Using Distilled Sequence Alignment Embedding. doi:<a href="https://doi.org/10.1101/2020.08.04.236729">10.1101/2020.08.04.236729</a>.</div>
+<div class="csl-left-margin">686. </div><div class="csl-right-inline">Cai, T. <em>et al.</em> Genome-wide Prediction of Small Molecule Binding to Remote Orphan Proteins Using Distilled Sequence Alignment Embedding. doi:<a href="https://doi.org/10.1101/2020.08.04.236729">10.1101/2020.08.04.236729</a>.</div>
 </div>
 <div id="ref-raoMSATransformer2021" class="csl-entry">
-<div class="csl-left-margin">683. </div><div class="csl-right-inline">Rao, R. <em>et al.</em> MSA transformer. <em>bioRxiv</em> (2021) doi:<a href="https://doi.org/10.1101/2021.02.12.430858">10.1101/2021.02.12.430858</a>.</div>
+<div class="csl-left-margin">687. </div><div class="csl-right-inline">Rao, R. <em>et al.</em> MSA transformer. <em>bioRxiv</em> (2021) doi:<a href="https://doi.org/10.1101/2021.02.12.430858">10.1101/2021.02.12.430858</a>.</div>
 </div>
 <div id="ref-sturmfelsProfilePredictionAlignmentBased2020" class="csl-entry">
-<div class="csl-left-margin">684. </div><div class="csl-right-inline">Sturmfels, P., Vig, J., Madani, A. &amp; Rajani, N. F. Profile prediction: An alignment-based pre-training task for protein sequence models. doi:<a href="https://doi.org/10.48550/arXiv.2012.00195">10.48550/arXiv.2012.00195</a>.</div>
+<div class="csl-left-margin">688. </div><div class="csl-right-inline">Sturmfels, P., Vig, J., Madani, A. &amp; Rajani, N. F. Profile prediction: An alignment-based pre-training task for protein sequence models. doi:<a href="https://doi.org/10.48550/arXiv.2012.00195">10.48550/arXiv.2012.00195</a>.</div>
 </div>
 <div id="ref-sercuNeuralPottsModel2021" class="csl-entry">
-<div class="csl-left-margin">685. </div><div class="csl-right-inline">Sercu, T. <em>et al.</em> Neural Potts Model. doi:<a href="https://doi.org/10.1101/2021.04.08.439084">10.1101/2021.04.08.439084</a>.</div>
+<div class="csl-left-margin">689. </div><div class="csl-right-inline">Sercu, T. <em>et al.</em> Neural Potts Model. doi:<a href="https://doi.org/10.1101/2021.04.08.439084">10.1101/2021.04.08.439084</a>.</div>
 </div>
 <div id="ref-vigBERTologyMeetsBiology2021" class="csl-entry">
-<div class="csl-left-margin">686. </div><div class="csl-right-inline">Vig, J. <em>et al.</em> BERTology meets biology: Interpreting attention in protein language models. doi:<a href="https://doi.org/10.48550/arXiv.2006.15222">10.48550/arXiv.2006.15222</a>.</div>
+<div class="csl-left-margin">690. </div><div class="csl-right-inline">Vig, J. <em>et al.</em> BERTology meets biology: Interpreting attention in protein language models. doi:<a href="https://doi.org/10.48550/arXiv.2006.15222">10.48550/arXiv.2006.15222</a>.</div>
 </div>
 </div>
             </section>

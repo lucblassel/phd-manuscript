@@ -1807,91 +1807,50 @@ Supporting Information can be found in Appendix \ref{HPC-appendix}
 
 Sequences and sequence alignments are a very rich source of information. As was sated in Chapters \ref{aligning-sequence-data} and \ref{HPC-paper}, many downstream analyses rely on sequence alignments.
 
-In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly \autocite{martinNextgenerationTranscriptomeAssembly2011,kyriakidouCurrentStrategiesPolyploid2018} as well as de novo \autocite{paszkiewiczNovoAssemblyShort2010,sohnPresentFutureNovo2018} assembly. It has also been used to deduce protein function \autocite{sleatorOverviewSilicoProtein2010}. It has been used for sequence clustering \autocite{sahlinNovoClusteringLongRead2020} as well as detecting genetic \autocite{koboldtBestPracticesVariant2020} and structural variants \autocite{alkanGenomeStructuralVariation2011,hoStructuralVariationSequencing2020}. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees \autocite{morrisonPhylogeneticTreebuilding1996,kapliPhylogeneticTreeBuilding2020}, but they have also been used extensively in protein structure prediction \autocite{kuhlmanAdvancesProteinStructure2019}.
+In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly \autocite{martinNextgenerationTranscriptomeAssembly2011,kyriakidouCurrentStrategiesPolyploid2018} as well as \emph{de novo} \autocite{paszkiewiczNovoAssemblyShort2010,sohnPresentFutureNovo2018} assembly. It has also been used to deduce protein function \autocite{sleatorOverviewSilicoProtein2010}. It has been used for sequence clustering \autocite{sahlinNovoClusteringLongRead2020} as well as detecting genetic \autocite{koboldtBestPracticesVariant2020} and structural variants \autocite{alkanGenomeStructuralVariation2011,hoStructuralVariationSequencing2020}. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees \autocite{morrisonPhylogeneticTreebuilding1996,kapliPhylogeneticTreeBuilding2020}, but they have also been used extensively in protein structure prediction \autocite{kuhlmanAdvancesProteinStructure2019}.
 
 More recently, as computational power and datasets have grown, more and more machine learning methods are being used on sequence alignments in order to gain biological insight. In this chapter, we will explore how this can be done as an introduction to Chapter \ref{HIV-paper} where we present an application: predicting HIV drug resistance mutations.
 
 \hypertarget{what-to-learn}{%
 \section{What to learn ?}\label{what-to-learn}}
 
-\begin{itemize}
-\item
-  The first question one might have is what and how can we learn with ML ?
-\item
-  There are different learning paradigms that inform what you can learn and predict with your ML method
-\end{itemize}
+One of the first questions one might ask themselves when wishing to use machine learning with sequence data is ``what can I learn?''. A simplistic answer to this question would be ``a lot of things'' as the following section will strive to show. To choose what we learn we must first choose a learning paradigm.
 
-\hypertarget{supervised}{%
-\subsection{Supervised}\label{supervised}}
+\hypertarget{supervised-learning}{%
+\subsection{Supervised learning}\label{supervised-learning}}
 
-Here we have extra knowledge -\textgreater{} labels and we can use his information to train the model.
+Supervised learning is one of the main machine learning paradigms, here we have data that consist of a collection of input and output pairs (e.g.~a DNA sequence and an associated species). By feeding these pairs to our algorithm of choice it will learn to predict the output based on the input alone. This is a very powerful way of learning something interesting. We can consider the link between inputs and outputs as extra knowledge that the dataset creator or curator can infuse in the learning algorithm. Within the supervised learning paradigm there are two possible tasks: \emph{regression} and \emph{classification}.
 
-\hypertarget{regression}{%
-\subsubsection{Regression}\label{regression}}
+\hypertarget{regression-tasks}{%
+\subsubsection{Regression tasks}\label{regression-tasks}}
 
-Here the goal is to predict some type of meaningful continuous numerical value: like a size or a weight. Useful in lots of different fields/
+For regression tasks, the outputs of our input-output pairs are encoded by a continuous numerical value. Regression models will therefore output continuous real values. Fortunately, many interesting continuous values can be computed from aligned sequences, and in many cases machine learning models can be trained to predict these variables.
 
-\begin{itemize}
-\item
-  predict a quantified resistance level of a virus to a drug (fold change) \autocite{steinerDrugResistancePrediction2020a}
-\item
-  predict drug response in cancer (i.e.~IC\textsubscript{50}) \autocite{ammad-ud-dinSystematicIdentificationFeature2017}, they use genome-wide features pre-extracted from sequences and not sequence directly.
-\item
-  predict angles or contact maps in protein structure -\textgreater{} very active field \autocite{noeMachineLearningProtein2020,pearceSolutionProteinStructure2021,tunyasuvunakoolHighlyAccurateProtein2021,chengMachineLearningMethods2008,alquraishiMachineLearningProtein2021} either directly from MSAs \autocite{jumperHighlyAccurateProtein2021} or from derived features like contact maps \autocite{wangAccurateNovoPrediction2017}
-\item
-  Score MSAs \autocite{ortunoComparingDifferentMachine2015}
-\item
-  predicting protein fitness for \emph{in silico} protein engineering \autocite{wittmannAdvancesMachineLearning2021,yangMachinelearningguidedDirectedEvolution2019,liCanMachineLearning2019}
-\item
-  predicting gene expression levels from SNPs (meaning we need alignments\ldots{} to a reference) \autocite{xieDeepAutoencoderModel2017}
-\end{itemize}
+Regression methods have been used to predict drug response in cancer patients \autocite{ammad-ud-dinSystematicIdentificationFeature2017} and resistance levels to drugs in HIV \autocite{steinerDrugResistancePrediction2020a}. These methods are also extensively used in protein structure prediction, where methods are trained to predict residue angles or values in protein contact maps from aligned sequences. \autocite{noeMachineLearningProtein2020,pearceSolutionProteinStructure2021,tunyasuvunakoolHighlyAccurateProtein2021,chengMachineLearningMethods2008,alquraishiMachineLearningProtein2021} Or directly from an MSA \autocite{jumperHighlyAccurateProtein2021}.Regression algorithms have been used to predict protein fitness \emph{in silico} \autocite{wittmannAdvancesMachineLearning2021,yangMachinelearningguidedDirectedEvolution2019,liCanMachineLearning2019} to speed up protein engineering, and make some processes like drug development faster and cheaper. They have also been used in many other tasks such as predicting gene expression levels \autocite{xieDeepAutoencoderModel2017} or predicting multiple sequence alignment scores \autocite{ortunoComparingDifferentMachine2015}.
 
-\hypertarget{classification}{%
-\subsubsection{Classification}\label{classification}}
+In many cases these methods use an encoded representation of the sequences (c.f. Section \ref{preprocessing-the-alignment-for-machine-learning}) as input, but some represent the inputs as values computed from alignments. For example, protein structure can be predicted from contact maps \autocite{wangAccurateNovoPrediction2017} derived from MSAs, and gene expression levels can be predicted from lists of mutations that are obtained through alignment to a reference sequence \autocite{xieDeepAutoencoderModel2017}, this last approach is also used in Chapter \ref{HIV-paper} to predict drug resistance in HIV.
 
-Here we predict discrete categorical values numerically encoded
+\hypertarget{classification-tasks}{%
+\subsubsection{Classification tasks}\label{classification-tasks}}
 
-\begin{itemize}
-\item
-  resistant virus or not \autocite{hagaMachineLearningbasedTreatment2020,zazziPredictingResponseAntiretroviral2012} (also Chapter \ref{HIV-paper}) also many studies on antimicrobial resistance \autocite{renPredictionAntimicrobialResistance2022,kimMachineLearningAntimicrobial2022}
-\item
-  Cellular localization of protein \autocite{weiPredictionHumanProtein2018}
-\item
-  Secondary structure of amino acid in protein sequence \autocite{jonesProteinSecondaryStructure1999} (\(\alpha\), \(\beta\) or other)
-\item
-  localized gene expression in cells \autocite{kelleyBassetLearningRegulatory2016}
-\item
-  splice site detection \autocite{ratschLearningInterpretableSVMs2006}
-\item
-  Methylation site prediction \autocite{wangPredictingDNAMethylation2016}
-\item
-  Protein function prediction \autocite{wangProteinSequenceProtein2017}
-\end{itemize}
+For classification tasks, the outputs of our input-output pairs are categorical in nature and often represented as discrete integer values. Originally, most classification methods were designed for binary classification with only two possible outputs: a ``positive'' and a ``negative'' class. This is a simpler problem to solve than multi-class classification problem where more than two outputs are possible, however most methods that can handle binary classification have been adapted to multi-class classification.
 
-\hypertarget{unsupervised}{%
-\subsection{Unsupervised}\label{unsupervised}}
+In biology, categorizing and classifying is often at the root of several research problems, as such machine learning classifiers have obvious applications and have been widely used, with sequence data as inputs. Classifiers have been used to predict if a particular virus \autocite{hagaMachineLearningbasedTreatment2020,zazziPredictingResponseAntiretroviral2012} (also Chapter \ref{HIV-paper}), or bacteria \autocite{renPredictionAntimicrobialResistance2022,kimMachineLearningAntimicrobial2022} is resistant to antiviral or antimicrobial drugs respectively. Some classifier models have also been used to predict characteristics at positions in a sequence, like methylation site prediction \autocite{wangPredictingDNAMethylation2016}, splicing site detection \autocite{ratschLearningInterpretableSVMs2006} or secondary structure at a particular amino acid residue \autocite{jonesProteinSecondaryStructure1999}. Finally, classifiers have also been used to predict predict more general characteristics of given sequence, like the cellular localization \autocite{weiPredictionHumanProtein2018} or putative function \autocite{wangProteinSequenceProtein2017} of a protein, or the cellular localization of gene expression data \autocite{kelleyBassetLearningRegulatory2016}.
 
-\begin{itemize}
-\item
-  clustering, align all pairs of sequences for clustering \autocite{zoritaStarcodeSequenceClustering2015}, phylogenetics could be considered as a specific type of clustering \autocite{balabanTreeClusterClusteringBiological2019}.
-\item
-  predict mutational effects \autocite{hopfMutationEffectsPredicted2017}
-\item
-  Predict recombination hotspots in humans with a MaxLik approach \autocite{castroModelSelectionApproach2018}
-\item
-  Approximating the edit distance and bypassing the need for alignment \autocite{corsoNeuralDistanceEmbeddings2021}
-\item
-  dimensionality reduction:
+I have presented here only a fraction of what is possible to learn from sequences in the supervised learning paradigm, and I hope you will agree with me that there is no shortage of problems in computational biology that are suited to this sort of approach. By using machine learning here, instead of more formal statistical approaches, there is a lower amount of upfront assumptions and the algorithm is tasked with figuring out what features of the data are important or not for the task at hand.
 
-  \begin{itemize}
-  \item
-    traditionally apply PCA to some type of matrix, like distance matrix obtained from aln \autocite{haschkaMNHNTreeToolsToolboxTree2021} or other matrices like gene expression
-  \item
-    Also can be used for clustering \autocite{ben-hurDetectingStableClusters2003,KmeansClusteringPrincipal,casariSequencespaceToolFamily1995,clampJalviewJavaAlignment2004}
-  \item
-    Work done to compute PCA directly on alignment \autocite{konishiPrincipalComponentAnalysis2019}
-  \end{itemize}
-\end{itemize}
+\hypertarget{unsupervised-learning}{%
+\subsection{Unsupervised learning}\label{unsupervised-learning}}
+
+The second main machine learning paradigm is called, by contrast to supervised learning, unsupervised learning. In this paradigm we do not have input-output pairs but only inputs. The goal of unsupervised machine learning methods is to extract some structure or patterns from the given input without additional guidance.
+
+One of the main tasks in the unsupervised learning paradigm is clustering, wherein similar inputs are grouped together, methods like k-means of hierarchical clustering \autocite{hastieElementsStatisticalLearning2009} often use some type of distance metric between inputs to define these clusters of similar inputs. Clustering can be used for classification tasks, indeed if some characteristics of sequences in a given cluster are known then we can make the assumptions that sequences in the same cluster will be similar and share these characteristics, this has been used to group proteins in families \autocite{kriventsevaClusteringAnalysisProtein2001} for example. Clustering methods can also be used to remove duplicate or near-duplicate sequences in datasets \autocite{fuCDHITAcceleratedClustering2012}. Phylogenetic trees can be considered as a specific type of clustering methods, and they have been used to cluster biological sequences \autocite{balabanTreeClusterClusteringBiological2019}.
+
+One of the main obstacles to clustering biological sequences is the need for computing distances between sequences. As stated in Chapter \ref{aligning-sequence-data}, obtaining a biologically relevant distance metric between two sequences, such as the edit-distance, is no easy task. Additionally, in many cases all pairwise distances are needed for clustering, meaning at least a quadratic time and space complexity for a naive clustering algorithm. Two approaches can be used to resolve this problem: devise methods that do not need all pairwise distances \autocite{zoritaStarcodeSequenceClustering2015}, or find a way to speed up distance computation. Some methods have been developed to devise distance metrics that are biologically relevant and less expensive to compute that the edit-distance: like the hashing based MASH \autocite{ondovMashFastGenome2016} or dashing \autocite{bakerDashingFastAccurate2019}, or the neural network based NeuroSEED \autocite{corsoNeuralDistanceEmbeddings2021}.
+
+Unsupervised learning can also be used without clustering, for example unsupervised methods based on maximum likelihood approaches have been used to predict mutational effects in protein sequence \autocite{hopfMutationEffectsPredicted2017} as well as predict recombination hotspots in human genomic sequences \autocite{castroModelSelectionApproach2018}.
+
+In many cases, unsupervised learning can be done as a preliminary dimensionality reduction step to a supervised learning task. Indeed biological data is often high-dimensional, and it is often useful to lower the amount of dimensions to speed up computations. Some unsupervised methods can reduce the number of dimensions while retaining most of the information. One such method, Principal Component Analysis (PCA), has been widely used. PCA was applied to distance matrices to compute phylogenetic trees \autocite{haschkaMNHNTreeToolsToolboxTree2021}, and work has been done to apply PCA directly to MSAs without needing to go through a distance matrix \autocite{konishiPrincipalComponentAnalysis2019}. PCA is also widely used in clustering applications \autocite{ben-hurDetectingStableClusters2003,KmeansClusteringPrincipal,casariSequencespaceToolFamily1995,clampJalviewJavaAlignment2004}.
 
 \hypertarget{others}{%
 \subsection{Others}\label{others}}
