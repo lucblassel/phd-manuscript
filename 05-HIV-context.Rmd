@@ -83,7 +83,7 @@ The viruses replication cycle and its immune-cell host specificity are what make
 The successive infection of CD4 cells by HIV virions leads to cellular death due to inflammatory response and/or activation of apoptosis [@gougeonDirectIndirectMechanisms1993; @vidyavijayanPathophysiologyCD4TCell2017]. The gradual depletion of CD4 cells in the infected individual's body lead to the suppression of the immune system, eventually leading to AIDS.
 
 ```{r, hivCycleCaption}
-hivCycleCaption <- "**Main steps of HIV-1 replication cycle**  
+hivCycleCaption <- "**Main steps of HIV-1 replication cycle.**  
 The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.
 "
 ```
@@ -96,7 +96,7 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-cycle.png")
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{./figures/HIV-Intro/HIV-cycle.pdf}
-\extcaption{Main steps of HIV-1 replication cycle}{The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.}
+\extcaption{Main steps of HIV-1 replication cycle.}{The HIV virion contains viral RNA and three essential proteins: Reverse Transcriptase (RT) represented in red, Integrase (IN) represented in cyan and Protease (PR) represented in yellow.}
 \label{fig:hivCycle}
 \end{figure}
 ```

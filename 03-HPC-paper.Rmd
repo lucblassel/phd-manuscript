@@ -363,7 +363,7 @@ Across the entire human genome, at high mapping quality thresholds (above 50), o
 
 ```{r, figMapevalCaption}
 figMapevalCaption <- " **Performance of our 58 selected mapping-friendly sequence reductions
-across genomes on reads simulated by `nanosim`**  
+across genomes on reads simulated by `nanosim`.**  
 Panel **A)** shows the whole human genome assembly, **B)** the subset of
 mapped reads from panel B that originate from repetitive regions, and
 **C)** the \"TandemTools\" synthetic centromeric reference sequence. We
@@ -390,7 +390,7 @@ knitr::include_graphics("./figures/HPC-MSRs/MSR_mapeval_new_selection.reordered.
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/HPC-MSRs/MSR_mapeval_new_selection.reordered.pdf}
-    \extcaption{Performance of our 58 selected mapping-friendly sequence reductions across genomes on reads simulated by \texttt{nanosim}}{
+    \extcaption{Performance of our 58 selected mapping-friendly sequence reductions across genomes on reads simulated by \texttt{nanosim}.}{
         Panel \textbf{A)} shows the whole human genome assembly, \textbf{B)} the subset of mapped reads from panel B that originate from repetitive regions, and \textbf{C)} the ``TandemTools'' synthetic centromeric reference sequence.
         We highlighted the best-performing mapping-friendly sequence reductions as MSR E, F and P, respectively in terms of cumulative \texttt{mapeval} error rate, fraction of reads mapped, and percentage of better thresholds than HPC.
         Each point on a line represents, from left to right, the mapping quality thresholds 60, 50, 40, 30, 20, 10 and 0. For the first point of each line, only reads of mapping quality 60 are considered, and the y value represents the rate of these reads that are not correctly mapped, the x value represents the fraction of simulated reads that are mapped at this threshold. The next point is computed for all reads of mapping quality $\geq50$, etc. The rightmost point on any curve represents the mapping error rate and the fraction of mapped reads for all primary alignments. The x-axes are clipped for lower mapped read fractions to better differentiate HPC, raw and MSRs E, F and P.

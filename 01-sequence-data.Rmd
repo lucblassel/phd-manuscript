@@ -366,7 +366,7 @@ The fact that they make up a significant part of the human genome, and that they
 
 #### Specific error correction
 
-Homopolymer errors are taken under special consideration during assembly polishing when using certain tools like HomoPolish [@huangHomopolishMethodRemoval2021] or NanoPolish [@simpsonDetectingDNACytosine2017]. Methods to improve base calling of homopolymer stretches have been developed for nanopore sequencing [@rangSquiggleBasepairComputational2018; @sarkozyCallingHomopolymerStretches2018], and implemented in state of the art base-callers such as guppy or scrappie [@wickPerformanceNeuralNetwork2019].
+Homopolymer errors are taken under special consideration during assembly polishing when using certain tools like HomoPolish [@huangHomopolishMethodRemoval2021], NanoPolish [@simpsonDetectingDNACytosine2017] or Pilon [@walkerPilonIntegratedTool2014]. Methods to improve base calling of homopolymer stretches have been developed for nanopore sequencing [@rangSquiggleBasepairComputational2018; @sarkozyCallingHomopolymerStretches2018], and implemented in state of the art base-callers such as guppy or scrappie [@wickPerformanceNeuralNetwork2019].
 
 Steps before sequencing can also be taken in order to reduce the effect of these errors, like avoiding homopolymers in barcode sequences [@hawkinsIndelcorrectingDNABarcodes2018; @srivathsanMinIONBasedPipeline2018]. or during the development of DNA based storage systems [@wangConstructionBioConstrainedCode2019].
 

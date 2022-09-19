@@ -311,7 +311,7 @@ counterparts.
 
 
 ```{r}
-tableDataCaption <- "**Summary of the UK and Afican datasets**  
+tableDataCaption <- "**Summary of the UK and Afican datasets.**  
 Percentages are computed with regards to the size of the considered dataset (e.g. 21% of the sequences of the UK dataset are RTI-naive and have at least one known RAM). The median number of RAMs was computed only on sequences that had at least one known RAM.
 "
 ```
@@ -903,7 +903,7 @@ set_header_labels(ft, `...1`="", `...2`="", `...4`="", `...6`="")
 
 ```{r}
 figUkRatiosCaption <- "**Relative risk of the new mutations with regards to known RAMs on the
-UK dataset**  
+UK dataset.**  
 (i.e. the prevalence of the new mutation in sequences with
 a given known RAM divided by the prevalence of the new mutation in
 sequences without this RAM). RRs were only computed for mutations (new
@@ -927,7 +927,7 @@ grid::grid.raster(
 \centering
 \includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig3.eps}
 }
-\extcaption{Relative risk of the new mutations with regards to known RAMs on the UK dataset}{
+\extcaption{Relative risk of the new mutations with regards to known RAMs on the UK dataset.}{
 (i.e. the prevalence of the new mutation in sequences with a given known RAM divided by the prevalence of the new mutation in sequences without this RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 0.1\% (=55) sequences. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of UK sequences. Only RRs with a lower CI boundary greater than 4 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
 \label{fig:figUkRatios}
 \end{figure}

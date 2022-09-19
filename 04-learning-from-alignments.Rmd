@@ -1,10 +1,10 @@
 # Learning from sequences and alignments
 
-## Why learn from alignments ? 
+## Why learn from alignments ?
 
 Sequences and sequence alignments are a very rich source of information. As was sated in Chapters \@ref(aligning-sequence-data) and \@ref(HPC-paper), many downstream analyses rely on sequence alignments.
 
-In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly [@martinNextgenerationTranscriptomeAssembly2011; @kyriakidouCurrentStrategiesPolyploid2018] as well as de novo [@paszkiewiczNovoAssemblyShort2010; @sohnPresentFutureNovo2018] assembly. It has also been used to deduce protein function [@sleatorOverviewSilicoProtein2010], and structure **[REF]**. It has been used for sequence clustering [@sahlinNovoClusteringLongRead2020] as well as detecting genetic [@koboldtBestPracticesVariant2020] and structural variants [@alkanGenomeStructuralVariation2011; @hoStructuralVariationSequencing2020]. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees [@morrisonPhylogeneticTreebuilding1996; @kapliPhylogeneticTreeBuilding2020], but they have also been used extensively in protein structure prediction [@kuhlmanAdvancesProteinStructure2019].
+In whole genome assembly, where sequencing reads are combined together to deduce the sequence genome, pairwise sequence alignment is used in reference-based assembly [@martinNextgenerationTranscriptomeAssembly2011; @kyriakidouCurrentStrategiesPolyploid2018] as well as de novo [@paszkiewiczNovoAssemblyShort2010; @sohnPresentFutureNovo2018] assembly. It has also been used to deduce protein function [@sleatorOverviewSilicoProtein2010]. It has been used for sequence clustering [@sahlinNovoClusteringLongRead2020] as well as detecting genetic [@koboldtBestPracticesVariant2020] and structural variants [@alkanGenomeStructuralVariation2011; @hoStructuralVariationSequencing2020]. Multiple sequence alignments are also very widely used, mainly in phylogenetic analyses where the evolutionary history of a set of sequences are studied and represented as trees [@morrisonPhylogeneticTreebuilding1996; @kapliPhylogeneticTreeBuilding2020], but they have also been used extensively in protein structure prediction [@kuhlmanAdvancesProteinStructure2019].
 
 More recently, as computational power and datasets have grown, more and more machine learning methods are being used on sequence alignments in order to gain biological insight. In this chapter, we will explore how this can be done as an introduction to Chapter \@ref(HIV-paper) where we present an application: predicting HIV drug resistance mutations.
 
@@ -94,13 +94,13 @@ Here we predict discrete categorical values numerically encoded
 
 Machine learning regroups a multitude of techniques and methods to extract knowledge and make data-driven predictions. In this section we will quickly go over some of these supervised-learning methods, and go into more detail for techniques used in Chapter \@ref(HIV-paper).
 
-### The general supervized learning paradigm
+### The general supervised learning paradigm
 
 -   All these methods rely on data (here sequences and alignments)
 
     -   Usually we split available data into training data (on which the learning is done) and testing data (which we can use to asses the model performance). Sometimes we also have validation data used to evaluate the learning process.
 
-    -   Important that each of these datasets are completely separate -\> avoid data leaks.
+    -   Important that each of these datasets are completely separate -\> avoid data leaks [@kaufmanLeakageDataMining2011].
 
 -   Learning -\> optimization process:
 
@@ -109,6 +109,63 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
     -   We minimize the cost (maximize the score) iteratively over the training data.
 
     -   The cost function is also called loss function
+
+-   Some semantics (however in a lot of literature cost = loss, e.g. [@Goodfellow-et-al-2016]).
+
+    -   Loss = error we give to a single prediction
+
+    -   Cost = sum of losses over the whole training set/batch
+
+    -   Objective function = what we actually optimize, e.g. cost + regularization
+
+-   Example of a classical cost function, many loss functions in ML [@wangComprehensiveSurveyLoss2022]:
+
+    -   $y_i$ = i^th^real value of the target, $\hat{y}_i$ = i^th^predicted value, for binary classification, $p_i$ = probability that i^th^ observation is in positive class.
+
+    -   regression: $RMSE = \sqrt{\frac{\Sigma^{N}_{i=1} (y_i - \hat{y}_i)^2 }{N}}$\
+
+    -   classification: Cross-Entropy for binary classification: $\frac{1}{N}\sum_{i=1}^N-(y\cdot \log(p) + (1-y)\cdot\log(1-p))$
+
+-   Some performance measures many performance measures (especially in classification [@jiaoPerformanceMeasuresEvaluating2016]) :
+
+    -   Regression:
+
+        -   RMSE see above
+
+        -    $MAE=\frac{\Sigma_{i=1}^N \vert y_i - \hat{y}_i \vert}{N}$
+
+    -   Classification:
+
+        -   Accuracy $\frac{TP + TN}{P + N}$
+
+        -   Balanced accuracy $\frac{TPR + TNR}{2}$
+
+```{r, overfittingCaption}
+overfittingCaption <- "**Overfitting behaviour in loss functions.**  
+The two curves show how the loss calculated on the training set (blue) and the testing set (red) evolve as training time increases. At first both decrease showing that the model learns informative and generalizable features. At some point, training loss keeps decreasing and testing loss increases, meaning that the model is learning over-specific features on the training set and is no longer generalizable: it is overfitting."
+```
+
+```{r, overfitting, label="overfitting", fig.cap=overfittingCaption, eval=knitr::is_html_output(), out.width="70%"}
+knitr::include_graphics("figures/Encode-seqs/Overfitting.png")
+```
+
+```{=tex}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/Overfitting.png}
+\extcaption{Overfitting behaviour in loss functions.}{The two curves show how the loss calculated on the training set (blue) and the testing set (red) evolve as training time increases. At first both decrease showing that the model learns informative and generalizable features. At some point, training loss keeps decreasing and testing loss increases, meaning that the model is learning over-specific features on the training set and is no longer generalizable: it is overfitting.}
+\label{fig:overfitting}
+\end{figure}
+```
+-   Overfitting [@hastieElementsStatisticalLearning2009] :
+
+    -   What is it ?
+
+    -   How to detect it -\> schematic here of training and testing loss ref to Figure \@ref(fig:overfitting)
+
+-   Cross validation, example of cross validation and schematic ?
+
+    -   Figure to show cross validation
 
 ### Tests and statistical learning
 
@@ -119,7 +176,7 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
     -   You use 1 feature and see if if informative of the target, or build ensembles (c.f. Chapter \@ref(HIV-paper))
 
     -   Relatively poor predictive power.
--   More sophisticated is linear and logistic regression, for regression and classification respectively.
+-   More sophisticated is linear and logistic regression, for regression and classification respectively. [@hastieElementsStatisticalLearning2009]
     -   Model: prediction is weighted sum of numerical features + intercept.
 
     -   In logistic regression this sum is run through logistic function to get threshold for classification
@@ -127,6 +184,8 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
     -   The loss function is RMSE
 
     -   Gradient descent is used to optimize the cost, Also exact analytical solution in the simplest case
+
+    -   To avoid overfitting- \> regularization where the either ridge [@hoerlRidgeRegressionBiased1970] or lasso [@tibshiraniRegressionShrinkageSelection1996] .
 -   Naive Bayes classifier [@hastieElementsStatisticalLearning2009]
     -   Conditional probabilities
 
@@ -136,26 +195,21 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
 
     -   Violation of principle (i.e. features are rarely independent)
 
-    -   Pretty good predictive power [@zhangOptimalityNaiveBayes]
--   KNN: simple but effective
-    -   main method
-
-    -   dependent on k and the distance metric
-
-    -   Quadratic so data structures (e.g. kd-trees) for efficient querying or approximation methods like LSH.
+    -   Retains pretty good predictive power [@zhangOptimalityNaiveBayes; @rishEmpiricalStudyNaive] despite the assumptions being violated
+-   Other simple methods like KNN are also often used.
 
 ### More complex methods, machine learning
 
--   SVM: mainly for classification
+-   One of the first that was widely used and achieved good results in many problems: SVM for classification
     -   Optimal separation hyperplane -\> linear separation [@vapnikEstimationDependencesBased1982]
 
     -   Can perform non-linear classification with the kernel trick in the early 90's [@boserTrainingAlgorithmOptimal1992; @cortesSupportvectorNetworks1995]
 
     -   adapted to regression [@druckerSupportVectorRegression1996]
--   RF:
+-   A very important algorithm RF:
     -   Introduced by Leo Breiman [@breimanRandomForests2001]
 
-    -   Based on the CART decision tree method
+    -   Based on the CART decision tree method [@breimanClassificationRegressionTrees1983]
 
     -   Based on the Gini index / purity index
 
@@ -163,13 +217,10 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
 
     -   Make the trees vote to get prediction
 
-    -   More complex variants with boosting as well
+    -   Good performance compared to other methods presented before [@caruanaEmpiricalComparisonSupervised2006a]
+-   More complex variants of RF with boosting where features and input examples are weighted before sampling
 
-### Deep Learning
-
--   Steiner et al...
--   plenty of other refs (DRMs + ML section from our minireview in Current opinions in virology 2021)
--   Complex architectures
+Deep learning has been use more frequently and more broadly to get good results across a large number of tasks. This is also true in biological contexts, a short introduction to deep learning will be presented in Chapter \@ref(learning-alignments-an-interesting-perspective).
 
 ## Preprocessing the alignment for machine learning
 
@@ -177,7 +228,7 @@ In order to do some learning we need to have the data in digestible form
 
 Most of the methods will transform an aligned sequence into a vector, and therefore the alignment as an input matrix.
 
-Some methods are designed to not required alignment, but I will present some anyway
+Some methods do not use the info of alignment in the embedding directly but use in the training process.
 
 ### General purpose embeddings
 
@@ -263,88 +314,30 @@ These embeddings were inspired by physico-chemical properties, many encodings in
 
     -   Codon graph encoding proposed in [@zamaniAminoAcidEncoding2011], where an AA is represented by a directed graph of all the codons that make up the AA. The 4x4 adjacency matrix is converted into a length 16 vector representing a single AA.
 
-### Learned embeddings
+Other weirder embeddings: chaos game theory used to embed sequences:
 
--   (Variational) Auto-encoders:
+-   Applications in BIoinfo [@lochelChaosGameRepresentation2021]
 
-    -   Bottlneck in deep neural neck, task is to predict input. Add noise in the hidden layers -\> remove noise or regularize to have smooth latent space and get embeddings
-    -   Used for ancestral sequence reconstruction [@moretaAncestralProteinSequence2022] and estimating evolutionary distances [@corsoNeuralDistanceEmbeddings2021]
-    -   VAEs used for sequence design as well [@wuProteinSequenceDesign2021; @stantonAcceleratingBayesianOptimization2022]
+-   Applied for phylogenetics:
 
-NLP:
+    -   classify SARS-CoV 2 sequences [@cartesAccurateFastClade2022] w/ DL
 
--   From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary [@HowManyWords], so naive one hot is out of the question), we need other ways to transform words into sequences.
+    -   [@niApplyingFrequencyChaos2021]
 
--   Method of pre-training embedding methods
+-   Predict AMR [@renPredictionAntimicrobialResistance2022]
 
--   Word2Vec derivatives:
-
-    -   word2Vec [@mikolovEfficientEstimationWord2013; @mikolovDistributedRepresentationsWords2013], take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e. low distance in the vector space). And that the embeddings make sense grammatically (e.g. of the Paper $vec(Madrid) - vec(Spain)$ should be close to $vec(Paris)$ in the learned space.
-
-        -   Context of a word = window of $k$ words centered around it
-
-        -   The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
-
-        -   2 ways to train it [@goldbergWord2vecExplainedDeriving2014]:
-
-            -   CBOW (continuous bag of words) = predict word from context
-
-            -   skip-gram = predict context from word
-
-    -   dna2vec [@ngDna2vecConsistentVector2017]
-
-        -   Used to predict methylation sites [@liangHyb4mCHybridDNA2vecbased2022]
-
-    -   seq2vec [@kimothiDistributedRepresentationsBiological2016]
-
-    -   BioVec/ProtVec/GeneVec [@asgariContinuousDistributedRepresentation2015]
-
-        -   Seq2vec and ProtVec both used in classification [@kimothiMetricLearningBiological2017]
-
--   Transformers / NN-based language models:
-
-    -   Also from NLP, more recent development,
-
-        -   Some have seen a lot of success like BERT [@devlinBERTPretrainingDeep2019] and GPT-3 [@brownLanguageModelsAre2020]
-        -   Based on the very popular Transformer architecture [@vaswaniAttentionAllYou2017], with attention maps. Embed features as a linear weighted sum of other features (learn weights).
-        -   Allows for long range dependencies to be captured efficiently
-        -   LLMs trained with MLM
-        -   Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies [@songPretrainingModelBiological2021].
-
-    -   protein language models have been developed from this with the same idea.
-
-        -   ProGen [@madaniProGenLanguageModeling2020] and ProGen2 [@eriknijkampProGen2ExploringBoundaries2022]
-
-        -   ProtBERT [@elnaggarProtTransCrackingLanguage2021]
-
-        -   DNABert [@jiDNABERTPretrainedBidirectional2021]
-
-        -   They have interesting properties [@beplerLearningProteinLanguage2021]:
-
-            -   Intuitively learn structure of proteins [@raoTransformerProteinLanguage2020; @rivesBiologicalStructureFunction2019]
-
-            -   Learn mutational effects [@meierLanguageModelsEnable2021]
-
-            -   Evolutionary characteristics [@hieEvolutionaryVelocityProtein2022]
-
-        -   To counter the space limitations (i.e. sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic [@choromanskiMaskedLanguageModeling2020]
-
-    -   Used to embed sequences from MSAs and find homologies [@caiGenomewidePredictionSmall2020]
-
-    -   MSA Transformer
-
--   Powerful but hard to interpret what the model actually learns. i.e. "black box" but some work is being done to interpret attention maps [@vigBERTologyMeetsBiology2021]
-
-Other weirder embeddings: chaos game theory [@lochelChaosGameRepresentation2021]
+In recent years there has been an explosion of learned embeddings, we will not be talking about it here since it is not useful for Chapter \@ref(HIV-paper), I will go over them shortly in Chapter \@ref(learning-alignments-an-interesting-perspective) however.
 
 ## Conclusion
 
--   Alignment rich in info
+-   Alignments and sequences rich in info
 
 -   plenty to learn with ML
 
 -   the choice of embedding / vector representation of sequences in the alignment is not a simple task
 
 -   Guides what you are able to learn
+
+-   Haven't gone over DL -\> chapter 7
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

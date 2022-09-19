@@ -66,7 +66,7 @@ From this starting point we can fill out the Dynamic programming matrix with all
 By taling the maximum out of these three values we can fill out the matrix with $C(1,1)=1$. By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between $S_1$ and $S_2$, however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell $(i,j)$ we add an edge from this cell to the previous cell that was used to compute $C(i,j)$. In our example above, we obtained $C(1,1)$ from a match and $C(0,0)$, so we can add an edge in our graph going from cell $(1,1)$ to cell $(0,0)$. The filled out matrix with the graph edges represented as arrows can be seen in Figure \@ref(fig:nwAlign)B.
 
 ```{r, nwCaption}
-nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm**  
+nwCaption <- "**Example global alignment with the Needleman-Wunsch algorithm.**  
 This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. **A)** the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. **B)** The dynamic programming matrix is filled out, and the alignment graph is constructed. **C)** The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right."
 ```
 
@@ -78,7 +78,7 @@ knitr::include_graphics("./figures/Align-Intro/NW-total.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=\linewidth]{./figures/Align-Intro/NW-total.png}
-\extcaption{Example global alignment with the Needleman-Wunsch algorithm}{This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. \textbf{A)} the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. \textbf{B)} The dynamic programming matrix is filled out, and the alignment graph is constructed. \textbf{C)} The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right.}
+\extcaption{Example global alignment with the Needleman-Wunsch algorithm.}{This figure represents three different steps in the NW algorithm, with a match cost of +1, a mismatch cost of -1 and an indel cost of -1. \textbf{A)} the matrix is initialized with $S_1$ as the columns and $S_2$ as the rows. Column and row 0 are filled out. \textbf{B)} The dynamic programming matrix is filled out, and the alignment graph is constructed. \textbf{C)} The alignment graph is traversed from the vertex in the bottom right cell to the vertex in the top left cell. Each of the three possible paths corresponds to an optimal global alignment, represented on the right.}
 \label{fig:nwAlign}
 \end{figure}
 ```
@@ -95,7 +95,7 @@ In global alignment two full sequences are aligned to each other. In local align
 The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score \> 0. If we use the SW algorithm to locally align the two example sequences $S_1$ and $S_2$ and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure \@ref(fig:swAlign).
 
 ```{r, swCaption}
-swCaption <- "**Example local alignment with the Smith-Waterman algorithm**  
+swCaption <- "**Example local alignment with the Smith-Waterman algorithm.**  
 Two sequences $S_1$ and $S_2$ (the same as in Figure \\@ref(fig:nwAlign)) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. **A)** The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. **B)** We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. "
 ```
 
@@ -107,7 +107,7 @@ knitr::include_graphics("./figures/Align-Intro/SW-total.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/SW-total.png}
-\extcaption{Example local alignment with the Smith-Waterman algorithm}{Two sequences $S_1$ and $S_2$ (the same as in Figure \ref{fig:nwAlign}) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. \textbf{A)} The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. \textbf{B)} We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. }
+\extcaption{Example local alignment with the Smith-Waterman algorithm.}{Two sequences $S_1$ and $S_2$ (the same as in Figure \ref{fig:nwAlign}) are locally aligned. A match has a cost of +1, a mismatch a cost of -1 and indels a cost of -1. \textbf{A)} The dynamic programming matrix is filled out and the alignment graph constructed. Alignment scores are constrained to be non-negative. \textbf{B)} We find paths in the graph between the vertex with the maximal score and a score of 0. Here there are two such paths resulting in two optimal local alignments represented on the right. }
 \label{fig:swAlign}
 \end{figure}
 ```
@@ -168,8 +168,8 @@ One of the early approaches to speed up alignment was to focus on speeding up th
 
 ```{r}
 boundedCaption <- "**Bounded dynamic programming to speed up alignment.**  
-CAPTION TODO...
-Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**"
+The dynamic programming matrix is shown here, only values in the blue section are computed, speeding up the process. Here the optimal path in the alignment graph, shown in red, is included entirely in the bounds.
+Adapted from [@chaoDevelopmentsAlgorithmsSequence2022]."
 ```
 
 ```{r, boundedDP, label="boundedDP", fig.cap=boundedCaption, out.width="50%", eval=knitr::is_html_output(), cache=FALSE}
@@ -180,12 +180,12 @@ knitr::include_graphics("./figures/Align-Intro/boundedDP.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/boundedDP.png}
-\extcaption{Bounded dynamic programming to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+\extcaption{Bounded dynamic programming to speed up alignment.}{The dynamic programming matrix is shown here, only values in the blue section are computed, speeding up the process. Here the optimal path in the alignment graph, shown in red, is included entirely in the bounds. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022}.
 }
 \label{fig:boundedDP}
 \end{figure}
 ```
-Another direction in order to speed up alignment was to leave dynamic programming to the side in favor of other methods and algorithms. One of these methods, fairly well studied in general, and in the context of alignment, are hidden markov models (HMMs). In certain circumstances PaiHMMs, HMMs used for pairwise alignment, can be mathematically equivalent to NW [@durbinBiologicalSequenceAnalysis1998]. HMMs have been used for sequence alignment in many software tools like HHsearch [@sodingProteinHomologyDetection2005], HMMer [@finnHMMERWebServer2011] or MCALIGN2 [@wangMCALIGN2FasterAccurate2006] which is used to efficiently search for alignments in large databases of sequences.
+Another direction in order to speed up alignment was to leave dynamic programming to the side in favor of other methods and algorithms. One of these methods, fairly well studied in general, and in the context of alignment, are hidden markov models (HMMs). In certain circumstances PairHMMs, HMMs used for pairwise alignment, can be mathematically equivalent to NW [@durbinBiologicalSequenceAnalysis1998]. HMMs have been used for sequence alignment in many software tools like HHsearch [@sodingProteinHomologyDetection2005], HMMer [@finnHMMERWebServer2011] or MCALIGN2 [@wangMCALIGN2FasterAccurate2006] which is used to efficiently search for alignments in large databases of sequences.
 
 More "exotic" methods have also been used successfully for sequence alignment. Fast Fourier Transform (FFT) are used in the MAFFT aligner [@katohMAFFTNovelMethod2002] in order to quickly find homologous segments between two sequences. These homologous regions can be used as the basis for alignment. MAFFT, primarily a multiple sequence aligner *(c.f. Section* \@ref(multiple-sequence-alignment) *below)*, can also be used for pairwise alignment.
 
@@ -199,7 +199,8 @@ This method can be used for 1) local alignment, where seeds indicate possible lo
 
 ```{r}
 anchorCaption <- "**Divide and conquer to speed up alignment.**  
-CAPTION TODO... Adapted from [@chaoDevelopmentsAlgorithmsSequence2022] **(Original figure here as a placeholder, I will adapt it)**"
+Here anchors are used to speed up alignment. Anchors are shown as dark blue dots in the dynamic programing matrix. Only values in blocks between anchors, shown in blue, need to be computed. The majority of the matrix can be left empty. The optimal path in the resulting alignment graph must go through each anchor and is shown in red.
+Adapted from [@chaoDevelopmentsAlgorithmsSequence2022]."
 ```
 
 ```{r, anchor, label="anchor", fig.cap=anchorCaption, out.width="50%", eval=knitr::is_html_output(), cache=FALSE}
@@ -210,7 +211,7 @@ knitr::include_graphics("./figures/Align-Intro/anchors.png")
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.6\linewidth]{./figures/Align-Intro/anchors.png}
-\extcaption{Divide and conquer to speed up alignment.}{CAPTION TODO... Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022} \textbf{(Original figure here as a placeholder, I will adapt it)}
+\extcaption{Divide and conquer to speed up alignment.}{Here anchors are used to speed up alignment. Anchors are shown as dark blue dots in the dynamic programing matrix. Only values in blocks between anchors, shown in blue, need to be computed. The majority of the matrix can be left empty. The optimal path in the resulting alignment graph must go through each anchor and is shown in red. Adapted from \autocite{chaoDevelopmentsAlgorithmsSequence2022}.
 }
 \label{fig:anchor}
 \end{figure}
@@ -248,13 +249,13 @@ progCaption <- "**$k$-mer minimizers in action.**
 ```
 
 ```{r, minimizers, label="minimizers", eval=knitr::is_html_output(), fig.cap=progCaption, out.width="70%"}
-knitr::include_graphics("./figures/Align-Intro/Minimizers.png")
+knitr::include_graphics("./figures/Align-Intro/minimizers.png")
 ```
 
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/Minimizers.png}
+\includegraphics[width=0.7\textwidth]{./figures/Align-Intro/minimizers.png}
 \extcaption{$k$-mer minimizers in action}{\textbf{A)} The $3$-mers are shown under a window of size $w=4$ $k$-mers. The $(4,3)$ minimizer according to the lexicographical ordering is highlighted in red. \textbf{B)} All the $w=4$ windows of $3$-mers are shown underneath the sequence. $(4,3)$ minimizers of each window are highlighted in red. Here both $3$-mer minimizer is shared by 4 windows. Adapted from \autocite{robertsReducingStorageRequirements2004}.}
 \label{fig:minimizers}
 \end{figure}
