@@ -26,7 +26,7 @@ In many cases these methods use an encoded representation of the sequences (c.f.
 
 #### Classification tasks
 
-For classification tasks, the outputs of our input-output pairs are categorical in nature and often represented as discrete integer values. Originally, most classification methods were designed for binary classification with only two possible outputs: a "positive" and a "negative" class. This is a simpler problem to solve than multi-class classification problem where more than two outputs are possible, however most methods that can handle binary classification have been adapted to multi-class classification.
+For classification tasks, the outputs of our input-output pairs are categorical in nature and often represented as discrete integer values. Originally, most classification methods were designed for binary classification with only two possible outputs: a "positive" and a "negative" class. This is a simpler problem to solve than multiclass classification problem where more than two outputs are possible, however most methods that can handle binary classification have been adapted to multiclass classification.
 
 In biology, categorizing and classifying is often at the root of several research problems, as such machine learning classifiers have obvious applications and have been widely used, with sequence data as inputs. Classifiers have been used to predict if a particular virus [@hagaMachineLearningbasedTreatment2020; @zazziPredictingResponseAntiretroviral2012] (also Chapter \@ref(HIV-paper)), or bacteria [@renPredictionAntimicrobialResistance2022; @kimMachineLearningAntimicrobial2022] is resistant to antiviral or antimicrobial drugs respectively. Some classifier models have also been used to predict characteristics at positions in a sequence, like methylation site prediction [@wangPredictingDNAMethylation2016], splicing site detection [@ratschLearningInterpretableSVMs2006] or secondary structure at a particular amino acid residue [@jonesProteinSecondaryStructure1999]. Finally, classifiers have also been used to predict predict more general characteristics of given sequence, like the cellular localization [@weiPredictionHumanProtein2018] or putative function [@wangProteinSequenceProtein2017] of a protein, or the cellular localization of gene expression data [@kelleyBassetLearningRegulatory2016].
 
@@ -44,83 +44,35 @@ Unsupervised learning can also be used without clustering, for example unsupervi
 
 In many cases, unsupervised learning can be done as a preliminary dimensionality reduction step to a supervised learning task. Indeed biological data is often high-dimensional, and it is often useful to lower the amount of dimensions to speed up computations. Some unsupervised methods can reduce the number of dimensions while retaining most of the information. One such method, Principal Component Analysis (PCA), has been widely used. PCA was applied to distance matrices to compute phylogenetic trees [@haschkaMNHNTreeToolsToolboxTree2021], and work has been done to apply PCA directly to MSAs without needing to go through a distance matrix [@konishiPrincipalComponentAnalysis2019]. PCA is also widely used in clustering applications [@ben-hurDetectingStableClusters2003; @KmeansClusteringPrincipal; @casariSequencespaceToolFamily1995; @clampJalviewJavaAlignment2004].
 
-### Others
+### Others paradigms
 
--   task based: end-to-end training like aligning sequences, this is harder because it requires developing a custom differentiable scoring function based on the task.
+More recently, other learning paradigms have gained popularity in machine learning circles. Within the *semi-supervised* paradigm, a small amount of labelled data (i.e. input-output pairs) is included in a large un-labelled dataset, and methods can leverage both. This approach has been used to predict drug to protein interactions [@xiaSemisupervisedDrugproteinInteraction2010] and predict the secondary structure of specific transmembrane proteins [@tamposisSemisupervisedLearningHidden2019].
 
-    -   Predict P/P interactions [@townshendEndtoEndLearning3D2019]
+In the *self-supervised* paradigm, models are first trained on a proxy task that hopefully makes use of important information in the data. Through this pre-training step, self-supervised models extract important information from the data and create internal featutres and models that can then be leveraged in a a supervized or uinsupervized fine-tuning task. This paradigm has exploded lately within the field of natural language processing and machine translation with the rise of transformers, but has also been widely used to create protein language models like ProtBert [@elnaggarProtTransCrackingLanguage2021] and extract information from disordered protein regions [@luDiscoveringMolecularFeatures2022]. We will look at self-supervised leraning with a little more detail in Chapter \@ref(learning-alignments-an-interesting-perspective).
 
-    -   microRNA target prediction [@leeDeepTargetEndtoendLearning2016]
-
--   self-supervised, i.e. train on a proxy task and hope the model learns important features and useful stuff to continue on fully-unsupervised.
-
-    -   Used to find useful info in disordered protein regions [@luDiscoveringMolecularFeatures2022]
-
-    -   Protein language models: [@elnaggarProtTransCrackingLanguage2021]
-
--   semi-supervised, combined a small amount of labelled data with large amount of unlabeled data that the models can leverage.
-
-    -   used to predict drug-protein interactions [@xiaSemisupervisedDrugproteinInteraction2010]
-
-    -   and transmembrane protein topology [@tamposisSemisupervisedLearningHidden2019]
+Finally, the end-to-end learning paradigm designates the process of chaining several machine learnign tasks together and optimizing the algorithms simultaneously using the error from the loss of the last task of the group. This has been successfully used to predict protein-protein interaction surfaces in three dimensions [@townshendEndtoEndLearning3D2019] as well as predict micro-RNA targets sequences [@leeDeepTargetEndtoendLearning2016]. This paradigm can also be used in a task-based fashion, where a differentiable loss function is crafted on a traditionally non-machine learning task and used to train preceeding models, this has been explored for sequence alignment and is further detailed in Chapter \@ref(learning-alignments-an-interesting-perspective)
 
 ## How to learn ?
 
-Machine learning regroups a multitude of techniques and methods to extract knowledge and make data-driven predictions. In this section we will quickly go over some of these supervised-learning methods, and go into more detail for techniques used in Chapter \@ref(HIV-paper).
+Machine learning regroups a multitude of techniques and methods to extract knowledge and make data-driven predictions. In this section we will quickly go over some of the main supervised-learning methods, and go into more detail for techniques used in Chapter \@ref(HIV-paper): Logistic regression, naive Bayes and Random Forests.
 
-### The general supervised learning paradigm
+### General setting
 
--   All these methods rely on data (here sequences and alignments)
+Supervised machine learning is an optimization process. A given algorithm, which I will refer to as a *model*, has an associated loss function that can be evaluated on a dataset. This loss represents how well the model is predicting outputs from inputs on known input-output pairs. Through an iterative process, this loss is optimized *(in our case minimized)* over all pairs forming a dataset. Often in the literature, loss and cost are used interchangeably [@Goodfellow-et-al-2016], however I will favor loss in the following sections.
 
-    -   Usually we split available data into training data (on which the learning is done) and testing data (which we can use to asses the model performance). Sometimes we also have validation data used to evaluate the learning process.
+There is no shortage of loss functions [@wangComprehensiveSurveyLoss2022], some of them are specifically crafted for a given model while some are widely used in regression tasks like the Root Mean Square Error (RMSE). Others like the cross-entropy loss are used in classification tasks.
 
-    -   Important that each of these datasets are completely separate -\> avoid data leaks [@kaufmanLeakageDataMining2011].
-
--   Learning -\> optimization process:
-
-    -   A method has an associated cost, i.e. a performance measure that translates how bad the method is doing at predicting the target on the training data (or a score that measure the good)
-
-    -   We minimize the cost (maximize the score) iteratively over the training data.
-
-    -   The cost function is also called loss function
-
--   Some semantics (however in a lot of literature cost = loss, e.g. [@Goodfellow-et-al-2016]).
-
-    -   Loss = error we give to a single prediction
-
-    -   Cost = sum of losses over the whole training set/batch
-
-    -   Objective function = what we actually optimize, e.g. cost + regularization
-
--   Example of a classical cost function, many loss functions in ML [@wangComprehensiveSurveyLoss2022]:
-
-    -   $y_i$ = i^th^real value of the target, $\hat{y}_i$ = i^th^predicted value, for binary classification, $p_i$ = probability that i^th^ observation is in positive class.
-
-    -   regression: $RMSE = \sqrt{\frac{\Sigma^{N}_{i=1} (y_i - \hat{y}_i)^2 }{N}}$\
-
-    -   classification: Cross-Entropy for binary classification: $\frac{1}{N}\sum_{i=1}^N-(y\cdot \log(p) + (1-y)\cdot\log(1-p))$
-
--   Some performance measures many performance measures (especially in classification [@jiaoPerformanceMeasuresEvaluating2016]) :
-
-    -   Regression:
-
-        -   RMSE see above
-
-        -   $MAE=\frac{\Sigma_{i=1}^N \vert y_i - \hat{y}_i \vert}{N}$
-
-    -   Classification:
-
-        -   Accuracy $\frac{TP + TN}{P + N}$
-
-        -   Balanced accuracy $\frac{TPR + TNR}{2}$
+Often after training a machine learning model on a dataset it is important to compute a performance measure to get an idea of how well this model is performing. We could do this on the same data on which the model was trained, this would however be wrong. Indeed it gives an unfair advantage to the model since it predicts outputs for examples it has already seen, furthermore it gives us no insight into the generalizability of the model since it could just learn the dataset by heart, getting a perfect score on it while being completely useless on new unseen data, this situation is known as *overfitting* [@hastieElementsStatisticalLearning2009], shown in Figure \@ref(fig:overfitting). Since being able to predict outcomes on unseen data is the main goal of a machine learning model we need another way of measuring model performance. The way machine learning practitioners can measure the performance of their model in a more unbiased manner is by separating the dataset into two parts before even starting to train the model: one part (usually the majority of the data) is used as the *training set*, and the other as the *testing set*. Logically, the training set is used to train the model while the testing set is used to evaluate the performance of the model after training.
 
 ```{r, overfittingCaption}
 overfittingCaption <- "**Overfitting behaviour in loss functions.**  
 The two curves show how the loss calculated on the training set (blue) and the testing set (red) evolve as training time increases. At first both decrease showing that the model learns informative and generalizable features. At some point, training loss keeps decreasing and testing loss increases, meaning that the model is learning over-specific features on the training set and is no longer generalizable: it is overfitting."
+
 ```
 
 ```{r, overfitting, label="overfitting", fig.cap=overfittingCaption, eval=knitr::is_html_output(), out.width="70%"}
 knitr::include_graphics("figures/Encode-seqs/Overfitting.png")
+
 ```
 
 ```{=tex}
@@ -131,46 +83,64 @@ knitr::include_graphics("figures/Encode-seqs/Overfitting.png")
 \label{fig:overfitting}
 \end{figure}
 ```
--   Overfitting [@hastieElementsStatisticalLearning2009] :
+As there is a multitude of loss functions, there are many performance metrics to asses how the model is doing on the testing data, especially for classification tasks [@jiaoPerformanceMeasuresEvaluating2016]. For regression, RMSE is also widely used as a performance metric, along with the Mean Absolute Error (MAE). For classification, accuracy is most widely used performance metric. Accuracy is the ratio of the number of correctly classified examples divided by the total number of examples. Accuracy has also been adapted to specific settings like unbalanced data where the different possible output classes are not represented equally [@brodersenBalancedAccuracyIts2010]. The testing set must however stay completely separate from the training set and decisions about model settings or input features used must be made without help of the testing data. If these stringent conditions are not respected this can lead to data leakage and artificially increase performance of the model on the testing data, giving us a biased view of the model performance and generalizability [@kaufmanLeakageDataMining2011]. This leaking of testing data into the training process is a common pitfall of machine learning [@whalenNavigatingPitfallsApplying2022].
 
-    -   What is it ?
+In many cases, machine learning models have a number of parameters that guide model behavior. These parameters are chosen before training and are different from the internal parameters of the model that are optimized during training, as such they are often called *hyper-parameters*, these can be the number of levels in a decision tree, some learning rate or a stopping threshold for example. The value of these hyper-parameters is often very influential on model performance, however setting hyper-parameter values based on the model's test set performance would lead to data leakage as stated earlier. To still be able to tune hyper-parameters for optimal performance $k$*-fold cross-validation* is used [@hastieElementsStatisticalLearning2009]. In This setting, shown in Figure \@ref(fig:crossValidation), the testing set is set aside before model training and reserved for the final model performance evaluation. The training set is then further subdivided into $k$ equally-sized subsets, called folds. Each of the $k$ folds is then used to create a validation split, the fold acting as a within-split testing set and the rest of the general training set is used as the within-split training set. This results in $k$ pairs of disjoint training and testing sets, and each example of the general training data is used exactly once in a within-split testing set. An idea of the model performance can be obtained by measuring performance on the within-split testing sets and averaging the measures. This cross-validation performance can be used to inform hyper-parameter value choice without using the reserved testing set and avoiding data leakage.
 
-    -   How to detect it -\> schematic here of training and testing loss ref to Figure \@ref(fig:overfitting)
+```{r, cvcaption}
+cvCaption <- "**Example of data splits into training, testing and validation sets with 6-fold cross-validation.**  
+In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-fold testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from the [scikit-learn website](https://scikit-learn.org/stable/modules/cross_validation.html)"
+```
 
--   Cross validation, example of cross validation and schematic ?
+```{r, crossValidation, label="crossValidation", fig.cap=cvCaption, out.width="70%", eval=knitr::is_html_output()}
+knitr::include_graphics("figures/Encode-seqs/Cross-validation.png")
 
-    -   Figure to show cross validation
+```
+
+```{=tex}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/Cross-validation.png}
+\extcaption{Example of data splits into training, testing and validation sets with 6-fold cross-validation.}{In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-fold testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from the \href{https://scikit-learn.org/stable/modules/cross_validation.html}{scikit-learn website}}
+\label{fig:crossValidation}
+\end{figure}
+```
+This is the general setting in which a lot of the supervised learning approaches in computational biology reside, cross-validation was used to tune hyper-parameters for the models in Chapter \@ref(HIV-paper).
 
 ### Tests and statistical learning
 
--   Simple statistical methods have been used for a long time
--   Simplest possible method:
-    -   Statistical testing (e.g. Fisher or Student test)
+Some of the simplest models possible are derived from statistics and based on probabilities. One of the simplest ways to classify data is with a statistical test, like Fisher's exact test [@fisherInterpretationH2Contingency1922] or a $\chi^2$ test [@pearsonCriterionThatGiven1900] depending on the number of training examples. If one of the input variables is significantly related to the output then one can make a crude prediction on the output based solely on the value of one input variable. By testing several features and predicting the output from a set of significantly related input variables (e.g. through a vote), then the prediction can be a little more accurate. This approach is used as a baseline in the study presented in Chapter \@ref(HIV-paper), it is however not very sophisticated and does not have the best predictive power.
 
-    -   You use 1 feature and see if if informative of the target, or build ensembles (c.f. Chapter \@ref(HIV-paper))
+A model that fits more squarely in the process of supervised learning described above is linear regression. This regression model assumes that the output value results from a linear combination of the input features and an intercept value. The coefficients of this linear combination and the intercept are the parameters that the models optimizes during the learning process. Often the loss function used to fit this model is the RMSE mentioned above. The gradient of the RMSE w.r.t. all the coefficients of the model is easily derived and can be used for optimization. Since this model is very simple there is an exact analytical solution to find the minium gradient value [@hastieElementsStatisticalLearning2009], however in some cases a gradient descent approach can be beneficial to train this model. This model has also been adapted to binary classification, by considering that the output value results from a linear combination of input models, passed through a logistic function. The resulting model is called logistic regression, and is one of the classifiers used in Chapter \@ref(HIV-paper). Equations \@ref(eq:linReg) and \@ref(eq:logReg) show the mathematical model of linear and logistic regression respectively. In these equations, $\hat{y}^{(i)}$ represents the predicted output of the i^th^ example and $x_j^{(i)}$ the j^th^ variable of the i^th^ example input. $\theta_0$ is the intercept and $\theta_j$ the coefficient corresponding to the j^th^ input variable.
 
-    -   Relatively poor predictive power.
--   More sophisticated is linear and logistic regression, for regression and classification respectively. [@hastieElementsStatisticalLearning2009]
-    -   Model: prediction is weighted sum of numerical features + intercept.
+```{=tex}
+\begin{equation}
+  \hat{y}^{(i)} = \theta_0 + \sum_{j=1}^k \theta_j \cdot x_j^{(i)}
+  (\#eq:linReg)
+\end{equation}
+```
+```{=tex}
+\begin{equation}
+  \hat{y}^{(i)} = \frac{1}{
+    1 + e^{
+      -(\theta_0 + \sum_{j=1}^k \theta_j \cdot x_j^{(i)})
+    }
+  }
+  (\#eq:logReg)
+\end{equation}
+```
+The model in Equation \@ref(eq:linReg) outputs a continuous value used in regression, and the model in Equation \@ref(eq:logReg) outputs a continuous value bounded between 0 and 1, that we can consider a probability of being in one of the classes. With this probability it is easy to classify a given example in one of the two classes. It is easy to extend the logistic regression model to multiclass classification, by training several models and predicting the class with the maximal probability.
 
-    -   In logistic regression this sum is run through logistic function to get threshold for classification
+These linear models are simple, however can achieve good performance. They can however be prone to overfitting, this often translates by very large values for the $\theta$ coefficients. In order to counter this regularized versions of linear and logistic regression were introduced by adding the weights to the loss function in some way. By adding the coefficient values to the loss they are kept small through the optimization process, reducing the risk of overfitting. The two main regularization strategies are the ridge [@hoerlRidgeRegressionBiased1970] and Lasso [@tibshiraniRegressionShrinkageSelection1996] penalties.
 
-    -   The loss function is RMSE
+The final supervised model I will present in this section is the Naive Bayes classifier. As its name indicates, it is based on Bayes' theorem of conditional probabilities. By making a strong assumption, that all variables of the input examples are mutually independent we can derive the probability of the i^th^ input example belonging to class $C_{\alpha}$ as:
 
-    -   Gradient descent is used to optimize the cost, Also exact analytical solution in the simplest case
-
-    -   To avoid overfitting- \> regularization where the either ridge [@hoerlRidgeRegressionBiased1970] or lasso [@tibshiraniRegressionShrinkageSelection1996] .
--   Naive Bayes classifier [@hastieElementsStatisticalLearning2009]
-    -   Conditional probabilities
-
-    -   Plug in whatever distribution to compute probabilities
-
-    -   Train with maximum likelihood
-
-    -   Violation of principle (i.e. features are rarely independent)
-
-    -   Retains pretty good predictive power [@zhangOptimalityNaiveBayes; @rishEmpiricalStudyNaive] despite the assumptions being violated
--   Other simple methods like KNN are also often used.
+```{=tex}
+\begin{equation}
+p(C_{\alpha} | x^{(i)}_1, \ldots, x^{(i)}_k) = Z \cdot p(C_{\alpha}) \prod_{j=1}^k p(x^{(i)}_j | C_{\alpha})
+\end{equation}
+```
+With $Z$ a constant that can be computed from the training data. Therefore it is very easy to use this to build a classifier by computing the probabilities of an example belonging to a class for all possible classes in the training data and assign the one with the maximal probability. In practice this is a very flexible model, since any probability distribution can be used for each feature and class, and the parameters of these distributions learned, with a maximum likelihood approach for example. This model builds upon the naive assumption (hence the name): that all input variables are mutually independent. This assumption is very often violated, especially in biological sequence data where independence is not at all guaranteed by the evolutionary process. This model is however quite robust to this, and stays quite performant despite the violations of this assumption [@zhangOptimalityNaiveBayes; @rishEmpiricalStudyNaive].
 
 ### More complex methods, machine learning
 
