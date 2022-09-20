@@ -22,7 +22,7 @@ knitr::include_graphics("./figures/Sequence-Intro/DNA.png")
 ```{=tex}
 \begin{figure}[h]
 \centering
-\includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.pdf}
+\includegraphics[width=\linewidth]{./figures/Sequence-Intro/DNA.png}
 \extcaption{Double-helix structure of DNA.}{Each strand of DNA has a phosphate-sugar backbone on which are attached nucleobases. The two strands are linked by complementary bonds between the nucleobases of different strands (A bonding with T and C bonding with G).}
 \label{fig:figDNA}
 \end{figure}
