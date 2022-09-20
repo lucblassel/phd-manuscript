@@ -153,7 +153,7 @@ CARTcaption <- "**Example of a decision tree on DNA data.**
 Here we have a dataset of 4 DNA sequences $S_1, \\ldots, S_4$. Each sequence has 4 input variables $x_1,\\ldots,x_4$, and an output variable $y$ indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly."
 ```
 
-```{r, cart, label="cart", evail=knitr::is_html_output(), fig.cap=CARTcaption, out.width="70%"}
+```{r, cart, label="cart", eval=knitr::is_html_output(), fig.cap=CARTcaption, out.width="70%"}
 knitr::include_graphics("figures/Encode-seqs/cart.png")
 ```
 

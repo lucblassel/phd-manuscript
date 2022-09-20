@@ -216,7 +216,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="4.3.1" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#general-setting"><i class="fa fa-check"></i><b>4.3.1</b> General setting</a></li>
 <li class="chapter" data-level="4.3.2" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#tests-and-statistical-learning"><i class="fa fa-check"></i><b>4.3.2</b> Tests and statistical learning</a></li>
-<li class="chapter" data-level="4.3.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#more-complex-methods-machine-learning"><i class="fa fa-check"></i><b>4.3.3</b> More complex methods, machine learning</a></li>
+<li class="chapter" data-level="4.3.3" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#more-complex-methods"><i class="fa fa-check"></i><b>4.3.3</b> More complex methods</a></li>
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="learning-from-sequences-and-alignments.html"><a href="learning-from-sequences-and-alignments.html#preprocessing-the-alignment-for-machine-learning"><i class="fa fa-check"></i><b>4.4</b> Preprocessing the alignment for machine learning</a>
 <ul>
@@ -431,27 +431,22 @@ p(C_{\alpha} | x^{(i)}_1, \ldots, x^{(i)}_k) = Z \cdot p(C_{\alpha}) \prod_{j=1}
 \end{equation}\]</span>
 <p>With <span class="math inline">\(Z\)</span> a constant that can be computed from the training data. Therefore it is very easy to use this to build a classifier by computing the probabilities of an example belonging to a class for all possible classes in the training data and assign the one with the maximal probability. In practice this is a very flexible model, since any probability distribution can be used for each feature and class, and the parameters of these distributions learned, with a maximum likelihood approach for example. This model builds upon the naive assumption (hence the name): that all input variables are mutually independent. This assumption is very often violated, especially in biological sequence data where independence is not at all guaranteed by the evolutionary process. This model is however quite robust to this, and stays quite performant despite the violations of this assumption<span class="citation"><sup><a href="#ref-zhangOptimalityNaiveBayes" role="doc-biblioref">382</a>,<a href="#ref-rishEmpiricalStudyNaive" role="doc-biblioref">383</a></sup></span>.</p>
 </div>
-<div id="more-complex-methods-machine-learning" class="section level3 hasAnchor" number="4.3.3">
-<h3><span class="header-section-number">4.3.3</span> More complex methods, machine learning<a href="learning-from-sequences-and-alignments.html#more-complex-methods-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li>One of the first that was widely used and achieved good results in many problems: SVM for classification
-<ul>
-<li><p>Optimal separation hyperplane -&gt; linear separation<span class="citation"><sup><a href="#ref-vapnikEstimationDependencesBased1982" role="doc-biblioref">384</a></sup></span></p></li>
-<li><p>Can perform non-linear classification with the kernel trick in the early 90’s<span class="citation"><sup><a href="#ref-boserTrainingAlgorithmOptimal1992" role="doc-biblioref">385</a>,<a href="#ref-cortesSupportvectorNetworks1995" role="doc-biblioref">386</a></sup></span></p></li>
-<li><p>adapted to regression<span class="citation"><sup><a href="#ref-druckerSupportVectorRegression1996" role="doc-biblioref">387</a></sup></span></p></li>
-</ul></li>
-<li>A very important algorithm RF:
-<ul>
-<li><p>Introduced by Leo Breiman<span class="citation"><sup><a href="#ref-breimanRandomForests2001" role="doc-biblioref">388</a></sup></span></p></li>
-<li><p>Based on the CART decision tree method<span class="citation"><sup><a href="#ref-breimanClassificationRegressionTrees1983" role="doc-biblioref">389</a></sup></span></p></li>
-<li><p>Based on the Gini index / purity index</p></li>
-<li><p>Select random features when building a tree</p></li>
-<li><p>Make the trees vote to get prediction</p></li>
-<li><p>Good performance compared to other methods presented before<span class="citation"><sup><a href="#ref-caruanaEmpiricalComparisonSupervised2006a" role="doc-biblioref">390</a></sup></span></p></li>
-</ul></li>
-<li>More complex variants of RF with boosting where features and input examples are weighted before sampling</li>
-</ul>
-<p>Deep learning has been use more frequently and more broadly to get good results across a large number of tasks. This is also true in biological contexts, a short introduction to deep learning will be presented in Chapter <a href="learning-alignments-an-interesting-perspective.html#learning-alignments-an-interesting-perspective">7</a>.</p>
+<div id="more-complex-methods" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> More complex methods<a href="learning-from-sequences-and-alignments.html#more-complex-methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While these simple methods are quite useful in many settings, more complex methods were developed. One of the most popular methods up until recently were Support Vector Machines (SVM). This classifier was first developed in 1982<span class="citation"><sup><a href="#ref-vapnikEstimationDependencesBased1982" role="doc-biblioref">384</a></sup></span> and it functions by finding the optimal separation hyperplane between 2 classes, i.e. a linear boundary in high-dimensional space between training examples of two classes. What made it so popular is when it was associated with the so-called <em>kernel trick</em><span class="citation"><sup><a href="#ref-boserTrainingAlgorithmOptimal1992" role="doc-biblioref">385</a>,<a href="#ref-cortesSupportvectorNetworks1995" role="doc-biblioref">386</a></sup></span>. With the kernel trick, training examples that cannot be linearly separated can be cheaply projected into a higher dimensional space where linear separation is possible. This made SVMs very powerful and popular, and it was quickly adapted for regression tasks as well<span class="citation"><sup><a href="#ref-druckerSupportVectorRegression1996" role="doc-biblioref">387</a></sup></span>. The main model that will interest us in this section however is not the SVM.</p>
+<p>Random Forests are another very popular model used for both classification and regression, as it is used in Chapter <a href="HIV-paper.html#HIV-paper">6</a> we will go over it in more detail. Developed in the early 2000’s<span class="citation"><sup><a href="#ref-breimanRandomForests2001" role="doc-biblioref">388</a></sup></span>, it builds upon previous work: Classification And Regression Trees (CART)<span class="citation"><sup><a href="#ref-breimanClassificationRegressionTrees1983" role="doc-biblioref">389</a></sup></span>. CART Decision trees are very useful for both supervised learning tasks. To use CART trees, start at the root and at each node there is a condition on a single input feature. This condition decides if the considered example goes to the right child or the left child. By traversing this tree, choosing the path through the conditions at all the nodes met by the example, we can assign the example to one of the leaves, corresponding to a class or a predicted value. An example of such a tree is given in Figure <a href="learning-from-sequences-and-alignments.html#fig:cart">4.3</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cart"></span>
+<img src="figures/Encode-seqs/cart.png" alt="**Example of a decision tree on DNA data.**   
+Here we have a dataset of 4 DNA sequences $S_1, \ldots, S_4$. Each sequence has 4 input variables $x_1,\ldots,x_4$, and an output variable $y$ indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly." width="70%" />
+<p class="caption">
+Figure 4.3: <strong>Example of a decision tree on DNA data.</strong><br />
+Here we have a dataset of 4 DNA sequences <span class="math inline">\(S_1, \ldots, S_4\)</span>. Each sequence has 4 input variables <span class="math inline">\(x_1,\ldots,x_4\)</span>, and an output variable <span class="math inline">\(y\)</span> indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly.
+</p>
+</div>
+<p>It is actually quite simple to build these CART trees, the whole methods lies upon the principle of minimizing impurity <em>(or maximizing purity)</em> on a given input variable in child nodes. Impurity can be defined in many ways<span class="citation"><sup><a href="#ref-hastieElementsStatisticalLearning2009" role="doc-biblioref">350</a></sup></span>: for regression it is often the Residual Sum of Squares (RSS), for classification it is often the Gini index or an entropy measure. Regardless of the chosen metric, a high impurity denotes a heterogeneous collection of examples and a low impurity indicates a homogeneous set of examples. When building the tree, recursively from the root, we find the condition and the input variable on which the condition relies by looking at all possible splits and choosing the one that decreases impurity the most in the child nodes. This process is continued recursively until the leaves are completely pure (likely resulting in overfitting) or until a certain stopping condition is met <em>(e.g. purity threshold, maximum depth, …)</em>. To avoid overfitting, trees can also be pruned after the building phase. CART trees have the distinct advantage of being interpretable: it is easy to figure out <em>why</em> an input has been assigned to a certain class, which can be very useful in biology or medicine<span class="citation"><sup><a href="#ref-kingsfordWhatAreDecision2008" role="doc-biblioref">390</a></sup></span>.</p>
+<p>Despite these good properties, it is easy to overfit with decision trees, and small changes to the training data can induce large changes in the resulting tree<span class="citation"><sup><a href="#ref-hastieElementsStatisticalLearning2009" role="doc-biblioref">350</a>,<a href="#ref-kingsfordWhatAreDecision2008" role="doc-biblioref">390</a></sup></span>, hurting interpretability. This is why the Random Forest (RF) model was created. RFs are essentially an ensemble of decision tress built, <em>a forest</em>, from the training data. To build one of the decision trees in a random forest, the training data is first bootstrapped: a new training set is sampled with replacement from the original training data with the same number of examples. This process is called <em>bagging</em> for “boostrap aggregating”. With this procedure, each decision tree is built from slightly different training data and will therefore likely be slightly different. An additional step to ensure some variability between the trees is in the choice of the splitting condition at each tree node. Where in CART trees all input variables are considered to find the optimal split, in RF trees, only a random subset of the input variables are considered at each node. This results in a set of decision trees that are all trained from slightly different data, with slightly different features at each node but that all have the same task on the training data. We can get a prediction from all these trees, by taking the majority predicted class for classification trees, or the average of predictions for regression trees.</p>
+<p>All these measures to reduce the variance linked to decision trees, and to yield more generalizable models, make random forests very popular. They are often very competitive and often have better performance than the models presented above<span class="citation"><sup><a href="#ref-caruanaEmpiricalComparisonSupervised2006a" role="doc-biblioref">391</a>,<a href="#ref-yangReviewEnsembleMethods2010" role="doc-biblioref">392</a></sup></span>. Furthermore, by only considering a subset of features at each tree node, RF often deals better with high-dimensional data than other methods<span class="citation"><sup><a href="#ref-yangReviewEnsembleMethods2010" role="doc-biblioref">392</a></sup></span>. Further refinements to the algorithm such as boosting, where misclassified examples are more likely to be selected in the bagging training sets have been very useful as well.</p>
+<p>Deep learning has been use more frequently and more broadly to get good results across a large number of tasks. This is also true in biological contexts, however Chapter <a href="HIV-paper.html#HIV-paper">6</a> does not make use of deep learning methods so they will no be discussed here. A short introduction to deep learning will however be presented in Chapter <a href="learning-alignments-an-interesting-perspective.html#learning-alignments-an-interesting-perspective">7</a>.</p>
 </div>
 </div>
 <div id="preprocessing-the-alignment-for-machine-learning" class="section level2 hasAnchor" number="4.4">
@@ -461,23 +456,23 @@ p(C_{\alpha} | x^{(i)}_1, \ldots, x^{(i)}_k) = Z \cdot p(C_{\alpha}) \prod_{j=1}
 <p>Some methods do not use the info of alignment in the embedding directly but use in the training process.</p>
 <div id="general-purpose-embeddings" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> General purpose embeddings<a href="learning-from-sequences-and-alignments.html#general-purpose-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>review<span class="citation"><sup><a href="#ref-potdarComparativeStudyCategorical2017" role="doc-biblioref">391</a></sup></span></p>
+<p>review<span class="citation"><sup><a href="#ref-potdarComparativeStudyCategorical2017" role="doc-biblioref">393</a></sup></span></p>
 <ul>
 <li><p>Simple labeling / ordinal coding, i.e. assigning an integer to each character (A=1, C=2, G=3, T=4)</p>
 <ul>
 <li>pb -&gt; assigning artificial order to a purely categorical variable, used in<span class="citation"><sup><a href="#ref-steinerDrugResistancePrediction2020a" role="doc-biblioref">328</a></sup></span></li>
 </ul></li>
-<li><p>BItwise labeling -&gt; encode each character with <span class="math inline">\(n\)</span> bits, for nucleotides 2bits if no gaps (A=00, C=01, G=10, T=11)<span class="citation"><sup><a href="#ref-dufresneKmerFileFormat2022" role="doc-biblioref">392</a>,<a href="#ref-wrightUsingDECIPHERV22016" role="doc-biblioref">393</a></sup></span> for AAs 5 bits necessary explored in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">394</a></sup></span></p>
+<li><p>BItwise labeling -&gt; encode each character with <span class="math inline">\(n\)</span> bits, for nucleotides 2bits if no gaps (A=00, C=01, G=10, T=11)<span class="citation"><sup><a href="#ref-dufresneKmerFileFormat2022" role="doc-biblioref">394</a>,<a href="#ref-wrightUsingDECIPHERV22016" role="doc-biblioref">395</a></sup></span> for AAs 5 bits necessary explored in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">396</a></sup></span></p>
 <ul>
 <li><p>still a problem of order, for aas used in hashing and bloom filters …</p></li>
 <li><p>Often used for hashing/indexing a sequence or compressing, but is also a used scheme in categorical variable encoding in machine learning.</p></li>
 </ul></li>
-<li><p>One-Hot encoding, widely used: a variable with <span class="math inline">\(d\)</span> levels (for DNA <span class="math inline">\(d=4\)</span>) is transformed to a length <span class="math inline">\(d\)</span> sparse binary vector, when the variable is equal to the <span class="math inline">\(i^{th}\)</span> level then the resulting vector has a 1 set in the <span class="math inline">\(i^{th}\)</span> position. (also called orthonormal<span class="citation"><sup><a href="#ref-singhEvolutionaryBasedOptimal2018" role="doc-biblioref">395</a></sup></span>)</p>
+<li><p>One-Hot encoding, widely used: a variable with <span class="math inline">\(d\)</span> levels (for DNA <span class="math inline">\(d=4\)</span>) is transformed to a length <span class="math inline">\(d\)</span> sparse binary vector, when the variable is equal to the <span class="math inline">\(i^{th}\)</span> level then the resulting vector has a 1 set in the <span class="math inline">\(i^{th}\)</span> position. (also called orthonormal<span class="citation"><sup><a href="#ref-singhEvolutionaryBasedOptimal2018" role="doc-biblioref">397</a></sup></span>)</p>
 <ul>
-<li><p>Used in Chapter <a href="HIV-paper.html#HIV-paper">6</a> and other papers<span class="citation"><sup><a href="#ref-budachPyssterClassificationBiological2018" role="doc-biblioref">396</a></sup></span>,</p></li>
+<li><p>Used in Chapter <a href="HIV-paper.html#HIV-paper">6</a> and other papers<span class="citation"><sup><a href="#ref-budachPyssterClassificationBiological2018" role="doc-biblioref">398</a></sup></span>,</p></li>
 <li><p>one of the problems is the “curse of dimensionality” since the for a sequence of length <span class="math inline">\(n\)</span> we get <span class="math inline">\(n\times d\)</span> features, which can be quite large.</p></li>
-<li><p>Performance between OH and Ordinal can be quite similar<span class="citation"><sup><a href="#ref-choongEvaluationConvolutionaryNeural2017" role="doc-biblioref">397</a></sup></span> but easily interpretable (important in Bio)</p></li>
-<li><p>Has been used for encoding protein sequences as early as 1988<span class="citation"><sup><a href="#ref-qianPredictingSecondaryStructure1988" role="doc-biblioref">398</a></sup></span></p></li>
+<li><p>Performance between OH and Ordinal can be quite similar<span class="citation"><sup><a href="#ref-choongEvaluationConvolutionaryNeural2017" role="doc-biblioref">399</a></sup></span> but easily interpretable (important in Bio)</p></li>
+<li><p>Has been used for encoding protein sequences as early as 1988<span class="citation"><sup><a href="#ref-qianPredictingSecondaryStructure1988" role="doc-biblioref">400</a></sup></span></p></li>
 </ul></li>
 </ul>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:generalEncoding"></span>
@@ -485,52 +480,52 @@ p(C_{\alpha} | x^{(i)}_1, \ldots, x^{(i)}_k) = Z \cdot p(C_{\alpha}) \prod_{j=1}
 TODO
 " width="70%" />
 <p class="caption">
-Figure 4.3: <strong>Example of 3 general categorical encoding schemes</strong><br />
+Figure 4.4: <strong>Example of 3 general categorical encoding schemes</strong><br />
 TODO
 </p>
 </div>
 <ul>
-<li>Many general purpose categorical encodings, library in Python<span class="citation"><sup><a href="#ref-mcginnisScikitLearnContribCategoricalEncodingRelease2018" role="doc-biblioref">399</a></sup></span></li>
+<li>Many general purpose categorical encodings, library in Python<span class="citation"><sup><a href="#ref-mcginnisScikitLearnContribCategoricalEncodingRelease2018" role="doc-biblioref">401</a></sup></span></li>
 </ul>
 </div>
 <div id="biological-sequence-specific-embeddings" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Biological sequence-specific embeddings<a href="learning-from-sequences-and-alignments.html#biological-sequence-specific-embeddings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>These embeddings were inspired by physico-chemical properties, many encodings in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">394</a></sup></span>:</p>
+<p>These embeddings were inspired by physico-chemical properties, many encodings in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">396</a></sup></span>:</p>
 <ul>
-<li><p>AAIndex embedding, based on the the AAIndex database<span class="citation"><sup><a href="#ref-kawashima2008" role="doc-biblioref">400</a></sup></span>,</p>
+<li><p>AAIndex embedding, based on the the AAIndex database<span class="citation"><sup><a href="#ref-kawashima2008" role="doc-biblioref">402</a></sup></span>,</p>
 <ul>
 <li><p>each amino acid has a number real-valued physico-chemical properties so you can select a subset of them.</p></li>
-<li><p>A subset of properties identified as informative<span class="citation"><sup><a href="#ref-liPredictionProteinStructural2008" role="doc-biblioref">401</a></sup></span></p></li>
-<li><p>Available in the iFeature python package<span class="citation"><sup><a href="#ref-chenIFeaturePythonPackage2018" role="doc-biblioref">402</a></sup></span></p></li>
-<li><p>Also, combine features from AAIndex with PCA to get ensemble features and use top components<span class="citation"><sup><a href="#ref-nanniNewEncodingTechnique2011" role="doc-biblioref">403</a></sup></span></p></li>
+<li><p>A subset of properties identified as informative<span class="citation"><sup><a href="#ref-liPredictionProteinStructural2008" role="doc-biblioref">403</a></sup></span></p></li>
+<li><p>Available in the iFeature python package<span class="citation"><sup><a href="#ref-chenIFeaturePythonPackage2018" role="doc-biblioref">404</a></sup></span></p></li>
+<li><p>Also, combine features from AAIndex with PCA to get ensemble features and use top components<span class="citation"><sup><a href="#ref-nanniNewEncodingTechnique2011" role="doc-biblioref">405</a></sup></span></p></li>
 </ul></li>
 <li><p>Groups:</p>
 <ul>
-<li><p>Based on the Venn diagram defined by Taylor<span class="citation"><sup><a href="#ref-taylorClassificationAminoAcid1986" role="doc-biblioref">404</a></sup></span>, grouping AAs by 9 properties (hydrophobic, polar, small, …)</p></li>
+<li><p>Based on the Venn diagram defined by Taylor<span class="citation"><sup><a href="#ref-taylorClassificationAminoAcid1986" role="doc-biblioref">406</a></sup></span>, grouping AAs by 9 properties (hydrophobic, polar, small, …)</p></li>
 <li><p>We can get a 9-D vector for each residue</p></li>
-<li><p>An encoding based on that was used as early as 1987 to predict protein secondary structure<span class="citation"><sup><a href="#ref-zvelebilPredictionProteinSecondary1987" role="doc-biblioref">405</a></sup></span></p></li>
-<li><p>Later 5 more groups defined<span class="citation"><sup><a href="#ref-kremerMethodSystemComputer2009" role="doc-biblioref">406</a></sup></span></p></li>
+<li><p>An encoding based on that was used as early as 1987 to predict protein secondary structure<span class="citation"><sup><a href="#ref-zvelebilPredictionProteinSecondary1987" role="doc-biblioref">407</a></sup></span></p></li>
+<li><p>Later 5 more groups defined<span class="citation"><sup><a href="#ref-kremerMethodSystemComputer2009" role="doc-biblioref">408</a></sup></span></p></li>
 </ul></li>
-<li><p>BLOMAP<span class="citation"><sup><a href="#ref-maetschkeBlomapEncodingAmino2005" role="doc-biblioref">407</a></sup></span>:</p>
+<li><p>BLOMAP<span class="citation"><sup><a href="#ref-maetschkeBlomapEncodingAmino2005" role="doc-biblioref">409</a></sup></span>:</p>
 <ul>
 <li><p>Non-linear projection of the BLOSUM62 substitution matrix to encode an amino acid in 5 dimensions</p></li>
-<li><p>Used to predict cleavage sites of HIV-1 protease<span class="citation"><sup><a href="#ref-singhEvolutionaryBasedOptimal2018" role="doc-biblioref">395</a></sup></span></p></li>
+<li><p>Used to predict cleavage sites of HIV-1 protease<span class="citation"><sup><a href="#ref-singhEvolutionaryBasedOptimal2018" role="doc-biblioref">397</a></sup></span></p></li>
 </ul></li>
 <li><p>Others:</p>
 <ul>
 <li><p>frequencies of amino acids -&gt; very coarse (but low dimensional)</p></li>
-<li><p><span class="math inline">\(k\)</span>-mer frequencies, often reffered to as <span class="math inline">\(n\)</span>-gram encoding<span class="citation"><sup><a href="#ref-sahaNovelApproachFind2019" role="doc-biblioref">408</a></sup></span>, often <span class="math inline">\(n=2\)</span> since as <span class="math inline">\(k\)</span>/<span class="math inline">\(n\)</span> grow the dimensions grow exponentially -&gt; with 20 AAs and <span class="math inline">\(20^n\)</span> dimensions per sequence.</p></li>
-<li><p>OETMAP, extension of BLOMAP<span class="citation"><sup><a href="#ref-gokNewFeatureEncoding2013" role="doc-biblioref">409</a></sup></span></p></li>
-<li><p>Codon graph encoding proposed in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">394</a></sup></span>, where an AA is represented by a directed graph of all the codons that make up the AA. The 4x4 adjacency matrix is converted into a length 16 vector representing a single AA.</p></li>
+<li><p><span class="math inline">\(k\)</span>-mer frequencies, often reffered to as <span class="math inline">\(n\)</span>-gram encoding<span class="citation"><sup><a href="#ref-sahaNovelApproachFind2019" role="doc-biblioref">410</a></sup></span>, often <span class="math inline">\(n=2\)</span> since as <span class="math inline">\(k\)</span>/<span class="math inline">\(n\)</span> grow the dimensions grow exponentially -&gt; with 20 AAs and <span class="math inline">\(20^n\)</span> dimensions per sequence.</p></li>
+<li><p>OETMAP, extension of BLOMAP<span class="citation"><sup><a href="#ref-gokNewFeatureEncoding2013" role="doc-biblioref">411</a></sup></span></p></li>
+<li><p>Codon graph encoding proposed in<span class="citation"><sup><a href="#ref-zamaniAminoAcidEncoding2011" role="doc-biblioref">396</a></sup></span>, where an AA is represented by a directed graph of all the codons that make up the AA. The 4x4 adjacency matrix is converted into a length 16 vector representing a single AA.</p></li>
 </ul></li>
 </ul>
 <p>Other weirder embeddings: chaos game theory used to embed sequences:</p>
 <ul>
-<li><p>Applications in BIoinfo<span class="citation"><sup><a href="#ref-lochelChaosGameRepresentation2021" role="doc-biblioref">410</a></sup></span></p></li>
+<li><p>Applications in BIoinfo<span class="citation"><sup><a href="#ref-lochelChaosGameRepresentation2021" role="doc-biblioref">412</a></sup></span></p></li>
 <li><p>Applied for phylogenetics:</p>
 <ul>
-<li><p>classify SARS-CoV 2 sequences<span class="citation"><sup><a href="#ref-cartesAccurateFastClade2022" role="doc-biblioref">411</a></sup></span> w/ DL</p></li>
-<li><p><span class="citation"><sup><a href="#ref-niApplyingFrequencyChaos2021" role="doc-biblioref">412</a></sup></span></p></li>
+<li><p>classify SARS-CoV 2 sequences<span class="citation"><sup><a href="#ref-cartesAccurateFastClade2022" role="doc-biblioref">413</a></sup></span> w/ DL</p></li>
+<li><p><span class="citation"><sup><a href="#ref-niApplyingFrequencyChaos2021" role="doc-biblioref">414</a></sup></span></p></li>
 </ul></li>
 <li><p>Predict AMR<span class="citation"><sup><a href="#ref-renPredictionAntimicrobialResistance2022" role="doc-biblioref">342</a></sup></span></p></li>
 </ul>
@@ -761,74 +756,80 @@ TODO
 <div id="ref-breimanClassificationRegressionTrees1983" class="csl-entry">
 <div class="csl-left-margin">389. </div><div class="csl-right-inline">Breiman, L., Friedman, J. H., Olshen, R. A. &amp; Stone, C. J. <em>Classification and regression trees</em>. (1983).</div>
 </div>
+<div id="ref-kingsfordWhatAreDecision2008" class="csl-entry">
+<div class="csl-left-margin">390. </div><div class="csl-right-inline">Kingsford, C. &amp; Salzberg, S. L. <a href="https://doi.org/10.1038/nbt0908-1011">What are decision trees?</a> <em>Nature Biotechnology</em> <strong>26</strong>, 1011–1013 (2008).</div>
+</div>
 <div id="ref-caruanaEmpiricalComparisonSupervised2006a" class="csl-entry">
-<div class="csl-left-margin">390. </div><div class="csl-right-inline">Caruana, R. &amp; Niculescu-Mizil, A. An empirical comparison of supervised learning algorithms. in 161168 (Association for Computing Machinery, 2006). doi:<a href="https://doi.org/10.1145/1143844.1143865">10.1145/1143844.1143865</a>.</div>
+<div class="csl-left-margin">391. </div><div class="csl-right-inline">Caruana, R. &amp; Niculescu-Mizil, A. An empirical comparison of supervised learning algorithms. in 161168 (Association for Computing Machinery, 2006). doi:<a href="https://doi.org/10.1145/1143844.1143865">10.1145/1143844.1143865</a>.</div>
+</div>
+<div id="ref-yangReviewEnsembleMethods2010" class="csl-entry">
+<div class="csl-left-margin">392. </div><div class="csl-right-inline">Yang, P., Hwa Yang, Y., B. Zhou, B. &amp; Y. Zomaya, A. A review of ensemble methods in bioinformatics. <em>Current Bioinformatics</em> <strong>5</strong>, 296–308 (2010).</div>
 </div>
 <div id="ref-potdarComparativeStudyCategorical2017" class="csl-entry">
-<div class="csl-left-margin">391. </div><div class="csl-right-inline">Potdar, K., S., T. &amp; D., C. <a href="https://doi.org/10.5120/ijca2017915495">A Comparative Study of Categorical Variable Encoding Techniques for Neural Network Classifiers</a>. <em>International Journal of Computer Applications</em> <strong>175</strong>, 7–9 (2017).</div>
+<div class="csl-left-margin">393. </div><div class="csl-right-inline">Potdar, K., S., T. &amp; D., C. <a href="https://doi.org/10.5120/ijca2017915495">A Comparative Study of Categorical Variable Encoding Techniques for Neural Network Classifiers</a>. <em>International Journal of Computer Applications</em> <strong>175</strong>, 7–9 (2017).</div>
 </div>
 <div id="ref-dufresneKmerFileFormat2022" class="csl-entry">
-<div class="csl-left-margin">392. </div><div class="csl-right-inline">Dufresne, Y. <em>et al.</em> The k-mer file format: A standardized and compact disk representation of sets of k-mers. <em>Bioinformatics</em> btac528 (2022) doi:<a href="https://doi.org/10.1093/bioinformatics/btac528">10.1093/bioinformatics/btac528</a>.</div>
+<div class="csl-left-margin">394. </div><div class="csl-right-inline">Dufresne, Y. <em>et al.</em> The k-mer file format: A standardized and compact disk representation of sets of k-mers. <em>Bioinformatics</em> btac528 (2022) doi:<a href="https://doi.org/10.1093/bioinformatics/btac528">10.1093/bioinformatics/btac528</a>.</div>
 </div>
 <div id="ref-wrightUsingDECIPHERV22016" class="csl-entry">
-<div class="csl-left-margin">393. </div><div class="csl-right-inline">Wright, E. S. <a href="https://doi.org/10.32614/RJ-2016-025">Using DECIPHER v2.0 to analyze big biological sequence data in r</a>. <em>The R Journal</em> <strong>8</strong>, 352–359 (2016).</div>
+<div class="csl-left-margin">395. </div><div class="csl-right-inline">Wright, E. S. <a href="https://doi.org/10.32614/RJ-2016-025">Using DECIPHER v2.0 to analyze big biological sequence data in r</a>. <em>The R Journal</em> <strong>8</strong>, 352–359 (2016).</div>
 </div>
 <div id="ref-zamaniAminoAcidEncoding2011" class="csl-entry">
-<div class="csl-left-margin">394. </div><div class="csl-right-inline">Zamani, M. &amp; Kremer, S. C. 2011 IEEE international conference on bioinformatics and biomedicine workshops (BIBMW). in 327–333 (2011). doi:<a href="https://doi.org/10.1109/BIBMW.2011.6112394">10.1109/BIBMW.2011.6112394</a>.</div>
+<div class="csl-left-margin">396. </div><div class="csl-right-inline">Zamani, M. &amp; Kremer, S. C. 2011 IEEE international conference on bioinformatics and biomedicine workshops (BIBMW). in 327–333 (2011). doi:<a href="https://doi.org/10.1109/BIBMW.2011.6112394">10.1109/BIBMW.2011.6112394</a>.</div>
 </div>
 <div id="ref-singhEvolutionaryBasedOptimal2018" class="csl-entry">
-<div class="csl-left-margin">395. </div><div class="csl-right-inline">Singh, D., Singh, P. &amp; Sisodia, D. S. <a href="https://doi.org/10.1016/j.eswa.2018.05.003">Evolutionary based optimal ensemble classifiers for HIV-1 protease cleavage sites prediction</a>. <em>Expert Systems with Applications</em> <strong>109</strong>, 86–99 (2018).</div>
+<div class="csl-left-margin">397. </div><div class="csl-right-inline">Singh, D., Singh, P. &amp; Sisodia, D. S. <a href="https://doi.org/10.1016/j.eswa.2018.05.003">Evolutionary based optimal ensemble classifiers for HIV-1 protease cleavage sites prediction</a>. <em>Expert Systems with Applications</em> <strong>109</strong>, 86–99 (2018).</div>
 </div>
 <div id="ref-budachPyssterClassificationBiological2018" class="csl-entry">
-<div class="csl-left-margin">396. </div><div class="csl-right-inline">Budach, S. &amp; Marsico, A. <a href="https://doi.org/10.1093/bioinformatics/bty222">Pysster: Classification of biological sequences by learning sequence and structure motifs with convolutional neural networks</a>. <em>Bioinformatics</em> <strong>34</strong>, 3035–3037 (2018).</div>
+<div class="csl-left-margin">398. </div><div class="csl-right-inline">Budach, S. &amp; Marsico, A. <a href="https://doi.org/10.1093/bioinformatics/bty222">Pysster: Classification of biological sequences by learning sequence and structure motifs with convolutional neural networks</a>. <em>Bioinformatics</em> <strong>34</strong>, 3035–3037 (2018).</div>
 </div>
 <div id="ref-choongEvaluationConvolutionaryNeural2017" class="csl-entry">
-<div class="csl-left-margin">397. </div><div class="csl-right-inline">Choong, A. C. H. &amp; Lee, N. K. 2017 international conference on computer and drone applications (IConDA). in 60–65 (2017). doi:<a href="https://doi.org/10.1109/ICONDA.2017.8270400">10.1109/ICONDA.2017.8270400</a>.</div>
+<div class="csl-left-margin">399. </div><div class="csl-right-inline">Choong, A. C. H. &amp; Lee, N. K. 2017 international conference on computer and drone applications (IConDA). in 60–65 (2017). doi:<a href="https://doi.org/10.1109/ICONDA.2017.8270400">10.1109/ICONDA.2017.8270400</a>.</div>
 </div>
 <div id="ref-qianPredictingSecondaryStructure1988" class="csl-entry">
-<div class="csl-left-margin">398. </div><div class="csl-right-inline">Qian, N. &amp; Sejnowski, T. J. <a href="https://doi.org/10.1016/0022-2836(88)90564-5">Predicting the secondary structure of globular proteins using neural network models</a>. <em>Journal of Molecular Biology</em> <strong>202</strong>, 865–884 (1988).</div>
+<div class="csl-left-margin">400. </div><div class="csl-right-inline">Qian, N. &amp; Sejnowski, T. J. <a href="https://doi.org/10.1016/0022-2836(88)90564-5">Predicting the secondary structure of globular proteins using neural network models</a>. <em>Journal of Molecular Biology</em> <strong>202</strong>, 865–884 (1988).</div>
 </div>
 <div id="ref-mcginnisScikitLearnContribCategoricalEncodingRelease2018" class="csl-entry">
-<div class="csl-left-margin">399. </div><div class="csl-right-inline">McGinnis, W. <em>et al.</em> Scikit-<span>Learn</span>-<span>Contrib</span>/<span>Categorical</span>-<span>Encoding</span>: <span>Release For Zenodo</span>. (2018) doi:<a href="https://doi.org/10.5281/ZENODO.1157110">10.5281/ZENODO.1157110</a>.</div>
+<div class="csl-left-margin">401. </div><div class="csl-right-inline">McGinnis, W. <em>et al.</em> Scikit-<span>Learn</span>-<span>Contrib</span>/<span>Categorical</span>-<span>Encoding</span>: <span>Release For Zenodo</span>. (2018) doi:<a href="https://doi.org/10.5281/ZENODO.1157110">10.5281/ZENODO.1157110</a>.</div>
 </div>
 <div id="ref-kawashima2008" class="csl-entry">
-<div class="csl-left-margin">400. </div><div class="csl-right-inline">Kawashima, S. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkm998">AAindex: amino acid index database, progress report 2008</a>. <em>Nucleic Acids Research</em> <strong>36</strong>, D202–D205 (2008).</div>
+<div class="csl-left-margin">402. </div><div class="csl-right-inline">Kawashima, S. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkm998">AAindex: amino acid index database, progress report 2008</a>. <em>Nucleic Acids Research</em> <strong>36</strong>, D202–D205 (2008).</div>
 </div>
 <div id="ref-liPredictionProteinStructural2008" class="csl-entry">
-<div class="csl-left-margin">401. </div><div class="csl-right-inline">Li, Z.-C., Zhou, X.-B., Dai, Z. &amp; Zou, X.-Y. <a href="https://doi.org/10.1007/s00726-008-0170-2">Prediction of protein structural classes by Chou<span>’</span>s pseudo amino acid composition: approached using continuous wavelet transform and principal component analysis</a>. <em>Amino Acids</em> <strong>37</strong>, 415 (2008).</div>
+<div class="csl-left-margin">403. </div><div class="csl-right-inline">Li, Z.-C., Zhou, X.-B., Dai, Z. &amp; Zou, X.-Y. <a href="https://doi.org/10.1007/s00726-008-0170-2">Prediction of protein structural classes by Chou<span>’</span>s pseudo amino acid composition: approached using continuous wavelet transform and principal component analysis</a>. <em>Amino Acids</em> <strong>37</strong>, 415 (2008).</div>
 </div>
 <div id="ref-chenIFeaturePythonPackage2018" class="csl-entry">
-<div class="csl-left-margin">402. </div><div class="csl-right-inline">Chen, Z. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/bty140">iFeature: A python package and web server for features extraction and selection from protein and peptide sequences</a>. <em>Bioinformatics</em> <strong>34</strong>, 2499–2502 (2018).</div>
+<div class="csl-left-margin">404. </div><div class="csl-right-inline">Chen, Z. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/bty140">iFeature: A python package and web server for features extraction and selection from protein and peptide sequences</a>. <em>Bioinformatics</em> <strong>34</strong>, 2499–2502 (2018).</div>
 </div>
 <div id="ref-nanniNewEncodingTechnique2011" class="csl-entry">
-<div class="csl-left-margin">403. </div><div class="csl-right-inline">Nanni, L. &amp; Lumini, A. <a href="https://doi.org/10.1016/j.eswa.2010.09.005">A new encoding technique for peptide classification</a>. <em>Expert Systems with Applications</em> <strong>38</strong>, 3185–3191 (2011).</div>
+<div class="csl-left-margin">405. </div><div class="csl-right-inline">Nanni, L. &amp; Lumini, A. <a href="https://doi.org/10.1016/j.eswa.2010.09.005">A new encoding technique for peptide classification</a>. <em>Expert Systems with Applications</em> <strong>38</strong>, 3185–3191 (2011).</div>
 </div>
 <div id="ref-taylorClassificationAminoAcid1986" class="csl-entry">
-<div class="csl-left-margin">404. </div><div class="csl-right-inline">Taylor, W. R. <a href="https://doi.org/10.1016/S0022-5193(86)80075-3">The classification of amino acid conservation</a>. <em>Journal of Theoretical Biology</em> <strong>119</strong>, 205–218 (1986).</div>
+<div class="csl-left-margin">406. </div><div class="csl-right-inline">Taylor, W. R. <a href="https://doi.org/10.1016/S0022-5193(86)80075-3">The classification of amino acid conservation</a>. <em>Journal of Theoretical Biology</em> <strong>119</strong>, 205–218 (1986).</div>
 </div>
 <div id="ref-zvelebilPredictionProteinSecondary1987" class="csl-entry">
-<div class="csl-left-margin">405. </div><div class="csl-right-inline">Zvelebil, M. J., Barton, G. J., Taylor, W. R. &amp; Sternberg, M. J. E. <a href="https://doi.org/10.1016/0022-2836(87)90501-8">Prediction of protein secondary structure and active sites using the alignment of homologous sequences</a>. <em>Journal of Molecular Biology</em> <strong>195</strong>, 957–961 (1987).</div>
+<div class="csl-left-margin">407. </div><div class="csl-right-inline">Zvelebil, M. J., Barton, G. J., Taylor, W. R. &amp; Sternberg, M. J. E. <a href="https://doi.org/10.1016/0022-2836(87)90501-8">Prediction of protein secondary structure and active sites using the alignment of homologous sequences</a>. <em>Journal of Molecular Biology</em> <strong>195</strong>, 957–961 (1987).</div>
 </div>
 <div id="ref-kremerMethodSystemComputer2009" class="csl-entry">
-<div class="csl-left-margin">406. </div><div class="csl-right-inline">Kremer, S. &amp; Lac, H. <a href="https://patents.google.com/patent/US20090024375A1/en">Method, system and computer program product for levinthal process induction from known structure using machine learning</a>. (2009).</div>
+<div class="csl-left-margin">408. </div><div class="csl-right-inline">Kremer, S. &amp; Lac, H. <a href="https://patents.google.com/patent/US20090024375A1/en">Method, system and computer program product for levinthal process induction from known structure using machine learning</a>. (2009).</div>
 </div>
 <div id="ref-maetschkeBlomapEncodingAmino2005" class="csl-entry">
-<div class="csl-left-margin">407. </div><div class="csl-right-inline">Maetschke, S., Towsey, M. &amp; Bodén, M. <a href="https://doi.org/10.1142/9781860947322_0014">Blomap: An encoding of amino acids which improves signal peptide cleavage site prediction</a>. in vols Volume 1 141–150 (PUBLISHED BY IMPERIAL COLLEGE PRESS AND DISTRIBUTED BY WORLD SCIENTIFIC PUBLISHING CO., 2005).</div>
+<div class="csl-left-margin">409. </div><div class="csl-right-inline">Maetschke, S., Towsey, M. &amp; Bodén, M. <a href="https://doi.org/10.1142/9781860947322_0014">Blomap: An encoding of amino acids which improves signal peptide cleavage site prediction</a>. in vols Volume 1 141–150 (PUBLISHED BY IMPERIAL COLLEGE PRESS AND DISTRIBUTED BY WORLD SCIENTIFIC PUBLISHING CO., 2005).</div>
 </div>
 <div id="ref-sahaNovelApproachFind2019" class="csl-entry">
-<div class="csl-left-margin">408. </div><div class="csl-right-inline">Saha, S. &amp; Bhattacharya, T. A Novel Approach to Find the Saturation Point of n-Gram Encoding Method for Protein Sequence Classification Involving Data Mining. in (eds. Bhattacharyya, S., Hassanien, A. E., Gupta, D., Khanna, A. &amp; Pan, I.) 101–108 (Springer, 2019). doi:<a href="https://doi.org/10.1007/978-981-13-2354-6_12">10.1007/978-981-13-2354-6_12</a>.</div>
+<div class="csl-left-margin">410. </div><div class="csl-right-inline">Saha, S. &amp; Bhattacharya, T. A Novel Approach to Find the Saturation Point of n-Gram Encoding Method for Protein Sequence Classification Involving Data Mining. in (eds. Bhattacharyya, S., Hassanien, A. E., Gupta, D., Khanna, A. &amp; Pan, I.) 101–108 (Springer, 2019). doi:<a href="https://doi.org/10.1007/978-981-13-2354-6_12">10.1007/978-981-13-2354-6_12</a>.</div>
 </div>
 <div id="ref-gokNewFeatureEncoding2013" class="csl-entry">
-<div class="csl-left-margin">409. </div><div class="csl-right-inline">Gök, M. &amp; Özcerit, A. T. <a href="https://doi.org/10.1007/s00521-012-0967-5">A new feature encoding scheme for HIV-1 protease cleavage site prediction</a>. <em>Neural Computing and Applications</em> <strong>22</strong>, 1757–1761 (2013).</div>
+<div class="csl-left-margin">411. </div><div class="csl-right-inline">Gök, M. &amp; Özcerit, A. T. <a href="https://doi.org/10.1007/s00521-012-0967-5">A new feature encoding scheme for HIV-1 protease cleavage site prediction</a>. <em>Neural Computing and Applications</em> <strong>22</strong>, 1757–1761 (2013).</div>
 </div>
 <div id="ref-lochelChaosGameRepresentation2021" class="csl-entry">
-<div class="csl-left-margin">410. </div><div class="csl-right-inline">Löchel, H. F. &amp; Heider, D. <a href="https://doi.org/10.1016/j.csbj.2021.11.008">Chaos game representation and its applications in bioinformatics</a>. <em>Computational and Structural Biotechnology Journal</em> <strong>19</strong>, 6263–6271 (2021).</div>
+<div class="csl-left-margin">412. </div><div class="csl-right-inline">Löchel, H. F. &amp; Heider, D. <a href="https://doi.org/10.1016/j.csbj.2021.11.008">Chaos game representation and its applications in bioinformatics</a>. <em>Computational and Structural Biotechnology Journal</em> <strong>19</strong>, 6263–6271 (2021).</div>
 </div>
 <div id="ref-cartesAccurateFastClade2022" class="csl-entry">
-<div class="csl-left-margin">411. </div><div class="csl-right-inline">Cartes, J. A., Anand, S., Ciccolella, S., Bonizzoni, P. &amp; Vedova, G. D. Accurate and Fast Clade Assignment via Deep Learning and Frequency Chaos Game Representation. doi:<a href="https://doi.org/10.1101/2022.06.13.495912">10.1101/2022.06.13.495912</a>.</div>
+<div class="csl-left-margin">413. </div><div class="csl-right-inline">Cartes, J. A., Anand, S., Ciccolella, S., Bonizzoni, P. &amp; Vedova, G. D. Accurate and Fast Clade Assignment via Deep Learning and Frequency Chaos Game Representation. doi:<a href="https://doi.org/10.1101/2022.06.13.495912">10.1101/2022.06.13.495912</a>.</div>
 </div>
 <div id="ref-niApplyingFrequencyChaos2021" class="csl-entry">
-<div class="csl-left-margin">412. </div><div class="csl-right-inline">Ni, H., Mu, H. &amp; Qi, D. <a href="https://doi.org/10.1016/j.jmgm.2021.107942">Applying frequency chaos game representation with perceptual image hashing to gene sequence phylogenetic analyses</a>. <em>Journal of Molecular Graphics and Modelling</em> <strong>107</strong>, 107942 (2021).</div>
+<div class="csl-left-margin">414. </div><div class="csl-right-inline">Ni, H., Mu, H. &amp; Qi, D. <a href="https://doi.org/10.1016/j.jmgm.2021.107942">Applying frequency chaos game representation with perceptual image hashing to gene sequence phylogenetic analyses</a>. <em>Journal of Molecular Graphics and Modelling</em> <strong>107</strong>, 107942 (2021).</div>
 </div>
 </div>
             </section>
