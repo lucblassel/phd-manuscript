@@ -142,29 +142,36 @@ p(C_{\alpha} | x^{(i)}_1, \ldots, x^{(i)}_k) = Z \cdot p(C_{\alpha}) \prod_{j=1}
 ```
 With $Z$ a constant that can be computed from the training data. Therefore it is very easy to use this to build a classifier by computing the probabilities of an example belonging to a class for all possible classes in the training data and assign the one with the maximal probability. In practice this is a very flexible model, since any probability distribution can be used for each feature and class, and the parameters of these distributions learned, with a maximum likelihood approach for example. This model builds upon the naive assumption (hence the name): that all input variables are mutually independent. This assumption is very often violated, especially in biological sequence data where independence is not at all guaranteed by the evolutionary process. This model is however quite robust to this, and stays quite performant despite the violations of this assumption [@zhangOptimalityNaiveBayes; @rishEmpiricalStudyNaive].
 
-### More complex methods, machine learning
+### More complex methods
 
--   One of the first that was widely used and achieved good results in many problems: SVM for classification
-    -   Optimal separation hyperplane -\> linear separation [@vapnikEstimationDependencesBased1982]
+While these simple methods are quite useful in many settings, more complex methods were developed. One of the most popular methods up until recently were Support Vector Machines (SVM). This classifier was first developed in 1982 [@vapnikEstimationDependencesBased1982] and it functions by finding the optimal separation hyperplane between 2 classes, i.e. a linear boundary in high-dimensional space between training examples of two classes. What made it so popular is when it was associated with the so-called *kernel trick* [@boserTrainingAlgorithmOptimal1992; @cortesSupportvectorNetworks1995]. With the kernel trick, training examples that cannot be linearly separated can be cheaply projected into a higher dimensional space where linear separation is possible. This made SVMs very powerful and popular, and it was quickly adapted for regression tasks as well [@druckerSupportVectorRegression1996]. The main model that will interest us in this section however is not the SVM.
 
-    -   Can perform non-linear classification with the kernel trick in the early 90's [@boserTrainingAlgorithmOptimal1992; @cortesSupportvectorNetworks1995]
+Random Forests are another very popular model used for both classification and regression, as it is used in Chapter \@ref(HIV-paper) we will go over it in more detail. Developed in the early 2000's [@breimanRandomForests2001], it builds upon previous work: Classification And Regression Trees (CART) [@breimanClassificationRegressionTrees1983]. CART Decision trees are very useful for both supervised learning tasks. To use CART trees, start at the root and at each node there is a condition on a single input feature. This condition decides if the considered example goes to the right child or the left child. By traversing this tree, choosing the path through the conditions at all the nodes met by the example, we can assign the example to one of the leaves, corresponding to a class or a predicted value. An example of such a tree is given in Figure \@ref(fig:cart).
 
-    -   adapted to regression [@druckerSupportVectorRegression1996]
--   A very important algorithm RF:
-    -   Introduced by Leo Breiman [@breimanRandomForests2001]
+```{r, CARTcaption}
+CARTcaption <- "**Example of a decision tree on DNA data.**   
+Here we have a dataset of 4 DNA sequences $S_1, \\ldots, S_4$. Each sequence has 4 input variables $x_1,\\ldots,x_4$, and an output variable $y$ indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly."
+```
 
-    -   Based on the CART decision tree method [@breimanClassificationRegressionTrees1983]
+```{r, cart, label="cart", evail=knitr::is_html_output(), fig.cap=CARTcaption, out.width="70%"}
+knitr::include_graphics("figures/Encode-seqs/cart.png")
+```
 
-    -   Based on the Gini index / purity index
+```{=tex}
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/cart.png}
+\extcaption{Example of a decision tree for DNA data.}{Here we have a dataset of 4 DNA sequences $S_1, \ldots, S_4$. Each sequence has 4 input variables $x_1,\ldots,x_4$, and an output variable $y$ indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly.}
+\label{fig:cart}
+\end{figure}
+```
+It is actually quite simple to build these CART trees, the whole methods lies upon the principle of minimizing impurity *(or maximizing purity)* on a given input variable in child nodes. Impurity can be defined in many ways [@hastieElementsStatisticalLearning2009]: for regression it is often the Residual Sum of Squares (RSS), for classification it is often the Gini index or an entropy measure. Regardless of the chosen metric, a high impurity denotes a heterogeneous collection of examples and a low impurity indicates a homogeneous set of examples. When building the tree, recursively from the root, we find the condition and the input variable on which the condition relies by looking at all possible splits and choosing the one that decreases impurity the most in the child nodes. This process is continued recursively until the leaves are completely pure (likely resulting in overfitting) or until a certain stopping condition is met *(e.g. purity threshold, maximum depth, ...)*. To avoid overfitting, trees can also be pruned after the building phase. CART trees have the distinct advantage of being interpretable: it is easy to figure out *why* an input has been assigned to a certain class, which can be very useful in biology or medicine [@kingsfordWhatAreDecision2008].
 
-    -   Select random features when building a tree
+Despite these good properties, it is easy to overfit with decision trees, and small changes to the training data can induce large changes in the resulting tree [@kingsfordWhatAreDecision2008; @hastieElementsStatisticalLearning2009], hurting interpretability. This is why the Random Forest (RF) model was created. RFs are essentially an ensemble of decision tress built, *a forest*, from the training data. To build one of the decision trees in a random forest, the training data is first bootstrapped: a new training set is sampled with replacement from the original training data with the same number of examples. This process is called *bagging* for "boostrap aggregating". With this procedure, each decision tree is built from slightly different training data and will therefore likely be slightly different. An additional step to ensure some variability between the trees is in the choice of the splitting condition at each tree node. Where in CART trees all input variables are considered to find the optimal split, in RF trees, only a random subset of the input variables are considered at each node. This results in a set of decision trees that are all trained from slightly different data, with slightly different features at each node but that all have the same task on the training data. We can get a prediction from all these trees, by taking the majority predicted class for classification trees, or the average of predictions for regression trees.
 
-    -   Make the trees vote to get prediction
+All these measures to reduce the variance linked to decision trees, and to yield more generalizable models, make random forests very popular. They are often very competitive and often have better performance than the models presented above [@caruanaEmpiricalComparisonSupervised2006a; @yangReviewEnsembleMethods2010]. Furthermore, by only considering a subset of features at each tree node, RF often deals better with high-dimensional data than other methods [@yangReviewEnsembleMethods2010]. Further refinements to the algorithm such as boosting, where misclassified examples are more likely to be selected in the bagging training sets have been very useful as well.
 
-    -   Good performance compared to other methods presented before [@caruanaEmpiricalComparisonSupervised2006a]
--   More complex variants of RF with boosting where features and input examples are weighted before sampling
-
-Deep learning has been use more frequently and more broadly to get good results across a large number of tasks. This is also true in biological contexts, a short introduction to deep learning will be presented in Chapter \@ref(learning-alignments-an-interesting-perspective).
+Deep learning has been use more frequently and more broadly to get good results across a large number of tasks. This is also true in biological contexts, however Chapter \@ref(HIV-paper) does not make use of deep learning methods so they will no be discussed here. A short introduction to deep learning will however be presented in Chapter \@ref(learning-alignments-an-interesting-perspective).
 
 ## Preprocessing the alignment for machine learning
 
