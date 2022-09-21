@@ -133,7 +133,7 @@ knitr::include_graphics("./figures/HPC-MSRs/raw_distrib.centro.rstart.png")
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/raw_distrib.centro.rstart.pdf}\\
-    \extcaption{Origin of correctly and incorrectly mapped raw reads}{
+    \extcaption{Origin of correctly and incorrectly mapped raw reads.}{
     Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-raw}
 \end{figure}
@@ -157,7 +157,7 @@ knitr::include_graphics("./figures/HPC-MSRs/hpc_distrib.centro.png")
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/hpc_distrib.centro.pdf}
-    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with HPC}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with HPC.}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-hpc}
 \end{figure}
 ```
@@ -180,7 +180,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_e_distrib.centro.png")
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_e_distrib.centro.pdf}
-    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{E}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{E}.}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-e}
 \end{figure}
 ```
@@ -203,7 +203,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_p_distrib.centro.png")
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_p_distrib.centro.pdf}
-    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{P}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{P}.}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-p}
 \end{figure}
 ```
@@ -226,7 +226,7 @@ knitr::include_graphics("./figures/HPC-MSRs/msr_f2_distrib.centro.png")
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/HPC-MSRs/msr_f2_distrib.centro.pdf}
-    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{F}}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
+    \extcaption{Origin of correctly (teal) and incorrectly (red) mapped reads, transformed with \msr{F}.}{Distribution of the origin of correctly and incorrectly mapped simulated reads (in teal and red respectively) on the different chromosomes of the whole human genome. The dark grey rectangle for each chromosome represents the centromere of that chromosome. The lighter gray rectangle on chromosomes 13, 14, 15, 21 and 22 correspond to satellites denoted as ``stalk'', another repetitive region.}
     \label{fig:hist-msr-f}
 \end{figure}
 ```

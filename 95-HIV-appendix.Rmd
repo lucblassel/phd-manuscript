@@ -133,7 +133,7 @@ set_header_labels(ft, annot="Name", brand="Brand name", abbrev="Abbreviation", c
         fostemsavir & rukobia & FTR & AI & 2020-07-02 \\ 
         cabenuva & cabenuva & CAB+RPV & FDC & 2021-01-22 \\ 
         cabotegravir & vocabria & CAB & INSTI & 2021-01-22 \\ \bottomrule
-    \extcaption{List of all antiretroviral drugs used in HIV therapy}{
+    \extcaption{List of all antiretroviral drugs used in HIV therapy.}{
 Zidovudine (ZDV) is also referred to as Azidothymidine (AZT) in litterature, Fixed Dose combinations (i.e. single pills combining multiple drugs) are referred to by their commercial name, the composition of these can be seen in the abbreviation. Drugs were ordered by FDA approval date.\\    
 \textbf{AI}: Attachment Inhibitor,
 \textbf{CA}: CCR5 Antagonist,

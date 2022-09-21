@@ -109,7 +109,7 @@ knitr::include_graphics("./figures/HIV-DRMs/S1_Fig.png")
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S1_Fig.png}
 }
-\extcaption{Relative risks of the new mutations with regards to known RAMs on the African dataset}{
+\extcaption{Relative risks of the new mutations with regards to known RAMs on the African dataset.}{
 (i.e. the prevalence of the new mutation in sequences with a given RAM divided by the prevalence of the new mutation in sequences without the RAM). RRs were only computed for mutations (new and RAMs) that appeared in at least 30 sequences, which is why RRs were not computed for H208Y and D218E. 95\% confidence intervals, represented by vertical bars, were computed with 1000 bootstrap samples of the African sequences. Only RRs with a lower CI boundary greater than 2 are shown. The shape and color of the point represents the type of RAM as defined by Stanford’s HIVDB. Blue circle: NRTI, orange square: NNRTI, green diamond: Other. For the RR of L228H with regards to M184V, the upper CI bound is infinite. The new RAMs have high RR values for known RAMs similar to those obtained on the UK dataset. We also arrive at similar conclusions, I135L being associated with NNRTIs, E203K and L228H to NRTI and L228R to both. RR values are shown from left to right, by order of decreasing values on the lower bound of the 95\% CI.}
 \label{fig:s1}
 \end{figure}
@@ -135,7 +135,7 @@ knitr::include_graphics("./figures/HIV-DRMs/S2_Fig.png")
 \centering
 \includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/S2_Fig.png}
 }
-\extcaption{Closeup structural view of the entrance of the NNIBP of HIV-1 RT}{
+\extcaption{Closeup structural view of the entrance of the NNIBP of HIV-1 RT.}{
 The p66 subunit is  colored in dark gray, the p51 subunit in light gray. The NNIBP is highlighted in yellow. The active site is colored in blue. We can see the physical proximity of I135 (red) to the entrance of the NNIBP. We can also see how L228 (red) is between 2 AAs of the NNIBP.}
 \label{fig:s2}
 \end{figure}
@@ -230,7 +230,7 @@ flextable(dt) %>%
 \end{tabular}
 }
  
-  \extcaption{Detailed view of the characteristics of new potential RAMs}{\textbf{Rank:} For each new mutation we computed the aggregate feature importance ranks for the RTI-naive / RTI-experienced and known RAM present / known RAM absent classification tasks.
+  \extcaption{Detailed view of the characteristics of new potential RAMs.}{\textbf{Rank:} For each new mutation we computed the aggregate feature importance ranks for the RTI-naive / RTI-experienced and known RAM present / known RAM absent classification tasks.
   \textbf{Codon distance:} We computed the minimum number of nucleotide mutations to go from the wild amino acid codons to those of the mutated amino acid, as well as the average codon distance between both amino acids, weighted by the prevalence of each wild and mutated codon in the UK and the African datasets. 
   \textbf{Count (both UK and Africa):} We looked at the number of apparitions of each new potential RAM in the UK and African datasets and the corresponding prevalence in parentheses. 
   \textbf{Ratio (both UK and Africa):} We computed the prevalence ratio $\rho(new, treatment)$ (e.g. L228R is 18.1 times more prevalent in RTI-experienced sequences compared to RTI-naive sequences in the UK dataset). We also computed the prevalence ratio $\rho(new,any RAM)$ (e.g. L228R is 115.7 times more prevalent in sequences that have at least one known RAM than in sequences that have none in the UK dataset). The 95\% confidence intervals shown under each ratio were computed with 1000 bootstrap samples of size $n=55,000$ drawn with replacement from the whole UK dataset (The same procedure was done on the African dataset with size $n=3990$). 

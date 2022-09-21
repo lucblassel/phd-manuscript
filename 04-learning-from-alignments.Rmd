@@ -199,7 +199,7 @@ knitr::include_graphics("figures/Encode-seqs/General-purpose.png")
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{figures/Encode-seqs/General-purpose.png}
-\extcaption{Example of 3 general categorical encoding schemes}{Two sequences, \texttt{ATCG} and \texttt{TAAT} are shown encoded in three different encoding schemes: ordinal, binary and one-hot encoding. In the ordinal encoding each character is assigned an integer value, here A=0, C=1, G=3 and T=4. In the binary encoding these integer values are encoded with 2 bits. In the one-hot encoding scheme, a character corresponds to a sparse vector indicating which level of the variable is present: here A=[1,0,0,0]. Ordinal encoding preserves the dimension of the sequence while binary and one-hot encoding result in vectors woth a bigger dimension than the original sequence.}
+\extcaption{Example of 3 general categorical encoding schemes.}{Two sequences, \texttt{ATCG} and \texttt{TAAT} are shown encoded in three different encoding schemes: ordinal, binary and one-hot encoding. In the ordinal encoding each character is assigned an integer value, here A=0, C=1, G=3 and T=4. In the binary encoding these integer values are encoded with 2 bits. In the one-hot encoding scheme, a character corresponds to a sparse vector indicating which level of the variable is present: here A=[1,0,0,0]. Ordinal encoding preserves the dimension of the sequence while binary and one-hot encoding result in vectors woth a bigger dimension than the original sequence.}
 \label{fig:generalEncoding}
 \end{figure}
 ```
