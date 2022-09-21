@@ -1941,7 +1941,7 @@ Random Forests are another very popular model used for both classification and r
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/cart.png}
+\includegraphics[width=0.8\textwidth]{figures/Encode-seqs/cart.png}
 \extcaption{Example of a decision tree for DNA data.}{Here we have a dataset of 4 DNA sequences $S_1, \ldots, S_4$. Each sequence has 4 input variables $x_1,\ldots,x_4$, and an output variable $y$ indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly.}
 \label{fig:cart}
 \end{figure}
@@ -1970,8 +1970,8 @@ On of the most widely used categorical encoding schemes, One-Hot encoding (OHE) 
 
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/general_purpose.pdf}
-\extcaption{Example of 3 general categorical encoding schemes}{TODO}
+\includegraphics[width=\textwidth]{figures/Encode-seqs/General-purpose.png}
+\extcaption{Example of 3 general categorical encoding schemes}{Two sequences, \texttt{ATCG} and \texttt{TAAT} are shown encoded in three different encoding schemes: ordinal, binary and one-hot encoding. In the ordinal encoding each character is assigned an integer value, here A=0, C=1, G=3 and T=4. In the binary encoding these integer values are encoded with 2 bits. In the one-hot encoding scheme, a character corresponds to a sparse vector indicating which level of the variable is present: here A=[1,0,0,0]. Ordinal encoding preserves the dimension of the sequence while binary and one-hot encoding result in vectors woth a bigger dimension than the original sequence.}
 \label{fig:generalEncoding}
 \end{figure}
 
