@@ -411,4 +411,6 @@ Despite all these advancements, sequencing errors remain an obstacle to certain 
 
 Finally, it is important to note (at least for the remainder of this thesis) that, from a computational standpoint, a biological sequence is simply a succession of letters and a set of reads is simply a text file. Therefore many analysis and data processing methods are inspired or directly transposed from the field of text algorithmics.
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```{=tex}
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```

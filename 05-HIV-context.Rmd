@@ -355,4 +355,6 @@ Although the study of viruses as a whole can be very useful, HIV is particularly
 
 Fortunately, with large scale sequencing efforts it is possible to study and track these evolutionary adaptations to treatments. This allows us to adapt therapeutic strategies as well as developing new compounds and approaches. In this context, studying and finding the virus' mutational processes is paramount. This is especially important when studying resistance to RTIs as they form the backbone of first line regimen combination therapies, and are the most common type of anti-HIV drug. This process is made easier by the large scale sequence repositories now available, and the usage of machine and statistical learning to leverage that data.
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```{=tex}
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```

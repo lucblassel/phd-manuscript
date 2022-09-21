@@ -5,6 +5,7 @@
 \documentclass[
   11pt,
   twoside,
+  BCOR=10mm,
   listof=totoc]{scrbook}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
@@ -261,6 +262,9 @@
 \input{./tex/titlepage.tex}
 
 \pagestyle{empty}
+
+\cleardoubleevenpage
+
 \frontmatter
 
 \chapter{Aknowledgments}
@@ -941,7 +945,7 @@ Despite all these advancements, sequencing errors remain an obstacle to certain 
 
 Finally, it is important to note (at least for the remainder of this thesis) that, from a computational standpoint, a biological sequence is simply a succession of letters and a set of reads is simply a text file. Therefore many analysis and data processing methods are inspired or directly transposed from the field of text algorithmics.
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{aligning-sequence-data}{%
 \chapter{Aligning sequence data}\label{aligning-sequence-data}}
@@ -1280,7 +1284,7 @@ As we have seen now, although we have methods guaranteed to give us optimal pair
 
 Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the ``age of pandemics'', accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HPC-paper}{%
 \chapter{Contribution 1: Improving read alignment by exploring a sequence transformation space}\label{HPC-paper}}
@@ -1797,7 +1801,7 @@ All experiments performed for this article are implemented and documented as nex
 
 Supporting Information can be found in Appendix \ref{HPC-appendix}
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{learning-from-sequences-and-alignments}{%
 \chapter{Learning from sequences and alignments}\label{learning-from-sequences-and-alignments}}
@@ -1997,7 +2001,7 @@ In recent years algorithmic developments, computing power increase and the massi
 
 Alignments, and the sequences in them are a rich source of information, that have long been exploited widely for many different types of analyses. With the rise of machine learning in the last years, it is logical that machine learning models have been applied more and more frequently to biological sequence data. Machine Learning, is a wide field with many different methods and paradigms. Even simple methods like linear regression or Naive Bayes can be very useful, and more complex models like Random Forests have been able to make very good predictions on biological data. The model of choice, however, is not the only variable to take into account when looking to apply machine learning method on sequence data. Different encoding methods will yield different vector representations, with different characteristics and applications. Special care must therefore be given to the choice of biological sequence encoding scheme, prior to starting a machine learning analysis.
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{viruses-hiv-and-drug-resistance}{%
 \chapter{Viruses, HIV and drug resistance}\label{viruses-hiv-and-drug-resistance}}
@@ -2326,7 +2330,7 @@ Although the study of viruses as a whole can be very useful, HIV is particularly
 
 Fortunately, with large scale sequencing efforts it is possible to study and track these evolutionary adaptations to treatments. This allows us to adapt therapeutic strategies as well as developing new compounds and approaches. In this context, studying and finding the virus' mutational processes is paramount. This is especially important when studying resistance to RTIs as they form the backbone of first line regimen combination therapies, and are the most common type of anti-HIV drug. This process is made easier by the large scale sequence repositories now available, and the usage of machine and statistical learning to leverage that data.
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HIV-paper}{%
 \chapter{Contribution 2: Inferring mutation roles from sequence alignments using machine learning}\label{HIV-paper}}
@@ -3433,7 +3437,7 @@ Gunson, Amanda Bradley-Stewart).
 
 Supporting Information can be found in the appendix \ref{HIV-appendix}
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{learning-alignments-an-interesting-perspective}{%
 \chapter{Learning alignments, an interesting perspective}\label{learning-alignments-an-interesting-perspective}}
@@ -3618,7 +3622,7 @@ NLP:
 
 i.e.~either connections in MSR graph or sequence 2 sequence models
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{global-conclusion}{%
 \chapter*{Global conclusion}\label{global-conclusion}}

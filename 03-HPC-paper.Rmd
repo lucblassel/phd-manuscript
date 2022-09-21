@@ -566,4 +566,6 @@ All experiments performed for this article are implemented and documented as nex
 
 Supporting Information can be found in Appendix \@ref(HPC-appendix)
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```{=tex}
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```

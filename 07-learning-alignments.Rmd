@@ -112,4 +112,6 @@ NLP:
 
 i.e. either connections in MSR graph or sequence 2 sequence models
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```{=tex}
+% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+```
