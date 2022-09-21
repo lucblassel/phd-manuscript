@@ -153,14 +153,14 @@ CARTcaption <- "**Example of a decision tree on DNA data.**
 Here we have a dataset of 4 DNA sequences $S_1, \\ldots, S_4$. Each sequence has 4 input variables $x_1,\\ldots,x_4$, and an output variable $y$ indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly."
 ```
 
-```{r, cart, label="cart", eval=knitr::is_html_output(), fig.cap=CARTcaption, out.width="70%"}
+```{r, cart, label="cart", eval=knitr::is_html_output(), fig.cap=CARTcaption, out.width="80%"}
 knitr::include_graphics("figures/Encode-seqs/cart.png")
 ```
 
 ```{=tex}
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/cart.png}
+\includegraphics[width=0.8\textwidth]{figures/Encode-seqs/cart.png}
 \extcaption{Example of a decision tree for DNA data.}{Here we have a dataset of 4 DNA sequences $S_1, \ldots, S_4$. Each sequence has 4 input variables $x_1,\ldots,x_4$, and an output variable $y$ indicating the strain of a sequence. Each sequence can be classified by the decision tree on the right by following a path from root to leaf, according to the conditions in internal nodes. The predicted strain is shown in the leaves. Sequences that end up in a given leaf node are indicated underneath that leaf node. This tree can classify these 4 sequences perfectly.}
 \label{fig:cart}
 \end{figure}
@@ -186,20 +186,20 @@ The most basic and conceptually simple ways to do so is to use the labeling sche
 On of the most widely used categorical encoding schemes, One-Hot encoding (OHE) (sometimes called orthonormal encoding [@singhEvolutionaryBasedOptimal2018]), does not have this ordering issue. The way OHE works is by creating a sparse binary vector of length $d$ to represent a variable with $d$ levels *(for DNA* $d=4$). If the i^th^ level of the categorical variable is to be encoded, then the i^th^ position in the vector is set to 1 and the rest set to 0. For example if we consider that A is the first level of our variable then OHE would yield the following vector: $[1,0,0,0]$. This encoding scheme has been used from the 1980's [@qianPredictingSecondaryStructure1988] to now [@budachPyssterClassificationBiological2018], and is the scheme used in Chapter \@ref(HIV-paper). The performance of OHE can be on par with ordinal encoding [@choongEvaluationConvolutionaryNeural2017], however it is easily interpretable, which is often very important in biology, since there is a one to one correspondence between a categorical value and a numerical feature. The main problem with OHE however is that it tends to increase the number of features quite a lot, since the encoded vector representation of a length $n$ sequence is of length $n\times d$. An example comparing Ordinal, Binary and One-Hot encodings can be seen in Figure \@ref(fig:generalEncoding).
 
 ```{r, generalEncodingCaption}
-generalEncodingCaption <- "**Example of 3 general categorical encoding schemes**  
-TODO
+generalEncodingCaption <- "**Example of 3 general categorical encoding schemes.**  
+Two sequences, `ATCG` and `TAAT` are shown encoded in three different encoding schemes: ordinal, binary and one-hot encoding. In the ordinal encoding each character is assigned an integer value, here A=0, C=1, G=3 and T=4. In the binary encoding these integer values are encoded with 2 bits. In the one-hot encoding scheme, a character corresponds to a sparse vector indicating which level of the variable is present: here A=[1,0,0,0]. Ordinal encoding preserves the dimension of the sequence while binary and one-hot encoding result in vectors woth a bigger dimension than the original sequence. 
 "
 ```
 
-```{r, generalEncoding, label="generalEncoding", cache=FALSE, eval=knitr::is_html_output(), fig.cap=generalEncodingCaption, out.width="70%"}
-knitr::include_graphics("figures/Encode-seqs/general_purpose.png")
+```{r, generalEncoding, label="generalEncoding", cache=FALSE, eval=knitr::is_html_output(), fig.cap=generalEncodingCaption, out.width="100%"}
+knitr::include_graphics("figures/Encode-seqs/General-purpose.png")
 ```
 
 ```{=tex}
 \begin{figure}
 \centering
-\includegraphics[width=0.7\textwidth]{figures/Encode-seqs/general_purpose.pdf}
-\extcaption{Example of 3 general categorical encoding schemes}{TODO}
+\includegraphics[width=\textwidth]{figures/Encode-seqs/General-purpose.png}
+\extcaption{Example of 3 general categorical encoding schemes}{Two sequences, \texttt{ATCG} and \texttt{TAAT} are shown encoded in three different encoding schemes: ordinal, binary and one-hot encoding. In the ordinal encoding each character is assigned an integer value, here A=0, C=1, G=3 and T=4. In the binary encoding these integer values are encoded with 2 bits. In the one-hot encoding scheme, a character corresponds to a sparse vector indicating which level of the variable is present: here A=[1,0,0,0]. Ordinal encoding preserves the dimension of the sequence while binary and one-hot encoding result in vectors woth a bigger dimension than the original sequence.}
 \label{fig:generalEncoding}
 \end{figure}
 ```
