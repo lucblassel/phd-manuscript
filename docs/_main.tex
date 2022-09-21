@@ -251,7 +251,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-20}
+\date{2022-09-21}
 
 \begin{document}
 \maketitle
@@ -1944,7 +1944,7 @@ Random Forests are another very popular model used for both classification and r
 
 It is actually quite simple to build these CART trees, the whole methods lies upon the principle of minimizing impurity \emph{(or maximizing purity)} on a given input variable in child nodes. Impurity can be defined in many ways \autocite{hastieElementsStatisticalLearning2009}: for regression it is often the Residual Sum of Squares (RSS), for classification it is often the Gini index or an entropy measure. Regardless of the chosen metric, a high impurity denotes a heterogeneous collection of examples and a low impurity indicates a homogeneous set of examples. When building the tree, recursively from the root, we find the condition and the input variable on which the condition relies by looking at all possible splits and choosing the one that decreases impurity the most in the child nodes. This process is continued recursively until the leaves are completely pure (likely resulting in overfitting) or until a certain stopping condition is met \emph{(e.g.~purity threshold, maximum depth, \ldots)}. To avoid overfitting, trees can also be pruned after the building phase. CART trees have the distinct advantage of being interpretable: it is easy to figure out \emph{why} an input has been assigned to a certain class, which can be very useful in biology or medicine \autocite{kingsfordWhatAreDecision2008}.
 
-Despite these good properties, it is easy to overfit with decision trees, and small changes to the training data can induce large changes in the resulting tree \autocite{kingsfordWhatAreDecision2008,hastieElementsStatisticalLearning2009}, hurting interpretability. This is why the Random Forest (RF) model was created. RFs are essentially an ensemble of decision tress built, \emph{a forest}, from the training data. To build one of the decision trees in a random forest, the training data is first bootstrapped: a new training set is sampled with replacement from the original training data with the same number of examples. This process is called \emph{bagging} for ``boostrap aggregating''. With this procedure, each decision tree is built from slightly different training data and will therefore likely be slightly different. An additional step to ensure some variability between the trees is in the choice of the splitting condition at each tree node. Where in CART trees all input variables are considered to find the optimal split, in RF trees, only a random subset of the input variables are considered at each node. This results in a set of decision trees that are all trained from slightly different data, with slightly different features at each node but that all have the same task on the training data. We can get a prediction from all these trees, by taking the majority predicted class for classification trees, or the average of predictions for regression trees.
+Despite these good properties, it is easy to overfit with decision trees, and small changes to the training data can induce large changes in the resulting tree \autocite{kingsfordWhatAreDecision2008,hastieElementsStatisticalLearning2009}, hurting interpretability. This is why the Random Forest (RF) model was created. RFs are essentially an ensemble of decision tress built, \emph{a forest}, from the training data. To build one of the decision trees in a random forest, the training data is first bootstrapped: a new training set is sampled with replacement from the original training data with the same number of examples. This process is called \emph{bagging} for ``bootstrap aggregating''. With this procedure, each decision tree is built from slightly different training data and will therefore likely be slightly different. An additional step to ensure some variability between the trees is in the choice of the splitting condition at each tree node. Where in CART trees all input variables are considered to find the optimal split, in RF trees, only a random subset of the input variables are considered at each node. This results in a set of decision trees that are all trained from slightly different data, with slightly different features at each node but that all have the same task on the training data. We can get a prediction from all these trees, by taking the majority predicted class for classification trees, or the average of predictions for regression trees.
 
 All these measures to reduce the variance linked to decision trees, and to yield more generalizable models, make random forests very popular. They are often very competitive and often have better performance than the models presented above \autocite{caruanaEmpiricalComparisonSupervised2006a,yangReviewEnsembleMethods2010}. Furthermore, by only considering a subset of features at each tree node, RF often deals better with high-dimensional data than other methods \autocite{yangReviewEnsembleMethods2010}. Further refinements to the algorithm such as boosting, where misclassified examples are more likely to be selected in the bagging training sets have been very useful as well.
 
@@ -1953,49 +1953,16 @@ Deep learning has been use more frequently and more broadly to get good results 
 \hypertarget{preprocessing-the-alignment-for-machine-learning}{%
 \section{Preprocessing the alignment for machine learning}\label{preprocessing-the-alignment-for-machine-learning}}
 
-In order to do some learning we need to have the data in digestible form
+By now you will surely have noticed that all the models I presented above (with the exception of RFs) need to be trained on a collection of numerical variables, i.e.~numerical vectors. Biological sequences, however, are not vectors of numbers. We therefore need to transform our sequences of letters into numerical sequences that we can feed to the machine learning model in this digestible form. Most supervised machine learning algorithms expect as training inputs a matrix, where the rows are individual training examples and the columns numerical variables, an a vector where each entry corresponds to the expected output value. In this section I will present a few encoding methods, that transform a multiple sequence alignment in a matrix. Most of the encoding methods are not defined on an alignment, but on sequences alone. However to represent these sequences they must have the same length, and for models to learn anything meaningful the values in features should encode the same information across sequences. Therefore prior to the encoding methods described below the sequences must be aligned to each other so that a specific position in a sequence is homologous to that position in all other training sequences.
 
-Most of the methods will transform an aligned sequence into a vector, and therefore the alignment as an input matrix.
+\hypertarget{general-purpose-encodings}{%
+\subsection{General purpose encodings}\label{general-purpose-encodings}}
 
-Some methods do not use the info of alignment in the embedding directly but use in the training process.
+The letters making up biological sequences are a form of categorical data, this type of variable is not specific to biology and as such there exists many encoding schemes \autocite{potdarComparativeStudyCategorical2017} to transform categorical variables into numerical vectors.
 
-\hypertarget{general-purpose-embeddings}{%
-\subsection{General purpose embeddings}\label{general-purpose-embeddings}}
+The most basic and conceptually simple ways to do so is to use the labeling scheme, often called ordinal encoding, where each level of the categorical variable is assigned an integer label. For example, when dealing with DNA sequences, we could have A=1, C=2, G=3 and T=4. This scheme outputs vectors that have the same size as the input sequence and going from the sequence to the encoded vector (and vice versa) is very easy. This encoding scheme has been used to predict resistance levels of HIV to antiviral drugs from sequencing data \autocite{steinerDrugResistancePrediction2020a}. There is however a major disadvantage with using this method, as its name indicates, using ordinal encoding implies that there is an order to the categorical variable levels (e.g.~T\textgreater A) which, by definition, does not exist \autocite{hassanisaadiInterpretiveTimefrequencyAnalysis2017,brouwerFeedforwardNetworkInput2002,kunanbayevComplexEncoding2021}. Another option is to use what I will refer to as binary labeling, where the categorical levels are first assigned an integer label which is then converted to a binary vector. If we use the ordinal DNA encoding from above and convert it to binary vectors we would get: A=\([0,0]\), C=\([0,1]\), G=\([1,0]\) and T=\([1,1]\). This type of representation is frequently used to represent gapless sequences, like \(k\)-mers, in a compressed form \autocite{dufresneKmerFileFormat2022,wrightUsingDECIPHERV22016} (a letdoodter now only needs 2 bits instead of a full byte). For amino acids, since there are more characters, this encoding yields vectors of 5 bits \autocite{zamaniAminoAcidEncoding2011}. Fundamentally, this encoding scheme has the same problem as the ordinal encoding, creating an order that does not exist, although with th eorder being split into separate values it can mitigate the effects a little bit.
 
-review \autocite{potdarComparativeStudyCategorical2017}
-
-\begin{itemize}
-\item
-  Simple labeling / ordinal coding, i.e.~assigning an integer to each character (A=1, C=2, G=3, T=4)
-
-  \begin{itemize}
-  \tightlist
-  \item
-    pb -\textgreater{} assigning artificial order to a purely categorical variable, used in \autocite{steinerDrugResistancePrediction2020a}
-  \end{itemize}
-\item
-  BItwise labeling -\textgreater{} encode each character with \(n\) bits, for nucleotides 2bits if no gaps (A=00, C=01, G=10, T=11) \autocite{dufresneKmerFileFormat2022,wrightUsingDECIPHERV22016} for AAs 5 bits necessary explored in \autocite{zamaniAminoAcidEncoding2011}
-
-  \begin{itemize}
-  \item
-    still a problem of order, for aas used in hashing and bloom filters \ldots{}
-  \item
-    Often used for hashing/indexing a sequence or compressing, but is also a used scheme in categorical variable encoding in machine learning.
-  \end{itemize}
-\item
-  One-Hot encoding, widely used: a variable with \(d\) levels (for DNA \(d=4\)) is transformed to a length \(d\) sparse binary vector, when the variable is equal to the \(i^{th}\) level then the resulting vector has a 1 set in the \(i^{th}\) position. (also called orthonormal \autocite{singhEvolutionaryBasedOptimal2018})
-
-  \begin{itemize}
-  \item
-    Used in Chapter \ref{HIV-paper} and other papers \autocite{budachPyssterClassificationBiological2018},
-  \item
-    one of the problems is the ``curse of dimensionality'' since the for a sequence of length \(n\) we get \(n\times d\) features, which can be quite large.
-  \item
-    Performance between OH and Ordinal can be quite similar \autocite{choongEvaluationConvolutionaryNeural2017} but easily interpretable (important in Bio)
-  \item
-    Has been used for encoding protein sequences as early as 1988 \autocite{qianPredictingSecondaryStructure1988}
-  \end{itemize}
-\end{itemize}
+On of the most widely used categorical encoding schemes, One-Hot encoding (OHE) (sometimes called orthonormal encoding \autocite{singhEvolutionaryBasedOptimal2018}), does not have this ordering issue. The way OHE works is by creating a sparse binary vector of length \(d\) to represent a variable with \(d\) levels \emph{(for DNA} \(d=4\)). If the i\textsuperscript{th} level of the categorical variable is to be encoded, then the i\textsuperscript{th} position in the vector is set to 1 and the rest set to 0. For example if we consider that A is the first level of our variable then OHE would yield the following vector: \([1,0,0,0]\). This encoding scheme has been used from the 1980's \autocite{qianPredictingSecondaryStructure1988} to now \autocite{budachPyssterClassificationBiological2018}, and is the scheme used in Chapter \ref{HIV-paper}. The performance of OHE can be on par with ordinal encoding \autocite{choongEvaluationConvolutionaryNeural2017}, however it is easily interpretable, which is often very important in biology, since there is a one to one correspondence between a categorical value and a numerical feature. The main problem with OHE however is that it tends to increase the number of features quite a lot, since the encoded vector representation of a length \(n\) sequence is of length \(n\times d\). An example comparing Ordinal, Binary and One-Hot encodings can be seen in Figure \ref{fig:generalEncoding}.
 
 \begin{figure}
 \centering
@@ -2004,103 +1971,31 @@ review \autocite{potdarComparativeStudyCategorical2017}
 \label{fig:generalEncoding}
 \end{figure}
 
-\begin{itemize}
-\tightlist
-\item
-  Many general purpose categorical encodings, library in Python \autocite{mcginnisScikitLearnContribCategoricalEncodingRelease2018}
-\end{itemize}
+These three general purpose encodings are but some of many \autocite{potdarComparativeStudyCategorical2017}, and since categorical variables are often used in machine learning applications, these encodings are available in widely used software libraries \autocite{mcginnisScikitLearnContribCategoricalEncodingRelease2018}.
 
-\hypertarget{biological-sequence-specific-embeddings}{%
-\subsection{Biological sequence-specific embeddings}\label{biological-sequence-specific-embeddings}}
+\hypertarget{biological-sequence-specific-encodings}{%
+\subsection{Biological sequence-specific encodings}\label{biological-sequence-specific-encodings}}
 
-These embeddings were inspired by physico-chemical properties, many encodings in \autocite{zamaniAminoAcidEncoding2011}:
+While the general-purpose encoding schemes presented above work well enough in practice, some specific encoding methods were developed to include some biological information in the sequence encodings that hopefully machine learning models will be able to leverage during training. These encodings, have mostly been developed for encoding protein sequences, using physicochemical properties of amino acids \autocite{zamaniAminoAcidEncoding2011}.
 
-\begin{itemize}
-\item
-  AAIndex embedding, based on the the AAIndex database \autocite{kawashima2008},
+AAIndex \autocite{kawashima2008} is a public database containing amino acid indices, \emph{i.e.} sets of 20 numerical values (one for each AA) measuring some physicochemical property. There is a wide range of 566 of these indices, from hydrophobicity to flexibility or residue volume measures. By selecting an informative subset of 9 of these measures \autocite{liPredictionProteinStructural2008}, an amino acid can be represented by a length 9 numerical vector. In some cases, amino acids can be represented by all the 566 properties of AAIndex, and through PCA the dimension of the resulting numerical vectors can be reduced \autocite{nanniNewEncodingTechnique2011}. This biological sequence specific encoding has been implemented in a software library for biological sequence encoding \autocite{chenIFeaturePythonPackage2018}.
 
-  \begin{itemize}
-  \item
-    each amino acid has a number real-valued physico-chemical properties so you can select a subset of them.
-  \item
-    A subset of properties identified as informative \autocite{liPredictionProteinStructural2008}
-  \item
-    Available in the iFeature python package \autocite{chenIFeaturePythonPackage2018}
-  \item
-    Also, combine features from AAIndex with PCA to get ensemble features and use top components \autocite{nanniNewEncodingTechnique2011}
-  \end{itemize}
-\item
-  Groups:
+Another biological sequence-specific encoding is based on the Amino Acid classification Venn diagram defined by Taylor in 1986 \autocite{taylorClassificationAminoAcid1986}, which groups amino acids into eight different groups based on physicochemical properties: aliphatic, aromatic, hydrophobic, polar, charged, positive, small and tiny . With this classification, a single amino acid can be represented by a vector of length 8, each element representing a group, set to one when the amino acid belongs to the group and to zero when it does not. This encoding methods was used as early as 1987 to predict secondary structures of proteins \autocite{zvelebilPredictionProteinSecondary1987}. Later on another five groups were proposed and used to encode each amino acid with longer vectors \autocite{kremerMethodSystemComputer2009}.
 
-  \begin{itemize}
-  \item
-    Based on the Venn diagram defined by Taylor \autocite{taylorClassificationAminoAcid1986}, grouping AAs by 9 properties (hydrophobic, polar, small, \ldots)
-  \item
-    We can get a 9-D vector for each residue
-  \item
-    An encoding based on that was used as early as 1987 to predict protein secondary structure \autocite{zvelebilPredictionProteinSecondary1987}
-  \item
-    Later 5 more groups defined \autocite{kremerMethodSystemComputer2009}
-  \end{itemize}
-\item
-  BLOMAP \autocite{maetschkeBlomapEncodingAmino2005}:
+A third encoding method, named BLOMAP \autocite{maetschkeBlomapEncodingAmino2005}, encodes sequences based on values from the BLOSUM62 substitution matrix presented in Section \ref{scoring-and-substitution-models}. BLOMAP is defined by using a non-linear projection algorithm to generate vectors of length five, that capture the similarity measures contained in BLOSUM62. This encoding has been used to successfully predict cleavage sites of the HIV-1 protease \autocite{maetschkeBlomapEncodingAmino2005,singhEvolutionaryBasedOptimal2018} \emph{(c.f. Section} \ref{protease}). Other encodings such as OETMAP \autocite{gokNewFeatureEncoding2013} have been derived from BLOMAP.
 
-  \begin{itemize}
-  \item
-    Non-linear projection of the BLOSUM62 substitution matrix to encode an amino acid in 5 dimensions
-  \item
-    Used to predict cleavage sites of HIV-1 protease \autocite{singhEvolutionaryBasedOptimal2018}
-  \end{itemize}
-\item
-  Others:
+These three encodings are far from being the only ones specific to biological sequence. Many other encoding schemes were developed to learn from this type of sequence data. Some schemes do not encode positional data, and as such can be applied to unaligned sequences. The simplest of these would be to represent a sequence by its amino acid, or \(k\)-mer frequencies. The latter, is often referred to as \(n\)-gram encoding \autocite{sahaNovelApproachFind2019} and widely used although with very short \(k\)-mers since the dimension of the encoding grows exponentially with \(k\), with 20 amino acids this encoding results in vectors that have a length of \(20^k\). Other encoding schemes use codon information to encode amino acids. One such scheme was proposed in \autocite{zamaniAminoAcidEncoding2011}, where an amino acid is represented by a directed graph where vertices are nucleotides and edges represent paths needed to represent codons that code for that amino acid. This graph can then be converted to a 16-dimensional vector by flattening the corresponding adjacency matrix, and be used as an encoding method.
 
-  \begin{itemize}
-  \item
-    frequencies of amino acids -\textgreater{} very coarse (but low dimensional)
-  \item
-    \(k\)-mer frequencies, often reffered to as \(n\)-gram encoding \autocite{sahaNovelApproachFind2019}, often \(n=2\) since as \(k\)/\(n\) grow the dimensions grow exponentially -\textgreater{} with 20 AAs and \(20^n\) dimensions per sequence.
-  \item
-    OETMAP, extension of BLOMAP \autocite{gokNewFeatureEncoding2013}
-  \item
-    Codon graph encoding proposed in \autocite{zamaniAminoAcidEncoding2011}, where an AA is represented by a directed graph of all the codons that make up the AA. The 4x4 adjacency matrix is converted into a length 16 vector representing a single AA.
-  \end{itemize}
-\end{itemize}
+During the work that led to Chapter \ref{HIV-paper}, several encoding methods were tested: Ordinal, Binary, OHE, AAIndex and Group encodings. The same two training sets of sequences were encoded using each of these methods, and 10 RF models were trained on each of the encoded datasets. Accuracy, precision and recall metrics were used to evaluate the performance of the RF on each encoded dataset. According to these metrics, the RF model had the best performance on the datasets encoded with OHE. OHE, also has the advantage of being easily interpretable, as such it was chosen for the work presented in Chapter \ref{HIV-paper}.
 
-Other weirder embeddings: chaos game theory used to embed sequences:
+Other encodings have been used to convert a biological sequence into a single real value. This encoding method based on chaos game theory \autocite{jeffreyChaosGameRepresentation1990} allows for a bijective mapping between the DNA sequence set and the Real numbers set. This encoding is not specific to alignments and can be used to do alignment-free comparisons, as such it has been used often in bioinformatics applications \autocite{lochelChaosGameRepresentation2021}. Recently, this encoding scheme has been used to classify SARS-CoV2 sequences \autocite{cartesAccurateFastClade2022}, predict anti-microbial resistance from sequence data \autocite{renPredictionAntimicrobialResistance2022} and for phylogenetic analysis \autocite{niApplyingFrequencyChaos2021}.
 
-\begin{itemize}
-\item
-  Applications in BIoinfo \autocite{lochelChaosGameRepresentation2021}
-\item
-  Applied for phylogenetics:
-
-  \begin{itemize}
-  \item
-    classify SARS-CoV 2 sequences \autocite{cartesAccurateFastClade2022} w/ DL
-  \item
-    \autocite{niApplyingFrequencyChaos2021}
-  \end{itemize}
-\item
-  Predict AMR \autocite{renPredictionAntimicrobialResistance2022}
-\end{itemize}
-
-In recent years there has been an explosion of learned embeddings, we will not be talking about it here since it is not useful for Chapter \ref{HIV-paper}, I will go over them shortly in Chapter \ref{learning-alignments-an-interesting-perspective} however.
+In recent years algorithmic developments, computing power increase and the massive amounts of available data have made deep learning methods useful, possible to train and veru popular. This has given rise to new sequence encoding methods, that are learned on the training data. These are often referred to as embeddings rather than encodings. Since these learned embeddings are not used in Chapter \ref{HIV-paper}, for the sake of thematical coherence I will not be mentioning them here. I will however go over these embedding methods, as well as the deep learning framework, shortly in Chapter \ref{learning-alignments-an-interesting-perspective}.
 
 \hypertarget{conclusion-2}{%
 \section{Conclusion}\label{conclusion-2}}
 
-\begin{itemize}
-\item
-  Alignments and sequences rich in info
-\item
-  plenty to learn with ML
-\item
-  the choice of embedding / vector representation of sequences in the alignment is not a simple task
-\item
-  Guides what you are able to learn
-\item
-  Haven't gone over DL -\textgreater{} chapter 7
-\end{itemize}
+Alignments, and the sequences in them are a rich source of information, that have long been exploited widely for many different types of analyses. With the rise of machine learning in the last years, it is logical that machine learning models have been applied more and more frequently to biological sequence data. Machine Learning, is a wide field with many different methods and paradigms. Even simple methods like linear regression or Naive Bayes can be very useful, and more complex models like Random Forests have been able to make very good predictions on biological data. The model of choice, however, is not the only variable to take into account when looking to apply machine learning method on sequence data. Different encoding methods will yield different vector representations, with different characteristics and applications. Special care must therefore be given to the choice of biological sequence encoding scheme, prior to starting a machine learning analysis.
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
