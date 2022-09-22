@@ -18,6 +18,7 @@ bibliography:
   - ./references/Aligning-Sequences.bib
   - ./references/HIV-context.bib
   - ./references/Learning-from-alignments.bib
+  - ./references/Learning-alignments.bib
 biblatexoptions: [backref=true,refsegment=chapter,defernumbers=true,sorting=none,citestyle=numeric,bibstyle=numeric,maxnames=3,maxbibnames=3,minnames=2,uniquelist=false,backend=biber]
 link-citations: yes
 github-repo: lucblassel/phd-manuscript
@@ -353,20 +354,22 @@ In 2020, during the early stages of the COVID-19 pandemic and the lockdowns, I p
 
 ### Journal publications {.unnumbered}
 
--   **Blassel, Luc**, Paul Medvedev and Rayan Chikhi. 2022. **"Mapping-friendly sequence reductions: going beyond homopolymer compression"**. accepted as part of the [RECOMB-SEQ 2022](https://recomb2022.net/recomb-seq/) proceedings in *iScience*,\
-    To be published *(Adapted as Chapter* \@ref(HPC-paper)*)*
+This list contains the formal references of the publications mentioned above, along with my contribution represented using the [CRediT taxonomy](https://credit.niso.org/).
 
--   **Blassel, Luc**[^index-1], Anna Zhukova^1^, Christian J Villabona-Arenas, Katherine E Atkins, Stéphane Hué, and Olivier Gascuel. 2021. **"Drug Resistance Mutations in HIV: New Bioinformatics Approaches and Challenges."** *Current Opinion in Virology* 51 (December): 56--64.\
-    [10.1016/j.coviro.2021.09.009](https://doi.org/10.1016/j.coviro.2021.09.009) *(Used as the basis for Section* \@ref(finding-drms)*)*
+-   **Blassel, Luc**, Paul Medvedev and Rayan Chikhi. 2022. **"Mapping-friendly sequence reductions: going beyond homopolymer compression"**. In press as part of the [RECOMB-SEQ 2022](https://recomb2022.net/recomb-seq/) proceedings in *iScience*, *(Adapted as Chapter* \@ref(HPC-paper)*)\
+    *Contributions: Formal Analysis, Investigation, Methodology, Software, Validation, Visualization, Writing -- original draft, Writing -- review & editing.
 
--   **Blassel, Luc**, Anna Tostevin, Christian Julian Villabona-Arenas, MartinePeeters, Stéphane Hué, and Olivier Gascuel. 2021. **"Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV."** *PLOS Computational Biology* 17 (8): e1008873.\
-    [10.1371/journal.pcbi.1008873](https://doi.org/10.1371/journal.pcbi.1008873). *(Adapted as Chapter* \@ref(HIV-paper)*)*
+-   **Blassel, Luc**[^index-1], Anna Zhukova^1^, Christian J Villabona-Arenas, Katherine E Atkins, Stéphane Hué, and Olivier Gascuel. 2021. **"Drug Resistance Mutations in HIV: New Bioinformatics Approaches and Challenges."** *Current Opinion in Virology* 51 (December): 56--64. [10.1016/j.coviro.2021.09.009](https://doi.org/10.1016/j.coviro.2021.09.009) *(Used as the basis for Section* \@ref(finding-drms)*)\
+    *Contributions: Visualization, Writing -- original draft, Writing -- review & editing.
 
--   Zhukova, Anna, **Luc Blassel**, Frédéric Lemoine, Marie Morel, JakubVoznica, and Olivier Gascuel. 2021. **"Origin, Evolution and Global Spread of SARS-CoV-2."** *Comptes Rendus. Biologies* 344 (1): 57--75.\
-    [10.5802/crbiol.29](https://doi.org/10.5802/crbiol.29).
+-   **Blassel, Luc**, Anna Tostevin, Christian Julian Villabona-Arenas, MartinePeeters, Stéphane Hué, and Olivier Gascuel. 2021. **"Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV."** *PLOS Computational Biology* 17 (8): e1008873. [10.1371/journal.pcbi.1008873](https://doi.org/10.1371/journal.pcbi.1008873). *(Adapted as Chapter* \@ref(HIV-paper)*)\
+    *Contributions: Formal Analysis, Investigation, Methodology, Software, Validation, Visualization, Writing -- original draft, Writing -- review & editing.
 
--   Lemoine, Frédéric, **Luc Blassel**, Jakub Voznica, and Olivier Gascuel.2020. **"COVID-Align: accurate online alignment of hCoV-19 genomes using a profile HMM"** *Bioinformatics*, 37 (12): 1761-1762.\
-    [10.1093/bioinformatics/btaa871](https://doi.org/10.1093/bioinformatics/btaa871).
+-   Zhukova, Anna, **Luc Blassel**, Frédéric Lemoine, Marie Morel, JakubVoznica, and Olivier Gascuel. 2021. **"Origin, Evolution and Global Spread of SARS-CoV-2."** *Comptes Rendus. Biologies* 344 (1): 57--75. [10.5802/crbiol.29](https://doi.org/10.5802/crbiol.29).\
+    Contributions: Writing -- review & editing.
+
+-   Lemoine, Frédéric, **Luc Blassel**, Jakub Voznica, and Olivier Gascuel.2020. **"COVID-Align: accurate online alignment of hCoV-19 genomes using a profile HMM"** *Bioinformatics*, 37 (12): 1761-1762. [10.1093/bioinformatics/btaa871](https://doi.org/10.1093/bioinformatics/btaa871).\
+    Contributions: Software, Writing -- review & editing
 
 [^index-1]: Co-first authors: Luc Blassel and Anna Zhukova
 

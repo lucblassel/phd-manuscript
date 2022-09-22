@@ -382,4 +382,4 @@ As we have seen now, although we have methods guaranteed to give us optimal pair
 
 Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the "age of pandemics", accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.
 
-\% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

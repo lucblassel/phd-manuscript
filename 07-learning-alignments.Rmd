@@ -2,15 +2,23 @@
 
 ## Intro to deep learning
 
--   The perceptron & neuron structure
+-   The perceptron [@rosenblattPerceptronProbabilisticModel1958] & neuron structure
 
--   MLP
+-   MLP and NNs
 
--   Deeper and deeper models
+-   Resurgence in 90s Back Prop -\> !!
 
--   Back Prop -\> !!
+-   Then came convolution neural networks, explosion of computer vision
 
--   Recently super deep network with billions of params
+-   Recently super deep network with billions of params, reaching state of the art in many tasks:
+
+    -   image recognition
+
+    -   protein folding
+
+    -   translation
+
+    -   ...
 
 ## Learning sequence embeddings
 
@@ -124,4 +132,4 @@ NLP:
 
 i.e. either connections in MSR graph or sequence 2 sequence models
 
-% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
