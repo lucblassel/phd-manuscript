@@ -252,7 +252,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-21}
+\date{2022-09-22}
 
 \begin{document}
 \maketitle
@@ -1029,7 +1029,7 @@ From this starting point we can fill out the Dynamic programming matrix with all
   \(C(0,1)\) plus the cost of an indel: \(-1-1=-2\)
 \end{enumerate}
 
-By taling the maximum out of these three values we can fill out the matrix with \(C(1,1)=1\). By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between \(S_1\) and \(S_2\), however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell \((i,j)\) we add an edge from this cell to the previous cell that was used to compute \(C(i,j)\). In our example above, we obtained \(C(1,1)\) from a match and \(C(0,0)\), so we can add an edge in our graph going from cell \((1,1)\) to cell \((0,0)\). The filled out matrix with the graph edges represented as arrows can be seen in Figure \ref{fig:nwAlign}B.
+By taking the maximum out of these three values we can fill out the matrix with \(C(1,1)=1\). By continuing this process until we fill out the whole we obtain the scores visible below. This is enough if we only want to compute the optimal global alignment score between \(S_1\) and \(S_2\), however if we want to deduce the operations leading to alignment, and therefore the alignment itself, we need to keep track of which operation we made to get a specific score. The easiest way to do that is to also consider this matrix as a graph where each cell is a vertex. When we compute the score of cell \((i,j)\) we add an edge from this cell to the previous cell that was used to compute \(C(i,j)\). In our example above, we obtained \(C(1,1)\) from a match and \(C(0,0)\), so we can add an edge in our graph going from cell \((1,1)\) to cell \((0,0)\). The filled out matrix with the graph edges represented as arrows can be seen in Figure \ref{fig:nwAlign}B.
 
 \begin{figure}[h]
 \centering
@@ -1049,7 +1049,24 @@ Another issue is space complexity since we need to store the matrix, the space c
 
 In global alignment two full sequences are aligned to each other. In local alignment the goal is to find the optimal alignment of two subsequences from these parent sequences. The main algorithm for locally aligning is the Smith-Waterman (SW) algorithm \autocite{smithIdentificationCommonMolecular1981} developed a decade later than NW.
 
-The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score \textgreater{} 0. If we use the SW algorithm to locally align the two example sequences \(S_1\) and \(S_2\) and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure \ref{fig:swAlign}.
+The two algorithms are very similar, SW also relies on first building the dynamic programming matrix with the same parametrizable costs for matches, mismatches and indels as NW. One key difference is that the optimal scores in the matrix are bound by 0 so they cannot become negative, we only store edges in the alignment graph is the starting cell has an alignment score \textgreater{} 0.
+
+In this new formulation, the score in cell \(C(i,j)\) is the maximum of the following values:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The score in the diagonally adjacent cell \(C(i-1,j-1)\) plus the cost of a match or mismatch between \(S_1[i]\) and \(S_2[j]\).
+\item
+  The score of the cell to the left \(C(i,j-1)\) plus the cost of an indel.
+\item
+  The score of the cell on top \(C(i-1,j)\) plus the cost of an indel.
+\item
+  \(0\).
+\end{enumerate}
+
+If we use the SW algorithm to locally align the two example sequences \(S_1\) and \(S_2\) and the same costs as used above, we obtain the dynamic programming matrix and graph shown in Figure \ref{fig:swAlign}.
 
 \begin{figure}[h]
 \centering
@@ -1079,7 +1096,7 @@ In order to reflect this biological reality of proteins, new substitution matric
 S_{i,j}=\log\bigg(\frac{q_{ij}}{p_ip_j}\bigg)
 \]
 
-Both \(p_i\) and \(p_j\) are easy to compute from available biological sequence data, the real work in developing a Log-odds based substitution matrix is to estimate \(q_{ij}\) values. To do this accurate biological alignments are needed, and how you obtain or choose these is determining of the substitution model. Finally this Log-odds formulation yields values with nice properties for local alignment, namely negative scores for unlikely substitutions and positive ones for likely substitutions and matches.
+This Log-odds formulation yields values with nice properties for sequence alignment. \(q_{ij}\) can be thought of as the probability of the alignment between amino acids \(i\) and \(j\) resulting from a substitution, and \(p_ip_j\) is the probability under the null hypothesis that both of these amino acids were aligned randomly. Therefore log of the ratio is negative when the random alignment is more frequent (meaning the substitution is unlikely), and positive when the substitution is likely. Both \(p_i\) and \(p_j\) are easy to compute from available biological sequence data, the real work in developing a Log-odds based substitution matrix is to estimate \(q_{ij}\) values, and that is often done using biologically accurate protein sequence alignments.
 
 The PAM matrix, developed in 1978 \autocite{dayhoffModelEvolutionaryChange1978}, is one such matrix. A \emph{Point accepted mutation} (PAM) is defined as the substitution of one amino acid by another that is accepted by natural selection \emph{(i.e.~visible along the branch of a phylogenetic tree)}. Dayhoff \emph{et al.} also defined a PAM as an evolutionary distance, where two sequences distant by one PAM are expected to have one amino acid substitution per one hundred residues, which is equivalent to expecting a substitution at 1\% of positions. To develop their matrix, Dayhoff \emph{et al.} used phylogenetic trees built on 71 families of closely related proteins and counted the PAMs that appeared in these trees. This resulted in a matrix \(A\) where \(A_{ij}=A_{ji}=\) the number of times a substitution between amino acids \(i\) and \(j\) was observed in the trees. By using trees built on closely related sequences, Dayhoff \emph{et al.} could be fairly certain that the observed substitutions were the result of a single mutation and not many subsequent mutations over long evolutionary times. From this matrix \(A\), Dayhoff \emph{et al.} reconstructed the mutation probability \(M_1\) where entries \(M_{1,ij}\) represent the probability of amino acid \(j\) being replaced by amino acid \(i\) after an interval of 1 PAM. Entries of this matrix are computed as follows:
 
@@ -1090,7 +1107,7 @@ M_{1,ij}&=1-\lambda m_j & \text{if}\;\; 1 = j
 
 here \(m_j\) is the observed mutability of amino acid \(j\), and \(\lambda\) is a constant factor used to tune the matrix so that it reflects mutation rates corresponding to 1 PAM where 99\% of positions are unchanged which means that the diagonal of \(M_1\) must sum to 0.99. By assuming that evolution follows a Markov process it is simple to derive the mutation matrices for sequences separated by greater evolutionary distances. The \(M_n\) matrix, corresponding to a distance of \(n\) PAMs is equal to \(M_1^n\). Finally the \(q_{ij}\) values can be derived with \(q_ij=p_jM_{ij}\). By choosing different values of \(n\) for the mutation matrix we can estimate scoring matrices for sequences that are at varying evolutionary distances from one another. The correspondence between PAMs and and the observed proportion of diferent residues is not one to one, therefore a distance of 250 PAMs corresponds to around only about 20\% of identical residues where a distance of 180 PAMs corresponds to around 27\% identical residuess \autocite{altschulSubstitutionMatrices2013,dayhoffModelEvolutionaryChange1978}. Therefore the PAM\textsubscript{250} matrix, derived from \(M_{250}\), is suited to align more distantely related proteins than the PAM\textsubscript{180} for example. By changing the mathematical model underlying the estimate of mutation probabilities, PAM-like matrices \autocite{mullerModelingAminoAcid2000} were later developed based on the same principles.
 
-The other main type of substitution matrix are the BLOSUM matrices (Block Substitution matrix), developed in 1992 \autocite{henikoffAminoAcidSubstitution1992}. Instead of using whole, closely-related protein sequences like the PAM matrices, the values of \(q_{ij}\) were estimated on highly conserved segments across whole protein families. Furthermore, to derive the BLOSUM scores, Henikoff and Henikoff did not estimate an underlying evolutionary model but only counted substitutions to estimate \(q_{ij}\) values. Similarly to PAM matrices there are several BLOSUM matrices adapted to different levels of similarity between the sequences to be aligned.
+The other main type of substitution matrix are the BLOSUM matrices (Block Substitution matrix), developed in 1992 \autocite{henikoffAminoAcidSubstitution1992}. Instead of using whole, closely-related, protein sequences like the PAM matrices, the values of \(q_{ij}\) were estimated on highly conserved segments, called \emph{blocks}, across whole protein families. The \(q_{ij}\) values are then estimated as the number of time amino acids \(i\) and \(j\) are aligned divided by the number of total amino acid pairs in the alignment. Therefore \(q_{ij}\) is the observed frequency of the aligned pair of amino acids \(i\) and \(j\) in all the conserved blocks. Like with PAM matrices, several BLOSUM matrices were constructed adapted for aligning sequences with different evolutionary distances. The BLOSUM62 matrix was estimated on blocks in aligned sequences that are at most 62\% identical, BLOSUM80 on sequences that ar at most 80\% identical. Therefore, inversely to the PAM matrices, the higher the number of the BLOSUM matrix the more suited it is to align more closely related sequences.
 
 PAM and BLOSUM matrices have fairly broad use-cases and are widely used in alignment, however there exist many other protein substitution models. Instead of using log-odds, some substitution models were developed by estimating scores with maximum-likelihood approaches \autocite{whelanGeneralEmpiricalModel2001,leImprovedGeneralAmino2008}. Some matrices were developed with very specific usage conditions in mind. Some are tailored to specific types of proteins like Transmembrane \autocite{mullerNonsymmetricScoreMatrices2001,ngPHATTransmembranespecificSubstitution2000}, disordered \autocite{trivediAminoAcidSubstitution2019} or polar/non-polar \autocite{goonesekereContextspecificAminoAcid2008} proteins. Some matrices were developed to align sequences from specific organisms like \emph{P. falciparum} \autocite{pailaGenomeBiasInfluences2008} \emph{(responsible for malaria)} or HIV \autocite{nickleHIVSpecificProbabilisticModels2007}. A substitution matrix was even developed in 2005 specifically for global rather than local alignment \autocite{sardiuScoreStatisticsGlobal2005}.
 
@@ -1297,7 +1314,7 @@ As we have seen now, although we have methods guaranteed to give us optimal pair
 
 Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the ``age of pandemics'', accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.
 
-% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+\% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HPC-paper}{%
 \chapter{Contribution 1: Improving read alignment by exploring a sequence transformation space}\label{HPC-paper}}
