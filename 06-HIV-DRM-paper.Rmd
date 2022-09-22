@@ -1,20 +1,8 @@
 # Contribution 2: Inferring mutation roles from sequence alignments using machine learning {#HIV-paper}
 
-Recall that:
+As we have seen in Sections \@ref(quick-presentation-of-hiv) and \@ref(consequences-of-resistance-on-global-health), the HIV pandemic is a widespread threat to public health which can have very serious consequences at the infected individual's level and at the population scale. Despite many advances in drug development, fundamental research in new drug targets drug resistance mutations arise very quickly in response to antiretroviral therapy. This is especially important in lower income countries where the drug switching options are less numerous and give rise to multi-resistant viruses. In order to manage this global pandemic, surveying the viral infections, finding and categorizing new drug resistance mutations is very important. One such way to do this is to use HIV viral sequences, obtained from patients, and use their alignment as input for statistical and machine learning methods *(c.f. Chapter \@ref(learning-from-sequences-and-alignments) and Section \@ref(finding-drms))*. In this chapter, I will present some work done on studying drug resistance mutations in HIV sequences using a large sequence alignment and machine learning methods. 
 
--   HIV pandemic is very serious (cf. Sections \@ref(quick-presentation-of-hiv) and \@ref(consequences-of-resistance-on-global-health) )
-
--   Finding drug resistance mutations is useful to manage this pandemic 
-
--   These mutations can be found with machine learning and/or statistical testing (c.f. Section \@ref(finding-drms))
-
--   Alignments are used as inputs for this testing procedure (c.f. Chapter 4)
-
-This chapter was written as an article titled:   
-**"Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV"**  
-it was originally published in *August 2021*, in *PLoS Computational Biology*
-([*doi:10.1371/journal.pcbi.1008873*](https://doi.org/10.1371/journal.pcbi.1008873)).  
-The author list, complete with affiliations is given below:  
+This chapter was written as an article titled: **"Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV"**. It was originally published in *August 2021*, in *PLoS Computational Biology* ([*doi:10.1371/journal.pcbi.1008873*](https://doi.org/10.1371/journal.pcbi.1008873)) and is presented as is, without any modification from the published version. The author list, complete with affiliations is given below:  
 \
 
 Luc Blassel^**1**,**2**\*^, Anna Tostevin^**3**^, Christian Julian

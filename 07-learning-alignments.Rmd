@@ -1,5 +1,17 @@
 # Learning alignments, an interesting perspective
 
+## Intro to deep learning
+
+-   The perceptron & neuron structure
+
+-   MLP
+
+-   Deeper and deeper models
+
+-   Back Prop -\> !!
+
+-   Recently super deep network with billions of params
+
 ## Learning sequence embeddings
 
 -   (Variational) Auto-encoders:
@@ -112,6 +124,4 @@ NLP:
 
 i.e. either connections in MSR graph or sequence 2 sequence models
 
-```{=tex}
 % \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
-```

@@ -3,10 +3,7 @@
 Recall that, when using long-read sequencing technologies, sequencing errors are more frequent than when using short-read sequencing. The most common of these sequencing errors are linked to homopolymers (\@ref(homopolymers-and-long-reads)). 
 In read-mapping analyses, a short sequence is globally aligned to a much longer reference sequence. Mapping long-reads can help bridge some gaps in knowledge and solve problems impossible to solve with shorter reads, however sequencing errors complicate an already complicated task (\@ref(the-specificities-of-read-mapping)). Homopolymer compression (\@ref(hpc-trick)) has been successfully used to mitigate some of the effects of these errors and improve long-read mapping analyses. There might, however, be rooom for improvement and alternative sequence transformation procedures that improve long-read mapping more than homopolymer compression.   
 
-This chapter was written as an article titled:\
-**"Mapping-friendly sequence reductions: going beyond homopolymer compression"**\
-it was published in ***DATE HERE***, in the iScience proceedings of the RECOMB-SEQ 2022 conference ([*doi:10.1371/journal.pcbi.1008873*](https://doi.org/10.1371/journal.pcbi.1008873)).\
-The author list, complete with affiliations is given below:\
+This chapter was written as an article titled: **"Mapping-friendly sequence reductions: going beyond homopolymer compression"**. It is currently in press for the iScience proceedings of the RECOMB-SEQ 2022 conference and is presented as is, without any modification from the submitted version. The author list, complete with affiliations is given below:\
 \
 
 Luc Blassel^**1**,**2**\*^, Paul Medvedev^**3**,**4**,**5**^, Rayan Chikhi^**1**^
