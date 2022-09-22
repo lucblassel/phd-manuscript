@@ -1322,10 +1322,7 @@ Having methods that are both fast and accurate are now more necessary than ever 
 Recall that, when using long-read sequencing technologies, sequencing errors are more frequent than when using short-read sequencing. The most common of these sequencing errors are linked to homopolymers (\ref{homopolymers-and-long-reads}).
 In read-mapping analyses, a short sequence is globally aligned to a much longer reference sequence. Mapping long-reads can help bridge some gaps in knowledge and solve problems impossible to solve with shorter reads, however sequencing errors complicate an already complicated task (\ref{the-specificities-of-read-mapping}). Homopolymer compression (\ref{hpc-trick}) has been successfully used to mitigate some of the effects of these errors and improve long-read mapping analyses. There might, however, be rooom for improvement and alternative sequence transformation procedures that improve long-read mapping more than homopolymer compression.
 
-This chapter was written as an article titled:\\
-\textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''}\\
-it was published in \textbf{\emph{DATE HERE}}, in the iScience proceedings of the RECOMB-SEQ 2022 conference (\href{https://doi.org/10.1371/journal.pcbi.1008873}{\emph{doi:10.1371/journal.pcbi.1008873}}).\\
-The author list, complete with affiliations is given below:\\
+This chapter was written as an article titled: \textbf{``Mapping-friendly sequence reductions: going beyond homopolymer compression''}. It is currently in press for the iScience proceedings of the RECOMB-SEQ 2022 conference and is presented as is, without any modification from the submitted version. The author list, complete with affiliations is given below:\\
 \strut \\
 
 Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Paul Medvedev\textsuperscript{\textbf{3},\textbf{4},\textbf{5}}, Rayan Chikhi\textsuperscript{\textbf{1}}
@@ -2365,24 +2362,9 @@ Fortunately, with large scale sequencing efforts it is possible to study and tra
 \hypertarget{HIV-paper}{%
 \chapter{Contribution 2: Inferring mutation roles from sequence alignments using machine learning}\label{HIV-paper}}
 
-Recall that:
+As we have seen in Sections \ref{quick-presentation-of-hiv} and \ref{consequences-of-resistance-on-global-health}, the HIV pandemic is a widespread threat to public health which can have very serious consequences at the infected individual's level and at the population scale. Despite many advances in drug development, fundamental research in new drug targets drug resistance mutations arise very quickly in response to antiretroviral therapy. This is especially important in lower income countries where the drug switching options are less numerous and give rise to multi-resistant viruses. In order to manage this global pandemic, surveying the viral infections, finding and categorizing new drug resistance mutations is very important. One such way to do this is to use HIV viral sequences, obtained from patients, and use their alignment as input for statistical and machine learning methods \emph{(c.f. Chapter \ref{learning-from-sequences-and-alignments} and Section \ref{finding-drms})}. In this chapter, I will present some work done on studying drug resistance mutations in HIV sequences using a large sequence alignment and machine learning methods.
 
-\begin{itemize}
-\item
-  HIV pandemic is very serious (cf.~Sections \ref{quick-presentation-of-hiv} and \ref{consequences-of-resistance-on-global-health} )
-\item
-  Finding drug resistance mutations is useful to manage this pandemic
-\item
-  These mutations can be found with machine learning and/or statistical testing (c.f. Section \ref{finding-drms})
-\item
-  Alignments are used as inputs for this testing procedure (c.f. Chapter 4)
-\end{itemize}
-
-This chapter was written as an article titled:\\
-\textbf{``Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV''}\\
-it was originally published in \emph{August 2021}, in \emph{PLoS Computational Biology}
-(\href{https://doi.org/10.1371/journal.pcbi.1008873}{\emph{doi:10.1371/journal.pcbi.1008873}}).\\
-The author list, complete with affiliations is given below:\\
+This chapter was written as an article titled: \textbf{``Using Machine Learning and Big Data to Explore the Drug Resistance Landscape in HIV''}. It was originally published in \emph{August 2021}, in \emph{PLoS Computational Biology} (\href{https://doi.org/10.1371/journal.pcbi.1008873}{\emph{doi:10.1371/journal.pcbi.1008873}}) and is presented as is, without any modification from the published version. The author list, complete with affiliations is given below:\\
 \strut \\
 
 Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Anna Tostevin\textsuperscript{\textbf{3}}, Christian Julian
@@ -3472,6 +3454,22 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 \hypertarget{learning-alignments-an-interesting-perspective}{%
 \chapter{Learning alignments, an interesting perspective}\label{learning-alignments-an-interesting-perspective}}
 
+\hypertarget{intro-to-deep-learning}{%
+\section{Intro to deep learning}\label{intro-to-deep-learning}}
+
+\begin{itemize}
+\item
+  The perceptron \& neuron structure
+\item
+  MLP
+\item
+  Deeper and deeper models
+\item
+  Back Prop -\textgreater{} !!
+\item
+  Recently super deep network with billions of params
+\end{itemize}
+
 \hypertarget{learning-sequence-embeddings}{%
 \section{Learning sequence embeddings}\label{learning-sequence-embeddings}}
 
@@ -3652,7 +3650,7 @@ NLP:
 
 i.e.~either connections in MSR graph or sequence 2 sequence models
 
-% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+\% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{global-conclusion}{%
 \chapter*{Global conclusion}\label{global-conclusion}}
