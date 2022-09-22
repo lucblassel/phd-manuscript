@@ -326,11 +326,22 @@ knitr::asis_output('\n\n\\end{comment}')
 ```
 # General Introduction {.unnumbered}
 
--   Explain shortly that 2 quite different subjects linked by alignment and sequence data.
+This manuscript is the result of my years at the Institut Pasteur, where I started as an intern in 2018 and became a PhD student in early 2020. During my time at the Institut Pasteur I have worked on two very distinct subjects:
 
-## Organization of this manuscript {.unnumbered}
+1.  The study of drug resistance mutations in HIV sequences with machine learning.
+2.  The study of sequence transformation functions to improve long-read mapping.
 
--   Organisation of the manuscript
+These two subjects, though distinct, do share some common characteristics: mainly that they are based on sequence data and specifically alignments. Although the research on drug resistance in HIV was conducted before that on long-read mapping, I have forgone the chronological ordering of my work in this manuscript for the sake of thematic coherence. Through the organization of this manuscript, I have tried to link all the facets of my PhD work, and it is my hope that readers will be able to follow the flow without too much jumping around.
+
+This manuscript is articulated around seven chapters, listed as follows:
+
+1.  An introduction to biological sequence data, how it is obtained and specific characteristics and problems inherent to long reads.
+2.  An introduction to sequence alignment, and how and why read-mapping is performed.
+3.  A presentation of my work on sequence transformation functions to improve long-read mapping, which was written as a standalone research article.
+4.  An introduction to machine learning on sequence data, with a focus on techniques used later in the manuscript.
+5.  An introduction to viruses and HIV in particular, with focus on proteins important to drug resistance.
+6.  A presentation of my work on drug resistance in HIV, which was written and published as a standalone research article.
+7.  A short introduction to deep learning in sequence alignment and perspectives to the work presented in chapter 3.
 
 ## Research output {.unnumbered}
 

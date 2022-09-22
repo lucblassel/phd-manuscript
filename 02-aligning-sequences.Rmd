@@ -147,7 +147,7 @@ The PAM matrix, developed in 1978 [@dayhoffModelEvolutionaryChange1978], is one 
 ```{=tex}
 \begin{align}
 M_{1,ij}&=\frac{\lambda m_j A_{ij}}{\sum_i A_{ij}}\;\; & \text{if}\;\;i\neq j\\
-M_{1,ij}&=1-\lambda m_j & \text{if}\;\; 1 = j 
+M_{1,ij}&=1-\lambda m_j & \text{if}\;\; i = j 
 \end{align}
 ```
 here $m_j$ is the observed mutability of amino acid $j$, and $\lambda$ is a constant factor used to tune the matrix so that it reflects mutation rates corresponding to 1 PAM where 99% of positions are unchanged which means that the diagonal of $M_1$ must sum to 0.99. By assuming that evolution follows a Markov process it is simple to derive the mutation matrices for sequences separated by greater evolutionary distances. The $M_n$ matrix, corresponding to a distance of $n$ PAMs is equal to $M_1^n$. Finally the $q_{ij}$ values can be derived with $q_ij=p_jM_{ij}$. By choosing different values of $n$ for the mutation matrix we can estimate scoring matrices for sequences that are at varying evolutionary distances from one another. The correspondence between PAMs and and the observed proportion of diferent residues is not one to one, therefore a distance of 250 PAMs corresponds to around only about 20% of identical residues where a distance of 180 PAMs corresponds to around 27% identical residuess [@altschulSubstitutionMatrices2013; @dayhoffModelEvolutionaryChange1978]. Therefore the PAM~250~ matrix, derived from $M_{250}$, is suited to align more distantely related proteins than the PAM~180~ for example. By changing the mathematical model underlying the estimate of mutation probabilities, PAM-like matrices [@mullerModelingAminoAcid2000] were later developed based on the same principles.
@@ -382,4 +382,4 @@ As we have seen now, although we have methods guaranteed to give us optimal pair
 
 Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the "age of pandemics", accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.
 
-% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
+\% \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
