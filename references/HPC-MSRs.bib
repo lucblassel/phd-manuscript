@@ -276,19 +276,6 @@
   volume       = {30}
 }
 
-@article{onoPBSIM2SimulatorLongread2021,
-  abstract     = {Recent advances in high-throughput long-read sequencers, such as PacBio and Oxford Nanopore sequencers, produce longer reads with more errors than short-read sequencers. In addition to the high error rates of reads, non-uniformity of errors leads to difficulties in various downstream analyses using long reads. Many useful simulators, which characterize long-read error patterns and simulate them, have been developed. However, there is still room for improvement in the simulation of the non-uniformity of errors.To capture characteristics of errors in reads for long-read sequencers, here, we introduce a generative model for quality scores, in which a hidden Markov Model with a latest model selection method, called factorized information criteria, is utilized. We evaluated our developed simulator from various points, indicating that our simulator successfully simulates reads that are consistent with real reads.The source codes of PBSIM2 are freely available from https://github.com/yukiteruono/pbsim2.Supplementary data are available at Bioinformatics online.},
-  author       = {Ono, Yukiteru and Asai, Kiyoshi and Hamada, Michiaki},
-  date         = {2021-03-01},
-  doi          = {10.1093/bioinformatics/btaa835},
-  journaltitle = {Bioinformatics},
-  number       = {5},
-  pages        = {589--595},
-  shortjournal = {Bioinformatics},
-  shorttitle   = {{{PBSIM2}}},
-  title        = {{{PBSIM2}}: A Simulator for Long-Read Sequencers with a Novel Generative Model of Quality Scores},
-  volume       = {37}
-}
 
 @article{prodanovSensitiveAlignmentUsing2020,
   abstract     = {The ability to characterize repetitive regions of the human genome is limited by the read lengths of short-read sequencing technologies. Although long-read sequencing technologies such as Pacific Biosciences (PacBio)~and Oxford Nanopore Technologies can potentially overcome this limitation, long segmental duplications with high sequence identity pose challenges for long-read mapping. We describe a probabilistic method, DuploMap, designed to improve the accuracy of long-read mapping in segmental duplications. It analyzes reads mapped to segmental duplications using existing long-read aligners and leverages paralogous sequence variants (PSVs)—sequence differences between paralogous sequences—to distinguish between multiple alignment locations. On simulated datasets, DuploMap increased the percentage of correctly mapped reads with high confidence for multiple long-read aligners including Minimap2 (74.3–90.6\%) and BLASR (82.9–90.7\%) while maintaining high precision. Across multiple whole-genome long-read datasets, DuploMap aligned an additional 8–21\% of the reads in segmental duplications with high confidence relative to Minimap2. Using DuploMap-aligned PacBio circular consensus sequencing reads, an additional 8.9 Mb of DNA sequence was mappable, variant calling achieved a higher F1~score and 14~713 additional variants supported by linked-read data were identified. Finally, we demonstrate that a significant fraction of PSVs in segmental duplications overlaps with variants and adversely impacts short-read variant calling.},
