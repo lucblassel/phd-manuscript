@@ -253,7 +253,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-22}
+\date{2022-09-23}
 
 \begin{document}
 \maketitle
@@ -1158,7 +1158,7 @@ The NW and SW algorithms, as well as their improvements, are proven to be optima
 \hypertarget{changing-the-method}{%
 \subsection{Changing the method}\label{changing-the-method}}
 
-One of the early approaches to speed up alignment was to focus on speeding up the dynamic programming which is the time and space consuming step of the NW and SW algorithms. Bounded dynamic programming \autocite{spougeSpeedingDynamicProgramming1989a} is one such approach. By making the assumption that the majority of alignment operations are matches and mismatches instead of indels we can make the hypothesis about the alignment graph. Most probably, the path in the graph corresponding to the optimal alignment will be around the diagonal of the dynamic programming matrix, and scores far away from the diagonal are probably not needed. By making these assumptions a lot of the scores of the matrix do not need to be computed, speeding up the execution and leading to a sparse dynamic programming matrix (shown in Figure \ref{fig:boundedDP}). This approach was used to speed up alignment early on in 1984 \autocite{fickettFastOptimalAlignment1984}. The advantage of this method is that the optimal alignment can be found very efficiently, however if there are many indels in the optimal alignment, this algorithm is not guaranteed to run faster than NW.
+One of the early approaches to speed up alignment was to focus on speeding up the dynamic programming which is the time and space consuming step of the NW and SW algorithms. Bounded dynamic programming \autocite{spougeSpeedingDynamicProgramming1989a} is one such approach, in some works it is also called banded dynamic programming. By making the assumption that the majority of alignment operations are matches and mismatches instead of indels we can make the hypothesis about the alignment graph. Most probably, the path in the graph corresponding to the optimal alignment will be around the diagonal of the dynamic programming matrix, and scores far away from the diagonal are probably not needed. By making these assumptions a lot of the scores of the matrix do not need to be computed, speeding up the execution and leading to a sparse dynamic programming matrix (shown in Figure \ref{fig:boundedDP}). This approach was used to speed up alignment early on in 1984 \autocite{fickettFastOptimalAlignment1984}. The advantage of this method is that the optimal alignment can be found very efficiently, however if there are many indels in the optimal alignment, this algorithm is not guaranteed to run faster than NW.
 
 \begin{figure}[h]
 \centering
@@ -3475,35 +3475,78 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 \hypertarget{learning-alignments-an-interesting-perspective}{%
 \chapter{Learning alignments, an interesting perspective}\label{learning-alignments-an-interesting-perspective}}
 
+\hypertarget{deep-learning-and-sequences}{%
+\section{Deep learning and sequences}\label{deep-learning-and-sequences}}
+
 \hypertarget{intro-to-deep-learning}{%
-\section{Intro to deep learning}\label{intro-to-deep-learning}}
+\subsection{Intro to deep learning}\label{intro-to-deep-learning}}
 
 \begin{itemize}
 \item
-  The perceptron \autocite{rosenblattPerceptronProbabilisticModel1958} \& neuron structure
+  The perceptron \autocite{rosenblattPerceptronProbabilisticModel1958} \& neuron structure (c.f. Figure \ref{fig:perceptron}:
+
+  \begin{itemize}
+  \item
+    Inputs -\textgreater{} weighted sum -\textgreater{} step activation function -\textgreater{} output
+  \item
+    By tweaking the weights you can solve linear separation problems
+  \end{itemize}
+\end{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{figures/Learn-alignments/perceptron.png}
+  \extcaption{Computational graph of a perceptron.}{
+Here, $n$ inputs are passed into the perceptron where they are summed, weighted by $w_1,\ldots,w_n$. This sum is then fed through the perceptron's activation function (here a binary step function) which is the output of the perceptron. Often the sum is implicitely considered part of the activation function.}
+  \label{fig:perceptron}
+\end{figure}
+
+\begin{itemize}
 \item
-  MLP and NNs
+  Resurgence in 90s due to Back Prop \autocite{rumelhartLearningRepresentationsBackpropagating1986} managed by continuous, differentiable activations -\textgreater{} gradient based training procedures!:
+
+  \begin{itemize}
+  \item
+    Sigmoid
+  \item
+    Tanh
+  \item
+    Relu (has some nice convergence properties \autocite{liConvergenceAnalysisTwolayer2017}
+  \end{itemize}
 \item
-  Resurgence in 90s Back Prop -\textgreater{} !!
+  and the MLP (c.f. Figure \ref{fig:mlp}) which is versatile (non linear problems!) and could now be trained efficiently \autocite{murtaghMultilayerPerceptronsClassification1991}
 \item
-  Then came convolution neural networks, explosion of computer vision
+  Turns out they're universal function approximators \autocite{cybenkoApproximationSuperpositionsSigmoidal1989,hornikMultilayerFeedforwardNetworks1989,hornikApproximationCapabilitiesMultilayer1991a} !
+\end{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{figures/Learn-alignments/mlp.png}
+  \extcaption{**Computational graph of a multilayer perceptron.}{  
+This MLP, also called feedforward neural network, has $n$ inputs represented as the input layer, 2 hidden layers of 3 neurons each and an output layer of 2 neurons (e.g. suitable to binary classification). It is fully connected meaning that each node of a given layer is used as input for every neuron of the following layer. Each edge in this graph is paired to a weight, these are the tunable parameters during the training process.}
+  \label{fig:mlp}
+\end{figure}
+
+\begin{itemize}
+\item
+  Then came convolution neural networks, explosion in computer vision (Le cun \autocite{lecunBackpropagationAppliedHandwritten1989,lecunGradientbasedLearningApplied1998}) but also other tasks (steiner \autocite{steinerDrugResistancePrediction2020a}, subcellular localization \autocite{weiPredictionHumanProtein2018}, epidemiological parameters \autocite{voznicaDeepLearningPhylogenies2022}, etc\ldots). an input feature is represented as a weighted linear combination of its neighbors, very interesting you start to inculde ``context'' in networks.
 \item
   Recently super deep network with billions of params, reaching state of the art in many tasks:
 
   \begin{itemize}
   \item
-    image recognition
+    image recognition with deep CNNs like alexnet \autocite{krizhevskyImageNetClassificationDeep2017} or resnet \autocite{heDeepResidualLearning2016}
   \item
-    protein folding
+    translation with RNNs \autocite{bahdanauNeuralMachineTranslation2016} and later Transformers \autocite{vaswaniAttentionAllYou2017} (more on that below)
   \item
-    translation
-  \item
-    \ldots{}
+    protein folding with alphafold-2 \autocite{jumperHighlyAccurateProtein2021}
   \end{itemize}
 \end{itemize}
 
-\hypertarget{learning-sequence-embeddings}{%
-\section{Learning sequence embeddings}\label{learning-sequence-embeddings}}
+\hypertarget{learned-sequence-embeddings}{%
+\subsection{Learned sequence embeddings}\label{learned-sequence-embeddings}}
+
+An area that in which deep learning has proved very useful is creating relevant learned embeddings, idea to capture some context with powerful non-linearity.
 
 \begin{itemize}
 \item
@@ -3631,8 +3674,10 @@ NLP:
 \hypertarget{learning-pairwise-alignment}{%
 \section{Learning pairwise alignment}\label{learning-pairwise-alignment}}
 
-\hypertarget{dedal}{%
-\subsection{DEDAL}\label{dedal}}
+\hypertarget{predicting-a-substitution-matrix}{%
+\subsection{Predicting a substitution matrix}\label{predicting-a-substitution-matrix}}
+
+DEDAL \autocite{llinares-lopezDeepEmbeddingAlignment2022}
 
 \begin{itemize}
 \item
@@ -3664,11 +3709,8 @@ NLP:
   \end{itemize}
 \end{itemize}
 
-\hypertarget{what-else-could-we-learn}{%
-\section{What else could we learn ?}\label{what-else-could-we-learn}}
-
-\hypertarget{learn-to-predict-seeds-or-starting-positions}{%
-\subsection{Learn to predict seeds or starting positions}\label{learn-to-predict-seeds-or-starting-positions}}
+\hypertarget{learning-seeds}{%
+\subsection{Learning seeds}\label{learning-seeds}}
 
 \begin{itemize}
 \item
