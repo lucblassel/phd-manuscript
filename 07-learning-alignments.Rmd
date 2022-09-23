@@ -1,26 +1,76 @@
 # Learning alignments, an interesting perspective
 
-## Intro to deep learning
+## Deep learning and sequences
 
--   The perceptron [@rosenblattPerceptronProbabilisticModel1958] & neuron structure
+### Intro to deep learning
 
--   MLP and NNs
+-   The perceptron [@rosenblattPerceptronProbabilisticModel1958] & neuron structure (c.f. Figure \@ref(fig:perceptron):
 
--   Resurgence in 90s Back Prop -\> !!
+    -   Inputs -\> weighted sum -\> step activation function -\> output
 
--   Then came convolution neural networks, explosion of computer vision
+    -   By tweaking the weights you can solve linear separation problems
+
+```{r, perceptronCap}
+perceptronCaption <- "**Computational graph of a perceptron.**  
+Here, $n$ inputs are passed into the perceptron where they are summed, weighted by $w_1,\\ldots,w_n$. This sum is then fed through the perceptron's activation function (here a binary step function) which is the output of the perceptron. Often the sum is implicitely considered part of the activation function."
+```
+
+```{r, perceptron, label="perceptron", fig.cap=perceptronCaption, eval=knitr::is_html_output(), out.width="70%"}
+knitr::include_graphics("figures/Learn-alignments/perceptron.png")
+```
+
+```{=tex}
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{figures/Learn-alignments/perceptron.png}
+  \extcaption{Computational graph of a perceptron.}{
+Here, $n$ inputs are passed into the perceptron where they are summed, weighted by $w_1,\ldots,w_n$. This sum is then fed through the perceptron's activation function (here a binary step function) which is the output of the perceptron. Often the sum is implicitely considered part of the activation function.}
+  \label{fig:perceptron}
+\end{figure}
+```
+-   Resurgence in 90s due to Back Prop [@rumelhartLearningRepresentationsBackpropagating1986] managed by continuous, differentiable activations -\> gradient based training procedures!:
+
+    -   Sigmoid
+
+    -   Tanh
+
+    -   Relu (has some nice convergence properties [@liConvergenceAnalysisTwolayer2017]
+
+-   and the MLP (c.f. Figure \@ref(fig:mlp)) which is versatile (non linear problems!) and could now be trained efficiently [@murtaghMultilayerPerceptronsClassification1991]
+
+-   Turns out they're universal function approximators [@cybenkoApproximationSuperpositionsSigmoidal1989; @hornikMultilayerFeedforwardNetworks1989; @hornikApproximationCapabilitiesMultilayer1991a] !
+
+```{r, mlpCap}
+mlpCaption <- "**Computational graph of a multilayer perceptron.**  
+This MLP, also called feedforward neural network, has $n$ inputs represented as the input layer, 2 hidden layers of 3 neurons each and an output layer of 2 neurons (e.g. suitable to binary classification). It is fully connected meaning that each node of a given layer is used as input for every neuron of the following layer. Each edge in this graph is paired to a weight, these are the tunable parameters during the training process."
+```
+
+```{r, mlp, label="mlp", eval=knitr::is_html_output(), fig.cap=mlpCaption, out.width="70%"}
+knitr::include_graphics("figures/Learn-alignments/mlp.png")
+```
+
+```{=tex}
+\begin{figure}
+  \centering
+  \includegraphics[width=.7\textwidth]{figures/Learn-alignments/mlp.png}
+  \extcaption{**Computational graph of a multilayer perceptron.}{  
+This MLP, also called feedforward neural network, has $n$ inputs represented as the input layer, 2 hidden layers of 3 neurons each and an output layer of 2 neurons (e.g. suitable to binary classification). It is fully connected meaning that each node of a given layer is used as input for every neuron of the following layer. Each edge in this graph is paired to a weight, these are the tunable parameters during the training process.}
+  \label{fig:mlp}
+\end{figure}
+```
+-   Then came convolution neural networks, explosion in computer vision (Le cun [@lecunBackpropagationAppliedHandwritten1989; @lecunGradientbasedLearningApplied1998]) but also other tasks (steiner [@steinerDrugResistancePrediction2020a], subcellular localization [@weiPredictionHumanProtein2018], epidemiological parameters [@voznicaDeepLearningPhylogenies2022], etc...). an input feature is represented as a weighted linear combination of its neighbors, very interesting you start to inculde "context" in networks.
 
 -   Recently super deep network with billions of params, reaching state of the art in many tasks:
 
-    -   image recognition
+    -   image recognition with deep CNNs like alexnet [@krizhevskyImageNetClassificationDeep2017] or resnet [@heDeepResidualLearning2016]
 
-    -   protein folding
+    -   translation with RNNs [@bahdanauNeuralMachineTranslation2016] and later Transformers [@vaswaniAttentionAllYou2017] (more on that below)
 
-    -   translation
+    -   protein folding with alphafold-2 [@jumperHighlyAccurateProtein2021]
 
-    -   ...
+### Learned sequence embeddings
 
-## Learning sequence embeddings
+An area that in which deep learning has proved very useful is creating relevant learned embeddings, idea to capture some context with powerful non-linearity.
 
 -   (Variational) Auto-encoders:
 
@@ -98,7 +148,9 @@ NLP:
 
 ## Learning pairwise alignment
 
-### DEDAL
+### Predicting a substitution matrix 
+
+DEDAL [@llinares-lopezDeepEmbeddingAlignment2022]
 
 -   reference to transformer embedding
 
@@ -120,9 +172,7 @@ NLP:
 
     -   Less information in a single nucleotide token than in proteins....
 
-## What else could we learn ?
-
-### Learn to predict seeds or starting positions
+### Learning seeds
 
 -   DeepMinimizer
 
