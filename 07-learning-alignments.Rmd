@@ -128,13 +128,17 @@ NLP:
 
         -   They have interesting properties [@beplerLearningProteinLanguage2021]:
 
-            -   Intuitively learn structure of proteins [@raoTransformerProteinLanguage2020; @rivesBiologicalStructureFunction2019]
+            -   Intuitively learn structure of proteins [@raoTransformerProteinLanguage2020; @rivesBiologicalStructureFunction2019; @bhattacharyaSingleLayersAttention2020]
+
+            -   Protein function [@huExploringEvolutionbasedFree2022]
 
             -   Learn mutational effects [@meierLanguageModelsEnable2021]
 
             -   Evolutionary characteristics [@hieEvolutionaryVelocityProtein2022]
 
-        -   To counter the space limitations (i.e. sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic [@choromanskiMaskedLanguageModeling2020]
+            -   Even used to generate relevant protein sequences [@madaniProGenLanguageModeling2020]
+
+            -   Even when trained on DNA, they learn variant effects [@benegasDNALanguageModels2022]
 
     -   Include information from MSA directly in embedding[@caiGenomewidePredictionSmall2020]: transform aligned sequence in to tokens -\> use ALBERT to embed tokens
 
@@ -144,42 +148,132 @@ NLP:
 
         -   Learn a protein structure model (potts model) directly on the MSA with a mechanism similar to attention [@sercuNeuralPottsModel2021]
 
+        -   Transformer used subreads aligned to CCS + sequencer info to polish HiFi reads [@baidDeepConsensusImprovesAccuracy2022]
+
+    -   EvoFormer from Alphafold2 [@jumperHighlyAccurateProtein2021] also takes MSAs as inputs to predict protein contacts (and is trained end-to-end)
+
 -   Powerful but hard to interpret what the model actually learns. i.e. "black box" but some work is being done to interpret attention maps [@vigBERTologyMeetsBiology2021]
 
 ## Learning pairwise alignment
 
-### Predicting a substitution matrix 
+### Predicting a substitution matrix
 
-DEDAL [@llinares-lopezDeepEmbeddingAlignment2022]
+One approach is to learn a substitution matrix (specific position/position scoring matrix) and plug it in a differentiable SW or NW algorithm (for end-to-end learning):
 
--   reference to transformer embedding
+-   SAdLSA [@gaoNovelSequenceAlignment2021]
 
--   Predict substitution matrix
+    -   sequences are encoded as PSI blast profiles
 
--   Reference other similar works
+    -   Fed through a deep CNN
 
--   drawback: only on proteins
+    -   predict a scoring matrix
+
+    -   No differentiable alignment algorithm -\> cross entropy between alignment and structural alignment.
+
+-   DeepBLAST [@mortonProteinStructuralAlignments2020]
+
+    -   Embed sequences with LSTM-based language model (trained on PFAM)
+
+    -   predict substitution/gap score
+
+    -   differentiable NW (not to learn parameters but only to backpropagate the error)
+
+-   DEDAL [@llinares-lopezDeepEmbeddingAlignment2022]
+
+    -   2 seqs are embedded with encoder-only transformer
+
+    -   Trained on TPUs with a fast differentiable algo (SW ?)
+
+    -   Training set: parwise alignments extracted from PFAM
+
+    -   predicts substitution, gap open and extend scoring matrices (position per position)
+
+    -   improves alignment for remote homologies
+
+-   The Learned Alignement module [@pettiEndtoendLearningMultiple2022]
+
+    -   Learns a "context specific scoring matrix", i.e. a 20x20 matrix for a window around a given position.
+
+    -   Differentiable SW
+
+    -   Uses convolutional NN
+
+    -   Learns an "MSA", actually outputs all to one pairwise alignments.
+
+    -   Used to as plugin to alphafold2 and improved some metrics
+
+-   Prediction of PSSM with RNN + LSTM [@guoComprehensiveStudyEnhancing2021] , not directly used on alignment but structure prediction.
 
 ### predicting an alignment
 
--   Transformer models can also predict tokens -\> predict "CIGAR string" or a an aligned sequence.
+-   BetaAlign [@dotanHarnessingMachineTranslation2022]
 
--   Challenges:
+    -   Unaligned sequences = a "language"
 
-    -   Longer sequences in DNA
+    -   Aligned sequences = another "language"
 
-    -   Size difference in the case of mapping
+    -   So use transformers to translate one into the other (tried several ways to represent these "languages")
 
-    -   Less information in a single nucleotide token than in proteins....
+    -   Tested with both DNA and protein
 
-### Learning seeds
+    -   limitations:
 
--   DeepMinimizer
+        -   length of sequences
 
--   predict start position given a pair of sequences
+        -   Training / testing set
 
-### Learn pre-processing functions
+-   Another direction could be to predict the state from 2 residues (like a PSSM but directly match/indel).
 
-i.e. either connections in MSR graph or sequence 2 sequence models
+```{=html}
+<!-- -->
+```
+-   To counter the space limitations (i.e. sequence length limitations) induced by attention, other types of transformers used:
+
+    -   with linear scale attention maps not quadratic [@choromanskiMaskedLanguageModeling2020]
+
+    -   single layer attention or factored attention [@bhattacharyaInterpretingPottsTransformer2021] which lowers the number of parameters to estimate but keeps relevant information.
+
+-   This is not a problem limited to bioinformatics, other fields have tried to come up with solutions:
+
+    -   adaptive attention span [@sukhbaatarAdaptiveAttentionSpan2019]
+
+    -   Long-Short range attention [@wuLiteTransformerLongShort2020]
+
+    -   sparse transformers [@childGeneratingLongSequences2019; @correiaAdaptivelySparseTransformers2019]
+
+    -   Reformer replace dot product to reduce memory from quadratic to linear [@kitaevReformerEfficientTransformer2020]
+
+For learning DNA alignment several challenges:
+
+-   longer sequences
+
+-   less information in a single residue than a single nucleotide
+
+-   In mapping size discrepancy between sequences.
+
+### Learning seeds 
+
+Some work has been done in learning seeding procedures
+
+-   Learn index structures on a specific reference (not necessarily DL), although fairly recent developments already thought of in 2018 [@kraskaCaseLearnedIndex2018]:
+
+    -   BWA-MEME [@jungBWAMEMEBWAMEMEmulated2022] predicts the position in a suffix array, lowering query time and no need to compute the whole suffix array
+
+    -   Sapling [@kirscheSaplingAcceleratingSuffix2021] same thing
+
+    -   LISA [@hoLISALearnedIndexes2021] predict position in FM-index
+
+```{=html}
+<!-- -->
+```
+-   DeepMinimizer [@hoangDifferentiableLearningSequenceSpecific2022]:
+
+    -   Train a neural network to select minimizers
+
+    -   Results in a better density, seeds are spread out evenly accross sequences
+
+-   Select candidate alignment sites in mRNA-miRNA pairs with DL: TargetNet [@minTargetNetFunctionalMicroRNA2022]
+
+Final note, we could also learn a pre-processing function as in Chapter \@ref(HPC-paper) in an end to end fashion: either by learning the connections in MSRs or by learning transformations with sequence to sequence models (like transformers). This is still a little abstract and would need a differentiable read mapping algo for end-to-end learning (SW is possible but seeding -\> deepminimizer ?).
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
