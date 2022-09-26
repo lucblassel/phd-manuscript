@@ -253,7 +253,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-23}
+\date{2022-09-26}
 
 \begin{document}
 \maketitle
@@ -1902,7 +1902,7 @@ One of the main obstacles to clustering biological sequences is the need for com
 
 Unsupervised learning can also be used without clustering, for example unsupervised methods based on maximum likelihood approaches have been used to predict mutational effects in protein sequence \autocite{hopfMutationEffectsPredicted2017} as well as predict recombination hotspots in human genomic sequences \autocite{castroModelSelectionApproach2018}.
 
-In many cases, unsupervised learning can be done as a preliminary dimensionality reduction step to a supervised learning task. Indeed biological data is often high-dimensional, and it is often useful to lower the amount of dimensions to speed up computations. Some unsupervised methods can reduce the number of dimensions while retaining most of the information. One such method, Principal Component Analysis (PCA), has been widely used. PCA was applied to distance matrices to compute phylogenetic trees \autocite{haschkaMNHNTreeToolsToolboxTree2021}, and work has been done to apply PCA directly to MSAs without needing to go through a distance matrix \autocite{konishiPrincipalComponentAnalysis2019}. PCA is also widely used in clustering applications \autocite{ben-hurDetectingStableClusters2003,KmeansClusteringPrincipal,casariSequencespaceToolFamily1995,clampJalviewJavaAlignment2004}.
+In many cases, unsupervised learning can be done as a preliminary dimensionality reduction step to a supervised learning task. Indeed biological data is often high-dimensional, and it is often useful to lower the amount of dimensions to speed up computations. Some unsupervised methods can reduce the number of dimensions while retaining most of the information. One such method, Principal Component Analysis (PCA), has been widely used. PCA was applied to distance matrices to compute phylogenetic trees \autocite{haschkaMNHNTreeToolsToolboxTree2021}, and work has been done to apply PCA directly to MSAs without needing to go through a distance matrix \autocite{konishiPrincipalComponentAnalysis2019}. PCA is also widely used in clustering applications \autocite{ben-hurDetectingStableClusters2003,dingKmeansClusteringPrincipal2004,casariSequencespaceToolFamily1995,clampJalviewJavaAlignment2004}.
 
 \hypertarget{others-paradigms}{%
 \subsection{Others paradigms}\label{others-paradigms}}
@@ -3646,14 +3646,18 @@ NLP:
 
       \begin{itemize}
       \item
-        Intuitively learn structure of proteins \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019}
+        Intuitively learn structure of proteins \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019,bhattacharyaSingleLayersAttention2020}
+      \item
+        Protein function \autocite{huExploringEvolutionbasedFree2022}
       \item
         Learn mutational effects \autocite{meierLanguageModelsEnable2021}
       \item
         Evolutionary characteristics \autocite{hieEvolutionaryVelocityProtein2022}
+      \item
+        Even used to generate relevant protein sequences \autocite{madaniProGenLanguageModeling2020}
+      \item
+        Even when trained on DNA, they learn variant effects \autocite{benegasDNALanguageModels2022}
       \end{itemize}
-    \item
-      To counter the space limitations (i.e.~sequence length limitations) induced by attention, other types of transformers used, with linear scale attention maps not quadratic \autocite{choromanskiMaskedLanguageModeling2020}
     \end{itemize}
   \item
     Include information from MSA directly in embedding\autocite{caiGenomewidePredictionSmall2020}: transform aligned sequence in to tokens -\textgreater{} use ALBERT to embed tokens
@@ -3665,7 +3669,11 @@ NLP:
       Similarly: learn on profiles derived from MSAs \autocite{sturmfelsProfilePredictionAlignmentBased2020} as a pre-training task for protein language models
     \item
       Learn a protein structure model (potts model) directly on the MSA with a mechanism similar to attention \autocite{sercuNeuralPottsModel2021}
+    \item
+      Transformer used subreads aligned to CCS + sequencer info to polish HiFi reads \autocite{baidDeepConsensusImprovesAccuracy2022}
     \end{itemize}
+  \item
+    EvoFormer from Alphafold2 \autocite{jumperHighlyAccurateProtein2021} also takes MSAs as inputs to predict protein contacts (and is trained end-to-end)
   \end{itemize}
 \item
   Powerful but hard to interpret what the model actually learns. i.e.~``black box'' but some work is being done to interpret attention maps \autocite{vigBERTologyMeetsBiology2021}
@@ -3677,17 +3685,65 @@ NLP:
 \hypertarget{predicting-a-substitution-matrix}{%
 \subsection{Predicting a substitution matrix}\label{predicting-a-substitution-matrix}}
 
-DEDAL \autocite{llinares-lopezDeepEmbeddingAlignment2022}
+One approach is to learn a substitution matrix (specific position/position scoring matrix) and plug it in a differentiable SW or NW algorithm (for end-to-end learning):
 
 \begin{itemize}
 \item
-  reference to transformer embedding
+  SAdLSA \autocite{gaoNovelSequenceAlignment2021}
+
+  \begin{itemize}
+  \item
+    sequences are encoded as PSI blast profiles
+  \item
+    Fed through a deep CNN
+  \item
+    predict a scoring matrix
+  \item
+    No differentiable alignment algorithm -\textgreater{} cross entropy between alignment and structural alignment.
+  \end{itemize}
 \item
-  Predict substitution matrix
+  DeepBLAST \autocite{mortonProteinStructuralAlignments2020}
+
+  \begin{itemize}
+  \item
+    Embed sequences with LSTM-based language model (trained on PFAM)
+  \item
+    predict substitution/gap score
+  \item
+    differentiable NW (not to learn parameters but only to backpropagate the error)
+  \end{itemize}
 \item
-  Reference other similar works
+  DEDAL \autocite{llinares-lopezDeepEmbeddingAlignment2022}
+
+  \begin{itemize}
+  \item
+    2 seqs are embedded with encoder-only transformer
+  \item
+    Trained on TPUs with a fast differentiable algo (SW ?)
+  \item
+    Training set: parwise alignments extracted from PFAM
+  \item
+    predicts substitution, gap open and extend scoring matrices (position per position)
+  \item
+    improves alignment for remote homologies
+  \end{itemize}
 \item
-  drawback: only on proteins
+  The Learned Alignement module \autocite{pettiEndtoendLearningMultiple2022}
+
+  \begin{itemize}
+  \item
+    Learns a ``context specific scoring matrix'', i.e.~a 20x20 matrix for a window around a given position.
+  \item
+    Differentiable SW
+  \item
+    Uses convolutional NN
+  \item
+    Learns an ``MSA'', actually outputs all to one pairwise alignments.
+  \item
+    Used to as plugin to alphafold2 and improved some metrics
+  \end{itemize}
+\item
+  Prediction of PSSM with RNN + LSTM \autocite{guoComprehensiveStudyEnhancing2021} , not directly used on alignment but structure prediction.
 \end{itemize}
 
 \hypertarget{predicting-an-alignment}{%
@@ -3695,34 +3751,101 @@ DEDAL \autocite{llinares-lopezDeepEmbeddingAlignment2022}
 
 \begin{itemize}
 \item
-  Transformer models can also predict tokens -\textgreater{} predict ``CIGAR string'' or a an aligned sequence.
-\item
-  Challenges:
+  BetaAlign \autocite{dotanHarnessingMachineTranslation2022}
 
   \begin{itemize}
   \item
-    Longer sequences in DNA
+    Unaligned sequences = a ``language''
   \item
-    Size difference in the case of mapping
+    Aligned sequences = another ``language''
   \item
-    Less information in a single nucleotide token than in proteins\ldots.
+    So use transformers to translate one into the other (tried several ways to represent these ``languages'')
+  \item
+    Tested with both DNA and protein
+  \item
+    limitations:
+
+    \begin{itemize}
+    \item
+      length of sequences
+    \item
+      Training / testing set
+    \end{itemize}
   \end{itemize}
+\item
+  Another direction could be to predict the state from 2 residues (like a PSSM but directly match/indel).
+\end{itemize}
+
+\begin{itemize}
+\item
+  To counter the space limitations (i.e.~sequence length limitations) induced by attention, other types of transformers used:
+
+  \begin{itemize}
+  \item
+    with linear scale attention maps not quadratic \autocite{choromanskiMaskedLanguageModeling2020}
+  \item
+    single layer attention or factored attention \autocite{bhattacharyaInterpretingPottsTransformer2021} which lowers the number of parameters to estimate but keeps relevant information.
+  \end{itemize}
+\item
+  This is not a problem limited to bioinformatics, other fields have tried to come up with solutions:
+
+  \begin{itemize}
+  \item
+    adaptive attention span \autocite{sukhbaatarAdaptiveAttentionSpan2019}
+  \item
+    Long-Short range attention \autocite{wuLiteTransformerLongShort2020}
+  \item
+    sparse transformers \autocite{childGeneratingLongSequences2019,correiaAdaptivelySparseTransformers2019}
+  \item
+    Reformer replace dot product to reduce memory from quadratic to linear \autocite{kitaevReformerEfficientTransformer2020}
+  \end{itemize}
+\end{itemize}
+
+For learning DNA alignment several challenges:
+
+\begin{itemize}
+\item
+  longer sequences
+\item
+  less information in a single residue than a single nucleotide
+\item
+  In mapping size discrepancy between sequences.
 \end{itemize}
 
 \hypertarget{learning-seeds}{%
 \subsection{Learning seeds}\label{learning-seeds}}
 
+Some work has been done in learning seeding procedures
+
 \begin{itemize}
 \item
-  DeepMinimizer
-\item
-  predict start position given a pair of sequences
+  Learn index structures on a specific reference (not necessarily DL), although fairly recent developments already thought of in 2018 \autocite{kraskaCaseLearnedIndex2018}:
+
+  \begin{itemize}
+  \item
+    BWA-MEME \autocite{jungBWAMEMEBWAMEMEmulated2022} predicts the position in a suffix array, lowering query time and no need to compute the whole suffix array
+  \item
+    Sapling \autocite{kirscheSaplingAcceleratingSuffix2021} same thing
+  \item
+    LISA \autocite{hoLISALearnedIndexes2021} predict position in FM-index
+  \end{itemize}
 \end{itemize}
 
-\hypertarget{learn-pre-processing-functions}{%
-\subsection{Learn pre-processing functions}\label{learn-pre-processing-functions}}
+\begin{itemize}
+\item
+  DeepMinimizer \autocite{hoangDifferentiableLearningSequenceSpecific2022}:
 
-i.e.~either connections in MSR graph or sequence 2 sequence models
+  \begin{itemize}
+  \item
+    Train a neural network to select minimizers
+  \item
+    Results in a better density, seeds are spread out evenly accross sequences
+  \end{itemize}
+\item
+  Select candidate alignment sites in mRNA-miRNA pairs with DL: TargetNet \autocite{minTargetNetFunctionalMicroRNA2022}
+\end{itemize}
+
+Final note, we could also learn a pre-processing function as in Chapter \ref{HPC-paper} in an end to end fashion: either by learning the connections in MSRs or by learning transformations with sequence to sequence models (like transformers). This is still a little abstract and would need a differentiable read mapping algo for end-to-end learning (SW is possible but seeding -\textgreater{} deepminimizer ?).
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
