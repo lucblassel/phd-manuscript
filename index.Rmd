@@ -327,7 +327,7 @@ knitr::asis_output('\n\n\\end{comment}')
 ```
 # General Introduction {.unnumbered}
 
-This manuscript is the result of my years at the Institut Pasteur, where I started as an intern in 2018 and became a PhD student in early 2020. During my time at the Institut Pasteur I have worked on two very distinct subjects:
+This manuscript is the result of my years at the Institut Pasteur, where I built upon work initiated during an internship in 2018. During my time at the Institut Pasteur I have worked on two very distinct subjects:
 
 1.  The study of drug resistance mutations in HIV sequences with machine learning.
 2.  The study of sequence transformation functions to improve long-read mapping.
