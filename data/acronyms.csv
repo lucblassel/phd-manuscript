@@ -1,0 +1,43 @@
+acronym,definition
+AA,Amino Acid
+AIDS,Acquired Immunodeficience Syndrome
+ART,Antiretroviral therapy
+BLAST,Basic Local Alignment Search Tool
+BLOSUM,Block Substitution
+CCS,Circular Consensus Sequencing
+CRF,Circulating Recombinant Form
+DNA,Desoxy Ribonucleic Acid
+dNTP,deoxyNucleotide Triphosphate
+DRM,Drug Resistance Mutation
+EI,Entry Inhibitor
+FI,Fusion Inhibitor
+HIV,Human Immunodeficiency Virus
+HMM,Hidden Markov Model
+HPC,Homopolymer Compression
+IN,Integrase
+INSTI,Integrase Strand Transfer Inhibitor
+LR,Logisitic Regression
+mapq,mapping quality
+ML,Machine Learning
+MSA,Multiple Sequence Alignment
+MSR,Mapping-friendly sequence reduction
+NNIBP,Non-Nucleoside Reverse Transcriptase Inhibitor Binding Pocket
+NNRTI,Non-Nucleoside Reverse Transcriptase Inhibitor
+NRTI,Nucleoside Reverse Transcriptase Inhibitor
+NTP,Nucleotide Triphosphate
+NW,Needleman Wunsch algorithm
+ONT,Oxford Nanopore Technologies
+PacBio,Pacific Biosciences
+PAM,Point Accepted Mutation
+PE,Pharmacokinetic Enhancer
+PI,Protease Inhibitor
+PR,Protease
+RAM,Resistance Associated Mutation
+RC,reverse complement
+RF,Random Forest
+RNA,Ribonucleic Acid
+RR,Risk Ratio
+RT,Reverse Transcriptase
+RTI,Reverse Transcriptase Inhibitor
+SSR,Streaming sequence reduction
+SW,Smith Waterman algorithm
