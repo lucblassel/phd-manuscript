@@ -3295,23 +3295,17 @@ Supporting Information can be found in the appendix \ref{HIV-appendix}
 \hypertarget{learning-alignments-an-interesting-perspective}{%
 \chapter{Learning alignments, an interesting perspective}\label{learning-alignments-an-interesting-perspective}}
 
+Recently, machine learning methods have been increasingly applied to the process of alignment. Learning an alignment method through machine learning could result in methods with less design biases and with data-driven insights.
+
 \hypertarget{deep-learning-and-sequences}{%
 \section{Deep learning and sequences}\label{deep-learning-and-sequences}}
+
+As many of these techniques are based on deep learning, which I did not introduce in Chapter \ref{learning-from-sequences-and-alignments}, I will first introduce deep learning very shortly. I will then introduce the concept of learned sequence embeddings which have become very useful for machine sequence alignment.
 
 \hypertarget{intro-to-deep-learning}{%
 \subsection{Intro to deep learning}\label{intro-to-deep-learning}}
 
-\begin{itemize}
-\item
-  The perceptron \autocite{rosenblattPerceptronProbabilisticModel1958} \& neuron structure (c.f. Figure \ref{fig:perceptron}:
-
-  \begin{itemize}
-  \item
-    Inputs -\textgreater{} weighted sum -\textgreater{} step activation function -\textgreater{} output
-  \item
-    By tweaking the weights you can solve linear separation problems
-  \end{itemize}
-\end{itemize}
+Deep learning is the process of learning using neural networks. Neural all started in 1958 when Rosenblatt proposed the \emph{perceptron} \autocite{rosenblattPerceptronProbabilisticModel1958}. This learning algorithm was loosely inspired by biological neurons, which led to the name: \emph{neural networks.} The perceptron takes as input \(n\) values, these are used in a weighted sum that is then fed through an \emph{activation function.} The output of this function is the output of the perceptron. Originally, to replicate biological neurons, the activation function was a step function where, the perceptron has an output only if the weighted sum crosses a given threshold. This structure is often represented through a computational graph like in Figure \ref{fig:perceptron}. By tweaking the weights of the inputs, the perceptron can be used to solve linear separation problems.
 
 \begin{figure}
   \centering
@@ -3321,186 +3315,64 @@ Here, $n$ inputs are passed into the perceptron where they are summed, weighted 
   \label{fig:perceptron}
 \end{figure}
 
-\begin{itemize}
-\item
-  Resurgence in 90s due to Back Prop \autocite{rumelhartLearningRepresentationsBackpropagating1986} managed by continuous, differentiable activations -\textgreater{} gradient based training procedures!:
-
-  \begin{itemize}
-  \item
-    Sigmoid
-  \item
-    Tanh
-  \item
-    Relu (has some nice convergence properties \autocite{liConvergenceAnalysisTwolayer2017}
-  \end{itemize}
-\item
-  and the MLP (c.f. Figure \ref{fig:mlp}) which is versatile (non linear problems!) and could now be trained efficiently \autocite{murtaghMultilayerPerceptronsClassification1991}
-\item
-  Turns out they're universal function approximators \autocite{cybenkoApproximationSuperpositionsSigmoidal1989,hornikMultilayerFeedforwardNetworks1989,hornikApproximationCapabilitiesMultilayer1991a} !
-\end{itemize}
+While the perceptron could be useful, some other methods could solve more complex problems. However it was discovered that by linking several perceptrons together, as in a biological brain, some complex problems could also be solved. These structure, called \emph{multilayer perceptrons} (MLP), are organized in layers, where the outputs of perceptrons on a layer are used as inputs by perceptrons is the next layer (c.f. Figure \ref{fig:mlp}). The perceptrons, when in this form, are often called \emph{neurons}, and the MLP a \emph{neural network} (NN). These neural networks are organized in layers, with an input and output layer on either end, and hidden layers in the middle. With the large number of weights to tune, these models were very difficult to train and therefore not practically useful.
 
 \begin{figure}
   \centering
   \includegraphics[width=.6\textwidth]{figures/Learn-alignments/mlp.png}
-  \extcaption{**Computational graph of a multilayer perceptron.}{  
+  \extcaption{Computational graph of a multilayer perceptron.}{  
 This MLP, also called feedforward neural network, has $n$ inputs represented as the input layer, 2 hidden layers of 3 neurons each and an output layer of 2 neurons (e.g. suitable to binary classification). It is fully connected meaning that each node of a given layer is used as input for every neuron of the following layer. Each edge in this graph is paired to a weight, these are the tunable parameters during the training process.}
   \label{fig:mlp}
 \end{figure}
 
-\begin{itemize}
-\item
-  Then came convolution neural networks, explosion in computer vision (Le cun \autocite{lecunBackpropagationAppliedHandwritten1989,lecunGradientbasedLearningApplied1998}) but also other tasks (steiner \autocite{steinerDrugResistancePrediction2020a}, subcellular localization \autocite{weiPredictionHumanProtein2018}, epidemiological parameters \autocite{voznicaDeepLearningPhylogenies2022}, etc\ldots). an input feature is represented as a weighted linear combination of its neighbors, very interesting you start to inculde ``context'' in networks.
-\item
-  Recently super deep network with billions of params, reaching state of the art in many tasks:
+There was a great resurgence of these models in the nineties due to the invention of \emph{backpropagation} \autocite{rumelhartLearningRepresentationsBackpropagating1986}. By replacing the step functions of neurons with continuous, differentiable activation functions like sigmoid or hyperbolic tangent functions. With backpropagation, a gradient of the output could be computed w.r.t to each weight, enabling gradient descent procedures for automatically learning the optimal weights from data as described in Section \ref{supervised-learning}. With this, method, neural networks could be efficiently trained on complex classification and regression problems \autocite{murtaghMultilayerPerceptronsClassification1991}. It was also proven that with hidden layers, neural networks are universal function approximators \autocite{cybenkoApproximationSuperpositionsSigmoidal1989,hornikMultilayerFeedforwardNetworks1989,hornikApproximationCapabilitiesMultilayer1991a}, suitable for all types of tasks. One notable caveat for neural networks is that, due to the large amount of weights to tune, they require large amounts of training data, which also explained their low usage before the internet and resulting data collection.
 
-  \begin{itemize}
-  \item
-    image recognition with deep CNNs like alexnet \autocite{krizhevskyImageNetClassificationDeep2017} or resnet \autocite{heDeepResidualLearning2016}
-  \item
-    translation with RNNs \autocite{bahdanauNeuralMachineTranslation2016} and later Transformers \autocite{vaswaniAttentionAllYou2017} (more on that below)
-  \item
-    protein folding with alphafold-2 \autocite{jumperHighlyAccurateProtein2021}
-  \end{itemize}
-\end{itemize}
+In the following years, neural networks saw an explosion in usage, with more complex architectures like convolutional neural networks (CNN) achieving state of the art result in computer vision tasks \autocite{lecunBackpropagationAppliedHandwritten1989,lecunGradientbasedLearningApplied1998}. By representing an input variable as a linear combination of its neighbors some form of contextual information can be passed to the NN and improve performance. CNNs can also have good results in non computer-vision tasks like: drug resistance prediction \autocite{steinerDrugResistancePrediction2020a}, protein subcellular localization \autocite{weiPredictionHumanProtein2018}, or epidemiological model parameter estimation \autocite{voznicaDeepLearningPhylogenies2022}.
+
+More recently, as computational power and the amount of training data grew, larger and deeper (i.e.~more hidden layers) architecture were able to be trained and achieved state of the art performance in many fields: image recognition with deep CNNs like \texttt{Alexnet} \autocite{krizhevskyImageNetClassificationDeep2017} or \texttt{Resnet} \autocite{heDeepResidualLearning2016}, translation with Recurrent NNs \autocite{bahdanauNeuralMachineTranslation2016} and Transformers \autocite{vaswaniAttentionAllYou2017} (more on that in Section \ref{learned-sequence-embeddings}) or protein structure prediction with \texttt{Alphafold2} \autocite{jumperHighlyAccurateProtein2021}
 
 \hypertarget{learned-sequence-embeddings}{%
 \subsection{Learned sequence embeddings}\label{learned-sequence-embeddings}}
 
-An area that in which deep learning has proved very useful is creating relevant learned embeddings, idea to capture some context with powerful non-linearity.
+An area that in which deep learning has recently proved particularly useful is the creation relevant learned embeddings. These embeddings, similarly to the encodings discussed in Section \ref{preprocessing-the-alignment-for-machine-learning}, transform a sequence of tokens in a numerical vector which can then be used in other machine learning tasks. By learning these embeddings, the hope is that the resulting vector will retain the most important information in the sequence and keep some context.
+
+\hypertarget{x-2vec}{%
+\subsubsection{\texorpdfstring{\(x\)-\texttt{2vec}}{x-2vec}}\label{x-2vec}}
+
+Learned embeddings were principally developed in the field of natural language processing (NLP), where machine learning algorithms use text in languages such as English or French as input. In these contexts, simple encodings like OHE are not very practical because of the very high dimensionality of a language. For example, Merriam-Webster English dictionary contains 470,000 words \autocite{HowManyWords} so to encode a single word as a One-Hot encoded vector would result in a 470,000-dimensional sparse vector. Encoding a whole text or even a single sentence is wildly unpractical. Therefore, as a field, NLP needed to come up with ways of efficiently representing words in lower-dimensional vectors than naive encoding methods, while retaining semantic meaning.
+
+One of the early methods for sequence embedding was called \texttt{word2vec} \autocite{mikolovEfficientEstimationWord2013,mikolovDistributedRepresentationsWords2013}, proposed by researchers at Google, that learns an word-embedding method on a particular text corpus. This method is designed to make embeddings that contain semantically relevant information, and example of the article is that the vector corresponding to \(vec(Madrid) - vec(Spain)\) should be very similar to the vector \(vec(Paris)\), and that similar words result in similar vectors.
+
+The way this method works is by considering a word within its context, i.e.~a window of length \(k\) centered around the word. In a corpus of words (i.e.~our training data), each word is encoded as a One Hot Vector, which is possible since the corpus contains only a subset of the words in the English language. A neural is then trained on one one of two tasks \autocite{goldbergWord2vecExplainedDeriving2014}:
 
 \begin{itemize}
 \item
-  (Variational) Auto-encoders:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Bottlneck in deep neural neck, task is to predict input. Add noise in the hidden layers -\textgreater{} remove noise or regularize to have smooth latent space and get embeddings
-  \item
-    Used for ancestral sequence reconstruction \autocite{moretaAncestralProteinSequence2022} and estimating evolutionary distances \autocite{corsoNeuralDistanceEmbeddings2021}
-  \item
-    VAEs used for sequence design as well \autocite{wuProteinSequenceDesign2021,stantonAcceleratingBayesianOptimization2022}
-  \end{itemize}
+  Continuous Bag of words: where the word is predicted given the context of the word as input
+\item
+  Skip-gram: where the context is predicted given the encoded word vector
 \end{itemize}
 
-NLP:
+After having sufficiently trained the neural network on the corpus on one of these tasks, one of the hidden layers of the network can be extracted and used as a vector representation of the input word, this results in an embedding method that is specific to a given corpus and the embedded vectors can be used in downstream learning tasks.
 
-\begin{itemize}
-\item
-  From the field of natural language processing where very high dimensionality (470,000 words in the Merriam-Webster English dictionary \autocite{HowManyWords}, so naive one hot is out of the question), we need other ways to transform words into sequences.
-\item
-  Method of pre-training embedding methods
-\item
-  Word2Vec derivatives:
+\texttt{word2vec} was very successful and widely used in the field of NLP, it is perhaps no surprise that the ideas behind it were adapted and reused in the field of bioinformatics. \texttt{dna2vec} \autocite{ngDna2vecConsistentVector2017} uses similar ideas and was used to embed \(k\)-mers, and predict methylation sites on DNA sequences \autocite{liangHyb4mCHybridDNA2vecbased2022}. Similar embedding methods like \texttt{seq2vec} \autocite{kimothiDistributedRepresentationsBiological2016} as well as \texttt{bioVec} (including the protein specific \texttt{protVec}) \autocite{asgariContinuousDistributedRepresentation2015} were also developed to embed whole biological sequences. They were successfully used in biological sequence classification problems \autocite{kimothiMetricLearningBiological2017}.
 
-  \begin{itemize}
-  \item
-    word2Vec \autocite{mikolovEfficientEstimationWord2013,mikolovDistributedRepresentationsWords2013}, take in a large corpus of text and learns a vector space from it. Then each word in the corpus can be assigned a vector, constraints mean that similar words have similar vectors (i.e.~low distance in the vector space). And that the embeddings make sense grammatically (e.g.~of the Paper \(vec(Madrid) - vec(Spain)\) should be close to \(vec(Paris)\) in the learned space.
+\hypertarget{the-attention-revolution}{%
+\subsubsection{The attention revolution}\label{the-attention-revolution}}
 
-    \begin{itemize}
-    \item
-      Context of a word = window of \(k\) words centered around it
-    \item
-      The model is a neural network and the hidden layer corresponds to the embedding (similar to auto-encoders)
-    \item
-      2 ways to train it \autocite{goldbergWord2vecExplainedDeriving2014}:
+While \texttt{word2vec} was widely used for many NLP tasks where word embeddings were needed, a lot of interesting developments on word embeddings were made in the field of automated machine translation. In this application, the desired embedding characteristics are slightly different. While semantic relevance is useful, in machine translation the embedding method needs to be able to capture dependencies, e.g.~within a sentence where the link between the subject and the verb must be captured even though they are not necessarily next to each other. This was initially done by using recurrent neural networks, but they were hard to train and had trouble properly capturing long-range dependencies \autocite{songPretrainingModelBiological2021}.
 
-      \begin{itemize}
-      \item
-        CBOW (continuous bag of words) = predict word from context
-      \item
-        skip-gram = predict context from word
-      \end{itemize}
-    \end{itemize}
-  \item
-    dna2vec \autocite{ngDna2vecConsistentVector2017}
+One of the most successful methods developed for this task it the transformer \autocite{vaswaniAttentionAllYou2017}, also created by Google researchers. The main mechanisms of the transformer is the \emph{self-attention} mechanisms: each input token, usually encoded as a One-Hot vector, is represented as a weighted sum of all the other tokens in a sequence \emph{(here a token is a word and the sequence is a sentence)}. The weights of this sum are trained along with the rest of this network. by stacking several of these self-attention blocks, transformers can learn to represent and leverage long-range dependencies. This mechanism, and the transformer in general have had very successful application in machine translation, while being easier to train than recurrent networks \autocite{wangProgressMachineTranslation2021}.
 
-    \begin{itemize}
-    \tightlist
-    \item
-      Used to predict methylation sites \autocite{liangHyb4mCHybridDNA2vecbased2022}
-    \end{itemize}
-  \item
-    seq2vec \autocite{kimothiDistributedRepresentationsBiological2016}
-  \item
-    BioVec/ProtVec/GeneVec \autocite{asgariContinuousDistributedRepresentation2015}
+This architecture was used to create very large pre-trained language models, that is to say models that perform word embedding. These models like \texttt{GPT-3} \autocite{brownLanguageModelsAre2020} or \texttt{BERT} \autocite{devlinBERTPretrainingDeep2019} are huge, with millions or even billions of learned weights, and have been trained on huge quantities of data in order to produce word embeddings useful in a wide range of contexts. \texttt{BERT} was trained using Masked Language Modelling (MLM), where some percentage of the tokens \emph{(words)} in an input sequence \emph{(sentence)} are replaced by a special \texttt{{[}MASK{]}} token, and the model is trained to predict the whole sentence, effectively guessing what tokens are missing based on the context of the whole sequence. This process allows the model to learn relevant dependencies between tokens in the training data.
 
-    \begin{itemize}
-    \tightlist
-    \item
-      Seq2vec and ProtVec both used in classification \autocite{kimothiMetricLearningBiological2017}
-    \end{itemize}
-  \end{itemize}
-\item
-  Transformers / NN-based language models:
+As was the case with \texttt{word2vec}, these methods have been adapted to bioinformatics tasks with state of the art results, proving the versatility of the transformer model. Several \emph{protein language models} similar to \texttt{BERT} were trained on various training sets of protein data. Some of these are \texttt{ProGen} \autocite{madaniProGenLanguageModeling2020}, \texttt{ProGen2} \autocite{eriknijkampProGen2ExploringBoundaries2022} and \texttt{ProtBERT} \autocite{elnaggarProtTransCrackingLanguage2021}. These large protein language models have been studied and interesting properties have been observed \autocite{beplerLearningProteinLanguage2021}, and some specific characteristics of proteins can be inferred from these models without specifying them in the training step. For example, protein language models seem to learn some information about the protein structure and attention maps can be used to infer residue contact maps \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019,bhattacharyaSingleLayersAttention2020}. Similarly these models capture some information about protein function \autocite{huExploringEvolutionbasedFree2022}, mutational effects \autocite{meierLanguageModelsEnable2021}, evolutionary characteristics \autocite{hieEvolutionaryVelocityProtein2022} and can even be used to generate new protein with desired properties \autocite{madaniProGenLanguageModeling2020}. Some large language models have also been trained on DNA sequences like \texttt{DNABert} \autocite{jiDNABERTPretrainedBidirectional2021} and also seem to capture some information without explicit specification during training, like variant effects \autocite{benegasDNALanguageModels2022}.
 
-  \begin{itemize}
-  \item
-    Also from NLP, more recent development,
+While, these protein language models have shown very useful for embedding sequences, some developments have been made to embed multiple sequence alignments as learning inputs. In some cases this is done by including information on the alignment in the tokens and then using a regular language model to embed them \autocite{caiGenomewidePredictionSmall2020}. In the case of the MSA transformer \autocite{raoMSATransformer2021}, the attention mechanism was extended to include a weighted sum between aligned sequences effectively taking the alignment into account when embedding sequences. An attention-like mechanism was also used to train a protein structural model directly on MSAs \autocite{sercuNeuralPottsModel2021}. Similarly, by pre-training language models on profiles derived from MSAs, some information about the alignment can also be included in the resulting embeddings \autocite{sturmfelsProfilePredictionAlignmentBased2020}. Finally aligned sequences can be used as inputs in a regular transformer as was done \texttt{DeepConsensus} \autocite{baidDeepConsensusImprovesAccuracy2022}, a transformer-based polisher to improve PacBio HiFi reads even further. Finally the EvoFormer model included in \texttt{AlphaFold2} \autocite{jumperHighlyAccurateProtein2021}, which embeds MSAs to predict protein structure, is partly responsible for the leap in performance between the two generations of the \texttt{AlphaFold} model.
 
-    \begin{itemize}
-    \tightlist
-    \item
-      Some have seen a lot of success like BERT \autocite{devlinBERTPretrainingDeep2019} and GPT-3 \autocite{brownLanguageModelsAre2020}
-    \item
-      Based on the very popular Transformer architecture \autocite{vaswaniAttentionAllYou2017}, with attention maps. Embed features as a linear weighted sum of other features (learn weights).
-    \item
-      Allows for long range dependencies to be captured efficiently
-    \item
-      LLMs trained with MLM
-    \item
-      Replaced methods based on RNNs / LSTMs which have trouble capturing long range dependencies \autocite{songPretrainingModelBiological2021}.
-    \end{itemize}
-  \item
-    protein language models have been developed from this with the same idea.
+It is important to note that while these transformer models are very powerful and useful in practice, their complexity and size makes it very hard to study and understand what the model actually learns. There is work to peer inside this ``black box'', notably by interpreting the learn attention maps \autocite{vigBERTologyMeetsBiology2021} to decipher biologically relevant information contained within.
 
-    \begin{itemize}
-    \item
-      ProGen \autocite{madaniProGenLanguageModeling2020} and ProGen2 \autocite{eriknijkampProGen2ExploringBoundaries2022}
-    \item
-      ProtBERT \autocite{elnaggarProtTransCrackingLanguage2021}
-    \item
-      DNABert \autocite{jiDNABERTPretrainedBidirectional2021}
-    \item
-      They have interesting properties \autocite{beplerLearningProteinLanguage2021}:
-
-      \begin{itemize}
-      \item
-        Intuitively learn structure of proteins \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019,bhattacharyaSingleLayersAttention2020}
-      \item
-        Protein function \autocite{huExploringEvolutionbasedFree2022}
-      \item
-        Learn mutational effects \autocite{meierLanguageModelsEnable2021}
-      \item
-        Evolutionary characteristics \autocite{hieEvolutionaryVelocityProtein2022}
-      \item
-        Even used to generate relevant protein sequences \autocite{madaniProGenLanguageModeling2020}
-      \item
-        Even when trained on DNA, they learn variant effects \autocite{benegasDNALanguageModels2022}
-      \end{itemize}
-    \end{itemize}
-  \item
-    Include information from MSA directly in embedding\autocite{caiGenomewidePredictionSmall2020}: transform aligned sequence in to tokens -\textgreater{} use ALBERT to embed tokens
-  \item
-    MSA Transformer \autocite{raoMSATransformer2021} that extends attention to include aligned residues from an input MSA as well.
-
-    \begin{itemize}
-    \item
-      Similarly: learn on profiles derived from MSAs \autocite{sturmfelsProfilePredictionAlignmentBased2020} as a pre-training task for protein language models
-    \item
-      Learn a protein structure model (potts model) directly on the MSA with a mechanism similar to attention \autocite{sercuNeuralPottsModel2021}
-    \item
-      Transformer used subreads aligned to CCS + sequencer info to polish HiFi reads \autocite{baidDeepConsensusImprovesAccuracy2022}
-    \end{itemize}
-  \item
-    EvoFormer from Alphafold2 \autocite{jumperHighlyAccurateProtein2021} also takes MSAs as inputs to predict protein contacts (and is trained end-to-end)
-  \end{itemize}
-\item
-  Powerful but hard to interpret what the model actually learns. i.e.~``black box'' but some work is being done to interpret attention maps \autocite{vigBERTologyMeetsBiology2021}
-\end{itemize}
-
-\hypertarget{learning-pairwise-alignment}{%
-\section{Learning pairwise alignment}\label{learning-pairwise-alignment}}
+\hypertarget{learning-sequence-alignment}{%
+\section{Learning sequence alignment}\label{learning-sequence-alignment}}
 
 \hypertarget{predicting-a-substitution-matrix}{%
 \subsection{Predicting a substitution matrix}\label{predicting-a-substitution-matrix}}
