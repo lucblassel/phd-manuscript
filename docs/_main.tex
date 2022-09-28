@@ -253,7 +253,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-27}
+\date{2022-09-28}
 
 \begin{document}
 \maketitle
@@ -3359,7 +3359,7 @@ After having sufficiently trained the neural network on the corpus on one of the
 \hypertarget{the-attention-revolution}{%
 \subsubsection{The attention revolution}\label{the-attention-revolution}}
 
-While \texttt{word2vec} was widely used for many NLP tasks where word embeddings were needed, a lot of interesting developments on word embeddings were made in the field of automated machine translation. In this application, the desired embedding characteristics are slightly different. While semantic relevance is useful, in machine translation the embedding method needs to be able to capture dependencies, e.g.~within a sentence where the link between the subject and the verb must be captured even though they are not necessarily next to each other. This was initially done by using recurrent neural networks, but they were hard to train and had trouble properly capturing long-range dependencies \autocite{songPretrainingModelBiological2021}.
+While \texttt{word2vec} was widely used for many NLP tasks where word embeddings were needed, a lot of interesting developments on word embeddings were made in the field of automated machine translation. In this application, the desired embedding characteristics are slightly different. While semantic relevance is useful, in machine translation the embedding method needs to be able to capture dependencies, e.g.~within a sentence where the link between the subject and the verb must be captured even though they are not necessarily next to each other. This was initially done by using recurrent neural networks, called RNNs or LSTMs \autocite{beplerLearningProteinSequence2019}, but they were hard to train and had trouble properly capturing long-range dependencies \autocite{songPretrainingModelBiological2021}.
 
 One of the most successful methods developed for this task it the transformer \autocite{vaswaniAttentionAllYou2017}, also created by Google researchers. The main mechanisms of the transformer is the \emph{self-attention} mechanisms: each input token, usually encoded as a One-Hot vector, is represented as a weighted sum of all the other tokens in a sequence \emph{(here a token is a word and the sequence is a sentence)}. The weights of this sum are trained along with the rest of this network. by stacking several of these self-attention blocks, transformers can learn to represent and leverage long-range dependencies. This mechanism, and the transformer in general have had very successful application in machine translation, while being easier to train than recurrent networks \autocite{wangProgressMachineTranslation2021}.
 
@@ -3367,177 +3367,77 @@ This architecture was used to create very large pre-trained language models, tha
 
 As was the case with \texttt{word2vec}, these methods have been adapted to bioinformatics tasks with state of the art results, proving the versatility of the transformer model. Several \emph{protein language models} similar to \texttt{BERT} were trained on various training sets of protein data. Some of these are \texttt{ProGen} \autocite{madaniProGenLanguageModeling2020}, \texttt{ProGen2} \autocite{eriknijkampProGen2ExploringBoundaries2022} and \texttt{ProtBERT} \autocite{elnaggarProtTransCrackingLanguage2021}. These large protein language models have been studied and interesting properties have been observed \autocite{beplerLearningProteinLanguage2021}, and some specific characteristics of proteins can be inferred from these models without specifying them in the training step. For example, protein language models seem to learn some information about the protein structure and attention maps can be used to infer residue contact maps \autocite{raoTransformerProteinLanguage2020,rivesBiologicalStructureFunction2019,bhattacharyaSingleLayersAttention2020}. Similarly these models capture some information about protein function \autocite{huExploringEvolutionbasedFree2022}, mutational effects \autocite{meierLanguageModelsEnable2021}, evolutionary characteristics \autocite{hieEvolutionaryVelocityProtein2022} and can even be used to generate new protein with desired properties \autocite{madaniProGenLanguageModeling2020}. Some large language models have also been trained on DNA sequences like \texttt{DNABert} \autocite{jiDNABERTPretrainedBidirectional2021} and also seem to capture some information without explicit specification during training, like variant effects \autocite{benegasDNALanguageModels2022}.
 
-While, these protein language models have shown very useful for embedding sequences, some developments have been made to embed multiple sequence alignments as learning inputs. In some cases this is done by including information on the alignment in the tokens and then using a regular language model to embed them \autocite{caiGenomewidePredictionSmall2020}. In the case of the MSA transformer \autocite{raoMSATransformer2021}, the attention mechanism was extended to include a weighted sum between aligned sequences effectively taking the alignment into account when embedding sequences. An attention-like mechanism was also used to train a protein structural model directly on MSAs \autocite{sercuNeuralPottsModel2021}. Similarly, by pre-training language models on profiles derived from MSAs, some information about the alignment can also be included in the resulting embeddings \autocite{sturmfelsProfilePredictionAlignmentBased2020}. Finally aligned sequences can be used as inputs in a regular transformer as was done \texttt{DeepConsensus} \autocite{baidDeepConsensusImprovesAccuracy2022}, a transformer-based polisher to improve PacBio HiFi reads even further. Finally the EvoFormer model included in \texttt{AlphaFold2} \autocite{jumperHighlyAccurateProtein2021}, which embeds MSAs to predict protein structure, is partly responsible for the leap in performance between the two generations of the \texttt{AlphaFold} model.
+While, these protein language models have shown very useful for embedding sequences, some developments have been made to embed multiple sequence alignments as learning inputs. In some cases this is done by including information on the alignment in the tokens and then using a regular language model to embed them \autocite{caiGenomewidePredictionSmall2020}. In the case of the MSA transformer \autocite{raoMSATransformer2021}, the attention mechanism was extended to include a weighted sum between aligned sequences effectively taking the alignment into account when embedding sequences. An attention-like mechanism was also used to train a protein structural model directly on MSAs \autocite{sercuNeuralPottsModel2021}. Similarly, by pre-training language models on profiles derived from MSAs, some information about the alignment can also be included in the resulting embeddings \autocite{sturmfelsProfilePredictionAlignmentBased2020}. Finally aligned sequences can be used as inputs in a regular transformer as was done \texttt{DeepConsensus} \autocite{baidDeepConsensusImprovesAccuracy2022}, a transformer-based polisher to improve PacBio HiFi reads even further. Finally the \emph{EvoFormer} model included in \texttt{AlphaFold2} \autocite{jumperHighlyAccurateProtein2021}, which embeds MSAs to predict protein structure, is partly responsible for the leap in performance between the two generations of the \texttt{AlphaFold} model.
 
 It is important to note that while these transformer models are very powerful and useful in practice, their complexity and size makes it very hard to study and understand what the model actually learns. There is work to peer inside this ``black box'', notably by interpreting the learn attention maps \autocite{vigBERTologyMeetsBiology2021} to decipher biologically relevant information contained within.
 
 \hypertarget{learning-sequence-alignment}{%
 \section{Learning sequence alignment}\label{learning-sequence-alignment}}
 
+With the success of deep learning methods learning informative and effective embeddings from sequences, it is maybe natural to try and see if similar methods can learn to align sequences to each other.
+
 \hypertarget{predicting-a-substitution-matrix}{%
 \subsection{Predicting a substitution matrix}\label{predicting-a-substitution-matrix}}
 
-One approach is to learn a substitution matrix (specific position/position scoring matrix) and plug it in a differentiable SW or NW algorithm (for end-to-end learning):
+One approach is to learn a \emph{position-specific scoring matrix} (PSSM), which assigns an alignment cost not between two amino-acids but between two specific residues of the sequences (i.e.~an amino acid/position pair). Therefore, when aligning a sequence of length \(m\) and another of length \(n\), we can use a standard alignment method such as NW or SW with an \(m\times n\) PSSM.
 
-\begin{itemize}
-\item
-  SAdLSA \autocite{gaoNovelSequenceAlignment2021}
+One approach, used in the \texttt{SAdLSA} model \autocite{gaoNovelSequenceAlignment2021} used CNNs to refine a PSSM. The model is trained on experimentally validated structural alignments. A starting PSSM is created from both sequences with PSI-BLAST \autocite{altschulGappedBLASTPSIBLAST1997}, and fed through a deep CNN, which outputs a refined PSSM. This learned matrix is used with a SW algorithm to locally align the two sequences. This alignment is then compared to the structural alignment to compute the loss and train the model.
 
-  \begin{itemize}
-  \item
-    sequences are encoded as PSI blast profiles
-  \item
-    Fed through a deep CNN
-  \item
-    predict a scoring matrix
-  \item
-    No differentiable alignment algorithm -\textgreater{} cross entropy between alignment and structural alignment.
-  \end{itemize}
-\item
-  DeepBLAST \autocite{mortonProteinStructuralAlignments2020}
+Some methods rely on protein language model embeddings coupled with differentiable alignment algorithms to learn a PSSM in an end-to-end fashion. \texttt{DeepBLAST} is one such model \autocite{mortonProteinStructuralAlignments2020}, it was trained on 1.5 million structural alignments obtained from the PDB database \autocite{bermanWorldwideProteinData2007}. The sequences are embedded using a pre-trained LSTM-based protein language model, not transformer-based. These embeddings are fed through LSTM networks to predict a match scoring and gap scoring PSSMs. These matrices are then used in a differentiable variant of the NW algorithm, that can be used to backpropagate the alignment error through the network and learn relevant parameters. RNNs and LSTMs were also used to predict PSSMs by Guo \emph{et al.} albeit with the goal of protein structure prediction rather than alignment \autocite{guoComprehensiveStudyEnhancing2021}.
 
-  \begin{itemize}
-  \item
-    Embed sequences with LSTM-based language model (trained on PFAM)
-  \item
-    predict substitution/gap score
-  \item
-    differentiable NW (not to learn parameters but only to backpropagate the error)
-  \end{itemize}
-\item
-  DEDAL \autocite{llinares-lopezDeepEmbeddingAlignment2022}
+The \texttt{DEDAL} model \autocite{llinares-lopezDeepEmbeddingAlignment2022} implements similar ideas. It predicts matching, gap-open and gap-extend PSSMs form a pair of sequences, that can then be used in a classical alignment method, in this case a SW algorithm. In this model, and transformer-based embedding network, is used to embed each residue of both sequence. Then each possible pair of embedded residues from both sequences are used to predict specific gap-open, gap-extend and match scores used to build the PSSMs. The DEDAL model is trained on three tasks at once:
 
-  \begin{itemize}
-  \item
-    2 seqs are embedded with encoder-only transformer
-  \item
-    Trained on TPUs with a fast differentiable algo (SW ?)
-  \item
-    Training set: parwise alignments extracted from PFAM
-  \item
-    predicts substitution, gap open and extend scoring matrices (position per position)
-  \item
-    improves alignment for remote homologies
-  \end{itemize}
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
 \item
-  The Learned Alignement module \autocite{pettiEndtoendLearningMultiple2022}
+  Masked language modelling (c.f. Section \ref{the-attention-revolution}) to train the transformer-based embedding model on 30 million sequences from the UniRef50 database \autocite{suzekUniRefClustersComprehensive2015}.
+\item
+  A homology detection task where the whole model is trained to predict if a pair of sequences are evolutionarily related or not. This was done on pairs of sequences extracted from the 1.2 million sequences of the Pfam-A seed database \autocite{mistryPfamProteinFamilies2021}.
+\item
+  An alignment task, where the whole model is trained to align two sequences using the author's differentiable variant of the SW algorithm to backpropagate the alignment error through the network and tune the parameters. This training task was also done using aligned sequence pairs from the Pfam-A seed database.
+\end{enumerate}
 
-  \begin{itemize}
-  \item
-    Learns a ``context specific scoring matrix'', i.e.~a 20x20 matrix for a window around a given position.
-  \item
-    Differentiable SW
-  \item
-    Uses convolutional NN
-  \item
-    Learns an ``MSA'', actually outputs all to one pairwise alignments.
-  \item
-    Used to as plugin to alphafold2 and improved some metrics
-  \end{itemize}
-\item
-  Prediction of PSSM with RNN + LSTM \autocite{guoComprehensiveStudyEnhancing2021} , not directly used on alignment but structure prediction.
-\end{itemize}
+Trained on the three tasks at once, the \texttt{DEDAL} model predicts PSSMs leading to good alignments overall, however where it really shines and outperforms other methods is on alignments of remote homologs. Classical alignment algorithms can struggle when the similarity between two sequences dips below a certain threshold, however \texttt{DEDAL} is able to pick up on this remote homology and produce a sensible and accurate alignment.
+
+The Learn Alignment module \autocite{pettiEndtoendLearningMultiple2022} also uses a differentiable variant of the SW algorithm to learn a scoring matrix. Sequences are encoded as OHE vectors and fed embedded with simple convolutions, to predict a ``context-specific'' scoring matrix. This module is used to build MSAs where, similarly to the center star alignment, all \emph{target} sequences are aligned to a single \emph{query} sequence. This model was validated by including it in the \texttt{Alphafold2} model and seeing the improvement in performance for certain protein structure prediction tasks.
 
 \hypertarget{predicting-an-alignment}{%
 \subsection{predicting an alignment}\label{predicting-an-alignment}}
 
-\begin{itemize}
-\item
-  BetaAlign \autocite{dotanHarnessingMachineTranslation2022}
+Predicting a PSSM is one way of learning an alignment, however an alignment algorithm still need to be used in order to obtain aligned sequences. However, it might be possible to directly output an alignment between input sequences. As stated above, transformers have been particularly useful in automated translation, and one could construe the alignment problem as translating from an unaligned sequence ``language'' to an aligned sequence ``language''. This is exactly the idea behind \texttt{BetaAlign}, a recently developed transformer model used for pairwise and multiple sequence alignment \autocite{dotanHarnessingMachineTranslation2022}. For example, the two sequences \texttt{AAG} and \texttt{ACGG} can be represented as a single ``sentence'': \texttt{AAG\textbar{}ACGG} with the \texttt{\textbar{}} special token denoting a separation between sequences. Aligned sequences output by the transformer can then be represented as a succession of aligned pairs: \texttt{AAAC-GGG} corresponding to the following alignment:
 
-  \begin{itemize}
-  \item
-    Unaligned sequences = a ``language''
-  \item
-    Aligned sequences = another ``language''
-  \item
-    So use transformers to translate one into the other (tried several ways to represent these ``languages'')
-  \item
-    Tested with both DNA and protein
-  \item
-    limitations:
+\textbf{\texttt{AA-G}}\strut \\
+\textbf{\texttt{ACGG}}
 
-    \begin{itemize}
-    \item
-      length of sequences
-    \item
-      Training / testing set
-    \end{itemize}
-  \end{itemize}
-\item
-  Another direction could be to predict the state from 2 residues (like a PSSM but directly match/indel).
-\end{itemize}
+The authors trained this model on millions of simulated alignments, of two to ten sequences, generated with different underlying evolutionary models, in the same fashion that regular transformers are trained for machine translation. The authors trained models for protein and DNA sequence alignment on these simulated datasets, containing sequences around 40 residues long. According to some measures, \texttt{BetaAlign} outperforms widely used multiple sequence aligners such as MUSCLE, CLUSTALW or T-Coffee, especially on nucleotide sequence alignment. This model was also trained to deal with longer sequences, generating MSAs of 5 sequences between 500 and 1000 residues long. In this setting \texttt{BetaAlign} performs on par with most widely used aligners.
 
-\begin{itemize}
-\item
-  To counter the space limitations (i.e.~sequence length limitations) induced by attention, other types of transformers used:
+While \texttt{BetaAlign} is an interesting step in the direction of learned alignment methods, and a good proof of concept, it seems to be efficient only on short sequences and a low number of sequences. This is mostly due to the attention mechanism at the heart of transformers.
 
-  \begin{itemize}
-  \item
-    with linear scale attention maps not quadratic \autocite{choromanskiMaskedLanguageModeling2020}
-  \item
-    single layer attention or factored attention \autocite{bhattacharyaInterpretingPottsTransformer2021} which lowers the number of parameters to estimate but keeps relevant information.
-  \end{itemize}
-\item
-  This is not a problem limited to bioinformatics, other fields have tried to come up with solutions:
+\hypertarget{the-attention-limitation}{%
+\subsection{The attention limitation}\label{the-attention-limitation}}
 
-  \begin{itemize}
-  \item
-    adaptive attention span \autocite{sukhbaatarAdaptiveAttentionSpan2019}
-  \item
-    Long-Short range attention \autocite{wuLiteTransformerLongShort2020}
-  \item
-    sparse transformers \autocite{childGeneratingLongSequences2019,correiaAdaptivelySparseTransformers2019}
-  \item
-    Reformer replace dot product to reduce memory from quadratic to linear \autocite{kitaevReformerEfficientTransformer2020}
-  \end{itemize}
-\end{itemize}
+While the transformer architecture has revolutionized the field of machine translation, and proved to be useful in sequence-related bioinformatics tasks, the attention mechanism at the heart of it presents some problems. The main problem is that by including a weighted sum of all input tokens in the embedding of a specific one, the time and space complexity of the attention mechanism is quadratic in sequence length. This is particularly problematic in biological tasks where DNA and protein sequences can be much longer than a typical sentence, in any spoken language. This limitation is mentioned in the article for both the \texttt{DEDAL} and \texttt{BetaAlign} models described above.
 
-For learning DNA alignment several challenges:
+This problem is not inherent to biology and many different approaches have been proposed in other fields where transformer-usage is prevalent. The \emph{Linformer} \autocite{wangLinformerSelfAttentionLinear2020} and \emph{Nyströmformer} \autocite{xiongNystromformerNystrombasedAlgorithm2021} architectures both present different approximations of the attention mechanism that scale linearly w.r.t. to sequence length both in time and memory. Others have tried to make the attention process produce sparse matrices, reducing the memory requirements \autocite{childGeneratingLongSequences2019,correiaAdaptivelySparseTransformers2019}. Others have tried adjusting the attention span, i.e.~the number of tokens taken into account in the attention mechanism, with an adaptive attention span \autocite{sukhbaatarAdaptiveAttentionSpan2019} or long-short range attention \autocite{wuLiteTransformerLongShort2020}. Finally some change the operations in the attention mechanism, the \emph{Reformer} model reduces the memory requirements to a linear complexity by replacing a dot product operation \autocite{kitaevReformerEfficientTransformer2020}.
 
-\begin{itemize}
-\item
-  longer sequences
-\item
-  less information in a single residue than a single nucleotide
-\item
-  In mapping size discrepancy between sequences.
-\end{itemize}
+Some improvements to the attention mechanism have also been tried in a biological context. Choromanski \emph{et al.} propose the \emph{Performer} model that uses a fast attention mechanism \autocite{choromanskiMaskedLanguageModeling2020}, based on orthogonal random features and trained on an protein MLM task. With this approach, the attention mechanism scales linearly with the sequence length rather than quadratically. Another team used factored attention in their model trained on predicting protein structure prediction \autocite{bhattacharyaInterpretingPottsTransformer2021}. They show that with this mechanisms, fewer parameters need to be tuned, lowering the memory and time requirements, while retaining structurally relevant information.
 
-\hypertarget{learning-seeds}{%
-\subsection{Learning seeds}\label{learning-seeds}}
+\hypertarget{predicting-read-mappings}{%
+\subsection{Predicting read-mappings}\label{predicting-read-mappings}}
 
-Some work has been done in learning seeding procedures
+In the situation of read-mapping, the methods described above are of limited use. This is due to some intrinsic characteristics of read-mapping: mainly the size discrepancy between reads and the reference sequence, as well as the length of the reference sequence. Some work has been done however on including machine learning methods into the read-mapping process.
 
-\begin{itemize}
-\item
-  Learn index structures on a specific reference (not necessarily DL), although fairly recent developments already thought of in 2018 \autocite{kraskaCaseLearnedIndex2018}:
+One first approach, is to learn the data structures, called \emph{learned indices}, used to store potential seeds in the seed and extend framework. These learned indices are trained to replicate the output of a particular data structure. This approach was first proposed in 2018 \autocite{kraskaCaseLearnedIndex2018}, although it was not implemented then. The \texttt{BWA-MEME} \autocite{jungBWAMEMEBWAMEMEmulated2022} read-mapper uses a learned index that predicts positions in a suffix array. This approach is also the one used by the \texttt{Sapling} algorithm \autocite{kirscheSaplingAcceleratingSuffix2021}. Learned indices have also been used to predict a position in an FM-index \autocite{hoLISALearnedIndexes2021}. These learned indices lower the memory cost and execution time costs by not having to build the whole data structure and not having to store it in memory or on disk. Furthermore it is well adapted to read-mapping since it only needs to be trained once on a specific reference sequence that can be used anytime reads need to be mapped to this reference.
 
-  \begin{itemize}
-  \item
-    BWA-MEME \autocite{jungBWAMEMEBWAMEMEmulated2022} predicts the position in a suffix array, lowering query time and no need to compute the whole suffix array
-  \item
-    Sapling \autocite{kirscheSaplingAcceleratingSuffix2021} same thing
-  \item
-    LISA \autocite{hoLISALearnedIndexes2021} predict position in FM-index
-  \end{itemize}
-\end{itemize}
+Another approach where machine learning has proven useful is in learning a seed selection scheme. \texttt{DeepMinimizer} \autocite{hoangDifferentiableLearningSequenceSpecific2022} is one such method, where neural networks are trained to select appropriate minimizers from a DNA sequence. This approach results in minimizers with optimal density, that is to say they are spread aout evenly over the whole sequence lowering the memory and time costs of building a seed index. Similarly, although not a direct application of read mapping, deep learnign has been used to predict candidate alignment sites in mRNA-miRNA pairs, a similar task to seed selection \autocite{minTargetNetFunctionalMicroRNA2022}.
 
-\begin{itemize}
-\item
-  DeepMinimizer \autocite{hoangDifferentiableLearningSequenceSpecific2022}:
+Finally, the pre-processing function framework of MSRs presented in Chapter \ref{HPC-paper} can also be extended with machine learning methods. Learning connections in the graphs representing MSRs could allow the exploration of the large function spaces of higher-order MSRs. Alternatively some sequence-to-sequence models like transformers could also be used to learn a pre-processing function. To learn an appropriate pre-processing function in an end-to-end fashion, a differentiable read-mapping algorithm is needed. Differentiable versions of the NW and SW could be used in read-mappers, but differentiable seeding and seed-selection processes are also needed.
 
-  \begin{itemize}
-  \item
-    Train a neural network to select minimizers
-  \item
-    Results in a better density, seeds are spread out evenly accross sequences
-  \end{itemize}
-\item
-  Select candidate alignment sites in mRNA-miRNA pairs with DL: TargetNet \autocite{minTargetNetFunctionalMicroRNA2022}
-\end{itemize}
+\hypertarget{conclusion-4}{%
+\section{Conclusion}\label{conclusion-4}}
 
-Final note, we could also learn a pre-processing function as in Chapter \ref{HPC-paper} in an end to end fashion: either by learning the connections in MSRs or by learning transformations with sequence to sequence models (like transformers). This is still a little abstract and would need a differentiable read mapping algo for end-to-end learning (SW is possible but seeding -\textgreater{} deepminimizer ?).
+Deep learning is a powerful framework in sequence-based tasks. The recent transformer architecture has shown an unprecedented ability to capture within-sequence dependencies and learn relevant information. This ability has made them dominant in the NLP field, particularly machine translation. Transformers and large language models have also shown some power in biological sequence processing and sequence alignment. However, the attention mechanism that makes these models so successful has limitations, especially w.r.t. to input sequence length. Some approaches and approximations, have allowed researchers to lower the time and memory complexity of the attention mechanism and make it more manageable, but these improvements have yet to be used in a sequence alignment task. In the special case of read-mapping, even with improved attention mechanisms, the size discrepancy between reference and reads, as well as the often very large scale fo the reference sequence, make transformer based embedding approaches impractical. Learned data structures and seeding schemes might be one of the approaches to improve read alignment.
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 

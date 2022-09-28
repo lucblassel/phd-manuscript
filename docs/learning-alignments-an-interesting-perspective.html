@@ -23,7 +23,7 @@
 <meta name="author" content="Luc Blassel" />
 
 
-<meta name="date" content="2022-09-27" />
+<meta name="date" content="2022-09-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -275,8 +275,10 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.2.1" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#predicting-a-substitution-matrix"><i class="fa fa-check"></i><b>7.2.1</b> Predicting a substitution matrix</a></li>
 <li class="chapter" data-level="7.2.2" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#predicting-an-alignment"><i class="fa fa-check"></i><b>7.2.2</b> predicting an alignment</a></li>
-<li class="chapter" data-level="7.2.3" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#learning-seeds"><i class="fa fa-check"></i><b>7.2.3</b> Learning seeds</a></li>
+<li class="chapter" data-level="7.2.3" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#the-attention-limitation"><i class="fa fa-check"></i><b>7.2.3</b> The attention limitation</a></li>
+<li class="chapter" data-level="7.2.4" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#predicting-read-mappings"><i class="fa fa-check"></i><b>7.2.4</b> Predicting read-mappings</a></li>
 </ul></li>
+<li class="chapter" data-level="7.3" data-path="learning-alignments-an-interesting-perspective.html"><a href="learning-alignments-an-interesting-perspective.html#conclusion-4"><i class="fa fa-check"></i><b>7.3</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="global-conclusion.html"><a href="global-conclusion.html"><i class="fa fa-check"></i>Global conclusion</a>
 <ul>
@@ -383,121 +385,69 @@ This MLP, also called feedforward neural network, has <span class="math inline">
 </div>
 <div id="the-attention-revolution" class="section level4 hasAnchor" number="7.1.2.2">
 <h4><span class="header-section-number">7.1.2.2</span> The attention revolution<a href="learning-alignments-an-interesting-perspective.html#the-attention-revolution" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>While <code>word2vec</code> was widely used for many NLP tasks where word embeddings were needed, a lot of interesting developments on word embeddings were made in the field of automated machine translation. In this application, the desired embedding characteristics are slightly different. While semantic relevance is useful, in machine translation the embedding method needs to be able to capture dependencies, e.g. within a sentence where the link between the subject and the verb must be captured even though they are not necessarily next to each other. This was initially done by using recurrent neural networks, but they were hard to train and had trouble properly capturing long-range dependencies<span class="citation"><sup><a href="#ref-songPretrainingModelBiological2021" role="doc-biblioref">693</a></sup></span>.</p>
-<p>One of the most successful methods developed for this task it the transformer<span class="citation"><sup><a href="#ref-vaswaniAttentionAllYou2017" role="doc-biblioref">683</a></sup></span>, also created by Google researchers. The main mechanisms of the transformer is the <em>self-attention</em> mechanisms: each input token, usually encoded as a One-Hot vector, is represented as a weighted sum of all the other tokens in a sequence <em>(here a token is a word and the sequence is a sentence)</em>. The weights of this sum are trained along with the rest of this network. by stacking several of these self-attention blocks, transformers can learn to represent and leverage long-range dependencies. This mechanism, and the transformer in general have had very successful application in machine translation, while being easier to train than recurrent networks<span class="citation"><sup><a href="#ref-wangProgressMachineTranslation2021" role="doc-biblioref">694</a></sup></span>.</p>
-<p>This architecture was used to create very large pre-trained language models, that is to say models that perform word embedding. These models like <code>GPT-3</code><span class="citation"><sup><a href="#ref-brownLanguageModelsAre2020" role="doc-biblioref">695</a></sup></span> or <code>BERT</code><span class="citation"><sup><a href="#ref-devlinBERTPretrainingDeep2019" role="doc-biblioref">696</a></sup></span> are huge, with millions or even billions of learned weights, and have been trained on huge quantities of data in order to produce word embeddings useful in a wide range of contexts. <code>BERT</code> was trained using Masked Language Modelling (MLM), where some percentage of the tokens <em>(words)</em> in an input sequence <em>(sentence)</em> are replaced by a special <code>[MASK]</code> token, and the model is trained to predict the whole sentence, effectively guessing what tokens are missing based on the context of the whole sequence. This process allows the model to learn relevant dependencies between tokens in the training data.</p>
-<p>As was the case with <code>word2vec</code>, these methods have been adapted to bioinformatics tasks with state of the art results, proving the versatility of the transformer model. Several <em>protein language models</em> similar to <code>BERT</code> were trained on various training sets of protein data. Some of these are <code>ProGen</code><span class="citation"><sup><a href="#ref-madaniProGenLanguageModeling2020" role="doc-biblioref">697</a></sup></span>, <code>ProGen2</code><span class="citation"><sup><a href="#ref-eriknijkampProGen2ExploringBoundaries2022" role="doc-biblioref">698</a></sup></span> and <code>ProtBERT</code><span class="citation"><sup><a href="#ref-elnaggarProtTransCrackingLanguage2021" role="doc-biblioref">369</a></sup></span>. These large protein language models have been studied and interesting properties have been observed<span class="citation"><sup><a href="#ref-beplerLearningProteinLanguage2021" role="doc-biblioref">699</a></sup></span>, and some specific characteristics of proteins can be inferred from these models without specifying them in the training step. For example, protein language models seem to learn some information about the protein structure and attention maps can be used to infer residue contact maps<span class="citation"><sup><a href="#ref-raoTransformerProteinLanguage2020" role="doc-biblioref">700</a>–<a href="#ref-bhattacharyaSingleLayersAttention2020" role="doc-biblioref">702</a></sup></span>. Similarly these models capture some information about protein function<span class="citation"><sup><a href="#ref-huExploringEvolutionbasedFree2022" role="doc-biblioref">703</a></sup></span>, mutational effects<span class="citation"><sup><a href="#ref-meierLanguageModelsEnable2021" role="doc-biblioref">704</a></sup></span>, evolutionary characteristics<span class="citation"><sup><a href="#ref-hieEvolutionaryVelocityProtein2022" role="doc-biblioref">705</a></sup></span> and can even be used to generate new protein with desired properties<span class="citation"><sup><a href="#ref-madaniProGenLanguageModeling2020" role="doc-biblioref">697</a></sup></span>. Some large language models have also been trained on DNA sequences like <code>DNABert</code><span class="citation"><sup><a href="#ref-jiDNABERTPretrainedBidirectional2021" role="doc-biblioref">706</a></sup></span> and also seem to capture some information without explicit specification during training, like variant effects<span class="citation"><sup><a href="#ref-benegasDNALanguageModels2022" role="doc-biblioref">707</a></sup></span>.</p>
-<p>While, these protein language models have shown very useful for embedding sequences, some developments have been made to embed multiple sequence alignments as learning inputs. In some cases this is done by including information on the alignment in the tokens and then using a regular language model to embed them<span class="citation"><sup><a href="#ref-caiGenomewidePredictionSmall2020" role="doc-biblioref">708</a></sup></span>. In the case of the MSA transformer<span class="citation"><sup><a href="#ref-raoMSATransformer2021" role="doc-biblioref">709</a></sup></span>, the attention mechanism was extended to include a weighted sum between aligned sequences effectively taking the alignment into account when embedding sequences. An attention-like mechanism was also used to train a protein structural model directly on MSAs<span class="citation"><sup><a href="#ref-sercuNeuralPottsModel2021" role="doc-biblioref">710</a></sup></span>. Similarly, by pre-training language models on profiles derived from MSAs, some information about the alignment can also be included in the resulting embeddings<span class="citation"><sup><a href="#ref-sturmfelsProfilePredictionAlignmentBased2020" role="doc-biblioref">711</a></sup></span>. Finally aligned sequences can be used as inputs in a regular transformer as was done <code>DeepConsensus</code><span class="citation"><sup><a href="#ref-baidDeepConsensusImprovesAccuracy2022" role="doc-biblioref">712</a></sup></span>, a transformer-based polisher to improve PacBio HiFi reads even further. Finally the EvoFormer model included in <code>AlphaFold2</code><span class="citation"><sup><a href="#ref-jumperHighlyAccurateProtein2021" role="doc-biblioref">136</a></sup></span>, which embeds MSAs to predict protein structure, is partly responsible for the leap in performance between the two generations of the <code>AlphaFold</code> model.</p>
-<p>It is important to note that while these transformer models are very powerful and useful in practice, their complexity and size makes it very hard to study and understand what the model actually learns. There is work to peer inside this “black box”, notably by interpreting the learn attention maps<span class="citation"><sup><a href="#ref-vigBERTologyMeetsBiology2021" role="doc-biblioref">713</a></sup></span> to decipher biologically relevant information contained within.</p>
+<p>While <code>word2vec</code> was widely used for many NLP tasks where word embeddings were needed, a lot of interesting developments on word embeddings were made in the field of automated machine translation. In this application, the desired embedding characteristics are slightly different. While semantic relevance is useful, in machine translation the embedding method needs to be able to capture dependencies, e.g. within a sentence where the link between the subject and the verb must be captured even though they are not necessarily next to each other. This was initially done by using recurrent neural networks, called RNNs or LSTMs<span class="citation"><sup><a href="#ref-beplerLearningProteinSequence2019" role="doc-biblioref">693</a></sup></span>, but they were hard to train and had trouble properly capturing long-range dependencies<span class="citation"><sup><a href="#ref-songPretrainingModelBiological2021" role="doc-biblioref">694</a></sup></span>.</p>
+<p>One of the most successful methods developed for this task it the transformer<span class="citation"><sup><a href="#ref-vaswaniAttentionAllYou2017" role="doc-biblioref">683</a></sup></span>, also created by Google researchers. The main mechanisms of the transformer is the <em>self-attention</em> mechanisms: each input token, usually encoded as a One-Hot vector, is represented as a weighted sum of all the other tokens in a sequence <em>(here a token is a word and the sequence is a sentence)</em>. The weights of this sum are trained along with the rest of this network. by stacking several of these self-attention blocks, transformers can learn to represent and leverage long-range dependencies. This mechanism, and the transformer in general have had very successful application in machine translation, while being easier to train than recurrent networks<span class="citation"><sup><a href="#ref-wangProgressMachineTranslation2021" role="doc-biblioref">695</a></sup></span>.</p>
+<p>This architecture was used to create very large pre-trained language models, that is to say models that perform word embedding. These models like <code>GPT-3</code><span class="citation"><sup><a href="#ref-brownLanguageModelsAre2020" role="doc-biblioref">696</a></sup></span> or <code>BERT</code><span class="citation"><sup><a href="#ref-devlinBERTPretrainingDeep2019" role="doc-biblioref">697</a></sup></span> are huge, with millions or even billions of learned weights, and have been trained on huge quantities of data in order to produce word embeddings useful in a wide range of contexts. <code>BERT</code> was trained using Masked Language Modelling (MLM), where some percentage of the tokens <em>(words)</em> in an input sequence <em>(sentence)</em> are replaced by a special <code>[MASK]</code> token, and the model is trained to predict the whole sentence, effectively guessing what tokens are missing based on the context of the whole sequence. This process allows the model to learn relevant dependencies between tokens in the training data.</p>
+<p>As was the case with <code>word2vec</code>, these methods have been adapted to bioinformatics tasks with state of the art results, proving the versatility of the transformer model. Several <em>protein language models</em> similar to <code>BERT</code> were trained on various training sets of protein data. Some of these are <code>ProGen</code><span class="citation"><sup><a href="#ref-madaniProGenLanguageModeling2020" role="doc-biblioref">698</a></sup></span>, <code>ProGen2</code><span class="citation"><sup><a href="#ref-eriknijkampProGen2ExploringBoundaries2022" role="doc-biblioref">699</a></sup></span> and <code>ProtBERT</code><span class="citation"><sup><a href="#ref-elnaggarProtTransCrackingLanguage2021" role="doc-biblioref">369</a></sup></span>. These large protein language models have been studied and interesting properties have been observed<span class="citation"><sup><a href="#ref-beplerLearningProteinLanguage2021" role="doc-biblioref">700</a></sup></span>, and some specific characteristics of proteins can be inferred from these models without specifying them in the training step. For example, protein language models seem to learn some information about the protein structure and attention maps can be used to infer residue contact maps<span class="citation"><sup><a href="#ref-raoTransformerProteinLanguage2020" role="doc-biblioref">701</a>–<a href="#ref-bhattacharyaSingleLayersAttention2020" role="doc-biblioref">703</a></sup></span>. Similarly these models capture some information about protein function<span class="citation"><sup><a href="#ref-huExploringEvolutionbasedFree2022" role="doc-biblioref">704</a></sup></span>, mutational effects<span class="citation"><sup><a href="#ref-meierLanguageModelsEnable2021" role="doc-biblioref">705</a></sup></span>, evolutionary characteristics<span class="citation"><sup><a href="#ref-hieEvolutionaryVelocityProtein2022" role="doc-biblioref">706</a></sup></span> and can even be used to generate new protein with desired properties<span class="citation"><sup><a href="#ref-madaniProGenLanguageModeling2020" role="doc-biblioref">698</a></sup></span>. Some large language models have also been trained on DNA sequences like <code>DNABert</code><span class="citation"><sup><a href="#ref-jiDNABERTPretrainedBidirectional2021" role="doc-biblioref">707</a></sup></span> and also seem to capture some information without explicit specification during training, like variant effects<span class="citation"><sup><a href="#ref-benegasDNALanguageModels2022" role="doc-biblioref">708</a></sup></span>.</p>
+<p>While, these protein language models have shown very useful for embedding sequences, some developments have been made to embed multiple sequence alignments as learning inputs. In some cases this is done by including information on the alignment in the tokens and then using a regular language model to embed them<span class="citation"><sup><a href="#ref-caiGenomewidePredictionSmall2020" role="doc-biblioref">709</a></sup></span>. In the case of the MSA transformer<span class="citation"><sup><a href="#ref-raoMSATransformer2021" role="doc-biblioref">710</a></sup></span>, the attention mechanism was extended to include a weighted sum between aligned sequences effectively taking the alignment into account when embedding sequences. An attention-like mechanism was also used to train a protein structural model directly on MSAs<span class="citation"><sup><a href="#ref-sercuNeuralPottsModel2021" role="doc-biblioref">711</a></sup></span>. Similarly, by pre-training language models on profiles derived from MSAs, some information about the alignment can also be included in the resulting embeddings<span class="citation"><sup><a href="#ref-sturmfelsProfilePredictionAlignmentBased2020" role="doc-biblioref">712</a></sup></span>. Finally aligned sequences can be used as inputs in a regular transformer as was done <code>DeepConsensus</code><span class="citation"><sup><a href="#ref-baidDeepConsensusImprovesAccuracy2022" role="doc-biblioref">713</a></sup></span>, a transformer-based polisher to improve PacBio HiFi reads even further. Finally the <em>EvoFormer</em> model included in <code>AlphaFold2</code><span class="citation"><sup><a href="#ref-jumperHighlyAccurateProtein2021" role="doc-biblioref">136</a></sup></span>, which embeds MSAs to predict protein structure, is partly responsible for the leap in performance between the two generations of the <code>AlphaFold</code> model.</p>
+<p>It is important to note that while these transformer models are very powerful and useful in practice, their complexity and size makes it very hard to study and understand what the model actually learns. There is work to peer inside this “black box”, notably by interpreting the learn attention maps<span class="citation"><sup><a href="#ref-vigBERTologyMeetsBiology2021" role="doc-biblioref">714</a></sup></span> to decipher biologically relevant information contained within.</p>
 </div>
 </div>
 </div>
 <div id="learning-sequence-alignment" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Learning sequence alignment<a href="learning-alignments-an-interesting-perspective.html#learning-sequence-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With the success of deep learning methods learning informative and effective embeddings from sequences, it is maybe natural to try and see if similar methods can learn to align sequences to each other.</p>
 <div id="predicting-a-substitution-matrix" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Predicting a substitution matrix<a href="learning-alignments-an-interesting-perspective.html#predicting-a-substitution-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>One approach is to learn a substitution matrix (specific position/position scoring matrix) and plug it in a differentiable SW or NW algorithm (for end-to-end learning):</p>
-<ul>
-<li><p>SAdLSA<span class="citation"><sup><a href="#ref-gaoNovelSequenceAlignment2021" role="doc-biblioref">714</a></sup></span></p>
-<ul>
-<li><p>sequences are encoded as PSI blast profiles</p></li>
-<li><p>Fed through a deep CNN</p></li>
-<li><p>predict a scoring matrix</p></li>
-<li><p>No differentiable alignment algorithm -&gt; cross entropy between alignment and structural alignment.</p></li>
-</ul></li>
-<li><p>DeepBLAST<span class="citation"><sup><a href="#ref-mortonProteinStructuralAlignments2020" role="doc-biblioref">715</a></sup></span></p>
-<ul>
-<li><p>Embed sequences with LSTM-based language model (trained on PFAM)</p></li>
-<li><p>predict substitution/gap score</p></li>
-<li><p>differentiable NW (not to learn parameters but only to backpropagate the error)</p></li>
-</ul></li>
-<li><p>DEDAL<span class="citation"><sup><a href="#ref-llinares-lopezDeepEmbeddingAlignment2022" role="doc-biblioref">716</a></sup></span></p>
-<ul>
-<li><p>2 seqs are embedded with encoder-only transformer</p></li>
-<li><p>Trained on TPUs with a fast differentiable algo (SW ?)</p></li>
-<li><p>Training set: parwise alignments extracted from PFAM</p></li>
-<li><p>predicts substitution, gap open and extend scoring matrices (position per position)</p></li>
-<li><p>improves alignment for remote homologies</p></li>
-</ul></li>
-<li><p>The Learned Alignement module<span class="citation"><sup><a href="#ref-pettiEndtoendLearningMultiple2022" role="doc-biblioref">717</a></sup></span></p>
-<ul>
-<li><p>Learns a “context specific scoring matrix”, i.e. a 20x20 matrix for a window around a given position.</p></li>
-<li><p>Differentiable SW</p></li>
-<li><p>Uses convolutional NN</p></li>
-<li><p>Learns an “MSA”, actually outputs all to one pairwise alignments.</p></li>
-<li><p>Used to as plugin to alphafold2 and improved some metrics</p></li>
-</ul></li>
-<li><p>Prediction of PSSM with RNN + LSTM<span class="citation"><sup><a href="#ref-guoComprehensiveStudyEnhancing2021" role="doc-biblioref">718</a></sup></span> , not directly used on alignment but structure prediction.</p></li>
-</ul>
+<p>One approach is to learn a <em>position-specific scoring matrix</em> (PSSM), which assigns an alignment cost not between two amino-acids but between two specific residues of the sequences (i.e. an amino acid/position pair). Therefore, when aligning a sequence of length <span class="math inline">\(m\)</span> and another of length <span class="math inline">\(n\)</span>, we can use a standard alignment method such as NW or SW with an <span class="math inline">\(m\times n\)</span> PSSM.</p>
+<p>One approach, used in the <code>SAdLSA</code> model<span class="citation"><sup><a href="#ref-gaoNovelSequenceAlignment2021" role="doc-biblioref">715</a></sup></span> used CNNs to refine a PSSM. The model is trained on experimentally validated structural alignments. A starting PSSM is created from both sequences with PSI-BLAST<span class="citation"><sup><a href="#ref-altschulGappedBLASTPSIBLAST1997" role="doc-biblioref">199</a></sup></span>, and fed through a deep CNN, which outputs a refined PSSM. This learned matrix is used with a SW algorithm to locally align the two sequences. This alignment is then compared to the structural alignment to compute the loss and train the model.</p>
+<p>Some methods rely on protein language model embeddings coupled with differentiable alignment algorithms to learn a PSSM in an end-to-end fashion. <code>DeepBLAST</code> is one such model<span class="citation"><sup><a href="#ref-mortonProteinStructuralAlignments2020" role="doc-biblioref">716</a></sup></span>, it was trained on 1.5 million structural alignments obtained from the PDB database<span class="citation"><sup><a href="#ref-bermanWorldwideProteinData2007" role="doc-biblioref">717</a></sup></span>. The sequences are embedded using a pre-trained LSTM-based protein language model, not transformer-based. These embeddings are fed through LSTM networks to predict a match scoring and gap scoring PSSMs. These matrices are then used in a differentiable variant of the NW algorithm, that can be used to backpropagate the alignment error through the network and learn relevant parameters. RNNs and LSTMs were also used to predict PSSMs by Guo <em>et al.</em> albeit with the goal of protein structure prediction rather than alignment<span class="citation"><sup><a href="#ref-guoComprehensiveStudyEnhancing2021" role="doc-biblioref">718</a></sup></span>.</p>
+<p>The <code>DEDAL</code> model<span class="citation"><sup><a href="#ref-llinares-lopezDeepEmbeddingAlignment2022" role="doc-biblioref">719</a></sup></span> implements similar ideas. It predicts matching, gap-open and gap-extend PSSMs form a pair of sequences, that can then be used in a classical alignment method, in this case a SW algorithm. In this model, and transformer-based embedding network, is used to embed each residue of both sequence. Then each possible pair of embedded residues from both sequences are used to predict specific gap-open, gap-extend and match scores used to build the PSSMs. The DEDAL model is trained on three tasks at once:</p>
+<ol style="list-style-type: decimal">
+<li>Masked language modelling (c.f. Section <a href="learning-alignments-an-interesting-perspective.html#the-attention-revolution">7.1.2.2</a>) to train the transformer-based embedding model on 30 million sequences from the UniRef50 database<span class="citation"><sup><a href="#ref-suzekUniRefClustersComprehensive2015" role="doc-biblioref">720</a></sup></span>.</li>
+<li>A homology detection task where the whole model is trained to predict if a pair of sequences are evolutionarily related or not. This was done on pairs of sequences extracted from the 1.2 million sequences of the Pfam-A seed database<span class="citation"><sup><a href="#ref-mistryPfamProteinFamilies2021" role="doc-biblioref">721</a></sup></span>.</li>
+<li>An alignment task, where the whole model is trained to align two sequences using the author’s differentiable variant of the SW algorithm to backpropagate the alignment error through the network and tune the parameters. This training task was also done using aligned sequence pairs from the Pfam-A seed database.</li>
+</ol>
+<p>Trained on the three tasks at once, the <code>DEDAL</code> model predicts PSSMs leading to good alignments overall, however where it really shines and outperforms other methods is on alignments of remote homologs. Classical alignment algorithms can struggle when the similarity between two sequences dips below a certain threshold, however <code>DEDAL</code> is able to pick up on this remote homology and produce a sensible and accurate alignment.</p>
+<p>The Learn Alignment module<span class="citation"><sup><a href="#ref-pettiEndtoendLearningMultiple2022" role="doc-biblioref">722</a></sup></span> also uses a differentiable variant of the SW algorithm to learn a scoring matrix. Sequences are encoded as OHE vectors and fed embedded with simple convolutions, to predict a “context-specific” scoring matrix. This module is used to build MSAs where, similarly to the center star alignment, all <em>target</em> sequences are aligned to a single <em>query</em> sequence. This model was validated by including it in the <code>Alphafold2</code> model and seeing the improvement in performance for certain protein structure prediction tasks.</p>
 </div>
 <div id="predicting-an-alignment" class="section level3 hasAnchor" number="7.2.2">
 <h3><span class="header-section-number">7.2.2</span> predicting an alignment<a href="learning-alignments-an-interesting-perspective.html#predicting-an-alignment" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><p>BetaAlign<span class="citation"><sup><a href="#ref-dotanHarnessingMachineTranslation2022" role="doc-biblioref">719</a></sup></span></p>
-<ul>
-<li><p>Unaligned sequences = a “language”</p></li>
-<li><p>Aligned sequences = another “language”</p></li>
-<li><p>So use transformers to translate one into the other (tried several ways to represent these “languages”)</p></li>
-<li><p>Tested with both DNA and protein</p></li>
-<li><p>limitations:</p>
-<ul>
-<li><p>length of sequences</p></li>
-<li><p>Training / testing set</p></li>
-</ul></li>
-</ul></li>
-<li><p>Another direction could be to predict the state from 2 residues (like a PSSM but directly match/indel).</p></li>
-</ul>
-<!-- -->
-<ul>
-<li><p>To counter the space limitations (i.e. sequence length limitations) induced by attention, other types of transformers used:</p>
-<ul>
-<li><p>with linear scale attention maps not quadratic<span class="citation"><sup><a href="#ref-choromanskiMaskedLanguageModeling2020" role="doc-biblioref">720</a></sup></span></p></li>
-<li><p>single layer attention or factored attention<span class="citation"><sup><a href="#ref-bhattacharyaInterpretingPottsTransformer2021" role="doc-biblioref">721</a></sup></span> which lowers the number of parameters to estimate but keeps relevant information.</p></li>
-</ul></li>
-<li><p>This is not a problem limited to bioinformatics, other fields have tried to come up with solutions:</p>
-<ul>
-<li><p>adaptive attention span<span class="citation"><sup><a href="#ref-sukhbaatarAdaptiveAttentionSpan2019" role="doc-biblioref">722</a></sup></span></p></li>
-<li><p>Long-Short range attention<span class="citation"><sup><a href="#ref-wuLiteTransformerLongShort2020" role="doc-biblioref">723</a></sup></span></p></li>
-<li><p>sparse transformers<span class="citation"><sup><a href="#ref-childGeneratingLongSequences2019" role="doc-biblioref">724</a>,<a href="#ref-correiaAdaptivelySparseTransformers2019" role="doc-biblioref">725</a></sup></span></p></li>
-<li><p>Reformer replace dot product to reduce memory from quadratic to linear<span class="citation"><sup><a href="#ref-kitaevReformerEfficientTransformer2020" role="doc-biblioref">726</a></sup></span></p></li>
-</ul></li>
-</ul>
-<p>For learning DNA alignment several challenges:</p>
-<ul>
-<li><p>longer sequences</p></li>
-<li><p>less information in a single residue than a single nucleotide</p></li>
-<li><p>In mapping size discrepancy between sequences.</p></li>
-</ul>
+<p>Predicting a PSSM is one way of learning an alignment, however an alignment algorithm still need to be used in order to obtain aligned sequences. However, it might be possible to directly output an alignment between input sequences. As stated above, transformers have been particularly useful in automated translation, and one could construe the alignment problem as translating from an unaligned sequence “language” to an aligned sequence “language”. This is exactly the idea behind <code>BetaAlign</code>, a recently developed transformer model used for pairwise and multiple sequence alignment<span class="citation"><sup><a href="#ref-dotanHarnessingMachineTranslation2022" role="doc-biblioref">723</a></sup></span>. For example, the two sequences <code>AAG</code> and <code>ACGG</code> can be represented as a single “sentence”: <code>AAG|ACGG</code> with the <code>|</code> special token denoting a separation between sequences. Aligned sequences output by the transformer can then be represented as a succession of aligned pairs: <code>AAAC-GGG</code> corresponding to the following alignment:</p>
+<center>
+<div class="line-block"><strong><code>AA-G</code></strong><br />
+<strong><code>ACGG</code></strong></div>
+</center>
+<p>The authors trained this model on millions of simulated alignments, of two to ten sequences, generated with different underlying evolutionary models, in the same fashion that regular transformers are trained for machine translation. The authors trained models for protein and DNA sequence alignment on these simulated datasets, containing sequences around 40 residues long. According to some measures, <code>BetaAlign</code> outperforms widely used multiple sequence aligners such as MUSCLE, CLUSTALW or T-Coffee, especially on nucleotide sequence alignment. This model was also trained to deal with longer sequences, generating MSAs of 5 sequences between 500 and 1000 residues long. In this setting <code>BetaAlign</code> performs on par with most widely used aligners.</p>
+<p>While <code>BetaAlign</code> is an interesting step in the direction of learned alignment methods, and a good proof of concept, it seems to be efficient only on short sequences and a low number of sequences. This is mostly due to the attention mechanism at the heart of transformers.</p>
 </div>
-<div id="learning-seeds" class="section level3 hasAnchor" number="7.2.3">
-<h3><span class="header-section-number">7.2.3</span> Learning seeds<a href="learning-alignments-an-interesting-perspective.html#learning-seeds" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Some work has been done in learning seeding procedures</p>
-<ul>
-<li><p>Learn index structures on a specific reference (not necessarily DL), although fairly recent developments already thought of in 2018<span class="citation"><sup><a href="#ref-kraskaCaseLearnedIndex2018" role="doc-biblioref">727</a></sup></span>:</p>
-<ul>
-<li><p>BWA-MEME<span class="citation"><sup><a href="#ref-jungBWAMEMEBWAMEMEmulated2022" role="doc-biblioref">728</a></sup></span> predicts the position in a suffix array, lowering query time and no need to compute the whole suffix array</p></li>
-<li><p>Sapling<span class="citation"><sup><a href="#ref-kirscheSaplingAcceleratingSuffix2021" role="doc-biblioref">729</a></sup></span> same thing</p></li>
-<li><p>LISA<span class="citation"><sup><a href="#ref-hoLISALearnedIndexes2021" role="doc-biblioref">730</a></sup></span> predict position in FM-index</p></li>
-</ul></li>
-</ul>
-<!-- -->
-<ul>
-<li><p>DeepMinimizer<span class="citation"><sup><a href="#ref-hoangDifferentiableLearningSequenceSpecific2022" role="doc-biblioref">731</a></sup></span>:</p>
-<ul>
-<li><p>Train a neural network to select minimizers</p></li>
-<li><p>Results in a better density, seeds are spread out evenly accross sequences</p></li>
-</ul></li>
-<li><p>Select candidate alignment sites in mRNA-miRNA pairs with DL: TargetNet<span class="citation"><sup><a href="#ref-minTargetNetFunctionalMicroRNA2022" role="doc-biblioref">732</a></sup></span></p></li>
-</ul>
-<p>Final note, we could also learn a pre-processing function as in Chapter <a href="HPC-paper.html#HPC-paper">3</a> in an end to end fashion: either by learning the connections in MSRs or by learning transformations with sequence to sequence models (like transformers). This is still a little abstract and would need a differentiable read mapping algo for end-to-end learning (SW is possible but seeding -&gt; deepminimizer ?).</p>
+<div id="the-attention-limitation" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> The attention limitation<a href="learning-alignments-an-interesting-perspective.html#the-attention-limitation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>While the transformer architecture has revolutionized the field of machine translation, and proved to be useful in sequence-related bioinformatics tasks, the attention mechanism at the heart of it presents some problems. The main problem is that by including a weighted sum of all input tokens in the embedding of a specific one, the time and space complexity of the attention mechanism is quadratic in sequence length. This is particularly problematic in biological tasks where DNA and protein sequences can be much longer than a typical sentence, in any spoken language. This limitation is mentioned in the article for both the <code>DEDAL</code> and <code>BetaAlign</code> models described above.</p>
+<p>This problem is not inherent to biology and many different approaches have been proposed in other fields where transformer-usage is prevalent. The <em>Linformer</em><span class="citation"><sup><a href="#ref-wangLinformerSelfAttentionLinear2020" role="doc-biblioref">724</a></sup></span> and <em>Nyströmformer</em><span class="citation"><sup><a href="#ref-xiongNystromformerNystrombasedAlgorithm2021" role="doc-biblioref">725</a></sup></span> architectures both present different approximations of the attention mechanism that scale linearly w.r.t. to sequence length both in time and memory. Others have tried to make the attention process produce sparse matrices, reducing the memory requirements<span class="citation"><sup><a href="#ref-childGeneratingLongSequences2019" role="doc-biblioref">726</a>,<a href="#ref-correiaAdaptivelySparseTransformers2019" role="doc-biblioref">727</a></sup></span>. Others have tried adjusting the attention span, i.e. the number of tokens taken into account in the attention mechanism, with an adaptive attention span<span class="citation"><sup><a href="#ref-sukhbaatarAdaptiveAttentionSpan2019" role="doc-biblioref">728</a></sup></span> or long-short range attention<span class="citation"><sup><a href="#ref-wuLiteTransformerLongShort2020" role="doc-biblioref">729</a></sup></span>. Finally some change the operations in the attention mechanism, the <em>Reformer</em> model reduces the memory requirements to a linear complexity by replacing a dot product operation<span class="citation"><sup><a href="#ref-kitaevReformerEfficientTransformer2020" role="doc-biblioref">730</a></sup></span>.</p>
+<p>Some improvements to the attention mechanism have also been tried in a biological context. Choromanski <em>et al.</em> propose the <em>Performer</em> model that uses a fast attention mechanism<span class="citation"><sup><a href="#ref-choromanskiMaskedLanguageModeling2020" role="doc-biblioref">731</a></sup></span>, based on orthogonal random features and trained on an protein MLM task. With this approach, the attention mechanism scales linearly with the sequence length rather than quadratically. Another team used factored attention in their model trained on predicting protein structure prediction<span class="citation"><sup><a href="#ref-bhattacharyaInterpretingPottsTransformer2021" role="doc-biblioref">732</a></sup></span>. They show that with this mechanisms, fewer parameters need to be tuned, lowering the memory and time requirements, while retaining structurally relevant information.</p>
+</div>
+<div id="predicting-read-mappings" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Predicting read-mappings<a href="learning-alignments-an-interesting-perspective.html#predicting-read-mappings" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In the situation of read-mapping, the methods described above are of limited use. This is due to some intrinsic characteristics of read-mapping: mainly the size discrepancy between reads and the reference sequence, as well as the length of the reference sequence. Some work has been done however on including machine learning methods into the read-mapping process.</p>
+<p>One first approach, is to learn the data structures, called <em>learned indices</em>, used to store potential seeds in the seed and extend framework. These learned indices are trained to replicate the output of a particular data structure. This approach was first proposed in 2018<span class="citation"><sup><a href="#ref-kraskaCaseLearnedIndex2018" role="doc-biblioref">733</a></sup></span>, although it was not implemented then. The <code>BWA-MEME</code><span class="citation"><sup><a href="#ref-jungBWAMEMEBWAMEMEmulated2022" role="doc-biblioref">734</a></sup></span> read-mapper uses a learned index that predicts positions in a suffix array. This approach is also the one used by the <code>Sapling</code> algorithm<span class="citation"><sup><a href="#ref-kirscheSaplingAcceleratingSuffix2021" role="doc-biblioref">735</a></sup></span>. Learned indices have also been used to predict a position in an FM-index<span class="citation"><sup><a href="#ref-hoLISALearnedIndexes2021" role="doc-biblioref">736</a></sup></span>. These learned indices lower the memory cost and execution time costs by not having to build the whole data structure and not having to store it in memory or on disk. Furthermore it is well adapted to read-mapping since it only needs to be trained once on a specific reference sequence that can be used anytime reads need to be mapped to this reference.</p>
+<p>Another approach where machine learning has proven useful is in learning a seed selection scheme. <code>DeepMinimizer</code><span class="citation"><sup><a href="#ref-hoangDifferentiableLearningSequenceSpecific2022" role="doc-biblioref">737</a></sup></span> is one such method, where neural networks are trained to select appropriate minimizers from a DNA sequence. This approach results in minimizers with optimal density, that is to say they are spread aout evenly over the whole sequence lowering the memory and time costs of building a seed index. Similarly, although not a direct application of read mapping, deep learnign has been used to predict candidate alignment sites in mRNA-miRNA pairs, a similar task to seed selection<span class="citation"><sup><a href="#ref-minTargetNetFunctionalMicroRNA2022" role="doc-biblioref">738</a></sup></span>.</p>
+<p>Finally, the pre-processing function framework of MSRs presented in Chapter <a href="HPC-paper.html#HPC-paper">3</a> can also be extended with machine learning methods. Learning connections in the graphs representing MSRs could allow the exploration of the large function spaces of higher-order MSRs. Alternatively some sequence-to-sequence models like transformers could also be used to learn a pre-processing function. To learn an appropriate pre-processing function in an end-to-end fashion, a differentiable read-mapping algorithm is needed. Differentiable versions of the NW and SW could be used in read-mappers, but differentiable seeding and seed-selection processes are also needed.</p>
+</div>
+</div>
+<div id="conclusion-4" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Conclusion<a href="learning-alignments-an-interesting-perspective.html#conclusion-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Deep learning is a powerful framework in sequence-based tasks. The recent transformer architecture has shown an unprecedented ability to capture within-sequence dependencies and learn relevant information. This ability has made them dominant in the NLP field, particularly machine translation. Transformers and large language models have also shown some power in biological sequence processing and sequence alignment. However, the attention mechanism that makes these models so successful has limitations, especially w.r.t. to input sequence length. Some approaches and approximations, have allowed researchers to lower the time and memory complexity of the attention mechanism and make it more manageable, but these improvements have yet to be used in a sequence alignment task. In the special case of read-mapping, even with improved attention mechanisms, the size discrepancy between reference and reads, as well as the often very large scale fo the reference sequence, make transformer based embedding approaches impractical. Learned data structures and seeding schemes might be one of the approaches to improve read alignment.</p>
 
-</div>
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body" line-spacing="2">
 <div id="ref-jumperHighlyAccurateProtein2021" class="csl-entry">
 <div class="csl-left-margin">136. </div><div class="csl-right-inline">Jumper, J. <em>et al.</em> <a href="https://doi.org/10.1038/s41586-021-03819-2">Highly accurate protein structure prediction with AlphaFold</a>. <em>Nature</em> <strong>596</strong>, 583–589 (2021).</div>
+</div>
+<div id="ref-altschulGappedBLASTPSIBLAST1997" class="csl-entry">
+<div class="csl-left-margin">199. </div><div class="csl-right-inline">Altschul, S. F. <em>et al.</em> <a href="https://doi.org/10.1093/nar/25.17.3389">Gapped BLAST and PSI-BLAST: A new generation of protein database search programs</a>. <em>Nucleic Acids Research</em> <strong>25</strong>, 3389–3402 (1997).</div>
 </div>
 <div id="ref-steinerDrugResistancePrediction2020a" class="csl-entry">
 <div class="csl-left-margin">329. </div><div class="csl-right-inline">Steiner, M. C., Gibson, K. M. &amp; Crandall, K. A. <a href="https://doi.org/10.3390/v12050560">Drug <span>Resistance Prediction Using Deep Learning Techniques</span> on <span>HIV</span>-1 <span>Sequence Data</span></a>. <em>Viruses</em> <strong>12</strong>, 560 (2020).</div>
@@ -571,122 +521,140 @@ This MLP, also called feedforward neural network, has <span class="math inline">
 <div id="ref-kimothiMetricLearningBiological2017" class="csl-entry">
 <div class="csl-left-margin">692. </div><div class="csl-right-inline">Kimothi, D., Shukla, A., Biyani, P., Anand, S. &amp; Hogan, J. M. 2017 IEEE 18th international workshop on signal processing advances in wireless communications (SPAWC). in 1–5 (2017). doi:<a href="https://doi.org/10.1109/SPAWC.2017.8227769">10.1109/SPAWC.2017.8227769</a>.</div>
 </div>
+<div id="ref-beplerLearningProteinSequence2019" class="csl-entry">
+<div class="csl-left-margin">693. </div><div class="csl-right-inline">Bepler, T. &amp; Berger, B. Learning protein sequence embeddings using information from structure. doi:<a href="https://doi.org/10.48550/arXiv.1902.08661">10.48550/arXiv.1902.08661</a>.</div>
+</div>
 <div id="ref-songPretrainingModelBiological2021" class="csl-entry">
-<div class="csl-left-margin">693. </div><div class="csl-right-inline">Song, B. <em>et al.</em> <a href="https://doi.org/10.1093/bfgp/elab025">Pretraining model for biological sequence data.</a> <em>Briefings in Functional Genomics</em> <strong>20</strong>, 181–195 (2021).</div>
+<div class="csl-left-margin">694. </div><div class="csl-right-inline">Song, B. <em>et al.</em> <a href="https://doi.org/10.1093/bfgp/elab025">Pretraining model for biological sequence data.</a> <em>Briefings in Functional Genomics</em> <strong>20</strong>, 181–195 (2021).</div>
 </div>
 <div id="ref-wangProgressMachineTranslation2021" class="csl-entry">
-<div class="csl-left-margin">694. </div><div class="csl-right-inline">Wang, H., Wu, H., He, Z., Huang, L. &amp; Ward Church, K. Progress in Machine Translation. <em>Engineering</em> (2021) doi:<a href="https://doi.org/10.1016/j.eng.2021.03.023">10.1016/j.eng.2021.03.023</a>.</div>
+<div class="csl-left-margin">695. </div><div class="csl-right-inline">Wang, H., Wu, H., He, Z., Huang, L. &amp; Ward Church, K. Progress in Machine Translation. <em>Engineering</em> (2021) doi:<a href="https://doi.org/10.1016/j.eng.2021.03.023">10.1016/j.eng.2021.03.023</a>.</div>
 </div>
 <div id="ref-brownLanguageModelsAre2020" class="csl-entry">
-<div class="csl-left-margin">695. </div><div class="csl-right-inline">Brown, T. <em>et al.</em> Language models are few-shot learners. in vol. 33 18771901 (Curran Associates, Inc., 2020).</div>
+<div class="csl-left-margin">696. </div><div class="csl-right-inline">Brown, T. <em>et al.</em> Language models are few-shot learners. in vol. 33 18771901 (Curran Associates, Inc., 2020).</div>
 </div>
 <div id="ref-devlinBERTPretrainingDeep2019" class="csl-entry">
-<div class="csl-left-margin">696. </div><div class="csl-right-inline">Devlin, J., Chang, M.-W., Lee, K. &amp; Toutanova, K. BERT: Pre-training of deep bidirectional transformers for language understanding. doi:<a href="https://doi.org/10.48550/arXiv.1810.04805">10.48550/arXiv.1810.04805</a>.</div>
+<div class="csl-left-margin">697. </div><div class="csl-right-inline">Devlin, J., Chang, M.-W., Lee, K. &amp; Toutanova, K. BERT: Pre-training of deep bidirectional transformers for language understanding. doi:<a href="https://doi.org/10.48550/arXiv.1810.04805">10.48550/arXiv.1810.04805</a>.</div>
 </div>
 <div id="ref-madaniProGenLanguageModeling2020" class="csl-entry">
-<div class="csl-left-margin">697. </div><div class="csl-right-inline">Madani, A. <em>et al.</em> ProGen: Language modeling for protein generation. <em>bioRxiv</em> (2020) doi:<a href="https://doi.org/10.1101/2020.03.07.982272">10.1101/2020.03.07.982272</a>.</div>
+<div class="csl-left-margin">698. </div><div class="csl-right-inline">Madani, A. <em>et al.</em> ProGen: Language modeling for protein generation. <em>bioRxiv</em> (2020) doi:<a href="https://doi.org/10.1101/2020.03.07.982272">10.1101/2020.03.07.982272</a>.</div>
 </div>
 <div id="ref-eriknijkampProGen2ExploringBoundaries2022" class="csl-entry">
-<div class="csl-left-margin">698. </div><div class="csl-right-inline">Erik Nijkamp, Jeffrey A. Ruffolo, Eli N. Weinstein, Nikhil Naik &amp; Ali Madani. ProGen2: Exploring the boundaries of protein language models. <em>ArXiv</em> (2022) doi:<a href="https://doi.org/10.48550/arxiv.2206.13517">10.48550/arxiv.2206.13517</a>.</div>
+<div class="csl-left-margin">699. </div><div class="csl-right-inline">Erik Nijkamp, Jeffrey A. Ruffolo, Eli N. Weinstein, Nikhil Naik &amp; Ali Madani. ProGen2: Exploring the boundaries of protein language models. <em>ArXiv</em> (2022) doi:<a href="https://doi.org/10.48550/arxiv.2206.13517">10.48550/arxiv.2206.13517</a>.</div>
 </div>
 <div id="ref-beplerLearningProteinLanguage2021" class="csl-entry">
-<div class="csl-left-margin">699. </div><div class="csl-right-inline">Bepler, T. &amp; Berger, B. <a href="https://doi.org/10.1016/j.cels.2021.05.017">Learning the protein language: Evolution, structure, and function.</a> <em>Cell systems</em> <strong>12</strong>, (2021).</div>
+<div class="csl-left-margin">700. </div><div class="csl-right-inline">Bepler, T. &amp; Berger, B. <a href="https://doi.org/10.1016/j.cels.2021.05.017">Learning the protein language: Evolution, structure, and function.</a> <em>Cell systems</em> <strong>12</strong>, (2021).</div>
 </div>
 <div id="ref-raoTransformerProteinLanguage2020" class="csl-entry">
-<div class="csl-left-margin">700. </div><div class="csl-right-inline">Rao, R., Meier, J., Sercu, T., Ovchinnikov, S. &amp; Rives, A. Transformer protein language models are unsupervised structure learners. doi:<a href="https://doi.org/10.1101/2020.12.15.422761">10.1101/2020.12.15.422761</a>.</div>
+<div class="csl-left-margin">701. </div><div class="csl-right-inline">Rao, R., Meier, J., Sercu, T., Ovchinnikov, S. &amp; Rives, A. Transformer protein language models are unsupervised structure learners. doi:<a href="https://doi.org/10.1101/2020.12.15.422761">10.1101/2020.12.15.422761</a>.</div>
 </div>
 <div id="ref-bhattacharyaSingleLayersAttention2020" class="csl-entry">
-<div class="csl-left-margin">702. </div><div class="csl-right-inline">Bhattacharya, N. <em>et al.</em> Single Layers of Attention Suffice to Predict Protein Contacts. doi:<a href="https://doi.org/10.1101/2020.12.21.423882">10.1101/2020.12.21.423882</a>.</div>
+<div class="csl-left-margin">703. </div><div class="csl-right-inline">Bhattacharya, N. <em>et al.</em> Single Layers of Attention Suffice to Predict Protein Contacts. doi:<a href="https://doi.org/10.1101/2020.12.21.423882">10.1101/2020.12.21.423882</a>.</div>
 </div>
 <div id="ref-huExploringEvolutionbasedFree2022" class="csl-entry">
-<div class="csl-left-margin">703. </div><div class="csl-right-inline">Hu, M. <em>et al.</em> Exploring evolution-based &amp; -free protein language models as protein function predictors. doi:<a href="https://doi.org/10.48550/arXiv.2206.06583">10.48550/arXiv.2206.06583</a>.</div>
+<div class="csl-left-margin">704. </div><div class="csl-right-inline">Hu, M. <em>et al.</em> Exploring evolution-based &amp; -free protein language models as protein function predictors. doi:<a href="https://doi.org/10.48550/arXiv.2206.06583">10.48550/arXiv.2206.06583</a>.</div>
 </div>
 <div id="ref-meierLanguageModelsEnable2021" class="csl-entry">
-<div class="csl-left-margin">704. </div><div class="csl-right-inline">Meier, J. <em>et al.</em> <a href="https://doi.org/10.1101/2021.07.09.450648">Language models enable zero-shot prediction of the effects of mutations on protein function</a>. <em>bioRxiv</em> <strong>34</strong>, (2021).</div>
+<div class="csl-left-margin">705. </div><div class="csl-right-inline">Meier, J. <em>et al.</em> <a href="https://doi.org/10.1101/2021.07.09.450648">Language models enable zero-shot prediction of the effects of mutations on protein function</a>. <em>bioRxiv</em> <strong>34</strong>, (2021).</div>
 </div>
 <div id="ref-hieEvolutionaryVelocityProtein2022" class="csl-entry">
-<div class="csl-left-margin">705. </div><div class="csl-right-inline">Hie, B., Kevin K Yang &amp; Kim, S. K. Evolutionary velocity with protein language models predicts evolutionary dynamics of diverse proteins. <em>Cell systems</em> (2022) doi:<a href="https://doi.org/10.1016/j.cels.2022.01.003">10.1016/j.cels.2022.01.003</a>.</div>
+<div class="csl-left-margin">706. </div><div class="csl-right-inline">Hie, B., Kevin K Yang &amp; Kim, S. K. Evolutionary velocity with protein language models predicts evolutionary dynamics of diverse proteins. <em>Cell systems</em> (2022) doi:<a href="https://doi.org/10.1016/j.cels.2022.01.003">10.1016/j.cels.2022.01.003</a>.</div>
 </div>
 <div id="ref-jiDNABERTPretrainedBidirectional2021" class="csl-entry">
-<div class="csl-left-margin">706. </div><div class="csl-right-inline">Ji, Y., Zhou, Z., Liu, H. &amp; Davuluri, R. V. <a href="https://doi.org/10.1093/bioinformatics/btab083">DNABERT: Pre-trained bidirectional encoder representations from transformers model for DNA-language in genome</a>. <em>Bioinformatics</em> <strong>37</strong>, 2112–2120 (2021).</div>
+<div class="csl-left-margin">707. </div><div class="csl-right-inline">Ji, Y., Zhou, Z., Liu, H. &amp; Davuluri, R. V. <a href="https://doi.org/10.1093/bioinformatics/btab083">DNABERT: Pre-trained bidirectional encoder representations from transformers model for DNA-language in genome</a>. <em>Bioinformatics</em> <strong>37</strong>, 2112–2120 (2021).</div>
 </div>
 <div id="ref-benegasDNALanguageModels2022" class="csl-entry">
-<div class="csl-left-margin">707. </div><div class="csl-right-inline">Benegas, G., Batra, S. S. &amp; Song, Y. S. DNA language models are powerful zero-shot predictors of non-coding variant effects. doi:<a href="https://doi.org/10.1101/2022.08.22.504706">10.1101/2022.08.22.504706</a>.</div>
+<div class="csl-left-margin">708. </div><div class="csl-right-inline">Benegas, G., Batra, S. S. &amp; Song, Y. S. DNA language models are powerful zero-shot predictors of non-coding variant effects. doi:<a href="https://doi.org/10.1101/2022.08.22.504706">10.1101/2022.08.22.504706</a>.</div>
 </div>
 <div id="ref-caiGenomewidePredictionSmall2020" class="csl-entry">
-<div class="csl-left-margin">708. </div><div class="csl-right-inline">Cai, T. <em>et al.</em> Genome-wide Prediction of Small Molecule Binding to Remote Orphan Proteins Using Distilled Sequence Alignment Embedding. doi:<a href="https://doi.org/10.1101/2020.08.04.236729">10.1101/2020.08.04.236729</a>.</div>
+<div class="csl-left-margin">709. </div><div class="csl-right-inline">Cai, T. <em>et al.</em> Genome-wide Prediction of Small Molecule Binding to Remote Orphan Proteins Using Distilled Sequence Alignment Embedding. doi:<a href="https://doi.org/10.1101/2020.08.04.236729">10.1101/2020.08.04.236729</a>.</div>
 </div>
 <div id="ref-raoMSATransformer2021" class="csl-entry">
-<div class="csl-left-margin">709. </div><div class="csl-right-inline">Rao, R. <em>et al.</em> MSA transformer. <em>bioRxiv</em> (2021) doi:<a href="https://doi.org/10.1101/2021.02.12.430858">10.1101/2021.02.12.430858</a>.</div>
+<div class="csl-left-margin">710. </div><div class="csl-right-inline">Rao, R. <em>et al.</em> MSA transformer. <em>bioRxiv</em> (2021) doi:<a href="https://doi.org/10.1101/2021.02.12.430858">10.1101/2021.02.12.430858</a>.</div>
 </div>
 <div id="ref-sercuNeuralPottsModel2021" class="csl-entry">
-<div class="csl-left-margin">710. </div><div class="csl-right-inline">Sercu, T. <em>et al.</em> Neural Potts Model. doi:<a href="https://doi.org/10.1101/2021.04.08.439084">10.1101/2021.04.08.439084</a>.</div>
+<div class="csl-left-margin">711. </div><div class="csl-right-inline">Sercu, T. <em>et al.</em> Neural Potts Model. doi:<a href="https://doi.org/10.1101/2021.04.08.439084">10.1101/2021.04.08.439084</a>.</div>
 </div>
 <div id="ref-sturmfelsProfilePredictionAlignmentBased2020" class="csl-entry">
-<div class="csl-left-margin">711. </div><div class="csl-right-inline">Sturmfels, P., Vig, J., Madani, A. &amp; Rajani, N. F. Profile prediction: An alignment-based pre-training task for protein sequence models. doi:<a href="https://doi.org/10.48550/arXiv.2012.00195">10.48550/arXiv.2012.00195</a>.</div>
+<div class="csl-left-margin">712. </div><div class="csl-right-inline">Sturmfels, P., Vig, J., Madani, A. &amp; Rajani, N. F. Profile prediction: An alignment-based pre-training task for protein sequence models. doi:<a href="https://doi.org/10.48550/arXiv.2012.00195">10.48550/arXiv.2012.00195</a>.</div>
 </div>
 <div id="ref-baidDeepConsensusImprovesAccuracy2022" class="csl-entry">
-<div class="csl-left-margin">712. </div><div class="csl-right-inline">Baid, G. <em>et al.</em> DeepConsensus improves the accuracy of sequences with a gap-aware sequence transformer. <em>Nature Biotechnology</em> 1–7 (2022) doi:<a href="https://doi.org/10.1038/s41587-022-01435-7">10.1038/s41587-022-01435-7</a>.</div>
+<div class="csl-left-margin">713. </div><div class="csl-right-inline">Baid, G. <em>et al.</em> DeepConsensus improves the accuracy of sequences with a gap-aware sequence transformer. <em>Nature Biotechnology</em> 1–7 (2022) doi:<a href="https://doi.org/10.1038/s41587-022-01435-7">10.1038/s41587-022-01435-7</a>.</div>
 </div>
 <div id="ref-vigBERTologyMeetsBiology2021" class="csl-entry">
-<div class="csl-left-margin">713. </div><div class="csl-right-inline">Vig, J. <em>et al.</em> BERTology meets biology: Interpreting attention in protein language models. doi:<a href="https://doi.org/10.48550/arXiv.2006.15222">10.48550/arXiv.2006.15222</a>.</div>
+<div class="csl-left-margin">714. </div><div class="csl-right-inline">Vig, J. <em>et al.</em> BERTology meets biology: Interpreting attention in protein language models. doi:<a href="https://doi.org/10.48550/arXiv.2006.15222">10.48550/arXiv.2006.15222</a>.</div>
 </div>
 <div id="ref-gaoNovelSequenceAlignment2021" class="csl-entry">
-<div class="csl-left-margin">714. </div><div class="csl-right-inline">Gao, M. &amp; Skolnick, J. <a href="https://doi.org/10.1093/bioinformatics/btaa810">A novel sequence alignment algorithm based on deep learning of the protein folding code</a>. <em>Bioinformatics</em> <strong>37</strong>, 490–496 (2021).</div>
+<div class="csl-left-margin">715. </div><div class="csl-right-inline">Gao, M. &amp; Skolnick, J. <a href="https://doi.org/10.1093/bioinformatics/btaa810">A novel sequence alignment algorithm based on deep learning of the protein folding code</a>. <em>Bioinformatics</em> <strong>37</strong>, 490–496 (2021).</div>
 </div>
 <div id="ref-mortonProteinStructuralAlignments2020" class="csl-entry">
-<div class="csl-left-margin">715. </div><div class="csl-right-inline">Morton, J. T. <em>et al.</em> Protein Structural Alignments From Sequence. doi:<a href="https://doi.org/10.1101/2020.11.03.365932">10.1101/2020.11.03.365932</a>.</div>
+<div class="csl-left-margin">716. </div><div class="csl-right-inline">Morton, J. T. <em>et al.</em> Protein Structural Alignments From Sequence. doi:<a href="https://doi.org/10.1101/2020.11.03.365932">10.1101/2020.11.03.365932</a>.</div>
 </div>
-<div id="ref-llinares-lopezDeepEmbeddingAlignment2022" class="csl-entry">
-<div class="csl-left-margin">716. </div><div class="csl-right-inline">Llinares-López, F., Berthet, Q., Blondel, M., Teboul, O. &amp; Vert, J.-P. Deep embedding and alignment of protein sequences. doi:<a href="https://doi.org/10.1101/2021.11.15.468653">10.1101/2021.11.15.468653</a>.</div>
-</div>
-<div id="ref-pettiEndtoendLearningMultiple2022" class="csl-entry">
-<div class="csl-left-margin">717. </div><div class="csl-right-inline">Petti, S. <em>et al.</em> End-to-end learning of multiple sequence alignments with differentiable Smith-Waterman. doi:<a href="https://doi.org/10.1101/2021.10.23.465204">10.1101/2021.10.23.465204</a>.</div>
+<div id="ref-bermanWorldwideProteinData2007" class="csl-entry">
+<div class="csl-left-margin">717. </div><div class="csl-right-inline">Berman, H., Henrick, K., Nakamura, H. &amp; Markley, J. L. <a href="https://doi.org/10.1093/nar/gkl971">The worldwide protein data bank (wwPDB): Ensuring a single, uniform archive of PDB data</a>. <em>Nucleic Acids Research</em> <strong>35</strong>, D301–D303 (2007).</div>
 </div>
 <div id="ref-guoComprehensiveStudyEnhancing2021" class="csl-entry">
 <div class="csl-left-margin">718. </div><div class="csl-right-inline">Guo, Y., Wu, J., Ma, H., Wang, S. &amp; Huang, J. <a href="https://doi.org/10.1089/cmb.2020.0416">Comprehensive study on enhancing low-quality position-specific scoring matrix with deep learning for accurate protein structure property prediction: Using bagging multiple sequence alignment learning</a>. <em>Journal of Computational Biology</em> <strong>28</strong>, 346–361 (2021).</div>
 </div>
+<div id="ref-llinares-lopezDeepEmbeddingAlignment2022" class="csl-entry">
+<div class="csl-left-margin">719. </div><div class="csl-right-inline">Llinares-López, F., Berthet, Q., Blondel, M., Teboul, O. &amp; Vert, J.-P. Deep embedding and alignment of protein sequences. doi:<a href="https://doi.org/10.1101/2021.11.15.468653">10.1101/2021.11.15.468653</a>.</div>
+</div>
+<div id="ref-suzekUniRefClustersComprehensive2015" class="csl-entry">
+<div class="csl-left-margin">720. </div><div class="csl-right-inline">Suzek, B. E. <em>et al.</em> <a href="https://doi.org/10.1093/bioinformatics/btu739">UniRef clusters: A comprehensive and scalable alternative for improving sequence similarity searches</a>. <em>Bioinformatics</em> <strong>31</strong>, 926–932 (2015).</div>
+</div>
+<div id="ref-mistryPfamProteinFamilies2021" class="csl-entry">
+<div class="csl-left-margin">721. </div><div class="csl-right-inline">Mistry, J. <em>et al.</em> <a href="https://doi.org/10.1093/nar/gkaa913">Pfam: The protein families database in 2021</a>. <em>Nucleic Acids Research</em> <strong>49</strong>, D412–D419 (2021).</div>
+</div>
+<div id="ref-pettiEndtoendLearningMultiple2022" class="csl-entry">
+<div class="csl-left-margin">722. </div><div class="csl-right-inline">Petti, S. <em>et al.</em> End-to-end learning of multiple sequence alignments with differentiable Smith-Waterman. doi:<a href="https://doi.org/10.1101/2021.10.23.465204">10.1101/2021.10.23.465204</a>.</div>
+</div>
 <div id="ref-dotanHarnessingMachineTranslation2022" class="csl-entry">
-<div class="csl-left-margin">719. </div><div class="csl-right-inline">Dotan, E. <em>et al.</em> Harnessing machine translation methods for sequence alignment. doi:<a href="https://doi.org/10.1101/2022.07.22.501063">10.1101/2022.07.22.501063</a>.</div>
+<div class="csl-left-margin">723. </div><div class="csl-right-inline">Dotan, E. <em>et al.</em> Harnessing machine translation methods for sequence alignment. doi:<a href="https://doi.org/10.1101/2022.07.22.501063">10.1101/2022.07.22.501063</a>.</div>
 </div>
-<div id="ref-choromanskiMaskedLanguageModeling2020" class="csl-entry">
-<div class="csl-left-margin">720. </div><div class="csl-right-inline">Choromanski, K. <em>et al.</em> Masked language modeling for proteins via linearly scalable long-context transformers. doi:<a href="https://doi.org/10.48550/arXiv.2006.03555">10.48550/arXiv.2006.03555</a>.</div>
+<div id="ref-wangLinformerSelfAttentionLinear2020" class="csl-entry">
+<div class="csl-left-margin">724. </div><div class="csl-right-inline">Wang, S., Li, B. Z., Khabsa, M., Fang, H. &amp; Ma, H. Linformer: Self-attention with linear complexity. doi:<a href="https://doi.org/10.48550/arXiv.2006.04768">10.48550/arXiv.2006.04768</a>.</div>
 </div>
-<div id="ref-bhattacharyaInterpretingPottsTransformer2021" class="csl-entry">
-<div class="csl-left-margin">721. </div><div class="csl-right-inline">Bhattacharya, N. <em>et al.</em> Interpreting potts and transformer protein models through the lens of simplified attention. in 34–45 (WORLD SCIENTIFIC, 2021). doi:<a href="https://doi.org/10.1142/9789811250477_0004">10.1142/9789811250477_0004</a>.</div>
-</div>
-<div id="ref-sukhbaatarAdaptiveAttentionSpan2019" class="csl-entry">
-<div class="csl-left-margin">722. </div><div class="csl-right-inline">Sukhbaatar, S., Grave, E., Bojanowski, P. &amp; Joulin, A. Adaptive attention span in transformers. doi:<a href="https://doi.org/10.48550/arXiv.1905.07799">10.48550/arXiv.1905.07799</a>.</div>
-</div>
-<div id="ref-wuLiteTransformerLongShort2020" class="csl-entry">
-<div class="csl-left-margin">723. </div><div class="csl-right-inline">Wu, Z., Liu, Z., Lin, J., Lin, Y. &amp; Han, S. Lite transformer with long-short range attention. doi:<a href="https://doi.org/10.48550/arXiv.2004.11886">10.48550/arXiv.2004.11886</a>.</div>
+<div id="ref-xiongNystromformerNystrombasedAlgorithm2021" class="csl-entry">
+<div class="csl-left-margin">725. </div><div class="csl-right-inline">Xiong, Y. <em>et al.</em> <a href="https://doi.org/10.1609/aaai.v35i16.17664">Nyströmformer: A Nyström-based Algorithm for Approximating Self-Attention</a>. <em>Proceedings of the AAAI Conference on Artificial Intelligence</em> <strong>35</strong>, 14138–14148 (2021).</div>
 </div>
 <div id="ref-childGeneratingLongSequences2019" class="csl-entry">
-<div class="csl-left-margin">724. </div><div class="csl-right-inline">Child, R., Gray, S., Radford, A. &amp; Sutskever, I. Generating long sequences with sparse transformers. doi:<a href="https://doi.org/10.48550/arXiv.1904.10509">10.48550/arXiv.1904.10509</a>.</div>
+<div class="csl-left-margin">726. </div><div class="csl-right-inline">Child, R., Gray, S., Radford, A. &amp; Sutskever, I. Generating long sequences with sparse transformers. doi:<a href="https://doi.org/10.48550/arXiv.1904.10509">10.48550/arXiv.1904.10509</a>.</div>
 </div>
 <div id="ref-correiaAdaptivelySparseTransformers2019" class="csl-entry">
-<div class="csl-left-margin">725. </div><div class="csl-right-inline">Correia, G. M., Niculae, V. &amp; Martins, A. F. T. EMNLP-IJCNLP 2019. in 21742184 (Association for Computational Linguistics, 2019). doi:<a href="https://doi.org/10.18653/v1/D19-1223">10.18653/v1/D19-1223</a>.</div>
+<div class="csl-left-margin">727. </div><div class="csl-right-inline">Correia, G. M., Niculae, V. &amp; Martins, A. F. T. EMNLP-IJCNLP 2019. in 21742184 (Association for Computational Linguistics, 2019). doi:<a href="https://doi.org/10.18653/v1/D19-1223">10.18653/v1/D19-1223</a>.</div>
+</div>
+<div id="ref-sukhbaatarAdaptiveAttentionSpan2019" class="csl-entry">
+<div class="csl-left-margin">728. </div><div class="csl-right-inline">Sukhbaatar, S., Grave, E., Bojanowski, P. &amp; Joulin, A. Adaptive attention span in transformers. doi:<a href="https://doi.org/10.48550/arXiv.1905.07799">10.48550/arXiv.1905.07799</a>.</div>
+</div>
+<div id="ref-wuLiteTransformerLongShort2020" class="csl-entry">
+<div class="csl-left-margin">729. </div><div class="csl-right-inline">Wu, Z., Liu, Z., Lin, J., Lin, Y. &amp; Han, S. Lite transformer with long-short range attention. doi:<a href="https://doi.org/10.48550/arXiv.2004.11886">10.48550/arXiv.2004.11886</a>.</div>
 </div>
 <div id="ref-kitaevReformerEfficientTransformer2020" class="csl-entry">
-<div class="csl-left-margin">726. </div><div class="csl-right-inline">Kitaev, N., Kaiser, Ł. &amp; Levskaya, A. Reformer: The efficient transformer. doi:<a href="https://doi.org/10.48550/arXiv.2001.04451">10.48550/arXiv.2001.04451</a>.</div>
+<div class="csl-left-margin">730. </div><div class="csl-right-inline">Kitaev, N., Kaiser, Ł. &amp; Levskaya, A. Reformer: The efficient transformer. doi:<a href="https://doi.org/10.48550/arXiv.2001.04451">10.48550/arXiv.2001.04451</a>.</div>
+</div>
+<div id="ref-choromanskiMaskedLanguageModeling2020" class="csl-entry">
+<div class="csl-left-margin">731. </div><div class="csl-right-inline">Choromanski, K. <em>et al.</em> Masked language modeling for proteins via linearly scalable long-context transformers. doi:<a href="https://doi.org/10.48550/arXiv.2006.03555">10.48550/arXiv.2006.03555</a>.</div>
+</div>
+<div id="ref-bhattacharyaInterpretingPottsTransformer2021" class="csl-entry">
+<div class="csl-left-margin">732. </div><div class="csl-right-inline">Bhattacharya, N. <em>et al.</em> Interpreting potts and transformer protein models through the lens of simplified attention. in 34–45 (WORLD SCIENTIFIC, 2021). doi:<a href="https://doi.org/10.1142/9789811250477_0004">10.1142/9789811250477_0004</a>.</div>
 </div>
 <div id="ref-kraskaCaseLearnedIndex2018" class="csl-entry">
-<div class="csl-left-margin">727. </div><div class="csl-right-inline">Kraska, T., Beutel, A., Chi, E. H., Dean, J. &amp; Polyzotis, N. The case for learned index structures. in 489504 (Association for Computing Machinery, 2018). doi:<a href="https://doi.org/10.1145/3183713.3196909">10.1145/3183713.3196909</a>.</div>
+<div class="csl-left-margin">733. </div><div class="csl-right-inline">Kraska, T., Beutel, A., Chi, E. H., Dean, J. &amp; Polyzotis, N. The case for learned index structures. in 489504 (Association for Computing Machinery, 2018). doi:<a href="https://doi.org/10.1145/3183713.3196909">10.1145/3183713.3196909</a>.</div>
 </div>
 <div id="ref-jungBWAMEMEBWAMEMEmulated2022" class="csl-entry">
-<div class="csl-left-margin">728. </div><div class="csl-right-inline">Jung, Y. &amp; Han, D. <a href="https://doi.org/10.1093/bioinformatics/btac137">BWA-MEME: BWA-MEM emulated with a machine learning approach</a>. <em>Bioinformatics</em> <strong>38</strong>, 2404–2413 (2022).</div>
+<div class="csl-left-margin">734. </div><div class="csl-right-inline">Jung, Y. &amp; Han, D. <a href="https://doi.org/10.1093/bioinformatics/btac137">BWA-MEME: BWA-MEM emulated with a machine learning approach</a>. <em>Bioinformatics</em> <strong>38</strong>, 2404–2413 (2022).</div>
 </div>
 <div id="ref-kirscheSaplingAcceleratingSuffix2021" class="csl-entry">
-<div class="csl-left-margin">729. </div><div class="csl-right-inline">Kirsche, M., Das, A. &amp; Schatz, M. C. <a href="https://doi.org/10.1093/bioinformatics/btaa911">Sapling: Accelerating suffix array queries with learned data models</a>. <em>Bioinformatics</em> <strong>37</strong>, 744–749 (2021).</div>
+<div class="csl-left-margin">735. </div><div class="csl-right-inline">Kirsche, M., Das, A. &amp; Schatz, M. C. <a href="https://doi.org/10.1093/bioinformatics/btaa911">Sapling: Accelerating suffix array queries with learned data models</a>. <em>Bioinformatics</em> <strong>37</strong>, 744–749 (2021).</div>
 </div>
 <div id="ref-hoLISALearnedIndexes2021" class="csl-entry">
-<div class="csl-left-margin">730. </div><div class="csl-right-inline">Ho, D. <em>et al.</em> LISA: Learned Indexes for Sequence Analysis. doi:<a href="https://doi.org/10.1101/2020.12.22.423964">10.1101/2020.12.22.423964</a>.</div>
+<div class="csl-left-margin">736. </div><div class="csl-right-inline">Ho, D. <em>et al.</em> LISA: Learned Indexes for Sequence Analysis. doi:<a href="https://doi.org/10.1101/2020.12.22.423964">10.1101/2020.12.22.423964</a>.</div>
 </div>
 <div id="ref-hoangDifferentiableLearningSequenceSpecific2022" class="csl-entry">
-<div class="csl-left-margin">731. </div><div class="csl-right-inline">Hoang, M., Zheng, H. &amp; Kingsford, C. Differentiable learning of sequence-specific minimizer schemes with DeepMinimizer. <em>Journal of Computational Biology</em> (2022) doi:<a href="https://doi.org/10.1089/cmb.2022.0275">10.1089/cmb.2022.0275</a>.</div>
+<div class="csl-left-margin">737. </div><div class="csl-right-inline">Hoang, M., Zheng, H. &amp; Kingsford, C. Differentiable learning of sequence-specific minimizer schemes with DeepMinimizer. <em>Journal of Computational Biology</em> (2022) doi:<a href="https://doi.org/10.1089/cmb.2022.0275">10.1089/cmb.2022.0275</a>.</div>
 </div>
 <div id="ref-minTargetNetFunctionalMicroRNA2022" class="csl-entry">
-<div class="csl-left-margin">732. </div><div class="csl-right-inline">Min, S., Lee, B. &amp; Yoon, S. <a href="https://doi.org/10.1093/bioinformatics/btab733">TargetNet: Functional microRNA target prediction with deep neural networks</a>. <em>Bioinformatics</em> <strong>38</strong>, 671–677 (2022).</div>
+<div class="csl-left-margin">738. </div><div class="csl-right-inline">Min, S., Lee, B. &amp; Yoon, S. <a href="https://doi.org/10.1093/bioinformatics/btab733">TargetNet: Functional microRNA target prediction with deep neural networks</a>. <em>Bioinformatics</em> <strong>38</strong>, 671–677 (2022).</div>
 </div>
 </div>
             </section>
