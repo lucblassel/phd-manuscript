@@ -1,45 +1,27 @@
 # Global conclusion {.unnumbered}
 
-## HPC part {.unnumbered}
+During my PhD I focused on two separate problems, both pertaining to sequence data. I focused, on the one hand, on improving long-read mapping performance, and on the the other hand, searching for drug resistance mutations in a large, annotated, HIV multiple sequence alignment.
 
--   We have developed a method to improve mapping by pre-processing biological sequences
+## Improving read-mapping with MSRs {.unnumbered}
 
-    -   In terms of error rate and fraction of mapped reads
+Homopolymer linked errors are the most common error mode in long-reads for both ONT and PacBio sequencing technologies. A common way to mitigate the deleterious effects these errors have on downstream analyses is by using a pre-processing method: HPC. We developed a new pre-processing framework, defining transformation functions called streaming reduction functions (SSRs). We show that a subset of 58 of these SSRs, that we call mapping-friendly sequence reductions (MSRs), improve mapping-accuracy on simulated Nanopore long-reads over a whole human genome assembly when compared to HPC or no pre-processing. This improvement in mapping-accuracy, is also seen when using whole *D. melanogaster* or *E. coli* genomes as references, and does not come at the cost of fewer mapped reads. We also show that these MSRs improve mapping accuracy over repeated regions of the whole human genome. In very low complexity regions of the genome however, such as centromeres, with short, conserved and widely repeated motifs, any pre-processing function (MSR or HPC) is harmful, and keeping the untransformed sequence data is better for the read-mapping task.
 
-    -   Although transformations selected on whole human genome generalises to D. melanogaster and E coli genomes.
+In this work, in order to be able to explore the whole SSR function space, we limited ourselves to what we called order-2 SSRs, which considers all pairs of nucleotides as inputs during the sequence pre-processing. It could be interesting to explore higher order SSRs that consider $l$-mers of nucleotides as inputs. This however leads to a much larger function space, to be able to explore it efficiently we need more biologically informed ways to restrict it, or a way to formulate this exploration as an optimization problem. This optimization approach might be very useful, however one of the main obstacles is the design of a suitable objective function on the read-mapping problem which should, ideally, be differentiable. Differentiable alignment algorithms exist, however read-mapping often use heuristics that can be a challenge to include in a loss function. The optimization approach could also be applied to learn MSRs, either by learning connections in the graph representation of MSRs, or by learning a pre-processing function using sequence to sequence models like transformers. This approach , while exciting, would also required a carefully designed objective function with differentiability properties.
 
--   Where to go next ?
+It would also be interesting to apply these MSRs and see if they generalize to other long-read related tasks like clustering or assembly. To evaluate the impact MSRs have on these tasks, some metrics to assess the quality of the produces outputs are needed. Conversely, evaluating these MSRs on real data is needed to get a real-world idea of their applicability and usefulness, however evaluating the improvements MSRs might bring to read-mappings without knowing the ground-truth is a challenge.
 
-    -   explore a larger space of transformations:
+## Searching for resistance mutations in HIV {.unnumbered}
 
-        -   develop more efficient ways to explore search space
+The global HIV pandemic has been a major public health issue for the last 40 years, claiming more than 40 million victims. Over the years many drugs have been developed, targeting most major proteins that are part of the viruses' replication cycle. These drugs have helped make the illness manageable in many situations. However, due to HIV's very high mutation rate, most available drugs induce corresponding resistance mutations in the viral population. This is especially true in lower income countries where the diversity of available treatments is lower than in high-income regions, leading to the emergence of multi-resistant virus strains. This in turn can have severe repercussions on public health where resistant strains can be transmitted and spread through the treatment-naive population. We used several machine learning methods in order to explore the resistance landscape of HIV in the UK and Africa, with the goal to find novel drug resistance mutations. By using a large UK dataset of partial HIV-1 Reverse Transcriptase (RT) sequences, we trained three machine learning algorithms to discriminate treatment-naive from treatment-experienced sequences. The classifiers we used, namely Naive Bayes, LASSO Logistic regression and Random Forest, have built in measure that allow us to examine which variables in the input are important to classification. By encoding single mutations as single variables we were able to determine which mutations are used by the classifier models to determine if a sequences was exposed to treatment or not.
 
-        -   new search space reduction mehods
+In order to find novel resistance mutations we removed all mutations that are known to be associated to resistance from the training data. In this setting classifiers were statistically significantly better than random, indicating that the models were picking up on residual resistance-associated signal in the training data. Conversely, when removing sequences that were known to contain resistance mutations from the training data, in addition to known resistance-associated features, the classifiers were no better than random. This indicates that all the residual resistance-associated signal that we previously found is contained in sequences already having known drug resistance mutations. This would indicated that the mutations we identify from our trained classifiers are accessory in nature and occur only in conjunction with kwon drug resistance mutations, and that all the primary mutations directly conferring resistance have most likely been found, which is reassuring from a public health perspective.
 
-    -   Explore different applications: assembly, clustering, ...
+We identified 6 novel resistance-associated mutations of RT: L228R, L228H, E203K, I135L, H208Y and D218E. We also examined the spatial position of these mutations on a structural model of HIV-1 RT, and observed that they were either close to the active site or the allosteric regulation site targeted by RT inhibitors. Furthermore, we used simple classifier built from mutations found to be significantly associated with treatment using Fisher tests and correcting for multiple-testing. This simple procedure yielded results with an accuracy on par with the more complex models we also trained, we interpreted this fact to mean that complex epistatic phenomena, where a group of mutations have a bigger effect on resistance than the sum of individual effects, are not at play here.
 
-    -   Explore different types of transformations, i.e. less constraints given by us, ML/Seq2Seq,...
+In order to be sure that the mutations we identified do have some role in drug resistance, they should be experimentally studied. This experimental confirmation can be conducted *in vivo* or *in vitro* to study their mechanism and action w.r.t. to associated drugs. In order to try and confirm these results, or identify more mutations it would also be interesting to conduct this procedure with a larger dataset and more sensitive methods like deep learning, although some care should be taken when looking for important mutations with complex models. Replicating this procedure with more metadata, like viral load, or in restricted groups, like cohorts of patients that have received more treatment, could also bring insight in how some of the mutations are related to treatment, although finding sufficiently large datasets filling these conditions might be a challenge. Finally, this approach could also be applied to other viral species, like the Hepatitis C virus, where sequence data is abundant and public health benefits evident.
 
-## HIV part {.unnumbered}
+## Final words {.unnumbered}
 
--   We have used machine learning in order to find new drug resistance mutations in HIV
+In conclusion, I hope by this point you will agree with me that sequence and sequence alignment data is fundamental and one of the most useful data types in bioinformatics analyses. As such, any method to improve the sequence quality, the alignment process or the interpretation of alignments is important. Improving these aspects can help researchers down the line gain more insight, and a more accurate representation, in crucial biological processes. This is especially important with the advent of the "age of pandemics" and tracking by sequencing where very large quantities of sequence data will have to be analyzed quickly and with accuracy, all with high stakes. I hope that, with this work, I have contributed, at least a little, to this field and to the advancement of knowledge.
 
-    -   We have showed a link to drug resistance for 6 mutations of the RT-pol protein, currently not classified as DRMS, but they have been identified as potentially linked to resistance previously
-
-    -   These mutations seem to be accessory mutations and do not
-
-    -   There seems to be no complex epistasis phenomena
-
--   Where to go next:
-
-    -   Confirm experimentally / in vivo the role these mutations have in resistance
-
-    -   Explore more sensitive methods, lots of work on interpretable DL -\> restricted by dataset size...
-
-    -   Explore metadata rich data, e.g. per treatment,
-
-    -   Explore other organisms for which we have data -\> HCV ?
-
-## Final words  {.unnumbered}
-
-Alignments are fundamental, improvements in the creation and analysis steps are crucial and likely to help other people gain insight in biological processes. ***etc...***
+\cleardoubleevenpage
