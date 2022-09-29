@@ -973,8 +973,7 @@ reverse transcription. More details on the structure and function of
 HIV-1 RT can be found in [@sarafianosStructureFunctionHIV12009]. A
 general view of where the new mutations are situated with regards to the
 other important sites of HIV-1 RT is shown in
-Fig \@ref(fig:figStructure),
-and is detailed below.
+Fig \@ref(fig:figStructure), and is detailed below.
 
 ```{r}
 figStructureCaption <- "**Structure of HIV-1 RT with highlighted important sites.**  
@@ -992,7 +991,7 @@ grid::grid.raster(
 \begin{figure}
 {
 \centering
-\includegraphics[width=\linewidth]{./figures/HIV-DRMs/Fig4.png}
+\includegraphics[width=0.9\linewidth]{./figures/HIV-DRMs/Fig4.png}
 }
 \extcaption{Structure of HIV-1 RT with highlighted important sites.}{
 The p66 subunit is colored dark gray and the p51 subunit white. The active site is highlighted in blue, and the NNIBP is highlighted in yellow. The sites of new mutations are colored in red.}
