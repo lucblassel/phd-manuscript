@@ -89,7 +89,7 @@ In many cases, machine learning models have a number of parameters that guide mo
 
 ```{r, cvcaption}
 cvCaption <- "**Example of data splits into training, testing and validation sets with 6-fold cross-validation.**  
-In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-fold testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from the [scikit-learn website](https://scikit-learn.org/stable/modules/cross_validation.html)"
+In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-split testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from <https://scikit-learn.org/stable/modules/cross_validation.html>"
 ```
 
 ```{r, crossValidation, label="crossValidation", fig.cap=cvCaption, out.width="70%", eval=knitr::is_html_output()}
@@ -101,7 +101,7 @@ knitr::include_graphics("figures/Encode-seqs/Cross-validation.png")
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Encode-seqs/Cross-validation.png}
-\extcaption{Example of data splits into training, testing and validation sets with 6-fold cross-validation.}{In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-fold testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from the \href{https://scikit-learn.org/stable/modules/cross_validation.html}{scikit-learn website}}
+\extcaption{Example of data splits into training, testing and validation sets with 6-fold cross-validation.}{In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-split testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from \url{https://scikit-learn.org/stable/modules/cross_validation.html}}
 \label{fig:crossValidation}
 \end{figure}
 ```
