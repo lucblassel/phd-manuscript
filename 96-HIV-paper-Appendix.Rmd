@@ -182,12 +182,12 @@ s1TableCaption <- "**Detailed view of the characteristics of new potential RAMs*
 ```
 
 ```{r, s1Table, eval=knitr::is_html_output(), cache=FALSE}
-dt <- read_csv("tables/HIV-DRMs/Table3.csv")
+dt <- read_csv("tables/HIV-DRMs/Table3.long.csv")
 
 labels <- data.frame(
   col_keys = c("mutation","T/N","W/W","min","UK","Africa","Ucount","Unt","Unr","Acount","Ant","Anr","p‑value","B62","dayhoff","charge","polarity","hp","weight"),
   what = c("mutation","rank","rank","codon distance","codon distance","codon distance","UK","UK","UK","Africa","Africa","Africa","p‑value","B62","Change in","Change in","Change in","Change in","Change in"),
-  measure = c("mutation","T/N","W/W","min","UK","Africa","count","ρ(new,treatment)","ρ(new,with RAM)","count","ρ(new,treatment)","ρ(new,with RAM)","p‑value","B62","Dayhoff category","net charge","polarity","hydrophobicity","molecular weight"),
+  measure = c("mutation","T/N","W/W","min","UK","Africa","count","RR(new,treatment)","RR(new,with RAM)","count","RR(new,treatment)","RR(new,with RAM)","p‑value","B62","Dayhoff category","net charge","polarity","hydrophobicity","molecular weight"),
   stringsAsFactors = FALSE
 )
 

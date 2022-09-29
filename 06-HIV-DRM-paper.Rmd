@@ -840,18 +840,31 @@ tabMutationsCaption <- "**Analysis of new potential RAMs.**
 ```
 
 ```{r, tabMutations, label="tabMutations", eval=knitr::is_html_output(), tab.topcaption=FALSE, eval=knitr::is_html_output()}
-dt <- read_csv("tables/HIV-DRMs/Table1.csv", )  
+dt <- read_csv("tables/HIV-DRMs/Table3.short.csv")
 
-ft <- flextable(dt) %>%
-  merge_at(i=1, j=1:2) %>%
-  merge_at(i=6, j=1:2) %>%
-  merge_at(i=7, j=1:2) %>%
-  merge_at(i=8, j=1:2) %>%
-  merge_at(i=9, j=1:2) %>%
-  set_table_properties(width=0.9, layout="autofit")
+labels <- data.frame(
+  col_keys = c("mutation","min","avg","B62","Ucount","Unt","Unr", "p‑value"),
+  what = c("mutation","codon distance","codon distance","B62","UK","UK","UK","p‑value"),
+  measure = c("mutation","min","avg","B62", "count","RR(new,treatment)","RR(new,any RAM)","p‑value"),
+  stringsAsFactors = FALSE
+)
 
-ft <- set_caption(ft, caption=tabMutationsCaption, style="caption")
-set_header_labels(ft, `...1`="", `...2`="", `...4`="", `...6`="")
+
+
+flextable(dt) %>%
+  set_header_df(mapping=labels, key="col_keys") %>%
+  theme_booktabs() %>%
+  align(align="left", part="header") %>%
+  align(j="mutation", align="right", part="body") %>%
+  align(j="p‑value", align="center", part="all") %>%
+  align(j="B62", align="center", part="all") %>%
+  ftExtra::colformat_md() %>%
+  merge_h(part="header") %>%
+  merge_v(j=c("mutation", "p‑value", "B62"), part="header") %>%
+  fontsize(size=9, i=8) %>%
+  hline(i=6) %>%
+  set_table_properties(width=1, layout="autofit") %>%
+  set_caption(caption=tabMutationsCaption, style="caption")
 ```
 
 \begin{table}
