@@ -219,16 +219,15 @@
   volume       = {28}
 }
 
-
 @inproceedings{heDeepResidualLearning2016,
-  title = {Deep {{Residual Learning}} for {{Image Recognition}}},
-  booktitle = {Proceedings of the {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})},
-  author = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
-  date = {2016},
-  pages = {770--778},
-  url = {https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html},
-  urldate = {2022-09-23},
+  author     = {He, Kaiming and Zhang, Xiangyu and Ren, Shaoqing and Sun, Jian},
+  booktitle  = {Proceedings of the {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}} ({{CVPR}})},
+  date       = {2016},
   eventtitle = {Proceedings of the {{IEEE Conference}} on {{Computer Vision}} and {{Pattern Recognition}}},
+  pages      = {770--778},
+  title      = {Deep {{Residual Learning}} for {{Image Recognition}}},
+  url        = {https://openaccess.thecvf.com/content_cvpr_2016/html/He_Deep_Residual_Learning_CVPR_2016_paper.html},
+  urldate    = {2022-09-23}
 }
 
 @article{hoangDifferentiableLearningSequenceSpecific2022,
@@ -256,6 +255,24 @@
   title      = {{{LISA}}: {{Learned Indexes}} for {{Sequence Analysis}}},
   url        = {https://www.biorxiv.org/content/10.1101/2020.12.22.423964v2},
   urldate    = {2022-09-26}
+}
+
+@article{hornikApproximationCapabilitiesMultilayer1991a,
+  abstract     = {We show that standard multilayer feedforward networks with as few as a single hidden layer and arbitrary bounded and nonconstant activation function are universal approximators with respect to Lp(μ) performance criteria, for arbitrary finite input environment measures μ, provided only that sufficiently many hidden units are available. If the activation function is continuous, bounded and nonconstant, then continuous mappings can be learned uniformly over compact input sets. We also give very general conditions ensuring that networks with sufficiently smooth activation functions are capable of arbitrarily accurate approximation to a function and its derivatives.},
+  author       = {Hornik, Kurt},
+  date         = {1991-01-01},
+  doi          = {10.1016/0893-6080(91)90009-T},
+  file         = {/Users/lucblassel/Google Drive/Zotero_papers/hornik_1991_approximation_capabilities_of_multilayer.pdf;/Users/lucblassel/Zotero/storage/5V9NTA2N/089360809190009T.html},
+  issn         = {0893-6080},
+  journaltitle = {Neural Networks},
+  keywords     = {() approximation,Activation function,Input environment measure,Multilayer feedforward networks,Smooth approximation,Sobolev spaces,Uniform approximation,Universal approximation capabilities},
+  number       = {2},
+  pages        = {251--257},
+  shortjournal = {Neural Networks},
+  title        = {Approximation Capabilities of Multilayer Feedforward Networks},
+  url          = {http://www.sciencedirect.com/science/article/pii/089360809190009T},
+  urldate      = {2019-08-19},
+  volume       = {4}
 }
 
 @article{hornikMultilayerFeedforwardNetworks1989,
@@ -703,6 +720,8 @@
   urldate      = {2022-09-28},
   volume       = {35}
 }
+
+
 
 @inproceedings{yanOptimizingAccuracyRandomized2022,
   abstract   = {Gapped alignment of sequenced data to a reference genome has traditionally been a computationally-intensive task due to the use of edit distance for dealing with indels and mismatches introduced by sequencing. In prior work, we developed Accel-Align [1], a Seed-Embed-Extend (SEE) sequence aligner that uses randomized embedding algorithms to quickly identify optimal candidate locations using Hamming distance rather than edit distance. While Accel-Align provides up to an order of magnitude improvement over state-of-the-art aligners, the randomized nature of embedding can lead to alignment errors resulting in lower precision and recall with downstream variant callers. In this work, we propose several techniques for improving the accuracy of randomized embedding-based sequence alignment. We provide an efficient implementation of these techniques in Accel-Align, and use it to present a comparative evaluation that demonstrates that the accuracy improvements can be achieved without sacrificing performance. Code is accessible in github.com/raja-appuswamy/accel-ali2n-release.},

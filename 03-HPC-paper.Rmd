@@ -75,7 +75,7 @@ The first use of HPC that we are aware of was in 2008 as a pre-processing step f
 
 Though our intuitive understanding justifies why HPC works, it in no way implies that it is the best transformation that can be done. Are there transformations that can be applied in the same pre-processing way as HPC that would achieve better alignment sensitivity? In this work, we define a more general notion which we call *mapping-friendly sequence reductions*. In order to efficiently explore the performance of all reductions, we identify two heuristics to reduce the search space of reductions. We then identify a number of mapping-friendly sequence reductions which are likely to yield better mapping performance than HPC. We evaluate them using two mappers (`minimap2` and `winnowmap2`) on three simulated datasets (whole human genome, human centromere, and whole *Drosophila* genome). We show that some of these functions provide vastly superior performance in terms of correctly placing high mapping quality reads, compared to either HPC or using raw reads. For example, one function decreased the mapping error rate of `minimap2` by an order of magnitude over the entire human genome, keeping an identical fraction of reads mapped.
 
-We also evaluate whether HPC sensitivity gains continue to outweigh the specificity cost with the advent of telomere-to-telomere assemblies [@nurk2022]. These contain many more low-complexity and/or repeated regions such as centromeres and telomeres. HPC may increase mapping ambiguity in these regions by removing small, distinguishing, differences between repeat instances. Indeed, we find that neither HPC nor our mapping-friendly sequence reductions perform better than mapping raw reads on centromeres, hinting at the importance of preserving all sequence information in repeated regions.
+We also evaluate whether HPC sensitivity gains continue to outweigh the specificity cost with the advent of telomere-to-telomere assemblies [@nurkCompleteSequenceHuman2022]. These contain many more low-complexity and/or repeated regions such as centromeres and telomeres. HPC may increase mapping ambiguity in these regions by removing small, distinguishing, differences between repeat instances. Indeed, we find that neither HPC nor our mapping-friendly sequence reductions perform better than mapping raw reads on centromeres, hinting at the importance of preserving all sequence information in repeated regions.
 
 
 ## Results {#hpc-results}
@@ -254,7 +254,7 @@ For $\ell=2$, we have $N(2)=2,135$ restricted SSRs, which is several orders of m
 ### Selection of mapping-friendly sequence reductions
 
 We selected a set of "promising" SSRs starting from all of the SSRs enumerated in Section \@ref(sec:enum), that we call *mapping-friendly sequence reductions* (abbreviated *MSR*).
-The selection was performed on a 0.5x coverage read set, simulated from a whole human genome assembly [@nurk2022].The transformed reads were mapped to the transformed reference using `minimap2` and `paftools mapeval` [@liMinimap2PairwiseAlignment2018] was used to compute a mapping error rate.
+The selection was performed on a 0.5x coverage read set, simulated from a whole human genome assembly [@nurkCompleteSequenceHuman2022].The transformed reads were mapped to the transformed reference using `minimap2` and `paftools mapeval` [@liMinimap2PairwiseAlignment2018] was used to compute a mapping error rate.
 Note that overfitting SSRs to a particular genome is acceptable in applications where a custom SSR can be used for each genome. Yet in this work, the same set of selected SSR will be used across all genomes.
 
 ```{r, thresholdCaption}
@@ -332,7 +332,7 @@ knitr::include_graphics("./figures/HPC-MSRs/Top_MSRs.png")
 \end{figure}
 ```
 
-The 58 selected MSRs, as well as HPC and the identity transformation (denoted as *raw*), were then evaluated on larger read-sets simulated from 3 whole genome references: a whole human genome assembly [@nurk2022], a whole *Drosophila melanogaster* genome assembly [@adamsGenomeSequenceDrosophila2000] and a synthetic centromeric sequence [@mikheenkoTandemToolsMappingLong2020] (see [STAR Methods](#sec:methods) for more details).
+The 58 selected MSRs, as well as HPC and the identity transformation (denoted as *raw*), were then evaluated on larger read-sets simulated from 3 whole genome references: a whole human genome assembly [@nurkCompleteSequenceHuman2022], a whole *Drosophila melanogaster* genome assembly [@adamsGenomeSequenceDrosophila2000] and a synthetic centromeric sequence [@mikheenkoTandemToolsMappingLong2020] (see [STAR Methods](#sec:methods) for more details).
 
 ### Mapping-friendly sequence reductions lead to lower mapping errors on whole genomes
 
@@ -541,7 +541,7 @@ Any additional information required to reanalyze the data reported in this paper
 
 The following three reference sequences were used for evaluation:
 
-1.  **Whole human genome:** This reference sequence is a whole genome assembly of the CHM13hTERT human cell line by the Telomere-to-Telomere consortium [@nurk2022]. We used the 1.1 assembly release (Genbank Assembly ID [GCA_009914755.3](https://www.ncbi.nlm.nih.gov/assembly/GCA_009914755.3/)).
+1.  **Whole human genome:** This reference sequence is a whole genome assembly of the CHM13hTERT human cell line by the Telomere-to-Telomere consortium [@nurkCompleteSequenceHuman2022]. We used the 1.1 assembly release (Genbank Assembly ID [GCA_009914755.3](https://www.ncbi.nlm.nih.gov/assembly/GCA_009914755.3/)).
 
 2.  **Whole *Drosophila* genome:** This reference sequence is a whole genome assembly of a *Drosophila melanogaster*, release 6.35 (Genbank Assembly ID [GCA_000001215.4](https://www.ncbi.nlm.nih.gov/assembly/GCF_000001215.4/)) [@adamsGenomeSequenceDrosophila2000].
 
