@@ -12,7 +12,7 @@ Deep learning is the process of learning using neural networks. Neural networks 
 
 ```{r, perceptronCap}
 perceptronCaption <- "**Computational graph of a perceptron.**  
-Here, $n$ inputs $\{x_1,\ldots,x_n\}$ are passed into the perceptron where they are summed, weighted by $w_1,\\ldots,w_n$. This sum is then fed through the perceptron's activation function $f$ (here a binary step function) which gives the output $y$ of the perceptron. Often the sum is implicitely considered part of the activation function, and will be represented as a single node in computational graphs."
+Here, $n$ inputs $\\{x_1,\\ldots,x_n\\}$ are passed into the perceptron where they are summed, weighted by $w_1,\\ldots,w_n$. This sum is then fed through the perceptron's activation function $f$ (here a binary step function) which gives the output $y$ of the perceptron. Often the sum is implicitely considered part of the activation function, and will be represented as a single node in computational graphs."
 ```
 
 ```{r, perceptron, label="perceptron", fig.cap=perceptronCaption, eval=knitr::is_html_output(), out.width="60%"}
@@ -32,7 +32,7 @@ While the perceptron could be useful, other methods could solve more complex pro
 
 ```{r, mlpCap}
 mlpCaption <- "**Computational graph of a multilayer perceptron.**  
-This MLP, also called feedforward neural network, has $n$ inputs $\{x_1, \ldots, x_n\}$ represented as the input layer, 2 hidden layers of 3 neurons each and an output layer of 2 neurons (e.g. suitable for binary classification). It is fully connected meaning that each node of a given layer is used as input for every neuron of the following layer. Each edge in this graph corresponds to a weight which are the tunable parameters during the training process."
+This MLP, also called feedforward neural network, has $n$ inputs $\\{x_1, \\ldots, x_n\\}$ represented as the input layer, 2 hidden layers of 3 neurons each and an output layer of 2 neurons (e.g. suitable for binary classification). It is fully connected meaning that each node of a given layer is used as input for every neuron of the following layer. Each edge in this graph corresponds to a weight which are the tunable parameters during the training process."
 ```
 
 ```{r, mlp, label="mlp", eval=knitr::is_html_output(), fig.cap=mlpCaption, out.width="60%"}
