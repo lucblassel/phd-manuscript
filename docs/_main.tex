@@ -110,9 +110,11 @@
 \setcapmargin{0cm}
 \setcapindent{0pt}
 
-% \usepackage{layout}
+% color for latex links
+\definecolor{linkblue}{HTML}{3366CC}
 \hypersetup {
   colorlinks = true,
+  allcolors = linkblue,
 }
 
 \newenvironment{tpage}[3]{%
@@ -253,7 +255,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-09-28}
+\date{2022-09-29}
 
 \begin{document}
 \maketitle
@@ -1045,7 +1047,7 @@ Both \texttt{FASTA} and \texttt{BLAST} are very fast, it takes only a couple of 
 
 One of the problems with such an approach is the size of the index, indeed storing all the \(k\)-mers of a length \(n\) sequence would require a maximum of \((n-k + 1)\cdot k\) characters as the hash table keys, if all \(k\)-mers are distinct. This space constraint is acceptable for very large scale homology search tools on hosted web services such as NCBI BLAST, however on a personal computer this can easily exceed memory capacity. Storing the hash table on disk has drastic consequences on query times, therefore methods to reduce the storage needs of these data structures were developed.
 
-One of the ways to make everything fit in memory is to not store all \(k\)-mers. One way is through the use of so-called \emph{minimizers}, introduced independently in 2003 \autocite{schleimerWinnowingLocalAlgorithms2003} and 2004 \autocite{robertsReducingStorageRequirements2004}. Given a window of \(w\) consecutive \(k\)-mers and an ordering, a \((w,k)\) minimizer is the ``smallest'' \(k\)-mer in the window w.r.t. the chosen ordering. Let us consider the following window of \(3\)-mers with \(w=4\): \texttt{TGACAT}, yielding the following \(3\)-mers: \texttt{TGA}, \texttt{GAC}, \texttt{ACA}, \texttt{CAT}. Following a simple ordering, such as the lexicographical ordering (i.e.~alphabetical order), the ``smallest'' \(3\)-mer, and our \((4,3)\) minimizer, would be \texttt{ACA}, and only this one would be sampled and added to our hash table. Minimizers have interesting properties: adjacent windows often share a minimizer (see Figure \ref{fig:minimizers}) and if two strings have a \(w-k+1\) sequence in common then they are guaranteed to share a \((w,k)\) minimizer \autocite{robertsReducingStorageRequirements2004}. These properties make minimizers very useful for the seed and extend alignment strategy and they are used in several aligners such as \texttt{Minimap} \autocite{liMinimapMiniasmFast2016} and \texttt{Minimap2} \autocite{liMinimap2PairwiseAlignment2018}, \texttt{MashMap2} \autocite{jainFastAdaptiveAlgorithm2018} and \texttt{Winnowmap} \autocite{jainWeightedMinimizerSampling2020}.
+One of the ways to make everything fit in memory is to not store all \(k\)-mers. One way is through the use of so-called \emph{minimizers}, introduced independently in 2003 \autocite{schleimerWinnowingLocalAlgorithms2003} and 2004 \autocite{robertsReducingStorageRequirements2004}. Given a window of \(w\) consecutive \(k\)-mers and an ordering, a \((w,k)\) minimizer is the ``smallest'' \(k\)-mer in the window w.r.t. the chosen ordering. Let us consider the following window of \(3\)-mers with \(w=4\): \texttt{TGACAT}, yielding the following \(3\)-mers: \texttt{TGA}, \texttt{GAC}, \texttt{ACA}, \texttt{CAT}. Following a simple ordering, such as the lexicographical ordering (i.e.~alphabetical order), the ``smallest'' \(3\)-mer, and our \((4,3)\) minimizer, would be \texttt{ACA}, and only this one would be sampled and added to our hash table. Minimizers have interesting properties: adjacent windows often share a minimizer (see Figure \ref{fig:minimizers}) and if two strings have a \(w-k+1\) sequence in common then they are guaranteed to share a \((w,k)\) minimizer \autocite{robertsReducingStorageRequirements2004}. These properties make minimizers very useful for the seed and extend alignment strategy and they are used in several aligners such as \texttt{minimap} \autocite{liMinimapMiniasmFast2016} and \texttt{minimap2} \autocite{liMinimap2PairwiseAlignment2018}, \texttt{mashmap2} \autocite{jainFastAdaptiveAlgorithm2018} and \texttt{winnowmap} \autocite{jainWeightedMinimizerSampling2020}.
 
 \begin{figure}[h]
 \centering
@@ -1067,7 +1069,7 @@ Suffix trees have long been used for pattern matching applications \autocite{gus
 
 Suffix trees, although very useful, have quadratic space complexity w.r.t. to the length of the indexed sequence \autocite{gusfieldAlgorithmsStringsTrees1997}. This is fine for small bacterial or viral genomes, however in the age of whole genome sequencing and the human genome project it is inadequate. Therefore some aligners have switched data structures to use suffix arrays. In fact, it is possible to replace suffix trees with these more space efficient suffix arrays in any algorithm \autocite{abouelhodaReplacingSuffixTrees2004}. Newer versions of \texttt{MUMmer} \autocite{marcaisMUMmer4FastVersatile2018} have made this choice and now use suffix arrays for improved performance.
 
-Finally another data structure that is widely used is the so-called FM index proposed in 2000 \autocite{ferraginaOpportunisticDataStructures2000} and based on the Burrows-Wheeler transform \autocite{burrowsBlockSortingLosslessData1994}. The FM index is very memory efficient \autocite{vyvermanProspectsLimitationsFulltext2012}, but this comes at the cost of some efficiency in index lookup operations, although some work has been done to improve this \autocite{chengFMtreeFastLocating2018}. As such, FM-indices have been used in many aligners such as \texttt{BWT-SW} \autocite{lamCompressedIndexingLocal2008}, \texttt{BWA} \autocite{liFastAccurateShort2009} and \texttt{BWA-SW} \autocite{liFastAccurateLongread2010}, \texttt{BWA-MEM} \autocite{liAligningSequenceReads2013}, \texttt{CUSHAW} \autocite{liuLongReadAlignment2012} or \texttt{Bowtie2} \autocite{langmeadFastGappedreadAlignment2012}.
+Finally another data structure that is widely used is the so-called FM index proposed in 2000 \autocite{ferraginaOpportunisticDataStructures2000} and based on the Burrows-Wheeler transform \autocite{burrowsBlockSortingLosslessData1994}. The FM index is very memory efficient \autocite{vyvermanProspectsLimitationsFulltext2012}, but this comes at the cost of some efficiency in index lookup operations, although some work has been done to improve this \autocite{chengFMtreeFastLocating2018}. As such, FM-indices have been used in many aligners such as \texttt{BWT-SW} \autocite{lamCompressedIndexingLocal2008}, \texttt{BWA} \autocite{liFastAccurateShort2009} and \texttt{BWA-SW} \autocite{liFastAccurateLongread2010}, \texttt{BWA-MEM} \autocite{liAligningSequenceReads2013}, \texttt{CUSHAW} \autocite{liuLongReadAlignment2012} or \texttt{bowtie2} \autocite{langmeadFastGappedreadAlignment2012}.
 
 The seed and extend paradigm has been very useful in the field of genomics to deal with the scale of data and keep up with sequencing technologies. Some newer alignment algorithms like the WFA algorithm mentioned above, have even been used in such a context \autocite{songAnchorWaveSensitiveAlignment2022}.
 
@@ -1085,7 +1087,7 @@ Read-mapping is a special case of pairwise alignment and the focus of Chapter \r
 
 Read-mapping is often the first step of many bioinformatics analysis pipelines, and as such is often crucial. Therefore it makes sense that this is a very active field with many reviews \autocite{ruffaloComparativeAnalysisAlgorithms2011,schbathMappingReadsGenomic2012,hatemBenchmarkingShortSequence2013,canzarShortReadMapping2017,alserTechnologyDictatesAlgorithms2021} and some benchmarking procedures \autocite{brindaRNFGeneralFramework2016} to compare tools.
 
-From a technical and algorithmic standpoint, the task of mapping many sequencing reads to a single reference lends itself very well to the ``divide and conquer'' approach presented in Section \ref{seed-and-extend-with-data-structures}. Indexing the reference beforehand and using this index as a database to align can lead to substantial execution speed gains. As a matter of fact, many of the aligners presented in Section \ref{seed-and-extend-with-data-structures} are actually read-mappers that can also do pairwise alignment. As such most implement the seed-and-extend paradigm with hash-tables like \texttt{minimap2} \autocite{liMinimap2PairwiseAlignment2018}; FM-indices like \texttt{BWT-SW} \autocite{lamCompressedIndexingLocal2008}, \texttt{Bowtie2} \autocite{langmeadFastGappedreadAlignment2012}, \texttt{BWA} \autocite{liFastAccurateShort2009}, \texttt{BWA-SW} \autocite{liFastAccurateLongread2010}, \texttt{BWA-MEM} \autocite{liAligningSequenceReads2013} and \texttt{CUSHAW} \autocite{liuLongReadAlignment2012}; or even other divide and conquer approaches like \texttt{Kart} \autocite{linKartDivideandconquerAlgorithm2017}. As sequencing technologies yield longer and more numerous reads, these heuristics become more important if we wish to be able to analyze this data, however this can be partly mitigated through hardware acceleration \autocite{olsonHardwareAccelerationShort2012,chenAcceleratingNextGeneration2014,suzukiIntroducingDifferenceRecurrence2018,zeniLOGANHighPerformanceGPUBased2020}.
+From a technical and algorithmic standpoint, the task of mapping many sequencing reads to a single reference lends itself very well to the ``divide and conquer'' approach presented in Section \ref{seed-and-extend-with-data-structures}. Indexing the reference beforehand and using this index as a database to align can lead to substantial execution speed gains. As a matter of fact, many of the aligners presented in Section \ref{seed-and-extend-with-data-structures} are actually read-mappers that can also do pairwise alignment. As such most implement the seed-and-extend paradigm with hash-tables like \texttt{minimap2} \autocite{liMinimap2PairwiseAlignment2018}; FM-indices like \texttt{BWT-SW} \autocite{lamCompressedIndexingLocal2008}, \texttt{bowtie2} \autocite{langmeadFastGappedreadAlignment2012}, \texttt{BWA} \autocite{liFastAccurateShort2009}, \texttt{BWA-SW} \autocite{liFastAccurateLongread2010}, \texttt{BWA-MEM} \autocite{liAligningSequenceReads2013} and \texttt{CUSHAW} \autocite{liuLongReadAlignment2012}; or even other divide and conquer approaches like \texttt{Kart} \autocite{linKartDivideandconquerAlgorithm2017}. As sequencing technologies yield longer and more numerous reads, these heuristics become more important if we wish to be able to analyze this data, however this can be partly mitigated through hardware acceleration \autocite{olsonHardwareAccelerationShort2012,chenAcceleratingNextGeneration2014,suzukiIntroducingDifferenceRecurrence2018,zeniLOGANHighPerformanceGPUBased2020}.
 
 \hypertarget{challenges-of-read-mapping}{%
 \subsection{Challenges of read-mapping}\label{challenges-of-read-mapping}}
@@ -1096,7 +1098,7 @@ Sequencing technologies, although they have improved over time, can still make e
 
 While the technology producing reads can complicate the read-mapping tasks, some regions of the genome are intrinsically harder to map to. This is particularly true of repetitive regions like telomeres or centromeres \autocite{alserTechnologyDictatesAlgorithms2021}. Repetitive regions mean a lot of potential homologous regions between a read and the reference, producing a lot of seed hits, increasing the runtime of the aligners and lowering the overall confidence in read-placement. Some tools have been developed specifically to deal with such regions. \texttt{Winnowmap} \autocite{jainWeightedMinimizerSampling2020} and \texttt{Winnowmap2} \autocite{jainLongreadMappingRepetitive2022}, assign a weight to \(k\)-mers that might be sampled as minimizers. By under-weighting frequently appearing \(k\)-mers they can improve performance in repetitive regions. \texttt{TandemMapper} \autocite{mikheenkoTandemToolsMappingLong2020} was designed to map long reads to the extra-long tandem repeats (ETRs) present in centromeric regions. It does not use minimzers, however like winnowmap it selects less frequent \(k\)-mers as potential seeds to deal with the repetitiveness and improve the mapping accuracy. Long reads are also much easier to map to repetitive regions since they can span over them, or overlap with more complex regions \autocite{pollardLongReadsTheir2018,logsdonLongreadHumanGenome2020}.
 
-Some challenges however are linked to implementation rather than sequencing data. Some efforts have been done to provide quality scores to mappings in order to easily assess their quality and therefore usefulness. This score, called \emph{mapping quality}, is defined as \(-10\log_{10}(p)\), usually rounded to the nearest integer, where \(p\) corresponds to the probability of the read being mismapped. It was introduced in the \texttt{MAQ} software \autocite{liMappingShortDNA2008} but has been implemented in many read-mappers like \texttt{BWA} , \texttt{bowtie2} \autocite{langmeadFastGappedreadAlignment2012} or \texttt{minimap2} \autocite{liMinimap2PairwiseAlignment2018} since it was added as part of the widely-used \texttt{SAM} file format specification \autocite{liSequenceAlignmentMap2009a}.
+Some challenges however are linked to implementation rather than sequencing data. Some efforts have been done to provide quality scores to mappings in order to easily assess their quality and therefore usefulness. This score, called \emph{mapping quality}, is defined as \(-10\log_{10}(p)\), usually rounded to the nearest integer, where \(p\) corresponds to the probability of the read being mismapped. It was introduced in the \texttt{MAQ} software \autocite{liMappingShortDNA2008} but has been implemented in many read-mappers like \texttt{BWA} \autocite{liFastAccurateShort2009}, \texttt{bowtie2} \autocite{langmeadFastGappedreadAlignment2012} or \texttt{minimap2} \autocite{liMinimap2PairwiseAlignment2018} since it was added as part of the widely-used \texttt{SAM} file format specification \autocite{liSequenceAlignmentMap2009a}.
 
 While the mapping quality score is standardized each read-mapper has a different way of estimating \(p\), the mismap probability. This creates differences in the reported qualities: \emph{e.g.} the maximum quality that \texttt{bowtie2} can assign is 42, \texttt{BWA\textquotesingle{}s} is 37 and \texttt{minimap\textquotesingle{}s} is 60 \autocite{UnderstandingMAPQScores}. This of course means that comparing mapping quality values between read-mappers is not necessarily meaningful. Furthermore in some cases this mapping quality is not very reflective of the alignment accuracy \autocite{ruffaloComparativeAnalysisAlgorithms2011}, as such alternative approaches have been explored: through a new genome mappability score \autocite{leeGenomicDarkMatter2012}, simulations \autocite{langmeadTandemSimulationFramework2017} or even machine learning \autocite{ruffaloAccurateEstimationShort2012}.
 
@@ -1659,7 +1661,7 @@ We use two metrics to evaluate the quality of a mapping of a simulated read set.
 
 Furthermore, we measure the mapping error rate as a function of a given \emph{mapping quality threshold}. Mapping quality (abbreviated mapq) is a metric reported by the aligner that indicates its confidence in read placement; the highest value (60) indicates that the mapping location is likely correct and unique with high probability, and a low value (e.g.~0) indicates that the read has multiple equally likely candidate mappings and that the reported location cannot be trusted. The mapping error rate at a mapq threshold \(t\) is then defined as the mapping error rate of reads whose mapping quality is \(t\) or above. For example, the mapping error rate at \(t=0\) is the mapping error rate of the whole read set, while the mapping error rate at \(t=60\) is the mapping error rate of only the most confident read mappings. Observe that the mapping error rate decreases as \(t\) increases.
 
-All experiments performed for this article are implemented and documented as nextflow workflows available in this project's repository (\href{https://github.com/lucblassel/MSR_discovery}{github.com/lucblassel/MSR\_discovery}). These workflows may be used to rerun experiments and reproduce results. The repository also contains a Rmarkdown notebook to generate all figures and tables in the main text and supplemental information from the pipeline outputs.
+All experiments performed for this article are implemented and documented as nextflow workflows available in this project's repository (\url{https://github.com/lucblassel/MSR_discovery}). These workflows may be used to rerun experiments and reproduce results. The repository also contains a Rmarkdown notebook to generate all figures and tables in the main text and supplemental information from the pipeline outputs.
 
 \hypertarget{supplementary-information}{%
 \section*{Supplementary information}\label{supplementary-information}}
@@ -1759,7 +1761,7 @@ In many cases, machine learning models have a number of parameters that guide mo
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{figures/Encode-seqs/Cross-validation.png}
-\extcaption{Example of data splits into training, testing and validation sets with 6-fold cross-validation.}{In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-fold testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from the \href{https://scikit-learn.org/stable/modules/cross_validation.html}{scikit-learn website}}
+\extcaption{Example of data splits into training, testing and validation sets with 6-fold cross-validation.}{In this setting the whole data set is first split into a training and testing set. The testing set is kept separate to assess final model performance. The training set is split into 6 folds resulting in 6 splits. In each split of the training set, the correspoding fold is used as the within-split test set (green), and the rest of the training set is used as the within-split training set (blue). You can get an idea of the model performance by averaging measures on within-split testing sets and adjusting hyper-parameters accordingly, without using the global, reserved testing set. Adapted from \url{https://scikit-learn.org/stable/modules/cross_validation.html}}
 \label{fig:crossValidation}
 \end{figure}
 
@@ -3443,76 +3445,37 @@ Deep learning is a powerful framework in sequence-based tasks. The recent transf
 \chapter*{Global conclusion}\label{global-conclusion}}
 \addcontentsline{toc}{chapter}{Global conclusion}
 
-\hypertarget{hpc-part}{%
-\section*{HPC part}\label{hpc-part}}
-\addcontentsline{toc}{section}{HPC part}
+During my PhD I focused on two separate problems, both pertaining to sequence data. I focused, on the one hand, on improving long-read mapping performance, and on the the other hand, searching for drug resistance mutations in a large, annotated, HIV multiple sequence alignment.
 
-\begin{itemize}
-\item
-  We have developed a method to improve mapping by pre-processing biological sequences
+\hypertarget{improving-read-mapping-with-msrs}{%
+\section*{Improving read-mapping with MSRs}\label{improving-read-mapping-with-msrs}}
+\addcontentsline{toc}{section}{Improving read-mapping with MSRs}
 
-  \begin{itemize}
-  \item
-    In terms of error rate and fraction of mapped reads
-  \item
-    Although transformations selected on whole human genome generalises to D. melanogaster and E coli genomes.
-  \end{itemize}
-\item
-  Where to go next ?
+Homopolymer linked errors are the most common error mode in long-reads for both ONT and PacBio sequencing technologies. A common way to mitigate the deleterious effects these errors have on downstream analyses is by using a pre-processing method: HPC. We developed a new pre-processing framework, defining transformation functions called streaming reduction functions (SSRs). We show that a subset of 58 of these SSRs, that we call mapping-friendly sequence reductions (MSRs), improve mapping-accuracy on simulated Nanopore long-reads over a whole human genome assembly when compared to HPC or no pre-processing. This improvement in mapping-accuracy, is also seen when using whole \emph{D. melanogaster} or \emph{E. coli} genomes as references, and does not come at the cost of fewer mapped reads. We also show that these MSRs improve mapping accuracy over repeated regions of the whole human genome. In very low complexity regions of the genome however, such as centromeres, with short, conserved and widely repeated motifs, any pre-processing function (MSR or HPC) is harmful, and keeping the untransformed sequence data is better for the read-mapping task.
 
-  \begin{itemize}
-  \item
-    explore a larger space of transformations:
+In this work, in order to be able to explore the whole SSR function space, we limited ourselves to what we called order-2 SSRs, which considers all pairs of nucleotides as inputs during the sequence pre-processing. It could be interesting to explore higher order SSRs that consider \(l\)-mers of nucleotides as inputs. This however leads to a much larger function space, to be able to explore it efficiently we need more biologically informed ways to restrict it, or a way to formulate this exploration as an optimization problem. This optimization approach might be very useful, however one of the main obstacles is the design of a suitable objective function on the read-mapping problem which should, ideally, be differentiable. Differentiable alignment algorithms exist, however read-mapping often use heuristics that can be a challenge to include in a loss function. The optimization approach could also be applied to learn MSRs, either by learning connections in the graph representation of MSRs, or by learning a pre-processing function using sequence to sequence models like transformers. This approach , while exciting, would also required a carefully designed objective function with differentiability properties.
 
-    \begin{itemize}
-    \item
-      develop more efficient ways to explore search space
-    \item
-      new search space reduction mehods
-    \end{itemize}
-  \item
-    Explore different applications: assembly, clustering, \ldots{}
-  \item
-    Explore different types of transformations, i.e.~less constraints given by us, ML/Seq2Seq,\ldots{}
-  \end{itemize}
-\end{itemize}
+It would also be interesting to apply these MSRs and see if they generalize to other long-read related tasks like clustering or assembly. To evaluate the impact MSRs have on these tasks, some metrics to assess the quality of the produces outputs are needed. Conversely, evaluating these MSRs on real data is needed to get a real-world idea of their applicability and usefulness, however evaluating the improvements MSRs might bring to read-mappings without knowing the ground-truth is a challenge.
 
-\hypertarget{hiv-part}{%
-\section*{HIV part}\label{hiv-part}}
-\addcontentsline{toc}{section}{HIV part}
+\hypertarget{searching-for-resistance-mutations-in-hiv}{%
+\section*{Searching for resistance mutations in HIV}\label{searching-for-resistance-mutations-in-hiv}}
+\addcontentsline{toc}{section}{Searching for resistance mutations in HIV}
 
-\begin{itemize}
-\item
-  We have used machine learning in order to find new drug resistance mutations in HIV
+The global HIV pandemic has been a major public health issue for the last 40 years, claiming more than 40 million victims. Over the years many drugs have been developed, targeting most major proteins that are part of the viruses' replication cycle. These drugs have helped make the illness manageable in many situations. However, due to HIV's very high mutation rate, most available drugs induce corresponding resistance mutations in the viral population. This is especially true in lower income countries where the diversity of available treatments is lower than in high-income regions, leading to the emergence of multi-resistant virus strains. This in turn can have severe repercussions on public health where resistant strains can be transmitted and spread through the treatment-naive population. We used several machine learning methods in order to explore the resistance landscape of HIV in the UK and Africa, with the goal to find novel drug resistance mutations. By using a large UK dataset of partial HIV-1 Reverse Transcriptase (RT) sequences, we trained three machine learning algorithms to discriminate treatment-naive from treatment-experienced sequences. The classifiers we used, namely Naive Bayes, LASSO Logistic regression and Random Forest, have built in measure that allow us to examine which variables in the input are important to classification. By encoding single mutations as single variables we were able to determine which mutations are used by the classifier models to determine if a sequences was exposed to treatment or not.
 
-  \begin{itemize}
-  \item
-    We have showed a link to drug resistance for 6 mutations of the RT-pol protein, currently not classified as DRMS, but they have been identified as potentially linked to resistance previously
-  \item
-    These mutations seem to be accessory mutations and do not
-  \item
-    There seems to be no complex epistasis phenomena
-  \end{itemize}
-\item
-  Where to go next:
+In order to find novel resistance mutations we removed all mutations that are known to be associated to resistance from the training data. In this setting classifiers were statistically significantly better than random, indicating that the models were picking up on residual resistance-associated signal in the training data. Conversely, when removing sequences that were known to contain resistance mutations from the training data, in addition to known resistance-associated features, the classifiers were no better than random. This indicates that all the residual resistance-associated signal that we previously found is contained in sequences already having known drug resistance mutations. This would indicated that the mutations we identify from our trained classifiers are accessory in nature and occur only in conjunction with kwon drug resistance mutations, and that all the primary mutations directly conferring resistance have most likely been found, which is reassuring from a public health perspective.
 
-  \begin{itemize}
-  \item
-    Confirm experimentally / in vivo the role these mutations have in resistance
-  \item
-    Explore more sensitive methods, lots of work on interpretable DL -\textgreater{} restricted by dataset size\ldots{}
-  \item
-    Explore metadata rich data, e.g.~per treatment,
-  \item
-    Explore other organisms for which we have data -\textgreater{} HCV ?
-  \end{itemize}
-\end{itemize}
+We identified 6 novel resistance-associated mutations of RT: L228R, L228H, E203K, I135L, H208Y and D218E. We also examined the spatial position of these mutations on a structural model of HIV-1 RT, and observed that they were either close to the active site or the allosteric regulation site targeted by RT inhibitors. Furthermore, we used simple classifier built from mutations found to be significantly associated with treatment using Fisher tests and correcting for multiple-testing. This simple procedure yielded results with an accuracy on par with the more complex models we also trained, we interpreted this fact to mean that complex epistatic phenomena, where a group of mutations have a bigger effect on resistance than the sum of individual effects, are not at play here.
+
+In order to be sure that the mutations we identified do have some role in drug resistance, they should be experimentally studied. This experimental confirmation can be conducted \emph{in vivo} or \emph{in vitro} to study their mechanism and action w.r.t. to associated drugs. In order to try and confirm these results, or identify more mutations it would also be interesting to conduct this procedure with a larger dataset and more sensitive methods like deep learning, although some care should be taken when looking for important mutations with complex models. Replicating this procedure with more metadata, like viral load, or in restricted groups, like cohorts of patients that have received more treatment, could also bring insight in how some of the mutations are related to treatment, although finding sufficiently large datasets filling these conditions might be a challenge. Finally, this approach could also be applied to other viral species, like the Hepatitis C virus, where sequence data is abundant and public health benefits evident.
 
 \hypertarget{final-words}{%
 \section*{Final words}\label{final-words}}
 \addcontentsline{toc}{section}{Final words}
 
-Alignments are fundamental, improvements in the creation and analysis steps are crucial and likely to help other people gain insight in biological processes. \textbf{\emph{etc\ldots{}}}
+In conclusion, I hope by this point you will agree with me that sequence and sequence alignment data is fundamental and one of the most useful data types in bioinformatics analyses. As such, any method to improve the sequence quality, the alignment process or the interpretation of alignments is important. Improving these aspects can help researchers down the line gain more insight, and a more accurate representation, in crucial biological processes. This is especially important with the advent of the ``age of pandemics'' and tracking by sequencing where very large quantities of sequence data will have to be analyzed quickly and with accuracy, all with high stakes. I hope that, with this work, I have contributed, at least a little, to this field and to the advancement of knowledge.
+
+\cleardoubleevenpage
 
 \appendix
 
