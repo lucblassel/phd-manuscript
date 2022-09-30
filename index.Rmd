@@ -108,12 +108,6 @@ knitr::asis_output('\n\\end{tabular}\n')
 
 ```{=tex}
 \mainmatter
-
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[LE]{CHAPTER \thechapter} 
-\fancyhead[RO]{\rightmark}
-\fancyfoot[CO,CE]{\thepage}
 ```
 # General Introduction {.unnumbered}
 
@@ -129,8 +123,8 @@ This manuscript is articulated around seven chapters, listed as follows:
 1.  An introduction to biological sequence data, how it is obtained and specific characteristics and problems inherent to long reads.
 2.  An introduction to sequence alignment, and how and why read-mapping is performed.
 3.  A presentation of my work on sequence transformation functions to improve long-read mapping, which was written as a standalone research article.
-4.  An introduction to machine learning on sequence data, with a focus on techniques used later in the manuscript.
-5.  An introduction to viruses and HIV in particular, with focus on proteins important to drug resistance.
+4.  An introduction to machine learning on biological sequence data, with a focus on techniques used later in the manuscript.
+5.  An introduction to viruses and HIV in particular, with a focus on proteins important to drug resistance.
 6.  A presentation of my work on drug resistance in HIV, which was written and published as a standalone research article.
 7.  A short introduction to deep learning in sequence alignment and perspectives to the work presented in chapter 3.
 
@@ -140,7 +134,7 @@ During this thesis, my work on finding drug resistance mutations with machine le
 
 The second half of my PhD work, on improving read-mapping resulted in a first-author paper, presented at the RECOMB-SEQ 2022 conference and to be published in the *iScience* proceedings of that conference.
 
-In 2020, during the early stages of the COVID-19 pandemic and the lockdowns, I participated in some work resulting in the COVID-Align web-service and a middle-authorship in the corresponding *Bioinformatics* publication. This work also led to middle-authorship on the origins of SARS-CoV-2 in the *Comptes Rendus. Biologies* journal of the French Science Academy.
+In 2020, during the early stages of the COVID-19 pandemic and the lockdowns, I participated in some work resulting in the COVID-Align web-service and a middle-authorship in the corresponding *Bioinformatics* publication. This work also led to middle-authorship in an article concerning the origins of SARS-CoV-2 in the *Comptes Rendus. Biologies* journal of the French Science Academy.
 
 ### Journal publications {.unnumbered}
 
@@ -172,3 +166,11 @@ This list contains the formal references of the publications mentioned above, al
 -   "**Machine learning approaches to reveal resistance mutations in HIV"** Poster at [MCEB 2019](https://www.lirmm.fr/mceb2019/). Porquerolles, France *(May 29^th^ 2019)*
 
 [^index-2]: 2nd place prize awarded
+
+```{=tex}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{CHAPTER \thechapter} 
+\fancyhead[RO]{\rightmark}
+\fancyfoot[CO,CE]{\thepage}
+```
