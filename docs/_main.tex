@@ -117,6 +117,9 @@
   allcolors = linkblue,
 }
 
+% Number footnotes with letters (not to confuse with Nature style citations)
+\renewcommand*\thefootnote{\alph{footnote}}
+
 \newenvironment{tpage}[3]{%
 \KOMAoptions{twoside = false}
   \begin{fullsizetitle}
@@ -454,7 +457,7 @@ This list contains the formal references of the publications mentioned above, al
 \fancyfoot[CO,CE]{\thepage}
 
 \hypertarget{what-is-sequence-data}{%
-\chapter{What is Sequence data ?}\label{what-is-sequence-data}}
+\chapter{What is Sequence Data ?}\label{what-is-sequence-data}}
 
 \hypertarget{biological-sequences-a-primer}{%
 \section{Biological sequences, a primer}\label{biological-sequences-a-primer}}
@@ -483,9 +486,9 @@ The amount of DNA necessary to encode the information varies greatly from organi
 \hypertarget{proteins-their-structure-and-their-role}{%
 \subsubsection{Proteins, their structure and their role}\label{proteins-their-structure-and-their-role}}
 
-The double stranded DNA molecules present in the cells of a living organism contain information only; in order for the organism to live, this information must be read and translated into actions. Most of the actions necessary for ``life'' are taken by large molecules called proteins, they have a very wide range of functions from catalyzing reactions in the cell to giving it structure \autocite{albertsProteinFunction2002}.
+The double stranded DNA molecules present in the cells of a living organism contain information only; in order for the organism to live, this information must be read and translated into actions. Most of the actions necessary for ``life'' are taken by large molecules called proteins, they have a very wide range of functions from catalyzing reactions in the cell to giving it structure \autocite{albertsMolecularBiologyCell2002}.
 
-Proteins are macromolecules that are made up of one or several chains of amino acids. These chains then link together and fold up in a specific three dimensional structure, giving the protein the shape it needs to fulfill its goal. This structure is determined by the sequence of amino acids, and a given protein can be identified by this amino acid sequence \autocite{albertsProteinFunction2002}.
+Proteins are macromolecules that are made up of one or several chains of amino acids. These chains then link together and fold up in a specific three dimensional structure, giving the protein the shape it needs to fulfill its goal. This structure is determined by the sequence of amino acids, and a given protein can be identified by this amino acid sequence \autocite{albertsMolecularBiologyCell2002}.
 
 This sequence is directly dependent on the information contained in the DNA. First the DNA is transcribed in a similar, but single stranded, molecule called RNA (Ribonucleic Acid) which encodes the same sequence. This RNA molecule is then translated into a protein by the following process \autocite{crickGeneralNatureGenetic1961}:
 
@@ -791,7 +794,7 @@ Finally, it is important to note (at least for the remainder of this thesis) tha
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{aligning-sequence-data}{%
-\chapter{Aligning sequence data}\label{aligning-sequence-data}}
+\chapter{Aligning Sequence Data}\label{aligning-sequence-data}}
 
 \hypertarget{what-is-an-alignment}{%
 \section{What is an alignment ?}\label{what-is-an-alignment}}
@@ -1013,7 +1016,7 @@ This type of approach can also be used for many-to-one local alignments: either 
 \subsubsection{\texorpdfstring{\(k\)-mers and hash tables}{k-mers and hash tables}}\label{k-mers-and-hash-tables}}
 
 \hypertarget{the-blast-algorithm}{%
-\paragraph{The BLAST Algorithm}\label{the-blast-algorithm}}
+\paragraph{The BLAST algorithm}\label{the-blast-algorithm}}
 
 One of the early methods for very quick heuristic alignment is the Basic Local Alignment Search Tool: \texttt{BLAST} \autocite{altschulBasicLocalAlignment1990}. It is widely used to this day to find homologous sequences in large databases and, as such, is one of the most cited papers of all time with over 100,000 citations. It is available as a web service hosted by the NCBI (\url{https://blast.ncbi.nlm.nih.gov/Blast.cgi}). Over the year many different versions for different use cases have been developed like \texttt{BLASTP} for protein sequences or \texttt{BLASTN} and \texttt{MEGABLAST} for nucleic acid sequences.
 
@@ -1043,7 +1046,7 @@ Over time, several improvements have been developed for \texttt{BLAST}. \texttt{
 Both \texttt{FASTA} and \texttt{BLAST} are very fast. It only takes a couple of seconds to find approximate local alignments between a hundred query sequences \autocite{saripellaBenchmarkingNextGeneration2016} in a database of over eighty million target sequences \autocite{finnPfamProteinFamilies2016}. Attempting this task with standard SW or NW algorithms would be much slower \autocite{essoussiComparisonFourPairwise2007} but would yield more sensitive, optimal alignments \autocite{shpaerSensitivitySelectivityProtein1996}.
 
 \hypertarget{other-algorithms}{%
-\paragraph{Other Algorithms}\label{other-algorithms}}
+\paragraph{Other algorithms}\label{other-algorithms}}
 
 One of the problems with such an approach is the size of the index, indeed storing all the \(k\)-mers of a length \(n\) sequence would require a maximum of \((n-k + 1)\cdot k\) characters as the hash table keys, if all \(k\)-mers are distinct. This space constraint is acceptable for very large scale homology search tools on hosted web services such as NCBI BLAST, on a personal computer this can easily exceed memory capacity. Storing the hash table on disk has drastic consequences on query times, therefore methods to reduce the storage needs of these data structures were developed.
 
@@ -1160,7 +1163,7 @@ Having methods that are both fast and accurate are now more necessary than ever 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HPC-paper}{%
-\chapter{Contribution 1: Improving read alignment by exploring a sequence transformation space}\label{HPC-paper}}
+\chapter{Contribution 1: Improving Read Alignment by Exploring a Sequence Transformation Space}\label{HPC-paper}}
 
 Recall that, when using long-read sequencing technologies, sequencing errors are more frequent than when using short-read sequencing. The most common of these sequencing errors are linked to homopolymers (\ref{homopolymers-and-long-reads}).
 In read-mapping analyses, a short sequence is globally aligned to a much longer reference sequence. Mapping long-reads can help bridge some gaps in knowledge and solve problems impossible to solve with shorter reads, however sequencing errors complicate an already complicated task (\ref{the-specificities-of-read-mapping}). Homopolymer compression (\ref{hpc-trick}) has been successfully used to mitigate some of the effects of these errors and improve long-read mapping analyses. There might, however, be rooom for improvement and alternative sequence transformation procedures that improve long-read mapping more than homopolymer compression.
@@ -1212,8 +1215,8 @@ Luc Blassel\textsuperscript{\textbf{1},\textbf{2}*}, Paul Medvedev\textsuperscri
 \end{itemize}
 
 \hypertarget{graphical-abstract}{%
-\section*{Graphical Abstract}\label{graphical-abstract}}
-\addcontentsline{toc}{section}{Graphical Abstract}
+\section*{Graphical abstract}\label{graphical-abstract}}
+\addcontentsline{toc}{section}{Graphical abstract}
 
 \begin{center}
 \includegraphics[width=0.6\textwidth]{figures/HPC-MSRs/abstract.pdf}
@@ -1672,7 +1675,7 @@ Supporting Information can be found in Appendix \ref{HPC-appendix}
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{learning-from-sequences-and-alignments}{%
-\chapter{Learning from sequences and alignments}\label{learning-from-sequences-and-alignments}}
+\chapter{Learning From Sequences and Alignments}\label{learning-from-sequences-and-alignments}}
 
 Sequences and sequence alignments are a very rich source of information. As was stated in Chapters \ref{aligning-sequence-data} and \ref{HPC-paper}, many downstream analyses rely on sequence alignments.
 
@@ -1869,7 +1872,7 @@ Alignments, and the sequences in them are a rich source of information, that hav
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{viruses-hiv-and-drug-resistance}{%
-\chapter{Viruses, HIV and drug resistance}\label{viruses-hiv-and-drug-resistance}}
+\chapter{Viruses, HIV and Drug Resistance}\label{viruses-hiv-and-drug-resistance}}
 
 \hypertarget{what-are-viruses}{%
 \section{What are viruses ?}\label{what-are-viruses}}
@@ -1880,26 +1883,26 @@ Viruses occupy a strange place in the tree of life, with many debating if they a
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Viruses have some type of genetic information, contained in either DNA or RNA
+  Viruses have some type of genetic information, contained in DNA or RNA.
 \item
-  This genetic information is protected by some form of envelope
+  This genetic information is protected by some form of envelope.
 \item
   They use the cellular machinery of host cells to make copies of themselves.
 \end{enumerate}
 
-While we all know that viruses can be pathogenic and dangerous (the recent example of SARS-CoV2 springs to mind), that is not necessarily the case and some viruses like GBV-C \autocite{stapletonGBVirusesReview2011} and certain strains of H5N1 \emph{Influenza} \autocite{yamamotoCharacterizationNonpathogenicH5N12011} are non pathogenic and essentially harmless.
+While we all know that viruses can be pathogenic and dangerous (the recent example of SARS-CoV2 springs to mind), that is not necessarily the case. Some viruses like GBV-C \autocite{stapletonGBVirusesReview2011} or certain strains of H5N1 \emph{Influenza} \autocite{yamamotoCharacterizationNonpathogenicH5N12011} are non pathogenic and essentially harmless.
 
 Viruses have been discovered for all three domains of life: Eukaryota, Bacteria and Archea. In Eukaryota many viruses have been discovered for animals (both vertebrate \autocite{shiEvolutionaryHistoryVertebrate2018} and invertebrate \autocite{adamsAtlasInvertebrateViruses2017}), plants \autocite{lefeuvreEvolutionEcologyPlant2019}, protozoa \autocite{wangVirusesParasiticProtozoa1991}, chromista \autocite{ferminVirusesProkaryotesProtozoa2018} and even fungi \autocite{sutelaVirusesFungiOomycetes2019}. Bacterial viruses known as phages have been known to exists since the beginning of the 20th century \autocite{twortINVESTIGATIONNATUREULTRAMICROSCOPIC1915,delbrockBacterialVirusesBacteriophages1946}. These bacteriophages are being considered as a therapeutic alternative to antibiotics \autocite{clarkBacterialVirusesHuman2004,vankan-davelaarUsingVirusesNanomedicines2014} which could help with multi-drug-resistant bacterial pathogens. Archea are also known to have their own viral infections \autocite{prangishviliVirusesArchaea2016,prangishviliVirusesArchaeaUnifying2006}.
 
-Strangely even viruses of viruses seem to exist such as the plant satellite virus \autocite{franckiPlantVirusSatellites,xuPlantVirusSatellites2011} or hepatitis delta virus \autocite{laiMolecularBiologyHepatitis1995,hughesHepatitisDeltaVirus2011}. These ``viroids'' do not infect viral hosts \emph{per se} but they cannot replicate on their own. Replication must happen during co-infection with a larger virus. More recently, true viruses of viruses called virophages have been discovered. These virophages like sputnik \autocite{desnuesChapterSputnikVirophage2012} or zamilon \autocite{gaiaZamilonNovelVirophage2014} specifically infect giant viruses.
+Strangely even viruses of viruses seem to exist, such as the plant satellite virus \autocite{franckiPlantVirusSatellites,xuPlantVirusSatellites2011} or hepatitis delta virus \autocite{laiMolecularBiologyHepatitis1995,hughesHepatitisDeltaVirus2011}. These ``viroids'' do not infect viral hosts \emph{per se} but they cannot replicate on their own. Replication must happen during co-infection with a larger virus. More recently, true viruses of viruses called virophages have been discovered. These virophages like sputnik \autocite{desnuesChapterSputnikVirophage2012} or zamilon \autocite{gaiaZamilonNovelVirophage2014} specifically infect giant viruses.
 
 There is a huge diversity of viruses affecting all types of life, and new viruses are being discovered all the time \autocite{edgarPetabasescaleSequenceAlignment2022}. This diversity hints at a rich and long evolutionary history. When and where viruses originated is still under study \autocite{nasirInvestigatingConceptOrigin2020,forterreOriginViruses2009} and we might never know how they emerged, it is however believed that they may have played an important role in the emergence of eukaryotic cells \autocite{forterreOriginVirusesTheir2006}. This co-evolution between virus and host cell shows a strong link between the two organisms and some parts of the human genome are likely of ancient viral origin \autocite{boekeRetrotransposonsEndogenousRetroviruses1997,kojimaViruslikeInsertionsSequence2021}. It has been estimated that 1\% to 8\% of the human genome are endogenous retroviral sequences \autocite{lowerVirusesAllUs1996,griffithsEndogenousRetrovirusesHuman2001}.
 
 The rich diversity of viruses is reflected in the variety of genetic information support, replication strategy, physical and genomic size, as well as shape. The differences in genetic information support and replication strategy form the basis of the Baltimore virus classification system \autocite{baltimoreExpressionAnimalVirus1971} , still used today \autocite{kooninBaltimoreClassificationViruses2021} to classify virus lineages.
 
-As stated above all viruses have some genetic information, this information is stored either as DNA or as RNA, which is the molecule of choice for 70\% of human pathogenic viruses \autocite{domingoRNAVirusGenomes2018} \emph{(HIV and SARS-CoV 2 are RNA viruses)}.
+As stated above, all viruses have some genetic information. This information is stored either as DNA or as RNA, which is the molecule of choice for 70\% of human pathogenic viruses \autocite{domingoRNAVirusGenomes2018} (HIV and SARS-CoV 2 are RNA viruses).
 
-For DNA viruses, the molecule can be double-stranded as for \emph{Herpesvirus} \autocite{mcgeochTopicsHerpesvirusGenomics2006,boehmerHerpesVirusReplication2003}, single-stranded like in the case of \emph{Papillomavirus} \autocite{brentjensHumanPapillomavirusReview2002} or even circular in the case of the Hepatitis B virus \autocite{kayHepatitisVirusGenetic2007}. This molecular diversity is also present in RNA viruses where the RNA molecule can be double-stranded like for \emph{Rotavirus} \autocite{parasharRotavirus1998}, or single-stranded. Furthermore, for single-stranded RNA viruses the strand can either be positive \emph{(i.e.~can be directly translated into a protein)} like Hepatitis C virus \autocite{simmondsVariabilityHepatitisVirus1995} or \emph{Poliovirus} \autocite{wimmerGeneticsPoliovirus1993,racanielloOneHundredYears2006}; conversely there are negative-strand RNA viruses, for which the complementary strand of RNA must be synthesized before translation into a protein, such as the Influenza or Measles viruses \autocite{paleseNegativestrandRNAViruses1996}.
+For DNA viruses, the molecule can be double-stranded as for \emph{Herpesvirus} \autocite{mcgeochTopicsHerpesvirusGenomics2006,boehmerHerpesVirusReplication2003}, single-stranded like in the case of \emph{Papillomavirus} \autocite{brentjensHumanPapillomavirusReview2002} or even circular in the case of the Hepatitis B virus \autocite{kayHepatitisVirusGenetic2007}. This molecular diversity is also present in RNA viruses where the RNA molecule can be double-stranded like for \emph{Rotavirus} \autocite{parasharRotavirus1998}, or single-stranded. Furthermore, for single-stranded RNA viruses the strand can either be positive (\emph{i.e.} can be directly translated into a protein) like Hepatitis C virus \autocite{simmondsVariabilityHepatitisVirus1995} or \emph{Poliovirus} \autocite{wimmerGeneticsPoliovirus1993,racanielloOneHundredYears2006}; conversely there are negative-strand RNA viruses, for which the complementary strand of RNA must be synthesized before translation into a protein, such as the Influenza or Measles viruses \autocite{paleseNegativestrandRNAViruses1996}.
 
 This diversity in genetic information support implies a necessary diversity in replication strategy. The main replication strategies are as follows \autocite{domingoVirusEvolution2014}:
 
@@ -1914,7 +1917,7 @@ This diversity in genetic information support implies a necessary diversity in r
   The RNA molecule is replicated by going through a DNA intermediary. This strategy is used by retroviruses that integrate this viral DNA intermediary into the host DNA, like HIV-1 (see Section \ref{the-replication-cycle-of-hiv}).
 \end{itemize}
 
-Finally, the genetic diversity of viruses is reflected in their physical characteristics: viruses come in all shapes and sizes. Physical size range from 17nm for plant satellite viruses \autocite{pyleChapter58Biology2017} to the giant 400nm \emph{Mimivirus} \autocite{raoult2megabaseGenomeSequence2004}. Genomic size is also quite variable, there is a stark contrast between the 860 bp \emph{Circovirus SFBeef} and the 2.5 Mbp \emph{Pandoravirus salinus} genomes \autocite{campillo-balderasViralGenomeSize2015}. Viruses come in a variety of shapes \autocite{cannVirusStructure2015}: icosahedral for HIV, helical for the tobacco mosaic virus or a distinctive head-tail shape for bacteriophages.
+Finally, the genetic diversity of viruses is reflected in their physical characteristics: viruses come in all shapes and sizes. Physical size range from 17nm for plant satellite viruses \autocite{pyleChapter58Biology2017} to the giant, 400nm \emph{Mimivirus} \autocite{raoult2megabaseGenomeSequence2004}. Genomic size is also quite variable, there is a stark contrast between the 860 bp \emph{Circovirus SFBeef} and the 2.5 Mbp \emph{Pandoravirus salinus} genomes \autocite{campillo-balderasViralGenomeSize2015}. Viruses also come in a variety of shapes \autocite{cannVirusStructure2015}: icosahedral for HIV, helical for the tobacco mosaic virus or a distinctive head-tail shape for bacteriophages.
 
 Although there are a large number of viruses, and many of them are of great importance for human health, we will now focus on one virus of particular importance: Human Immunodeficiency Virus otherwise known as HIV.
 
@@ -1922,54 +1925,54 @@ Although there are a large number of viruses, and many of them are of great impo
 \section{Getting to know HIV}\label{getting-to-know-hiv}}
 
 \hypertarget{quick-presentation-of-hiv}{%
-\subsection{Quick Presentation of HIV}\label{quick-presentation-of-hiv}}
+\subsection{Quick presentation of HIV}\label{quick-presentation-of-hiv}}
 
 HIV is a single-stranded RNA retrovirus that is responsible for the Acquired Immune Deficiency Syndrome (AIDS) pandemic that has been around for the last couple decades. This virus is transmitted through sexual contact or through blood. Sexual activity is the largest transmission factor followed by intravenous drug use \autocite{hladikSettingStageHost2008,shawHIVTransmission2012}.
 
-The HIV infects cells of the host immune system, specifically CD4 T-cell lymphocytes and destroys them due to it's replication process \autocite{weissHowDoesHIV1993}. CD4 T-cells are an essential part of the immune system response helping fight against infection in humans. An HIV infection typically start with an asymptomatic phase that can last years, followed by a growth in viral replication leading to a decrease in CD4 cells which progresses into AIDS \autocite{melhuishNaturalHistoryHIV2018}. During AIDS, when the CD4 cell count is low enough opportunistic diseases such as pneumonia or tuberculosis \autocite{murrayPulmonaryComplicationsAcquired1984} can easily infect the host, leading to death when the immune system is weak enough.
+HIV infects cells of the host immune system, specifically CD4 T-cell lymphocytes and destroys them due to its replication process \autocite{weissHowDoesHIV1993}. CD4 T-cells are an essential part of the immune system response, helping fight against infection in humans. An HIV infection typically start with an asymptomatic phase that can last years, followed by a growth in viral replication leading to a decrease in CD4 cells which progresses into AIDS \autocite{melhuishNaturalHistoryHIV2018}. During AIDS, when the CD4 cell count is low enough opportunistic diseases such as pneumonia or tuberculosis \autocite{murrayPulmonaryComplicationsAcquired1984} can easily infect the host, leading to death when the immune system is weak enough.
 
-The HIV/AIDS is one of the deadliest pandemics in history, estimated to have lead to the death of 36 million people \autocite{sampathPandemicsThroughoutHistory2021}. In 2010 \autocite{worldhealthorganizationGlobalReportUNAIDS2010} approximately 33 million people were infected with HIV, 2.6 million of which were due to new infections, and 1.8 million died of AIDS. Most of the new infections happened in economically developing regions of the world, 70\% of them coming from sub-Saharan Africa \autocite{worldhealthorganizationGlobalReportUNAIDS2010}. As of 2020, these numbers have decreased with ``only'' 1.5 million new infections and 680,000 AIDS deaths, which is encouraging from a public health perspective.
+HIV/AIDS is one of the deadliest pandemics in history, estimated to have lead to the death of 36 million people \autocite{sampathPandemicsThroughoutHistory2021}. In 2010 approximately 33 million people were infected with HIV \autocite{worldhealthorganizationGlobalReportUNAIDS2010}, 2.6 million of which were due to new infections, and 1.8 million died of AIDS. Most of the new infections happened in economically developing regions of the world, 70\% of them coming from sub-Saharan Africa \autocite{worldhealthorganizationGlobalReportUNAIDS2010}. As of 2020, these numbers have decreased with ``only'' 1.5 million new infections and 680,000 AIDS deaths, which is encouraging from a public health perspective.
 
 The HIV-1 virus was discovered simultaneously in 1983 by Françoise Barré-Sinoussi, Luc Montagnier \autocite{barre-sinoussiIsolationTlymphotropicRetrovirus1983} and Robert Gallo \autocite{galloIsolationHumanTcell1983}. There exists a second HIV-2 virus discovered shortly after HIV-1 \autocite{clavelIsolationNewHuman1986}, it is however less transmissible than HIV-1 which is largely responsible for the global HIV/AIDS pandemic \autocite{gilbert2003}. In Africa in 2006, HIV-1 infections were rising where HIV-2 were declining \autocite{vanderloeffSixteenYearsHIV2006}.
 
 While both viruses are of zoonotic origin, from transmissions of Simian Immunodeficiency Virus (SIV) from primates to humans, HIV-1 most likely originates from an SIV present in chimpanzees \autocite{gaoOriginHIV1Chimpanzee1999,hamelTwentyYearsProspective2007,sharpOriginsHIVAIDS2011}, and HIV-2 from an SIV present in Sooty mangabeys \autocite{hirschAfricanPrimateLentivirus1989,gaoHumanInfectionGenetically1992,chenGeneticCharacterizationNew1996}.
 
-Several independent such transmissions have resulted in 4 lineages of HIV-1 labeled groups M, N, O and P \autocite{hemelaarOriginDiversityHIV12012} (similarly HIV-2 is split into groups A to H also resulting from independent zoonotic transmissions). While Groups N and P have been identified in only a handful of individuals in Cameroon , and group O is estimated to a few thousand cases in western Africa, the majority of the pandemic is due to viruses from group M.
+Several independent such transmissions have resulted in 4 lineages of HIV-1 labeled groups M, N, O and P \autocite{hemelaarOriginDiversityHIV12012} (similarly HIV-2 is split into groups A to H also resulting from independent zoonotic transmissions). Groups N and P have been identified in only a handful of individuals in Cameroon , and group O is estimated to a few thousand cases in western Africa, the majority of the pandemic is due to viruses from group M.
 
-The most recent common ancestor, \emph{i.e.~the putative virus that founded group M}, is estimated to have originated in what is now the Democratic Republic of Congo \autocite{worobeyDirectEvidenceExtensive2008,vidalUnprecedentedDegreeHuman2000,fariaEarlySpreadEpidemic2014} at some point between 1910 and 1931 \autocite{korberTimingAncestorHIV12000,worobeyDirectEvidenceExtensive2008,rambautCausesConsequencesHIV2004}.
+The most recent common ancestor, \emph{i.e.} the putative virus that founded group M, is estimated to have originated in what is now the Democratic Republic of Congo \autocite{worobeyDirectEvidenceExtensive2008,vidalUnprecedentedDegreeHuman2000,fariaEarlySpreadEpidemic2014} at some point between 1910 and 1931 \autocite{korberTimingAncestorHIV12000,worobeyDirectEvidenceExtensive2008,rambautCausesConsequencesHIV2004}.
 
-Group M is further subdivided into 9 subtypes each with distinct genetic characteristics, labeled A to K \autocite{mccutchanGlobalEpidemiologyHIV2006,sharpOriginsHIVAIDS2011}. Like in many viruses \autocite{perez-losadaRecombinationVirusesMechanisms2015}, when 2 genetically different strains of HIV co-infect a single host there is a risk of genetic recombination leading to a new strain \autocite{robertsonRecombinationAIDSViruses1995}. During recombination, a new genome is formed from parts of the original genomes. This can lead to new strains that can spread and form lineages of their own. HIV strains resulting from recombination are called Circulating Recombinant Forms (CRFs). There are currently 118 identified HIV-1 CRFs in the Los Alamos National Laboratory HIV sequence database \autocite{HIVCirculatingRecombinant} (1 for HIV-2). There also exist many unique recombinant forms (URFs). URFs and CRFs are both the result of intra-host genetic recombination an URF becomes a CRF once it has been identified in at least three epidemiologically independent infected individuals \autocite{lauCurrentTrendsHIV2013}. Recombination can be particularly bothersome, complicating evolutionary analyses \autocite{posadaRecombinationEvolutionaryGenomics2002}, or facilitating drug resistance and hindering vaccine development \autocite{taylorChallengeHIV1Subtype2008}.
+Group M is further subdivided into 9 subtypes each with distinct genetic characteristics, labeled A to K \autocite{mccutchanGlobalEpidemiologyHIV2006,sharpOriginsHIVAIDS2011}. Like in many viruses \autocite{perez-losadaRecombinationVirusesMechanisms2015}, when 2 genetically different strains of HIV co-infect a single host there is a risk of genetic recombination leading to a new strain \autocite{robertsonRecombinationAIDSViruses1995}. During recombination, a new genome is formed from parts of the original genomes. This can lead to new strains that can spread and form lineages of their own. HIV strains resulting from recombination are called Circulating Recombinant Forms (CRFs). There are currently 118 identified HIV-1 CRFs in the Los Alamos National Laboratory HIV sequence database \autocite{HIVCirculatingRecombinant} (1 for HIV-2). There also exist many unique recombinant forms (URFs). URFs and CRFs are both the result of intra-host genetic recombination an URF becomes a CRF once it has been identified in at least three epidemiologically independent infected individuals \autocite{lauCurrentTrendsHIV2013}. Recombination can be particularly bothersome, complicating evolutionary analyses \autocite{posadaRecombinationEvolutionaryGenomics2002}, facilitating the emergence of drug resistance and hindering vaccine development \autocite{taylorChallengeHIV1Subtype2008}.
 
 While subtype C represented almost half of global infections from 2004 to 2007, subtype B is the majority subtype in richer countries of North America and Western Europe \autocite{hemelaarGlobalTrendsMolecular2011} where sequencing efforts are more common. This accounts for an over-representation of subtype B sequences in public databases such as the Los Alamos sequence database where 54\% of sequences are of the B subtype and only 15\% are C \autocite{DistributionAllHIV1}.
 
 \hypertarget{the-replication-cycle-of-hiv}{%
 \subsection{The replication cycle of HIV}\label{the-replication-cycle-of-hiv}}
 
-The viruses replication cycle and its immune-cell host specificity are what makes it particularly dangerous. This replication cycle can broadly be categorized into 9 separate steps \autocite{freedHIV1Replication2001,fergusonHIV1ReplicationCycle2002} shown in Figure \ref{fig:hivCycle}.
+The virus's replication cycle and its immune-cell host specificity are what makes it particularly dangerous. This replication cycle can broadly be categorized into 9 separate steps \autocite{freedHIV1Replication2001,fergusonHIV1ReplicationCycle2002} shown in Figure \ref{fig:hivCycle}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
   An HIV virion binds itself to the CD4 host cell through membrane proteins.
 \item
-  The virion envelope and host cell membrane fuse together allowing the viral genetic material and proteins to enter the host cell.
+  The virion envelope and host cell membrane fuse together, allowing the viral genetic material and proteins to enter the host cell.
 \item
-  The viral RNA is reverse-transcribed into viral DNA
+  The viral RNA is reverse-transcribed into viral DNA.
 \item
-  The viral DNA is integrated into the host cell genome
+  The viral DNA is integrated into the host cell genome.
 \item
-  The integrated viral DNA is transcribed by the host cell machinery into multiple copies of viral RNA
+  The integrated viral DNA is transcribed by the host cell machinery into multiple copies of viral RNA.
 \item
-  The viral RNA is translated into immature viral polyproteins
+  The viral RNA is translated into immature viral polyproteins.
 \item
   The viral polyproteins are cleaved to form individual viral proteins.
 \item
-  The newly synthesized viral RNA and viral proteins gather around the host-cell membrane which starts budding to create a new virion
+  The newly synthesized viral RNA and viral proteins gather around the host-cell membrane which starts budding to create a new virion.
 \item
   Once the budding is complete, the virion is released from the host cell and matures before being able to infect other CD4 cells and replicate again.
 \end{enumerate}
 
-The successive infection of CD4 cells by HIV virions leads to cellular death due to inflammatory response and/or activation of apoptosis \autocite{gougeonDirectIndirectMechanisms1993,vidyavijayanPathophysiologyCD4TCell2017}. The gradual depletion of CD4 cells in the infected individual's body lead to the suppression of the immune system, eventually leading to AIDS.
+The successive infection of CD4 cells by HIV virions leads to cellular death due to inflammatory response and/or activation of apoptosis \autocite{gougeonDirectIndirectMechanisms1993,vidyavijayanPathophysiologyCD4TCell2017}. The gradual depletion of CD4 cells in the infected individual's body lead to the suppression of the immune system, and eventually to AIDS.
 
 \begin{figure}
 \centering
@@ -1983,13 +1986,13 @@ The successive infection of CD4 cells by HIV virions leads to cellular death due
 
 The replication cycle described in Section \ref{the-replication-cycle-of-hiv} is made possible by the 15 proteins of HIV. These proteins are coded by 9 separate genes \autocite{frankelHIV1FifteenProteins1998}. An overview of the HIV proteins, their structure and localization within the viral particle can be seen in Figure \ref{fig:hivStructure}.
 
-The HIV genome is made up of three main genes each coding for polyproteins and six genes coding for proteins with regulatory and accessory roles. The three polyproteins correspond to long chains of amino acids which are subsequently cleaved at specific positions to result in separate viral proteins.
+The HIV genome is made up of three main genes each coding for polyproteins and six genes coding for proteins with regulatory or accessory roles. The three polyproteins correspond to long chains of amino acids which are subsequently cleaved at specific positions to produce separate viral proteins.
 
 The \emph{gag} (``group-specific-antigen'') gene codes for the Gag polyprotein which, once cleaved, results in four proteins with mainly structural roles:
 
 \begin{itemize}
 \item
-  The Matrix protein (MA or p17) lines the internal surface if the virion membrane maintaining the shape and structural integrity of the virion.
+  The Matrix protein (MA or p17) lines the internal surface of the virion membrane, maintaining the shape and structural integrity of the virion.
 \item
   The Capsid protein (CA or p24) forms an inner core (the capsid) inside the virion around the viral RNA. It helps protect the viral genetic information.
 \item
@@ -1998,7 +2001,7 @@ The \emph{gag} (``group-specific-antigen'') gene codes for the Gag polyprotein w
   The p6 protein is a small, largely unstructured protein \autocite{fossenSolutionStructureHuman2005} that is suspected of playing a role in virion budding and release from the host cell at the end of the replication cycle \autocite{gottlingerEffectMutationsAffecting1991,huangP6GagRequiredParticle1995}.
 \end{itemize}
 
-The \emph{pol} (``polymerase'') gene codes for the Pol polyprotein. After cleaving this results in the three essential viral enzymes at the heart of the replication cycle:
+The \emph{pol} (``polymerase'') gene codes for the Pol polyprotein. After cleaving this results in three essential viral enzymes at the heart of the replication cycle:
 
 \begin{itemize}
 \item
@@ -2020,13 +2023,13 @@ The \emph{env} (``envelope'') gene codes for Env, the third and last polyprotein
   The Transmembrane protein (TM or gp41) anchors SU into the virion membrane.
 \end{itemize}
 
-The 6 remaining genes all code for single proteins. Two of these have essential regulatory roles and the remaining four have accessory roles.
+The 6 remaining genes all code for single proteins. Two of these have essential regulatory roles and the remaining four accessory roles.
 
 The \emph{tat} (``trans-activator of transcription'') gene codes for Tat, the first essential regulatory protein. Tat activates and promotes transcription leading to more numerous and longer copies of the viral RNA \autocite{jonesControlRnaInitiation1994}. The \emph{rev} (for ``regulator of virion'') gene codes for Rev, the second essential regulatory protein. Rev helps transcribed viral RNA exit the nucleus of the host cell in order to be translated to viral proteins or be packaged in new, budding virions \autocite{hopeViralRNAExport1997}.
 
-The remaining four accessory genes are as follows: \emph{nef} (``negative regulatory factor'') code for the Nef protein which prevents the production of the CD4 cellular defense proteins increasing infectivity \autocite{mangasarianMultifacetedRoleHIV1997}; \emph{vif} (``viral infectivity factor'') codes for the Vif protein which also increases viral infectivity \autocite{cohenRoleAuxiliaryProteins1996}; \emph{vpu} (``viral protein U'') codes for Vpu which likely helps during release of new virions \autocite{lambVpuVprHuman1997,cohenRoleAuxiliaryProteins1996} as well as preventing production of CD4 in the host cell, it is not believed to be present in the mature virion as it binds to host cellular membranes \autocite{khanRoleViralProtein2021}; \emph{vpr} (``viral protein R'') likely helps viral DNA enter the host cell nucleus and prevents the natural host cell reproduction cycle \autocite{emermanHIV1VprCell1996}.
+The remaining four accessory genes are as follows: \emph{nef} (``negative regulatory factor'') code for the Nef protein which prevents the production of the CD4 cellular defense proteins increasing infectivity \autocite{mangasarianMultifacetedRoleHIV1997}; \emph{vif} (``viral infectivity factor'') codes for the Vif protein which also increases viral infectivity \autocite{cohenRoleAuxiliaryProteins1996}; \emph{vpu} (``viral protein U'') codes for Vpu which likely helps during release of new virions \autocite{lambVpuVprHuman1997,cohenRoleAuxiliaryProteins1996} as well as preventing production of CD4 in the host cell. It is not believed to be present in the mature virion as it binds to host cellular membranes \autocite{khanRoleViralProtein2021}; \emph{vpr} (``viral protein R'') likely helps viral DNA enter the host cell nucleus and prevents the natural host cell reproduction cycle \autocite{emermanHIV1VprCell1996}.
 
-The existence of a 10th HIV-1 gene was suggested in 1988 \autocite{millerHumanImmunodeficiencyVirus1988}, overlapping the \emph{env} gene and coding for proteins on the other strand of viral DNA than the other genes. This putative gene was named \emph{asp} (``antisense protein'') and Asp transcripts were isolated during an HIV-1 infection in 2002 \autocite{briquetImmunolocalizationStudiesAntisense2002}. The function of this protein is still unknown but it has been shown to have a strong evolutionary correlation with HIV-1 group M responsible for the pandemic \autocite{cassanConcomitantEmergenceAntisense2016}. Although this Asp protein is still a source of debate, it is under active research \autocite{savoretPilotStudyHumoral2020}.
+The existence of a 10th HIV-1 gene was suggested in 1988 \autocite{millerHumanImmunodeficiencyVirus1988}, overlapping the \emph{env} gene and coding for proteins on the other strand of viral DNA than the other genes. This putative gene was named \emph{asp} (``antisense protein'') and Asp transcripts were isolated during an HIV-1 infection in 2002 \autocite{briquetImmunolocalizationStudiesAntisense2002}. The function of this protein is still unknown but it has been shown to have a strong evolutionary correlation with HIV-1 group M responsible for the pandemic \autocite{cassanConcomitantEmergenceAntisense2016}. This Asp protein is still a source of debate and is under active research \autocite{savoretPilotStudyHumoral2020}.
 
 \begin{figure}
   \centering
@@ -2039,18 +2042,18 @@ Figure adapted from PDB101 \autocite{zardecki2022} (\href{https://PDB101.rcsb.or
 \hypertarget{drug-resistance-in-hiv}{%
 \section{Drug resistance in HIV}\label{drug-resistance-in-hiv}}
 
-Although the HIV/AIDS pandemic has been very deadly around the world, we are not completely defenseless against it. The first antiretroviral therapy (ART) drugs were made available in the late eighties, only a couple years after discovery of the virus. ART reduce the viral load in an HIV positive patient reducing its transmissibility \autocite{eisingerHIVViralLoad2019}, while ART is not a cure for an HIV infection it has been shown to drastically reduce mortality and morbidity \autocite{palellaDecliningMorbidityMortality1998}. ART is estimated to have saved the lives of 9.5 million individuals between 1995 and 2015 \autocite{forsytheTwentyYearsAntiretroviral2019}.
+Although the HIV/AIDS pandemic has been very deadly around the world, we are not completely defenseless against it. The first antiretroviral therapy (ART) drugs were made available in the late eighties, only a couple years after discovering the virus. ART reduce the viral load in an HIV positive patient reducing its transmissibility \autocite{eisingerHIVViralLoad2019}. While ART is not a cure for an HIV infection it has been shown to drastically reduce mortality and morbidity \autocite{palellaDecliningMorbidityMortality1998}. ART is estimated to have saved the lives of 9.5 million individuals between 1995 and 2015 \autocite{forsytheTwentyYearsAntiretroviral2019}.
 
 \hypertarget{a-quick-history-of-art}{%
 \subsection{A quick history of ART}\label{a-quick-history-of-art}}
 
-The first available anti-HIV drug was Zidovudine (ZDV, also known as azidothymidine or AZT) approved by the FDA for usage in the USA in 1987 \autocite{fischlEfficacyAzidothymidineAZT1987}, a few years only after the discovery of the virus. This drug was a reverse transcriptase inhibitor (RTI) therefore preventing the viral RNA from being transcribed into viral DNA. Unfortunately, 3 years later strains of HIV resistant to ZDV were circulating \autocite{richmanSusceptibilityNucleosideAnalogues1990}. This rapid emergence of resistance to treatment is common for HIV \autocite{yeoDeterminationHIV1RT2020} due to its very high evolution rate \autocite{cuevasExtremelyHighMutation2015} allowing it to explore many possible mutations in response to selective pressures, as well as the frequent occurrence of genetic recombination \autocite{carvajal-rodriguezRecombinationFavorsEvolution2007}. To counter this resistance new drugs were rapidly developed and, between 1988 and 1995, four more RTIs were approved by the FDA. Using a combination of these drugs was also shown to be effective and led to a slower rise of resistance \autocite{gulickTreatmentIndinavirZidovudine1997}.
+The first available anti-HIV drug was Zidovudine (ZDV, also known as azidothymidine or AZT) approved by the FDA for usage in the USA in 1987 \autocite{fischlEfficacyAzidothymidineAZT1987}, a few years only after the discovery of the virus. This drug was a reverse transcriptase inhibitor (RTI) therefore preventing the viral RNA from being transcribed into viral DNA. Unfortunately, 3 years later, strains of HIV resistant to ZDV were circulating \autocite{richmanSusceptibilityNucleosideAnalogues1990}. This rapid emergence of resistance to treatment is common for HIV \autocite{yeoDeterminationHIV1RT2020} due to its very high evolution rate \autocite{cuevasExtremelyHighMutation2015} allowing it to explore many possible mutations in response to selective pressures, as well as the frequent occurrence of genetic recombination \autocite{carvajal-rodriguezRecombinationFavorsEvolution2007}. To counter this resistance new drugs were rapidly developed and, between 1988 and 1995, four more RTIs were approved by the FDA. Using a combination of these drugs was also shown to be effective and led to a slower rise of resistance \autocite{gulickTreatmentIndinavirZidovudine1997}.
 
-Then focus was shifted to the development of a new type of drug: Protease Inhibitors (PI). Between 1995 and 1997 4 of them were approved. These, taken in combination with RTI made if harder for the virus to develop resistance \autocite{wensingFifteenYearsHIV2010}. A new class of RTIs was also explored, Non-Nucleoside RTIs (NNRTIs) that block the RT action in another manner than the previously approved Nucleoside RTIs (NRTIs). When taken in combination with other drugs they are also highly effective \autocite{pedersenNonNucleosideReverseTranscriptase1999}. As the years advanced even more drug targets were explored, with 5 Integrase inhibitors (INSTI) being approved since 2007 \autocite{scarsiHIV1IntegraseInhibitors2020}, A Fusion Inhibitor (FI) in 2003 \autocite{fletcherEnfuvirtideNewDrug2003}, and 3 other Entry inhibitors (EI) \autocite{esteHIVEntryInhibitors2007,kilbyNovelTherapiesBased2003} since 2007 all targeting different steps in the replication cycle of HIV \emph{(see Table} \ref{tab:tableDrugs} and Figure \ref{fig:timeline}\emph{)}.
+Then, focus was shifted to the development of a new type of drug: Protease Inhibitors (PI). Between 1995 and 1997, 4 of them were approved. These, taken in combination with RTI made if harder for the virus to develop resistance \autocite{wensingFifteenYearsHIV2010}. A new class of RTIs was also explored, Non-Nucleoside RTIs (NNRTIs) that block the RT action in another manner than the previously approved Nucleoside RTIs (NRTIs). When taken in combination with other drugs they are also highly effective \autocite{pedersenNonNucleosideReverseTranscriptase1999}. As the years advanced even more drug targets were explored, with 5 Integrase inhibitors (INSTI) being approved since 2007 \autocite{scarsiHIV1IntegraseInhibitors2020}, A Fusion Inhibitor (FI) in 2003 \autocite{fletcherEnfuvirtideNewDrug2003}, and 3 other Entry inhibitors (EI) \autocite{esteHIVEntryInhibitors2007,kilbyNovelTherapiesBased2003} since 2007 all targeting different steps in the replication cycle of HIV (see Table \ref{tab:tableDrugs} and Figure \ref{fig:timeline}).
 
-In response to the rapid emergence of resistance in HIV when treated with a single drug, clinicians started systematically treating HIV with a combination of multiple drugs targeting different proteins, as early as 1996. This is now referred to as Highly active antiretroviral combination therapy (HAART, also known as tritherapy). HAART usually consists of 2 NRTIs coupled with another drug: NNRTI or PI at first and later FI or INSTI \autocite{yeniUpdateHAARTHIV2006}. As of 2008 22 anti-HIV single drugs were approved by the FDA \autocite{palmisanoBriefHistoryAntiretroviral2011}, and 27 as of today. This large array of available drugs made HAART possible and gave options to clinicians to switch targets when the multi-resistant HIV emerged. It is important to note here that, while high-income countries had access to this large panel of antiviral drugs, in most lower-income countries that was not the case. This meant that, drug switching and second-line\footnote{When the anti-HIV therapy starts clinicians use first-line drug regimens, if this treatment is changed due to resistance emergence then the second-line regimen is used.} drug regimens were rarely possible in these countries leading to multi-resistant viruses \autocite{penningsHIVDrugResistance2013}.
+In response to the rapid emergence of resistance in HIV when treated with a single drug, clinicians started systematically treating HIV with a combination of multiple drugs targeting different proteins, as early as 1996. This is now referred to as highly active antiretroviral combination therapy (HAART, also known as tritherapy). HAART usually consists of 2 NRTIs coupled with another drug: NNRTI or PI at first and later FI or INSTI \autocite{yeniUpdateHAARTHIV2006}. As of 2008 22 anti-HIV single drugs were approved by the FDA \autocite{palmisanoBriefHistoryAntiretroviral2011}, and 27 as of today. This large array of available drugs made HAART possible and gave options to clinicians to switch targets when the multi-resistant HIV emerged. It is important to note here that, while high-income countries had access to this large panel of antiviral drugs, in most lower-income countries that was not the case. This meant that drug switching and second-line\footnote{When the anti-HIV therapy starts clinicians use first-line drug regimens, if this treatment is changed due to resistance emergence then the second-line regimen is used.} drug regimens were rarely possible in these countries, leading to multi-resistant viruses \autocite{penningsHIVDrugResistance2013}.
 
-With the advent of HAART, patients had access to more potent treatments, however complexity of the treatment regimen grew. Treatments often involved several pills a day to take at precise intervals. Complex drug regimens have been associated with poorer treatment adherence \autocite{mehtaPotentialFactorsAffecting1997,millerComplianceTreatmentRegimens1997}, which can lead to poor treatment outcome as well as the emergence of multi-resistant HIV strains \autocite{chesneyAdherenceHIVCombination2000} and its spread within the population. To avoid this issue, increasingly more single pill regimens are being developed with a staggering 7 new drugs approved by the FDA in 2018. These single pill regimens greatly reduce the burden of adherence for patients leading to better therapeutic outcomes and reduced healthcare costs \autocite{aldirSingletabletRegimensHIV2014}.
+With the advent of HAART, patients had access to more potent treatments, however the complexity of treatment regimens grew. They often involved several pills a day, taken at precise intervals. Complex drug regimens have been associated with poorer treatment adherence \autocite{mehtaPotentialFactorsAffecting1997,millerComplianceTreatmentRegimens1997}. This can lead to poor treatment outcome, as well as the emergence of multi-resistant HIV strains \autocite{chesneyAdherenceHIVCombination2000} and their spread within the population. To avoid this issue, increasingly more single pill regimens are being developed with a staggering 7 new drugs approved by the FDA in 2018. These single pill regimens greatly reduce the burden of adherence for patients, leading to better therapeutic outcomes, and reduced healthcare costs \autocite{aldirSingletabletRegimensHIV2014}.
 
 \begin{figure}
   \centering
@@ -2065,35 +2068,35 @@ See also Table \ref{tab:tableDrugs}.
 \label{fig:timeline}
 \end{figure}
 
-Most recently, some studies explored using some of these single pill regimens (such as Truvada, c.f. Table \ref{tab:tableDrugs}) as prophylactics \emph{i.e.} Pre-exposure prophylaxis (PrEP). Putting uninfected but at risk populations on ART before any known exposure has been shown to effectively lower the risk of infection \autocite{grantPreexposureChemoprophylaxisHIV2010,baetenAntiretroviralProphylaxisHIV2012,buchbinderPreexposureProphylaxisPromise2011}. When adherence is maintained, this risk reduction has been estimated to be between 44\% and 100\% \autocite{riddellHIVPreexposureProphylaxis2018}. As of 2022, Truvada is the only authorized drug for PrEP in Europe \autocite{emaTruvada2018}, although Descovy and Apretude are also authorized for PrEP in the USA \autocite{PrEPPrEPHIV2022}.
+Most recently, some studies explored using some of these single pill regimens (such as Truvada, c.f. Table \ref{tab:tableDrugs}) as prophylactics, called Pre-exposure prophylaxis (PrEP). Putting uninfected but at risk populations on ART, before any known exposure, has been shown to effectively lower the risk of infection \autocite{grantPreexposureChemoprophylaxisHIV2010,baetenAntiretroviralProphylaxisHIV2012,buchbinderPreexposureProphylaxisPromise2011}. When adherence is maintained, this risk reduction has been estimated to be between 44\% and 100\% \autocite{riddellHIVPreexposureProphylaxis2018}. As of 2022, Truvada is the only authorized drug for PrEP in Europe \autocite{emaTruvada2018}, although Descovy and Apretude are also authorized for PrEP in the USA \autocite{PrEPPrEPHIV2022}.
 
-All of these drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners \autocite{zolopaEvolutionHIVTreatment2010} and global organisms \autocite{worldhealthorganizationConsolidatedGuidelinesHIV2021} alike.
+All of these drugs are widely used and are by now very well studied, therefore detailed guidelines on all the aspects of ART; when to start, which drugs to use, when to change drugs; are issued and updated regularly by practitioners \autocite{zolopaEvolutionHIVTreatment2010} and global instances \autocite{worldhealthorganizationConsolidatedGuidelinesHIV2021} alike.
 
 \hypertarget{drug-mechanisms}{%
 \subsection{Main mechanisms of viral proteins, antiretroviral drugs and associated resistance.}\label{drug-mechanisms}}
 
-Each ART drug targets a specific protein, most of them target one of the three \emph{pol} proteins: RT, PR and IN. The structure of these proteins is inherently linked to their function, and as such is essential to take into account when developing ART. Similarly the structure of these proteins is very important when studying the resistance mechanisms developed by the virus \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistance2004}. In this section we will go over; for RT, IN and PR; the main structural elements and how they relate to treatment and resistance.
+Each ART drug targets a specific protein. Most of them target one of the three \emph{pol} proteins: RT, PR and IN. The structure of these proteins is inherently linked to their function, and as such is essential to take into account when developing ART. Similarly, the structure of these proteins is very important when studying the resistance mechanisms developed by the virus \autocite{ammaranondMechanismHIVAntiretroviral2012,clavelHIVDrugResistance2004}. In this section we will go over the main structural elements and how they relate to treatment and resistance, for RT, IN and PR.
 
 \hypertarget{reverse-transcriptase}{%
-\subsubsection{Reverse Transcriptase}\label{reverse-transcriptase}}
+\subsubsection{Reverse transcriptase}\label{reverse-transcriptase}}
 
-The reverse transcriptase protein is the most targeted protein in number of ART drugs \emph{(c.f. Figure} \ref{fig:timeline} \emph{and Table} \ref{tab:tableDrugs}\emph{)}. The mature protein is formed of two subunits: p51 and p66. These two subunits are translated from the same section of the \emph{pol} gene, and such have the same amino acid sequence, but p51 is cleaved and as such is shorter than p66. The p66 subunit contains the active sites of RT whereas p51 plays a mainly structural role.
+The reverse transcriptase protein is the most targeted protein, in number of ART drugs (\emph{c.f.} Figure \ref{fig:timeline} and Table \ref{tab:tableDrugs}). The mature protein is formed of two subunits: p51 and p66. These two subunits are translated from the same section of the \emph{pol} gene, and have the same amino acid sequence, but p51 is cleaved and is shorter than p66. The p66 subunit contains the active sites of RT whereas p51 plays a mainly structural role.
 
 The p66 sububit can be separated into 5 domains \autocite{sarafianosStructureFunctionHIV12009}. The ``fingers'', ``palm'', and ``thumb'' domains are linked together and folded to form a canal through which the RNA template and newly synthesized viral DNA can pass through. The polymerase active site, responsible for incorporating nucleotides to the viral DNA molecule, is situated in the ``palm'' domain at the bottom of the canal. The ``RNase'' domain of RT contains a secondary active site responsible for cleaving the viral RNA template from the viral DNA so that the RT can fill out the complementary strand of viral DNA before integration into the host genome. The final ``connection'' domain is simply a link between the ``RNase'' and the ``thumb'' domains. A three dimensional view of RT with these domains highlighted can be seen in Figure \ref{fig:rtStruct}.
 
 \begin{figure} 
   \centering 
-  \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}      \extcaption{3D structure of HIV-1 Reverse-transcriptase.}{The different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA stran in light gray. The polymerase active site is shown in red although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}       
+  \includegraphics[width=0.8\textwidth]{./figures/HIV-Intro/rt.png}      \extcaption{3D structure of HIV-1 Reverse-transcriptase.}{The different domains of the p66 subunit are labeled and shown in different shades of blue and green. The structural p51 subunit is shown in orange. The RNA template is shown in dark gray and the newly synthesized DNA strand in light gray. The polymerase active site is shown in red, although mostly hidden by the RNA template. The 3D visualization was produced with Illustrate \autocite{goodsellIllustrateSoftwareBiomolecular2019} using the \href{https://www.rcsb.org/structure/2HMI}{2hmi} PDB structure.}       
   \label{fig:rtStruct} 
 \end{figure}
 
-Reverse Transcriptase inhibitors can be separated into two classes: Nucleoside RTIs (NRTIs) and Non-Nucleoside RTIs (NNRTIs), inhibiting the action of RT in two disctinct manners:
+Reverse Transcriptase inhibitors can be separated into two classes: Nucleoside RTIs (NRTIs) and Non-Nucleoside RTIs (NNRTIs). They inhibit the action of RT in two disctinct manners:
 
 \begin{itemize}
 \item
   NRTIs are analogues of free nucleotides in the host cell. They competitively inhibit RT and can be used to elongate the viral DNA chain. Once an NRTI is incorporated, further elongation of the DNA molecule is impossible and the viral DNA cannot be synthesized anymore. This is similar to the chain terminating nucleotides introduced in Section \ref{obtaining-sequence-data}.
 \item
-  NNRTIs bind to a specific region of the p51 subunit: the Non Nucleoside Inhibitor Binding Pocket (NNIBP) \emph{(A view of RT with the NNIBP visible is shown in Figure} \ref{fig:figStructure}\emph{)}. This pocket, although it is on the p51 subunit is spatially situated very close to the polymerase active site. NNRTIs bind to the NNIBP to change the conformation of the active site, lowering its flexibility \autocite{esnoufUniqueFeaturesStructure1997}, and thus non-competitively inhibiting the action of RT.
+  NNRTIs bind to a specific region of the p51 subunit: the Non Nucleoside Inhibitor Binding Pocket (NNIBP) (A view of RT with the NNIBP visible is shown in Figure \ref{fig:figStructure}). This pocket, although it is on the p51 subunit is spatially situated very close to the polymerase active site. NNRTIs bind to the NNIBP to change the conformation of the active site, lowering its flexibility \autocite{esnoufUniqueFeaturesStructure1997}, and thus non-competitively inhibiting the action of RT.
 \end{itemize}
 
 Research has been conducted into inhibition of the RNase active site of RT \autocite{hangActivityIsolatedHIV2004,klumppRecentProgressDesign2006} which could also inhibit the action of RT. There is however, to this day, no approved treatment that inhibits the RNase action of RT.
@@ -2107,9 +2110,9 @@ Similarly, NNRTI resistance mutations work via several different mechanisms \aut
 \hypertarget{protease}{%
 \subsubsection{Protease}\label{protease}}
 
-The Protease protein, also a major drug target for ART, cleaves the \emph{gag} and \emph{pol} polyproteins in order to produce functional viral proteins, essential to replication. It has a symmetric dimeric structure, that is two say that it is composed of two identical chains of amino acids \autocite{pearlStructuralModelRetroviral1987,gulnikHIVProteaseEnzyme2000}. A structural view of PR is shown in Figure \ref{fig:prStruct}.
+The Protease protein, also a major drug target for ART, cleaves the \emph{gag} and \emph{pol} polyproteins in order to produce functional viral proteins, essential to replication. It has a symmetric, dimeric, structure, that is to say: it is composed of two identical chains of amino acids \autocite{pearlStructuralModelRetroviral1987,gulnikHIVProteaseEnzyme2000}. A structural view of PR is shown in Figure \ref{fig:prStruct}.
 
-These two chains are folded in order to create a ``tunnel'' through which the polyproteins enter. In the middle of this ``tunnel'', at the bottom, is the active site. The active site is composed of two Aspartate residues, one on each chain, with water they can participate in a chemical reaction that cleaves the polyprotein at a specific position \autocite{silvaInhibitionCatalyticMechanism1996}.
+These two chains are folded in order to create a ``tunnel'' through which the polyproteins enter. In the middle of this ``tunnel'', at the bottom, is the active site. The active site is composed of two Aspartate residues, one on each chain. Using water, they can provoke a chemical reaction that cleaves the polyprotein at a specific position \autocite{silvaInhibitionCatalyticMechanism1996}.
 
 The roof of the ``tunnel'' is formed by the flaps, a flexible region from each of the two chains that can open or close the ``tunnel'' \autocite{hornakHIV1ProteaseFlaps2006}. These flaps most likely control the access of polyproteins to the active site \autocite{freedbergRapidStructuralFluctuations2002,yuStructuralInsightsHIV12017}.
 
@@ -2119,56 +2122,56 @@ The roof of the ``tunnel'' is formed by the flaps, a flexible region from each o
   \label{fig:prStruct} 
 \end{figure}
 
-All the approve Protease Inhibitors (PIs) share a similar mode of action, each PI binds to the active site of the PR, denying access to the ``tunnel'' for polyproteins and stopping the catalytic action of PR \autocite{robertsRationalDesignPeptideBased1990,lvHIVProteaseInhibitors2015}. Tipranavir, one of the more recent PIs, also binds with the flaps \autocite{lvHIVProteaseInhibitors2015}.
+All the approved Protease Inhibitors (PIs) share a similar mode of action. Each PI binds to the active site of the PR, denying access to the ``tunnel'' for polyproteins, and stopping the catalytic action of PR \autocite{robertsRationalDesignPeptideBased1990,lvHIVProteaseInhibitors2015}. Tipranavir, one of the more recent PIs, also binds with the flaps \autocite{lvHIVProteaseInhibitors2015}.
 
-According to Prabu-Jeyabalan and colleagues, the Protease structure does not recognize the specific sequence of the polyprotein cleavage site but rather its shape \autocite{prabu-jeyabalanSubstrateShapeDetermines2002}. They proposed an inhibitor based on this shape for all polyproteins combined, which establishes more bonds with PR, making it supposedly more efficient \autocite{prabu-jeyabalanSubstrateEnvelopeDrug2006} than current approved PIs.
+According to Prabu-Jeyabalan \emph{et al.}, PR does not recognize the specific sequence of the polyprotein cleavage site but rather its shape \autocite{prabu-jeyabalanSubstrateShapeDetermines2002}. They proposed an inhibitor based on the shape of all polyproteins combined, which establishes more bonds with PR, making it supposedly more efficient \autocite{prabu-jeyabalanSubstrateEnvelopeDrug2006} than current approved PIs.
 
 As is the case with RTIs, when under selective pressure due to PIs, the virus tends to develop PI associated DRMs. Most PI resistance mutations result in an enlarged ``tunnel'', this tends to lower the affinity of the PIs to the active site, but also the affinity of polyproteins, lowering the fitness of the virus significantly \autocite{wensingFifteenYearsHIV2010}. In addition, some mutations on the \emph{gag} polyprotein seem to lower the efficacy of PIs, although the underlying mechanism is not well known \autocite{wensingFifteenYearsHIV2010}.
 
-Some mutations in the flaps of PR have also been shown to confer PI resistance. It seems likely that these mutations change conformation of the flaps, opening them leading to the release of inhibitors from the active site \autocite{kurtyilmazImprovingViralProtease2016}.
+Some mutations in the flaps of PR have also been shown to confer PI resistance. It seems likely that these mutations change conformation of the flaps, opening them and leading to the release of inhibitors from the active site \autocite{kurtyilmazImprovingViralProtease2016}.
 
 \hypertarget{integrase}{%
 \subsubsection{Integrase}\label{integrase}}
 
-The integrase protein is the third major anti-retroviral drug target, it is responsible for integrating the viral DNA into the host genome. It is a tetramer composed of four identical amino acid chains. \autocite{chiuStructureFunctionHIV12004,espositoHIVIntegraseStructure1999}. Each of these chains contain three domains linked together by flexible linker sequences: the N-terminal domain, the catalytic core and the C-terminal domain. In each tetramer, two chains provide the active site for the integration reaction while the other two have a mostly structural role. It is probable that the N-terminal domain which is very conserved is necessary for stable tetramerization of IN monomers \autocite{delelisIntegraseIntegrationBiochemical2008}, this tetrameric structure is shown in Figure \ref{fig:inStruct}.
+The integrase protein is the third major anti-retroviral drug target. It is responsible for integrating the viral DNA into the host genome. IN is a tetramer composed of four identical amino acid chains. \autocite{chiuStructureFunctionHIV12004,espositoHIVIntegraseStructure1999}. Each of these chains contain three domains linked together by flexible linker sequences: the N-terminal domain, the catalytic core and the C-terminal domain. In each tetramer, two chains provide the active site for the integration reaction while the other two have a mostly structural role. It is probable that the N-terminal domain, which is very conserved, is necessary for stable tetramerization of IN monomers \autocite{delelisIntegraseIntegrationBiochemical2008}, this tetrameric structure is shown in Figure \ref{fig:inStruct}.
 
 \begin{figure} 
   \centering 
-  \includegraphics[width=0.7\textwidth]{./figures/HIV-Intro/in.png}      \extcaption{3D structure of an Integrase.}{This Integrase tetramer is binded with viral (red) and host (orange) DNA, linked to the two light blue functional subunits via the C-terminal domain. The active site formed by the the catalytic cores of the two functional subunits \textit{(not visible in this representation)}, is where the strand transfer reaction will take place. The two dark blue IN subunits have a structural role.
+  \includegraphics[width=0.95\textwidth]{./figures/HIV-Intro/in.png}      \extcaption{3D structure of an Integrase.}{This Integrase tetramer is binded with viral (red) and host (orange) DNA, linked to the two light blue functional subunits via the C-terminal domain. The active site formed by the the catalytic cores of the two functional subunits \textit{(not visible in this representation)}, is where the strand transfer reaction will take place. The two dark blue IN subunits have a structural role.
   This figure was adapted from the PDB 101 molecule of the month Integrase entry by David S. Goodsell and the RCSB PDB (\url{https://pdb101.rcsb.org/motm/135}) with a CC By 4.0 license.}       
   \label{fig:inStruct} 
 \end{figure}
 
-Several steps are needed in order to integrate the viral DNA with the host genome \autocite{maertensStructureFunctionRetroviral2022}. First, IN binds to the both ends of the viral DNA, using the C-terminal domains, forming a closed loop. Secondly, both ends of the viral DNA molecule are then prepared for integration by the catalytic core. Third, the host DNA is captured with C-terminal domains. Then, the strand-transfer is done within the catalytic core: the host DNA is cut in two places and a single strand from each end of the viral DNA are attached to these two breakpoints. Finally, the IN tetramer detaches from the linked molecules and the final steps necessary to create a single hybrid DNA molecule are done by the host cellular machinery. A graphical representation of this process can be found in Figure 1 of the 2022 article by Maertens et al. \autocite{maertensStructureFunctionRetroviral2022}.
+Several steps are needed in order to integrate the viral DNA with the host genome \autocite{maertensStructureFunctionRetroviral2022}. First, IN binds to the both ends of the viral DNA, using the C-terminal domains, forming a closed loop. Secondly, both ends of the viral DNA molecule are then prepared for integration by the catalytic core. Third, the host DNA is captured with C-terminal domains. Then, the strand-transfer is done within the catalytic core: the host DNA is cut in two places and a single strand from each end of the viral DNA are attached to these two breakpoints. Finally, the IN tetramer detaches from the linked molecules and the final steps necessary to create a single hybrid DNA molecule are done by the host cellular machinery. A graphical representation of this process can be found in Figure 1 of Maertens \emph{et al.} (2022) \autocite{maertensStructureFunctionRetroviral2022}.
 
 Integrase Strand Transfer Inhibitors (INSTIs), as their name indicates, block the strand transfer reaction. They achieve this by strongly binding to the active site of the IN tetramer after it has formed a complex with the viral DNA \autocite{pommierIntegraseInhibitorsTreat2005,maertensStructureFunctionRetroviral2022}. In doing so, INSTIs prevent the IN / viral DNA complex from binding to the host DNA, effectively preventing strand transfer.
 
-In the presence of INSTIs during therapy, once more the HIV virus develops resistance mutations over time. These mutations all lower affinity of IN to INSTIs, preventing bonding \autocite{blancoHIV1IntegraseInhibitor2011,maertensStructureFunctionRetroviral2022}. Since most INSTIs behave similarly, this means that cross-resistance to INSTIs is quite common for INSTI DRMs \autocite{blancoHIV1IntegraseInhibitor2011,gerettiEmergingPatternsImplications2012}. Once more, these mutations tend to lower the overall viral fitness necessitating secondary compensatory mutations to restore fitness \autocite{gerettiEmergingPatternsImplications2012,blancoHIV1IntegraseInhibitor2011}.
+In the presence of INSTIs during therapy, once more, the HIV virus develops resistance mutations over time. These mutations all lower affinity of IN to INSTIs, preventing bonding \autocite{blancoHIV1IntegraseInhibitor2011,maertensStructureFunctionRetroviral2022}. Since most INSTIs behave similarly, this means that cross-resistance to INSTIs is quite common for INSTI DRMs \autocite{blancoHIV1IntegraseInhibitor2011,gerettiEmergingPatternsImplications2012}. Again, these mutations tend to lower the overall viral fitness necessitating secondary compensatory mutations to restore fitness \autocite{gerettiEmergingPatternsImplications2012,blancoHIV1IntegraseInhibitor2011}.
 
 \hypertarget{other-drug-targets}{%
 \subsubsection{Other drug targets}\label{other-drug-targets}}
 
-For now, resistance has not been observed for novel drugs like entry inhibitors. This might be because the genetic barrier to resistance is higher and because not enough time has passed since their introduction for resistance to emerge.
+For now, resistance has not been observed for novel drugs like entry inhibitors. This might be because the genetic barrier to resistance is higher and not enough time has passed since their introduction for resistance to emerge.
 
-For all the other drug targets however, as stated earlier in this section, resistance is documented and problematic. Resistance has even been detected for PrEP which is prophylactic \autocite{knoxMultidrugResistantHIV1Infection2017,hurtPreexposureProphylaxisAntiretroviral2011}. This seems to be rare however and mostly due to an unknown pre-treatment HIV infection \autocite{gibasDrugResistanceHIV2019}.
+For all the other drug targets however, as stated earlier in this section, resistance is documented and problematic. Resistance has even been detected for PrEP which is prophylactic \autocite{knoxMultidrugResistantHIV1Infection2017,hurtPreexposureProphylaxisAntiretroviral2011}. This seems to be rare however, and mostly due to unknown pre-treatment HIV infections \autocite{gibasDrugResistanceHIV2019}.
 
 \hypertarget{consequences-of-resistance-on-global-health}{%
 \subsection{Consequences of resistance on global health}\label{consequences-of-resistance-on-global-health}}
 
-HIV resistance to ART drugs is problematic from a global health perspective. Indeed circulation of resistant strains of HIV within populations can lead to treatment-naive individuals that will not respond well to treatment.
+HIV resistance to ART drugs is problematic from a global health perspective. Indeed, circulation of resistant strains of HIV within populations can lead to treatment-naive individuals that will not respond well to treatment.
 
-More concerning is the fact that transmission of resistant strains of HIV between treatment-naive individuals is the main mode of resistance transmission in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015,hueDemonstrationSustainedDrugResistant2009} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}. This treatment-naive to treatment-naive transmission is particularly insidious since it can go undetected and creates long lasting drug resistant strain reservoirs in the treatment-naive population. This of course is dangerous since some infected individuals might experience poor therapeutic outcomes and even failure when administered first line regimens \autocite{boermaHighLevelsPretreatment2016}. To avoid this, genotypic resistance testing has become standard practice when choosing the therapeutic strategy in high-income countries, but more effort must be done to make resistance testing less expensive and more cost-efficient in lower and middle income countries \autocite{clutterHIV1DrugResistance2016}.
+More concerning, is the fact that transmission of resistant strains of HIV between treatment-naive individuals is the main mode of resistance transmission in the UK \autocite{mouradPhylotypebasedAnalysisHighlights2015,hueDemonstrationSustainedDrugResistant2009} and Switzerland \autocite{drescherTreatmentNaiveIndividualsAre2014}. This treatment-naive to treatment-naive transmission is particularly insidious since it can go undetected and creates long lasting drug resistant strain reservoirs in the treatment-naive population. This of course is dangerous since some infected individuals might experience poor therapeutic outcomes and even treatment failure when administered first line regimens \autocite{boermaHighLevelsPretreatment2016}. To avoid this, genotypic resistance testing has become standard practice when choosing the therapeutic strategy in high-income countries, but more effort must be done to make resistance testing less expensive and more cost-efficient in lower and middle income countries \autocite{clutterHIV1DrugResistance2016}.
 
-Although the transmitted drug resistance described above is problematic, a large portion of DRMs incur a fitness cost for the resistant strain \autocite{kuhnertQuantifyingFitnessCost2018,mespledeViralFitnessCost2013}. This means that although they are selected when exposed to the evolutionary pressure of ART, when the treatment is interrupted there is another pressure leading these costly mutations to disappear. This reversion is commonly observed after interruption of treatment, however the median reversion times vary widely from 1 to 13 years \autocite{castroPersistenceHIV1Transmitted2013} depending on the severity of the fitness loss and type of mutation. This means that although reversion can possibly lead to loss of resistance this can potentially take a long time and possibly longer than the treatment interruption.
+Although the transmitted drug resistance described above is problematic, a large portion of DRMs incur a fitness cost for the resistant strain \autocite{kuhnertQuantifyingFitnessCost2018,mespledeViralFitnessCost2013}. This means that, although they are selected when exposed to the evolutionary pressure of ART, when the treatment is interrupted there is another pressure leading these costly mutations to disappear. This reversion is commonly observed after interruption of treatment, however the median reversion times vary widely from 1 to 13 years \autocite{castroPersistenceHIV1Transmitted2013} depending on the severity of the fitness loss and type of mutation. This means that, although reversion can possibly lead to loss of resistance, this can potentially take a long time and possibly longer than the treatment interruption.
 
-In practice it is therefore very important to keep an eye on all drug resistance mutations, their population dynamics and spread as well as their presence or absence in a particular strain before starting treatment.
+In practice, it is therefore very important to keep an eye on all drug resistance mutations, their population dynamics, and spread as well as their presence or absence in a particular strain before starting treatment.
 
 \hypertarget{finding-drms}{%
 \subsection[Finding DRMs ]{\texorpdfstring{Finding DRMs \footnote{This sections build upon a review I participated in during my PhD \autocite{blasselDrugResistanceMutations2021}}}{Finding DRMs }}\label{finding-drms}}
 
-Finding and categorizing mutations as DRMs is an important task in light of the public health implications mentioned in Section \ref{consequences-of-resistance-on-global-health}, as such this is an active part of the HIV research field.
+Finding and categorizing mutations as DRMs is an important task in light of the public health implications mentioned in Section \ref{consequences-of-resistance-on-global-health}. As such, this is an active part of the HIV research field.
 
-The most important thing needed in order to study DRMs is of course viral sequences. To facilitate the search for DRMs several sequence databases exist. Sequences are often linked to metadata related to the treatment status of the patient from which the sequence was obtained. This metadata can be quite variable: from a coarse level binary indicator of treatment to a finely detailed list of all treatments received and associated phenotypic measurements like viral load.
+The most important thing needed in order to study DRMs is, of course, viral sequences. To facilitate the search for DRMs several sequence databases exist. Sequences are often linked to metadata related to the treatment status of the patient from which the sequence was obtained. This metadata can be quite variable: from a coarse level binary indicator of treatment to a finely detailed list of all treatments received and associated phenotypic measurements like viral load.
 
 Databases like the UK-CHIC \autocite{ukchicsteeringcommitteeCreationLargeUKbased2004}, UK HIV drug resistance database (\url{https://www.hivrdb.org.uk/}) and Swiss cohort study (\url{https://www.shcs.ch/}) host sequences on a national level, although access can be granted to international researchers. Other databases like the PANGEA database \autocite{abeler-dornerPANGEAHIVPhylogeneticsNetworks2019} host sequences from multiple countries in sub-Saharan Africa. The Stanford HIV drug resistance database (\url{https://hivdb.stanford.edu/}) hosts HIV sequences with some phenotypic data \autocite{rheeHumanImmunodeficiencyVirus2003,shaferRationaleUsesPublic2006}. Finally some database only host sequences, such as the Los Alamos HIV sequence database (\url{http://www.hiv.lanl.gov/}), however with few specific treatment or resistance related metadata \autocite{kuikenHIVSequenceDatabases2003} these have less direct applicability to the DRM search task.
 
@@ -2176,9 +2179,9 @@ Some databases, like the Stanford HIV resistance database, also store specific k
 
 The first step of mutations discovery is usually some kind of statistical association analysis\autocite{johnsonUpdateDrugResistance2016,wensing2019UpdateDrug2019} where the association between treatment status (coarse of fine grained) and specific mutations is statistically tested. This is usually done with Fisher association tests \autocite{villabona-arenasIndepthAnalysisHIV12016,shulmanGeneticCorrelatesEfavirenz2004} or correlation testing with the Spearman correlation for example \autocite{millerGenotypicPhenotypicPredictors2004}. This results in a list of mutations that are significantly associated with a given treatment and corresponding p-values.
 
-Since, on a given sequence dataset, several mutations are usually tested at once this can lead to inflated false positive \autocite{brownMethodsCorrectingMultiple1997} and spurious \autocite{austinTestingMultipleStatistical2006} associations. Fortunately this is a well studied problem and many methods exist to control this effect by controlling the Familywise Error Rate (FWER) \emph{e.g.} with the Bonferroni procedure,\autocite{hochbergMultipleComparisonProcedures1987} or the False Discovery Rate (FDR) \emph{e.g.} with the Benjamini-Hochberg procedure \autocite{benjaminiControllingFalseDiscovery1995}. These methods are often applied when testing for resistance association \autocite{villabona-arenasIndepthAnalysisHIV12016,gonzalesExtendedSpectrumHIV12003,seoigheModelDirectionalSelection2007}. However these correction methods are a double-edged sword, some of them can be very conservative and lead to falsely rejecting true associations \autocite{shamStatisticalPowerSignificance2014}. In some studies on resistance phylogenetic correlation between the sequences is also accounted for in statistical analyses \autocite{alizonPhylogeneticApproachReveals2010,flynnDeepSequencingProtease2015}.
+Since, on a given sequence dataset, several mutations are usually tested at once this can lead to inflated false positives \autocite{brownMethodsCorrectingMultiple1997} and spurious associations \autocite{austinTestingMultipleStatistical2006}. Fortunately, this is a well studied problem and many methods exist to control this effect by controlling the Familywise Error Rate (FWER) \emph{e.g.} with the Bonferroni procedure \autocite{hochbergMultipleComparisonProcedures1987}, or the False Discovery Rate (FDR) \emph{e.g.} with the Benjamini-Hochberg procedure \autocite{benjaminiControllingFalseDiscovery1995}. These methods are often applied when testing for resistance association \autocite{villabona-arenasIndepthAnalysisHIV12016,gonzalesExtendedSpectrumHIV12003,seoigheModelDirectionalSelection2007}. However these correction methods are a double-edged sword, some of them can be very conservative and lead to falsely rejecting true associations \autocite{shamStatisticalPowerSignificance2014}. In some studies on resistance, phylogenetic correlation between the sequences is also accounted for \autocite{alizonPhylogeneticApproachReveals2010,flynnDeepSequencingProtease2015}.
 
-Statistical testing on treatment status, while informative, can only associate a mutation with a treatment. In order to actually validate whether a mutation causes resistance or not biological analyses are needed \autocite{johnsonUpdateDrugResistance2016,wensing2019UpdateDrug2019}. The easiest of these are \emph{in vitro} analyses where live viruses are subjected to a phenotypical assay. These assays measure the susceptibility of HIV viruses to a wide array of drugs, which can then be statistically associated with genetic traits like specific mutations. These assays like phenosense \autocite{petropoulosNovelPhenotypicDrug2000} or antivirogram \autocite{hertogsRapidMethodSimultaneous1998} are widely used \autocite{heilek-snyderRoleHIVPhenotypic2002,moyleEpidemiologyPredictiveFactors2005,gartlandSusceptibilityGlobalHIV12021}. The viruses can be obtained from clinical isolates \autocite{masquelierGenotypicPhenotypicResistance2001} or, viruses with specific mutations can be manufactured with site directed mutagenesis \autocite{larderMultipleMutationsHIV11989,devreeseResistanceHumanImmunodeficiency1992}. \emph{In vivo} can be conducted by sequencing viruses from patients failing ART, following over time and studying the association between their treatment response and HIV genetics \autocite{tambuyzerEffectMutationsPosition2011,katzensteinPhenotypicSusceptibilityVirological2003}.
+Statistical testing on treatment status, while informative, can only associate a mutation with a treatment. In order to actually validate whether a mutation causes resistance or not, biological analyses are needed \autocite{johnsonUpdateDrugResistance2016,wensing2019UpdateDrug2019}. The easiest of these are \emph{in vitro} analyses where live viruses are subjected to a phenotypical assay. These assays measure the susceptibility of HIV viruses to a wide array of drugs, which can then be statistically associated with genetic traits like specific mutations. These assays like phenosense \autocite{petropoulosNovelPhenotypicDrug2000} or antivirogram \autocite{hertogsRapidMethodSimultaneous1998} are widely used \autocite{heilek-snyderRoleHIVPhenotypic2002,moyleEpidemiologyPredictiveFactors2005,gartlandSusceptibilityGlobalHIV12021}. Viruses can be obtained from clinical isolates \autocite{masquelierGenotypicPhenotypicResistance2001}, or viruses with specific mutations can be manufactured with site directed mutagenesis \autocite{larderMultipleMutationsHIV11989,devreeseResistanceHumanImmunodeficiency1992}. \emph{In vivo} studies can be conducted by sequencing viruses from patients failing ART, following over time and studying the association between their treatment response and HIV genetics \autocite{tambuyzerEffectMutationsPosition2011,katzensteinPhenotypicSusceptibilityVirological2003}.
 
 More recently, as sequence database grow bigger and bigger \emph{(The UK-CHIC database contains more than 80,000 HIV sequences with treatment status)}, methods based on statistical and machine learning are being used to study resistance. Most approaches rely on training models to predict some type of resistance: either classifying sequences as resistant or not \autocite{blasselUsingMachineLearning2021,steinerDrugResistancePrediction2020a} of predicting a phenotypic response like fold resistance compared to wild type \autocite{sheikamamuddyImprovingFoldResistance2017b}. Initial approaches were mainly designed for clinical testing, rather than new DRM search, and distributed via web services \autocite{beerenwinkelGeno2phenoInterpretingGenotypic2001,riemenschneiderSHIVAWebApplication2016b}.
 
@@ -2191,14 +2194,14 @@ By analyzing the important features used by trained models to predict resistance
 
 Viruses are surprisingly complex in light of their apparent simplicity. They are ubiquitous and present an extreme diversity. Whether they are pathogenic or not, the role of viruses in a myriad of processes and niches make them interesting and important to study. The sequences of these viruses, although small can be very useful for evolutionary as well as clinical analyses.
 
-Although the study of viruses as a whole can be very useful, HIV is particularly important to study. The impact of the HIV pandemic on global health has been severe, both in Lower and Higher income countries. It is therefore paramount to fully understand the underlying mechanisms and evolutionary adaptations of this virus. Its high mutation rate allows it to quickly explore evolutionary alternatives when exposed to drugs, making anti HIV therapy a complex endeavor.
+Although the study of viruses as a whole is very useful, HIV is particularly important to study. The impact of the HIV pandemic on global health has been severe, both in Lower and Higher income countries. It is therefore paramount to fully understand the underlying mechanisms and evolutionary adaptations of this virus. Its high mutation rate allows it to quickly explore evolutionary alternatives when exposed to drugs, making anti HIV therapy a complex endeavor.
 
-Fortunately, with large scale sequencing efforts it is possible to study and track these evolutionary adaptations to treatments. This allows us to adapt therapeutic strategies as well as developing new compounds and approaches. In this context, studying and finding the virus' mutational processes is paramount. This is especially important when studying resistance to RTIs as they form the backbone of first line regimen combination therapies, and are the most common type of anti-HIV drug. This process is made easier by the large scale sequence repositories now available, and the usage of machine and statistical learning to leverage that data.
+Fortunately, with large scale sequencing efforts it is possible to study and track these evolutionary adaptations to treatments. This allows us to adapt therapeutic strategies as well as develop new compounds and approaches. In this context, studying and finding the virus's mutational processes is paramount. This is especially important when studying resistance to RTIs as they form the backbone of first line regimen combination therapies, and are the most common type of anti-HIV drug. This process is made easier by the large scale sequence repositories now available, and the usage of machine and statistical learning to leverage that data.
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HIV-paper}{%
-\chapter{Contribution 2: Inferring mutation roles from sequence alignments using machine learning}\label{HIV-paper}}
+\chapter{Contribution 2: Inferring Mutation Roles From Sequence Alignments Using Machine Learning}\label{HIV-paper}}
 
 As we have seen in Sections \ref{quick-presentation-of-hiv} and \ref{consequences-of-resistance-on-global-health}, the HIV pandemic is a widespread threat to public health which can have very serious consequences at the infected individual's level and at the population scale. Despite many advances in drug development, fundamental research in new drug targets drug resistance mutations arise very quickly in response to antiretroviral therapy. This is especially important in lower income countries where the drug switching options are less numerous and give rise to multi-resistant viruses. In order to manage this global pandemic, surveying the viral infections, finding and categorizing new drug resistance mutations is very important. One such way to do this is to use HIV viral sequences, obtained from patients, and use their alignment as input for statistical and machine learning methods \emph{(c.f. Chapter \ref{learning-from-sequences-and-alignments} and Section \ref{finding-drms})}. In this chapter, I will present some work done on studying drug resistance mutations in HIV sequences using a large sequence alignment and machine learning methods.
 
@@ -3281,15 +3284,15 @@ Scotland Specialist Virology Laboratory, Gartnavel, Glasgow (Rory
 Gunson, Amanda Bradley-Stewart).
 
 \hypertarget{supporting-information}{%
-\section*{Supporting Information}\label{supporting-information}}
-\addcontentsline{toc}{section}{Supporting Information}
+\section*{Supporting information}\label{supporting-information}}
+\addcontentsline{toc}{section}{Supporting information}
 
 Supporting Information can be found in the appendix \ref{HIV-appendix}
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{learning-alignments-an-interesting-perspective}{%
-\chapter{Learning alignments, an interesting perspective}\label{learning-alignments-an-interesting-perspective}}
+\chapter{Learning Alignments, an Interesting Perspective}\label{learning-alignments-an-interesting-perspective}}
 
 Recently, machine learning methods have been increasingly applied to the process of alignment. Using this framework to ``learn'' an optimal sequence alignment algorithm might lead to better performance with less design biases.
 
@@ -3440,8 +3443,8 @@ Deep learning is a powerful framework for sequence-based tasks. The recent trans
 \pagestyle{empty}
 
 \hypertarget{global-conclusion}{%
-\chapter*{Global conclusion}\label{global-conclusion}}
-\addcontentsline{toc}{chapter}{Global conclusion}
+\chapter*{Global Conclusion}\label{global-conclusion}}
+\addcontentsline{toc}{chapter}{Global Conclusion}
 
 During my PhD I focused on two separate problems, both pertaining to biological sequence data. I focused, on the one hand, on improving long-read mapping performance, and on the the other hand, on searching for drug resistance mutations in a large, annotated, HIV multiple sequence alignment.
 
@@ -3459,7 +3462,7 @@ It would also be interesting to apply these MSRs and see if they generalize to o
 \section*{Searching for resistance mutations in HIV}\label{searching-for-resistance-mutations-in-hiv}}
 \addcontentsline{toc}{section}{Searching for resistance mutations in HIV}
 
-The global HIV pandemic has been a major public health issue for the last 40 years, claiming more than 40 million victims. Over the years, many anti-retroviral drugs have been developed, targeting most major proteins that are part of the virus' replication cycle. These drugs have helped make the illness manageable in many situations. However, due to HIV's very high mutation rate, most available drugs quickly induce corresponding resistance mutations in the viral population. This is especially true in lower income countries where the diversity of available treatments is lower than in high-income regions, leading to the emergence of multi-resistant virus strains. This in turn can have severe repercussions on public health where resistant strains can be transmitted and spread through the treatment-naive population. We used several machine learning methods in order to explore the resistance landscape of HIV in the UK and Africa, with the goal to find novel drug resistance mutations. By using a large UK dataset of partial HIV-1 Reverse Transcriptase (RT) sequences, we trained three machine learning algorithms to discriminate treatment-naive from treatment-experienced sequences. The classifiers we used, namely naive Bayes, LASSO-regularized logistic regression and random forest, all have built-in measure that allow us to examine which variables in the input are important to classification. By encoding single mutations as single variables we were able to determine which mutations are used by the classifier models to determine if a sequences was exposed to treatment or not.
+The global HIV pandemic has been a major public health issue for the last 40 years, claiming more than 30 million victims. Over the years, many anti-retroviral drugs have been developed, targeting most major proteins that are part of the virus' replication cycle. These drugs have helped make the illness manageable in many situations. However, due to HIV's very high mutation rate, most available drugs quickly induce corresponding resistance mutations in the viral population. This is especially true in lower income countries where the diversity of available treatments is lower than in high-income regions, leading to the emergence of multi-resistant virus strains. This in turn can have severe repercussions on public health where resistant strains can be transmitted and spread through the treatment-naive population. We used several machine learning methods in order to explore the resistance landscape of HIV in the UK and Africa, with the goal to find novel drug resistance mutations. By using a large UK dataset of partial HIV-1 Reverse Transcriptase (RT) sequences, we trained three machine learning algorithms to discriminate treatment-naive from treatment-experienced sequences. The classifiers we used, namely naive Bayes, LASSO-regularized logistic regression and random forest, all have built-in measure that allow us to examine which variables in the input are important to classification. By encoding single mutations as single variables we were able to determine which mutations are used by the classifier models to determine if a sequences was exposed to treatment or not.
 
 In order to find novel resistance mutations we removed all mutations that are known to be associated to drug resistance from the training data. In this setting classifiers were statistically significantly better than random, indicating that the models were picking up on residual resistance-associated signal in the training data. Conversely, when removing sequences that were known to contain resistance mutations from the training data, in addition to known resistance-associated features, the classifiers were no better than random. This indicates that all the residual resistance-associated signal that we previously found is contained in sequences already that already have known drug resistance mutations. This would indicate that the mutations we identify from our trained classifiers are accessory in nature and occur only in conjunction with known drug resistance mutations, and that all the primary mutations directly conferring resistance have most likely been found, which is reassuring from a public health perspective.
 
@@ -3476,11 +3479,12 @@ In conclusion, I hope by this point you will agree with me that sequence and seq
 \cleardoubleevenpage
 
 \appendix
+\cleardoubleevenpage
 
 \fancyhead[LE]{APPENDIX \thechapter}
 
 \hypertarget{HPC-appendix}{%
-\chapter{Supporting Information for ``Mapping-friendly sequence reductions: going beyond homopolymer compression''}\label{HPC-appendix}}
+\chapter{Supporting Information for ``Mapping-Friendly Sequence Reductions: Going Beyond Homopolymer Compression''}\label{HPC-appendix}}
 
 \hypertarget{appendix:tandemtools}{%
 \section{``TandemTools'' dataset generation}\label{appendix:tandemtools}}
@@ -3611,7 +3615,7 @@ raw                                 & \textbf{0.648} & \textbf{\footnotesize{\;+
 \newpage
 
 \hypertarget{key-resource-table}{%
-\section{Key Resource Table}\label{key-resource-table}}
+\section{Key resource table}\label{key-resource-table}}
 
 \begin{table}[H]
 \small
