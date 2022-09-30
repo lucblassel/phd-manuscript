@@ -166,12 +166,12 @@ learning models are trained to predict the value of a drug resistance
 indicator, typically $IC_{50}$ fold change in response to a given drug
 [@lengauerBioinformaticsassistedAntiHIVTherapy2006] or other indicators
 from phenotypic resistance assays such as PhenoSense
-[@zhangComparisonPrecisionSensitivity2005a]. Many methods have been used
+[@zhangComparisonPrecisionSensitivity2005]. Many methods have been used
 to predict a resistance level: Support Vector Machines (SVMs)
-[@beerenwinkelGeno2phenoEstimatingPhenotypic2003b], k-Nearest Neighbors
-(KNN) and Random Forests (RFs) [@shenAutomatedPredictionHIV2016a], and
+[@beerenwinkelGeno2phenoEstimatingPhenotypic2003], k-Nearest Neighbors
+(KNN) and Random Forests (RFs) [@shenAutomatedPredictionHIV2016], and
 more recently Artificial Neural Networks (ANNs)
-[@yuPredictionHIVDrug2014a; @sheikamamuddyImprovingFoldResistance2017b].
+[@yuPredictionHIVDrug2014; @sheikamamuddyImprovingFoldResistance2017].
 Alternatively, this task has also been approached as a classification
 problem. Given a certain threshold on a phenotypic resistance measure,
 sequences are given a label of \"resistant\" or \"susceptible\" to a
@@ -179,9 +179,9 @@ certain drug. Machine learning classifiers are then trained to predict
 that label. For this task, SVMs and decision trees have been used
 [@beerenwinkelGeno2phenoInterpretingGenotypic2001; @arayaSupportVectorMachine2009],
 ensemble classifier chains
-[@riemenschneiderExploitingHIV1Protease2016a; @heiderMultilabelClassificationExploiting2013b]
+[@riemenschneiderExploitingHIV1Protease2016; @heiderMultilabelClassificationExploiting2013]
 and also ANNs [@draghiciPredictingHIVDrug2003]. Most recently Steiner
-_et al._ [@steinerDrugResistancePrediction2020a] have used Deep Learning
+_et al._ [@steinerDrugResistancePrediction2020] have used Deep Learning
 Architectures to predict resistance status (i.e. classification) from
 sequence data. Since phenotypic assays are more complicated and costly
 to perform than simple genotyping, there is a limited number of
@@ -194,7 +194,7 @@ approaches proposed in these studies seem to have fairly good predictive
 accuracy. It is important to note that all of these studies aim to
 predict if a given sequence is resistant or not to a given drug, they do
 not aim to find new potential RAMs. Although Steiner _et al._
-[@steinerDrugResistancePrediction2020a] have checked that known DRM
+[@steinerDrugResistancePrediction2020] have checked that known DRM
 positions are captured by their models and found several positions
 potentially associated to resistance, it is not the main goal of their
 method.

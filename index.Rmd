@@ -12,14 +12,7 @@ classoption:
   - cleardoubleempty
 csl: "./styles/nature.csl"
 biblio-style: authoryear
-bibliography: 
-  - ./references/HPC-MSRs.bib
-  - ./references/HIV-DRMs.bib
-  - ./references/Sequence-Data.bib
-  - ./references/Aligning-Sequences.bib
-  - ./references/HIV-context.bib
-  - ./references/Learning-from-alignments.bib
-  - ./references/Learning-alignments.bib
+bibliography: ./references/references.bib
 biblatexoptions: [backref=true, refsegment=chapter, defernumbers=true, sorting=none, uniquelist=false, style=numeric-comp, maxcitenames=2, maxnames = 5, firstinits=true, uniquename=init, url=false, isbn=false, eprint=false, texencoding=utf8, bibencoding=utf8, autocite=superscript, backend=biber]
 link-citations: yes
 github-repo: lucblassel/phd-manuscript
