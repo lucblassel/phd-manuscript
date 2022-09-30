@@ -1,7 +1,6 @@
-```{=tex}
 \pagestyle{empty}
-```
-# Global conclusion {.unnumbered}
+
+# Global Conclusion {.unnumbered}
 
 During my PhD I focused on two separate problems, both pertaining to biological sequence data. I focused, on the one hand, on improving long-read mapping performance, and on the the other hand, on searching for drug resistance mutations in a large, annotated, HIV multiple sequence alignment.
 

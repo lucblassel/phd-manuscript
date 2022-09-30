@@ -1,4 +1,4 @@
-# Learning from sequences and alignments
+# Learning From Sequences and Alignments
 
 Sequences and sequence alignments are a very rich source of information. As was stated in Chapters \@ref(aligning-sequence-data) and \@ref(HPC-paper), many downstream analyses rely on sequence alignments.
 

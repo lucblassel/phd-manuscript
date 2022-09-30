@@ -1,4 +1,4 @@
-# Aligning sequence data
+# Aligning Sequence Data
 
 ## What is an alignment ?
 
@@ -235,7 +235,7 @@ This type of approach can also be used for many-to-one local alignments: either 
 
 #### $k$-mers and hash tables
 
-##### The BLAST Algorithm
+##### The BLAST algorithm
 
 One of the early methods for very quick heuristic alignment is the Basic Local Alignment Search Tool: `BLAST` [@altschulBasicLocalAlignment1990]. It is widely used to this day to find homologous sequences in large databases and, as such, is one of the most cited papers of all time with over 100,000 citations. It is available as a web service hosted by the NCBI (<https://blast.ncbi.nlm.nih.gov/Blast.cgi>). Over the year many different versions for different use cases have been developed like `BLASTP` for protein sequences or `BLASTN` and `MEGABLAST` for nucleic acid sequences.
 
@@ -256,7 +256,7 @@ Over time, several improvements have been developed for `BLAST`. `PSI-BLAST` [@a
 
 Both `FASTA` and `BLAST` are very fast. It only takes a couple of seconds to find approximate local alignments between a hundred query sequences [@saripellaBenchmarkingNextGeneration2016] in a database of over eighty million target sequences [@finnPfamProteinFamilies2016]. Attempting this task with standard SW or NW algorithms would be much slower [@essoussiComparisonFourPairwise2007] but would yield more sensitive, optimal alignments [@shpaerSensitivitySelectivityProtein1996].
 
-##### Other Algorithms
+##### Other algorithms
 
 One of the problems with such an approach is the size of the index, indeed storing all the $k$-mers of a length $n$ sequence would require a maximum of $(n-k + 1)\cdot k$ characters as the hash table keys, if all $k$-mers are distinct. This space constraint is acceptable for very large scale homology search tools on hosted web services such as NCBI BLAST, on a personal computer this can easily exceed memory capacity. Storing the hash table on disk has drastic consequences on query times, therefore methods to reduce the storage needs of these data structures were developed.
 

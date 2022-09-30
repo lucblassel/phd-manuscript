@@ -1,6 +1,6 @@
 \fancyhead[LE]{APPENDIX \thechapter}
 
-# Supporting Information for "Mapping-friendly sequence reductions: going beyond homopolymer compression" {#HPC-appendix}
+# Supporting Information for "Mapping-Friendly Sequence Reductions: Going Beyond Homopolymer Compression" {#HPC-appendix}
 
 ## "TandemTools" dataset generation {#appendix:tandemtools}
 
@@ -254,7 +254,7 @@ knitr::include_graphics("./figures/HPC-MSRs/droso_ecoli.png")
 \newpage
 ```
 
-## Key Resource Table
+## Key resource table
 
 ```{r, krt, eval=knitr::is_html_output(), cache=FALSE}
 dt <- read_tsv("tables/HPC-MSRs/krt.tsv")  

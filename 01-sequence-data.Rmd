@@ -1,4 +1,4 @@
-# What is Sequence data ?
+# What is Sequence Data ?
 
 ## Biological sequences, a primer
 

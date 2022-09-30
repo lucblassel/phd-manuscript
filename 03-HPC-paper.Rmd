@@ -1,4 +1,4 @@
-# Contribution 1: Improving read alignment by exploring a sequence transformation space {#HPC-paper}
+# Contribution 1: Improving Read Alignment by Exploring a Sequence Transformation Space {#HPC-paper}
 
 Recall that, when using long-read sequencing technologies, sequencing errors are more frequent than when using short-read sequencing. The most common of these sequencing errors are linked to homopolymers (\@ref(homopolymers-and-long-reads)). 
 In read-mapping analyses, a short sequence is globally aligned to a much longer reference sequence. Mapping long-reads can help bridge some gaps in knowledge and solve problems impossible to solve with shorter reads, however sequencing errors complicate an already complicated task (\@ref(the-specificities-of-read-mapping)). Homopolymer compression (\@ref(hpc-trick)) has been successfully used to mitigate some of the effects of these errors and improve long-read mapping analyses. There might, however, be rooom for improvement and alternative sequence transformation procedures that improve long-read mapping more than homopolymer compression.   
@@ -49,7 +49,7 @@ knitr::asis_output('\\newcommand{\\textsc}[1]{#1}')
 
 -   We show that some well-chosen MSRs enable more accurate long read mapping.
 
-## Graphical Abstract {.unnumbered}
+## Graphical abstract {.unnumbered}
 
 ```{r, eval=knitr::is_html_output(), out.width="60%"}
 knitr::include_graphics("figures/HPC-MSRs/abstract.png")

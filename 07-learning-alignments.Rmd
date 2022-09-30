@@ -1,4 +1,4 @@
-# Learning alignments, an interesting perspective
+# Learning Alignments, an Interesting Perspective
 
 Recently, machine learning methods have been increasingly applied to the process of alignment. Using this framework to "learn" an optimal sequence alignment algorithm might lead to better performance with less design biases.
 

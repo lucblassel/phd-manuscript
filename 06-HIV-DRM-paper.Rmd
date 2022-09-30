@@ -1,4 +1,4 @@
-# Contribution 2: Inferring mutation roles from sequence alignments using machine learning {#HIV-paper}
+# Contribution 2: Inferring Mutation Roles From Sequence Alignments Using Machine Learning {#HIV-paper}
 
 As we have seen in Sections \@ref(quick-presentation-of-hiv) and \@ref(consequences-of-resistance-on-global-health), the HIV pandemic is a widespread threat to public health which can have very serious consequences at the infected individual's level and at the population scale. Despite many advances in drug development, fundamental research in new drug targets drug resistance mutations arise very quickly in response to antiretroviral therapy. This is especially important in lower income countries where the drug switching options are less numerous and give rise to multi-resistant viruses. In order to manage this global pandemic, surveying the viral infections, finding and categorizing new drug resistance mutations is very important. One such way to do this is to use HIV viral sequences, obtained from patients, and use their alignment as input for statistical and machine learning methods *(c.f. Chapter \@ref(learning-from-sequences-and-alignments) and Section \@ref(finding-drms))*. In this chapter, I will present some work done on studying drug resistance mutations in HIV sequences using a large sequence alignment and machine learning methods. 
 
@@ -1234,7 +1234,7 @@ Dustan); University College London Hospitals (Stuart Kirk); West of
 Scotland Specialist Virology Laboratory, Gartnavel, Glasgow (Rory
 Gunson, Amanda Bradley-Stewart).
 
-## Supporting Information {.unnumbered}
+## Supporting information {.unnumbered}
 Supporting Information can be found in the appendix \@ref(HIV-appendix)
 
 \printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
