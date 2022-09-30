@@ -9,6 +9,7 @@ classoption:
   - twoside
   - BCOR=10mm
   - listof=totoc
+  - cleardoubleempty
 csl: "./styles/nature.csl"
 biblio-style: authoryear
 bibliography: 
@@ -106,9 +107,8 @@ knitr::asis_output(
 knitr::asis_output('\n\\end{tabular}\n')
 ```
 
-```{=tex}
 \mainmatter
-```
+
 # General Introduction {.unnumbered}
 
 This manuscript is the result of my years at the Institut Pasteur, where I built upon work initiated during an internship in 2018. During my time at the Institut Pasteur I have worked on two very distinct subjects:
@@ -173,4 +173,7 @@ This list contains the formal references of the publications mentioned above, al
 \fancyhead[LE]{CHAPTER \thechapter} 
 \fancyhead[RO]{\rightmark}
 \fancyfoot[CO,CE]{\thepage}
+
+% Number footnotes in main text with letters (not to confuse with Nature style citations)
+\renewcommand*\thefootnote{\alph{footnote}}
 ```

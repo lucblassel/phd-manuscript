@@ -46,7 +46,7 @@ HIV infects cells of the host immune system, specifically CD4 T-cell lymphocytes
 
 HIV/AIDS is one of the deadliest pandemics in history, estimated to have lead to the death of 36 million people [@sampathPandemicsThroughoutHistory2021]. In 2010 approximately 33 million people were infected with HIV [@worldhealthorganizationGlobalReportUNAIDS2010], 2.6 million of which were due to new infections, and 1.8 million died of AIDS. Most of the new infections happened in economically developing regions of the world, 70% of them coming from sub-Saharan Africa [@worldhealthorganizationGlobalReportUNAIDS2010]. As of 2020, these numbers have decreased with "only" 1.5 million new infections and 680,000 AIDS deaths, which is encouraging from a public health perspective.
 
-The HIV-1 virus was discovered simultaneously in 1983 by Françoise Barré-Sinoussi, Luc Montagnier [@barre-sinoussiIsolationTlymphotropicRetrovirus1983] and Robert Gallo [@galloIsolationHumanTcell1983]. There exists a second HIV-2 virus discovered shortly after HIV-1 [@clavelIsolationNewHuman1986], it is however less transmissible than HIV-1 which is largely responsible for the global HIV/AIDS pandemic [@gilbert2003]. In Africa in 2006, HIV-1 infections were rising where HIV-2 were declining [@vanderloeffSixteenYearsHIV2006].
+The HIV-1 virus was discovered simultaneously in 1983 by Françoise Barré-Sinoussi, Luc Montagnier [@barre-sinoussiIsolationTlymphotropicRetrovirus1983] and Robert Gallo [@galloIsolationHumanTcell1983]. There exists a second HIV-2 virus discovered shortly after HIV-1 [@clavelIsolationNewHuman1986], it is however less transmissible than HIV-1 which is largely responsible for the global HIV/AIDS pandemic [@gilbertComparisonHIV1HIV22003]. In Africa in 2006, HIV-1 infections were rising where HIV-2 were declining [@vanderloeffSixteenYearsHIV2006].
 
 While both viruses are of zoonotic origin, from transmissions of Simian Immunodeficiency Virus (SIV) from primates to humans, HIV-1 most likely originates from an SIV present in chimpanzees [@gaoOriginHIV1Chimpanzee1999; @hamelTwentyYearsProspective2007; @sharpOriginsHIVAIDS2011], and HIV-2 from an SIV present in Sooty mangabeys [@hirschAfricanPrimateLentivirus1989; @gaoHumanInfectionGenetically1992; @chenGeneticCharacterizationNew1996].
 
@@ -143,7 +143,7 @@ The existence of a 10th HIV-1 gene was suggested in 1988 [@millerHumanImmunodefi
 ```{r, hivStructCaption}
 structCaption <- "**Structure and main components of a mature HIV-1 virion.**  
 Structural proteins MA, CA, SU and TM are represented in Blue, functional enzymes RT, IN and PR in pink, RNA binding proteins Rev, Tat and NC in orange and accessory proteins Vif, Nef, Vpr and Vpu in green. Viral RNA is shown in yellow. The phospholipd membrane of the virion is shown in a light purple color. The p6 protein is not represented as it is largely unsctructured. Vpu is not believed to be present in the HIV virion.  
-Figure adapted from PDB101 [@zardecki2022] ([PDB101.rcsb.org](https://PDB101.rcsb.org), *CC By 4.0 License*, detailed list of structures used available in Appendix \\@ref(HIV-intro-appendix))."
+Figure adapted from PDB101 [@zardeckiPDB101EducationalResources2022] ([PDB101.rcsb.org](https://PDB101.rcsb.org), *CC By 4.0 License*, detailed list of structures used available in Appendix \\@ref(HIV-intro-appendix))."
 ```
 
 ```{r, hivStructure, label="hivStructure", eval=knitr::is_html_output(), fig.cap=structCaption, out.width="90%", cache=FALSE}
@@ -155,7 +155,7 @@ knitr::include_graphics("./figures/HIV-Intro/HIV-structure.png")
   \centering
   \includegraphics[width=0.9\textwidth]{./figures/HIV-Intro/HIV-structure.png}
   \extcaption{Structure and main components of a mature HIV-1 virion.}{Structural proteins MA, CA, SU and TM are represented in Blue, functional enzymes RT, IN and PR in pink, RNA binding proteins Rev, Tat and NC in orange and accessory proteins Vif, Nef, Vpr and Vpu in green. Viral RNA is shown in yellow. The phospholipd membrane of the virion is shown in a light purple color. The p6 protein is not represented as it is largely unsctructured. Vpu is not believed to be present in the HIV virion. \\
-Figure adapted from PDB101 \autocite{zardecki2022} (\href{https://PDB101.rcsb.org}{PDB101.rcsb.org}, \textit{CC By 4.0 License}, detailed list of structures used available in Appendix \autoref{HIV-intro-appendix}).}
+Figure adapted from PDB101 \autocite{zardeckiPDB101EducationalResources2022} (\href{https://PDB101.rcsb.org}{PDB101.rcsb.org}, \textit{CC By 4.0 License}, detailed list of structures used available in Appendix \autoref{HIV-intro-appendix}).}
 \label{fig:hivStructure}
 \end{figure}
 ```
@@ -180,7 +180,7 @@ timelineCaption <- "**Timeline of ART drugs FDA approvals.**
 Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INSTI), Entry Inhibitors (EI) and pharmacokinetic enhancers (PE). Fixed Dose Combination (FDC) single pill regimens are also shown.  
 * RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.  
 ✝ These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.  
-*Information collected from <https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines>, <https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines> and <https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm>.*  
+Information collected from <https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines>, <https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines> and <https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm>.  
 See also Table \\@ref(tab:tableDrugs)."
 ```
 
@@ -195,8 +195,8 @@ knitr::include_graphics("./figures/HIV-Intro/complete.png")
   \extcaption{Timeline of ART single drug FDA approvals.}{Colored by drug type: Nucleoside Reverse transcriptase inhibitors (NRTI), Non-Nucleoside Reverse transcriptase inhibitors (NNRTI), Protease Inhibitors (PI), Integrase inhibitors (INSTI), Entry Inhibitors (EI) and pharmacokinetic enhancers (PE). Fixed Dose Combination (FDC) single pill regimens are also shown.\\
 * RPV is often also used as a pharmacokinetic enhancer in combination with other drugs.\\
 \dag These drugs are no longer approved by the FDA or no longer recommended as first line regiment treatment.\\
-\textit{Information collected from \url{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
-\url{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \url{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}}.\\
+Information collected from \url{https://hivinfo.nih.gov/understanding-hiv/fact-sheets/fda-approved-hiv-medicines}, 
+\url{https://hivinfo.nih.gov/understanding-hiv/infographics/fda-approval-hiv-medicines} and \url{https://www.accessdata.fda.gov/scripts/cder/daf/index.cfm}.\\
 See also Table \ref{tab:tableDrugs}.
 }
 \label{fig:timeline}

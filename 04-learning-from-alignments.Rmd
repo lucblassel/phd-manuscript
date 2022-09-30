@@ -56,7 +56,7 @@ Machine learning regroups a multitude of techniques and methods to extract knowl
 
 ### General setting
 
-Supervised machine learning is an optimization process. A given algorithm, which I will refer to as a *model*, has an associated loss function that can be evaluated on a dataset. This loss represents how well the model is predicting outputs from inputs on known input-output pairs. Through an iterative process, this loss is optimized *(in our case minimized)* over all pairs forming a dataset. Often, in the literature, loss and cost are used interchangeably [@Goodfellow-et-al-2016]. I will favor loss in the following sections.
+Supervised machine learning is an optimization process. A given algorithm, which I will refer to as a *model*, has an associated loss function that can be evaluated on a dataset. This loss represents how well the model is predicting outputs from inputs on known input-output pairs. Through an iterative process, this loss is optimized *(in our case minimized)* over all pairs forming a dataset. Often, in the literature, loss and cost are used interchangeably [@goodfellowDeepLearning2016]. I will favor loss in the following sections.
 
 There is no shortage of loss functions [@wangComprehensiveSurveyLoss2022], some of them are specifically crafted for a given model while some are widely used in regression tasks like the Root Mean Square Error (RMSE). Others like the cross-entropy loss are used in classification tasks.
 

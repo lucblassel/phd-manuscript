@@ -25,5 +25,3 @@ In order to be sure that the mutations we identified do have some role in drug r
 ## Final words {.unnumbered}
 
 In conclusion, I hope by this point you will agree with me that sequence and sequence alignment data is fundamental and one of the most useful data types in bioinformatics analyses. As such, any method to improve the sequence quality, the alignment process or the interpretation of alignments is important. Improving these aspects can help researchers down the line gain more insight, and a more accurate representation, of crucial biological processes. This is especially important with the advent of the "age of pandemics" and tracking by sequencing where very large quantities of sequence data will have to be analyzed quickly and with accuracy, all with high stakes. I hope that, with this work, I have contributed, at least a little, to this field and to the advancement of knowledge.
-
-\cleardoubleevenpage
