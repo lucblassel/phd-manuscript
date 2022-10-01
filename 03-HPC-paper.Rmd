@@ -564,5 +564,3 @@ All experiments performed for this article are implemented and documented as nex
 ## Supplementary information {.unnumbered}
 
 Supporting Information can be found in Appendix \@ref(HPC-appendix)
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

@@ -299,5 +299,3 @@ Analysis pipelines   & This paper             & \url{https://doi.org/10.5281/zen
 \end{tabular}
 \end{table}
 ```
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]

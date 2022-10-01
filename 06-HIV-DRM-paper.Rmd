@@ -1236,5 +1236,3 @@ Gunson, Amanda Bradley-Stewart).
 
 ## Supporting information {.unnumbered}
 Supporting Information can be found in the appendix \@ref(HIV-appendix)
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

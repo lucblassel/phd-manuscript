@@ -381,5 +381,3 @@ Sequence alignment, multiple or pairwise, is a fundamental part of the bioinform
 As we have seen now, although we have methods guaranteed to give us optimal pairwise and multiple sequence alignments, they are not practically useful for dealing with sequences at today's scale. Therefore, most sequence aligners rely on, sometimes numerous, heuristics and approximations. From substitution models to seeding techniques, all these are not necessarily reflective of the biological reality contained within the sequences to align. Each of these heuristics or models is a step where biases and approximations can happen, building up along and over sequences. Therefore, there must be room for improvement.
 
 Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the "age of pandemics", accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

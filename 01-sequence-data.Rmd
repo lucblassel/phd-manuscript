@@ -410,5 +410,3 @@ With all these technological improvements we are approaching an era where sequen
 Despite all these advancements, sequencing errors remain an obstacle to certain analyses. This is particularly true for the ever more used and useful long reads, and the important fraction of genomes made up of homopolymers. Detecting, removing or accounting for these errors in some way is a crucial step to improve any analysis based on sequencing data, and to make sure that no theory or conclusion are built upon erroneous sequence data.
 
 Finally, it is important to note (at least for the remainder of this thesis) that, from a computational standpoint, a biological sequence is simply a succession of letters and a set of reads is simply a text file. Therefore, many analyses and data processing methods are inspired or directly transposed from the field of text algorithmics.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

@@ -224,5 +224,3 @@ In recent years algorithmic developments, computing power increase and the massi
 ## Conclusion
 
 Alignments, and the sequences within them, are rich sources of information, that have long been exploited widely for many different types of analyses. With the rise of machine learning in the last years, it is logical that machine learning models have been applied more and more frequently to biological sequence data. Machine Learning is a wide field with many different methods and paradigms. Even simple methods like linear regression or naive Bayes can be very useful, and more complex models like random forests have been able to make very good predictions on biological data. The model is not the only variable to take into account when looking to apply machine learning methods on sequence data. Different encoding methods will yield different vector representations, with different characteristics and applications. Special care must therefore be given to the choice of biological sequence encoding scheme, prior to starting a machine learning analysis.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]

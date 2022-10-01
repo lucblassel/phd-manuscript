@@ -273,4 +273,3 @@ xfun::embed_file("./figures/HIV-DRMs/S2_Data.csv", text="Download data")
 
 `r if(knitr::is_latex_output()){"<https://doi.org/10.1371/journal.pcbi.1008873.s008> (CSV)"}`
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for Appendix \thechapter}]
