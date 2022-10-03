@@ -265,9 +265,9 @@
 
 \frontmatter
 
-\chapter{Aknowledgments}
-Here will go my aknowledgments
-\lipsum[7-9]
+% \chapter{Aknowledgments}
+% Here will go my aknowledgments
+% \lipsum[7-9]
 
 {
 \setcounter{tocdepth}{2}
@@ -296,10 +296,6 @@ L'alignement de séquences est l'un des outils les plus puissants et les plus im
 Nous présentons une technique plus générale que la compression d'homopolymères, que nous appelons les "mapping-friendly sequence reductions" (MSR). Nous montrons ensuite que certaines de ces MSRs améliorent la précision des alignements de lecture sur des génomes entiers d'humain, de *drosophile* et d'*E. coli*. 
 L'amélioration des méthodes d'alignment de séquences est cruciale pour les analyses en aval. Par exemple, les alignements de séquences multiples sont indispensables pour étudier la pharmaco-résistance des virus. Grâce à la quantité toujours croissante d'alignements de séquences multiples annotés et de haute qualité, il est aujourd'hui devenu possible et utile d'étudier la résistance des virus à l'aide de méthodes d'apprentissage automatique.
 Nous avons utilisé un très grand alignement de séquences multiples de séquences de VIH britanniques et entraîné plusieurs classificateurs pour distinguer les séquences non-traitées des séquences traitées. En étudiant les variables importantes aux classificateurs, nous identifions des mutations associées à la résistance. Nous avons ensuite supprimé des données, avant l'entraînement, le signal de pharmaco-résistance connu. Nous conservons le pouvoir discriminant des classificateurs, et avons identifié 6 nouvelles mutations associées à la résistance. Une étude plus approfondie a montré que celles-ci étaient très probablement accessoires et liées à des mutations de résistance connues.
-
-# Acknowledgments {.unnumbered}
-
-Thanks everybody
 
 # List of Acronyms and Abbreviations {.unnumbered}
 
@@ -786,8 +782,6 @@ Despite all these advancements, sequencing errors remain an obstacle to certain 
 
 Finally, it is important to note (at least for the remainder of this thesis) that, from a computational standpoint, a biological sequence is simply a succession of letters and a set of reads is simply a text file. Therefore, many analyses and data processing methods are inspired or directly transposed from the field of text algorithmics.
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
-
 \hypertarget{aligning-sequence-data}{%
 \chapter{Aligning Sequence Data}\label{aligning-sequence-data}}
 
@@ -1154,8 +1148,6 @@ Sequence alignment, multiple or pairwise, is a fundamental part of the bioinform
 As we have seen now, although we have methods guaranteed to give us optimal pairwise and multiple sequence alignments, they are not practically useful for dealing with sequences at today's scale. Therefore, most sequence aligners rely on, sometimes numerous, heuristics and approximations. From substitution models to seeding techniques, all these are not necessarily reflective of the biological reality contained within the sequences to align. Each of these heuristics or models is a step where biases and approximations can happen, building up along and over sequences. Therefore, there must be room for improvement.
 
 Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the ``age of pandemics'', accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HPC-paper}{%
 \chapter{Contribution 1: Improving Read Alignment by Exploring a Sequence Transformation Space}\label{HPC-paper}}
@@ -1667,8 +1659,6 @@ All experiments performed for this article are implemented and documented as nex
 
 Supporting Information can be found in Appendix \ref{HPC-appendix}
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
-
 \hypertarget{learning-from-sequences-and-alignments}{%
 \chapter{Learning From Sequences and Alignments}\label{learning-from-sequences-and-alignments}}
 
@@ -1863,8 +1853,6 @@ In recent years algorithmic developments, computing power increase and the massi
 \section{Conclusion}\label{conclusion-2}}
 
 Alignments, and the sequences within them, are rich sources of information, that have long been exploited widely for many different types of analyses. With the rise of machine learning in the last years, it is logical that machine learning models have been applied more and more frequently to biological sequence data. Machine Learning is a wide field with many different methods and paradigms. Even simple methods like linear regression or naive Bayes can be very useful, and more complex models like random forests have been able to make very good predictions on biological data. The model is not the only variable to take into account when looking to apply machine learning methods on sequence data. Different encoding methods will yield different vector representations, with different characteristics and applications. Special care must therefore be given to the choice of biological sequence encoding scheme, prior to starting a machine learning analysis.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{viruses-hiv-and-drug-resistance}{%
 \chapter{Viruses, HIV and Drug Resistance}\label{viruses-hiv-and-drug-resistance}}
@@ -2192,8 +2180,6 @@ Viruses are surprisingly complex in light of their apparent simplicity. They are
 Although the study of viruses as a whole is very useful, HIV is particularly important to study. The impact of the HIV pandemic on global health has been severe, both in Lower and Higher income countries. It is therefore paramount to fully understand the underlying mechanisms and evolutionary adaptations of this virus. Its high mutation rate allows it to quickly explore evolutionary alternatives when exposed to drugs, making anti HIV therapy a complex endeavor.
 
 Fortunately, with large scale sequencing efforts it is possible to study and track these evolutionary adaptations to treatments. This allows us to adapt therapeutic strategies as well as develop new compounds and approaches. In this context, studying and finding the virus's mutational processes is paramount. This is especially important when studying resistance to RTIs as they form the backbone of first line regimen combination therapies, and are the most common type of anti-HIV drug. This process is made easier by the large scale sequence repositories now available, and the usage of machine and statistical learning to leverage that data.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HIV-paper}{%
 \chapter{Contribution 2: Inferring Mutation Roles From Sequence Alignments Using Machine Learning}\label{HIV-paper}}
@@ -3284,8 +3270,6 @@ Gunson, Amanda Bradley-Stewart).
 
 Supporting Information can be found in the appendix \ref{HIV-appendix}
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
-
 \hypertarget{learning-alignments-an-interesting-perspective}{%
 \chapter{Learning Alignments, an Interesting Perspective}\label{learning-alignments-an-interesting-perspective}}
 
@@ -3432,8 +3416,6 @@ Finally, the pre-processing function framework of MSRs presented in Chapter \ref
 \section{Conclusion}\label{conclusion-4}}
 
 Deep learning is a powerful framework for sequence-based tasks. The recent transformer architecture has shown an unprecedented ability to capture within-sequence dependencies and learn relevant information. This ability has made them dominant in the NLP field, particularly machine translation. Transformers and large language models have shown some power in biological sequence processing and sequence alignment. However, the attention mechanism that makes these models so successful has limitations, especially w.r.t. input sequence length. Some approaches and approximations, have been proposed to lower the time and memory complexity of the attention mechanism, but these improvements have yet to be implemented in a sequence alignment task. In the special case of read-mapping, even with improved attention mechanisms, the size discrepancy between reference and reads, as well as the often very large scale of the reference sequence, make transformer based embedding approaches impractical. Learned data structures and seeding schemes might be one of the approaches to improve read alignment.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \pagestyle{empty}
 
@@ -3641,8 +3623,6 @@ Meryl v1.0           & (Rhie et al., 2020)    & \url{https://github.com/marbl/Wi
 Analysis pipelines   & This paper             & \url{https://doi.org/10.5281/zenodo.6859636} \\ \bottomrule
 \end{tabular}
 \end{table}
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]
 
 \hypertarget{HIV-intro-appendix}{%
 \chapter{Supporting Information for ``HIV and DRMs''}\label{HIV-intro-appendix}}
@@ -3979,8 +3959,6 @@ Out of the \(221\) significative tests, 156 pairs were composed of 2 known RAMS 
 \textbf{List of known DRMs.} A .csv file containing all the known RAMs used in this project as well as the corresponding feature name in the encoded datasets. Obtained from (\href{https://hivdb.stanford.edu/dr-summary/comments/NRTI/}{hivdb.stanford.edu/dr-summary/comments/NRTI/}) and (\href{https://hivdb.stanford.edu/dr-summary/comments/NNRTI/}{hivdb.stanford.edu/dr-summary/comments/NNRTI/}).
 
 \url{https://doi.org/10.1371/journal.pcbi.1008873.s008} (CSV)
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for Appendix \thechapter}]
 
 \backmatter
 \fancyhead[RO,LE]{REFERENCES}
