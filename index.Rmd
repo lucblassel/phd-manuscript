@@ -1,7 +1,7 @@
 ---
 title: "From sequences to knowledge, improving and learning from sequence alignments"
 author: "Luc Blassel"
-date: "`r Sys.Date()`"
+date: "2022-12-02"
 site: bookdown::bookdown_site
 documentclass: scrbook
 fontsize: 11pt
@@ -47,7 +47,7 @@ tex2md <- function(file) {
     ) %>%
       stringr::str_replace_all("\\\\textbf\\{([^\\}]+)\\}", "**\\1**")
   )
-  
+
 }
 ```
 
@@ -159,7 +159,7 @@ This list contains the formal references of the publications mentioned above, al
 ```{=tex}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LE]{CHAPTER \thechapter} 
+\fancyhead[LE]{CHAPTER \thechapter}
 \fancyhead[RO]{\rightmark}
 \fancyfoot[CO,CE]{\thepage}
 
