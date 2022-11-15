@@ -250,7 +250,7 @@
 
 \title{From sequences to knowledge, improving and learning from sequence alignments}
 \author{Luc Blassel}
-\date{2022-10-01}
+\date{2022-12-02}
 
 \begin{document}
 \maketitle
@@ -264,10 +264,6 @@
 \cleardoubleevenpage
 
 \frontmatter
-
-\chapter{Aknowledgments}
-Here will go my aknowledgments
-\lipsum[7-9]
 
 {
 \setcounter{tocdepth}{2}
@@ -296,10 +292,6 @@ L'alignement de séquences est l'un des outils les plus puissants et les plus im
 Nous présentons une technique plus générale que la compression d'homopolymères, que nous appelons les "mapping-friendly sequence reductions" (MSR). Nous montrons ensuite que certaines de ces MSRs améliorent la précision des alignements de lecture sur des génomes entiers d'humain, de *drosophile* et d'*E. coli*. 
 L'amélioration des méthodes d'alignment de séquences est cruciale pour les analyses en aval. Par exemple, les alignements de séquences multiples sont indispensables pour étudier la pharmaco-résistance des virus. Grâce à la quantité toujours croissante d'alignements de séquences multiples annotés et de haute qualité, il est aujourd'hui devenu possible et utile d'étudier la résistance des virus à l'aide de méthodes d'apprentissage automatique.
 Nous avons utilisé un très grand alignement de séquences multiples de séquences de VIH britanniques et entraîné plusieurs classificateurs pour distinguer les séquences non-traitées des séquences traitées. En étudiant les variables importantes aux classificateurs, nous identifions des mutations associées à la résistance. Nous avons ensuite supprimé des données, avant l'entraînement, le signal de pharmaco-résistance connu. Nous conservons le pouvoir discriminant des classificateurs, et avons identifié 6 nouvelles mutations associées à la résistance. Une étude plus approfondie a montré que celles-ci étaient très probablement accessoires et liées à des mutations de résistance connues.
-
-# Acknowledgments {.unnumbered}
-
-Thanks everybody
 
 # List of Acronyms and Abbreviations {.unnumbered}
 
@@ -444,12 +436,31 @@ This list contains the formal references of the publications mentioned above, al
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[LE]{CHAPTER \thechapter} 
+\fancyhead[LE]{CHAPTER \thechapter}
 \fancyhead[RO]{\rightmark}
 \fancyfoot[CO,CE]{\thepage}
 
 % Number footnotes in main text with letters (not to confuse with Nature style citations)
 \renewcommand*\thefootnote{\alph{footnote}}
+
+\hypertarget{acknowledgements}{%
+\chapter*{Acknowledgements}\label{acknowledgements}}
+\addcontentsline{toc}{chapter}{Acknowledgements}
+
+First, I would like to thank all the members of my jury for accepting to evaluate the work that I have done over the past few years. In particular, I would like to thank Macha Nikolski and Brona Brejova for reading my manuscript, reviewing it, and providing valuable feedback on my work. Second, I would like to thank the people that supervised me and helped me along the way. Thank you to Paul for your valuable insights. Thank you to Rayan for supervising me in these last years of this project, and to Olivier for doing so in the first. I would also like to thank Didier for helping me navigate the turmoil.
+
+For most of my PhD, except for a few months in early 2020\ldots, I spent my time on the 6th floor of the Omics building of the Institut Pasteur, in the \emph{Evolutionary Bioinformatics} lab. Thank you to all my office mates for making my time on the 6th floor so pleasant. Thank you Anna, Fred and Jakub for all the discussions and coffee breaks. A special thanks to my good-\textbf{\emph{colleague}} Marie, who has~ ingrained in me the response of looking up and to the right whenever I hear an office chair move. Thank you also to the 6th floor adoptees: Jerome, Andrew, and Arthur, the earliest of them. I would also like to thank my labmates from the \emph{Sequence Bioinformatics} lab: Camilla, Francesco, Yoann, Riccardo, Luca and Téo.
+
+Of course, as studious as I might wish to be, I did spend 4 years at the office. I would therefore like to thank all my friends that have made them enjoyable. Grimault, Nathalie, Théo and Élise for the German escapades and the \emph{(first of many I hope)} canyoning outings. Thank you as well to Eva M., Max, and Flore for being there throughout the years, and thank you to Eva C., Celia and all the other Spanish-sectionites for making me tolerate reggaeton. It has been a while since the Balzac days, but I am very glad we all still hang out! Dylan and Joshua, I started this adventure with you as roommates and enjoyed it very much, so thank you as well! Finally, thank you to Marie, Anna and Jean for many, many \emph{(many!)} celebrations! Without all of you, my time as a PhD student would definitely have been less fun.
+
+Next up on the thank you list is, of course, my family. I would like to thank my mom, dad and brothers, Noé and Tom, for supporting me along my journey. Thank you as well to my grandparents: Mamette, André and Grandma for believing in me and helping me along the way. To all the others from Tokyo to Santa Cruz, it warms my heart to know I have a worldwide support network, thank you!
+
+Finally, Fatima. I am so glad I met you during this adventure. Thank you for supporting me, talking things through with me and helping me along the way. I am very grateful that you are part of my life, and I feel better looking to the future knowing you will be by my side.
+
+As parting words, I would like to dedicate this work to Pierre Blassel and John F. Murray. They made me, in part, what I am today and were essential in instilling in me the curiosity and scientific interest that are so necessary to pursue this type of endeavor. Although they could not see me finish, I would like to thank them from the bottom of my heart and I can only hope that they would be proud of me.
+
+\hfill\break
+\hfill\break
 
 \hypertarget{what-is-sequence-data}{%
 \chapter{What is Sequence Data ?}\label{what-is-sequence-data}}
@@ -527,6 +538,8 @@ There are several sources of error that can alter genetic information \autocite{
   \textbf{Other mutagenic events:} Many external events and factors have been shown to provoke mutations in exposed DNA such as Ionizing radiation \autocite{desoukyTargetedNontargetedEffects2015}, UV rays \autocite{kieferEffectsUltravioletRadiation2007}, toxins \autocite{bennettMycotoxins2003}, heat stress \autocite{kantidzeHeatStressInducedDNA2016}, cold stress \autocite{gregoryRegulationCellSurvival1994} or oxidative stress \autocite{gafter-gviliOxidativeStressInducedDNA2013}.
 \end{itemize}
 
+While RNA transcription and protein translation are much more error prone processes than DNA replication, the errors induced only alter the expression of the genetic information. The effects of these errors are localized to the cells where they happen and are not transmitted to offspring. However these transcription errors are not unimportant and increased transcription error rates have been hypothesized to cause severe neurological symptoms in pediatric cohorts \autocite{anagnostouTranscriptionErrorsAging2021}.
+
 \hypertarget{what-kind-of-errors-are-possible}{%
 \paragraph{What kind of errors are possible?}\label{what-kind-of-errors-are-possible}}
 
@@ -542,7 +555,7 @@ In biological sequences (nucleic acids and proteins), mutations can result from 
   \textbf{deletions}, where a base unit from the original sequence is skipped and not taken into account when synthesizing the new sequence.
 \end{itemize}
 
-While these three types of errors occur both in nucleic acids and proteins there are some things to consider about the consequences of nucleic acid mutations on protein synthesis. Due to the redundant nature of the genetic code mentioned in Section \ref{proteins-their-structure-and-their-role}, some substitutions in the nucleic acid sequence will result in the same protein sequence and therefore not have altered protein activity. Some mutations however will result in a substitution at the amino acid level which could potentially lead to a physicochemically altered or even non-functional protein. Finally, insertion and deletion errors (collectively called indels) can have big consequences on resulting proteins. Inserting or deleting nucleotides in multiples of three will result in the insertion/deletion of amino acids in the protein, any other length of indel will result in what is called a frameshift mutation \autocite{rothFrameshiftMutations1974}. These mutations causes changes in all the codons, potentially resulting in a completely different amino-acid sequence, including premature stop codon apparition as shown in Figure \ref{fig:frameshift}.
+While these three types of errors occur both in nucleic acids and proteins there are some things to consider about the consequences of nucleic acid mutations on protein synthesis. Due to the redundant nature of the genetic code mentioned in Section \ref{proteins-their-structure-and-their-role}, some substitutions in the nucleic acid sequence will result in the same protein sequence and therefore not have altered protein activity. Some mutations however will result in a substitution at the amino acid level which could potentially lead to a physicochemically altered or even non-functional protein. Finally, insertion and deletion errors (collectively called indels) can have big consequences on resulting proteins. Inserting or deleting nucleotides in multiples of three will result in the insertion/deletion of amino acids in the protein, any other length of indel will result in what is called a frameshift mutation \autocite{rothFrameshiftMutations1974}. These mutations causes changes in all the codons following the mutation, potentially resulting in a completely different amino-acid sequence, including premature stop codon apparition as shown in Figure \ref{fig:frameshift}.
 
 \begin{figure}[h]
 \centering
@@ -566,7 +579,7 @@ In many fields, especially in computational biology, we need to know what geneti
 \hypertarget{sanger-sequencing-a-breakthrough}{%
 \subsection{Sanger sequencing, a breakthrough}\label{sanger-sequencing-a-breakthrough}}
 
-The first sequencing method was developed in 1977 \autocite{sangerDNASequencingChainterminating1977}. Sanger \emph{et al.} devised a simple method to read the sequence of nucleotides that make up a DNA sequence known as \emph{chain termination sequencing} or simply \emph{Sanger sequencing} \emph{(represented in Figure} \ref{fig:sanger}\emph{)}. Although this method is now mostly obsolete, it established some key concepts in sequencing, some of which are in action in the most modern sequencers.
+The first widely used sequencing method was developed in 1977 \autocite{sangerDNASequencingChainterminating1977}. Sanger \emph{et al.} devised a simple method to read the sequence of nucleotides that make up a DNA sequence known as \emph{chain termination sequencing} or simply \emph{Sanger sequencing} \emph{(represented in Figure} \ref{fig:sanger}\emph{)}. Although this method is now mostly obsolete, it established some key concepts in sequencing, some of which are in action in the most modern sequencers.
 
 To understand Sanger sequencing, one must first understand how to synthesize DNA. As we stated in Section \ref{what-is-dna}, DNA is built up from building blocks that we called nucleotides, more specifically deoxynucleotide triphosphates or dNTPs. These dNTPs are made up of a sugar (deoxyribose), a nucleobase (A, T, G or C) and 3 phosphate groups. By successively adding these dNTPs at the end of an existing DNA molecule, we extend it, linking one of the phospates of the dNTP to an oxygen atom on the last nucleotide of the DNA molecule. Let us now consider a dideoxynucleotide triphosphate (ddNTP), which is identical to a dNTP except we remove a specific oxygen atom. This ddNTP can be added to the growing molecule of DNA like regular dNTPs, but since it is missing that one oxygen atom no more dNTPs or ddNTPs can be added to the DNA molecule after this one. The elongation is terminated and we call these ddNTPs chain-terminators. This combination of DNA synthesis followed by termination are at the heart of Sanger sequencing.
 
@@ -688,9 +701,9 @@ This explains the discrepancy in error rates between short and long read sequenc
 
 The long read error-correction literature and toolset is rich and active \autocite{limaComparativeAssessmentLongread2020,fuComparativeEvaluationHybrid2019,zhangComprehensiveEvaluationLong2020}. There are two main ways to correct errors: 1) hybrid methods where high-accuracy short reads are used, and 2) non-hybrid methods where only the long-reads are used.
 
-In Non-hybrid methods \autocite{limaComparativeAssessmentLongread2020,amarasingheOpportunitiesChallengesLongread2020}, by finding regions that overlap fairly well between reads and taking the consensus of the overlapped regions (i.e.~the majority nucleotide at each position), some errors can be eliminated. In many analyses and sequencing data processing pipelines, the first step is to break up the reads into all possible overlapping subsequences of length \(k\) called \(k\)-mers (e.g the 3-mers of ATTGC are ATT, TTG and TGC). Rare \(k\)-mers in the read dataset, i.e.~\(k\)-mers that appear only a handful of times in all the reads, are likely the result of an error and filtering them out can improve analysis. One or both of these procedures are implemented in several pieces of commonly used software such as assembler like \texttt{wtdbg2} \autocite{ruanFastAccurateLongread2020}, and \texttt{canu} \autocite{korenCanuScalableAccurate2017} or standalone long-read correctors like \texttt{daccord} \autocite{tischlerNonHybridLong2017}. In some cases, errors are corrected not on the raw reads but after having assembled the long reads into long continuous sequences (contigs), this process is called polishing. The \texttt{ntEdit} polisher \autocite{warrenNtEditScalableGenome2019} also filters out rare \(k\)-mers to correct errors. The \texttt{Arrow} \autocite{heplerImprovedCircularConsensus2016} and \texttt{Nanopolish} \autocite{simpsonDetectingDNACytosine2017} polishers correct the assembly using the raw PacBio and ONT long reads respectively.
+In Non-hybrid methods \autocite{limaComparativeAssessmentLongread2020,amarasingheOpportunitiesChallengesLongread2020}, by finding regions that overlap fairly well between reads and taking the consensus of the overlapped regions (i.e.~the majority nucleotide at each position), some errors can be eliminated. In many analyses and sequencing data processing pipelines, the first step is to break up the reads into all possible overlapping subsequences of length \(k\) called \(k\)-mers (e.g the 3-mers of ATTGC are ATT, TTG and TGC). Rare \(k\)-mers in the read dataset, i.e.~\(k\)-mers that appear only a handful of times in all the reads, are likely the result of an error and filtering them out can improve analysis. One or both of these procedures are implemented in several pieces of commonly used software such as assembler like \texttt{wtdbg2} \autocite{ruanFastAccurateLongread2020}, and \texttt{canu} \autocite{korenCanuScalableAccurate2017} or standalone long-read correctors like \texttt{daccord} \autocite{tischlerNonHybridLong2017}. In some cases, errors are corrected not on the raw reads but after having assembled the long reads into long continuous sequences (contigs), this process is called polishing. The \texttt{ntEdit} polisher \autocite{warrenNtEditScalableGenome2019} also filters out rare \(k\)-mers to correct errors. The \texttt{Arrow} \autocite{heplerImprovedCircularConsensus2016} and \texttt{Nanopolish} \autocite{simpsonDetectingDNACytosine2017} polishers correct the assembly using the raw PacBio and ONT long reads respectively, and \texttt{Racon} \autocite{vaserFastAccurateNovo2017} can use bot types of long-reads to polish assemblies.
 
-Hybrid methods, as their name suggest, make use of short reads to correct errors in long reads. By finding similar regions between the short and long reads we can use the higher accuracy of short reads to correct the long ones. This is implemented in many pieces of software \texttt{proovread} \autocite{hacklProovreadLargescaleHighaccuracy2014}, \texttt{Jabba} \autocite{miclotteJabbaHybridError2016}, \texttt{PBcR} \autocite{korenHybridErrorCorrection2012} or \texttt{LoRDEC} \autocite{salmelaLoRDECAccurateEfficient2014}. Short reads can also be used to polish long read assemblies with tools like \texttt{Pilon} \autocite{walkerPilonIntegratedTool2014} or \texttt{Racon} \autocite{vaserFastAccurateNovo2017}. The first complete human genome was assembled and polished using many different sequencing technologies including PacBio, ONT and Illumina technologies \autocite{nurkCompleteSequenceHuman2022}.
+Hybrid methods, as their name suggest, make use of short reads to correct errors in long reads. By finding similar regions between the short and long reads we can use the higher accuracy of short reads to correct the long ones. This is implemented in many pieces of software \texttt{proovread} \autocite{hacklProovreadLargescaleHighaccuracy2014}, \texttt{Jabba} \autocite{miclotteJabbaHybridError2016}, \texttt{PBcR} \autocite{korenHybridErrorCorrection2012} or \texttt{LoRDEC} \autocite{salmelaLoRDECAccurateEfficient2014}. Short reads can also be used to polish long read assemblies with tools like \texttt{Pilon} \autocite{walkerPilonIntegratedTool2014}. The first complete human genome was assembled and polished using many different sequencing technologies including PacBio, ONT and Illumina technologies \autocite{nurkCompleteSequenceHuman2022}.
 
 \hypertarget{more-accurate-sequencing-methods}{%
 \subsection{More accurate sequencing methods}\label{more-accurate-sequencing-methods}}
@@ -759,7 +772,7 @@ Improving the sequencing technologies can also be a solution, by reducing the nu
 \hypertarget{hpc-trick}{%
 \subsubsection{Homopolymer compression, a nifty trick}\label{hpc-trick}}
 
-In many cases, reads cannot be re-sequenced with newer technologies, or base-called with better base callers. Only the read sequences potentially containing homopolymer errors, are available for usage. In order to account for this sort of error, a simple pre-processing trick was developed: \emph{homopolymer compression} (HPC).
+Homopolymer-errors can be harmful for downstream analyses such as read-mapping (c.f. Chapter \ref{HPC-paper}). However, in many cases, reads cannot be re-sequenced with newer technologies, or base-called with better base callers. Only the read sequences potentially containing homopolymer errors, are available for usage. In order to account for this sort of error, a simple pre-processing trick was developed: \emph{homopolymer compression} (HPC).
 
 The idea is very simple: for any sequence, replace a repeated run of any nucleotide (i.e.~homopolymers) by a single occurrence of that nucleotide. This means that after going through HPC the sequence AAACTGGG will yield the sequence ACTG. This simple pre-processing step, applied to all the reads and sequences to analyze, removes all indels in homopolymers, and can resolve some ambiguities (c.f. Figure \ref{fig:hpcSchema}). It can also remove legitimate information contained in homopolymers, but the trade-off with the reduced error rate has been deemed advantageous.
 
@@ -785,8 +798,6 @@ With all these technological improvements we are approaching an era where sequen
 Despite all these advancements, sequencing errors remain an obstacle to certain analyses. This is particularly true for the ever more used and useful long reads, and the important fraction of genomes made up of homopolymers. Detecting, removing or accounting for these errors in some way is a crucial step to improve any analysis based on sequencing data, and to make sure that no theory or conclusion are built upon erroneous sequence data.
 
 Finally, it is important to note (at least for the remainder of this thesis) that, from a computational standpoint, a biological sequence is simply a succession of letters and a set of reads is simply a text file. Therefore, many analyses and data processing methods are inspired or directly transposed from the field of text algorithmics.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{aligning-sequence-data}{%
 \chapter{Aligning Sequence Data}\label{aligning-sequence-data}}
@@ -881,9 +892,9 @@ By taking the maximum out of these three values we can fill out the matrix cell 
 
 Once this matrix \emph{(and corresponding graph)} is filled out, we can deduce the alignment by following a path through the graph starting at cell \((n,m)\) to cell \((0,0)\). A diagonal edge starting at \((i,j)\) indicates a match or mismatch between \(S_1[i]\) and \(S_2[j]\), a vertical edge indicates a gap in \(S_2\) and a horizontal edge a gap in \(S_1\). This can lead to several optimal alignments if there are several such paths in the graph. In our case, this algorithm yields three equally optimal global alignments shown in Figure \ref{fig:nwAlign}C.
 
-This algorithm although guaranteed to result in an optimal alignment, has a time complexity of \(O(nm)\) where \(n\) and \(m\) are the lengths of the sequences to align \autocite{sungAlgorithmsBioinformaticsPractical2011}. Some methods have been proposed to speed up \autocite{masekFasterAlgorithmComputing1980}, however the complexity is still \(O(nm/\log(n))\). Lower bounds have been studied and there is not much optimization to be done if optimal exact alignment is needed \autocite{vinhInformationTheoreticMeasures2010,ullmanBoundsComplexityLongest1976}. If we want to do better we have to rely on heuristics.
+This algorithm although guaranteed to result in an optimal alignment, has a time complexity of \(\mathcal{O}(nm)\) where \(n\) and \(m\) are the lengths of the sequences to align \autocite{sungAlgorithmsBioinformaticsPractical2011}. Some methods have been proposed to speed up \autocite{masekFasterAlgorithmComputing1980}, however the complexity is still \(\mathcal{O}(nm/\log(n))\). Lower bounds have been studied and there is not much optimization to be done if optimal exact alignment is needed \autocite{vinhInformationTheoreticMeasures2010,ullmanBoundsComplexityLongest1976}. If we want to do better we have to rely on heuristics.
 
-Another issue is space complexity since we need to store the matrix, the space complexity is also \(O(nm)\). If we wish to align 2 human genomes we would need to store \(\approx 10^{19}\) matrix cells, which would amount to 10 Exabytes of storage \emph{(i.e.~the storage scale of a data-center)} if we use 8bit integers. However, in practice, we can do much better than that, and construct an optimal alignment in linear space complexity \(O(n+m)\) \autocite{hirschbergLinearSpaceAlgorithm1975} meaning we would only need a couple gigabytes to store the matrix for 2 human genomes. This resulted in an improved global alignment algorithm, the Myers-Miller algorithm \autocite{myersOptimalAlignmentsLinear1988}, implemented in the EMBOSS \texttt{stretcher} alignment software \autocite{riceEMBOSSEuropeanMolecular2000}.
+Another issue is space complexity since we need to store the matrix, the space complexity is also \(\mathcal{O}(nm)\). If we wish to align 2 human genomes we would need to store \(\approx 10^{19}\) matrix cells, which would amount to 10 Exabytes of storage \emph{(i.e.~the storage scale of a data-center)} if we use 8bit integers. However, in practice, we can do much better than that, and construct an optimal alignment in linear space complexity \(\mathcal{O}(n+m)\) \autocite{hirschbergLinearSpaceAlgorithm1975} meaning we would only need a couple gigabytes to store the matrix for 2 human genomes. This resulted in an improved global alignment algorithm, the Myers-Miller algorithm \autocite{myersOptimalAlignmentsLinear1988}, implemented in the EMBOSS \texttt{stretcher} alignment software \autocite{riceEMBOSSEuropeanMolecular2000}.
 
 \hypertarget{local-alignment}{%
 \subsubsection{Local alignment}\label{local-alignment}}
@@ -927,7 +938,7 @@ Both the NW and the SW algorithms are implemented in many different software too
 
 In the examples used above to present the NW and SW algorithms, we used a very simple cost function: a match has a cost of +1 while mismatches and indels have a cost of -1. This is really the simplest cost function we can use but also the crudest. In many cases it may be interesting to infuse this cost function with biological knowledge. For example some substitutions occur more rarely than others in nature so it would stand to reason to penalize those more than other, more common, substitutions.
 
-These biology-aware cost functions usually take the form of a matrix, called \emph{scoring} or \emph{substitution matrix}, often corresponding to an underlying evolutionary model. When using these matrices, matches and mismatches between specific characters are given. For example the cost of aligning an A and a T might be lower than aligning that same A with a G. A lot of different substitution matrices have been developed especially for protein alignments \autocite{altschulSubstitutionMatrices2013}, developed with different techniques and underlying models and with different intended applications.
+These biology-aware cost functions usually take the form of a matrix, called \emph{scoring} or \emph{substitution matrix}, often corresponding to an underlying evolutionary model. When using these matrices, matches and mismatches between specific characters are given. For example the cost of aligning an A and a G might be lower than aligning that same A with a T. A lot of different substitution matrices have been developed especially for protein alignments \autocite{altschulSubstitutionMatrices2013}, developed with different techniques and underlying models and with different intended applications.
 
 The earliest and simplest substitution matrices are match/mismatch matrices. They are effectively what we used above, where all matches are given a fixed positive score and all mismatches a fixed negative score. In our examples above the corresponding substitution matrix would be a four by four matrix with ones on the diagonal indicating matches and -1 everywhere else. These are simple and useful, but when dealing with proteins, they have a severe limitation as they ignore the biology of amino acids.
 
@@ -964,11 +975,11 @@ In biology, when insertions or deletions occur it is more likely that the indel 
 \textbf{\texttt{AGGAGGTTCG}} ~~~~~~ \textbf{\texttt{AGGAGGTTCG}}\\
 \textbf{\texttt{A-G-G-T-CC}} ~~~~~~ \textbf{\texttt{AGG-\/-\/-\/-TCC}}
 
-The first approach to take this into account was to try and optimize the gaps more generally \autocite{fitchOptimalSequenceAlignments1983} over the whole aligned sequence. However, even with dynamic programming, this has at best a time complexity of \(o(n^2m)\) \autocite{watermanBiologicalSequenceMetrics1976}. In 1982, Gotoh proposed affine gap costs \autocite{gotohImprovedAlgorithmMatching1982}. With this model there are two separate costs associated to indels: 1) the gap open cost and 2) the gap extend cost. Usually the costs are set up so that opening a new gap is more costly than extending it, meaning that longer gap stretches are favored over many short indels. The other major advantage is that with Gotoh's algorithm time complexity is back down to \(o(nm)\). The algorithm was further refined by Altschul \emph{et al.} \autocite{altschulOptimalSequenceAlignment1986}.
+The first approach to take this into account was to try and optimize the gaps more generally \autocite{fitchOptimalSequenceAlignments1983} over the whole aligned sequence. However, even with dynamic programming, this has at best a time complexity of \(\mathcal{O}(n^2m)\) \autocite{watermanBiologicalSequenceMetrics1976}. In 1982, Gotoh proposed affine gap costs \autocite{gotohImprovedAlgorithmMatching1982}. With this model there are two separate costs associated to indels: 1) the gap open cost and 2) the gap extend cost. Usually the costs are set up so that opening a new gap is more costly than extending it, meaning that longer gap stretches are favored over many short indels. The other major advantage is that with Gotoh's algorithm time complexity is back down to \(\mathcal{O}(nm)\). The algorithm was further refined by Altschul \emph{et al.} \autocite{altschulOptimalSequenceAlignment1986}.
 
 Over the years different types of gap costs were developed and tested like the logarithmic gap costs proposed by Waterman \autocite{watermanEfficientSequenceAlignment1984} and improved by Miller and Myers \autocite{millerSequenceComparisonConcave1988} which turned out to be less accurate than affine gap costs \autocite{cartwrightLogarithmicGapCosts2006}). A bi-linear gap cost was also proposed to replace the affine cost\autocite{goonesekereFrequencyGapsObserved2004}, with a breakpoint at gaps of length three, the size of a codon. As more and more sequence data became available, similarly to what happened with substitution matrices, empirical profile-based models derived from this data were developed \autocite{bennerEmpiricalStructuralModels1993}. Some of these penalties leverage structural information and context for proteins \autocite{wrablGapsStructurallySimilar2004,zhangSP5ImprovingProtein2008}. A context dependent gap penalty depending on the hydrophobicity of aligned residues is implemented in \texttt{Clustal\ X} \autocite{jeanmouginMultipleSequenceAlignment1998}, one of the most widely used sequence aligners. Although quite complex and empirically derived, these profile-based penalties show limited improvement over the affine and bi-linear penalties \autocite{wangComparisonLinearGap2011}.
 
-More recently, methodological and algorithmic developments have resulted in the WaveFront algorithm (WFA) for pairwise alignment \autocite{marco-solaFastGapaffinePairwise2020}. This algorithm computes a NW alignment with affine gap costs with a much lower time complexity of \(o(ns)\), where \(s\) is the alignment score, reducing the quadratic relationship to sequence length to a linear one. This algorithm is also easily vectorizable and can take advantage of hardware acceleration, making its implementation run between 10 to 300 times faster than alternative methods depending on the testing context \autocite{marco-solaFastGapaffinePairwise2020}.
+More recently, methodological and algorithmic developments have resulted in the WaveFront algorithm (WFA) for pairwise alignment \autocite{marco-solaFastGapaffinePairwise2020}. This algorithm computes a NW alignment with affine gap costs with a much lower time complexity of \(\mathcal{O}(ns)\), where \(s\) is the alignment score, reducing the quadratic relationship to sequence length to a linear one. This algorithm is also easily vectorizable and can take advantage of hardware acceleration, making its implementation run between 10 to 300 times faster than alternative methods depending on the testing context \autocite{marco-solaFastGapaffinePairwise2020}.
 
 \hypertarget{how-to-speed-up-pairwise-alignment}{%
 \section{How to speed up pairwise alignment ?}\label{how-to-speed-up-pairwise-alignment}}
@@ -1065,7 +1076,7 @@ While \(k\)-mer seeds have shown success it is not the only way to implement a s
 
 Suffix trees have long been used for pattern matching applications \autocite{gusfieldAlgorithmsStringsTrees1997}, the \texttt{AVID} aligner \autocite{brayAVIDGlobalAlignment2003} uses them to find maximal exact matches between two sequences to anchor a global alignment. \texttt{MUMmer2} \autocite{delcherFastAlgorithmsLargescale2002} uses suffix trees to find unique maximal unique matches (MUMs) to anchor alignments.
 
-Suffix trees, although very useful, have quadratic space complexity w.r.t. to the length of the indexed sequence \autocite{gusfieldAlgorithmsStringsTrees1997}. This is fine for small bacterial or viral genomes. However, in the age of whole genome sequencing and the human genome project, it is inadequate. Therefore some aligners have switched data structures to use suffix arrays. In fact, it is possible to replace suffix trees with these more space efficient suffix arrays in any algorithm \autocite{abouelhodaReplacingSuffixTrees2004}. Newer versions of \texttt{MUMmer} \autocite{marcaisMUMmer4FastVersatile2018} have made this choice and now use suffix arrays for improved performance.
+Suffix trees, although very useful, have quadratic space complexity w.r.t. to the length of the indexed sequence \autocite{gusfieldAlgorithmsStringsTrees1997}. This is fine for small bacterial or viral genomes. However, in the age of whole genome sequencing and the human genome project, it is inadequate. Therefore some aligners have switched data structures to use suffix arrays. In fact, it is possible to replace suffix trees with these more space efficient suffix arrays in any algorithm \autocite{abouelhodaReplacingSuffixTrees2004}. Newer versions of \texttt{MUMmer} \autocite{marcaisMUMmer4FastVersatile2018} have made this choice and now use suffix arrays for improved performance. It is important to note that compact versions of suffix trees have been created that are also linear in space to sequence length \autocite{mccreightSpaceEconomicalSuffixTree1976}, however in practice suffix arrays take up less space for comparable query times \autocite{manberSuffixArraysNew1993}.
 
 Finally another data structure that is widely used is the so-called FM index proposed in 2000 \autocite{ferraginaOpportunisticDataStructures2000} and based on the Burrows-Wheeler transform \autocite{burrowsBlockSortingLosslessData1994}. The FM index is very memory efficient \autocite{vyvermanProspectsLimitationsFulltext2012}, but this comes at the cost of some efficiency in index lookup operations, although some work has been done to improve this \autocite{chengFMtreeFastLocating2018}. As such, FM-indices have been used in many aligners such as \texttt{BWT-SW} \autocite{lamCompressedIndexingLocal2008}, \texttt{BWA} \autocite{liFastAccurateShort2009} and \texttt{BWA-SW} \autocite{liFastAccurateLongread2010}, \texttt{BWA-MEM} \autocite{liAligningSequenceReads2013}, \texttt{CUSHAW} \autocite{liuLongReadAlignment2012} or \texttt{bowtie2} \autocite{langmeadFastGappedreadAlignment2012}.
 
@@ -1154,8 +1165,6 @@ Sequence alignment, multiple or pairwise, is a fundamental part of the bioinform
 As we have seen now, although we have methods guaranteed to give us optimal pairwise and multiple sequence alignments, they are not practically useful for dealing with sequences at today's scale. Therefore, most sequence aligners rely on, sometimes numerous, heuristics and approximations. From substitution models to seeding techniques, all these are not necessarily reflective of the biological reality contained within the sequences to align. Each of these heuristics or models is a step where biases and approximations can happen, building up along and over sequences. Therefore, there must be room for improvement.
 
 Having methods that are both fast and accurate are now more necessary than ever with the ever growing scale and number of publicly available sequences. Furthermore, in the ``age of pandemics'', accurate alignment methods are indispensable to track and keep an eye on disease spread across the globe, in real-time.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HPC-paper}{%
 \chapter{Contribution 1: Improving Read Alignment by Exploring a Sequence Transformation Space}\label{HPC-paper}}
@@ -1289,7 +1298,7 @@ These restrictions reduce the number of order-2 SSRs to only , making it feasibl
 \hypertarget{sec:rc-insensitive}{%
 \subsubsection{Reverse complement-core-insensitive streaming sequence reductions}\label{sec:rc-insensitive}}
 
-Consider an SSR defined by a function \(g\), as in Equation \eqref{eq:MSR}. Throughout this paper we will consider SSRs that have a related but weaker property than RC-insensitive. We say that an SSR is \emph{RC-core-insensitive} if the function \(g\) that defines it has the property that for every \(\ell\)-mer\(x\) and its reverse complement \(y\), we have that either \(g(x)\) is the reverse complement of \(g(y)\) or \(g(x) = g(y) = \varepsilon\). We will restrict our SSR search space to RC-core-insensitive reductions in order to reduce the number of SSRs we will need to test.
+Consider an SSR defined by a function \(g\), as in Equation \eqref{eq:MSR}. Throughout this paper we will consider SSRs that have a related but weaker property than RC-insensitive. We say that an SSR is \emph{RC-core-insensitive} if the function \(g\) that defines it has the property that for every \(\ell\)-mer \(x\) and its reverse complement \(y\), we have that either \(g(x)\) is the reverse complement of \(g(y)\) or \(g(x) = g(y) = \varepsilon\). We will restrict our SSR search space to RC-core-insensitive reductions in order to reduce the number of SSRs we will need to test.
 
 Let us consider what this means for the case of \(\ell=2\), which will be the focal point of our experimental analysis. There are 16 \(\ell\)-mers(i.e.~dinucleotides) in total. Four of them are their own reverse complement: AT, TA, GC, CG. The RC-core-insensitive restriction forces \(g\) to map each of these to \(\varepsilon\), since a single nucleotide output cannot be its own reverse complement. This leaves 12 \(\ell\)-mers, which can be broken down into 6 pairs of reverse complements. For each pair, we can order them in lexicographical order and write them as \((AA,TT), (AC,GT), (AG,CT), (CA,TG), (CC,GG),\) and \((GA,TC)\). Defining \(g\) can then be done by assigning an output nucleotide to the first \(\ell\)-mer in each of these pairs (Figure \ref{fig:countingMSRs}C). For example, we can define an SSR by assigning \(g(AA) = C\), \(g(AC) = C\), \(g(AG) = A\), \(g(CA) = A\), \(g(CC) = T\), and \(g(GA) = G\). As an example, let us apply the corresponding SSR to an example read \(r\):
 
@@ -1580,8 +1589,8 @@ The hypothesis we made in subsection \ref{sec:equiv} was derived from non mappin
 
 Finally, the restrictions we imposed to define RC-core-insensitive MSRs though intuitively understandable are somewhat arbitrary, so exploring a larger search space might be beneficial. Alternatively for higher order MSRs, even with our restrictions, the search spaces remain much too large to be explored exhaustively. To mitigate this problem, either further restrictions need to be found, or an alternative, optimization-based exploration method should be implemented.
 
-\hypertarget{acknowledgements}{%
-\section*{Acknowledgements}\label{acknowledgements}}
+\hypertarget{acknowledgements-1}{%
+\section*{Acknowledgements}\label{acknowledgements-1}}
 \addcontentsline{toc}{section}{Acknowledgements}
 
 The authors thank Kristoffer Sahlin for feedback on the manuscript.
@@ -1667,8 +1676,6 @@ All experiments performed for this article are implemented and documented as nex
 
 Supporting Information can be found in Appendix \ref{HPC-appendix}
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
-
 \hypertarget{learning-from-sequences-and-alignments}{%
 \chapter{Learning From Sequences and Alignments}\label{learning-from-sequences-and-alignments}}
 
@@ -1702,7 +1709,7 @@ In many cases these methods use an encoded representation of the sequences (c.f.
 
 For classification tasks, the outputs of our input-output pairs are categorical in nature and often represented as discrete integer values. Originally, most classification methods were designed for binary classification with only two possible outputs: a ``positive'' and a ``negative'' class. This is a simpler problem to solve than multiclass classification problems where more than two outputs are possible. Most methods that can handle binary classification have been adapted to multiclass classification.
 
-In biology, categorizing and classifying is often at the root of several research problems. As such, machine learning classifiers have obvious applications and have been widely used with sequence data as inputs. Classifiers have been used to predict if a particular virus \autocite{hagaMachineLearningbasedTreatment2020,zazziPredictingResponseAntiretroviral2012} (also Chapter \ref{HIV-paper}), or bacteria \autocite{renPredictionAntimicrobialResistance2022,kimMachineLearningAntimicrobial2022} is resistant to antiviral or antimicrobial drugs respectively. Some classifier models have also been used to predict characteristics at positions in a sequence, like methylation site prediction \autocite{wangPredictingDNAMethylation2016}, splicing site detection \autocite{ratschLearningInterpretableSVMs2006} or secondary structure at a particular amino acid residue \autocite{jonesProteinSecondaryStructure1999}. Finally, classifiers have also been used to predict more general characteristics of a given sequence, like the cellular localization \autocite{weiPredictionHumanProtein2018} and putative function \autocite{wangProteinSequenceProtein2017} of proteins, or the cellular localization of gene expression data \autocite{kelleyBassetLearningRegulatory2016}.
+In biology, categorizing and classifying is often at the root of several research problems. As such, machine learning classifiers have obvious applications and have been widely used with sequence data as inputs. Classifiers have been used to predict if a particular virus \autocite{hagaMachineLearningbasedTreatment2020,zazziPredictingResponseAntiretroviral2012} (also Chapter \ref{HIV-paper}), or bacteria \autocite{renPredictionAntimicrobialResistance2022,kimMachineLearningAntimicrobial2022} is resistant to antiviral or antimicrobial drugs respectively. Some classifier models have also been used to predict characteristics at positions in a sequence, like methylation site prediction \autocite{wangPredictingDNAMethylation2016} or splicing site detection \autocite{ratschLearningInterpretableSVMs2006}. This type of approach has also been applied for sequence labeling tasks, where each token of a sequence \emph{(amino acids, codons, \ldots)}, is assigned a label using classifiers. This has been applied to protein secondary structure prediction \autocite{jonesProteinSecondaryStructure1999} where each residue is assigned a label (\(\alpha\)-helix or \(\beta\)-sheet), or gene prediction where stretches of the sequence are classified as part of a gene or not \autocite{aliotoGenePrediction2012,fangPlasGUNGenePrediction2020}. Base calling for Nanopore sequencing data (mentioned in \ref{long-read-sequencing}), is also a sequence labeling task, although the sequence is made up of voltages and the assigned labels are nucleotides. Finally, classifiers have also been used to predict more general characteristics of a given sequence, like the cellular localization \autocite{weiPredictionHumanProtein2018} and putative function \autocite{wangProteinSequenceProtein2017} of proteins, or the cellular localization of gene expression data \autocite{kelleyBassetLearningRegulatory2016}.
 
 I have presented here, only a fraction of what is possible to learn from sequences in the supervised learning paradigm. I hope you will agree with me that there is no shortage of problems in computational biology that are suited to this sort of approach. By using machine learning, instead of more formal statistical approaches, there is a lower amount of upfront assumptions and the algorithm is tasked with figuring out what features of the data are important or not for the task at hand.
 
@@ -1863,8 +1870,6 @@ In recent years algorithmic developments, computing power increase and the massi
 \section{Conclusion}\label{conclusion-2}}
 
 Alignments, and the sequences within them, are rich sources of information, that have long been exploited widely for many different types of analyses. With the rise of machine learning in the last years, it is logical that machine learning models have been applied more and more frequently to biological sequence data. Machine Learning is a wide field with many different methods and paradigms. Even simple methods like linear regression or naive Bayes can be very useful, and more complex models like random forests have been able to make very good predictions on biological data. The model is not the only variable to take into account when looking to apply machine learning methods on sequence data. Different encoding methods will yield different vector representations, with different characteristics and applications. Special care must therefore be given to the choice of biological sequence encoding scheme, prior to starting a machine learning analysis.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{viruses-hiv-and-drug-resistance}{%
 \chapter{Viruses, HIV and Drug Resistance}\label{viruses-hiv-and-drug-resistance}}
@@ -2192,8 +2197,6 @@ Viruses are surprisingly complex in light of their apparent simplicity. They are
 Although the study of viruses as a whole is very useful, HIV is particularly important to study. The impact of the HIV pandemic on global health has been severe, both in Lower and Higher income countries. It is therefore paramount to fully understand the underlying mechanisms and evolutionary adaptations of this virus. Its high mutation rate allows it to quickly explore evolutionary alternatives when exposed to drugs, making anti HIV therapy a complex endeavor.
 
 Fortunately, with large scale sequencing efforts it is possible to study and track these evolutionary adaptations to treatments. This allows us to adapt therapeutic strategies as well as develop new compounds and approaches. In this context, studying and finding the virus's mutational processes is paramount. This is especially important when studying resistance to RTIs as they form the backbone of first line regimen combination therapies, and are the most common type of anti-HIV drug. This process is made easier by the large scale sequence repositories now available, and the usage of machine and statistical learning to leverage that data.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \hypertarget{HIV-paper}{%
 \chapter{Contribution 2: Inferring Mutation Roles From Sequence Alignments Using Machine Learning}\label{HIV-paper}}
@@ -3284,8 +3287,6 @@ Gunson, Amanda Bradley-Stewart).
 
 Supporting Information can be found in the appendix \ref{HIV-appendix}
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
-
 \hypertarget{learning-alignments-an-interesting-perspective}{%
 \chapter{Learning Alignments, an Interesting Perspective}\label{learning-alignments-an-interesting-perspective}}
 
@@ -3355,7 +3356,7 @@ After having sufficiently trained the neural network on the corpus on one of the
 
 While \texttt{word2vec} was widely used for many NLP tasks where word embeddings were needed, a lot of interesting developments on word embeddings were made in the field of automated machine translation. In this application, the desired embedding characteristics are slightly different. While semantic relevance is useful, in machine translation the embedding method needs to be able to capture dependencies, e.g.~within a sentence where the link between the subject and the verb must be captured even though they are not necessarily next to each other. This was initially done by using recurrent neural networks, called RNNs or LSTMs, but they were hard to train and had trouble properly capturing long-range dependencies \autocite{songPretrainingModelBiological2021}.
 
-One of the most successful methods developed for this task is the transformer \autocite{vaswaniAttentionAllYou2017}, also created by Google researchers. The main mechanisms of the transformer is the \emph{self-attention} mechanisms: each input token, usually encoded as a One-Hot vector, is represented as a weighted sum of all the other tokens in a sequence \emph{(here a token is a word and the sequence is a sentence)}. The weights of this sum are trained along with the rest of this network. by stacking several of these self-attention blocks, transformers can learn to represent and leverage long-range dependencies. These transformers are made of an encoder module that learns the token embedding, and a decoder module that makes predictions when fed embedded tokens sequentially. This mechanism, attention, and the transformer in general have had very successful applications in machine translation, while being easier to train than recurrent networks \autocite{wangProgressMachineTranslation2021}.
+One of the most successful methods developed for this task is the transformer \autocite{vaswaniAttentionAllYou2017}, also created by Google researchers. The main mechanisms of the transformer is the \emph{self-attention} mechanisms: each input token, usually encoded as a One-Hot vector, is represented as a weighted sum of all the other tokens in a sequence \emph{(here a token is a word and the sequence is a sentence)}. The weights of this sum are trained along with the rest of this network. By stacking several of these self-attention blocks, transformers can learn to represent and leverage long-range dependencies. These transformers are made of an encoder module that learns the token embedding, and a decoder module that makes predictions when fed embedded tokens sequentially. This mechanism, attention, and the transformer in general have had very successful applications in machine translation, while being easier to train than recurrent networks \autocite{wangProgressMachineTranslation2021}.
 
 This architecture was used to create very large pre-trained language models, that is to say models that perform word embedding. These models like \texttt{BERT} \autocite{devlinBERTPretrainingDeep2019} or \texttt{GPT-3} \autocite{brownLanguageModelsAre2020} are huge, with millions or even billions of learned weights, and have been trained on huge quantities of data in order to produce word embeddings useful in a wide range of contexts. \texttt{BERT} was trained using Masked Language Modelling (MLM), where some percentage of the tokens \emph{(words)} in an input sequence \emph{(sentence)} are replaced by a special \texttt{{[}MASK{]}} token, and the model is trained to predict the whole sentence, effectively guessing what words are missing based on the context of the whole sequence. This process allows the model to learn relevant dependencies between tokens in the training data.
 
@@ -3363,7 +3364,7 @@ As was the case with \texttt{word2vec}, these methods have been adapted to bioin
 
 While, these protein language models have shown very useful for embedding single sequences, some developments have been made to embed multiple sequence alignments as learning inputs. In some cases this is done by including information on the alignment in the tokens and then using a regular language model to embed them \autocite{caiGenomewidePredictionSmall2020}. In the case of the MSA transformer \autocite{raoMSATransformer2021}, the attention mechanism was extended to include a weighted sum between aligned sequences effectively taking the alignment into account when embedding sequences. An attention-like mechanism was also used to train a protein structure prediction model directly on MSAs \autocite{sercuNeuralPottsModel2021}. Similarly, by pre-training language models on profiles derived from MSAs, some information about the alignment can be included in the resulting embeddings \autocite{sturmfelsProfilePredictionAlignmentBased2020}. Finally aligned sequences can be used as inputs in a regular transformer as was done \texttt{DeepConsensus} \autocite{baidDeepConsensusImprovesAccuracy2022}, a transformer-based polisher to decrease the error rate PacBio HiFi reads even further. Finally the \emph{EvoFormer} model included in \texttt{AlphaFold2} \autocite{jumperHighlyAccurateProtein2021}, which embeds MSAs to predict protein structure, is partly responsible for the leap in performance between the two generations of the \texttt{AlphaFold} model, and the current protein structure prediction revolution \autocite{ourmazdStructuralBiologySolved2022}.
 
-It is important to note that while these transformer models are very powerful and useful in practice, their complexity and size makes them very hard to study and understand what they actually learns. There is work to peek inside this ``black box'', notably by interpreting the learned attention maps \autocite{vigBERTologyMeetsBiology2021} and decipher biologically relevant information contained within.
+It is important to note that while these transformer models are very powerful and useful in practice, their complexity and size makes them very hard to study and understand what they actually learn. There is work to peek inside this ``black box'', notably by interpreting the learned attention maps \autocite{vigBERTologyMeetsBiology2021} and decipher biologically relevant information contained within.
 
 \hypertarget{learning-sequence-alignment}{%
 \section{Learning sequence alignment}\label{learning-sequence-alignment}}
@@ -3432,8 +3433,6 @@ Finally, the pre-processing function framework of MSRs presented in Chapter \ref
 \section{Conclusion}\label{conclusion-4}}
 
 Deep learning is a powerful framework for sequence-based tasks. The recent transformer architecture has shown an unprecedented ability to capture within-sequence dependencies and learn relevant information. This ability has made them dominant in the NLP field, particularly machine translation. Transformers and large language models have shown some power in biological sequence processing and sequence alignment. However, the attention mechanism that makes these models so successful has limitations, especially w.r.t. input sequence length. Some approaches and approximations, have been proposed to lower the time and memory complexity of the attention mechanism, but these improvements have yet to be implemented in a sequence alignment task. In the special case of read-mapping, even with improved attention mechanisms, the size discrepancy between reference and reads, as well as the often very large scale of the reference sequence, make transformer based embedding approaches impractical. Learned data structures and seeding schemes might be one of the approaches to improve read alignment.
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for chapter \thechapter}]
 
 \pagestyle{empty}
 
@@ -3641,8 +3640,6 @@ Meryl v1.0           & (Rhie et al., 2020)    & \url{https://github.com/marbl/Wi
 Analysis pipelines   & This paper             & \url{https://doi.org/10.5281/zenodo.6859636} \\ \bottomrule
 \end{tabular}
 \end{table}
-
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for appendix \thechapter}]
 
 \hypertarget{HIV-intro-appendix}{%
 \chapter{Supporting Information for ``HIV and DRMs''}\label{HIV-intro-appendix}}
@@ -3980,8 +3977,6 @@ Out of the \(221\) significative tests, 156 pairs were composed of 2 known RAMS 
 
 \url{https://doi.org/10.1371/journal.pcbi.1008873.s008} (CSV)
 
-\printbibliography[segment=\therefsegment,heading=subbibintoc,title={References for Appendix \thechapter}]
-
 \backmatter
 \fancyhead[RO,LE]{REFERENCES}
 
@@ -4011,7 +4006,7 @@ Out of the \(221\) significative tests, 156 pairs were composed of 2 known RAMS 
         \sffamily
         \mdseries
         \small
-        \input{./abstract/abstract_en.tex}
+        \input{./tex_content/abstract_en.tex}
 
         \medskip
         \underline{Keywords:} Alignment, Genomics, Machine Learning, Biological sequences
@@ -4026,7 +4021,7 @@ Out of the \(221\) significative tests, 156 pairs were composed of 2 known RAMS 
         \sffamily
         \mdseries
         \small
-        \input{./abstract/abstract_fr.tex}
+        \input{./tex_content/abstract_fr.tex}
 
         \medskip
         \underline{Mots clés:} Alignement, Génomique, Machine Learning, Séquence biologiques
